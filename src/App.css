@@ -148,6 +148,29 @@ body {
   gap: 1rem;
 }
 
+.tab-switch {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(10, 23, 54, 0.78);
+  color: var(--text-200);
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.tab-button-active {
+  border-color: rgba(249, 115, 22, 0.9);
+  color: var(--text-50);
+  background: rgba(120, 50, 7, 0.58);
+}
+
 .hero-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
@@ -415,6 +438,63 @@ body {
   margin: 0.2rem 0 0;
 }
 
+.resource-controls {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.resource-input {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: rgba(9, 18, 41, 0.85);
+  color: var(--text-50);
+  padding: 0.62rem 0.75rem;
+}
+
+.resource-region-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.resource-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-card {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.resource-card h3 {
+  margin: 0.1rem 0 0;
+  font-size: 1rem;
+}
+
+.resource-category {
+  margin: 0;
+  color: var(--orange-400);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.resource-summary {
+  margin: 0.2rem 0 0.25rem;
+  color: var(--text-200);
+  font-size: 0.88rem;
+}
+
+.resource-card a {
+  color: #9dd3ff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
 .industry-layout {
   display: grid;
   gap: 1rem;
@@ -600,7 +680,8 @@ body {
 @media (max-width: 1200px) {
   .hero-grid,
   .trend-grid,
-  .industry-cards {
+  .industry-cards,
+  .resource-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
@@ -629,7 +710,8 @@ body {
   .hero-grid,
   .trend-grid,
   .industry-cards,
-  .metro-grid-wrap {
+  .metro-grid-wrap,
+  .resource-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -662,7 +744,8 @@ body {
   .hero-grid,
   .trend-grid,
   .industry-cards,
-  .metro-grid-wrap {
+  .metro-grid-wrap,
+  .resource-grid {
     grid-template-columns: 1fr;
   }
 

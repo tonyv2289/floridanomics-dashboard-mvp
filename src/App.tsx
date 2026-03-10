@@ -14,14 +14,31 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { DashboardDataset, Delta, IndustrySector, Metric, PopulationMetric, TimePoint } from "./types/dashboard";
+import type {
+  DashboardDataset,
+  Delta,
+  IndustrySector,
+  InnovationMetricId,
+  InnovationResource,
+  Metric,
+  PopulationMetric,
+  TimePoint,
+} from "./types/dashboard";
 import { FloridaMsaMap } from "./components/FloridaMsaMap";
 import "./App.css";
 
 type AnyMetric = Metric | PopulationMetric;
 type MetricId = keyof DashboardDataset["metrics"];
+type TabId = "scorecard" | "innovation";
 
 const METRIC_IDS: MetricId[] = ["unemploymentRate", "laborForce", "employmentLevel", "nonfarmPayrolls", "population"];
+const INNOVATION_METRIC_IDS: InnovationMetricId[] = [
+  "informationEmployment",
+  "professionalBusinessEmployment",
+  "businessApplications",
+  "realGsp",
+  "constructionEmployment",
+];
 
 const METRO_COLORS = {
   miami: "#fb923c",
@@ -33,6 +50,9 @@ const METRO_COLORS = {
 function displayValue(metric: AnyMetric, rawValue: number): number {
   if (metric.unit === "thousands_jobs") {
     return rawValue * 1000;
+  }
+  if (metric.unit === "usd_millions") {
+    return rawValue * 1_000_000;
   }
   return rawValue;
 }
@@ -47,6 +67,14 @@ function formatCompact(value: number, maxFractionDigits = 1): string {
 function formatMetricValue(metric: AnyMetric, rawValue: number): string {
   if (metric.unit === "percent") {
     return `${rawValue.toFixed(1)}%`;
+  }
+
+  if (metric.unit === "usd_millions") {
+    return `$${formatCompact(displayValue(metric, rawValue), 1)}`;
+  }
+
+  if (metric.unit === "count") {
+    return formatCompact(displayValue(metric, rawValue), 1);
   }
 
   return formatCompact(displayValue(metric, rawValue), 1);
@@ -65,6 +93,9 @@ function formatDelta(metric: AnyMetric, delta: Delta | null): string {
 
   const absolute = displayValue(metric, Math.abs(delta.absolute));
   const pct = delta.percent === null ? "n/a" : `${sign}${Math.abs(delta.percent).toFixed(1)}%`;
+  if (metric.unit === "usd_millions") {
+    return `${sign}$${formatCompact(absolute, 1)} (${pct})`;
+  }
   return `${sign}${formatCompact(absolute, 1)} (${pct})`;
 }
 
@@ -117,6 +148,14 @@ function metricHeadline(metricId: keyof DashboardDataset["metrics"]): string {
 
 function isMetricId(value: string | null): value is MetricId {
   return value !== null && METRIC_IDS.includes(value as MetricId);
+}
+
+function isTabId(value: string | null): value is TabId {
+  return value === "scorecard" || value === "innovation";
+}
+
+function isInnovationMetricId(value: string | null): value is InnovationMetricId {
+  return value !== null && INNOVATION_METRIC_IDS.includes(value as InnovationMetricId);
 }
 
 function daysSince(dateValue: string): number {
@@ -275,9 +314,13 @@ function SectorList({ title, sectors, tone }: { title: string; sectors: Industry
 function App() {
   const [dataset, setDataset] = useState<DashboardDataset | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<TabId>("scorecard");
   const [selectedMetroId, setSelectedMetroId] = useState<string | null>(null);
   const [selectedMetricId, setSelectedMetricId] = useState<MetricId | null>(null);
+  const [selectedInnovationMetricId, setSelectedInnovationMetricId] = useState<InnovationMetricId | null>(null);
   const [shareState, setShareState] = useState<"idle" | "copied" | "error">("idle");
+  const [resourceQuery, setResourceQuery] = useState("");
+  const [resourceRegion, setResourceRegion] = useState<InnovationResource["region"] | "All">("All");
 
   useEffect(() => {
     let canceled = false;
@@ -314,27 +357,37 @@ function App() {
     }
 
     const params = new URLSearchParams(window.location.search);
+    const tabFromUrl = params.get("tab");
     const metroFromUrl = params.get("metro");
     const metricFromUrl = params.get("metric");
+    const innovationMetricFromUrl = params.get("innovationMetric");
 
     const validMetro = dataset.metros.some((metro) => metro.id === metroFromUrl) ? metroFromUrl : dataset.metros[0]?.id ?? null;
     const validMetric = isMetricId(metricFromUrl) ? metricFromUrl : dataset.heroMetrics[0];
+    const validInnovationMetric = isInnovationMetricId(innovationMetricFromUrl)
+      ? innovationMetricFromUrl
+      : dataset.innovation.heroMetrics[0];
+    const validTab = isTabId(tabFromUrl) ? tabFromUrl : "scorecard";
 
+    setActiveTab(validTab);
     setSelectedMetroId((current) => current ?? validMetro);
     setSelectedMetricId((current) => current ?? validMetric);
+    setSelectedInnovationMetricId((current) => current ?? validInnovationMetric);
   }, [dataset]);
 
   useEffect(() => {
-    if (!selectedMetroId || !selectedMetricId) {
+    if (!selectedMetroId || !selectedMetricId || !selectedInnovationMetricId) {
       return;
     }
 
     const params = new URLSearchParams(window.location.search);
+    params.set("tab", activeTab);
     params.set("metro", selectedMetroId);
     params.set("metric", selectedMetricId);
+    params.set("innovationMetric", selectedInnovationMetricId);
     const nextUrl = `${window.location.pathname}?${params.toString()}`;
     window.history.replaceState({}, "", nextUrl);
-  }, [selectedMetroId, selectedMetricId]);
+  }, [activeTab, selectedInnovationMetricId, selectedMetroId, selectedMetricId]);
 
   const industryBarData = useMemo(() => {
     if (!dataset) {
@@ -390,12 +443,37 @@ function App() {
   const heroMetrics = dataset.heroMetrics.map((metricId) => dataset.metrics[metricId]);
   const selectedMetro = dataset.metros.find((metro) => metro.id === selectedMetroId) ?? dataset.metros[0];
   const selectedMetric = dataset.metrics[selectedMetricId ?? dataset.heroMetrics[0]];
+  const innovationHeroMetrics = dataset.innovation.heroMetrics.map((metricId) => dataset.innovation.metrics[metricId]);
+  const selectedInnovationMetric =
+    dataset.innovation.metrics[selectedInnovationMetricId ?? dataset.innovation.heroMetrics[0]];
 
   const metricExplorerData = selectedMetric.series.map((point) => ({
     date: point.date,
     label: shortMonthLabel(point.date),
     value: selectedMetric.unit === "thousands_jobs" ? point.value * 1000 : point.value,
   }));
+
+  const innovationExplorerData = selectedInnovationMetric.series.map((point) => ({
+    date: point.date,
+    label: shortMonthLabel(point.date),
+    value:
+      selectedInnovationMetric.unit === "thousands_jobs"
+        ? point.value * 1000
+        : selectedInnovationMetric.unit === "usd_millions"
+          ? point.value * 1_000_000
+          : point.value,
+  }));
+
+  const filteredResources = dataset.innovation.resources.filter((resource) => {
+    const regionMatch = resourceRegion === "All" || resource.region === resourceRegion;
+    const query = resourceQuery.trim().toLowerCase();
+    const queryMatch =
+      query.length === 0 ||
+      resource.name.toLowerCase().includes(query) ||
+      resource.summary.toLowerCase().includes(query) ||
+      resource.category.toLowerCase().includes(query);
+    return regionMatch && queryMatch;
+  });
 
   const laborDaysOld = daysSince(dataset.metrics.unemploymentRate.latest.date);
   const freshnessClass = laborDaysOld > 120 ? "freshness-stale" : laborDaysOld > 75 ? "freshness-watch" : "freshness-good";
@@ -461,6 +539,26 @@ function App() {
           </div>
         </div>
       </section>
+
+      <section className="tab-switch panel">
+        <button
+          type="button"
+          className={clsx("tab-button", activeTab === "scorecard" && "tab-button-active")}
+          onClick={() => setActiveTab("scorecard")}
+        >
+          Florida Scorecard
+        </button>
+        <button
+          type="button"
+          className={clsx("tab-button", activeTab === "innovation" && "tab-button-active")}
+          onClick={() => setActiveTab("innovation")}
+        >
+          Innovation + Economic Development
+        </button>
+      </section>
+
+      {activeTab === "scorecard" && (
+        <>
 
       <section className="grid hero-grid">
         {heroMetrics.map((metric) => (
@@ -712,6 +810,157 @@ function App() {
           </div>
         </div>
       </section>
+        </>
+      )}
+
+      {activeTab === "innovation" && (
+        <>
+          <section className="grid hero-grid">
+            {innovationHeroMetrics.map((metric) => (
+              <article className="panel hero-card" key={metric.id}>
+                <p className="kicker">{metric.label}</p>
+                <h2>{formatMetricValue(metric, metric.latest.value)}</h2>
+                <p className={deltaClass(metric, metric.deltas.oneYear)}>
+                  1Y: {formatDelta(metric, metric.deltas.oneYear)}
+                </p>
+              </article>
+            ))}
+          </section>
+
+          <section className="section-head">
+            <h2>Innovation Signal Explorer</h2>
+            <p>Track business formation, advanced-industry jobs, and output momentum across Florida.</p>
+          </section>
+          <section className="panel explorer-panel">
+            <div className="explorer-toolbar">
+              {INNOVATION_METRIC_IDS.map((metricId) => (
+                <button
+                  type="button"
+                  key={metricId}
+                  className={clsx("metric-toggle", selectedInnovationMetric.id === metricId && "metric-toggle-active")}
+                  onClick={() => setSelectedInnovationMetricId(metricId)}
+                >
+                  {dataset.innovation.metrics[metricId].label}
+                </button>
+              ))}
+            </div>
+
+            <div className="explorer-headline">
+              <div>
+                <p className="kicker">Selected innovation metric</p>
+                <h3>{selectedInnovationMetric.label}</h3>
+                <p className="explorer-value">{formatMetricValue(selectedInnovationMetric, selectedInnovationMetric.latest.value)}</p>
+              </div>
+              <div className="explorer-deltas">
+                <p className={deltaClass(selectedInnovationMetric, selectedInnovationMetric.deltas.oneYear)}>
+                  1Y: {formatDelta(selectedInnovationMetric, selectedInnovationMetric.deltas.oneYear)}
+                </p>
+                <p className={deltaClass(selectedInnovationMetric, selectedInnovationMetric.deltas.threeYear)}>
+                  3Y: {formatDelta(selectedInnovationMetric, selectedInnovationMetric.deltas.threeYear)}
+                </p>
+                <p className={deltaClass(selectedInnovationMetric, selectedInnovationMetric.deltas.fiveYear)}>
+                  5Y: {formatDelta(selectedInnovationMetric, selectedInnovationMetric.deltas.fiveYear)}
+                </p>
+              </div>
+            </div>
+
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={innovationExplorerData} margin={{ top: 16, right: 8, left: 0, bottom: 8 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(149, 163, 191, 0.2)" />
+                <XAxis dataKey="label" minTickGap={24} tick={{ fill: "#a9b9dd", fontSize: 11 }} />
+                <YAxis
+                  tick={{ fill: "#a9b9dd", fontSize: 11 }}
+                  tickFormatter={(value) =>
+                    selectedInnovationMetric.unit === "percent"
+                      ? `${Number(value).toFixed(1)}%`
+                      : selectedInnovationMetric.unit === "usd_millions"
+                        ? `$${formatCompact(Number(value), 0)}`
+                        : formatCompact(Number(value), 0)
+                  }
+                />
+                <Tooltip />
+                <Line type="monotone" dataKey="value" stroke="#fb923c" strokeWidth={2.4} dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
+          </section>
+
+          <section className="panel innovation-narrative">
+            <h3>{dataset.innovation.narrative.headline}</h3>
+            <div className="narrative-grid">
+              <div>
+                <h4>Signals</h4>
+                <ul>
+                  {dataset.innovation.narrative.signals.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4>Development Engine</h4>
+                <ul>
+                  {dataset.innovation.narrative.development.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4>Momentum</h4>
+                <ul>
+                  {dataset.innovation.narrative.momentum.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section className="section-head">
+            <h2>Florida Innovation Resource Atlas</h2>
+            <p>Statewide and metro innovation/economic-development resources inspired by your Miami model.</p>
+          </section>
+          <section className="panel resource-controls">
+            <input
+              className="resource-input"
+              type="search"
+              placeholder="Search resources (capital, programs, ecosystem...)"
+              value={resourceQuery}
+              onChange={(event) => setResourceQuery(event.target.value)}
+            />
+            <div className="resource-region-row">
+              {(["All", "Statewide", "Miami", "Tampa Bay", "Orlando", "Jacksonville"] as const).map((region) => (
+                <button
+                  key={region}
+                  type="button"
+                  className={clsx("metric-toggle", resourceRegion === region && "metric-toggle-active")}
+                  onClick={() => setResourceRegion(region)}
+                >
+                  {region}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <section className="resource-grid">
+            {filteredResources.length === 0 && (
+              <article className="panel resource-card">
+                <h3>No resources matched this filter.</h3>
+                <p className="resource-summary">Try clearing the search text or selecting a broader region.</p>
+              </article>
+            )}
+            {filteredResources.map((resource) => (
+              <article key={resource.id} className="panel resource-card">
+                <p className="kicker">{resource.region}</p>
+                <h3>{resource.name}</h3>
+                <p className="resource-category">{resource.category}</p>
+                <p className="resource-summary">{resource.summary}</p>
+                <a href={resource.url} target="_blank" rel="noreferrer">
+                  Open resource
+                </a>
+              </article>
+            ))}
+          </section>
+        </>
+      )}
 
       <footer className="panel sources">
         <h3>Sources</h3>

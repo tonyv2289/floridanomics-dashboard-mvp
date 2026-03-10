@@ -16,6 +16,7 @@ Outputs:
 - Sparkline arrays for compact charts
 - Industry top growers and laggards
 - Rules-based narrative summary
+- Innovation tab metrics and innovation resource atlas payload
 
 ## Validation checklist
 After refresh, quickly verify:
@@ -38,5 +39,6 @@ npm run qa:full
 
 ## Operational notes
 - BLS request chunking is built in for API reliability.
+- If BLS daily quota is exhausted, refresh automatically reuses cached BLS series from the existing dataset.
 - If a series is unavailable, the script fails fast with a clear message.
 - Dataset contract is typed in `src/types/dashboard.ts`.

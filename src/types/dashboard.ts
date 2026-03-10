@@ -10,10 +10,13 @@ export type Delta = {
   percent: number | null;
 };
 
+export type MetricUnit = "percent" | "persons" | "thousands_jobs" | "count" | "usd_millions";
+export type MetricSource = "BLS" | "FRED" | "Census_via_FRED";
+
 export type Metric = {
   id: string;
   label: string;
-  unit: "percent" | "persons" | "thousands_jobs";
+  unit: MetricUnit;
   trendDirection: "up_good" | "down_good";
   latest: TimePoint;
   deltas: {
@@ -23,7 +26,7 @@ export type Metric = {
   };
   sparkline: TimePoint[];
   series: TimePoint[];
-  source: "BLS";
+  source: MetricSource;
 };
 
 export type PopulationMetric = {
@@ -59,6 +62,22 @@ export type MetroSnapshot = {
   employmentLevel: Pick<Metric, "latest" | "deltas" | "sparkline">;
 };
 
+export type InnovationMetricId =
+  | "informationEmployment"
+  | "professionalBusinessEmployment"
+  | "businessApplications"
+  | "realGsp"
+  | "constructionEmployment";
+
+export type InnovationResource = {
+  id: string;
+  name: string;
+  category: "Capital" | "Programs" | "Ecosystem" | "Policy" | "Infrastructure";
+  region: "Statewide" | "Miami" | "Tampa Bay" | "Orlando" | "Jacksonville";
+  summary: string;
+  url: string;
+};
+
 export type DashboardDataset = {
   generatedAt: string;
   asOfLaborMarket: string;
@@ -89,5 +108,16 @@ export type DashboardDataset = {
     improving: string[];
     softening: string[];
     whyItMatters: string[];
+  };
+  innovation: {
+    heroMetrics: InnovationMetricId[];
+    metrics: Record<InnovationMetricId, Metric>;
+    narrative: {
+      headline: string;
+      signals: string[];
+      development: string[];
+      momentum: string[];
+    };
+    resources: InnovationResource[];
   };
 };

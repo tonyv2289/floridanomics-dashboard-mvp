@@ -63,6 +63,20 @@ async function main() {
   ensure(data.narrative.softening.length > 0, "Narrative missing softening", errors);
   ensure(data.narrative.whyItMatters.length > 0, "Narrative missing whyItMatters", errors);
 
+  ensure(data.innovation.heroMetrics.length >= 4, "Innovation heroMetrics should have at least 4 entries", errors);
+  for (const metricId of data.innovation.heroMetrics) {
+    const metric = data.innovation.metrics[metricId];
+    ensure(Boolean(metric), `Missing innovation metric: ${metricId}`, errors);
+    ensure(metric.series.length > 0, `Innovation metric ${metricId} has empty series`, errors);
+    ensure(metric.sparkline.length > 0, `Innovation metric ${metricId} has empty sparkline`, errors);
+    ensure(isFiniteNumber(metric.latest.value), `Innovation metric ${metricId} has invalid latest value`, errors);
+  }
+
+  ensure(data.innovation.resources.length >= 6, "Innovation resources list is unexpectedly short", errors);
+  ensure(data.innovation.narrative.signals.length > 0, "Innovation narrative missing signals", errors);
+  ensure(data.innovation.narrative.development.length > 0, "Innovation narrative missing development", errors);
+  ensure(data.innovation.narrative.momentum.length > 0, "Innovation narrative missing momentum", errors);
+
   if (errors.length > 0) {
     for (const error of errors) {
       console.error(`- ${error}`);

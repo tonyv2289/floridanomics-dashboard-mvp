@@ -38,9 +38,15 @@ Population is pulled from FRED series `FLPOP`, whose source notes cite U.S. Cens
 - Series: https://fred.stlouisfed.org/series/FLPOP
 - CSV endpoint used: `https://fred.stlouisfed.org/graph/fredgraph.csv?id=FLPOP`
 
+## 3) Innovation & Economic Development anchors (FRED)
+- Business Applications (Florida, SA): `BABATOTALSAFL`
+- Real Gross State Product (Florida): `FLRGSP`
+- CSV endpoint pattern used: `https://fred.stlouisfed.org/graph/fredgraph.csv?id=<SERIES_ID>`
+
 ## Why this source mix
 - BLS gives high-confidence, frequently updated labor and payroll data.
 - Population is annual and stable; `FLPOP` is simple to fetch and reproducible while staying Census-sourced.
+- FRED provides clean, reproducible access to statewide innovation/development indicators used in the second tab.
 
 ## Map geometry source
 - Florida shape in `src/data/florida.geo.json` is derived from the `us-atlas` public TopoJSON dataset.
@@ -49,3 +55,4 @@ Population is pulled from FRED series `FLPOP`, whose source notes cite U.S. Cens
 ## Caveats
 - Labor metrics are monthly, population is annual.
 - BLS public API has per-request series limits; ingestion script chunks requests to avoid dropped series.
+- When BLS daily quota is exhausted, ingestion falls back to cached BLS series from the prior dataset so builds remain operational.

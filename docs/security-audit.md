@@ -28,6 +28,8 @@ npm run qa:full
   - `qa:full` in `package.json`
 - Added dataset contract validation:
   - `scripts/validate-data.ts`
+- Added BLS quota fallback in ingestion:
+  - `scripts/refresh-data.ts` reuses cached BLS series when daily quota is exhausted.
 
 ## Residual risk notes
 - Frontend bundle remains chart-heavy (`~643 kB` JS gzipped output ~197 kB); not a security flaw, but monitor performance and third-party update cadence.

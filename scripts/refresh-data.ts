@@ -25,10 +25,13 @@ type Delta = {
   percent: number | null;
 };
 
+type MetricUnit = "percent" | "persons" | "thousands_jobs" | "count" | "usd_millions";
+type MetricSource = "BLS" | "FRED" | "Census_via_FRED";
+
 type Metric = {
   id: string;
   label: string;
-  unit: "percent" | "persons" | "thousands_jobs";
+  unit: MetricUnit;
   trendDirection: "up_good" | "down_good";
   latest: TimePoint;
   deltas: {
@@ -38,7 +41,7 @@ type Metric = {
   };
   sparkline: TimePoint[];
   series: TimePoint[];
-  source: "BLS";
+  source: MetricSource;
 };
 
 type PopulationMetric = {
@@ -74,6 +77,22 @@ type IndustrySector = {
   source: "BLS";
 };
 
+type InnovationMetricId =
+  | "informationEmployment"
+  | "professionalBusinessEmployment"
+  | "businessApplications"
+  | "realGsp"
+  | "constructionEmployment";
+
+type InnovationResource = {
+  id: string;
+  name: string;
+  category: "Capital" | "Programs" | "Ecosystem" | "Policy" | "Infrastructure";
+  region: "Statewide" | "Miami" | "Tampa Bay" | "Orlando" | "Jacksonville";
+  summary: string;
+  url: string;
+};
+
 type DashboardDataset = {
   generatedAt: string;
   asOfLaborMarket: string;
@@ -104,6 +123,17 @@ type DashboardDataset = {
     improving: string[];
     softening: string[];
     whyItMatters: string[];
+  };
+  innovation: {
+    heroMetrics: InnovationMetricId[];
+    metrics: Record<InnovationMetricId, Metric>;
+    narrative: {
+      headline: string;
+      signals: string[];
+      development: string[];
+      momentum: string[];
+    };
+    resources: InnovationResource[];
   };
 };
 
@@ -182,6 +212,86 @@ const METRO_DEFS = [
   { id: "orlando", name: "Orlando MSA", lausRoot: "LAUMT123674000000" },
   { id: "jacksonville", name: "Jacksonville MSA", lausRoot: "LAUMT122726000000" },
 ] as const;
+
+const INNOVATION_FRED_SERIES = {
+  businessApplications: "BABATOTALSAFL",
+  realGsp: "FLRGSP",
+} as const;
+
+const INNOVATION_RESOURCES: InnovationResource[] = [
+  {
+    id: "select-florida",
+    name: "SelectFlorida",
+    category: "Programs",
+    region: "Statewide",
+    summary: "Statewide business attraction and expansion support hub.",
+    url: "https://www.selectflorida.org/",
+  },
+  {
+    id: "florida-sbdc",
+    name: "Florida SBDC Network",
+    category: "Programs",
+    region: "Statewide",
+    summary: "Small business advisory, growth planning, and operator support across Florida.",
+    url: "https://floridasbdc.org/",
+  },
+  {
+    id: "space-florida",
+    name: "Space Florida",
+    category: "Infrastructure",
+    region: "Statewide",
+    summary: "Aerospace infrastructure, financing, and advanced-industry growth platform.",
+    url: "https://www.spaceflorida.gov/",
+  },
+  {
+    id: "fl-high-tech-corridor",
+    name: "Florida High Tech Corridor",
+    category: "Ecosystem",
+    region: "Statewide",
+    summary: "University-industry innovation programs connecting talent and applied R&D.",
+    url: "https://floridahightech.com/",
+  },
+  {
+    id: "fl-venture-forum",
+    name: "Florida Venture Forum",
+    category: "Capital",
+    region: "Statewide",
+    summary: "Investor-founder network and venture ecosystem access across Florida.",
+    url: "https://www.flventure.org/",
+  },
+  {
+    id: "beacon-council",
+    name: "Miami-Dade Beacon Council",
+    category: "Ecosystem",
+    region: "Miami",
+    summary: "Regional economic development and innovation ecosystem connector.",
+    url: "https://www.beaconcouncil.com/",
+  },
+  {
+    id: "tampa-bay-wave",
+    name: "Tampa Bay Wave",
+    category: "Programs",
+    region: "Tampa Bay",
+    summary: "Startup acceleration, mentoring, and founder resources in Tampa Bay.",
+    url: "https://www.tampabaywave.org/",
+  },
+  {
+    id: "orlando-ep",
+    name: "Orlando Economic Partnership",
+    category: "Ecosystem",
+    region: "Orlando",
+    summary: "Regional growth platform for industry, talent, and innovation ecosystems.",
+    url: "https://orlando.org/",
+  },
+  {
+    id: "jax-usa",
+    name: "JAXUSA Partnership",
+    category: "Policy",
+    region: "Jacksonville",
+    summary: "Jacksonville-region business development and strategic growth initiatives.",
+    url: "https://www.jaxusa.org/",
+  },
+];
 
 function metricSeriesId(root: string, measureCode: "003" | "005" | "006") {
   return `${root}${measureCode}`;
@@ -270,6 +380,7 @@ async function fetchBlsSeries(seriesIds: string[]): Promise<Record<string, TimeP
         seriesid: chunk,
         startyear: START_YEAR,
         endyear: END_YEAR,
+        ...(process.env.BLS_API_KEY ? { registrationkey: process.env.BLS_API_KEY } : {}),
       }),
     });
 
@@ -297,10 +408,10 @@ async function fetchBlsSeries(seriesIds: string[]): Promise<Record<string, TimeP
   return result;
 }
 
-async function fetchPopulationSeriesFromFred(): Promise<TimePoint[]> {
-  const response = await fetch("https://fred.stlouisfed.org/graph/fredgraph.csv?id=FLPOP");
+async function fetchFredSeries(seriesId: string, transformValue?: (value: number) => number): Promise<TimePoint[]> {
+  const response = await fetch(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${seriesId}`);
   if (!response.ok) {
-    throw new Error(`Population series request failed with HTTP ${response.status}`);
+    throw new Error(`FRED series request failed for ${seriesId} with HTTP ${response.status}`);
   }
 
   const csv = await response.text();
@@ -318,9 +429,11 @@ async function fetchPopulationSeriesFromFred(): Promise<TimePoint[]> {
         return null;
       }
 
+      const transformed = transformValue ? transformValue(thousands) : thousands;
+
       return {
         date,
-        value: thousands * 1000,
+        value: transformed,
       };
     })
     .filter((point): point is TimePoint => Boolean(point))
@@ -417,6 +530,91 @@ function buildNarrative(dataset: {
   };
 }
 
+function buildInnovationNarrative(metrics: Record<InnovationMetricId, Metric>) {
+  const businessApps = metrics.businessApplications;
+  const realGsp = metrics.realGsp;
+  const informationJobs = metrics.informationEmployment;
+  const proBizJobs = metrics.professionalBusinessEmployment;
+  const construction = metrics.constructionEmployment;
+
+  const businessAppsYoy = businessApps.deltas.oneYear?.percent ?? 0;
+  const realGspThreeYear = realGsp.deltas.threeYear?.percent ?? 0;
+  const infoYoy = informationJobs.deltas.oneYear?.percent ?? 0;
+  const proBizYoy = proBizJobs.deltas.oneYear?.percent ?? 0;
+  const constructionYoy = construction.deltas.oneYear?.percent ?? 0;
+
+  return {
+    headline:
+      businessAppsYoy >= 0 && proBizYoy >= 0
+        ? "Florida’s innovation stack is expanding alongside its development engine."
+        : "Florida’s innovation stack remains large, with selective areas requiring watchfulness.",
+    signals: [
+      `Business applications are ${businessAppsYoy >= 0 ? "up" : "down"} ${Math.abs(businessAppsYoy).toFixed(1)}% year-over-year.`,
+      `Information employment is ${infoYoy >= 0 ? "up" : "down"} ${Math.abs(infoYoy).toFixed(1)}% year-over-year.`,
+      `Professional & business services employment is ${proBizYoy >= 0 ? "up" : "down"} ${Math.abs(proBizYoy).toFixed(1)}% year-over-year.`,
+    ],
+    development: [
+      `Real gross state product is ${realGspThreeYear >= 0 ? "up" : "down"} ${Math.abs(realGspThreeYear).toFixed(1)}% over three years.`,
+      `Construction employment is ${constructionYoy >= 0 ? "up" : "down"} ${Math.abs(constructionYoy).toFixed(1)}% year-over-year.`,
+    ],
+    momentum: [
+      "Innovation metrics are intended as directional signal layers, not standalone verdicts.",
+      "Business formation plus advanced-service employment growth is a strong expansion pattern.",
+      "Development capacity and innovation capacity should be tracked together for policy and capital allocation.",
+    ],
+  };
+}
+
+type ExistingDatasetFallback = {
+  metrics?: Record<string, { series?: TimePoint[] }>;
+  industry?: { sectors?: Array<{ id: string; sparkline?: TimePoint[] }> };
+  metros?: Array<{
+    id: string;
+    unemploymentRate?: { sparkline?: TimePoint[] };
+    laborForce?: { sparkline?: TimePoint[] };
+    employmentLevel?: { sparkline?: TimePoint[] };
+  }>;
+};
+
+function buildBlsDataFromExisting(existing: ExistingDatasetFallback): Record<string, TimePoint[]> {
+  const cached: Record<string, TimePoint[]> = {};
+
+  for (const series of CORE_SERIES) {
+    const points = existing.metrics?.[series.id]?.series ?? [];
+    if (points.length > 0) {
+      cached[series.seriesId] = points;
+    }
+  }
+
+  const sectorMap = new Map((existing.industry?.sectors ?? []).map((sector) => [sector.id, sector]));
+  for (const series of INDUSTRY_SERIES) {
+    const points = sectorMap.get(series.id)?.sparkline ?? [];
+    if (points.length > 0) {
+      cached[series.seriesId] = points;
+    }
+  }
+
+  const metroMap = new Map((existing.metros ?? []).map((metro) => [metro.id, metro]));
+  for (const metro of METRO_DEFS) {
+    const cachedMetro = metroMap.get(metro.id);
+    const unemployment = cachedMetro?.unemploymentRate?.sparkline ?? [];
+    const laborForce = cachedMetro?.laborForce?.sparkline ?? [];
+    const employment = cachedMetro?.employmentLevel?.sparkline ?? [];
+
+    if (unemployment.length > 0) {
+      cached[metricSeriesId(metro.lausRoot, "003")] = unemployment;
+    }
+    if (laborForce.length > 0) {
+      cached[metricSeriesId(metro.lausRoot, "006")] = laborForce;
+    }
+    if (employment.length > 0) {
+      cached[metricSeriesId(metro.lausRoot, "005")] = employment;
+    }
+  }
+
+  return cached;
+}
+
 async function main() {
   const coreSeriesIds = CORE_SERIES.map((series) => series.seriesId);
   const industrySeriesIds = INDUSTRY_SERIES.map((series) => series.seriesId);
@@ -427,8 +625,26 @@ async function main() {
   ]);
 
   const allBlsIds = [...coreSeriesIds, ...industrySeriesIds, ...metroSeriesIds];
-  const blsData = await fetchBlsSeries(allBlsIds);
-  const populationSeries = await fetchPopulationSeriesFromFred();
+  let blsData: Record<string, TimePoint[]>;
+  try {
+    blsData = await fetchBlsSeries(allBlsIds);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (!message.toLowerCase().includes("daily threshold")) {
+      throw error;
+    }
+
+    const existingRaw = await readFile(OUTPUT_FILE, "utf8");
+    const existing = JSON.parse(existingRaw) as ExistingDatasetFallback;
+    blsData = buildBlsDataFromExisting(existing);
+    console.warn("BLS daily threshold reached. Reusing cached BLS series from existing dataset.");
+  }
+
+  const [populationSeries, businessApplicationsSeries, realGspSeries] = await Promise.all([
+    fetchFredSeries("FLPOP", (value) => value * 1000),
+    fetchFredSeries(INNOVATION_FRED_SERIES.businessApplications),
+    fetchFredSeries(INNOVATION_FRED_SERIES.realGsp),
+  ]);
 
   const metrics = Object.fromEntries(
     CORE_SERIES.map((series) => {
@@ -491,6 +707,78 @@ async function main() {
     .sort((a, b) => deltaMagnitude(a.deltas.oneYear) - deltaMagnitude(b.deltas.oneYear))
     .slice(0, 3);
 
+  const informationEmploymentSeries = blsData["SMS12000005000000001"] ?? [];
+  const professionalBusinessSeries = blsData["SMS12000006000000001"] ?? [];
+  const constructionSeries = blsData["SMS12000002000000001"] ?? [];
+
+  if (
+    informationEmploymentSeries.length === 0 ||
+    professionalBusinessSeries.length === 0 ||
+    constructionSeries.length === 0 ||
+    businessApplicationsSeries.length === 0 ||
+    realGspSeries.length === 0
+  ) {
+    throw new Error("Missing one or more innovation/economic development series.");
+  }
+
+  const innovationMetrics: Record<InnovationMetricId, Metric> = {
+    informationEmployment: {
+      id: "informationEmployment",
+      label: "Information Employment",
+      unit: "thousands_jobs",
+      trendDirection: "up_good",
+      latest: latestPoint(informationEmploymentSeries),
+      deltas: buildDeltas(informationEmploymentSeries),
+      sparkline: lastN(informationEmploymentSeries, 36),
+      series: informationEmploymentSeries,
+      source: "BLS",
+    },
+    professionalBusinessEmployment: {
+      id: "professionalBusinessEmployment",
+      label: "Professional & Business Services Employment",
+      unit: "thousands_jobs",
+      trendDirection: "up_good",
+      latest: latestPoint(professionalBusinessSeries),
+      deltas: buildDeltas(professionalBusinessSeries),
+      sparkline: lastN(professionalBusinessSeries, 36),
+      series: professionalBusinessSeries,
+      source: "BLS",
+    },
+    businessApplications: {
+      id: "businessApplications",
+      label: "Business Applications",
+      unit: "count",
+      trendDirection: "up_good",
+      latest: latestPoint(businessApplicationsSeries),
+      deltas: buildDeltas(businessApplicationsSeries),
+      sparkline: lastN(businessApplicationsSeries, 36),
+      series: businessApplicationsSeries,
+      source: "FRED",
+    },
+    realGsp: {
+      id: "realGsp",
+      label: "Real Gross State Product",
+      unit: "usd_millions",
+      trendDirection: "up_good",
+      latest: latestPoint(realGspSeries),
+      deltas: buildDeltas(realGspSeries),
+      sparkline: lastN(realGspSeries, 20),
+      series: realGspSeries,
+      source: "FRED",
+    },
+    constructionEmployment: {
+      id: "constructionEmployment",
+      label: "Construction Employment",
+      unit: "thousands_jobs",
+      trendDirection: "up_good",
+      latest: latestPoint(constructionSeries),
+      deltas: buildDeltas(constructionSeries),
+      sparkline: lastN(constructionSeries, 36),
+      series: constructionSeries,
+      source: "BLS",
+    },
+  };
+
   const metros: MetroSnapshot[] = METRO_DEFS.map((metro) => {
     const unemployment = blsData[metricSeriesId(metro.lausRoot, "003")] ?? [];
     const laborForce = blsData[metricSeriesId(metro.lausRoot, "006")] ?? [];
@@ -544,6 +832,12 @@ async function main() {
         url: "https://fred.stlouisfed.org/series/FLPOP",
         notes: "Annual Florida resident population (source notes cite U.S. Census Bureau).",
       },
+      {
+        id: "fred_innovation",
+        name: "FRED state innovation/development indicators",
+        url: "https://fred.stlouisfed.org/",
+        notes: "Business applications and real gross state product series used for innovation/economic development tab.",
+      },
     ],
     heroMetrics: ["unemploymentRate", "laborForce", "nonfarmPayrolls", "population", "employmentLevel"],
     metrics,
@@ -554,6 +848,18 @@ async function main() {
     },
     metros,
     narrative,
+    innovation: {
+      heroMetrics: [
+        "informationEmployment",
+        "professionalBusinessEmployment",
+        "businessApplications",
+        "realGsp",
+        "constructionEmployment",
+      ],
+      metrics: innovationMetrics,
+      narrative: buildInnovationNarrative(innovationMetrics),
+      resources: INNOVATION_RESOURCES,
+    },
   };
 
   try {

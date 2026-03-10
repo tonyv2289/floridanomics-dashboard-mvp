@@ -33,6 +33,11 @@ A standalone Florida-first economic dashboard that makes labor-market strength l
   - Metro-to-metro unemployment comparison chart
   - Miami, Tampa, Orlando, Jacksonville
   - Unemployment, labor force, employment level
+- Innovation + Economic Development tab
+  - Innovation signal metrics (information jobs, pro/business jobs, business applications, real GSP, construction)
+  - Innovation trend explorer with 1Y/3Y/5Y context
+  - Rules-based innovation/development narrative
+  - Florida Innovation Resource Atlas (statewide + regional resource directory)
 - Narrative panel
   - Rules-based plain-English briefing
 - Launch utility controls
@@ -67,8 +72,11 @@ npm run data:refresh
 This command:
 1. Pulls monthly labor + payroll series from BLS.
 2. Pulls annual Florida population (Census-sourced) via FRED series `FLPOP`.
-3. Computes latest values and 1Y/3Y/5Y deltas.
-4. Writes normalized output to `public/data/florida-economy.json`.
+3. Pulls innovation/development indicators via FRED (`BABATOTALSAFL`, `FLRGSP`).
+4. Computes latest values and 1Y/3Y/5Y deltas.
+5. Writes normalized output to `public/data/florida-economy.json`.
+
+If BLS daily API threshold is hit, refresh falls back to the latest cached BLS series in the existing dataset file so the app remains buildable.
 
 More detail: [docs/data-sources.md](./docs/data-sources.md), [docs/refresh-runbook.md](./docs/refresh-runbook.md).
 
