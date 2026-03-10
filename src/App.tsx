@@ -6,6 +6,9 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -16,6 +19,16 @@ import { FloridaMsaMap } from "./components/FloridaMsaMap";
 import "./App.css";
 
 type AnyMetric = Metric | PopulationMetric;
+type MetricId = keyof DashboardDataset["metrics"];
+
+const METRIC_IDS: MetricId[] = ["unemploymentRate", "laborForce", "employmentLevel", "nonfarmPayrolls", "population"];
+
+const METRO_COLORS = {
+  miami: "#fb923c",
+  tampa: "#60a5fa",
+  orlando: "#34d399",
+  jacksonville: "#f472b6",
+} as const;
 
 function displayValue(metric: AnyMetric, rawValue: number): number {
   if (metric.unit === "thousands_jobs") {
@@ -100,6 +113,17 @@ function metricHeadline(metricId: keyof DashboardDataset["metrics"]): string {
     default:
       return "Trend";
   }
+}
+
+function isMetricId(value: string | null): value is MetricId {
+  return value !== null && METRIC_IDS.includes(value as MetricId);
+}
+
+function daysSince(dateValue: string): number {
+  const from = new Date(dateValue);
+  const to = new Date();
+  const ms = to.getTime() - from.getTime();
+  return Math.max(0, Math.floor(ms / (1000 * 60 * 60 * 24)));
 }
 
 function TrendCard({ metric }: { metric: AnyMetric }) {
@@ -252,6 +276,8 @@ function App() {
   const [dataset, setDataset] = useState<DashboardDataset | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selectedMetroId, setSelectedMetroId] = useState<string | null>(null);
+  const [selectedMetricId, setSelectedMetricId] = useState<MetricId | null>(null);
+  const [shareState, setShareState] = useState<"idle" | "copied" | "error">("idle");
 
   useEffect(() => {
     let canceled = false;
@@ -283,11 +309,32 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!dataset || selectedMetroId) {
+    if (!dataset) {
       return;
     }
-    setSelectedMetroId(dataset.metros[0]?.id ?? null);
-  }, [dataset, selectedMetroId]);
+
+    const params = new URLSearchParams(window.location.search);
+    const metroFromUrl = params.get("metro");
+    const metricFromUrl = params.get("metric");
+
+    const validMetro = dataset.metros.some((metro) => metro.id === metroFromUrl) ? metroFromUrl : dataset.metros[0]?.id ?? null;
+    const validMetric = isMetricId(metricFromUrl) ? metricFromUrl : dataset.heroMetrics[0];
+
+    setSelectedMetroId((current) => current ?? validMetro);
+    setSelectedMetricId((current) => current ?? validMetric);
+  }, [dataset]);
+
+  useEffect(() => {
+    if (!selectedMetroId || !selectedMetricId) {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    params.set("metro", selectedMetroId);
+    params.set("metric", selectedMetricId);
+    const nextUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", nextUrl);
+  }, [selectedMetroId, selectedMetricId]);
 
   const industryBarData = useMemo(() => {
     if (!dataset) {
@@ -298,6 +345,24 @@ function App() {
       sector: sector.label.replace(" & ", " / ").split(" ").slice(0, 3).join(" "),
       jobs: sector.latest.value * 1000,
     }));
+  }, [dataset]);
+
+  const metroComparisonData = useMemo(() => {
+    if (!dataset) {
+      return [] as Array<{ date: string; label: string; [key: string]: string | number }>;
+    }
+
+    const rows = new Map<string, { date: string; label: string; [key: string]: string | number }>();
+
+    for (const metro of dataset.metros) {
+      for (const point of metro.unemploymentRate.sparkline) {
+        const row = rows.get(point.date) ?? { date: point.date, label: shortMonthLabel(point.date) };
+        row[metro.id] = point.value;
+        rows.set(point.date, row);
+      }
+    }
+
+    return [...rows.values()].sort((a, b) => String(a.date).localeCompare(String(b.date)));
   }, [dataset]);
 
   if (error) {
@@ -324,6 +389,17 @@ function App() {
 
   const heroMetrics = dataset.heroMetrics.map((metricId) => dataset.metrics[metricId]);
   const selectedMetro = dataset.metros.find((metro) => metro.id === selectedMetroId) ?? dataset.metros[0];
+  const selectedMetric = dataset.metrics[selectedMetricId ?? dataset.heroMetrics[0]];
+
+  const metricExplorerData = selectedMetric.series.map((point) => ({
+    date: point.date,
+    label: shortMonthLabel(point.date),
+    value: selectedMetric.unit === "thousands_jobs" ? point.value * 1000 : point.value,
+  }));
+
+  const laborDaysOld = daysSince(dataset.metrics.unemploymentRate.latest.date);
+  const freshnessClass = laborDaysOld > 120 ? "freshness-stale" : laborDaysOld > 75 ? "freshness-watch" : "freshness-good";
+  const dataDownloadUrl = `${import.meta.env.BASE_URL}data/florida-economy.json`;
 
   function handleMetroSelect(metroId: string) {
     setSelectedMetroId(metroId);
@@ -335,6 +411,19 @@ function App() {
         block: "nearest",
       });
     });
+  }
+
+  async function handleShareView() {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setShareState("copied");
+    } catch {
+      setShareState("error");
+    }
+
+    window.setTimeout(() => {
+      setShareState("idle");
+    }, 2200);
   }
 
   return (
@@ -362,6 +451,14 @@ function App() {
             <span>Last refresh</span>
             <strong>{new Date(dataset.generatedAt).toLocaleDateString("en-US", { dateStyle: "medium" })}</strong>
           </p>
+          <div className="hero-actions">
+            <button type="button" className="action-button" onClick={handleShareView}>
+              {shareState === "copied" ? "Link copied" : shareState === "error" ? "Copy failed" : "Share view"}
+            </button>
+            <a className="action-button action-link" href={dataDownloadUrl} download>
+              Download data
+            </a>
+          </div>
         </div>
       </section>
 
@@ -375,6 +472,21 @@ function App() {
         ))}
       </section>
 
+      <section className={clsx("panel", "freshness-panel", freshnessClass)}>
+        <div>
+          <p className="kicker">Data freshness</p>
+          <h3>{laborDaysOld} days since latest labor release</h3>
+          <p className="muted">
+            Latest labor reading: {dataset.asOfLaborMarket}. Population anchor: {dataset.asOfPopulation}.
+          </p>
+        </div>
+        <p className="freshness-note">
+          {laborDaysOld > 120
+            ? "Release lag is elevated; confirm publication calendars before public briefing."
+            : "Current release cadence is within expected public-data timing windows."}
+        </p>
+      </section>
+
       <section className="section-head">
         <h2>Trend Cards</h2>
         <p>Current signal plus 1Y, 3Y, and 5Y context for Florida&apos;s core economic stack.</p>
@@ -383,6 +495,59 @@ function App() {
         {heroMetrics.map((metric) => (
           <TrendCard key={metric.id} metric={metric} />
         ))}
+      </section>
+
+      <section className="section-head">
+        <h2>Statewide Trend Explorer</h2>
+        <p>Switch core metrics and inspect full-history context behind the headline cards.</p>
+      </section>
+      <section className="panel explorer-panel">
+        <div className="explorer-toolbar">
+          {METRIC_IDS.map((metricId) => (
+            <button
+              type="button"
+              key={metricId}
+              className={clsx("metric-toggle", selectedMetric.id === metricId && "metric-toggle-active")}
+              onClick={() => setSelectedMetricId(metricId)}
+            >
+              {dataset.metrics[metricId].label}
+            </button>
+          ))}
+        </div>
+
+        <div className="explorer-headline">
+          <div>
+            <p className="kicker">Selected metric</p>
+            <h3>{selectedMetric.label}</h3>
+            <p className="explorer-value">{formatMetricValue(selectedMetric, selectedMetric.latest.value)}</p>
+          </div>
+          <div className="explorer-deltas">
+            <p className={deltaClass(selectedMetric, selectedMetric.deltas.oneYear)}>
+              1Y: {formatDelta(selectedMetric, selectedMetric.deltas.oneYear)}
+            </p>
+            <p className={deltaClass(selectedMetric, selectedMetric.deltas.threeYear)}>
+              3Y: {formatDelta(selectedMetric, selectedMetric.deltas.threeYear)}
+            </p>
+            <p className={deltaClass(selectedMetric, selectedMetric.deltas.fiveYear)}>
+              5Y: {formatDelta(selectedMetric, selectedMetric.deltas.fiveYear)}
+            </p>
+          </div>
+        </div>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={metricExplorerData} margin={{ top: 16, right: 8, left: 0, bottom: 8 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(149, 163, 191, 0.2)" />
+            <XAxis dataKey="label" minTickGap={24} tick={{ fill: "#a9b9dd", fontSize: 11 }} />
+            <YAxis
+              tick={{ fill: "#a9b9dd", fontSize: 11 }}
+              tickFormatter={(value) =>
+                selectedMetric.unit === "percent" ? `${Number(value).toFixed(1)}%` : formatCompact(Number(value), 0)
+              }
+            />
+            <Tooltip />
+            <Line type="monotone" dataKey="value" stroke="#fb923c" strokeWidth={2.4} dot={false} />
+          </LineChart>
+        </ResponsiveContainer>
       </section>
 
       <section className="section-head">
@@ -464,6 +629,36 @@ function App() {
           </div>
           <p className="map-focus-note">Tip: click any metro card below or map marker to switch focus.</p>
         </article>
+      </section>
+
+      <section className="panel metro-compare-panel">
+        <div className="metro-compare-head">
+          <div>
+            <p className="kicker">Metro comparison</p>
+            <h3>Unemployment trend by major Florida MSA</h3>
+          </div>
+          <p className="muted">Click map markers or cards to highlight one metro line.</p>
+        </div>
+        <ResponsiveContainer width="100%" height={260}>
+          <LineChart data={metroComparisonData} margin={{ top: 16, right: 8, left: 0, bottom: 8 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(149, 163, 191, 0.2)" />
+            <XAxis dataKey="label" minTickGap={24} tick={{ fill: "#a9b9dd", fontSize: 11 }} />
+            <YAxis tick={{ fill: "#a9b9dd", fontSize: 11 }} tickFormatter={(value) => `${Number(value).toFixed(1)}%`} />
+            <Tooltip />
+            <Legend />
+            {dataset.metros.map((metro) => (
+              <Line
+                key={metro.id}
+                type="monotone"
+                dataKey={metro.id}
+                name={metro.name.replace(" MSA", "")}
+                stroke={METRO_COLORS[metro.id as keyof typeof METRO_COLORS] ?? "#cbd5e1"}
+                strokeWidth={metro.id === selectedMetro.id ? 3.2 : 1.8}
+                dot={false}
+              />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
       </section>
 
       <section className="section-head">

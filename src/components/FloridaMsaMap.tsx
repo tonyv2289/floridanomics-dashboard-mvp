@@ -1,8 +1,6 @@
 import { geoAlbersUsa, geoPath } from "d3-geo";
-import type { FeatureCollection, GeometryObject } from "geojson";
-import statesTopology from "us-atlas/states-10m.json";
-import { feature } from "topojson-client";
-import type { GeometryCollection, Topology } from "topojson-specification";
+import type { Feature, MultiPolygon, Polygon } from "geojson";
+import floridaGeo from "../data/florida.geo.json";
 
 type Metro = {
   id: string;
@@ -30,9 +28,7 @@ function metroShortName(name: string): string {
 }
 
 export function FloridaMsaMap({ metros, selectedMetroId, onSelectMetro }: FloridaMsaMapProps) {
-  const topology = statesTopology as unknown as Topology<{ states: GeometryCollection }>;
-  const statesFeature = feature(topology, topology.objects.states) as FeatureCollection<GeometryObject>;
-  const florida = statesFeature.features.find((state) => String(state.id) === "12");
+  const florida = floridaGeo as unknown as Feature<MultiPolygon | Polygon>;
 
   if (!florida) {
     return (

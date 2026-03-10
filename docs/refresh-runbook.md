@@ -31,6 +31,11 @@ npm run build
 npm run dev
 ```
 
+Launch-ready combined check:
+```bash
+npm run qa:full
+```
+
 ## Operational notes
 - BLS request chunking is built in for API reliability.
 - If a series is unavailable, the script fails fast with a clear message.

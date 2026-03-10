@@ -42,6 +42,10 @@ Population is pulled from FRED series `FLPOP`, whose source notes cite U.S. Cens
 - BLS gives high-confidence, frequently updated labor and payroll data.
 - Population is annual and stable; `FLPOP` is simple to fetch and reproducible while staying Census-sourced.
 
+## Map geometry source
+- Florida shape in `src/data/florida.geo.json` is derived from the `us-atlas` public TopoJSON dataset.
+- This is a frontend geometry asset only; economic metrics still come from BLS/Census-sourced feeds above.
+
 ## Caveats
 - Labor metrics are monthly, population is annual.
 - BLS public API has per-request series limits; ingestion script chunks requests to avoid dropped series.

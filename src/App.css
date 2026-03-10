@@ -116,6 +116,33 @@ body {
   font-size: 0.92rem;
 }
 
+.hero-actions {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.action-button {
+  border: 1px solid rgba(249, 115, 22, 0.45);
+  border-radius: 10px;
+  background: rgba(15, 31, 67, 0.78);
+  color: var(--text-50);
+  padding: 0.45rem 0.65rem;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 160ms ease;
+}
+
+.action-button:hover {
+  border-color: rgba(249, 115, 22, 0.9);
+}
+
+.action-link {
+  text-decoration: none;
+}
+
 .grid {
   display: grid;
   gap: 1rem;
@@ -203,6 +230,88 @@ body {
   margin-top: 0.15rem;
 }
 
+.freshness-panel {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.freshness-panel h3 {
+  margin: 0.2rem 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.freshness-note {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-200);
+}
+
+.freshness-good {
+  border-color: rgba(52, 211, 153, 0.5);
+}
+
+.freshness-watch {
+  border-color: rgba(251, 146, 60, 0.5);
+}
+
+.freshness-stale {
+  border-color: rgba(251, 113, 133, 0.6);
+}
+
+.explorer-panel {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.explorer-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.metric-toggle {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+  background: rgba(11, 22, 46, 0.68);
+  color: var(--text-200);
+  padding: 0.34rem 0.65rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.metric-toggle-active {
+  border-color: rgba(249, 115, 22, 0.9);
+  color: var(--text-50);
+  background: rgba(127, 53, 6, 0.58);
+}
+
+.explorer-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.explorer-headline h3 {
+  margin: 0.2rem 0 0;
+  font-size: 1.15rem;
+}
+
+.explorer-value {
+  margin: 0.25rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.explorer-deltas {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: end;
+  font-size: 0.88rem;
+}
+
 .map-layout {
   display: grid;
   gap: 1rem;
@@ -288,6 +397,22 @@ body {
   margin: 0.8rem 0 0;
   color: var(--text-200);
   font-size: 0.83rem;
+}
+
+.metro-compare-panel {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.metro-compare-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: flex-end;
+}
+
+.metro-compare-head h3 {
+  margin: 0.2rem 0 0;
 }
 
 .industry-layout {
@@ -514,6 +639,18 @@ body {
 
   .map-focus-grid {
     grid-template-columns: 1fr;
+  }
+
+  .freshness-panel,
+  .explorer-headline,
+  .metro-compare-head {
+    grid-template-columns: 1fr;
+    display: grid;
+    align-items: start;
+  }
+
+  .explorer-deltas {
+    justify-items: start;
   }
 }
 

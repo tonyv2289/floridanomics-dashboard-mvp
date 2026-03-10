@@ -20,15 +20,25 @@ A standalone Florida-first economic dashboard that makes labor-market strength l
   - Current reading
   - 1Y / 3Y / 5Y deltas
   - Compact sparkline
+- Statewide trend explorer
+  - Metric switcher
+  - Full-history context chart
+  - Deep-linkable metric state in URL
 - Industry section
   - Major Florida sectors
   - Largest growers and laggards
 - Metro section
   - Interactive Florida state map with clickable MSA markers
+  - URL-deep-linkable metro state
+  - Metro-to-metro unemployment comparison chart
   - Miami, Tampa, Orlando, Jacksonville
   - Unemployment, labor force, employment level
 - Narrative panel
   - Rules-based plain-English briefing
+- Launch utility controls
+  - Share current view
+  - Download current dataset JSON
+  - Data freshness status
 
 ## Tech stack
 - `React + TypeScript + Vite`
@@ -67,11 +77,19 @@ Validate the dataset contract:
 npm run data:validate
 ```
 
+Full launch QA pass:
+```bash
+npm run qa:full
+```
+
 ## Deployment
 This repo includes GitHub Actions workflows for:
 - CI (`.github/workflows/ci.yml`)
 - GitHub Pages deployment (`.github/workflows/deploy-pages.yml`)
 - Scheduled dataset refresh (`.github/workflows/refresh-data.yml`)
+- Scheduled security audit (`.github/workflows/security.yml`)
+
+Latest audit notes: [docs/security-audit.md](./docs/security-audit.md)
 
 To publish:
 1. In GitHub repo settings, enable Pages and set source to **GitHub Actions**.
@@ -84,6 +102,7 @@ floridanomics-dashboard/
   docs/
     data-sources.md
     refresh-runbook.md
+    security-audit.md
     v2-roadmap.md
   public/
     data/
@@ -91,6 +110,10 @@ floridanomics-dashboard/
   scripts/
     refresh-data.ts
   src/
+    components/
+      FloridaMsaMap.tsx
+    data/
+      florida.geo.json
     types/
       dashboard.ts
     App.tsx
