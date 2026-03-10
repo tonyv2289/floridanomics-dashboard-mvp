@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -343,6 +343,12 @@ function prettyMonth(date: string): string {
   }).format(new Date(date));
 }
 
+function normalizeForComparison(dataset: DashboardDataset): Omit<DashboardDataset, "generatedAt"> {
+  const { generatedAt, ...rest } = dataset;
+  void generatedAt;
+  return rest;
+}
+
 function buildNarrative(dataset: {
   metrics: DashboardDataset["metrics"];
   strongestGrowers: IndustrySector[];
@@ -549,6 +555,18 @@ async function main() {
     metros,
     narrative,
   };
+
+  try {
+    const existingRaw = await readFile(OUTPUT_FILE, "utf8");
+    const existing = JSON.parse(existingRaw) as DashboardDataset;
+    if (
+      JSON.stringify(normalizeForComparison(existing)) === JSON.stringify(normalizeForComparison(dataset))
+    ) {
+      dataset.generatedAt = existing.generatedAt;
+    }
+  } catch {
+    // No prior dataset or invalid JSON; continue with a fresh write.
+  }
 
   await mkdir(path.dirname(OUTPUT_FILE), { recursive: true });
   await writeFile(OUTPUT_FILE, `${JSON.stringify(dataset, null, 2)}\n`, "utf8");

@@ -61,6 +61,22 @@ This command:
 
 More detail: [docs/data-sources.md](./docs/data-sources.md), [docs/refresh-runbook.md](./docs/refresh-runbook.md).
 
+Validate the dataset contract:
+```bash
+npm run data:validate
+```
+
+## Deployment
+This repo includes GitHub Actions workflows for:
+- CI (`.github/workflows/ci.yml`)
+- GitHub Pages deployment (`.github/workflows/deploy-pages.yml`)
+- Scheduled dataset refresh (`.github/workflows/refresh-data.yml`)
+
+To publish:
+1. In GitHub repo settings, enable Pages and set source to **GitHub Actions**.
+2. Push to `main` (or run the `Deploy Dashboard` workflow manually).
+3. The dashboard will deploy as a static site with the correct base path.
+
 ## Repo structure
 ```text
 floridanomics-dashboard/

@@ -234,7 +234,8 @@ function App() {
 
     async function load() {
       try {
-        const response = await fetch("/data/florida-economy.json", { cache: "no-cache" });
+        const dataUrl = `${import.meta.env.BASE_URL}data/florida-economy.json`;
+        const response = await fetch(dataUrl, { cache: "no-cache" });
         if (!response.ok) {
           throw new Error(`Unable to load dataset (${response.status})`);
         }
