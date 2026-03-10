@@ -105,6 +105,7 @@ export function FloridaMsaMap({ metros, selectedMetroId, onSelectMetro }: Florid
               aria-label={`Select ${pin.name}`}
             >
               <line x1={pin.x} y1={pin.y} x2={pin.x + pin.dx - 3} y2={pin.y + pin.dy + 2} className="pin-line" />
+              <circle cx={pin.x} cy={pin.y} r={selected ? 13 : 10} className="pin-halo" />
               <circle cx={pin.x} cy={pin.y} r={selected ? 7.5 : 6} className="pin-dot" />
               <text x={pin.x + pin.dx} y={pin.y + pin.dy} className="pin-label">
                 {metroShortName(pin.name)}

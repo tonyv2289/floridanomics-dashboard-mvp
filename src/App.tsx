@@ -41,11 +41,28 @@ const INNOVATION_METRIC_IDS: InnovationMetricId[] = [
 ];
 
 const METRO_COLORS = {
-  miami: "#fb923c",
-  tampa: "#60a5fa",
-  orlando: "#34d399",
-  jacksonville: "#f472b6",
+  miami: "#ff8f3f",
+  tampa: "#56c2ff",
+  orlando: "#3ee8b0",
+  jacksonville: "#ff70a8",
 } as const;
+
+const CHART_TOOLTIP_STYLE = {
+  backgroundColor: "rgba(3, 12, 33, 0.94)",
+  border: "1px solid rgba(148, 163, 184, 0.45)",
+  borderRadius: "12px",
+  boxShadow: "0 16px 34px rgba(1, 7, 22, 0.55)",
+  color: "#f8fbff",
+};
+
+const CHART_TOOLTIP_LABEL_STYLE = {
+  color: "#b8c9e7",
+  fontWeight: 700,
+};
+
+const CHART_TOOLTIP_ITEM_STYLE = {
+  color: "#f8fbff",
+};
 
 function displayValue(metric: AnyMetric, rawValue: number): number {
   if (metric.unit === "thousands_jobs") {
@@ -195,14 +212,14 @@ function TrendCard({ metric }: { metric: AnyMetric }) {
           <AreaChart data={chartData(metric.sparkline)} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id={`gradient-${metric.id}`} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#f97316" stopOpacity={0.45} />
-                <stop offset="100%" stopColor="#f97316" stopOpacity={0} />
+                <stop offset="0%" stopColor="#ff8a1d" stopOpacity={0.5} />
+                <stop offset="100%" stopColor="#ff8a1d" stopOpacity={0} />
               </linearGradient>
             </defs>
             <Area
               type="monotone"
               dataKey="value"
-              stroke="#f97316"
+              stroke="#ff9b31"
               strokeWidth={2}
               fill={`url(#gradient-${metric.id})`}
               fillOpacity={1}
@@ -282,7 +299,7 @@ function MetroCard({
       <div className="spark-wrap">
         <ResponsiveContainer width="100%" height={70}>
           <AreaChart data={chartData(metro.unemploymentRate.sparkline)} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
-            <Area type="monotone" dataKey="value" stroke="#6b8cff" strokeWidth={2} fill="rgba(107, 140, 255, 0.15)" />
+            <Area type="monotone" dataKey="value" stroke="#66ddff" strokeWidth={2.1} fill="rgba(102, 221, 255, 0.2)" />
           </AreaChart>
         </ResponsiveContainer>
       </div>
@@ -507,6 +524,8 @@ function App() {
   return (
     <main className="app-shell">
       <div className="sun-layer" />
+      <div className="sky-layer" />
+      <div className="heat-layer" />
       <section className="hero panel">
         <div>
           <p className="eyebrow">Floridanomics Dashboard MVP</p>
@@ -642,8 +661,13 @@ function App() {
                 selectedMetric.unit === "percent" ? `${Number(value).toFixed(1)}%` : formatCompact(Number(value), 0)
               }
             />
-            <Tooltip />
-            <Line type="monotone" dataKey="value" stroke="#fb923c" strokeWidth={2.4} dot={false} />
+            <Tooltip
+              contentStyle={CHART_TOOLTIP_STYLE}
+              labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+              itemStyle={CHART_TOOLTIP_ITEM_STYLE}
+              cursor={{ stroke: "rgba(148, 163, 184, 0.45)", strokeDasharray: "4 4" }}
+            />
+            <Line type="monotone" dataKey="value" stroke="#ff9b31" strokeWidth={2.8} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </section>
@@ -660,8 +684,13 @@ function App() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(149, 163, 191, 0.2)" />
               <XAxis dataKey="sector" angle={-26} textAnchor="end" interval={0} tick={{ fill: "#a9b9dd", fontSize: 10 }} />
               <YAxis tickFormatter={(value) => formatCompact(Number(value), 0)} tick={{ fill: "#a9b9dd", fontSize: 11 }} />
-              <Tooltip />
-              <Bar dataKey="jobs" fill="#f97316" radius={[6, 6, 0, 0]} />
+              <Tooltip
+                contentStyle={CHART_TOOLTIP_STYLE}
+                labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+                itemStyle={CHART_TOOLTIP_ITEM_STYLE}
+                cursor={{ fill: "rgba(255, 143, 63, 0.12)" }}
+              />
+              <Bar dataKey="jobs" fill="#ff8a1d" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </article>
@@ -681,7 +710,7 @@ function App() {
             <div className="spark-wrap">
               <ResponsiveContainer width="100%" height={60}>
                 <AreaChart data={chartData(sector.sparkline)}>
-                  <Area type="monotone" dataKey="value" stroke="#a5b4fc" fill="rgba(165, 180, 252, 0.2)" strokeWidth={2} />
+                  <Area type="monotone" dataKey="value" stroke="#77d7ff" fill="rgba(119, 215, 255, 0.24)" strokeWidth={2} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -742,7 +771,12 @@ function App() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(149, 163, 191, 0.2)" />
             <XAxis dataKey="label" minTickGap={24} tick={{ fill: "#a9b9dd", fontSize: 11 }} />
             <YAxis tick={{ fill: "#a9b9dd", fontSize: 11 }} tickFormatter={(value) => `${Number(value).toFixed(1)}%`} />
-            <Tooltip />
+            <Tooltip
+              contentStyle={CHART_TOOLTIP_STYLE}
+              labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+              itemStyle={CHART_TOOLTIP_ITEM_STYLE}
+              cursor={{ stroke: "rgba(148, 163, 184, 0.45)", strokeDasharray: "4 4" }}
+            />
             <Legend />
             {dataset.metros.map((metro) => (
               <Line
@@ -878,8 +912,13 @@ function App() {
                         : formatCompact(Number(value), 0)
                   }
                 />
-                <Tooltip />
-                <Line type="monotone" dataKey="value" stroke="#fb923c" strokeWidth={2.4} dot={false} />
+                <Tooltip
+                  contentStyle={CHART_TOOLTIP_STYLE}
+                  labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+                  itemStyle={CHART_TOOLTIP_ITEM_STYLE}
+                  cursor={{ stroke: "rgba(148, 163, 184, 0.45)", strokeDasharray: "4 4" }}
+                />
+                <Line type="monotone" dataKey="value" stroke="#67e8f9" strokeWidth={2.8} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </section>
