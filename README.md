@@ -24,6 +24,7 @@ A standalone Florida-first economic dashboard that makes labor-market strength l
   - Major Florida sectors
   - Largest growers and laggards
 - Metro section
+  - Interactive Florida state map with clickable MSA markers
   - Miami, Tampa, Orlando, Jacksonville
   - Unemployment, labor force, employment level
 - Narrative panel

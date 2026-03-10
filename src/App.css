@@ -203,6 +203,93 @@ body {
   margin-top: 0.15rem;
 }
 
+.map-layout {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 1fr);
+}
+
+.florida-map-panel {
+  padding: 0.85rem 0.85rem 0.55rem;
+}
+
+.map-header h3 {
+  margin: 0.2rem 0 0.2rem;
+  font-size: 1.02rem;
+}
+
+.florida-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.florida-shape {
+  fill: url(#floridaFill);
+  stroke: rgba(167, 188, 233, 0.95);
+  stroke-width: 1.2;
+}
+
+.metro-pin {
+  cursor: pointer;
+}
+
+.metro-pin:focus-visible .pin-dot {
+  outline: none;
+  stroke: #ffffff;
+  stroke-width: 2.6;
+}
+
+.pin-line {
+  stroke: rgba(216, 227, 252, 0.8);
+  stroke-width: 1.2;
+}
+
+.pin-dot {
+  fill: var(--orange-500);
+  stroke: rgba(2, 6, 23, 0.8);
+  stroke-width: 1.8;
+  transition: transform 160ms ease;
+  transform-origin: center;
+  filter: url(#pinGlow);
+}
+
+.metro-pin:hover .pin-dot {
+  transform: scale(1.08);
+}
+
+.metro-pin-selected .pin-dot {
+  fill: #fb923c;
+  stroke: #f8fbff;
+}
+
+.pin-label {
+  fill: #f8fbff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  paint-order: stroke;
+  stroke: rgba(2, 6, 23, 0.58);
+  stroke-width: 2.4px;
+}
+
+.map-focus-panel h3 {
+  margin: 0.2rem 0 0.8rem;
+  font-size: 1.15rem;
+}
+
+.map-focus-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.map-focus-note {
+  margin: 0.8rem 0 0;
+  color: var(--text-200);
+  font-size: 0.83rem;
+}
+
 .industry-layout {
   display: grid;
   gap: 1rem;
@@ -263,6 +350,26 @@ body {
 .metro-card {
   display: grid;
   gap: 0.8rem;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.metro-card:hover {
+  border-color: rgba(251, 146, 60, 0.5);
+  transform: translateY(-1px);
+}
+
+.metro-card:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.72);
+  outline-offset: 2px;
+}
+
+.metro-card-selected {
+  border-color: rgba(251, 146, 60, 0.85);
+  box-shadow: 0 16px 34px rgba(249, 115, 22, 0.18);
 }
 
 .metro-head {
@@ -379,6 +486,10 @@ body {
   .industry-layout {
     grid-template-columns: 1fr;
   }
+
+  .map-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 860px) {
@@ -398,6 +509,10 @@ body {
   }
 
   .narrative-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-focus-grid {
     grid-template-columns: 1fr;
   }
 }

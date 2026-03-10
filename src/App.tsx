@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import clsx from "clsx";
 import {
   Area,
   AreaChart,
@@ -11,6 +12,7 @@ import {
   YAxis,
 } from "recharts";
 import type { DashboardDataset, Delta, IndustrySector, Metric, PopulationMetric, TimePoint } from "./types/dashboard";
+import { FloridaMsaMap } from "./components/FloridaMsaMap";
 import "./App.css";
 
 type AnyMetric = Metric | PopulationMetric;
@@ -157,13 +159,34 @@ function metroMetricValue(value: number, unit: "percent" | "persons"): string {
   return formatCompact(value, 1);
 }
 
-function MetroCard({ metro }: { metro: DashboardDataset["metros"][number] }) {
+function MetroCard({
+  metro,
+  selected,
+  onSelect,
+}: {
+  metro: DashboardDataset["metros"][number];
+  selected: boolean;
+  onSelect: (metroId: string) => void;
+}) {
   const unemploymentYoy = metro.unemploymentRate.deltas.oneYear;
   const laborForceYoy = metro.laborForce.deltas.oneYear;
   const employmentYoy = metro.employmentLevel.deltas.oneYear;
 
   return (
-    <article className="panel metro-card">
+    <article
+      id={`metro-card-${metro.id}`}
+      className={clsx("panel", "metro-card", selected && "metro-card-selected")}
+      onClick={() => onSelect(metro.id)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onSelect(metro.id);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`Select ${metro.name}`}
+    >
       <header className="metro-head">
         <h3>{metro.name}</h3>
         <span className="muted">As of {shortMonthLabel(metro.unemploymentRate.latest.date)}</span>
@@ -228,6 +251,7 @@ function SectorList({ title, sectors, tone }: { title: string; sectors: Industry
 function App() {
   const [dataset, setDataset] = useState<DashboardDataset | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [selectedMetroId, setSelectedMetroId] = useState<string | null>(null);
 
   useEffect(() => {
     let canceled = false;
@@ -257,6 +281,13 @@ function App() {
       canceled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (!dataset || selectedMetroId) {
+      return;
+    }
+    setSelectedMetroId(dataset.metros[0]?.id ?? null);
+  }, [dataset, selectedMetroId]);
 
   const industryBarData = useMemo(() => {
     if (!dataset) {
@@ -292,6 +323,19 @@ function App() {
   }
 
   const heroMetrics = dataset.heroMetrics.map((metricId) => dataset.metrics[metricId]);
+  const selectedMetro = dataset.metros.find((metro) => metro.id === selectedMetroId) ?? dataset.metros[0];
+
+  function handleMetroSelect(metroId: string) {
+    setSelectedMetroId(metroId);
+
+    // Keep the selected metro card in view when selected from the map.
+    window.requestAnimationFrame(() => {
+      document.getElementById(`metro-card-${metroId}`)?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    });
+  }
 
   return (
     <main className="app-shell">
@@ -383,12 +427,52 @@ function App() {
       </section>
 
       <section className="section-head">
+        <h2>MSA Map Navigator</h2>
+        <p>Click a metro on the map to focus and highlight its snapshot card.</p>
+      </section>
+      <section className="map-layout">
+        <FloridaMsaMap
+          metros={dataset.metros.map((metro) => ({ id: metro.id, name: metro.name }))}
+          selectedMetroId={selectedMetro.id}
+          onSelectMetro={handleMetroSelect}
+        />
+        <article className="panel map-focus-panel">
+          <p className="kicker">Selected metro</p>
+          <h3>{selectedMetro.name}</h3>
+          <div className="map-focus-grid">
+            <div>
+              <p className="kicker">Unemployment</p>
+              <p className="metro-value">{metroMetricValue(selectedMetro.unemploymentRate.latest.value, "percent")}</p>
+              <p className={deltaClass({ trendDirection: "down_good" } as AnyMetric, selectedMetro.unemploymentRate.deltas.oneYear)}>
+                1Y: {formatDelta({ unit: "percent" } as AnyMetric, selectedMetro.unemploymentRate.deltas.oneYear)}
+              </p>
+            </div>
+            <div>
+              <p className="kicker">Labor force</p>
+              <p className="metro-value">{metroMetricValue(selectedMetro.laborForce.latest.value, "persons")}</p>
+              <p className={deltaClass({ trendDirection: "up_good" } as AnyMetric, selectedMetro.laborForce.deltas.oneYear)}>
+                1Y: {formatDelta({ unit: "persons" } as AnyMetric, selectedMetro.laborForce.deltas.oneYear)}
+              </p>
+            </div>
+            <div>
+              <p className="kicker">Employment</p>
+              <p className="metro-value">{metroMetricValue(selectedMetro.employmentLevel.latest.value, "persons")}</p>
+              <p className={deltaClass({ trendDirection: "up_good" } as AnyMetric, selectedMetro.employmentLevel.deltas.oneYear)}>
+                1Y: {formatDelta({ unit: "persons" } as AnyMetric, selectedMetro.employmentLevel.deltas.oneYear)}
+              </p>
+            </div>
+          </div>
+          <p className="map-focus-note">Tip: click any metro card below or map marker to switch focus.</p>
+        </article>
+      </section>
+
+      <section className="section-head">
         <h2>Metro Snapshots</h2>
         <p>Miami, Tampa, Orlando, and Jacksonville labor reads with compact trend context.</p>
       </section>
       <section className="grid metro-grid-wrap">
         {dataset.metros.map((metro) => (
-          <MetroCard key={metro.id} metro={metro} />
+          <MetroCard key={metro.id} metro={metro} selected={metro.id === selectedMetro.id} onSelect={handleMetroSelect} />
         ))}
       </section>
 
