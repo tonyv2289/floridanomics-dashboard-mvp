@@ -528,7 +528,7 @@ function App() {
       <div className="heat-layer" />
       <section className="hero panel">
         <div>
-          <p className="eyebrow">Floridanomics Dashboard MVP</p>
+          <p className="eyebrow">Floridanomics Dashboard</p>
           <h1>Florida&apos;s economy is not an accident. It is a model.</h1>
           <p className="lede">
             A focused read on labor momentum, sector depth, metro strength, and demographic scale across the Sunshine
@@ -1009,10 +1009,26 @@ function App() {
               <a href={source.url} target="_blank" rel="noreferrer">
                 {source.name}
               </a>
-              <span>{source.notes}</span>
+              <span className="source-notes">{source.notes}</span>
             </li>
           ))}
         </ul>
+      </footer>
+
+      <footer className="site-footer">
+        <div className="site-footer-brand">Floridanomics &mdash; Florida Economic Intelligence</div>
+        <div className="site-footer-meta">
+          <span>Data: Bureau of Labor Statistics</span>
+          <span className="site-footer-sep">&bull;</span>
+          <span>
+            Last refreshed:{" "}
+            {new Date(dataset.generatedAt).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </span>
+        </div>
       </footer>
     </main>
   );

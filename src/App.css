@@ -938,6 +938,41 @@ body {
   font-size: 0.85rem;
 }
 
+.source-notes {
+  color: var(--text-300);
+  font-size: 0.82rem;
+}
+
+.site-footer {
+  margin-top: 0.5rem;
+  padding: 1.4rem 1.6rem;
+  border-top: 1px solid rgba(155, 178, 223, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.site-footer-brand {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-100);
+  letter-spacing: 0.01em;
+}
+
+.site-footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-300);
+}
+
+.site-footer-sep {
+  opacity: 0.5;
+}
+
 .delta-good {
   color: #66f7c4;
   margin: 0;
