@@ -29,7 +29,7 @@ import "./App.css";
 
 type AnyMetric = Metric | PopulationMetric;
 type MetricId = keyof DashboardDataset["metrics"];
-type TabId = "scorecard" | "innovation";
+type TabId = "scorecard" | "innovation" | "trade";
 
 const METRIC_IDS: MetricId[] = ["unemploymentRate", "laborForce", "employmentLevel", "nonfarmPayrolls", "population"];
 const INNOVATION_METRIC_IDS: InnovationMetricId[] = [
@@ -168,7 +168,42 @@ function isMetricId(value: string | null): value is MetricId {
 }
 
 function isTabId(value: string | null): value is TabId {
-  return value === "scorecard" || value === "innovation";
+  return value === "scorecard" || value === "innovation" || value === "trade";
+}
+
+function formatUsdBillions(value: number): string {
+  if (value >= 1000) {
+    return `$${(value / 1000).toFixed(2)}T`;
+  }
+  if (value >= 1) {
+    return `$${value.toFixed(value < 10 ? 1 : 1)}B`;
+  }
+  return `$${(value * 1000).toFixed(0)}M`;
+}
+
+function formatUsdMillions(value: number): string {
+  if (value >= 1000) {
+    return `$${(value / 1000).toFixed(2)}B`;
+  }
+  return `$${value.toFixed(0)}M`;
+}
+
+function formatTradeHero(value: number, unit: "usd_billions" | "percent" | "count"): string {
+  if (unit === "usd_billions") return formatUsdBillions(value);
+  if (unit === "percent") return `${value.toFixed(1)}%`;
+  return value.toLocaleString();
+}
+
+function formatSignedPercent(value: number | null): string {
+  if (value === null) return "n/a";
+  const sign = value >= 0 ? "+" : "-";
+  return `${sign}${Math.abs(value).toFixed(1)}%`;
+}
+
+function formatSignedUsdBillions(value: number | null): string {
+  if (value === null) return "n/a";
+  const sign = value >= 0 ? "+" : "-";
+  return `${sign}$${Math.abs(value).toFixed(1)}B`;
 }
 
 function isInnovationMetricId(value: string | null): value is InnovationMetricId {
@@ -573,6 +608,13 @@ function App() {
           onClick={() => setActiveTab("innovation")}
         >
           Innovation + Economic Development
+        </button>
+        <button
+          type="button"
+          className={clsx("tab-button", activeTab === "trade" && "tab-button-active")}
+          onClick={() => setActiveTab("trade")}
+        >
+          International Trade
         </button>
       </section>
 
@@ -997,6 +1039,187 @@ function App() {
                 </a>
               </article>
             ))}
+          </section>
+        </>
+      )}
+
+      {activeTab === "trade" && (
+        <>
+          <section className="section-head">
+            <h2>{dataset.trade.headline}</h2>
+            <p>
+              Source: <a href={dataset.trade.releaseUrl} target="_blank" rel="noreferrer">FloridaCommerce / SelectFlorida</a> &mdash; {dataset.trade.releaseTitle} (released {dataset.trade.releaseDate}). As of {dataset.trade.asOf}.
+            </p>
+          </section>
+
+          <section className="grid hero-grid">
+            {dataset.trade.heroMetrics.map((metric) => (
+              <article className="panel hero-card" key={metric.id}>
+                <p className="kicker">{metric.label}</p>
+                <h2>{formatTradeHero(metric.value, metric.unit)}</h2>
+                <p className="delta-flat">{metric.helper}</p>
+              </article>
+            ))}
+          </section>
+
+          <section className="section-head">
+            <h2>Growth Deltas</h2>
+            <p>How the 2025 number compares against prior years and what share is manufactured.</p>
+          </section>
+          <section className="grid hero-grid">
+            {dataset.trade.deltas.map((delta) => (
+              <article className="panel hero-card" key={delta.id}>
+                <p className="kicker">{delta.label}</p>
+                <h2 className={delta.percent !== null && delta.percent >= 0 ? "delta-good" : "delta-bad"}>
+                  {delta.absolute !== null
+                    ? formatSignedUsdBillions(delta.absolute)
+                    : formatSignedPercent(delta.percent)}
+                </h2>
+                <p className="delta-flat">
+                  {delta.absolute !== null && delta.percent !== null
+                    ? `${formatSignedPercent(delta.percent)} - ${delta.baseLabel}`
+                    : delta.baseLabel}
+                </p>
+              </article>
+            ))}
+          </section>
+
+          <section className="section-head">
+            <h2>Top 5 Export Markets (2025)</h2>
+            <p>Three of the top five are in Latin America - Florida's gateway-to-the-Americas thesis at work.</p>
+          </section>
+          <section className="panel explorer-panel">
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart
+                data={dataset.trade.topMarkets.map((m) => ({ name: m.country, rank: 6 - m.rank, region: m.region }))}
+                layout="vertical"
+                margin={{ top: 8, right: 16, left: 24, bottom: 8 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(149, 163, 191, 0.2)" />
+                <XAxis type="number" hide />
+                <YAxis dataKey="name" type="category" tick={{ fill: "#a9b9dd", fontSize: 12 }} width={90} />
+                <Tooltip
+                  contentStyle={CHART_TOOLTIP_STYLE}
+                  labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+                  itemStyle={CHART_TOOLTIP_ITEM_STYLE}
+                  formatter={(_value, _name, item) => {
+                    const payload = (item as { payload?: { region?: string } }).payload;
+                    return [payload?.region ?? "", "Region"];
+                  }}
+                />
+                <Bar dataKey="rank" fill="#ff8f3f" radius={[0, 8, 8, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </section>
+
+          <section className="section-head">
+            <h2>Top 5 Export Categories (2025)</h2>
+            <p>Civilian aircraft &amp; parts at $12.8B is the single biggest category - aerospace leads.</p>
+          </section>
+          <section className="panel explorer-panel">
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={dataset.trade.topCategories.map((c) => ({ name: c.label, value: c.valueUsdBillions }))}
+                margin={{ top: 8, right: 16, left: 0, bottom: 50 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(149, 163, 191, 0.2)" />
+                <XAxis
+                  dataKey="name"
+                  tick={{ fill: "#a9b9dd", fontSize: 11 }}
+                  angle={-20}
+                  textAnchor="end"
+                  interval={0}
+                  height={70}
+                />
+                <YAxis
+                  tick={{ fill: "#a9b9dd", fontSize: 11 }}
+                  tickFormatter={(value) => `$${Number(value).toFixed(0)}B`}
+                />
+                <Tooltip
+                  contentStyle={CHART_TOOLTIP_STYLE}
+                  labelStyle={CHART_TOOLTIP_LABEL_STYLE}
+                  itemStyle={CHART_TOOLTIP_ITEM_STYLE}
+                  formatter={(value) => [`$${Number(value).toFixed(1)}B`, "Export value"]}
+                />
+                <Bar dataKey="value" fill="#56c2ff" radius={[8, 8, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </section>
+
+          <section className="section-head">
+            <h2>{dataset.trade.selectFlorida.headline}</h2>
+            <p>Direct, measurable ROI on Florida's trade-mission infrastructure.</p>
+          </section>
+          <section className="grid hero-grid">
+            <article className="panel hero-card">
+              <p className="kicker">FL businesses served</p>
+              <h2>{dataset.trade.selectFlorida.businessesServed.toLocaleString()}</h2>
+              <p className="delta-flat">{dataset.trade.selectFlorida.businessesWindow}</p>
+            </article>
+            <article className="panel hero-card">
+              <p className="kicker">Total sales generated via SelectFlorida shows</p>
+              <h2>{formatUsdMillions(dataset.trade.selectFlorida.salesGeneratedUsdMillions)}+</h2>
+              <p className="delta-flat">Since July 2025</p>
+            </article>
+            {dataset.trade.selectFlorida.showResults.map((show) => (
+              <article className="panel hero-card" key={show.id}>
+                <p className="kicker">{show.show}</p>
+                <h2>{formatUsdMillions(show.reportedSalesUsdMillions)}+</h2>
+                <p className="delta-flat">{show.window} - reported sales by FL exhibitors</p>
+              </article>
+            ))}
+          </section>
+
+          <section className="section-head">
+            <h2>Bilateral Trade Through Florida</h2>
+            <p>The full two-way merchandise trade flowing through Florida seaports and airports.</p>
+          </section>
+          <section className="grid hero-grid">
+            <article className="panel hero-card">
+              <p className="kicker">{dataset.trade.bilateralTrade.label}</p>
+              <h2>${dataset.trade.bilateralTrade.valueUsdBillions}B</h2>
+              <p className="delta-flat">Record level - gateway logistics position</p>
+            </article>
+            <article className="panel hero-card">
+              <p className="kicker">vs 2024</p>
+              <h2 className="delta-good">{formatSignedUsdBillions(dataset.trade.bilateralTrade.oneYearAbsoluteUsdBillions)}</h2>
+              <p className="delta-flat">{formatSignedPercent(dataset.trade.bilateralTrade.oneYearPercent)}</p>
+            </article>
+            <article className="panel hero-card">
+              <p className="kicker">vs 2018</p>
+              <h2 className="delta-good">{formatSignedUsdBillions(dataset.trade.bilateralTrade.sevenYearAbsoluteUsdBillions)}</h2>
+              <p className="delta-flat">{formatSignedPercent(dataset.trade.bilateralTrade.sevenYearPercent)}</p>
+            </article>
+          </section>
+
+          <section className="panel innovation-narrative">
+            <h3>{dataset.trade.narrative.headline}</h3>
+            <div className="narrative-grid">
+              <div>
+                <h4>What Stands Out</h4>
+                <ul>
+                  {dataset.trade.narrative.whatStandsOut.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4>Watch-Outs</h4>
+                <ul>
+                  {dataset.trade.narrative.watchOuts.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4>Why It Matters</h4>
+                <ul>
+                  {dataset.trade.narrative.whyItMatters.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </section>
         </>
       )}

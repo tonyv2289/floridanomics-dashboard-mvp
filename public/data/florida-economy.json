@@ -20,6 +20,12 @@
       "name": "FRED state innovation/development indicators",
       "url": "https://fred.stlouisfed.org/",
       "notes": "Business applications and real gross state product series used for innovation/economic development tab."
+    },
+    {
+      "id": "selectflorida_exports",
+      "name": "FloridaCommerce / SelectFlorida - 2025 Export Sales Release",
+      "url": "https://www.floridacommerce.gov/",
+      "notes": "Official 4/1/2026 release: Florida Businesses Set Record High Export Sales in 2025 ($78.9B). Powers International Trade tab."
     }
   ],
   "heroMetrics": [
@@ -10876,5 +10882,132 @@
         "url": "https://www.jaxusa.org/"
       }
     ]
+  },
+  "trade": {
+    "headline": "Florida Exports Hit $78.9B in 2025 - Largest Year in History",
+    "asOf": "Calendar Year 2025",
+    "releaseDate": "2026-04-01",
+    "releaseTitle": "Florida Businesses Set Record High Export Sales in 2025",
+    "releaseUrl": "https://www.floridacommerce.gov/",
+    "heroMetrics": [
+      {
+        "id": "totalExports",
+        "label": "Total Florida Exports (2025)",
+        "value": 78.9,
+        "unit": "usd_billions",
+        "helper": "Largest export year in Florida history"
+      },
+      {
+        "id": "manufacturedExports",
+        "label": "Manufactured Exports",
+        "value": 72.2,
+        "unit": "usd_billions",
+        "helper": "92% of all Florida-grown / Florida-made exports"
+      },
+      {
+        "id": "bilateralTrade",
+        "label": "Bilateral Trade via FL Ports + Airports",
+        "value": 205,
+        "unit": "usd_billions",
+        "helper": "Record level, +4.2% YoY, +33.3% vs 2018"
+      },
+      {
+        "id": "selectFloridaFy",
+        "label": "SelectFlorida-Generated Exports (FY24-25)",
+        "value": 1.9,
+        "unit": "usd_billions",
+        "helper": "Record fiscal year, +$500M YoY"
+      }
+    ],
+    "deltas": [
+      {
+        "id": "oneYear",
+        "label": "vs 2024",
+        "absolute": 6.4,
+        "percent": 8.9,
+        "baseLabel": "2024 total: $72.5B"
+      },
+      {
+        "id": "sevenYear",
+        "label": "vs 2018",
+        "absolute": 21.6,
+        "percent": 37.8,
+        "baseLabel": "2018 total: $57.3B"
+      },
+      {
+        "id": "fiscalYear",
+        "label": "SelectFlorida FY24-25 vs FY23-24",
+        "absolute": 0.5,
+        "percent": 35.7,
+        "baseLabel": "FY23-24: $1.4B"
+      },
+      {
+        "id": "mfgShare",
+        "label": "Manufactured Export Share",
+        "absolute": null,
+        "percent": 92,
+        "baseLabel": "92% of all FL-origin exports are manufactured products"
+      }
+    ],
+    "topMarkets": [
+      { "rank": 1, "country": "Brazil", "region": "LATAM" },
+      { "rank": 2, "country": "Mexico", "region": "LATAM" },
+      { "rank": 3, "country": "Canada", "region": "North America" },
+      { "rank": 4, "country": "Germany", "region": "Europe" },
+      { "rank": 5, "country": "Colombia", "region": "LATAM" }
+    ],
+    "topCategories": [
+      { "rank": 1, "label": "Civilian Aircraft & Parts", "valueUsdBillions": 12.8 },
+      { "rank": 2, "label": "Telephones", "valueUsdBillions": 5.7 },
+      { "rank": 3, "label": "Pharmaceuticals", "valueUsdBillions": 3.6 },
+      { "rank": 4, "label": "Turbojets & Gas Turbines", "valueUsdBillions": 2.4 },
+      { "rank": 5, "label": "Cars", "valueUsdBillions": 2.4 }
+    ],
+    "selectFlorida": {
+      "headline": "SelectFlorida Program ROI (since July 2025)",
+      "businessesServed": 1463,
+      "businessesWindow": "Since July 2025",
+      "salesGeneratedUsdMillions": 486,
+      "showResults": [
+        {
+          "id": "singapore-airshow-2026",
+          "show": "Singapore Airshow",
+          "window": "February 2026",
+          "reportedSalesUsdMillions": 150
+        },
+        {
+          "id": "mro-europe-dubai-2025",
+          "show": "MRO Europe + Dubai Air Show (combined)",
+          "window": "Fall 2025",
+          "reportedSalesUsdMillions": 92
+        }
+      ]
+    },
+    "bilateralTrade": {
+      "label": "Florida Bilateral Merchandise Trade (2025)",
+      "valueUsdBillions": 205,
+      "oneYearAbsoluteUsdBillions": 8.3,
+      "oneYearPercent": 4.2,
+      "sevenYearAbsoluteUsdBillions": 51.2,
+      "sevenYearPercent": 33.3
+    },
+    "narrative": {
+      "headline": "Florida's export engine is firing on every cylinder - and 92% of it is built here.",
+      "whatStandsOut": [
+        "$78.9B is the largest export year in Florida history - up $6.4B (+8.9%) vs 2024 and $21.6B (+37.8%) vs 2018.",
+        "Manufactured products = 92% of all Florida-origin exports ($72.2B). Florida's manufacturing sector is the fastest-growing in the country.",
+        "3 of Florida's top 5 export markets are in LATAM (Brazil, Mexico, Colombia) - reinforcing Florida as the Americas' commercial gateway.",
+        "Civilian aircraft and parts alone shipped $12.8B - aerospace is the single biggest export category."
+      ],
+      "watchOuts": [
+        "92% manufacturing concentration means the headline is sensitive to single-vertical shocks (aerospace cycle, pharma, telecom).",
+        "LATAM exposure (3 of top 5 markets) carries FX, political, and tariff-posture risk worth tracking quarter to quarter."
+      ],
+      "whyItMatters": [
+        "$205B in bilateral trade through Florida seaports and airports reinforces the state's logistics-gateway position.",
+        "$1.9B in SelectFlorida-generated exports in FY24-25 (+$500M YoY) is direct, measurable ROI on Florida's trade-mission infrastructure.",
+        "A single trade show - Singapore Airshow Feb 2026 - drove $150M+ in reported sales for participating Florida companies."
+      ]
+    }
   }
 }

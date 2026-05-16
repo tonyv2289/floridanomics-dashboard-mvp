@@ -78,6 +78,74 @@ export type InnovationResource = {
   url: string;
 };
 
+export type TradeHeadlineMetric = {
+  id: string;
+  label: string;
+  value: number;
+  unit: "usd_billions" | "percent" | "count";
+  helper: string;
+};
+
+export type TradeDelta = {
+  id: "oneYear" | "sevenYear" | "fiscalYear" | "mfgShare";
+  label: string;
+  absolute: number | null;
+  percent: number | null;
+  baseLabel: string;
+};
+
+export type TradePartner = {
+  rank: number;
+  country: string;
+  region: "LATAM" | "North America" | "Europe" | "Asia" | "Middle East" | "Africa";
+};
+
+export type TradeCategory = {
+  rank: number;
+  label: string;
+  valueUsdBillions: number;
+};
+
+export type TradeShowResult = {
+  id: string;
+  show: string;
+  window: string;
+  reportedSalesUsdMillions: number;
+};
+
+export type TradeSection = {
+  headline: string;
+  asOf: string;
+  releaseDate: string;
+  releaseTitle: string;
+  releaseUrl: string;
+  heroMetrics: TradeHeadlineMetric[];
+  deltas: TradeDelta[];
+  topMarkets: TradePartner[];
+  topCategories: TradeCategory[];
+  selectFlorida: {
+    headline: string;
+    businessesServed: number;
+    businessesWindow: string;
+    salesGeneratedUsdMillions: number;
+    showResults: TradeShowResult[];
+  };
+  bilateralTrade: {
+    label: string;
+    valueUsdBillions: number;
+    oneYearAbsoluteUsdBillions: number;
+    oneYearPercent: number;
+    sevenYearAbsoluteUsdBillions: number;
+    sevenYearPercent: number;
+  };
+  narrative: {
+    headline: string;
+    whatStandsOut: string[];
+    watchOuts: string[];
+    whyItMatters: string[];
+  };
+};
+
 export type DashboardDataset = {
   generatedAt: string;
   asOfLaborMarket: string;
@@ -120,4 +188,5 @@ export type DashboardDataset = {
     };
     resources: InnovationResource[];
   };
+  trade: TradeSection;
 };
