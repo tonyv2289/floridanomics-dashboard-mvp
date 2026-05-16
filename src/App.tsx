@@ -708,6 +708,7 @@ function App() {
               labelStyle={CHART_TOOLTIP_LABEL_STYLE}
               itemStyle={CHART_TOOLTIP_ITEM_STYLE}
               cursor={{ stroke: "rgba(148, 163, 184, 0.45)", strokeDasharray: "4 4" }}
+              formatter={(value) => [formatMetricValue(selectedMetric, Number(value)), selectedMetric.label]}
             />
             <Line type="monotone" dataKey="value" stroke="#ff9b31" strokeWidth={2.8} dot={false} />
           </LineChart>
@@ -731,6 +732,7 @@ function App() {
                 labelStyle={CHART_TOOLTIP_LABEL_STYLE}
                 itemStyle={CHART_TOOLTIP_ITEM_STYLE}
                 cursor={{ fill: "rgba(255, 143, 63, 0.12)" }}
+                formatter={(value) => [`${formatCompact(Number(value), 1)} jobs`, "Employment"]}
               />
               <Bar dataKey="jobs" fill="#ff8a1d" radius={[8, 8, 0, 0]} />
             </BarChart>
@@ -818,6 +820,7 @@ function App() {
               labelStyle={CHART_TOOLTIP_LABEL_STYLE}
               itemStyle={CHART_TOOLTIP_ITEM_STYLE}
               cursor={{ stroke: "rgba(148, 163, 184, 0.45)", strokeDasharray: "4 4" }}
+              formatter={(value) => [`${Number(value).toFixed(1)}%`, "Unemployment"]}
             />
             <Legend />
             {dataset.metros.map((metro) => (
@@ -959,6 +962,7 @@ function App() {
                   labelStyle={CHART_TOOLTIP_LABEL_STYLE}
                   itemStyle={CHART_TOOLTIP_ITEM_STYLE}
                   cursor={{ stroke: "rgba(148, 163, 184, 0.45)", strokeDasharray: "4 4" }}
+                  formatter={(value) => [formatMetricValue(selectedInnovationMetric, Number(value)), selectedInnovationMetric.label]}
                 />
                 <Line type="monotone" dataKey="value" stroke="#67e8f9" strokeWidth={2.8} dot={false} />
               </LineChart>
