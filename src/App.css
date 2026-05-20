@@ -1066,6 +1066,43 @@ body {
   opacity: 0.5;
 }
 
+/* M5 - Editorial pull-quote (compositional rhythm break)
+ * Per DESIGN.md spec: Sora 28-36px, left rule, 720px max-width,
+ * generous whitespace. Breaks the card-grid monotony of the
+ * Scorecard tab between metric cards and trend cards.
+ */
+.editorial-pullquote {
+  max-width: 56rem;
+  margin: 3.5rem auto 3rem;
+  padding: 0 clamp(1rem, 3vw, 2.5rem);
+}
+
+.editorial-pullquote blockquote {
+  margin: 0;
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  border-left: 3px solid #ff8f3f;
+}
+
+.editorial-pullquote blockquote p {
+  font-family: "Sora", "Manrope", ui-sans-serif, sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.32;
+  letter-spacing: -0.012em;
+  color: #e8eef9;
+  margin: 0 0 0.85rem;
+  max-width: 45rem;
+}
+
+.editorial-pullquote blockquote footer {
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
 /* M4 - Single accent discipline:
  * Florida Sun is reserved for "look here" — outliers, anomalies, the thing
  * that needs attention. Expected/neutral states stay muted. Growth is

@@ -663,6 +663,13 @@ function App() {
         ))}
       </section>
 
+      <aside className="editorial-pullquote">
+        <blockquote>
+          <p>{dataset.narrative.headline}</p>
+          <footer>Florida Brain · {new Date(dataset.generatedAt).toLocaleDateString("en-US", { month: "long", year: "numeric" })}</footer>
+        </blockquote>
+      </aside>
+
       {laborDaysOld > 120 && (
         <section className={clsx("panel", "freshness-panel", freshnessClass)}>
           <p className="muted">
