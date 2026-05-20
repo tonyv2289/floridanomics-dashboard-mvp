@@ -1066,13 +1066,19 @@ body {
   opacity: 0.5;
 }
 
+/* M4 - Single accent discipline:
+ * Florida Sun is reserved for "look here" — outliers, anomalies, the thing
+ * that needs attention. Expected/neutral states stay muted. Growth is
+ * positive but it's not the attention grabber; it shows in a quiet teal.
+ */
 .delta-good {
-  color: #66f7c4;
+  color: #6b9aa8;
   margin: 0;
 }
 
 .delta-bad {
-  color: #ff9bb9;
+  color: #ff8f3f;
+  font-weight: 600;
   margin: 0;
 }
 

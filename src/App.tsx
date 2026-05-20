@@ -40,12 +40,18 @@ const INNOVATION_METRIC_IDS: InnovationMetricId[] = [
   "constructionEmployment",
 ];
 
+// M4 - Single accent discipline:
+// The selected metro renders in Florida Sun. All others render in muted gray
+// so the eye knows where to look. METRO_COLORS retained as fallback if
+// nothing is selected, but the chart logic should always pass a selectedId.
 const METRO_COLORS = {
   miami: "#ff8f3f",
-  tampa: "#56c2ff",
-  orlando: "#3ee8b0",
-  jacksonville: "#ff70a8",
+  tampa: "#ff8f3f",
+  orlando: "#ff8f3f",
+  jacksonville: "#ff8f3f",
 } as const;
+
+const METRO_MUTED = "rgba(148, 163, 184, 0.35)";
 
 const CHART_TOOLTIP_STYLE = {
   backgroundColor: "rgba(3, 12, 33, 0.94)",
@@ -376,7 +382,7 @@ function MetroCard({
       <div className="spark-wrap">
         <ResponsiveContainer width="100%" height={70}>
           <AreaChart data={chartData(metro.unemploymentRate.sparkline)} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
-            <Area type="monotone" dataKey="value" stroke="#66ddff" strokeWidth={2.1} fill="rgba(102, 221, 255, 0.2)" />
+            <Area type="monotone" dataKey="value" stroke="#ff8f3f" strokeWidth={2.1} fill="rgba(255, 143, 63, 0.18)" />
           </AreaChart>
         </ResponsiveContainer>
       </div>
@@ -780,7 +786,7 @@ function App() {
             <div className="spark-wrap">
               <ResponsiveContainer width="100%" height={60}>
                 <AreaChart data={chartData(sector.sparkline)}>
-                  <Area type="monotone" dataKey="value" stroke="#77d7ff" fill="rgba(119, 215, 255, 0.24)" strokeWidth={2} />
+                  <Area type="monotone" dataKey="value" stroke="#ff8f3f" fill="rgba(255, 143, 63, 0.16)" strokeWidth={2} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -855,8 +861,8 @@ function App() {
                 type="monotone"
                 dataKey={metro.id}
                 name={metro.name.replace(" MSA", "")}
-                stroke={METRO_COLORS[metro.id as keyof typeof METRO_COLORS] ?? "#cbd5e1"}
-                strokeWidth={metro.id === selectedMetro.id ? 3.2 : 1.8}
+                stroke={metro.id === selectedMetro.id ? "#ff8f3f" : METRO_MUTED}
+                strokeWidth={metro.id === selectedMetro.id ? 3.2 : 1.4}
                 dot={false}
               />
             ))}
@@ -990,7 +996,7 @@ function App() {
                   cursor={{ stroke: "rgba(148, 163, 184, 0.45)", strokeDasharray: "4 4" }}
                   formatter={(value) => [formatMetricValue(selectedInnovationMetric, Number(value)), selectedInnovationMetric.label]}
                 />
-                <Line type="monotone" dataKey="value" stroke="#67e8f9" strokeWidth={2.8} dot={false} />
+                <Line type="monotone" dataKey="value" stroke="#ff8f3f" strokeWidth={2.8} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </section>
@@ -1171,7 +1177,7 @@ function App() {
                   itemStyle={CHART_TOOLTIP_ITEM_STYLE}
                   formatter={(value) => [`$${Number(value).toFixed(1)}B`, "Export value"]}
                 />
-                <Bar dataKey="value" fill="#56c2ff" radius={[8, 8, 0, 0]} />
+                <Bar dataKey="value" fill="#ff8f3f" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </section>
