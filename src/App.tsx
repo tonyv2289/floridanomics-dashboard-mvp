@@ -42,15 +42,8 @@ const INNOVATION_METRIC_IDS: InnovationMetricId[] = [
 
 // M4 - Single accent discipline:
 // The selected metro renders in Florida Sun. All others render in muted gray
-// so the eye knows where to look. METRO_COLORS retained as fallback if
-// nothing is selected, but the chart logic should always pass a selectedId.
-const METRO_COLORS = {
-  miami: "#ff8f3f",
-  tampa: "#ff8f3f",
-  orlando: "#ff8f3f",
-  jacksonville: "#ff8f3f",
-} as const;
-
+// so the eye knows where to look.
+const METRO_FOCUS = "#ff8f3f";
 const METRO_MUTED = "rgba(148, 163, 184, 0.35)";
 
 const CHART_TOOLTIP_STYLE = {
@@ -861,7 +854,7 @@ function App() {
                 type="monotone"
                 dataKey={metro.id}
                 name={metro.name.replace(" MSA", "")}
-                stroke={metro.id === selectedMetro.id ? "#ff8f3f" : METRO_MUTED}
+                stroke={metro.id === selectedMetro.id ? METRO_FOCUS : METRO_MUTED}
                 strokeWidth={metro.id === selectedMetro.id ? 3.2 : 1.4}
                 dot={false}
               />
