@@ -219,41 +219,55 @@ function daysSince(dateValue: string): number {
 function deriveTodayReading(dataset: DashboardDataset): {
   kicker: string;
   value: string;
-  valueIsGood: boolean;
+  tone: "good" | "warn" | "flat";
   interpretation: string;
   asOfLabel: string;
   nextReleaseLabel: string;
 } {
-  const unemp = dataset.metrics.unemploymentRate;
-  const series = unemp.series;
-  const latest = series[series.length - 1];
-  const threeMonthsAgo = series[series.length - 4] ?? series[0];
-  const threeMonthChange = latest.value - threeMonthsAgo.value;
-  const direction = threeMonthChange >= 0 ? "rose" : "fell";
-  const magnitudePp = Math.abs(threeMonthChange).toFixed(1);
-  const latestDate = new Date(latest.date);
+  // Lead with nonfarm payrolls — the strongest single-month story available
+  // in the dataset. Falls back to unemployment if payrolls is unavailable.
+  const payrolls = dataset.metrics.nonfarmPayrolls;
+  const pSeries = payrolls.series;
+  const pLatest = pSeries[pSeries.length - 1];
+  const pPrior = pSeries[pSeries.length - 2] ?? pSeries[0];
+  // Series stored in thousands_jobs; multiply by 1000 for absolute count
+  const monthChangeJobs = Math.round((pLatest.value - pPrior.value) * 1000);
+  const latestDate = new Date(pLatest.date);
   const monthName = latestDate.toLocaleDateString("en-US", { month: "long", timeZone: "UTC" });
   const yearLabel = latestDate.getUTCFullYear();
-  const isGood = threeMonthChange <= 0;
-  const sign = threeMonthChange >= 0 ? "+" : "-";
-  const value = `${sign}${magnitudePp} pp`;
+  const absJobs = Math.abs(monthChangeJobs);
+  const sign = monthChangeJobs >= 0 ? "+" : "-";
+  const value = `${sign}${absJobs.toLocaleString()}`;
+  // Tone: strong job gain = good; loss = warn; flat = flat (muted)
+  const tone: "good" | "warn" | "flat" =
+    monthChangeJobs >= 5000 ? "good" : monthChangeJobs <= -2000 ? "warn" : "flat";
+  // Pull a supporting signal from unemployment for the interpretation
+  const unemp = dataset.metrics.unemploymentRate;
+  const uLatest = unemp.series[unemp.series.length - 1];
+  const uPrior = unemp.series[unemp.series.length - 2] ?? unemp.series[0];
+  const uMomChange = uLatest.value - uPrior.value;
+  const uMomDir =
+    Math.abs(uMomChange) < 0.05 ? "held" : uMomChange > 0 ? "ticked up" : "eased";
   const interpretation =
-    threeMonthChange >= 0.3
-      ? `Florida unemployment ${direction} ${magnitudePp} percentage points over the last 3 months to ${latest.value.toFixed(1)}%. The reversal is the read worth watching.`
-      : threeMonthChange <= -0.3
-        ? `Florida unemployment ${direction} ${magnitudePp} percentage points over the last 3 months to ${latest.value.toFixed(1)}%. The labor market is tightening again.`
-        : `Florida unemployment held near ${latest.value.toFixed(1)}% over the last 3 months. The labor market is stable; watch industry mix for the next signal.`;
-  // Compute next release roughly 4 weeks after the latest reading date
+    tone === "good"
+      ? `Florida added ${absJobs.toLocaleString()} nonfarm jobs in ${monthName} — a strong single-month gain. Unemployment ${uMomDir} to ${uLatest.value.toFixed(1)}%.`
+      : tone === "warn"
+        ? `Florida shed ${absJobs.toLocaleString()} nonfarm jobs in ${monthName} — the first negative print to watch. Unemployment ${uMomDir} to ${uLatest.value.toFixed(1)}%.`
+        : `Florida added ${absJobs.toLocaleString()} nonfarm jobs in ${monthName} — a soft print after several stronger months. Unemployment ${uMomDir} to ${uLatest.value.toFixed(1)}%.`;
   const nextRelease = new Date(latestDate);
   nextRelease.setUTCMonth(nextRelease.getUTCMonth() + 1);
   nextRelease.setUTCDate(15);
-  const nextReleaseLabel = nextRelease.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  const nextReleaseLabel = nextRelease.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
   return {
     kicker: `Florida Today · ${new Date(dataset.generatedAt).toLocaleDateString("en-US", { dateStyle: "long" })}`,
     value,
-    valueIsGood: isGood,
+    tone,
     interpretation,
-    asOfLabel: `Unemployment Rate · ${monthName} ${yearLabel} (BLS LAUS)`,
+    asOfLabel: `Nonfarm Payrolls · ${monthName} ${yearLabel} (BLS CES)`,
     nextReleaseLabel: `Next release ${nextReleaseLabel}`,
   };
 }
@@ -607,7 +621,7 @@ function App() {
         return (
           <section className="today-reading">
             <p className="today-reading-kicker">{tr.kicker}</p>
-            <div className={clsx("today-reading-value", tr.valueIsGood ? "value-good" : "value-bad")}>{tr.value}</div>
+            <div className={clsx("today-reading-value", `tone-${tr.tone}`)}>{tr.value}</div>
             <p className="today-reading-interp">{tr.interpretation}</p>
             <div className="today-reading-foot">
               <span>{tr.asOfLabel}</span>
@@ -652,16 +666,6 @@ function App() {
 
       {activeTab === "scorecard" && (
         <>
-
-      <section className="grid hero-grid">
-        {heroMetrics.map((metric) => (
-          <article className="panel hero-card" key={metric.id}>
-            <p className="kicker">{metric.label}</p>
-            <h2>{formatMetricValue(metric, metric.latest.value)}</h2>
-            <p className={deltaClass(metric, metric.deltas.oneYear)}>1Y: {formatDelta(metric, metric.deltas.oneYear)}</p>
-          </article>
-        ))}
-      </section>
 
       <aside className="editorial-pullquote">
         <blockquote>
@@ -880,45 +884,40 @@ function App() {
         ))}
       </section>
 
-      <section className="section-head">
-        <h2>Narrative</h2>
-        <p>Rules-based translation of the data into plain-English briefings.</p>
-      </section>
-      <section className="panel narrative">
-        <h3>{dataset.narrative.headline}</h3>
-        <div className="narrative-grid">
-          <div>
-            <h4>What stands out</h4>
-            <ul>
-              {dataset.narrative.whatStandsOut.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4>Improving</h4>
-            <ul>
-              {dataset.narrative.improving.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4>Softening</h4>
-            <ul>
-              {dataset.narrative.softening.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4>Why it matters</h4>
-            <ul>
-              {dataset.narrative.whyItMatters.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </div>
+      <section className="editorial-column">
+        <p className="editorial-kicker">Florida Brain · The Read</p>
+        <h2 className="editorial-headline">{dataset.narrative.headline}</h2>
+        <div className="editorial-block">
+          <h3>What stands out</h3>
+          <ul>
+            {dataset.narrative.whatStandsOut.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="editorial-block">
+          <h3>What's improving</h3>
+          <ul>
+            {dataset.narrative.improving.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="editorial-block">
+          <h3>What's softening</h3>
+          <ul>
+            {dataset.narrative.softening.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="editorial-block">
+          <h3>Why it matters</h3>
+          <ul>
+            {dataset.narrative.whyItMatters.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
         </div>
       </section>
         </>
