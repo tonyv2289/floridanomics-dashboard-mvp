@@ -217,6 +217,48 @@ function daysSince(dateValue: string): number {
   return Math.max(0, Math.floor(ms / (1000 * 60 * 60 * 24)));
 }
 
+function deriveTodayReading(dataset: DashboardDataset): {
+  kicker: string;
+  value: string;
+  valueIsGood: boolean;
+  interpretation: string;
+  asOfLabel: string;
+  nextReleaseLabel: string;
+} {
+  const unemp = dataset.metrics.unemploymentRate;
+  const series = unemp.series;
+  const latest = series[series.length - 1];
+  const threeMonthsAgo = series[series.length - 4] ?? series[0];
+  const threeMonthChange = latest.value - threeMonthsAgo.value;
+  const direction = threeMonthChange >= 0 ? "rose" : "fell";
+  const magnitudePp = Math.abs(threeMonthChange).toFixed(1);
+  const latestDate = new Date(latest.date);
+  const monthName = latestDate.toLocaleDateString("en-US", { month: "long", timeZone: "UTC" });
+  const yearLabel = latestDate.getUTCFullYear();
+  const isGood = threeMonthChange <= 0;
+  const sign = threeMonthChange >= 0 ? "+" : "-";
+  const value = `${sign}${magnitudePp} pp`;
+  const interpretation =
+    threeMonthChange >= 0.3
+      ? `Florida unemployment ${direction} ${magnitudePp} percentage points over the last 3 months to ${latest.value.toFixed(1)}%. The reversal is the read worth watching.`
+      : threeMonthChange <= -0.3
+        ? `Florida unemployment ${direction} ${magnitudePp} percentage points over the last 3 months to ${latest.value.toFixed(1)}%. The labor market is tightening again.`
+        : `Florida unemployment held near ${latest.value.toFixed(1)}% over the last 3 months. The labor market is stable; watch industry mix for the next signal.`;
+  // Compute next release roughly 4 weeks after the latest reading date
+  const nextRelease = new Date(latestDate);
+  nextRelease.setUTCMonth(nextRelease.getUTCMonth() + 1);
+  nextRelease.setUTCDate(15);
+  const nextReleaseLabel = nextRelease.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  return {
+    kicker: `Florida Today · ${new Date(dataset.generatedAt).toLocaleDateString("en-US", { dateStyle: "long" })}`,
+    value,
+    valueIsGood: isGood,
+    interpretation,
+    asOfLabel: `Unemployment Rate · ${monthName} ${yearLabel} (BLS LAUS)`,
+    nextReleaseLabel: `Next release ${nextReleaseLabel}`,
+  };
+}
+
 function TrendCard({ metric }: { metric: AnyMetric }) {
   return (
     <article className="panel trend-card">
@@ -561,38 +603,29 @@ function App() {
       <div className="sun-layer" />
       <div className="sky-layer" />
       <div className="heat-layer" />
-      <section className="hero panel">
-        <div>
-          <p className="eyebrow">Floridanomics Dashboard</p>
-          <h1>Florida&apos;s economy is not an accident. It is a model.</h1>
-          <p className="lede">
-            A focused read on labor momentum, sector depth, metro strength, and demographic scale across the Sunshine
-            State.
-          </p>
-        </div>
-        <div className="hero-meta">
-          <p>
-            <span>Labor as of</span>
-            <strong>{dataset.asOfLaborMarket}</strong>
-          </p>
-          <p>
-            <span>Population as of</span>
-            <strong>{dataset.asOfPopulation}</strong>
-          </p>
-          <p>
-            <span>Last refresh</span>
-            <strong>{new Date(dataset.generatedAt).toLocaleDateString("en-US", { dateStyle: "medium" })}</strong>
-          </p>
-          <div className="hero-actions">
-            <button type="button" className="action-button" onClick={handleShareView}>
-              {shareState === "copied" ? "Link copied" : shareState === "error" ? "Copy failed" : "Share view"}
-            </button>
-            <a className="action-button action-link" href={dataDownloadUrl} download>
-              Download data
-            </a>
-          </div>
-        </div>
-      </section>
+      {(() => {
+        const tr = deriveTodayReading(dataset);
+        return (
+          <section className="today-reading">
+            <p className="today-reading-kicker">{tr.kicker}</p>
+            <div className={clsx("today-reading-value", tr.valueIsGood ? "value-good" : "value-bad")}>{tr.value}</div>
+            <p className="today-reading-interp">{tr.interpretation}</p>
+            <div className="today-reading-foot">
+              <span>{tr.asOfLabel}</span>
+              <span className="dot">·</span>
+              <span>{tr.nextReleaseLabel}</span>
+              <span className="today-reading-actions">
+                <button type="button" className="action-button-ghost" onClick={handleShareView}>
+                  {shareState === "copied" ? "Link copied" : shareState === "error" ? "Copy failed" : "Share view"}
+                </button>
+                <a className="action-button-ghost" href={dataDownloadUrl} download>
+                  Download data
+                </a>
+              </span>
+            </div>
+          </section>
+        );
+      })()}
 
       <section className="tab-switch panel">
         <button
@@ -631,20 +664,13 @@ function App() {
         ))}
       </section>
 
-      <section className={clsx("panel", "freshness-panel", freshnessClass)}>
-        <div>
-          <p className="kicker">Data freshness</p>
-          <h3>{laborDaysOld} days since latest labor release</h3>
+      {laborDaysOld > 120 && (
+        <section className={clsx("panel", "freshness-panel", freshnessClass)}>
           <p className="muted">
-            Latest labor reading: {dataset.asOfLaborMarket}. Population anchor: {dataset.asOfPopulation}.
+            Release lag is elevated ({laborDaysOld} days since {dataset.asOfLaborMarket}). Confirm publication calendars before public briefing.
           </p>
-        </div>
-        <p className="freshness-note">
-          {laborDaysOld > 120
-            ? "Release lag is elevated; confirm publication calendars before public briefing."
-            : "Current release cadence is within expected public-data timing windows."}
-        </p>
-      </section>
+        </section>
+      )}
 
       <section className="section-head">
         <h2>Trend Cards</h2>
