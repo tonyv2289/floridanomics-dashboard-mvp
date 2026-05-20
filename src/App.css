@@ -219,15 +219,12 @@ body {
 
 .hero h1 {
   margin: 0.35rem 0 0;
-  font-size: clamp(1.95rem, 4.6vw, 3.22rem);
-  line-height: 1.04;
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  line-height: 1.05;
   max-width: 22ch;
-  letter-spacing: -0.02em;
-  color: transparent;
-  background: linear-gradient(112deg, #ffffff 0%, #ffe7cb 47%, #9de9ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-shadow: 0 9px 30px rgba(2, 8, 24, 0.44);
+  letter-spacing: -0.025em;
+  color: #e8eef9;
+  font-weight: 800;
 }
 
 .lede {
