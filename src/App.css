@@ -211,10 +211,11 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  background: linear-gradient(120deg, rgba(255, 138, 29, 0.44), rgba(45, 212, 255, 0.2));
-  border: 1px solid rgba(255, 173, 69, 0.68);
-  border-radius: 999px;
-  padding: 0.23rem 0.58rem;
+  background: transparent;
+  border: 1px solid rgba(255, 143, 63, 0.4);
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  color: #ff8f3f;
 }
 
 .hero h1 {
@@ -343,12 +344,12 @@ body {
 }
 
 .tab-button-active {
-  border-color: rgba(255, 173, 69, 0.98);
-  color: var(--text-50);
-  background: linear-gradient(118deg, rgba(255, 138, 29, 0.56), rgba(45, 212, 255, 0.24));
-  box-shadow:
-    0 0 28px rgba(255, 138, 29, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: transparent;
+  border-bottom: 2px solid #ff8f3f;
+  border-radius: 0;
+  color: #e8eef9;
+  background: transparent;
+  min-height: 44px;
 }
 
 .hero-grid {
