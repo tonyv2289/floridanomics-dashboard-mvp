@@ -1,6 +1,17 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import type {
+  DashboardDataset,
+  Delta,
+  IndustrySector,
+  InnovationMetricId,
+  InnovationResource,
+  Metric,
+  MetroSnapshot,
+  PopulationMetric,
+  TimePoint,
+} from "../src/types/dashboard";
 
 type BlsPoint = {
   year: string;
@@ -12,130 +23,7 @@ type BlsSeries = {
   seriesID: string;
   data: BlsPoint[];
 };
-
-type TimePoint = {
-  date: string;
-  value: number;
-};
-
-type Delta = {
-  years: number;
-  baseDate: string;
-  absolute: number;
-  percent: number | null;
-};
-
-type MetricUnit = "percent" | "persons" | "thousands_jobs" | "count" | "usd_millions";
-type MetricSource = "BLS" | "FRED" | "Census_via_FRED";
-
-type Metric = {
-  id: string;
-  label: string;
-  unit: MetricUnit;
-  trendDirection: "up_good" | "down_good";
-  latest: TimePoint;
-  deltas: {
-    oneYear: Delta | null;
-    threeYear: Delta | null;
-    fiveYear: Delta | null;
-  };
-  sparkline: TimePoint[];
-  series: TimePoint[];
-  source: MetricSource;
-};
-
-type PopulationMetric = {
-  id: "population";
-  label: "Population";
-  unit: "persons";
-  trendDirection: "up_good";
-  latest: TimePoint;
-  deltas: {
-    oneYear: Delta | null;
-    threeYear: Delta | null;
-    fiveYear: Delta | null;
-  };
-  sparkline: TimePoint[];
-  series: TimePoint[];
-  source: "Census_via_FRED";
-};
-
-type MetroSnapshot = {
-  id: string;
-  name: string;
-  unemploymentRate: Pick<Metric, "latest" | "deltas" | "sparkline">;
-  laborForce: Pick<Metric, "latest" | "deltas" | "sparkline">;
-  employmentLevel: Pick<Metric, "latest" | "deltas" | "sparkline">;
-};
-
-type IndustrySector = {
-  id: string;
-  label: string;
-  latest: TimePoint;
-  deltas: Metric["deltas"];
-  sparkline: TimePoint[];
-  source: "BLS";
-};
-
-type InnovationMetricId =
-  | "informationEmployment"
-  | "professionalBusinessEmployment"
-  | "businessApplications"
-  | "realGsp"
-  | "constructionEmployment";
-
-type InnovationResource = {
-  id: string;
-  name: string;
-  category: "Capital" | "Programs" | "Ecosystem" | "Policy" | "Infrastructure";
-  region: "Statewide" | "Miami" | "Tampa Bay" | "Orlando" | "Jacksonville";
-  summary: string;
-  url: string;
-};
-
-type DashboardDataset = {
-  generatedAt: string;
-  asOfLaborMarket: string;
-  asOfPopulation: string;
-  sources: Array<{
-    id: string;
-    name: string;
-    url: string;
-    notes: string;
-  }>;
-  heroMetrics: Array<"unemploymentRate" | "laborForce" | "nonfarmPayrolls" | "population" | "employmentLevel">;
-  metrics: {
-    unemploymentRate: Metric;
-    laborForce: Metric;
-    employmentLevel: Metric;
-    nonfarmPayrolls: Metric;
-    population: PopulationMetric;
-  };
-  industry: {
-    sectors: IndustrySector[];
-    strongestGrowers: IndustrySector[];
-    laggards: IndustrySector[];
-  };
-  metros: MetroSnapshot[];
-  narrative: {
-    headline: string;
-    whatStandsOut: string[];
-    improving: string[];
-    softening: string[];
-    whyItMatters: string[];
-  };
-  innovation: {
-    heroMetrics: InnovationMetricId[];
-    metrics: Record<InnovationMetricId, Metric>;
-    narrative: {
-      headline: string;
-      signals: string[];
-      development: string[];
-      momentum: string[];
-    };
-    resources: InnovationResource[];
-  };
-};
+type PreservedSections = Pick<DashboardDataset, "scorecard2030" | "distinctives" | "trade">;
 
 async function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -162,6 +50,54 @@ const END_YEAR = String(CURRENT_YEAR);
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT_FILE = path.join(ROOT, "public", "data", "florida-economy.json");
+
+function mergeSources(...sourceLists: DashboardDataset["sources"][]): DashboardDataset["sources"] {
+  const seen = new Set<string>();
+  const merged: DashboardDataset["sources"] = [];
+
+  for (const sourceList of sourceLists) {
+    for (const source of sourceList) {
+      const key = `${source.id}|${source.url}`;
+      if (seen.has(key)) {
+        continue;
+      }
+
+      seen.add(key);
+      merged.push(source);
+    }
+  }
+
+  return merged;
+}
+
+async function readExistingDataset(): Promise<DashboardDataset | null> {
+  try {
+    const raw = await readFile(OUTPUT_FILE, "utf8");
+    return JSON.parse(raw) as DashboardDataset;
+  } catch {
+    return null;
+  }
+}
+
+function getPreservedSections(existing: DashboardDataset | null): PreservedSections {
+  if (
+    !existing?.scorecard2030 ||
+    !existing.distinctives?.snowbirdIndex ||
+    !existing.distinctives?.spaceCoastCadence ||
+    !existing.distinctives?.latamGateway ||
+    !existing.trade
+  ) {
+    throw new Error(
+      "Existing dataset is missing curated v2 sections. Restore public/data/florida-economy.json from git before refreshing.",
+    );
+  }
+
+  return {
+    scorecard2030: existing.scorecard2030,
+    distinctives: existing.distinctives,
+    trade: existing.trade,
+  };
+}
 
 const CORE_SERIES: Array<{
   id: keyof DashboardDataset["metrics"];
@@ -670,6 +606,7 @@ function buildBlsDataFromExisting(existing: ExistingDatasetFallback): Record<str
 }
 
 async function main() {
+  const existingDataset = await readExistingDataset();
   const coreSeriesIds = CORE_SERIES.map((series) => series.seriesId);
   const industrySeriesIds = INDUSTRY_SERIES.map((series) => series.seriesId);
   const metroSeriesIds = METRO_DEFS.flatMap((metro) => [
@@ -688,9 +625,11 @@ async function main() {
       throw error;
     }
 
-    const existingRaw = await readFile(OUTPUT_FILE, "utf8");
-    const existing = JSON.parse(existingRaw) as ExistingDatasetFallback;
-    blsData = buildBlsDataFromExisting(existing);
+    if (!existingDataset) {
+      throw new Error("BLS daily threshold reached and no existing dataset was available for cached fallback.");
+    }
+
+    blsData = buildBlsDataFromExisting(existingDataset);
     console.warn("BLS daily threshold reached. Reusing cached BLS series from existing dataset.");
   }
 
@@ -869,30 +808,33 @@ async function main() {
     laggards,
   });
 
+  const preservedSections = getPreservedSections(existingDataset);
+  const dynamicSources: DashboardDataset["sources"] = [
+    {
+      id: "bls",
+      name: "Bureau of Labor Statistics (LAUS + CES)",
+      url: "https://www.bls.gov/developers/",
+      notes: "Monthly state and metro labor market + payroll employment series.",
+    },
+    {
+      id: "census_population",
+      name: "U.S. Census Bureau Population Estimates (via FRED FLPOP)",
+      url: "https://fred.stlouisfed.org/series/FLPOP",
+      notes: "Annual Florida resident population (source notes cite U.S. Census Bureau).",
+    },
+    {
+      id: "fred_innovation",
+      name: "FRED state innovation/development indicators",
+      url: "https://fred.stlouisfed.org/",
+      notes: "Business applications and real gross state product series used for innovation/economic development tab.",
+    },
+  ];
+
   const dataset: DashboardDataset = {
     generatedAt: new Date().toISOString(),
     asOfLaborMarket: prettyMonth(metrics.unemploymentRate.latest.date),
     asOfPopulation: String(new Date(metrics.population.latest.date).getUTCFullYear()),
-    sources: [
-      {
-        id: "bls",
-        name: "Bureau of Labor Statistics (LAUS + CES)",
-        url: "https://www.bls.gov/developers/",
-        notes: "Monthly state and metro labor market + payroll employment series.",
-      },
-      {
-        id: "census_population",
-        name: "U.S. Census Bureau Population Estimates (via FRED FLPOP)",
-        url: "https://fred.stlouisfed.org/series/FLPOP",
-        notes: "Annual Florida resident population (source notes cite U.S. Census Bureau).",
-      },
-      {
-        id: "fred_innovation",
-        name: "FRED state innovation/development indicators",
-        url: "https://fred.stlouisfed.org/",
-        notes: "Business applications and real gross state product series used for innovation/economic development tab.",
-      },
-    ],
+    sources: mergeSources(dynamicSources, existingDataset?.sources ?? []),
     heroMetrics: ["unemploymentRate", "laborForce", "nonfarmPayrolls", "population", "employmentLevel"],
     metrics,
     industry: {
@@ -914,18 +856,13 @@ async function main() {
       narrative: buildInnovationNarrative(innovationMetrics),
       resources: INNOVATION_RESOURCES,
     },
+    scorecard2030: preservedSections.scorecard2030,
+    distinctives: preservedSections.distinctives,
+    trade: preservedSections.trade,
   };
 
-  try {
-    const existingRaw = await readFile(OUTPUT_FILE, "utf8");
-    const existing = JSON.parse(existingRaw) as DashboardDataset;
-    if (
-      JSON.stringify(normalizeForComparison(existing)) === JSON.stringify(normalizeForComparison(dataset))
-    ) {
-      dataset.generatedAt = existing.generatedAt;
-    }
-  } catch {
-    // No prior dataset or invalid JSON; continue with a fresh write.
+  if (existingDataset && JSON.stringify(normalizeForComparison(existingDataset)) === JSON.stringify(normalizeForComparison(dataset))) {
+    dataset.generatedAt = existingDataset.generatedAt;
   }
 
   await mkdir(path.dirname(OUTPUT_FILE), { recursive: true });
@@ -933,6 +870,7 @@ async function main() {
 
   console.log(`Wrote ${OUTPUT_FILE}`);
   console.log(`As-of labor market: ${dataset.asOfLaborMarket}; population: ${dataset.asOfPopulation}`);
+  console.log("Preserved curated sections: scorecard2030, distinctives, trade.");
 }
 
 main().catch((error: unknown) => {
