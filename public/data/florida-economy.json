@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-05-01T12:01:16.678Z",
-  "asOfLaborMarket": "February 2026",
+  "generatedAt": "2026-05-27T05:50:36.153Z",
+  "asOfLaborMarket": "April 2026",
   "asOfPopulation": "2025",
   "sources": [
     {
@@ -26,6 +26,48 @@
       "name": "FloridaCommerce / SelectFlorida - 2025 Export Sales Release",
       "url": "https://www.floridacommerce.gov/",
       "notes": "Official 4/1/2026 release: Florida Businesses Set Record High Export Sales in 2025 ($78.9B). Powers International Trade tab."
+    },
+    {
+      "id": "florida_scorecard",
+      "name": "Florida Scorecard / Florida Chamber Foundation",
+      "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2",
+      "notes": "Statewide 2030 trajectory metrics including GDP, business startups, income migration, and FutureCast job needs."
+    },
+    {
+      "id": "florida_chamber_income_migration",
+      "name": "Florida Chamber Foundation Income Migration Analysis",
+      "url": "https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/",
+      "notes": "Canonical public frame for Florida Brain and eMerge external communication: $36.05B per year in net income migration, or more than $4M per hour."
+    },
+    {
+      "id": "world_bank_gdp",
+      "name": "World Bank GDP Current US Dollars API",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json&per_page=400&mrnev=1",
+      "notes": "Used to verify Florida's implied global-economy rank by comparing the state's 2024 GDP baseline against the latest World Bank country table."
+    },
+    {
+      "id": "space_florida",
+      "name": "Space Florida",
+      "url": "https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry",
+      "notes": "Official aerospace pipeline, launch cadence, and spaceport investment figures used for Space Coast Cadence in v2."
+    },
+    {
+      "id": "portmiami",
+      "name": "PortMiami Cargo Statistics",
+      "url": "https://www.miamidade.gov/portmiami/cargo.page",
+      "notes": "Official PortMiami cargo, tonnage, TEU, and regional trade-share figures used for the LATAM Gateway section."
+    },
+    {
+      "id": "port_everglades",
+      "name": "Port Everglades Cargo Statistics",
+      "url": "https://www.porteverglades.net/about-us/statistics/cargo-statistics/",
+      "notes": "Official Port Everglades TEU, tonnage, and refrigerated cargo figures used for the LATAM Gateway section."
+    },
+    {
+      "id": "blue_origin_florida",
+      "name": "Reuters - Blue Origin Florida Expansion",
+      "url": "https://www.reuters.com/business/aerospace-defense/blue-origin-expand-florida-campus-with-new-600-million-facility-2026-05-22/",
+      "notes": "Reuters report on Blue Origin's $600M Cape Canaveral manufacturing expansion used in Space Coast Cadence."
     }
   ],
   "heroMetrics": [
@@ -42,38 +84,30 @@
       "unit": "percent",
       "trendDirection": "down_good",
       "latest": {
-        "date": "2026-02-01",
-        "value": 4.8
+        "date": "2026-04-01",
+        "value": 4.6
       },
       "deltas": {
         "oneYear": {
           "years": 1,
-          "baseDate": "2025-02-01",
-          "absolute": 1.2999999999999998,
-          "percent": 37.14285714285714
+          "baseDate": "2025-04-01",
+          "absolute": 1.1999999999999997,
+          "percent": 35.29411764705881
         },
         "threeYear": {
           "years": 3,
-          "baseDate": "2023-02-01",
-          "absolute": 2.0999999999999996,
-          "percent": 77.77777777777776
+          "baseDate": "2023-04-01",
+          "absolute": 2.1999999999999997,
+          "percent": 91.66666666666666
         },
         "fiveYear": {
           "years": 5,
-          "baseDate": "2021-02-01",
-          "absolute": -0.7000000000000002,
-          "percent": -12.727272727272732
+          "baseDate": "2021-04-01",
+          "absolute": -0.40000000000000036,
+          "percent": -8.000000000000007
         }
       },
       "sparkline": [
-        {
-          "date": "2023-02-01",
-          "value": 2.7
-        },
-        {
-          "date": "2023-03-01",
-          "value": 2.7
-        },
         {
           "date": "2023-04-01",
           "value": 2.4
@@ -209,6 +243,14 @@
         {
           "date": "2026-02-01",
           "value": 4.8
+        },
+        {
+          "date": "2026-03-01",
+          "value": 4.4
+        },
+        {
+          "date": "2026-04-01",
+          "value": 4.6
         }
       ],
       "series": [
@@ -647,6 +689,14 @@
         {
           "date": "2026-02-01",
           "value": 4.8
+        },
+        {
+          "date": "2026-03-01",
+          "value": 4.4
+        },
+        {
+          "date": "2026-04-01",
+          "value": 4.6
         }
       ],
       "source": "BLS"
@@ -657,38 +707,30 @@
       "unit": "persons",
       "trendDirection": "up_good",
       "latest": {
-        "date": "2026-02-01",
-        "value": 11148981
+        "date": "2026-04-01",
+        "value": 11147000
       },
       "deltas": {
         "oneYear": {
           "years": 1,
-          "baseDate": "2025-02-01",
-          "absolute": 60891,
-          "percent": 0.5491567979697134
+          "baseDate": "2025-04-01",
+          "absolute": 21580,
+          "percent": 0.19397020516978236
         },
         "threeYear": {
           "years": 3,
-          "baseDate": "2023-02-01",
-          "absolute": 254158,
-          "percent": 2.332832759192141
+          "baseDate": "2023-04-01",
+          "absolute": 183682,
+          "percent": 1.6754234438880637
         },
         "fiveYear": {
           "years": 5,
-          "baseDate": "2021-02-01",
-          "absolute": 1031196,
-          "percent": 10.191914534653582
+          "baseDate": "2021-04-01",
+          "absolute": 957850,
+          "percent": 9.400686023858713
         }
       },
       "sparkline": [
-        {
-          "date": "2023-02-01",
-          "value": 10894823
-        },
-        {
-          "date": "2023-03-01",
-          "value": 10955610
-        },
         {
           "date": "2023-04-01",
           "value": 10963318
@@ -823,7 +865,15 @@
         },
         {
           "date": "2026-02-01",
-          "value": 11148981
+          "value": 11147491
+        },
+        {
+          "date": "2026-03-01",
+          "value": 11131018
+        },
+        {
+          "date": "2026-04-01",
+          "value": 11147000
         }
       ],
       "series": [
@@ -1261,7 +1311,15 @@
         },
         {
           "date": "2026-02-01",
-          "value": 11148981
+          "value": 11147491
+        },
+        {
+          "date": "2026-03-01",
+          "value": 11131018
+        },
+        {
+          "date": "2026-04-01",
+          "value": 11147000
         }
       ],
       "source": "BLS"
@@ -1272,38 +1330,30 @@
       "unit": "persons",
       "trendDirection": "up_good",
       "latest": {
-        "date": "2026-02-01",
-        "value": 10618402
+        "date": "2026-04-01",
+        "value": 10637022
       },
       "deltas": {
         "oneYear": {
           "years": 1,
-          "baseDate": "2025-02-01",
-          "absolute": -83108,
-          "percent": -0.7766006853238469
+          "baseDate": "2025-04-01",
+          "absolute": -115281,
+          "percent": -1.0721517055462444
         },
         "threeYear": {
           "years": 3,
-          "baseDate": "2023-02-01",
-          "absolute": 21247,
-          "percent": 0.20049720892069614
+          "baseDate": "2023-04-01",
+          "absolute": -59625,
+          "percent": -0.5574176655544489
         },
         "fiveYear": {
           "years": 5,
-          "baseDate": "2021-02-01",
-          "absolute": 1052928,
-          "percent": 11.007588332789362
+          "baseDate": "2021-04-01",
+          "absolute": 957350,
+          "percent": 9.890314465200888
         }
       },
       "sparkline": [
-        {
-          "date": "2023-02-01",
-          "value": 10597155
-        },
-        {
-          "date": "2023-03-01",
-          "value": 10662283
-        },
         {
           "date": "2023-04-01",
           "value": 10696647
@@ -1438,7 +1488,15 @@
         },
         {
           "date": "2026-02-01",
-          "value": 10618402
+          "value": 10617483
+        },
+        {
+          "date": "2026-03-01",
+          "value": 10637631
+        },
+        {
+          "date": "2026-04-01",
+          "value": 10637022
         }
       ],
       "series": [
@@ -1876,7 +1934,15 @@
         },
         {
           "date": "2026-02-01",
-          "value": 10618402
+          "value": 10617483
+        },
+        {
+          "date": "2026-03-01",
+          "value": 10637631
+        },
+        {
+          "date": "2026-04-01",
+          "value": 10637022
         }
       ],
       "source": "BLS"
@@ -1887,38 +1953,30 @@
       "unit": "thousands_jobs",
       "trendDirection": "up_good",
       "latest": {
-        "date": "2026-02-01",
-        "value": 9969.2
+        "date": "2026-04-01",
+        "value": 10032.9
       },
       "deltas": {
         "oneYear": {
           "years": 1,
-          "baseDate": "2025-02-01",
-          "absolute": -36.69999999999891,
-          "percent": -0.36678359767735946
+          "baseDate": "2025-04-01",
+          "absolute": 15.799999999999272,
+          "percent": 0.15773028121910804
         },
         "threeYear": {
           "years": 3,
-          "baseDate": "2023-02-01",
-          "absolute": 304,
-          "percent": 3.145304804866945
+          "baseDate": "2023-04-01",
+          "absolute": 318.10000000000036,
+          "percent": 3.2743854737102196
         },
         "fiveYear": {
           "years": 5,
-          "baseDate": "2021-02-01",
-          "absolute": 1259.1000000000004,
-          "percent": 14.455631967486028
+          "baseDate": "2021-04-01",
+          "absolute": 1266.199999999999,
+          "percent": 14.443291090147934
         }
       },
       "sparkline": [
-        {
-          "date": "2023-03-01",
-          "value": 9688.7
-        },
-        {
-          "date": "2023-04-01",
-          "value": 9714.8
-        },
         {
           "date": "2023-05-01",
           "value": 9741.5
@@ -2053,7 +2111,15 @@
         },
         {
           "date": "2026-02-01",
-          "value": 9969.2
+          "value": 9965.1
+        },
+        {
+          "date": "2026-03-01",
+          "value": 9992.4
+        },
+        {
+          "date": "2026-04-01",
+          "value": 10032.9
         }
       ],
       "series": [
@@ -2495,7 +2561,15 @@
         },
         {
           "date": "2026-02-01",
-          "value": 9969.2
+          "value": 9965.1
+        },
+        {
+          "date": "2026-03-01",
+          "value": 9992.4
+        },
+        {
+          "date": "2026-04-01",
+          "value": 10032.9
         }
       ],
       "source": "BLS"
@@ -3106,38 +3180,30 @@
         "id": "construction",
         "label": "Construction",
         "latest": {
-          "date": "2026-02-01",
-          "value": 648.8
+          "date": "2026-04-01",
+          "value": 657.8
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -9.100000000000023,
-            "percent": -1.3831889344885278
+            "baseDate": "2025-04-01",
+            "absolute": -1.3000000000000682,
+            "percent": -0.19723865877713065
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 28.199999999999932,
-            "percent": 4.5439896873992796
+            "baseDate": "2023-04-01",
+            "absolute": 32,
+            "percent": 5.113454777884308
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 77.5,
-            "percent": 13.565552249256083
+            "baseDate": "2021-04-01",
+            "absolute": 84,
+            "percent": 14.639247124433602
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 622.9
-          },
-          {
-            "date": "2023-04-01",
-            "value": 625.8
-          },
           {
             "date": "2023-05-01",
             "value": 627.4
@@ -3272,7 +3338,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 648.8
+            "value": 648.9
+          },
+          {
+            "date": "2026-03-01",
+            "value": 651.8
+          },
+          {
+            "date": "2026-04-01",
+            "value": 657.8
           }
         ],
         "source": "BLS"
@@ -3281,38 +3355,30 @@
         "id": "manufacturing",
         "label": "Manufacturing",
         "latest": {
-          "date": "2026-02-01",
-          "value": 428.5
+          "date": "2026-04-01",
+          "value": 426.5
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -0.10000000000002274,
-            "percent": -0.023331777881479873
+            "baseDate": "2025-04-01",
+            "absolute": -2.3999999999999773,
+            "percent": -0.5595709955700576
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 10.600000000000023,
-            "percent": 2.5364919837281703
+            "baseDate": "2023-04-01",
+            "absolute": 6.300000000000011,
+            "percent": 1.4992860542598792
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 45.89999999999998,
-            "percent": 11.996863565081018
+            "baseDate": "2021-04-01",
+            "absolute": 41.10000000000002,
+            "percent": 10.66424494032175
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 418.1
-          },
-          {
-            "date": "2023-04-01",
-            "value": 420.2
-          },
           {
             "date": "2023-05-01",
             "value": 421.7
@@ -3447,7 +3513,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 428.5
+            "value": 428
+          },
+          {
+            "date": "2026-03-01",
+            "value": 425.1
+          },
+          {
+            "date": "2026-04-01",
+            "value": 426.5
           }
         ],
         "source": "BLS"
@@ -3456,38 +3530,30 @@
         "id": "trade_transport_utilities",
         "label": "Trade, Transportation, Utilities",
         "latest": {
-          "date": "2026-02-01",
-          "value": 1984.5
+          "date": "2026-04-01",
+          "value": 1992.5
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -9.099999999999909,
-            "percent": -0.45646067415729885
+            "baseDate": "2025-04-01",
+            "absolute": -3.7999999999999545,
+            "percent": -0.19035215148023615
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 35.09999999999991,
-            "percent": 1.8005540166204939
+            "baseDate": "2023-04-01",
+            "absolute": 33,
+            "percent": 1.6841030875223273
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 194.29999999999995,
-            "percent": 10.853535917774547
+            "baseDate": "2021-04-01",
+            "absolute": 197,
+            "percent": 10.971874129768866
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 1952.9
-          },
-          {
-            "date": "2023-04-01",
-            "value": 1959.5
-          },
           {
             "date": "2023-05-01",
             "value": 1966.2
@@ -3622,7 +3688,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1984.5
+            "value": 1983.5
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1987.4
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1992.5
           }
         ],
         "source": "BLS"
@@ -3631,38 +3705,30 @@
         "id": "information",
         "label": "Information",
         "latest": {
-          "date": "2026-02-01",
-          "value": 149.8
+          "date": "2026-04-01",
+          "value": 150.2
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -5,
-            "percent": -3.229974160206718
+            "baseDate": "2025-04-01",
+            "absolute": -3.6000000000000227,
+            "percent": -2.340702210663214
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": -9.699999999999989,
-            "percent": -6.08150470219435
+            "baseDate": "2023-04-01",
+            "absolute": -9.600000000000023,
+            "percent": -6.007509386733431
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 14.100000000000023,
-            "percent": 10.39056742815035
+            "baseDate": "2021-04-01",
+            "absolute": 13.399999999999977,
+            "percent": 9.795321637426884
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 159.8
-          },
-          {
-            "date": "2023-04-01",
-            "value": 159.8
-          },
           {
             "date": "2023-05-01",
             "value": 159.9
@@ -3797,7 +3863,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 149.8
+            "value": 149.6
+          },
+          {
+            "date": "2026-03-01",
+            "value": 148.9
+          },
+          {
+            "date": "2026-04-01",
+            "value": 150.2
           }
         ],
         "source": "BLS"
@@ -3806,38 +3880,30 @@
         "id": "financial_activities",
         "label": "Financial Activities",
         "latest": {
-          "date": "2026-02-01",
-          "value": 684.3
+          "date": "2026-04-01",
+          "value": 680.7
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -7.5,
-            "percent": -1.0841283607979186
+            "baseDate": "2025-04-01",
+            "absolute": -10.899999999999977,
+            "percent": -1.576055523423941
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 5.2999999999999545,
-            "percent": 0.7805596465390213
+            "baseDate": "2023-04-01",
+            "absolute": -1.8999999999999773,
+            "percent": -0.27834749487254284
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 74.79999999999995,
-            "percent": 12.272354388843306
+            "baseDate": "2021-04-01",
+            "absolute": 65.10000000000002,
+            "percent": 10.575048732943474
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 680.7
-          },
-          {
-            "date": "2023-04-01",
-            "value": 682.6
-          },
           {
             "date": "2023-05-01",
             "value": 684
@@ -3972,7 +4038,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 684.3
+            "value": 682.9
+          },
+          {
+            "date": "2026-03-01",
+            "value": 679.4
+          },
+          {
+            "date": "2026-04-01",
+            "value": 680.7
           }
         ],
         "source": "BLS"
@@ -3981,38 +4055,30 @@
         "id": "professional_business_services",
         "label": "Professional & Business Services",
         "latest": {
-          "date": "2026-02-01",
-          "value": 1608.4
+          "date": "2026-04-01",
+          "value": 1632.7
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -12.099999999999909,
-            "percent": -0.746683122493052
+            "baseDate": "2025-04-01",
+            "absolute": 12.700000000000045,
+            "percent": 0.7839506172839534
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": -10.599999999999909,
-            "percent": -0.6547251389746701
+            "baseDate": "2023-04-01",
+            "absolute": 10.5,
+            "percent": 0.6472691406731599
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 190.5,
-            "percent": 13.43536215530009
+            "baseDate": "2021-04-01",
+            "absolute": 206.79999999999995,
+            "percent": 14.503120835963248
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 1623.4
-          },
-          {
-            "date": "2023-04-01",
-            "value": 1622.2
-          },
           {
             "date": "2023-05-01",
             "value": 1621.8
@@ -4147,7 +4213,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1608.4
+            "value": 1609.3
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1627.8
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1632.7
           }
         ],
         "source": "BLS"
@@ -4156,38 +4230,30 @@
         "id": "private_education_health_services",
         "label": "Private Education & Health Services",
         "latest": {
-          "date": "2026-02-01",
-          "value": 1616.8
+          "date": "2026-04-01",
+          "value": 1626.6
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": 35.5,
-            "percent": 2.244988300765193
+            "baseDate": "2025-04-01",
+            "absolute": 36.399999999999864,
+            "percent": 2.2890202490252713
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 166.89999999999986,
-            "percent": 11.511138699220625
+            "baseDate": "2023-04-01",
+            "absolute": 160.5999999999999,
+            "percent": 10.954979536152791
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 295.5999999999999,
-            "percent": 22.373599757795937
+            "baseDate": "2021-04-01",
+            "absolute": 296.29999999999995,
+            "percent": 22.27317146508306
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 1456.5
-          },
-          {
-            "date": "2023-04-01",
-            "value": 1466
-          },
           {
             "date": "2023-05-01",
             "value": 1473.8
@@ -4322,7 +4388,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1616.8
+            "value": 1614.2
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1619.1
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1626.6
           }
         ],
         "source": "BLS"
@@ -4331,38 +4405,30 @@
         "id": "leisure_hospitality",
         "label": "Leisure & Hospitality",
         "latest": {
-          "date": "2026-02-01",
-          "value": 1323.6
+          "date": "2026-04-01",
+          "value": 1335.7
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -10.300000000000182,
-            "percent": -0.7721718269735498
+            "baseDate": "2025-04-01",
+            "absolute": 0.7999999999999545,
+            "percent": 0.059929582740276766
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 34,
-            "percent": 2.6364764267990077
+            "baseDate": "2023-04-01",
+            "absolute": 46.299999999999955,
+            "percent": 3.5908174344656394
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 277.39999999999986,
-            "percent": 26.515006690881272
+            "baseDate": "2021-04-01",
+            "absolute": 269.4000000000001,
+            "percent": 25.26493482134485
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 1291.1
-          },
-          {
-            "date": "2023-04-01",
-            "value": 1289.4
-          },
           {
             "date": "2023-05-01",
             "value": 1295.8
@@ -4497,7 +4563,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1323.6
+            "value": 1324.8
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1330.1
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1335.7
           }
         ],
         "source": "BLS"
@@ -4506,38 +4580,30 @@
         "id": "other_services",
         "label": "Other Services",
         "latest": {
-          "date": "2026-02-01",
-          "value": 377.8
+          "date": "2026-04-01",
+          "value": 382.1
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -8.099999999999966,
-            "percent": -2.0989893754858686
+            "baseDate": "2025-04-01",
+            "absolute": -4.099999999999966,
+            "percent": -1.061626100466071
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 15.600000000000023,
-            "percent": 4.307012700165661
+            "baseDate": "2023-04-01",
+            "absolute": 17.400000000000034,
+            "percent": 4.771044694269272
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 38.19999999999999,
-            "percent": 11.24852767962308
+            "baseDate": "2021-04-01",
+            "absolute": 41.200000000000045,
+            "percent": 12.085655617483146
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 363
-          },
-          {
-            "date": "2023-04-01",
-            "value": 364.7
-          },
           {
             "date": "2023-05-01",
             "value": 366.2
@@ -4672,7 +4738,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 377.8
+            "value": 377.4
+          },
+          {
+            "date": "2026-03-01",
+            "value": 375.6
+          },
+          {
+            "date": "2026-04-01",
+            "value": 382.1
           }
         ],
         "source": "BLS"
@@ -4681,38 +4755,30 @@
         "id": "government",
         "label": "Government",
         "latest": {
-          "date": "2026-02-01",
-          "value": 1140.9
+          "date": "2026-04-01",
+          "value": 1142.4
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -11.099999999999909,
-            "percent": -0.9635416666666587
+            "baseDate": "2025-04-01",
+            "absolute": -8.099999999999909,
+            "percent": -0.7040417209908657
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 28.300000000000182,
-            "percent": 2.5435915872730708
+            "baseDate": "2023-04-01",
+            "absolute": 23.5,
+            "percent": 2.100277057824649
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 50.40000000000009,
-            "percent": 4.621733149931233
+            "baseDate": "2021-04-01",
+            "absolute": 51.600000000000136,
+            "percent": 4.730473047304743
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 1114.7
-          },
-          {
-            "date": "2023-04-01",
-            "value": 1118.9
-          },
           {
             "date": "2023-05-01",
             "value": 1119
@@ -4847,7 +4913,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1140.9
+            "value": 1140.5
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1141.5
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1142.4
           }
         ],
         "source": "BLS"
@@ -4858,38 +4932,30 @@
         "id": "private_education_health_services",
         "label": "Private Education & Health Services",
         "latest": {
-          "date": "2026-02-01",
-          "value": 1616.8
+          "date": "2026-04-01",
+          "value": 1626.6
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": 35.5,
-            "percent": 2.244988300765193
+            "baseDate": "2025-04-01",
+            "absolute": 36.399999999999864,
+            "percent": 2.2890202490252713
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 166.89999999999986,
-            "percent": 11.511138699220625
+            "baseDate": "2023-04-01",
+            "absolute": 160.5999999999999,
+            "percent": 10.954979536152791
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 295.5999999999999,
-            "percent": 22.373599757795937
+            "baseDate": "2021-04-01",
+            "absolute": 296.29999999999995,
+            "percent": 22.27317146508306
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 1456.5
-          },
-          {
-            "date": "2023-04-01",
-            "value": 1466
-          },
           {
             "date": "2023-05-01",
             "value": 1473.8
@@ -5024,357 +5090,365 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1616.8
+            "value": 1614.2
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1619.1
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1626.6
           }
         ],
         "source": "BLS"
       },
       {
-        "id": "manufacturing",
-        "label": "Manufacturing",
+        "id": "professional_business_services",
+        "label": "Professional & Business Services",
         "latest": {
-          "date": "2026-02-01",
-          "value": 428.5
+          "date": "2026-04-01",
+          "value": 1632.7
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -0.10000000000002274,
-            "percent": -0.023331777881479873
+            "baseDate": "2025-04-01",
+            "absolute": 12.700000000000045,
+            "percent": 0.7839506172839534
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 10.600000000000023,
-            "percent": 2.5364919837281703
+            "baseDate": "2023-04-01",
+            "absolute": 10.5,
+            "percent": 0.6472691406731599
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 45.89999999999998,
-            "percent": 11.996863565081018
+            "baseDate": "2021-04-01",
+            "absolute": 206.79999999999995,
+            "percent": 14.503120835963248
           }
         },
         "sparkline": [
           {
-            "date": "2023-03-01",
-            "value": 418.1
-          },
-          {
-            "date": "2023-04-01",
-            "value": 420.2
-          },
-          {
             "date": "2023-05-01",
-            "value": 421.7
+            "value": 1621.8
           },
           {
             "date": "2023-06-01",
-            "value": 424.2
+            "value": 1625
           },
           {
             "date": "2023-07-01",
-            "value": 425.1
+            "value": 1619.5
           },
           {
             "date": "2023-08-01",
-            "value": 425.6
+            "value": 1616
           },
           {
             "date": "2023-09-01",
-            "value": 426.7
+            "value": 1618
           },
           {
             "date": "2023-10-01",
-            "value": 427.2
+            "value": 1614.3
           },
           {
             "date": "2023-11-01",
-            "value": 427.1
+            "value": 1614.9
           },
           {
             "date": "2023-12-01",
-            "value": 427.3
+            "value": 1616.2
           },
           {
             "date": "2024-01-01",
-            "value": 427.4
+            "value": 1615
           },
           {
             "date": "2024-02-01",
-            "value": 427.8
+            "value": 1616.4
           },
           {
             "date": "2024-03-01",
-            "value": 428.3
+            "value": 1617.5
           },
           {
             "date": "2024-04-01",
-            "value": 428.7
+            "value": 1620.2
           },
           {
             "date": "2024-05-01",
-            "value": 429.1
+            "value": 1622.3
           },
           {
             "date": "2024-06-01",
-            "value": 429.1
+            "value": 1620.1
           },
           {
             "date": "2024-07-01",
-            "value": 429.5
+            "value": 1618.9
           },
           {
             "date": "2024-08-01",
-            "value": 429.8
+            "value": 1622.1
           },
           {
             "date": "2024-09-01",
-            "value": 431.1
+            "value": 1623.2
           },
           {
             "date": "2024-10-01",
-            "value": 426.5
+            "value": 1606.6
           },
           {
             "date": "2024-11-01",
-            "value": 428.1
+            "value": 1623
           },
           {
             "date": "2024-12-01",
-            "value": 427.5
+            "value": 1619.7
           },
           {
             "date": "2025-01-01",
-            "value": 428.4
+            "value": 1620.3
           },
           {
             "date": "2025-02-01",
-            "value": 428.6
+            "value": 1620.5
           },
           {
             "date": "2025-03-01",
-            "value": 429.1
+            "value": 1619.7
           },
           {
             "date": "2025-04-01",
-            "value": 428.9
+            "value": 1620
           },
           {
             "date": "2025-05-01",
-            "value": 428.1
+            "value": 1619.7
           },
           {
             "date": "2025-06-01",
-            "value": 427.4
+            "value": 1619.3
           },
           {
             "date": "2025-07-01",
-            "value": 426.2
+            "value": 1616.5
           },
           {
             "date": "2025-08-01",
-            "value": 426.8
+            "value": 1614.3
           },
           {
             "date": "2025-09-01",
-            "value": 426.8
+            "value": 1612.1
           },
           {
             "date": "2025-10-01",
-            "value": 425.8
+            "value": 1603.8
           },
           {
             "date": "2025-11-01",
-            "value": 424.2
+            "value": 1598.9
           },
           {
             "date": "2025-12-01",
-            "value": 424.9
+            "value": 1597.6
           },
           {
             "date": "2026-01-01",
-            "value": 428.7
+            "value": 1606.9
           },
           {
             "date": "2026-02-01",
-            "value": 428.5
+            "value": 1609.3
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1627.8
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1632.7
           }
         ],
         "source": "BLS"
       },
       {
-        "id": "trade_transport_utilities",
-        "label": "Trade, Transportation, Utilities",
+        "id": "leisure_hospitality",
+        "label": "Leisure & Hospitality",
         "latest": {
-          "date": "2026-02-01",
-          "value": 1984.5
+          "date": "2026-04-01",
+          "value": 1335.7
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -9.099999999999909,
-            "percent": -0.45646067415729885
+            "baseDate": "2025-04-01",
+            "absolute": 0.7999999999999545,
+            "percent": 0.059929582740276766
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 35.09999999999991,
-            "percent": 1.8005540166204939
+            "baseDate": "2023-04-01",
+            "absolute": 46.299999999999955,
+            "percent": 3.5908174344656394
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 194.29999999999995,
-            "percent": 10.853535917774547
+            "baseDate": "2021-04-01",
+            "absolute": 269.4000000000001,
+            "percent": 25.26493482134485
           }
         },
         "sparkline": [
           {
-            "date": "2023-03-01",
-            "value": 1952.9
-          },
-          {
-            "date": "2023-04-01",
-            "value": 1959.5
-          },
-          {
             "date": "2023-05-01",
-            "value": 1966.2
+            "value": 1295.8
           },
           {
             "date": "2023-06-01",
-            "value": 1971.7
+            "value": 1300.9
           },
           {
             "date": "2023-07-01",
-            "value": 1970.8
+            "value": 1301.2
           },
           {
             "date": "2023-08-01",
-            "value": 1975.2
+            "value": 1303
           },
           {
             "date": "2023-09-01",
-            "value": 1980.6
+            "value": 1308.5
           },
           {
             "date": "2023-10-01",
-            "value": 1986.9
+            "value": 1312.6
           },
           {
             "date": "2023-11-01",
-            "value": 1985.8
+            "value": 1318
           },
           {
             "date": "2023-12-01",
-            "value": 1986.2
+            "value": 1318.1
           },
           {
             "date": "2024-01-01",
-            "value": 1987.3
+            "value": 1326.3
           },
           {
             "date": "2024-02-01",
-            "value": 1987.4
+            "value": 1326.4
           },
           {
             "date": "2024-03-01",
-            "value": 1990
+            "value": 1327.5
           },
           {
             "date": "2024-04-01",
-            "value": 1991.6
+            "value": 1325.3
           },
           {
             "date": "2024-05-01",
-            "value": 1991.7
+            "value": 1326.2
           },
           {
             "date": "2024-06-01",
-            "value": 1992.3
+            "value": 1321.2
           },
           {
             "date": "2024-07-01",
-            "value": 1993.5
+            "value": 1320.3
           },
           {
             "date": "2024-08-01",
-            "value": 1993.6
+            "value": 1320.3
           },
           {
             "date": "2024-09-01",
-            "value": 1997
+            "value": 1327.5
           },
           {
             "date": "2024-10-01",
-            "value": 1977
+            "value": 1293.4
           },
           {
             "date": "2024-11-01",
-            "value": 1987.3
+            "value": 1328.3
           },
           {
             "date": "2024-12-01",
-            "value": 1988.2
+            "value": 1332.7
           },
           {
             "date": "2025-01-01",
-            "value": 1992.8
+            "value": 1333.6
           },
           {
             "date": "2025-02-01",
-            "value": 1993.6
+            "value": 1333.9
           },
           {
             "date": "2025-03-01",
-            "value": 1996.5
+            "value": 1333.7
           },
           {
             "date": "2025-04-01",
-            "value": 1996.3
+            "value": 1334.9
           },
           {
             "date": "2025-05-01",
-            "value": 1993.8
+            "value": 1333
           },
           {
             "date": "2025-06-01",
-            "value": 1990.8
+            "value": 1331.7
           },
           {
             "date": "2025-07-01",
-            "value": 1988.9
+            "value": 1330.9
           },
           {
             "date": "2025-08-01",
-            "value": 1987.8
+            "value": 1330.1
           },
           {
             "date": "2025-09-01",
-            "value": 1985.1
+            "value": 1328.5
           },
           {
             "date": "2025-10-01",
-            "value": 1983.6
+            "value": 1325.5
           },
           {
             "date": "2025-11-01",
-            "value": 1984.2
+            "value": 1326.5
           },
           {
             "date": "2025-12-01",
-            "value": 1981.9
+            "value": 1327.7
           },
           {
             "date": "2026-01-01",
-            "value": 1982.9
+            "value": 1327.6
           },
           {
             "date": "2026-02-01",
-            "value": 1984.5
+            "value": 1324.8
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1330.1
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1335.7
           }
         ],
         "source": "BLS"
@@ -5385,38 +5459,30 @@
         "id": "information",
         "label": "Information",
         "latest": {
-          "date": "2026-02-01",
-          "value": 149.8
+          "date": "2026-04-01",
+          "value": 150.2
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -5,
-            "percent": -3.229974160206718
+            "baseDate": "2025-04-01",
+            "absolute": -3.6000000000000227,
+            "percent": -2.340702210663214
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": -9.699999999999989,
-            "percent": -6.08150470219435
+            "baseDate": "2023-04-01",
+            "absolute": -9.600000000000023,
+            "percent": -6.007509386733431
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 14.100000000000023,
-            "percent": 10.39056742815035
+            "baseDate": "2021-04-01",
+            "absolute": 13.399999999999977,
+            "percent": 9.795321637426884
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 159.8
-          },
-          {
-            "date": "2023-04-01",
-            "value": 159.8
-          },
           {
             "date": "2023-05-01",
             "value": 159.9
@@ -5551,7 +5617,190 @@
           },
           {
             "date": "2026-02-01",
-            "value": 149.8
+            "value": 149.6
+          },
+          {
+            "date": "2026-03-01",
+            "value": 148.9
+          },
+          {
+            "date": "2026-04-01",
+            "value": 150.2
+          }
+        ],
+        "source": "BLS"
+      },
+      {
+        "id": "financial_activities",
+        "label": "Financial Activities",
+        "latest": {
+          "date": "2026-04-01",
+          "value": 680.7
+        },
+        "deltas": {
+          "oneYear": {
+            "years": 1,
+            "baseDate": "2025-04-01",
+            "absolute": -10.899999999999977,
+            "percent": -1.576055523423941
+          },
+          "threeYear": {
+            "years": 3,
+            "baseDate": "2023-04-01",
+            "absolute": -1.8999999999999773,
+            "percent": -0.27834749487254284
+          },
+          "fiveYear": {
+            "years": 5,
+            "baseDate": "2021-04-01",
+            "absolute": 65.10000000000002,
+            "percent": 10.575048732943474
+          }
+        },
+        "sparkline": [
+          {
+            "date": "2023-05-01",
+            "value": 684
+          },
+          {
+            "date": "2023-06-01",
+            "value": 685.5
+          },
+          {
+            "date": "2023-07-01",
+            "value": 685.2
+          },
+          {
+            "date": "2023-08-01",
+            "value": 685.2
+          },
+          {
+            "date": "2023-09-01",
+            "value": 686.9
+          },
+          {
+            "date": "2023-10-01",
+            "value": 686.4
+          },
+          {
+            "date": "2023-11-01",
+            "value": 685.8
+          },
+          {
+            "date": "2023-12-01",
+            "value": 688.2
+          },
+          {
+            "date": "2024-01-01",
+            "value": 686
+          },
+          {
+            "date": "2024-02-01",
+            "value": 685.9
+          },
+          {
+            "date": "2024-03-01",
+            "value": 686.8
+          },
+          {
+            "date": "2024-04-01",
+            "value": 687.4
+          },
+          {
+            "date": "2024-05-01",
+            "value": 687.4
+          },
+          {
+            "date": "2024-06-01",
+            "value": 688.7
+          },
+          {
+            "date": "2024-07-01",
+            "value": 688.9
+          },
+          {
+            "date": "2024-08-01",
+            "value": 689.1
+          },
+          {
+            "date": "2024-09-01",
+            "value": 689.7
+          },
+          {
+            "date": "2024-10-01",
+            "value": 687.3
+          },
+          {
+            "date": "2024-11-01",
+            "value": 689.7
+          },
+          {
+            "date": "2024-12-01",
+            "value": 689.9
+          },
+          {
+            "date": "2025-01-01",
+            "value": 690.7
+          },
+          {
+            "date": "2025-02-01",
+            "value": 691.8
+          },
+          {
+            "date": "2025-03-01",
+            "value": 691.9
+          },
+          {
+            "date": "2025-04-01",
+            "value": 691.6
+          },
+          {
+            "date": "2025-05-01",
+            "value": 691.7
+          },
+          {
+            "date": "2025-06-01",
+            "value": 691
+          },
+          {
+            "date": "2025-07-01",
+            "value": 690.7
+          },
+          {
+            "date": "2025-08-01",
+            "value": 690.3
+          },
+          {
+            "date": "2025-09-01",
+            "value": 689.8
+          },
+          {
+            "date": "2025-10-01",
+            "value": 684.3
+          },
+          {
+            "date": "2025-11-01",
+            "value": 683.1
+          },
+          {
+            "date": "2025-12-01",
+            "value": 684.1
+          },
+          {
+            "date": "2026-01-01",
+            "value": 680.5
+          },
+          {
+            "date": "2026-02-01",
+            "value": 682.9
+          },
+          {
+            "date": "2026-03-01",
+            "value": 679.4
+          },
+          {
+            "date": "2026-04-01",
+            "value": 680.7
           }
         ],
         "source": "BLS"
@@ -5560,38 +5809,30 @@
         "id": "other_services",
         "label": "Other Services",
         "latest": {
-          "date": "2026-02-01",
-          "value": 377.8
+          "date": "2026-04-01",
+          "value": 382.1
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -8.099999999999966,
-            "percent": -2.0989893754858686
+            "baseDate": "2025-04-01",
+            "absolute": -4.099999999999966,
+            "percent": -1.061626100466071
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 15.600000000000023,
-            "percent": 4.307012700165661
+            "baseDate": "2023-04-01",
+            "absolute": 17.400000000000034,
+            "percent": 4.771044694269272
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 38.19999999999999,
-            "percent": 11.24852767962308
+            "baseDate": "2021-04-01",
+            "absolute": 41.200000000000045,
+            "percent": 12.085655617483146
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 363
-          },
-          {
-            "date": "2023-04-01",
-            "value": 364.7
-          },
           {
             "date": "2023-05-01",
             "value": 366.2
@@ -5726,182 +5967,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 377.8
-          }
-        ],
-        "source": "BLS"
-      },
-      {
-        "id": "construction",
-        "label": "Construction",
-        "latest": {
-          "date": "2026-02-01",
-          "value": 648.8
-        },
-        "deltas": {
-          "oneYear": {
-            "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -9.100000000000023,
-            "percent": -1.3831889344885278
-          },
-          "threeYear": {
-            "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 28.199999999999932,
-            "percent": 4.5439896873992796
-          },
-          "fiveYear": {
-            "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 77.5,
-            "percent": 13.565552249256083
-          }
-        },
-        "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 622.9
+            "value": 377.4
           },
           {
-            "date": "2023-04-01",
-            "value": 625.8
+            "date": "2026-03-01",
+            "value": 375.6
           },
           {
-            "date": "2023-05-01",
-            "value": 627.4
-          },
-          {
-            "date": "2023-06-01",
-            "value": 629.4
-          },
-          {
-            "date": "2023-07-01",
-            "value": 630.1
-          },
-          {
-            "date": "2023-08-01",
-            "value": 633.2
-          },
-          {
-            "date": "2023-09-01",
-            "value": 635.5
-          },
-          {
-            "date": "2023-10-01",
-            "value": 639.7
-          },
-          {
-            "date": "2023-11-01",
-            "value": 639.9
-          },
-          {
-            "date": "2023-12-01",
-            "value": 641.7
-          },
-          {
-            "date": "2024-01-01",
-            "value": 642.6
-          },
-          {
-            "date": "2024-02-01",
-            "value": 644.5
-          },
-          {
-            "date": "2024-03-01",
-            "value": 645.8
-          },
-          {
-            "date": "2024-04-01",
-            "value": 648.2
-          },
-          {
-            "date": "2024-05-01",
-            "value": 650.7
-          },
-          {
-            "date": "2024-06-01",
-            "value": 652.7
-          },
-          {
-            "date": "2024-07-01",
-            "value": 655.5
-          },
-          {
-            "date": "2024-08-01",
-            "value": 656.8
-          },
-          {
-            "date": "2024-09-01",
-            "value": 657.4
-          },
-          {
-            "date": "2024-10-01",
-            "value": 642.5
-          },
-          {
-            "date": "2024-11-01",
-            "value": 658
-          },
-          {
-            "date": "2024-12-01",
-            "value": 657.4
-          },
-          {
-            "date": "2025-01-01",
-            "value": 656.5
-          },
-          {
-            "date": "2025-02-01",
-            "value": 657.9
-          },
-          {
-            "date": "2025-03-01",
-            "value": 660.2
-          },
-          {
-            "date": "2025-04-01",
-            "value": 659.1
-          },
-          {
-            "date": "2025-05-01",
-            "value": 658.8
-          },
-          {
-            "date": "2025-06-01",
-            "value": 658
-          },
-          {
-            "date": "2025-07-01",
-            "value": 655.7
-          },
-          {
-            "date": "2025-08-01",
-            "value": 654.6
-          },
-          {
-            "date": "2025-09-01",
-            "value": 653.7
-          },
-          {
-            "date": "2025-10-01",
-            "value": 650.3
-          },
-          {
-            "date": "2025-11-01",
-            "value": 648.6
-          },
-          {
-            "date": "2025-12-01",
-            "value": 647.2
-          },
-          {
-            "date": "2026-01-01",
-            "value": 647.7
-          },
-          {
-            "date": "2026-02-01",
-            "value": 648.8
+            "date": "2026-04-01",
+            "value": 382.1
           }
         ],
         "source": "BLS"
@@ -5914,34 +5988,30 @@
       "name": "Miami MSA",
       "unemploymentRate": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 3.8
+          "date": "2026-03-01",
+          "value": 3.7
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": 0.5999999999999996,
-            "percent": 18.74999999999999
+            "baseDate": "2025-03-01",
+            "absolute": 0.7000000000000002,
+            "percent": 23.33333333333334
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 1.5,
-            "percent": 65.21739130434783
+            "baseDate": "2023-03-01",
+            "absolute": 1.3000000000000003,
+            "percent": 54.166666666666686
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": -2.4000000000000004,
-            "percent": -38.70967741935484
+            "baseDate": "2021-03-01",
+            "absolute": -2.3999999999999995,
+            "percent": -39.34426229508196
           }
         },
         "sparkline": [
-          {
-            "date": "2024-02-01",
-            "value": 2.6
-          },
           {
             "date": "2024-03-01",
             "value": 2.7
@@ -5964,7 +6034,7 @@
           },
           {
             "date": "2024-08-01",
-            "value": 3.3
+            "value": 3.4
           },
           {
             "date": "2024-09-01",
@@ -5972,15 +6042,15 @@
           },
           {
             "date": "2024-10-01",
-            "value": 2.9
+            "value": 3
           },
           {
             "date": "2024-11-01",
-            "value": 2.9
+            "value": 3
           },
           {
             "date": "2024-12-01",
-            "value": 2.7
+            "value": 2.8
           },
           {
             "date": "2025-01-01",
@@ -5988,27 +6058,27 @@
           },
           {
             "date": "2025-02-01",
-            "value": 3.2
-          },
-          {
-            "date": "2025-03-01",
-            "value": 3.1
-          },
-          {
-            "date": "2025-04-01",
             "value": 3
           },
           {
+            "date": "2025-03-01",
+            "value": 3
+          },
+          {
+            "date": "2025-04-01",
+            "value": 2.9
+          },
+          {
             "date": "2025-05-01",
-            "value": 3.1
+            "value": 3
           },
           {
             "date": "2025-06-01",
-            "value": 3.2
+            "value": 3.3
           },
           {
             "date": "2025-07-01",
-            "value": 3.4
+            "value": 3.5
           },
           {
             "date": "2025-08-01",
@@ -6020,7 +6090,7 @@
           },
           {
             "date": "2025-11-01",
-            "value": 4.1
+            "value": 3.8
           },
           {
             "date": "2025-12-01",
@@ -6033,122 +6103,122 @@
           {
             "date": "2026-02-01",
             "value": 3.8
+          },
+          {
+            "date": "2026-03-01",
+            "value": 3.7
           }
         ]
       },
       "laborForce": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 3295264
+          "date": "2026-03-01",
+          "value": 3295127
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -14150,
-            "percent": -0.42756814348401256
+            "baseDate": "2025-03-01",
+            "absolute": 15841,
+            "percent": 0.4830624715258139
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 53287,
-            "percent": 1.6436575583355466
+            "baseDate": "2023-03-01",
+            "absolute": 34990,
+            "percent": 1.0732677798509695
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 274777,
-            "percent": 9.097109174778769
+            "baseDate": "2021-03-01",
+            "absolute": 275776,
+            "percent": 9.133618449792687
           }
         },
         "sparkline": [
           {
-            "date": "2024-02-01",
-            "value": 3307371
-          },
-          {
             "date": "2024-03-01",
-            "value": 3304797
+            "value": 3296634
           },
           {
             "date": "2024-04-01",
-            "value": 3304529
+            "value": 3295312
           },
           {
             "date": "2024-05-01",
-            "value": 3311658
+            "value": 3301584
           },
           {
             "date": "2024-06-01",
-            "value": 3308223
+            "value": 3295057
           },
           {
             "date": "2024-07-01",
-            "value": 3319784
+            "value": 3306292
           },
           {
             "date": "2024-08-01",
-            "value": 3321272
+            "value": 3302361
           },
           {
             "date": "2024-09-01",
-            "value": 3326281
+            "value": 3303781
           },
           {
             "date": "2024-10-01",
-            "value": 3318646
+            "value": 3306488
           },
           {
             "date": "2024-11-01",
-            "value": 3292207
+            "value": 3272890
           },
           {
             "date": "2024-12-01",
-            "value": 3303590
+            "value": 3286584
           },
           {
             "date": "2025-01-01",
-            "value": 3311971
+            "value": 3288792
           },
           {
             "date": "2025-02-01",
-            "value": 3309414
+            "value": 3290173
           },
           {
             "date": "2025-03-01",
-            "value": 3288572
+            "value": 3279286
           },
           {
             "date": "2025-04-01",
-            "value": 3308846
+            "value": 3290424
           },
           {
             "date": "2025-05-01",
-            "value": 3298636
+            "value": 3273537
           },
           {
             "date": "2025-06-01",
-            "value": 3309018
+            "value": 3275572
           },
           {
             "date": "2025-07-01",
-            "value": 3333735
+            "value": 3279095
           },
           {
             "date": "2025-08-01",
-            "value": 3324554
+            "value": 3273253
           },
           {
             "date": "2025-09-01",
-            "value": 3311007
+            "value": 3271656
           },
           {
             "date": "2025-11-01",
-            "value": 3328221
+            "value": 3295237
           },
           {
             "date": "2025-12-01",
-            "value": 3338414
+            "value": 3296193
           },
           {
             "date": "2026-01-01",
@@ -6156,123 +6226,123 @@
           },
           {
             "date": "2026-02-01",
-            "value": 3295264
+            "value": 3294946
+          },
+          {
+            "date": "2026-03-01",
+            "value": 3295127
           }
         ]
       },
       "employmentLevel": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 3168944
+          "date": "2026-03-01",
+          "value": 3172925
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -35959,
-            "percent": -1.1219996361824367
+            "baseDate": "2025-03-01",
+            "absolute": -6894,
+            "percent": -0.21680479297721034
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 2023,
-            "percent": 0.06387908002757252
+            "baseDate": "2023-03-01",
+            "absolute": -10191,
+            "percent": -0.32015798356076247
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 334968,
-            "percent": 11.819719009617584
+            "baseDate": "2021-03-01",
+            "absolute": 336748,
+            "percent": 11.873306919843154
           }
         },
         "sparkline": [
           {
-            "date": "2024-02-01",
-            "value": 3221547
-          },
-          {
             "date": "2024-03-01",
-            "value": 3215577
+            "value": 3208503
           },
           {
             "date": "2024-04-01",
-            "value": 3219368
+            "value": 3210966
           },
           {
             "date": "2024-05-01",
-            "value": 3222833
+            "value": 3213324
           },
           {
             "date": "2024-06-01",
-            "value": 3206642
+            "value": 3194233
           },
           {
             "date": "2024-07-01",
-            "value": 3209710
+            "value": 3196780
           },
           {
             "date": "2024-08-01",
-            "value": 3211002
+            "value": 3191712
           },
           {
             "date": "2024-09-01",
-            "value": 3227819
+            "value": 3204729
           },
           {
             "date": "2024-10-01",
-            "value": 3221175
+            "value": 3207633
           },
           {
             "date": "2024-11-01",
-            "value": 3195499
+            "value": 3173844
           },
           {
             "date": "2024-12-01",
-            "value": 3213564
+            "value": 3195060
           },
           {
             "date": "2025-01-01",
-            "value": 3211778
+            "value": 3190668
           },
           {
             "date": "2025-02-01",
-            "value": 3204903
+            "value": 3192838
           },
           {
             "date": "2025-03-01",
-            "value": 3186981
+            "value": 3179819
           },
           {
             "date": "2025-04-01",
-            "value": 3208895
+            "value": 3194234
           },
           {
             "date": "2025-05-01",
-            "value": 3197657
+            "value": 3174145
           },
           {
             "date": "2025-06-01",
-            "value": 3202800
+            "value": 3168177
           },
           {
             "date": "2025-07-01",
-            "value": 3220033
+            "value": 3163312
           },
           {
             "date": "2025-08-01",
-            "value": 3202884
+            "value": 3153069
           },
           {
             "date": "2025-09-01",
-            "value": 3191108
+            "value": 3153610
           },
           {
             "date": "2025-11-01",
-            "value": 3193090
+            "value": 3168723
           },
           {
             "date": "2025-12-01",
-            "value": 3221684
+            "value": 3180871
           },
           {
             "date": "2026-01-01",
@@ -6280,7 +6350,11 @@
           },
           {
             "date": "2026-02-01",
-            "value": 3168944
+            "value": 3168772
+          },
+          {
+            "date": "2026-03-01",
+            "value": 3172925
           }
         ]
       }
@@ -6290,45 +6364,41 @@
       "name": "Tampa MSA",
       "unemploymentRate": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 4.9
+          "date": "2026-03-01",
+          "value": 4.5
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": 1.1000000000000005,
-            "percent": 28.947368421052648
+            "baseDate": "2025-03-01",
+            "absolute": 1,
+            "percent": 28.57142857142857
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 2.1000000000000005,
-            "percent": 75.00000000000003
+            "baseDate": "2023-03-01",
+            "absolute": 1.7999999999999998,
+            "percent": 66.66666666666666
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 0.10000000000000053,
-            "percent": 2.0833333333333446
+            "baseDate": "2021-03-01",
+            "absolute": -0.20000000000000018,
+            "percent": -4.255319148936174
           }
         },
         "sparkline": [
           {
-            "date": "2024-02-01",
-            "value": 3.3
-          },
-          {
             "date": "2024-03-01",
-            "value": 3.2
+            "value": 3.1
           },
           {
             "date": "2024-04-01",
-            "value": 3
+            "value": 2.9
           },
           {
             "date": "2024-05-01",
-            "value": 3.2
+            "value": 3.1
           },
           {
             "date": "2024-06-01",
@@ -6336,15 +6406,15 @@
           },
           {
             "date": "2024-07-01",
-            "value": 3.9
-          },
-          {
-            "date": "2024-08-01",
             "value": 3.8
           },
           {
+            "date": "2024-08-01",
+            "value": 3.9
+          },
+          {
             "date": "2024-09-01",
-            "value": 3.6
+            "value": 3.5
           },
           {
             "date": "2024-10-01",
@@ -6360,11 +6430,11 @@
           },
           {
             "date": "2025-01-01",
-            "value": 3.8
+            "value": 3.7
           },
           {
             "date": "2025-02-01",
-            "value": 3.8
+            "value": 3.6
           },
           {
             "date": "2025-03-01",
@@ -6372,11 +6442,11 @@
           },
           {
             "date": "2025-04-01",
-            "value": 3.5
+            "value": 3.4
           },
           {
             "date": "2025-05-01",
-            "value": 3.5
+            "value": 3.6
           },
           {
             "date": "2025-06-01",
@@ -6388,11 +6458,11 @@
           },
           {
             "date": "2025-08-01",
-            "value": 4.4
+            "value": 4.3
           },
           {
             "date": "2025-09-01",
-            "value": 4.3
+            "value": 4.2
           },
           {
             "date": "2025-11-01",
@@ -6400,7 +6470,7 @@
           },
           {
             "date": "2025-12-01",
-            "value": 4.6
+            "value": 4.5
           },
           {
             "date": "2026-01-01",
@@ -6409,122 +6479,122 @@
           {
             "date": "2026-02-01",
             "value": 4.9
+          },
+          {
+            "date": "2026-03-01",
+            "value": 4.5
           }
         ]
       },
       "laborForce": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 1699038
+          "date": "2026-03-01",
+          "value": 1692826
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -3406,
-            "percent": -0.2000653178606756
+            "baseDate": "2025-03-01",
+            "absolute": -4230,
+            "percent": -0.24925518073652253
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 29313,
-            "percent": 1.7555585500606388
+            "baseDate": "2023-03-01",
+            "absolute": 16254,
+            "percent": 0.9694781971785286
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 151666,
-            "percent": 9.801521547501183
+            "baseDate": "2021-03-01",
+            "absolute": 135633,
+            "percent": 8.710095665726728
           }
         },
         "sparkline": [
           {
-            "date": "2024-02-01",
-            "value": 1693310
-          },
-          {
             "date": "2024-03-01",
-            "value": 1697924
+            "value": 1694721
           },
           {
             "date": "2024-04-01",
-            "value": 1698182
+            "value": 1692705
           },
           {
             "date": "2024-05-01",
-            "value": 1696722
+            "value": 1691928
           },
           {
             "date": "2024-06-01",
-            "value": 1715488
+            "value": 1709675
           },
           {
             "date": "2024-07-01",
-            "value": 1712879
+            "value": 1712484
           },
           {
             "date": "2024-08-01",
-            "value": 1711342
+            "value": 1707668
           },
           {
             "date": "2024-09-01",
-            "value": 1714581
+            "value": 1709006
           },
           {
             "date": "2024-10-01",
-            "value": 1703813
+            "value": 1689442
           },
           {
             "date": "2024-11-01",
-            "value": 1696841
+            "value": 1690428
           },
           {
             "date": "2024-12-01",
-            "value": 1695885
+            "value": 1688076
           },
           {
             "date": "2025-01-01",
-            "value": 1708673
+            "value": 1694173
           },
           {
             "date": "2025-02-01",
-            "value": 1702444
+            "value": 1690385
           },
           {
             "date": "2025-03-01",
-            "value": 1703902
+            "value": 1697056
           },
           {
             "date": "2025-04-01",
-            "value": 1703863
+            "value": 1695754
           },
           {
             "date": "2025-05-01",
-            "value": 1701259
+            "value": 1690121
           },
           {
             "date": "2025-06-01",
-            "value": 1710646
+            "value": 1697503
           },
           {
             "date": "2025-07-01",
-            "value": 1715161
+            "value": 1695711
           },
           {
             "date": "2025-08-01",
-            "value": 1714039
+            "value": 1693154
           },
           {
             "date": "2025-09-01",
-            "value": 1721605
+            "value": 1701037
           },
           {
             "date": "2025-11-01",
-            "value": 1710303
+            "value": 1693134
           },
           {
             "date": "2025-12-01",
-            "value": 1710397
+            "value": 1689229
           },
           {
             "date": "2026-01-01",
@@ -6532,123 +6602,123 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1699038
+            "value": 1698620
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1692826
           }
         ]
       },
       "employmentLevel": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 1615959
+          "date": "2026-03-01",
+          "value": 1616360
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -21766,
-            "percent": -1.3290387580332474
+            "baseDate": "2025-03-01",
+            "absolute": -21834,
+            "percent": -1.3328091788884588
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": -7805,
-            "percent": -0.480673299814505
+            "baseDate": "2023-03-01",
+            "absolute": -15468,
+            "percent": -0.9478940182421186
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 143620,
-            "percent": 9.754547016685695
+            "baseDate": "2021-03-01",
+            "absolute": 132422,
+            "percent": 8.923688186433665
           }
         },
         "sparkline": [
           {
-            "date": "2024-02-01",
-            "value": 1638272
-          },
-          {
             "date": "2024-03-01",
-            "value": 1644255
+            "value": 1642219
           },
           {
             "date": "2024-04-01",
-            "value": 1647643
+            "value": 1643019
           },
           {
             "date": "2024-05-01",
-            "value": 1642992
+            "value": 1639174
           },
           {
             "date": "2024-06-01",
-            "value": 1653172
+            "value": 1648034
           },
           {
             "date": "2024-07-01",
-            "value": 1646932
+            "value": 1647469
           },
           {
             "date": "2024-08-01",
-            "value": 1645468
+            "value": 1641863
           },
           {
             "date": "2024-09-01",
-            "value": 1653627
+            "value": 1648554
           },
           {
             "date": "2024-10-01",
-            "value": 1640789
+            "value": 1626560
           },
           {
             "date": "2024-11-01",
-            "value": 1634094
+            "value": 1627224
           },
           {
             "date": "2024-12-01",
-            "value": 1639965
+            "value": 1631873
           },
           {
             "date": "2025-01-01",
-            "value": 1643438
+            "value": 1631815
           },
           {
             "date": "2025-02-01",
-            "value": 1637725
+            "value": 1630277
           },
           {
             "date": "2025-03-01",
-            "value": 1643819
+            "value": 1638194
           },
           {
             "date": "2025-04-01",
-            "value": 1644185
+            "value": 1638404
           },
           {
             "date": "2025-05-01",
-            "value": 1641109
+            "value": 1629872
           },
           {
             "date": "2025-06-01",
-            "value": 1642163
+            "value": 1630195
           },
           {
             "date": "2025-07-01",
-            "value": 1645142
+            "value": 1625544
           },
           {
             "date": "2025-08-01",
-            "value": 1638387
+            "value": 1620617
           },
           {
             "date": "2025-09-01",
-            "value": 1648158
+            "value": 1628802
           },
           {
             "date": "2025-11-01",
-            "value": 1624817
+            "value": 1609200
           },
           {
             "date": "2025-12-01",
-            "value": 1632501
+            "value": 1612466
           },
           {
             "date": "2026-01-01",
@@ -6656,7 +6726,11 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1615959
+            "value": 1615633
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1616360
           }
         ]
       }
@@ -6666,34 +6740,30 @@
       "name": "Orlando MSA",
       "unemploymentRate": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 4.7
+          "date": "2026-03-01",
+          "value": 4.4
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": 1.1,
-            "percent": 30.555555555555557
+            "baseDate": "2025-03-01",
+            "absolute": 1.0000000000000004,
+            "percent": 29.411764705882366
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 2,
-            "percent": 74.07407407407408
+            "baseDate": "2023-03-01",
+            "absolute": 1.8000000000000003,
+            "percent": 69.23076923076924
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": -1.2000000000000002,
-            "percent": -20.33898305084746
+            "baseDate": "2021-03-01",
+            "absolute": -1.1999999999999993,
+            "percent": -21.428571428571416
           }
         },
         "sparkline": [
-          {
-            "date": "2024-02-01",
-            "value": 3.1
-          },
           {
             "date": "2024-03-01",
             "value": 3
@@ -6708,7 +6778,7 @@
           },
           {
             "date": "2024-06-01",
-            "value": 3.5
+            "value": 3.6
           },
           {
             "date": "2024-07-01",
@@ -6716,7 +6786,7 @@
           },
           {
             "date": "2024-08-01",
-            "value": 3.7
+            "value": 3.8
           },
           {
             "date": "2024-09-01",
@@ -6728,19 +6798,19 @@
           },
           {
             "date": "2024-11-01",
-            "value": 3.4
+            "value": 3.5
           },
           {
             "date": "2024-12-01",
-            "value": 3
+            "value": 3.1
           },
           {
             "date": "2025-01-01",
-            "value": 3.6
+            "value": 3.5
           },
           {
             "date": "2025-02-01",
-            "value": 3.6
+            "value": 3.5
           },
           {
             "date": "2025-03-01",
@@ -6752,15 +6822,15 @@
           },
           {
             "date": "2025-05-01",
-            "value": 3.4
+            "value": 3.5
           },
           {
             "date": "2025-06-01",
-            "value": 3.8
+            "value": 3.9
           },
           {
             "date": "2025-07-01",
-            "value": 3.9
+            "value": 4.1
           },
           {
             "date": "2025-08-01",
@@ -6776,7 +6846,7 @@
           },
           {
             "date": "2025-12-01",
-            "value": 4.4
+            "value": 4.5
           },
           {
             "date": "2026-01-01",
@@ -6785,122 +6855,122 @@
           {
             "date": "2026-02-01",
             "value": 4.7
+          },
+          {
+            "date": "2026-03-01",
+            "value": 4.4
           }
         ]
       },
       "laborForce": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 1523246
+          "date": "2026-03-01",
+          "value": 1526989
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -21770,
-            "percent": -1.4090468966017182
+            "baseDate": "2025-03-01",
+            "absolute": 11642,
+            "percent": 0.7682728774333536
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 34891,
-            "percent": 2.3442659849296708
+            "baseDate": "2023-03-01",
+            "absolute": 30950,
+            "percent": 2.0687963348549068
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 208411,
-            "percent": 15.850734122532483
+            "baseDate": "2021-03-01",
+            "absolute": 201954,
+            "percent": 15.241408717505575
           }
         },
         "sparkline": [
           {
-            "date": "2024-02-01",
-            "value": 1520079
-          },
-          {
             "date": "2024-03-01",
-            "value": 1528479
+            "value": 1519652
           },
           {
             "date": "2024-04-01",
-            "value": 1528759
+            "value": 1519118
           },
           {
             "date": "2024-05-01",
-            "value": 1528821
+            "value": 1519316
           },
           {
             "date": "2024-06-01",
-            "value": 1541697
+            "value": 1530709
           },
           {
             "date": "2024-07-01",
-            "value": 1544591
+            "value": 1534667
           },
           {
             "date": "2024-08-01",
-            "value": 1544462
+            "value": 1532125
           },
           {
             "date": "2024-09-01",
-            "value": 1548260
+            "value": 1534176
           },
           {
             "date": "2024-10-01",
-            "value": 1543995
+            "value": 1527370
           },
           {
             "date": "2024-11-01",
-            "value": 1535885
+            "value": 1515481
           },
           {
             "date": "2024-12-01",
-            "value": 1534583
+            "value": 1510529
           },
           {
             "date": "2025-01-01",
-            "value": 1547036
+            "value": 1514703
           },
           {
             "date": "2025-02-01",
-            "value": 1545016
+            "value": 1509725
           },
           {
             "date": "2025-03-01",
-            "value": 1547626
+            "value": 1515347
           },
           {
             "date": "2025-04-01",
-            "value": 1548312
+            "value": 1517257
           },
           {
             "date": "2025-05-01",
-            "value": 1545557
+            "value": 1516063
           },
           {
             "date": "2025-06-01",
-            "value": 1548194
+            "value": 1525112
           },
           {
             "date": "2025-07-01",
-            "value": 1556187
+            "value": 1526415
           },
           {
             "date": "2025-08-01",
-            "value": 1550343
+            "value": 1526367
           },
           {
             "date": "2025-09-01",
-            "value": 1551882
+            "value": 1533111
           },
           {
             "date": "2025-11-01",
-            "value": 1540205
+            "value": 1525632
           },
           {
             "date": "2025-12-01",
-            "value": 1539334
+            "value": 1518905
           },
           {
             "date": "2026-01-01",
@@ -6908,123 +6978,123 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1523246
+            "value": 1523615
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1526989
           }
         ]
       },
       "employmentLevel": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 1450942
+          "date": "2026-03-01",
+          "value": 1460063
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -38612,
-            "percent": -2.592185311845022
+            "baseDate": "2025-03-01",
+            "absolute": -3137,
+            "percent": -0.21439311098961183
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 3432,
-            "percent": 0.2370968076213636
+            "baseDate": "2023-03-01",
+            "absolute": 3535,
+            "percent": 0.242700449287621
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 213174,
-            "percent": 17.222452026551018
+            "baseDate": "2021-03-01",
+            "absolute": 209354,
+            "percent": 16.73882573804138
           }
         },
         "sparkline": [
           {
-            "date": "2024-02-01",
-            "value": 1473285
-          },
-          {
             "date": "2024-03-01",
-            "value": 1481889
+            "value": 1473531
           },
           {
             "date": "2024-04-01",
-            "value": 1485147
+            "value": 1475716
           },
           {
             "date": "2024-05-01",
-            "value": 1482391
+            "value": 1473194
           },
           {
             "date": "2024-06-01",
-            "value": 1487159
+            "value": 1476180
           },
           {
             "date": "2024-07-01",
-            "value": 1487426
+            "value": 1477646
           },
           {
             "date": "2024-08-01",
-            "value": 1487406
+            "value": 1474517
           },
           {
             "date": "2024-09-01",
-            "value": 1495994
+            "value": 1481713
           },
           {
             "date": "2024-10-01",
-            "value": 1492130
+            "value": 1475045
           },
           {
             "date": "2024-11-01",
-            "value": 1483768
+            "value": 1462392
           },
           {
             "date": "2024-12-01",
-            "value": 1487907
+            "value": 1463117
           },
           {
             "date": "2025-01-01",
-            "value": 1491652
+            "value": 1461081
           },
           {
             "date": "2025-02-01",
-            "value": 1489554
+            "value": 1457541
           },
           {
             "date": "2025-03-01",
-            "value": 1495022
+            "value": 1463200
           },
           {
             "date": "2025-04-01",
-            "value": 1496604
+            "value": 1466931
           },
           {
             "date": "2025-05-01",
-            "value": 1492832
+            "value": 1462618
           },
           {
             "date": "2025-06-01",
-            "value": 1488609
+            "value": 1465822
           },
           {
             "date": "2025-07-01",
-            "value": 1495017
+            "value": 1464343
           },
           {
             "date": "2025-08-01",
-            "value": 1484476
+            "value": 1462405
           },
           {
             "date": "2025-09-01",
-            "value": 1488790
+            "value": 1470239
           },
           {
             "date": "2025-11-01",
-            "value": 1465870
+            "value": 1451703
           },
           {
             "date": "2025-12-01",
-            "value": 1471428
+            "value": 1451179
           },
           {
             "date": "2026-01-01",
@@ -7032,7 +7102,11 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1450942
+            "value": 1451379
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1460063
           }
         ]
       }
@@ -7042,34 +7116,30 @@
       "name": "Jacksonville MSA",
       "unemploymentRate": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 5
+          "date": "2026-03-01",
+          "value": 4.7
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": 1.2000000000000002,
-            "percent": 31.578947368421055
+            "baseDate": "2025-03-01",
+            "absolute": 1.1,
+            "percent": 30.555555555555557
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 2.1,
-            "percent": 72.41379310344827
+            "baseDate": "2023-03-01",
+            "absolute": 1.9000000000000004,
+            "percent": 67.85714285714288
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 0.2999999999999998,
-            "percent": 6.382978723404251
+            "baseDate": "2021-03-01",
+            "absolute": 0.20000000000000018,
+            "percent": 4.444444444444448
           }
         },
         "sparkline": [
-          {
-            "date": "2024-02-01",
-            "value": 3.3
-          },
           {
             "date": "2024-03-01",
             "value": 3.2
@@ -7092,7 +7162,7 @@
           },
           {
             "date": "2024-08-01",
-            "value": 3.8
+            "value": 3.9
           },
           {
             "date": "2024-09-01",
@@ -7104,7 +7174,7 @@
           },
           {
             "date": "2024-11-01",
-            "value": 3.5
+            "value": 3.6
           },
           {
             "date": "2024-12-01",
@@ -7112,11 +7182,11 @@
           },
           {
             "date": "2025-01-01",
-            "value": 3.8
+            "value": 3.7
           },
           {
             "date": "2025-02-01",
-            "value": 3.8
+            "value": 3.6
           },
           {
             "date": "2025-03-01",
@@ -7128,7 +7198,7 @@
           },
           {
             "date": "2025-05-01",
-            "value": 3.6
+            "value": 3.7
           },
           {
             "date": "2025-06-01",
@@ -7136,15 +7206,15 @@
           },
           {
             "date": "2025-07-01",
-            "value": 4.2
+            "value": 4.3
           },
           {
             "date": "2025-08-01",
-            "value": 4.6
+            "value": 4.4
           },
           {
             "date": "2025-09-01",
-            "value": 4.3
+            "value": 4.4
           },
           {
             "date": "2025-11-01",
@@ -7152,7 +7222,7 @@
           },
           {
             "date": "2025-12-01",
-            "value": 4.6
+            "value": 4.7
           },
           {
             "date": "2026-01-01",
@@ -7161,122 +7231,122 @@
           {
             "date": "2026-02-01",
             "value": 5
+          },
+          {
+            "date": "2026-03-01",
+            "value": 4.7
           }
         ]
       },
       "laborForce": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 845368
+          "date": "2026-03-01",
+          "value": 841002
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -8258,
-            "percent": -0.9674025861442833
+            "baseDate": "2025-03-01",
+            "absolute": -4875,
+            "percent": -0.5763249266737362
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 11635,
-            "percent": 1.3955307034746134
+            "baseDate": "2023-03-01",
+            "absolute": 3126,
+            "percent": 0.37308623233032095
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 62826,
-            "percent": 8.028450869090733
+            "baseDate": "2021-03-01",
+            "absolute": 55638,
+            "percent": 7.084358335752594
           }
         },
         "sparkline": [
           {
-            "date": "2024-02-01",
-            "value": 845155
-          },
-          {
             "date": "2024-03-01",
-            "value": 849495
+            "value": 847572
           },
           {
             "date": "2024-04-01",
-            "value": 850244
+            "value": 847907
           },
           {
             "date": "2024-05-01",
-            "value": 853580
+            "value": 851371
           },
           {
             "date": "2024-06-01",
-            "value": 862964
+            "value": 860231
           },
           {
             "date": "2024-07-01",
-            "value": 865860
+            "value": 864520
           },
           {
             "date": "2024-08-01",
-            "value": 864753
+            "value": 861793
           },
           {
             "date": "2024-09-01",
-            "value": 864863
+            "value": 861022
           },
           {
             "date": "2024-10-01",
-            "value": 860903
+            "value": 859173
           },
           {
             "date": "2024-11-01",
-            "value": 855033
+            "value": 852158
           },
           {
             "date": "2024-12-01",
-            "value": 854593
+            "value": 851459
           },
           {
             "date": "2025-01-01",
-            "value": 858073
+            "value": 846966
           },
           {
             "date": "2025-02-01",
-            "value": 853626
+            "value": 841461
           },
           {
             "date": "2025-03-01",
-            "value": 855282
+            "value": 845877
           },
           {
             "date": "2025-04-01",
-            "value": 855798
+            "value": 844277
           },
           {
             "date": "2025-05-01",
-            "value": 856040
+            "value": 845074
           },
           {
             "date": "2025-06-01",
-            "value": 861459
+            "value": 850221
           },
           {
             "date": "2025-07-01",
-            "value": 868501
+            "value": 852909
           },
           {
             "date": "2025-08-01",
-            "value": 864189
+            "value": 850864
           },
           {
             "date": "2025-09-01",
-            "value": 868176
+            "value": 853537
           },
           {
             "date": "2025-11-01",
-            "value": 864444
+            "value": 849718
           },
           {
             "date": "2025-12-01",
-            "value": 861749
+            "value": 844954
           },
           {
             "date": "2026-01-01",
@@ -7284,123 +7354,123 @@
           },
           {
             "date": "2026-02-01",
-            "value": 845368
+            "value": 845688
+          },
+          {
+            "date": "2026-03-01",
+            "value": 841002
           }
         ]
       },
       "employmentLevel": {
         "latest": {
-          "date": "2026-02-01",
-          "value": 802772
+          "date": "2026-03-01",
+          "value": 801647
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -18356,
-            "percent": -2.2354614627682894
+            "baseDate": "2025-03-01",
+            "absolute": -14117,
+            "percent": -1.7305250047807943
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": -7166,
-            "percent": -0.8847590803246668
+            "baseDate": "2023-03-01",
+            "absolute": -12907,
+            "percent": -1.5845481085354682
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 56828,
-            "percent": 7.618266250549639
+            "baseDate": "2021-03-01",
+            "absolute": 51647,
+            "percent": 6.886266666666667
           }
         },
         "sparkline": [
           {
-            "date": "2024-02-01",
-            "value": 817144
-          },
-          {
             "date": "2024-03-01",
-            "value": 822003
+            "value": 820635
           },
           {
             "date": "2024-04-01",
-            "value": 824686
+            "value": 822710
           },
           {
             "date": "2024-05-01",
-            "value": 826291
+            "value": 824525
           },
           {
             "date": "2024-06-01",
-            "value": 830624
+            "value": 828200
           },
           {
             "date": "2024-07-01",
-            "value": 831773
+            "value": 830843
           },
           {
             "date": "2024-08-01",
-            "value": 831589
+            "value": 828577
           },
           {
             "date": "2024-09-01",
-            "value": 834471
+            "value": 830777
           },
           {
             "date": "2024-10-01",
-            "value": 830736
+            "value": 829021
           },
           {
             "date": "2024-11-01",
-            "value": 824733
+            "value": 821609
           },
           {
             "date": "2024-12-01",
-            "value": 827379
+            "value": 824028
           },
           {
             "date": "2025-01-01",
-            "value": 825453
+            "value": 815671
           },
           {
             "date": "2025-02-01",
-            "value": 821128
+            "value": 811178
           },
           {
             "date": "2025-03-01",
-            "value": 824592
+            "value": 815764
           },
           {
             "date": "2025-04-01",
-            "value": 825530
+            "value": 815112
           },
           {
             "date": "2025-05-01",
-            "value": 825072
+            "value": 813990
           },
           {
             "date": "2025-06-01",
-            "value": 825624
+            "value": 814933
           },
           {
             "date": "2025-07-01",
-            "value": 831747
+            "value": 816031
           },
           {
             "date": "2025-08-01",
-            "value": 824860
+            "value": 813109
           },
           {
             "date": "2025-09-01",
-            "value": 830475
+            "value": 816390
           },
           {
             "date": "2025-11-01",
-            "value": 820450
+            "value": 806476
           },
           {
             "date": "2025-12-01",
-            "value": 821847
+            "value": 805609
           },
           {
             "date": "2026-01-01",
@@ -7408,29 +7478,33 @@
           },
           {
             "date": "2026-02-01",
-            "value": 802772
+            "value": 803120
+          },
+          {
+            "date": "2026-03-01",
+            "value": 801647
           }
         ]
       }
     }
   ],
   "narrative": {
-    "headline": "Florida remains large and dynamic, with selective signs to watch.",
+    "headline": "Florida is expanding both jobs and labor supply at the same time.",
     "whatStandsOut": [
-      "Nonfarm Payrolls are down 36.7k over the last year.",
-      "Labor Force is up 60,891 people year-over-year.",
+      "Nonfarm Payrolls are up 15.8k over the last year.",
+      "Labor Force is up 21,580 people year-over-year.",
       "Population reached 23,462,518 in 2025."
     ],
     "improving": [
-      "Unemployment remains low by historical standards despite a 1.3 point annual increase.",
-      "Private Education & Health Services is among the strongest job growers (2.2% YoY).",
-      "Manufacturing is among the strongest job growers (-0.0% YoY).",
-      "Trade, Transportation, Utilities is among the strongest job growers (-0.5% YoY)."
+      "Unemployment remains low by historical standards despite a 1.2 point annual increase.",
+      "Private Education & Health Services is among the strongest job growers (2.3% YoY).",
+      "Professional & Business Services is among the strongest job growers (0.8% YoY).",
+      "Leisure & Hospitality is among the strongest job growers (0.1% YoY)."
     ],
     "softening": [
-      "Information is softer (-3.2% YoY).",
-      "Other Services is softer (-2.1% YoY).",
-      "Construction is softer (-1.4% YoY)."
+      "Information is softer (-2.3% YoY).",
+      "Financial Activities is softer (-1.6% YoY).",
+      "Other Services is softer (-1.1% YoY)."
     ],
     "whyItMatters": [
       "A growing labor force plus payroll expansion signals depth, not just short-term demand spikes.",
@@ -7453,38 +7527,30 @@
         "unit": "thousands_jobs",
         "trendDirection": "up_good",
         "latest": {
-          "date": "2026-02-01",
-          "value": 149.8
+          "date": "2026-04-01",
+          "value": 150.2
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -5,
-            "percent": -3.229974160206718
+            "baseDate": "2025-04-01",
+            "absolute": -3.6000000000000227,
+            "percent": -2.340702210663214
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": -9.699999999999989,
-            "percent": -6.08150470219435
+            "baseDate": "2023-04-01",
+            "absolute": -9.600000000000023,
+            "percent": -6.007509386733431
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 14.100000000000023,
-            "percent": 10.39056742815035
+            "baseDate": "2021-04-01",
+            "absolute": 13.399999999999977,
+            "percent": 9.795321637426884
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 159.8
-          },
-          {
-            "date": "2023-04-01",
-            "value": 159.8
-          },
           {
             "date": "2023-05-01",
             "value": 159.9
@@ -7619,7 +7685,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 149.8
+            "value": 149.6
+          },
+          {
+            "date": "2026-03-01",
+            "value": 148.9
+          },
+          {
+            "date": "2026-04-01",
+            "value": 150.2
           }
         ],
         "series": [
@@ -8061,7 +8135,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 149.8
+            "value": 149.6
+          },
+          {
+            "date": "2026-03-01",
+            "value": 148.9
+          },
+          {
+            "date": "2026-04-01",
+            "value": 150.2
           }
         ],
         "source": "BLS"
@@ -8072,38 +8154,30 @@
         "unit": "thousands_jobs",
         "trendDirection": "up_good",
         "latest": {
-          "date": "2026-02-01",
-          "value": 1608.4
+          "date": "2026-04-01",
+          "value": 1632.7
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -12.099999999999909,
-            "percent": -0.746683122493052
+            "baseDate": "2025-04-01",
+            "absolute": 12.700000000000045,
+            "percent": 0.7839506172839534
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": -10.599999999999909,
-            "percent": -0.6547251389746701
+            "baseDate": "2023-04-01",
+            "absolute": 10.5,
+            "percent": 0.6472691406731599
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 190.5,
-            "percent": 13.43536215530009
+            "baseDate": "2021-04-01",
+            "absolute": 206.79999999999995,
+            "percent": 14.503120835963248
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 1623.4
-          },
-          {
-            "date": "2023-04-01",
-            "value": 1622.2
-          },
           {
             "date": "2023-05-01",
             "value": 1621.8
@@ -8238,7 +8312,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1608.4
+            "value": 1609.3
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1627.8
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1632.7
           }
         ],
         "series": [
@@ -8680,7 +8762,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 1608.4
+            "value": 1609.3
+          },
+          {
+            "date": "2026-03-01",
+            "value": 1627.8
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1632.7
           }
         ],
         "source": "BLS"
@@ -8691,34 +8781,30 @@
         "unit": "count",
         "trendDirection": "up_good",
         "latest": {
-          "date": "2026-03-01",
-          "value": 61334
+          "date": "2026-04-01",
+          "value": 59941
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": 8204,
-            "percent": 15.44137022397892
+            "baseDate": "2025-04-01",
+            "absolute": 8487,
+            "percent": 16.49434446301551
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 5858,
-            "percent": 10.559521234407672
+            "baseDate": "2023-04-01",
+            "absolute": 693,
+            "percent": 1.1696597353497165
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 9576,
-            "percent": 18.50148769272383
+            "baseDate": "2021-04-01",
+            "absolute": 5025,
+            "percent": 9.150338699104086
           }
         },
         "sparkline": [
-          {
-            "date": "2023-04-01",
-            "value": 59248
-          },
           {
             "date": "2023-05-01",
             "value": 55833
@@ -8809,11 +8895,11 @@
           },
           {
             "date": "2025-03-01",
-            "value": 53130
+            "value": 53237
           },
           {
             "date": "2025-04-01",
-            "value": 51996
+            "value": 51454
           },
           {
             "date": "2025-05-01",
@@ -8853,11 +8939,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 57485
+            "value": 57632
           },
           {
             "date": "2026-03-01",
-            "value": 61334
+            "value": 61468
+          },
+          {
+            "date": "2026-04-01",
+            "value": 59941
           }
         ],
         "series": [
@@ -9855,11 +9945,11 @@
           },
           {
             "date": "2025-03-01",
-            "value": 53130
+            "value": 53237
           },
           {
             "date": "2025-04-01",
-            "value": 51996
+            "value": 51454
           },
           {
             "date": "2025-05-01",
@@ -9899,11 +9989,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 57485
+            "value": 57632
           },
           {
             "date": "2026-03-01",
-            "value": 61334
+            "value": 61468
+          },
+          {
+            "date": "2026-04-01",
+            "value": 59941
           }
         ],
         "source": "FRED"
@@ -10145,38 +10239,30 @@
         "unit": "thousands_jobs",
         "trendDirection": "up_good",
         "latest": {
-          "date": "2026-02-01",
-          "value": 648.8
+          "date": "2026-04-01",
+          "value": 657.8
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-02-01",
-            "absolute": -9.100000000000023,
-            "percent": -1.3831889344885278
+            "baseDate": "2025-04-01",
+            "absolute": -1.3000000000000682,
+            "percent": -0.19723865877713065
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-02-01",
-            "absolute": 28.199999999999932,
-            "percent": 4.5439896873992796
+            "baseDate": "2023-04-01",
+            "absolute": 32,
+            "percent": 5.113454777884308
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-02-01",
-            "absolute": 77.5,
-            "percent": 13.565552249256083
+            "baseDate": "2021-04-01",
+            "absolute": 84,
+            "percent": 14.639247124433602
           }
         },
         "sparkline": [
-          {
-            "date": "2023-03-01",
-            "value": 622.9
-          },
-          {
-            "date": "2023-04-01",
-            "value": 625.8
-          },
           {
             "date": "2023-05-01",
             "value": 627.4
@@ -10311,7 +10397,15 @@
           },
           {
             "date": "2026-02-01",
-            "value": 648.8
+            "value": 648.9
+          },
+          {
+            "date": "2026-03-01",
+            "value": 651.8
+          },
+          {
+            "date": "2026-04-01",
+            "value": 657.8
           }
         ],
         "series": [
@@ -10753,22 +10847,30 @@
           },
           {
             "date": "2026-02-01",
-            "value": 648.8
+            "value": 648.9
+          },
+          {
+            "date": "2026-03-01",
+            "value": 651.8
+          },
+          {
+            "date": "2026-04-01",
+            "value": 657.8
           }
         ],
         "source": "BLS"
       }
     },
     "narrative": {
-      "headline": "Florida’s innovation stack remains large, with selective areas requiring watchfulness.",
+      "headline": "Florida’s innovation stack is expanding alongside its development engine.",
       "signals": [
-        "Business applications are up 15.4% year-over-year.",
-        "Information employment is down 3.2% year-over-year.",
-        "Professional & business services employment is down 0.7% year-over-year."
+        "Business applications are up 16.5% year-over-year.",
+        "Information employment is down 2.3% year-over-year.",
+        "Professional & business services employment is up 0.8% year-over-year."
       ],
       "development": [
         "Real gross state product is up 11.9% over three years.",
-        "Construction employment is down 1.4% year-over-year."
+        "Construction employment is down 0.2% year-over-year."
       ],
       "momentum": [
         "Innovation metrics are intended as directional signal layers, not standalone verdicts.",
@@ -10883,6 +10985,285 @@
       }
     ]
   },
+  "scorecard2030": {
+    "eyebrow": "Florida 2030 trajectory",
+    "title": "The Florida Chamber scoreboard says the state is bigger, richer, and still short of its 2030 finish line.",
+    "summary": "This section brings the Florida Scorecard into the app as a real source. It ties the size of the current economy to the state's explicit 2030 targets instead of leaving the growth thesis as generic branding.",
+    "stats": [
+      {
+        "label": "Gross domestic product",
+        "value": "$1.87T",
+        "context": "Florida Scorecard statewide GDP, improving",
+        "source": {
+          "label": "Florida Scorecard GDP",
+          "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2"
+        }
+      },
+      {
+        "label": "Global economy rank",
+        "value": "15th",
+        "context": "If Florida were a country, based on a 2024 GDP baseline of $1.73T",
+        "source": {
+          "label": "World Bank GDP data",
+          "url": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json&per_page=400&mrnev=1"
+        },
+        "note": "Inference: Florida's 2024 GDP baseline of $1.73T sits between Australia and Spain in the World Bank's 2024 current-dollar country table."
+      },
+      {
+        "label": "2030 jobs gap",
+        "value": "786,378",
+        "context": "Net new jobs needed by 2030, State of Florida FutureCast",
+        "source": {
+          "label": "Florida Scorecard FutureCast",
+          "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D1"
+        }
+      },
+      {
+        "label": "Business startups",
+        "value": "61,334",
+        "context": "March 2026, ranked #1 nationally",
+        "source": {
+          "label": "Florida Scorecard startups",
+          "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2"
+        }
+      },
+      {
+        "label": "Income migration",
+        "value": "$4M+ / hr",
+        "context": "Florida Chamber Foundation annual net income migration frame",
+        "source": {
+          "label": "Florida Chamber wealth migration",
+          "url": "https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/"
+        },
+        "note": "The Chamber's $36.05B annual figure annualizes to more than $4M per hour. The Scorecard currently shows a lower IRS-based hourly figure without a public note explaining the gap."
+      }
+    ],
+    "interpretation": [
+      "The scorecard matters because it turns the Florida thesis into a scoreboard with explicit finish lines. Florida is already enormous, but the gap between rank 4 state GDP today and a number-one ambition by 2030 is still real.",
+      "The cleanest growth signal in this stack is not a vibe metric. It is business formation staying first nationally while the Chamber's public migration frame still clears four million dollars per hour into the state."
+    ],
+    "sources": [
+      {
+        "label": "Florida Scorecard, statewide innovation and economic development metrics",
+        "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2"
+      },
+      {
+        "label": "Florida Scorecard, State of Florida FutureCast",
+        "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D1"
+      },
+      {
+        "label": "Florida Chamber Foundation income migration analysis",
+        "url": "https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/"
+      },
+      {
+        "label": "World Bank GDP current US dollars API",
+        "url": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json&per_page=400&mrnev=1"
+      }
+    ]
+  },
+  "distinctives": {
+    "snowbirdIndex": {
+      "eyebrow": "Snowbird index proxy",
+      "title": "Seasonal wealth migration is not a tourism story. This is a proxy until the Q4/Q1 snowbird series is wired.",
+      "summary": "This proxy build uses Florida Chamber migration metrics and retirement-county pull to show why the state keeps carrying housing, health care, and infrastructure pressure even when payroll growth softens.",
+      "stats": [
+        {
+          "label": "State income migration",
+          "value": "$4M+ / hr",
+          "context": "Florida Chamber Foundation annual net income migration frame",
+          "source": {
+            "label": "Florida Chamber wealth migration",
+            "url": "https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/"
+          },
+          "note": "The Chamber's $36.05B annual figure annualizes to more than $4M per hour. The Scorecard currently shows a lower IRS-based hourly figure without a public note explaining the gap."
+        },
+        {
+          "label": "Collier pull",
+          "value": "$2.32B / yr",
+          "context": "Collier County income migration, Florida Scorecard",
+          "source": {
+            "label": "Collier County Scorecard",
+            "url": "https://thefloridascorecard.org/pillar%26c%3D11%26pillar%3D2"
+          }
+        },
+        {
+          "label": "Sumter pull",
+          "value": "$711.22M / yr",
+          "context": "Sumter County income migration, Florida Scorecard",
+          "source": {
+            "label": "Sumter County Scorecard",
+            "url": "https://thefloridascorecard.org/pillar%26c%3D60%26pillar%3D2"
+          }
+        },
+        {
+          "label": "2030 population range",
+          "value": "24.9M to 25.9M",
+          "context": "Statewide 2030 range, State of Florida FutureCast",
+          "source": {
+            "label": "Florida Scorecard FutureCast",
+            "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D1"
+          }
+        }
+      ],
+      "interpretation": [
+        "Florida's seasonal population story shows up as capital first. When Collier and Sumter pull that much income, the downstream pressure hits insurance, health care, housing supply, and local roads long before it shows up in a beach photo.",
+        "This is not a Miami-only story. The retirement counties help explain why statewide demand stays hot even when payroll momentum cools."
+      ],
+      "sources": [
+        {
+          "label": "Florida Chamber Foundation income migration analysis",
+          "url": "https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/"
+        },
+        {
+          "label": "Florida Scorecard, Collier County metrics",
+          "url": "https://thefloridascorecard.org/pillar%26c%3D11%26pillar%3D2"
+        },
+        {
+          "label": "Florida Scorecard, Sumter County metrics",
+          "url": "https://thefloridascorecard.org/pillar%26c%3D60%26pillar%3D2"
+        },
+        {
+          "label": "Florida Scorecard, State of Florida FutureCast",
+          "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D1"
+        }
+      ]
+    },
+    "spaceCoastCadence": {
+      "eyebrow": "Space Coast cadence",
+      "title": "Florida's innovation story is physical before it is financial.",
+      "summary": "Launches, spaceport investment, and aerospace build-out are all rising in the same corridor. This is the part of the Florida innovation thesis that generic startup dashboards usually miss.",
+      "stats": [
+        {
+          "label": "Launches in 2025",
+          "value": "109",
+          "context": "Record-breaking 2025 launch count, Space Florida",
+          "source": {
+            "label": "Space Florida launch update",
+            "url": "https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry"
+          }
+        },
+        {
+          "label": "Aerospace pipeline",
+          "value": "$6B",
+          "context": "220-project pipeline, Space Florida 2025 readout",
+          "source": {
+            "label": "Space Florida pipeline update",
+            "url": "https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry"
+          }
+        },
+        {
+          "label": "Economic impact",
+          "value": "$5.9B",
+          "context": "Space Florida impact since 2007",
+          "source": {
+            "label": "Space Florida FAQ",
+            "url": "https://www.spaceflorida.gov/frequently-asked-questions"
+          }
+        },
+        {
+          "label": "Blue Origin expansion",
+          "value": "$600M",
+          "context": "Cape Canaveral manufacturing project announced May 22, 2026",
+          "source": {
+            "label": "Florida governor announcement",
+            "url": "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-announces-600m-blue-origin-manufacturing-expansion-500-high"
+          }
+        }
+      ],
+      "interpretation": [
+        "The Space Coast matters because it turns aerospace from a branding asset into an operating system for manufacturing, dual-use, and infrastructure spending.",
+        "When launch cadence, project pipeline, and factory investment all rise together, Florida stops looking like a tourism economy with rockets on the side."
+      ],
+      "sources": [
+        {
+          "label": "Space Florida 2025 aerospace pipeline and launch update",
+          "url": "https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry"
+        },
+        {
+          "label": "Space Florida economic impact FAQ",
+          "url": "https://www.spaceflorida.gov/frequently-asked-questions"
+        },
+        {
+          "label": "Florida governor announcement on Blue Origin's Cape Canaveral expansion",
+          "url": "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-announces-600m-blue-origin-manufacturing-expansion-500-high"
+        },
+        {
+          "label": "Reuters on Blue Origin's Cape Canaveral expansion",
+          "url": "https://www.reuters.com/business/aerospace-defense/blue-origin-expand-florida-campus-with-new-600-million-facility-2026-05-22/"
+        }
+      ]
+    },
+    "latamGateway": {
+      "eyebrow": "LATAM gateway",
+      "title": "Florida's gateway claim is physical, not rhetorical.",
+      "summary": "The South Florida trade corridor is doing real freight work for Latin America and the Caribbean. This section brings PortMiami and Port Everglades into the trade story instead of treating the gateway line as a slogan.",
+      "stats": [
+        {
+          "label": "PortMiami tonnage",
+          "value": "10.1M tons",
+          "context": "FY2024 total tonnage, official PortMiami snapshot",
+          "source": {
+            "label": "PortMiami cargo stats",
+            "url": "https://www.miamidade.gov/portmiami/cargo.page"
+          }
+        },
+        {
+          "label": "PortMiami container flow",
+          "value": "1.09M TEUs",
+          "context": "FY2024 TEUs, official PortMiami snapshot",
+          "source": {
+            "label": "PortMiami cargo stats",
+            "url": "https://www.miamidade.gov/portmiami/cargo.page"
+          }
+        },
+        {
+          "label": "LATAM + Caribbean share",
+          "value": "Almost 50%",
+          "context": "PortMiami regional trade share, FY2025",
+          "source": {
+            "label": "PortMiami overall statistics PDF",
+            "url": "https://www.miamidade.gov/resources-port/documents/portmiami-main-overall-statistics.pdf"
+          }
+        },
+        {
+          "label": "Port Everglades refrigerated cargo",
+          "value": "126,392 TEUs",
+          "context": "FY2024 refrigerated cargo leader in Florida",
+          "source": {
+            "label": "Port Everglades cargo statistics",
+            "url": "https://www.porteverglades.net/about-us/statistics/cargo-statistics/"
+          }
+        },
+        {
+          "label": "Port Everglades container flow",
+          "value": "1.09M TEUs",
+          "context": "FY2024 official cargo statistics",
+          "source": {
+            "label": "Port Everglades cargo statistics",
+            "url": "https://www.porteverglades.net/about-us/statistics/cargo-statistics/"
+          }
+        }
+      ],
+      "interpretation": [
+        "PortMiami says almost half of its trade is tied to Latin America and the Caribbean, while Port Everglades is moving more than a million TEUs and leading Florida in refrigerated cargo. The gateway thesis is sitting on the dock, not in a keynote deck.",
+        "That matters because South Florida wins on adjacency. The same corridor handles containers, perishables, finance, and commercial relationships that keep Florida plugged into the Americas."
+      ],
+      "sources": [
+        {
+          "label": "PortMiami cargo and historical snapshot",
+          "url": "https://www.miamidade.gov/portmiami/cargo.page"
+        },
+        {
+          "label": "PortMiami overall statistics PDF",
+          "url": "https://www.miamidade.gov/resources-port/documents/portmiami-main-overall-statistics.pdf"
+        },
+        {
+          "label": "Port Everglades cargo statistics",
+          "url": "https://www.porteverglades.net/about-us/statistics/cargo-statistics/"
+        }
+      ]
+    }
+  },
   "trade": {
     "headline": "Florida Exports Hit $78.9B in 2025 - Largest Year in History",
     "asOf": "Calendar Year 2025",
@@ -10950,18 +11331,58 @@
       }
     ],
     "topMarkets": [
-      { "rank": 1, "country": "Brazil", "region": "LATAM" },
-      { "rank": 2, "country": "Mexico", "region": "LATAM" },
-      { "rank": 3, "country": "Canada", "region": "North America" },
-      { "rank": 4, "country": "Germany", "region": "Europe" },
-      { "rank": 5, "country": "Colombia", "region": "LATAM" }
+      {
+        "rank": 1,
+        "country": "Brazil",
+        "region": "LATAM"
+      },
+      {
+        "rank": 2,
+        "country": "Mexico",
+        "region": "LATAM"
+      },
+      {
+        "rank": 3,
+        "country": "Canada",
+        "region": "North America"
+      },
+      {
+        "rank": 4,
+        "country": "Germany",
+        "region": "Europe"
+      },
+      {
+        "rank": 5,
+        "country": "Colombia",
+        "region": "LATAM"
+      }
     ],
     "topCategories": [
-      { "rank": 1, "label": "Civilian Aircraft & Parts", "valueUsdBillions": 12.8 },
-      { "rank": 2, "label": "Telephones", "valueUsdBillions": 5.7 },
-      { "rank": 3, "label": "Pharmaceuticals", "valueUsdBillions": 3.6 },
-      { "rank": 4, "label": "Turbojets & Gas Turbines", "valueUsdBillions": 2.4 },
-      { "rank": 5, "label": "Cars", "valueUsdBillions": 2.4 }
+      {
+        "rank": 1,
+        "label": "Civilian Aircraft & Parts",
+        "valueUsdBillions": 12.8
+      },
+      {
+        "rank": 2,
+        "label": "Telephones",
+        "valueUsdBillions": 5.7
+      },
+      {
+        "rank": 3,
+        "label": "Pharmaceuticals",
+        "valueUsdBillions": 3.6
+      },
+      {
+        "rank": 4,
+        "label": "Turbojets & Gas Turbines",
+        "valueUsdBillions": 2.4
+      },
+      {
+        "rank": 5,
+        "label": "Cars",
+        "valueUsdBillions": 2.4
+      }
     ],
     "selectFlorida": {
       "headline": "SelectFlorida Program ROI (since July 2025)",

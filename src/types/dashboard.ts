@@ -78,6 +78,28 @@ export type InnovationResource = {
   url: string;
 };
 
+export type InsightSource = {
+  label: string;
+  url: string;
+};
+
+export type InsightStat = {
+  label: string;
+  value: string;
+  context: string;
+  source?: InsightSource;
+  note?: string;
+};
+
+export type InsightSection = {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  stats: InsightStat[];
+  interpretation: string[];
+  sources: InsightSource[];
+};
+
 export type TradeHeadlineMetric = {
   id: string;
   label: string;
@@ -187,6 +209,12 @@ export type DashboardDataset = {
       momentum: string[];
     };
     resources: InnovationResource[];
+  };
+  scorecard2030: InsightSection;
+  distinctives: {
+    snowbirdIndex: InsightSection;
+    spaceCoastCadence: InsightSection;
+    latamGateway: InsightSection;
   };
   trade: TradeSection;
 };
