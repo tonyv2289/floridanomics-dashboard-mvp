@@ -258,7 +258,7 @@ const INNOVATION_RESOURCES: InnovationResource[] = [
     category: "Programs",
     region: "Statewide",
     summary: "Official state commerce agency for workforce, business growth, trade, and economic development signals.",
-    url: "https://www.floridacommerce.gov/",
+    url: "https://www.floridajobs.org/",
   },
   {
     id: "florida-governor-press-office",
