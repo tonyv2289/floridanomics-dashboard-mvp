@@ -104,7 +104,7 @@
 
 .v3-tabs {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1px;
   margin: 20px 0;
   border: 1px solid var(--v3-line);
@@ -677,6 +677,365 @@
   padding-left: 18px;
 }
 
+.v3-terminal-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.v3-terminal-hero-copy {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.v3-terminal-hero-copy h2 {
+  max-width: 900px;
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+}
+
+.v3-terminal-hero-copy p,
+.v3-terminal-hero-copy blockquote {
+  max-width: 880px;
+  margin: 0;
+  color: #c6d1df;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.v3-terminal-hero-copy blockquote {
+  padding: 18px 20px;
+  border-left: 4px solid var(--v3-sun);
+  background: rgba(255, 143, 63, 0.08);
+  color: var(--v3-text);
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.18rem, 2vw, 1.55rem);
+  line-height: 1.38;
+}
+
+.v3-terminal-score {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 20px;
+  border: 1px solid rgba(255, 143, 63, 0.42);
+  border-top: 4px solid var(--v3-sun);
+  border-radius: 8px;
+  background: rgba(255, 143, 63, 0.08);
+}
+
+.v3-terminal-score span,
+.v3-terminal-score small,
+.v3-terminal-metric span,
+.v3-terminal-metric small,
+.v3-terminal-live-card span,
+.v3-terminal-live-card small,
+.v3-terminal-small-card span,
+.v3-project-card span,
+.v3-project-card b,
+.v3-forecast-card-head span,
+.v3-forecast-card-head b,
+.v3-forecast-cases span,
+.v3-policy-card dt,
+.v3-evidence-export-card small,
+.v3-terminal-source-list span {
+  color: var(--v3-muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.v3-terminal-score strong {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(4rem, 10vw, 6.8rem);
+  line-height: 0.9;
+}
+
+.v3-terminal-score b {
+  width: fit-content;
+  padding: 6px 9px;
+  border: 1px solid rgba(62, 232, 176, 0.35);
+  border-radius: 999px;
+  color: var(--v3-good);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.v3-terminal-score p,
+.v3-terminal-metric p,
+.v3-terminal-factor-list p,
+.v3-terminal-live-card p,
+.v3-terminal-small-card p,
+.v3-project-card p,
+.v3-forecast-card p,
+.v3-forecast-card li,
+.v3-policy-card p,
+.v3-policy-card dd,
+.v3-policy-card li,
+.v3-evidence-export-card p {
+  margin: 0;
+  color: #c6d1df;
+  line-height: 1.6;
+}
+
+.v3-terminal-score-meter {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.2);
+  overflow: hidden;
+}
+
+.v3-terminal-score-meter i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--v3-sun);
+}
+
+.v3-terminal-peer-read {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--v3-line);
+}
+
+.v3-terminal-peer-read b {
+  color: var(--v3-text);
+  font-family: "Sora", sans-serif;
+  font-size: 1.2rem;
+}
+
+.v3-terminal-index {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+  gap: 18px;
+}
+
+.v3-terminal-metric-grid,
+.v3-terminal-live-grid,
+.v3-terminal-memo-grid,
+.v3-project-ledger,
+.v3-forecast-grid,
+.v3-policy-grid,
+.v3-evidence-export-grid,
+.v3-terminal-factor-list {
+  display: grid;
+  gap: 14px;
+}
+
+.v3-terminal-metric-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.v3-terminal-metric,
+.v3-terminal-factor-panel,
+.v3-terminal-factor-list article,
+.v3-terminal-live-card,
+.v3-terminal-small-card,
+.v3-project-card,
+.v3-forecast-card,
+.v3-policy-card,
+.v3-evidence-export-card {
+  border: 1px solid var(--v3-line);
+  border-radius: 8px;
+  background: rgba(17, 25, 52, 0.54);
+}
+
+.v3-terminal-metric,
+.v3-terminal-live-card,
+.v3-terminal-small-card,
+.v3-project-card,
+.v3-forecast-card,
+.v3-policy-card,
+.v3-evidence-export-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 18px;
+}
+
+.v3-terminal-metric strong,
+.v3-terminal-live-card strong,
+.v3-terminal-small-card strong {
+  font-family: "Sora", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.v3-terminal-factor-panel {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.v3-terminal-factor-panel h3,
+.v3-project-card h3,
+.v3-forecast-card h3,
+.v3-policy-card h3,
+.v3-evidence-export-card h3 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  line-height: 1.12;
+}
+
+.v3-terminal-factor-chart {
+  min-height: 260px;
+}
+
+.v3-terminal-factor-list article {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+}
+
+.v3-terminal-factor-list article > div,
+.v3-project-card > div:first-child,
+.v3-forecast-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+
+.v3-terminal-factor-list strong,
+.v3-forecast-indicators strong,
+.v3-policy-card strong,
+.v3-terminal-trigger strong {
+  font-family: "Sora", sans-serif;
+}
+
+.v3-terminal-factor-list span {
+  color: var(--v3-sun);
+  font-family: "Sora", sans-serif;
+  font-weight: 800;
+}
+
+.v3-terminal-source-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.v3-terminal-source-list a {
+  display: inline-flex;
+  max-width: 100%;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 143, 63, 0.24);
+  border-radius: 999px;
+  color: var(--v3-sun);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.v3-terminal-source-list span {
+  color: var(--v3-muted);
+  font-size: 0.62rem;
+}
+
+.v3-terminal-live-grid,
+.v3-policy-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.v3-terminal-memo-grid,
+.v3-project-ledger,
+.v3-evidence-export-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.v3-project-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.v3-project-meta p {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--v3-line);
+  border-radius: 8px;
+  background: rgba(10, 16, 36, 0.64);
+}
+
+.v3-project-meta span {
+  display: block;
+}
+
+.v3-forecast-grid {
+  grid-template-columns: 1fr;
+}
+
+.v3-forecast-card {
+  gap: 18px;
+}
+
+.v3-forecast-card-head b {
+  color: var(--v3-good);
+}
+
+.v3-forecast-cases,
+.v3-forecast-indicators {
+  display: grid;
+  gap: 12px;
+}
+
+.v3-forecast-cases {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.v3-forecast-cases section,
+.v3-forecast-indicators > div {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--v3-line);
+  border-radius: 8px;
+  background: rgba(10, 16, 36, 0.54);
+}
+
+.v3-forecast-indicators {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.v3-forecast-indicators ul,
+.v3-policy-card ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.v3-policy-card dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.v3-policy-card dd {
+  margin: 4px 0 0;
+}
+
+.v3-policy-stance {
+  padding-left: 14px;
+  border-left: 3px solid var(--v3-sun);
+  color: var(--v3-text) !important;
+  font-family: "Sora", sans-serif;
+}
+
+.v3-evidence-export-card {
+  border-top: 3px solid var(--v3-sun);
+}
+
 .v3-panel-head {
   display: flex;
   gap: 20px;
@@ -865,7 +1224,9 @@ button.v3-table-row {
   .v3-hero,
   .v3-watch,
   .v3-two-up,
-  .v3-strategy-hero {
+  .v3-strategy-hero,
+  .v3-terminal-hero,
+  .v3-terminal-index {
     grid-template-columns: 1fr;
   }
 
@@ -874,14 +1235,21 @@ button.v3-table-row {
   .v3-toggle-grid,
   .v3-cluster-grid,
   .v3-momentum-grid,
-  .v3-scenario-grid {
+  .v3-scenario-grid,
+  .v3-terminal-live-grid,
+  .v3-policy-grid,
+  .v3-forecast-cases {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .v3-resource-list,
   .v3-source-grid,
   .v3-brain-note-grid,
-  .v3-benchmark-grid {
+  .v3-benchmark-grid,
+  .v3-terminal-metric-grid,
+  .v3-terminal-memo-grid,
+  .v3-project-ledger,
+  .v3-evidence-export-grid {
     grid-template-columns: 1fr;
   }
 
@@ -912,7 +1280,12 @@ button.v3-table-row {
   .v3-cluster-grid,
   .v3-momentum-grid,
   .v3-scenario-grid,
-  .v3-peer-row {
+  .v3-peer-row,
+  .v3-terminal-live-grid,
+  .v3-policy-grid,
+  .v3-forecast-cases,
+  .v3-forecast-indicators,
+  .v3-project-meta {
     grid-template-columns: 1fr;
   }
 

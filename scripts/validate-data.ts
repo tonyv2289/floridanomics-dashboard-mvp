@@ -11,6 +11,13 @@ import type {
   PeerStateSnapshot,
   StrategyCluster,
   StrategyScenario,
+  TerminalEvidenceBlock,
+  TerminalForecast,
+  TerminalIndexFactor,
+  TerminalMetric,
+  TerminalPolicyMemo,
+  TerminalProject,
+  TerminalSource,
 } from "../src/types/dashboard";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -53,6 +60,15 @@ const REQUIRED_STRATEGY_SOURCE_IDS = [
 ] as const;
 
 const REQUIRED_PEER_STATE_IDS = ["FL", "TX", "GA", "NC", "TN", "AZ", "UT", "CA"] as const;
+
+const REQUIRED_TERMINAL_SOURCE_IDS = [
+  "bls_state_april_2026",
+  "cbre_h2_2025_data_centers",
+  "jll_2026_global_data_center_outlook",
+  "florida_governor_sb484",
+  "florida_senate_sb484",
+  "fc100_ambition_accelerated",
+] as const;
 
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
@@ -194,6 +210,117 @@ function validateStrategyScenario(scenario: StrategyScenario, label: string, err
   scenario.sources.forEach((source, index) => validateSource(source, `${label} source ${index + 1}`, errors));
 }
 
+function validateTerminalSource(source: TerminalSource, label: string, errors: string[]) {
+  ensure(isNonEmptyString(source.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(source.label), `${label} missing label`, errors);
+  ensure(isHttpUrl(source.url), `${label} missing valid URL`, errors);
+  ensure(isNonEmptyString(source.tier), `${label} missing tier`, errors);
+  ensure(isNonEmptyString(source.note), `${label} missing note`, errors);
+}
+
+function validateTerminalSourceRefs(
+  sourceIds: string[],
+  sourceIdSet: Set<string>,
+  label: string,
+  errors: string[],
+) {
+  ensure(sourceIds.length > 0, `${label} must include sourceIds`, errors);
+  sourceIds.forEach((sourceId) => {
+    ensure(sourceIdSet.has(sourceId), `${label} references missing terminal source: ${sourceId}`, errors);
+  });
+}
+
+function validateTerminalMetric(metric: TerminalMetric, sourceIdSet: Set<string>, label: string, errors: string[]) {
+  ensure(isNonEmptyString(metric.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(metric.label), `${label} missing label`, errors);
+  ensure(isNonEmptyString(metric.value), `${label} missing value`, errors);
+  ensure(isNonEmptyString(metric.context), `${label} missing context`, errors);
+  ensure(isNonEmptyString(metric.read), `${label} missing read`, errors);
+  validateTerminalSourceRefs(metric.sourceIds, sourceIdSet, label, errors);
+}
+
+function validateTerminalIndexFactor(
+  factor: TerminalIndexFactor,
+  sourceIdSet: Set<string>,
+  label: string,
+  errors: string[],
+) {
+  ensure(isNonEmptyString(factor.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(factor.label), `${label} missing label`, errors);
+  ensure(isFiniteNumber(factor.score), `${label} missing score`, errors);
+  ensure(isFiniteNumber(factor.maxScore), `${label} missing maxScore`, errors);
+  ensure(factor.score >= 0 && factor.score <= factor.maxScore, `${label} score is outside maxScore`, errors);
+  ensure(isNonEmptyString(factor.read), `${label} missing read`, errors);
+  validateTerminalSourceRefs(factor.sourceIds, sourceIdSet, label, errors);
+}
+
+function validateTerminalProject(project: TerminalProject, sourceIdSet: Set<string>, label: string, errors: string[]) {
+  ensure(isNonEmptyString(project.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(project.name), `${label} missing name`, errors);
+  ensure(isNonEmptyString(project.geography), `${label} missing geography`, errors);
+  ensure(isNonEmptyString(project.sector), `${label} missing sector`, errors);
+  ensure(isNonEmptyString(project.capex), `${label} missing capex`, errors);
+  ensure(isNonEmptyString(project.jobs), `${label} missing jobs`, errors);
+  ensure(isNonEmptyString(project.stage), `${label} missing stage`, errors);
+  ensure(isNonEmptyString(project.strategicRead), `${label} missing strategicRead`, errors);
+  validateTerminalSourceRefs(project.sourceIds, sourceIdSet, label, errors);
+}
+
+function validateTerminalForecast(forecast: TerminalForecast, sourceIdSet: Set<string>, label: string, errors: string[]) {
+  ensure(isNonEmptyString(forecast.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(forecast.claim), `${label} missing claim`, errors);
+  ensure(isNonEmptyString(forecast.horizon), `${label} missing horizon`, errors);
+  ensure(isNonEmptyString(forecast.confidence), `${label} missing confidence`, errors);
+  ensure(isNonEmptyString(forecast.mechanism), `${label} missing mechanism`, errors);
+  ensure(forecast.leadingIndicators.length > 0, `${label} missing leadingIndicators`, errors);
+  ensure(forecast.laggingIndicators.length > 0, `${label} missing laggingIndicators`, errors);
+  ensure(isNonEmptyString(forecast.baseCase), `${label} missing baseCase`, errors);
+  ensure(isNonEmptyString(forecast.ambitionCase), `${label} missing ambitionCase`, errors);
+  ensure(isNonEmptyString(forecast.riskCase), `${label} missing riskCase`, errors);
+  ensure(isNonEmptyString(forecast.counterCase), `${label} missing counterCase`, errors);
+  ensure(isNonEmptyString(forecast.updateTrigger), `${label} missing updateTrigger`, errors);
+  forecast.leadingIndicators.forEach((indicator, index) =>
+    ensure(isNonEmptyString(indicator), `${label} leadingIndicator ${index + 1} is empty`, errors),
+  );
+  forecast.laggingIndicators.forEach((indicator, index) =>
+    ensure(isNonEmptyString(indicator), `${label} laggingIndicator ${index + 1} is empty`, errors),
+  );
+  validateTerminalSourceRefs(forecast.sourceIds, sourceIdSet, label, errors);
+}
+
+function validateTerminalPolicyMemo(
+  memo: TerminalPolicyMemo,
+  sourceIdSet: Set<string>,
+  label: string,
+  errors: string[],
+) {
+  ensure(isNonEmptyString(memo.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(memo.title), `${label} missing title`, errors);
+  ensure(isNonEmptyString(memo.stance), `${label} missing stance`, errors);
+  ensure(isNonEmptyString(memo.whatChanged), `${label} missing whatChanged`, errors);
+  ensure(isNonEmptyString(memo.mechanism), `${label} missing mechanism`, errors);
+  ensure(isNonEmptyString(memo.recommendation), `${label} missing recommendation`, errors);
+  ensure(isNonEmptyString(memo.whatNotToDo), `${label} missing whatNotToDo`, errors);
+  ensure(memo.nextMoves.length > 0, `${label} missing nextMoves`, errors);
+  memo.nextMoves.forEach((move, index) =>
+    ensure(isNonEmptyString(move), `${label} nextMove ${index + 1} is empty`, errors),
+  );
+  validateTerminalSourceRefs(memo.sourceIds, sourceIdSet, label, errors);
+}
+
+function validateTerminalEvidenceBlock(
+  block: TerminalEvidenceBlock,
+  sourceIdSet: Set<string>,
+  label: string,
+  errors: string[],
+) {
+  ensure(isNonEmptyString(block.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(block.title), `${label} missing title`, errors);
+  ensure(isNonEmptyString(block.briefCopy), `${label} missing briefCopy`, errors);
+  ensure(isNonEmptyString(block.exportUse), `${label} missing exportUse`, errors);
+  validateTerminalSourceRefs(block.sourceIds, sourceIdSet, label, errors);
+}
+
 async function main() {
   const errors: string[] = [];
   const raw = await readFile(DATA_FILE, "utf8");
@@ -212,6 +339,7 @@ async function main() {
   });
   validateRequiredIds(data.sources, REQUIRED_TOP_LEVEL_SOURCE_IDS, "Top-level source stack", errors);
   validateRequiredIds(data.sources, REQUIRED_STRATEGY_SOURCE_IDS, "Strategy source stack", errors);
+  validateRequiredIds(data.sources, REQUIRED_TERMINAL_SOURCE_IDS, "Terminal source stack", errors);
 
   ensure(data.heroMetrics.length >= 4, "heroMetrics should have at least 4 entries", errors);
 
@@ -293,6 +421,57 @@ async function main() {
   data.strategy.scenarios.forEach((scenario, index) =>
     validateStrategyScenario(scenario, `strategy.scenarios ${index + 1}`, errors),
   );
+
+  ensure(isNonEmptyString(data.terminal.headline), "terminal missing headline", errors);
+  ensure(isNonEmptyString(data.terminal.thesis), "terminal missing thesis", errors);
+  ensure(isNonEmptyString(data.terminal.operatingQuestion), "terminal missing operatingQuestion", errors);
+  ensure(data.terminal.sources.length >= REQUIRED_TERMINAL_SOURCE_IDS.length, "terminal missing source stack", errors);
+  validateRequiredIds(data.terminal.sources, REQUIRED_TERMINAL_SOURCE_IDS, "Terminal sources", errors);
+  data.terminal.sources.forEach((source, index) => validateTerminalSource(source, `terminal.sources ${index + 1}`, errors));
+
+  const terminalSourceIds = new Set(data.terminal.sources.map((source) => source.id));
+  ensure(isNonEmptyString(data.terminal.aiCapexIndex.label), "terminal.aiCapexIndex missing label", errors);
+  ensure(isFiniteNumber(data.terminal.aiCapexIndex.score), "terminal.aiCapexIndex missing score", errors);
+  ensure(isFiniteNumber(data.terminal.aiCapexIndex.maxScore), "terminal.aiCapexIndex missing maxScore", errors);
+  ensure(
+    data.terminal.aiCapexIndex.score >= 0 && data.terminal.aiCapexIndex.score <= data.terminal.aiCapexIndex.maxScore,
+    "terminal.aiCapexIndex score is outside maxScore",
+    errors,
+  );
+  ensure(isNonEmptyString(data.terminal.aiCapexIndex.rating), "terminal.aiCapexIndex missing rating", errors);
+  ensure(isNonEmptyString(data.terminal.aiCapexIndex.caveat), "terminal.aiCapexIndex missing caveat", errors);
+  ensure(data.terminal.aiCapexIndex.metrics.length >= 4, "terminal.aiCapexIndex missing metrics", errors);
+  ensure(data.terminal.aiCapexIndex.factors.length >= 5, "terminal.aiCapexIndex missing factors", errors);
+  data.terminal.aiCapexIndex.metrics.forEach((metric, index) =>
+    validateTerminalMetric(metric, terminalSourceIds, `terminal.aiCapexIndex.metrics ${index + 1}`, errors),
+  );
+  data.terminal.aiCapexIndex.factors.forEach((factor, index) =>
+    validateTerminalIndexFactor(factor, terminalSourceIds, `terminal.aiCapexIndex.factors ${index + 1}`, errors),
+  );
+
+  ensure(isNonEmptyString(data.terminal.highWageMonitor.headline), "terminal.highWageMonitor missing headline", errors);
+  ensure(isNonEmptyString(data.terminal.highWageMonitor.summary), "terminal.highWageMonitor missing summary", errors);
+  ensure(data.terminal.highWageMonitor.metrics.length >= 3, "terminal.highWageMonitor missing metrics", errors);
+  data.terminal.highWageMonitor.metrics.forEach((metric, index) =>
+    validateTerminalMetric(metric, terminalSourceIds, `terminal.highWageMonitor.metrics ${index + 1}`, errors),
+  );
+  ensure(data.terminal.projectLedger.length >= 4, "terminal.projectLedger missing projects", errors);
+  data.terminal.projectLedger.forEach((project, index) =>
+    validateTerminalProject(project, terminalSourceIds, `terminal.projectLedger ${index + 1}`, errors),
+  );
+  ensure(data.terminal.forecasts.length >= 2, "terminal.forecasts missing forecasts", errors);
+  data.terminal.forecasts.forEach((forecast, index) =>
+    validateTerminalForecast(forecast, terminalSourceIds, `terminal.forecasts ${index + 1}`, errors),
+  );
+  ensure(data.terminal.policyMemos.length >= 2, "terminal.policyMemos missing memos", errors);
+  data.terminal.policyMemos.forEach((memo, index) =>
+    validateTerminalPolicyMemo(memo, terminalSourceIds, `terminal.policyMemos ${index + 1}`, errors),
+  );
+  ensure(data.terminal.evidenceBlocks.length >= 3, "terminal.evidenceBlocks missing blocks", errors);
+  data.terminal.evidenceBlocks.forEach((block, index) =>
+    validateTerminalEvidenceBlock(block, terminalSourceIds, `terminal.evidenceBlocks ${index + 1}`, errors),
+  );
+
   validateInsightSection(data.distinctives.snowbirdIndex, "distinctives.snowbirdIndex", errors);
   validateInsightSection(data.distinctives.spaceCoastCadence, "distinctives.spaceCoastCadence", errors);
   validateInsightSection(data.distinctives.latamGateway, "distinctives.latamGateway", errors);
@@ -384,7 +563,7 @@ async function main() {
     throw new Error(`Data validation failed with ${errors.length} issue(s).`);
   }
 
-  console.log("Dataset contract looks valid, including curated sections and Florida Brain notes.");
+  console.log("Dataset contract looks valid, including curated sections, Terminal, and Florida Brain notes.");
 }
 
 main().catch((error: unknown) => {

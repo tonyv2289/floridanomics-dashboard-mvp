@@ -12,6 +12,7 @@ import type {
   PeerStateSnapshot,
   PopulationMetric,
   StrategyLayer,
+  TerminalLayer,
   TimePoint,
 } from "../src/types/dashboard";
 
@@ -481,6 +482,39 @@ const STRATEGY_SOURCE_STACK: DashboardDataset["sources"] = [
   },
 ];
 
+const TERMINAL_SOURCE_STACK: DashboardDataset["sources"] = [
+  {
+    id: "bls_state_april_2026",
+    name: "BLS State Employment and Unemployment, April 2026",
+    url: "https://www.bls.gov/news.release/laus.nr0.htm",
+    notes: "Official state unemployment and nonfarm payroll benchmark used for the Florida versus peer-state operating read.",
+  },
+  {
+    id: "cbre_h2_2025_data_centers",
+    name: "CBRE North America Data Center Trends H2 2025",
+    url: "https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025",
+    notes: "Industry source for primary-market net absorption, Dallas data-center demand, supply constraints, and AI inference siting trends.",
+  },
+  {
+    id: "jll_2026_global_data_center_outlook",
+    name: "JLL 2026 Global Data Center Outlook",
+    url: "https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom",
+    notes: "Industry source for the global AI infrastructure supercycle, 103 GW to 200 GW capacity outlook, and $3T investment frame.",
+  },
+  {
+    id: "florida_governor_sb484",
+    name: "Florida Governor's Office - SB 484 Data Center Law",
+    url: "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers",
+    notes: "Official source for Florida's ratepayer-protection stance on hyperscale data centers.",
+  },
+  {
+    id: "florida_senate_sb484",
+    name: "Florida Senate CS/CS/SB 484 Bill Summary",
+    url: "https://www.flsenate.gov/Committees/BillSummaries/2026/html/484",
+    notes: "Policy source for large-load tariff, cost-of-service, local authority, water, and transparency requirements.",
+  },
+];
+
 const STRATEGY_BENCHMARK_EXAMPLES: StrategyLayer["benchmarkExamples"] = [
   {
     id: "texas-2036",
@@ -724,6 +758,438 @@ const STRATEGY_SCENARIOS: StrategyLayer["scenarios"] = [
     ],
   },
 ];
+
+const TERMINAL_LAYER: TerminalLayer = {
+  headline: "Export the Florida model as an operating system, not a slogan.",
+  thesis:
+    "Florida's advantage is not one metric. It is migration, business formation, low-tax discipline, gateway infrastructure, aerospace cadence, and policy restraint working together. The open question is whether that model can also win the power-heavy AI capex cycle without making households subsidize it.",
+  operatingQuestion:
+    "Is Florida converting population and capital inflow into high-wage strategic industries faster than peer states, or is it letting the largest capex boom in modern infrastructure compound somewhere else?",
+  sources: [
+    {
+      id: "bls_state_april_2026",
+      label: "BLS April 2026 state release",
+      url: "https://www.bls.gov/news.release/laus.nr0.htm",
+      tier: "official",
+      note: "Florida posted the largest monthly payroll gain in April 2026, while its unemployment rate rose 1.1 percentage points year over year.",
+    },
+    {
+      id: "cbre_h2_2025_data_centers",
+      label: "CBRE H2 2025 data center trends",
+      url: "https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025",
+      tier: "industry",
+      note: "Tracks primary-market absorption, Dallas momentum, power constraints, inference demand, and the national incentive race.",
+    },
+    {
+      id: "jll_2026_global_data_center_outlook",
+      label: "JLL 2026 global data center outlook",
+      url: "https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom",
+      tier: "industry",
+      note: "Frames the global AI infrastructure supercycle as capacity moving from 103 GW to 200 GW by 2030 with up to $3T of investment.",
+    },
+    {
+      id: "florida_governor_sb484",
+      label: "Florida Governor SB 484 release",
+      url: "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers",
+      tier: "official",
+      note: "Official ratepayer-protection and local-authority frame for Florida data-center policy.",
+    },
+    {
+      id: "florida_senate_sb484",
+      label: "Florida Senate SB 484 summary",
+      url: "https://www.flsenate.gov/Committees/BillSummaries/2026/html/484",
+      tier: "policy",
+      note: "Large-load customers must pay cost of service and cannot shift nonpayment risk to the general body of ratepayers.",
+    },
+    {
+      id: "space_florida",
+      label: "Space Florida aerospace readout",
+      url: "https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry",
+      tier: "official",
+      note: "Source for launch cadence and aerospace project-pipeline context.",
+    },
+    {
+      id: "blue_origin_florida",
+      label: "Blue Origin Florida expansion",
+      url: "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-announces-600m-blue-origin-manufacturing-expansion-500-high",
+      tier: "official",
+      note: "Project-level source for the $600M Cape Canaveral manufacturing expansion and 500 high-wage jobs frame.",
+    },
+    {
+      id: "portmiami",
+      label: "PortMiami cargo statistics",
+      url: "https://www.miamidade.gov/portmiami/cargo.page",
+      tier: "official",
+      note: "Official gateway metrics for tonnage, TEUs, and Americas trade capacity.",
+    },
+    {
+      id: "port_everglades",
+      label: "Port Everglades cargo statistics",
+      url: "https://www.porteverglades.net/about-us/statistics/cargo-statistics/",
+      tier: "official",
+      note: "Official cargo and refrigerated-container metrics for the South Florida logistics layer.",
+    },
+    {
+      id: "fc100_ambition_accelerated",
+      label: "Florida Council of 100 Ambition Accelerated",
+      url: "https://ambitionaccelerated.com/",
+      tier: "benchmark",
+      note: "Business-led ambition frame for Florida's next-economy strategy.",
+    },
+    {
+      id: "florida_chamber_income_migration",
+      label: "Florida Chamber income migration analysis",
+      url: "https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/",
+      tier: "benchmark",
+      note: "Canonical public source for the $4M-plus per hour net income-migration frame.",
+    },
+    {
+      id: "florida_taxwatch",
+      label: "Florida TaxWatch",
+      url: "https://floridataxwatch.org/",
+      tier: "policy",
+      note: "Florida fiscal and competitiveness research source for future policy memos.",
+    },
+    {
+      id: "james_madison_institute",
+      label: "James Madison Institute",
+      url: "https://jamesmadison.org/",
+      tier: "policy",
+      note: "Florida economic-freedom and regulatory-policy source for future policy memos.",
+    },
+  ],
+  aiCapexIndex: {
+    label: "AI Capex Gap Index",
+    score: 15,
+    maxScore: 25,
+    rating: "Watch",
+    caveat:
+      "Prototype editorial index. It is source-backed but not an official state score until Florida-specific MW pipeline, interconnection, power-price, and project-award data are wired.",
+    metrics: [
+      {
+        id: "florida-payroll-jump",
+        label: "Florida payroll pulse",
+        value: "+40,500",
+        context: "April 2026 monthly nonfarm payroll change, largest among states",
+        read: "The labor market is not collapsing. The better question is composition: are the new jobs part of the next capex cycle or mostly population-serving growth?",
+        sourceIds: ["bls_state_april_2026"],
+      },
+      {
+        id: "florida-unemployment-watch",
+        label: "Unemployment warning light",
+        value: "4.8%",
+        context: "Florida April 2026 unemployment rate, up 1.1 percentage points year over year",
+        read: "Florida is no longer telling a simple tight-labor-market story. Elevated unemployment beside a payroll jump demands a sector and wage-quality read.",
+        sourceIds: ["bls_state_april_2026"],
+      },
+      {
+        id: "texas-peer-spread",
+        label: "Texas comparison",
+        value: "4.3%",
+        context: "Texas April 2026 unemployment rate",
+        read: "Texas is not proof by itself, but it is the right peer to test whether power-heavy capex is converting into labor-market resilience.",
+        sourceIds: ["bls_state_april_2026"],
+      },
+      {
+        id: "dallas-absorption",
+        label: "Dallas data-center absorption",
+        value: "470.8 MW",
+        context: "CBRE H2 2025 primary-market net absorption",
+        read: "This is the concrete 'eating our lunch' benchmark: hyperscale demand is landing in measurable megawatts in Texas markets.",
+        sourceIds: ["cbre_h2_2025_data_centers"],
+      },
+      {
+        id: "global-ai-supercycle",
+        label: "AI infrastructure supercycle",
+        value: "$3T",
+        context: "JLL estimate for total data-center investment over the next five years",
+        read: "If the global capacity base nearly doubles by 2030, missing even a small slice is a real strategic opportunity cost.",
+        sourceIds: ["jll_2026_global_data_center_outlook"],
+      },
+    ],
+    factors: [
+      {
+        id: "demand-adjacency",
+        label: "Demand adjacency",
+        score: 4,
+        maxScore: 5,
+        read: "Florida has population, LATAM, aerospace, finance, and edge-inference use cases that make strategic compute plausible.",
+        sourceIds: ["jll_2026_global_data_center_outlook", "portmiami", "space_florida"],
+      },
+      {
+        id: "power-readiness",
+        label: "Power readiness",
+        score: 2,
+        maxScore: 5,
+        read: "The missing dataset is Florida-specific MW under construction, interconnection queue, power procurement, and self-supply capacity.",
+        sourceIds: ["cbre_h2_2025_data_centers", "florida_senate_sb484"],
+      },
+      {
+        id: "project-visibility",
+        label: "Project visibility",
+        score: 2,
+        maxScore: 5,
+        read: "Florida can name aerospace wins clearly. It cannot yet show a comparable AI compute project ledger.",
+        sourceIds: ["blue_origin_florida", "cbre_h2_2025_data_centers"],
+      },
+      {
+        id: "incentive-discipline",
+        label: "Incentive discipline",
+        score: 4,
+        maxScore: 5,
+        read: "SB 484 is directionally sound: no household subsidy for dumb load. The upgrade is a fast lane for strategic compute that pays its own way.",
+        sourceIds: ["florida_governor_sb484", "florida_senate_sb484"],
+      },
+      {
+        id: "wage-conversion",
+        label: "High-wage conversion",
+        score: 3,
+        maxScore: 5,
+        read: "Business formation and migration are strong, but the terminal needs OEWS, QCEW, and cluster wage data to prove the wage curve is bending.",
+        sourceIds: ["bls_state_april_2026", "fc100_ambition_accelerated"],
+      },
+    ],
+  },
+  highWageMonitor: {
+    headline: "The next scorecard is not job count. It is wage-quality conversion.",
+    summary:
+      "Florida can add jobs and still lose the next cycle if growth concentrates in lower-wage population services while AI, aerospace, chips, advanced logistics, and life-science capex land elsewhere.",
+    metrics: [
+      {
+        id: "information-jobs",
+        label: "Information jobs",
+        value: "Live BLS series",
+        context: "Knowledge-work bench and AI-adjacent services",
+        read: "If AI infrastructure is becoming a real Florida industry, information employment should stop behaving like a thin support sector.",
+        sourceIds: ["bls_state_april_2026"],
+      },
+      {
+        id: "construction-jobs",
+        label: "Construction jobs",
+        value: "Live BLS series",
+        context: "Capex build-out proxy",
+        read: "Data centers, aerospace factories, ports, and grid upgrades should first show up in construction and specialty-trade labor demand.",
+        sourceIds: ["bls_state_april_2026"],
+      },
+      {
+        id: "professional-services",
+        label: "Professional services",
+        value: "Live BLS series",
+        context: "Managerial, technical, and advisory depth",
+        read: "The Florida model needs headquarters, engineering, finance, legal, and operations work attached to the physical build-out.",
+        sourceIds: ["bls_state_april_2026"],
+      },
+    ],
+  },
+  projectLedger: [
+    {
+      id: "blue-origin-cape",
+      name: "Blue Origin Cape Canaveral expansion",
+      geography: "Space Coast",
+      sector: "Aerospace manufacturing",
+      capex: "$600M",
+      jobs: "500 high-wage jobs",
+      stage: "Announced",
+      strategicRead:
+        "This is the model project: physical innovation, manufacturing depth, and Space Coast specialization in one investable proof point.",
+      sourceIds: ["blue_origin_florida"],
+    },
+    {
+      id: "space-florida-pipeline",
+      name: "Space Florida aerospace pipeline",
+      geography: "Statewide aerospace corridor",
+      sector: "Aerospace and spaceport infrastructure",
+      capex: "$6B",
+      jobs: "220-project pipeline",
+      stage: "Pipeline",
+      strategicRead:
+        "A project pipeline this large deserves to sit beside labor, supplier, and wage data so Florida can prove the cluster is deepening.",
+      sourceIds: ["space_florida"],
+    },
+    {
+      id: "ai-compute-gap",
+      name: "Florida strategic compute ledger",
+      geography: "TBD",
+      sector: "AI infrastructure",
+      capex: "Measurement gap",
+      jobs: "TBD",
+      stage: "Needs source wiring",
+      strategicRead:
+        "This is the glaring blank space. If peers can publish megawatts, capex, tenants, and construction timelines, Florida Brain should track the absence as aggressively as the wins.",
+      sourceIds: ["cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
+    },
+    {
+      id: "portmiami-gateway",
+      name: "PortMiami gateway capacity",
+      geography: "Miami-Dade",
+      sector: "LATAM logistics",
+      capex: "10.1M tons / 1.09M TEUs",
+      jobs: "Capacity proxy",
+      stage: "Operating asset",
+      strategicRead:
+        "The Americas gateway is not marketing copy. It is a physical logistics base that can support trade, finance, perishables, and regional compute demand.",
+      sourceIds: ["portmiami"],
+    },
+    {
+      id: "port-everglades-cold-chain",
+      name: "Port Everglades cold-chain capacity",
+      geography: "Broward",
+      sector: "Refrigerated logistics",
+      capex: "126,392 reefer TEUs",
+      jobs: "Capacity proxy",
+      stage: "Operating asset",
+      strategicRead:
+        "Cold-chain depth is part of the Florida model because gateway trade is a high-infrastructure business, not just a tourism-adjacent story.",
+      sourceIds: ["port_everglades"],
+    },
+  ],
+  forecasts: [
+    {
+      id: "ai-capex-gap",
+      claim:
+        "Florida's unemployment softness may partly reflect under-capture of the AI infrastructure capex cycle, not just a normal labor-market cooldown.",
+      horizon: "6 to 18 months",
+      confidence: "medium",
+      mechanism:
+        "AI infrastructure first creates power, construction, engineering, and operations demand. If those projects land in Texas, Arizona, Georgia, North Carolina, or Virginia instead of Florida, peer labor markets can look stronger even when Florida keeps winning migration.",
+      leadingIndicators: [
+        "Announced megawatts and MW under construction by state",
+        "Large-load interconnection queue and utility tariff filings",
+        "Hyperscaler, neocloud, and colocation capex announcements",
+        "Construction, electrical-contractor, and utility-workforce demand",
+      ],
+      laggingIndicators: [
+        "Information employment",
+        "Construction payrolls",
+        "Professional and business services payrolls",
+        "Average weekly wages in target clusters",
+      ],
+      baseCase:
+        "Florida remains a migration, formation, aerospace, and gateway state, but AI infrastructure stays under-measured and secondary.",
+      ambitionCase:
+        "Florida creates a strategic-compute lane tied to self-funded power, grid resilience, Space Coast, LATAM, health, and financial-services workloads.",
+      riskCase:
+        "Florida blocks or slows too much strategic compute while peers compound power, fiber, and high-wage operations ecosystems.",
+      counterCase:
+        "The unemployment increase is mainly labor-supply normalization and sector churn; Florida's monthly payroll gain shows demand is still broad enough.",
+      updateTrigger:
+        "Upgrade or downgrade the thesis when Florida-specific MW pipeline, utility tariff filings, or named AI infrastructure projects become source-visible.",
+      sourceIds: ["bls_state_april_2026", "cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
+    },
+    {
+      id: "florida-model-export",
+      claim:
+        "The Florida model can travel if it is framed as a growth operating system: fiscal discipline, fast formation, migration pull, gateway assets, and strategic infrastructure.",
+      horizon: "12 to 36 months",
+      confidence: "medium",
+      mechanism:
+        "Other states and countries can copy pieces of Florida, but the exportable product is the sequencing: attract people and capital, protect taxpayers, then convert that demand into clusters with measurable wage outcomes.",
+      leadingIndicators: [
+        "Business formation",
+        "Income migration",
+        "Cluster project ledger",
+        "Workforce placement into target sectors",
+      ],
+      laggingIndicators: [
+        "GDP per capita",
+        "Median wage growth",
+        "Target-cluster wage premium",
+        "State and local fiscal resilience",
+      ],
+      baseCase:
+        "Florida Brain becomes a strong state dashboard and content engine for internal strategy.",
+      ambitionCase:
+        "Floridanomics becomes a reusable model for governors, chambers, economic developers, founders, and investors outside Florida.",
+      riskCase:
+        "The brand becomes boosterism if the dashboard cannot show the difference between population growth and productivity growth.",
+      counterCase:
+        "Florida's model may be too dependent on unique tax, weather, migration, and regional-gateway advantages to export cleanly.",
+      updateTrigger:
+        "Advance the export thesis only when the terminal can show source-linked playbooks, not just state pride.",
+      sourceIds: ["florida_chamber_income_migration", "fc100_ambition_accelerated", "florida_taxwatch", "james_madison_institute"],
+    },
+  ],
+  policyMemos: [
+    {
+      id: "strategic-compute-not-dumb-load",
+      title: "Strategic compute, not dumb load.",
+      stance:
+        "Florida should not subsidize hyperscale loads through household utility bills. It also should not confuse disciplined cost allocation with surrendering the AI infrastructure race.",
+      whatChanged:
+        "SB 484 makes the ratepayer line explicit: large-load customers pay their own cost of service, local governments keep authority, and utility risk should not be shifted to the public.",
+      mechanism:
+        "The policy problem is separating strategic compute that strengthens the grid, pays full freight, and creates high-wage work from passive load that raises costs without a local productivity payoff.",
+      recommendation:
+        "Create a Florida strategic-compute fast lane for projects that bring their own power or grid assets, cover full marginal cost, use reclaimed water where appropriate, disclose deal terms after exemption periods, and tie incentives to high-wage operations and Florida-specific workloads.",
+      whatNotToDo:
+        "Do not write blank checks, do not socialize utility costs, do not block every project, and do not copy Texas if the better Florida lane is edge, LATAM, Space Coast, health, finance, and resilient inference.",
+      nextMoves: [
+        "Add Florida-specific MW pipeline and utility tariff tracker",
+        "Create a named project ledger for data centers, grid upgrades, and advanced manufacturing",
+        "Map strategic workloads to Space Coast, LATAM, health, finance, and emergency-resilience use cases",
+      ],
+      sourceIds: ["florida_governor_sb484", "florida_senate_sb484", "cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
+    },
+    {
+      id: "wage-curve-scoreboard",
+      title: "Make wage quality the referee.",
+      stance:
+        "The next Floridanomics product should judge policy by whether it bends the wage curve in target clusters, not whether it produces a bigger ribbon-cutting number.",
+      whatChanged:
+        "Florida can plausibly be both a strong jobs state and a state with warning lights. That contradiction is the product opportunity.",
+      mechanism:
+        "Population growth creates demand. Strategic capex creates productivity. The dashboard has to separate those two engines.",
+      recommendation:
+        "Wire OEWS, QCEW, workforce credentials, target occupations, and county-level wage outcomes into the terminal before declaring a cluster strategy successful.",
+      whatNotToDo:
+        "Do not let total jobs, startup counts, or migration dollars substitute for high-wage conversion.",
+      nextMoves: [
+        "Add high-wage occupation basket by cluster",
+        "Track target-cluster wages versus state median",
+        "Connect education programs and credentials to employment outcomes",
+      ],
+      sourceIds: ["bls_state_april_2026", "fc100_ambition_accelerated", "florida_taxwatch", "james_madison_institute"],
+    },
+  ],
+  evidenceBlocks: [
+    {
+      id: "exportable-model",
+      title: "The exportable Florida model",
+      briefCopy:
+        "Florida's model is a growth flywheel: people move in, capital follows, formation accelerates, the tax base expands, and policy has to convert that demand into high-wage clusters without losing fiscal discipline.",
+      exportUse:
+        "Use this as the opening frame for a global Florida Model brief, investor deck, or governor-level policy memo.",
+      sourceIds: ["florida_chamber_income_migration", "fc100_ambition_accelerated"],
+    },
+    {
+      id: "ai-capex-question",
+      title: "The uncomfortable AI question",
+      briefCopy:
+        "Florida is winning people and payrolls, but the AI infrastructure boom is measured in megawatts, power procurement, construction pipelines, and high-wage operations. If that ledger is blank, it is not neutral.",
+      exportUse:
+        "Use this as the thesis paragraph for the AI Capex Gap briefing page and the next Florida Brain issue.",
+      sourceIds: ["bls_state_april_2026", "cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
+    },
+    {
+      id: "discipline-frame",
+      title: "The policy discipline frame",
+      briefCopy:
+        "The pro-growth answer is not subsidy or refusal. It is a disciplined market design: strategic compute pays full cost, strengthens infrastructure, and earns speed only when the public does not carry the bill.",
+      exportUse:
+        "Use this as the sound policy spine for op-eds, testimony, and chamber-facing memos.",
+      sourceIds: ["florida_governor_sb484", "florida_senate_sb484"],
+    },
+    {
+      id: "physical-innovation",
+      title: "Physical innovation is Florida's lane",
+      briefCopy:
+        "Florida's most distinctive innovation assets are physical: ports, launches, aerospace manufacturing, logistics, health, and energy-resilient edge demand. The dashboard should make that visible.",
+      exportUse:
+        "Use this to move Florida Brain beyond generic startup ecosystem coverage.",
+      sourceIds: ["space_florida", "blue_origin_florida", "portmiami", "port_everglades"],
+    },
+  ],
+};
 
 function metricSeriesId(root: string, measureCode: "003" | "005" | "006") {
   return `${root}${measureCode}`;
@@ -1357,7 +1823,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     asOfLaborMarket: prettyMonth(metrics.unemploymentRate.latest.date),
     asOfPopulation: String(new Date(metrics.population.latest.date).getUTCFullYear()),
-    sources: mergeSources(dynamicSources, existingDataset?.sources ?? [], STRATEGY_SOURCE_STACK),
+    sources: mergeSources(dynamicSources, existingDataset?.sources ?? [], STRATEGY_SOURCE_STACK, TERMINAL_SOURCE_STACK),
     heroMetrics: ["unemploymentRate", "laborForce", "nonfarmPayrolls", "population", "employmentLevel"],
     metrics,
     industry: {
@@ -1390,6 +1856,7 @@ async function main() {
       talentPipeline: STRATEGY_TALENT_PIPELINE,
       scenarios: STRATEGY_SCENARIOS,
     },
+    terminal: TERMINAL_LAYER,
     scorecard2030: preservedSections.scorecard2030,
     distinctives: preservedSections.distinctives,
     trade: preservedSections.trade,
@@ -1404,7 +1871,7 @@ async function main() {
 
   console.log(`Wrote ${OUTPUT_FILE}`);
   console.log(`As-of labor market: ${dataset.asOfLaborMarket}; population: ${dataset.asOfPopulation}`);
-  console.log("Preserved curated sections: scorecard2030, brainNotes, distinctives, trade.");
+  console.log("Preserved curated sections: scorecard2030, brainNotes, terminal, distinctives, trade.");
 }
 
 main().catch((error: unknown) => {

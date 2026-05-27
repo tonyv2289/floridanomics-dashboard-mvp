@@ -160,6 +160,105 @@ export type StrategyLayer = {
   scenarios: StrategyScenario[];
 };
 
+export type TerminalSource = {
+  id: string;
+  label: string;
+  url: string;
+  tier: "official" | "industry" | "policy" | "benchmark" | "internal";
+  note: string;
+};
+
+export type TerminalMetric = {
+  id: string;
+  label: string;
+  value: string;
+  context: string;
+  read: string;
+  sourceIds: string[];
+};
+
+export type TerminalIndexFactor = {
+  id: string;
+  label: string;
+  score: number;
+  maxScore: number;
+  read: string;
+  sourceIds: string[];
+};
+
+export type TerminalProject = {
+  id: string;
+  name: string;
+  geography: string;
+  sector: string;
+  capex: string;
+  jobs: string;
+  stage: string;
+  strategicRead: string;
+  sourceIds: string[];
+};
+
+export type TerminalForecast = {
+  id: string;
+  claim: string;
+  horizon: string;
+  confidence: "low" | "medium" | "high";
+  mechanism: string;
+  leadingIndicators: string[];
+  laggingIndicators: string[];
+  baseCase: string;
+  ambitionCase: string;
+  riskCase: string;
+  counterCase: string;
+  updateTrigger: string;
+  sourceIds: string[];
+};
+
+export type TerminalPolicyMemo = {
+  id: string;
+  title: string;
+  stance: string;
+  whatChanged: string;
+  mechanism: string;
+  recommendation: string;
+  whatNotToDo: string;
+  nextMoves: string[];
+  sourceIds: string[];
+};
+
+export type TerminalEvidenceBlock = {
+  id: string;
+  title: string;
+  briefCopy: string;
+  exportUse: string;
+  sourceIds: string[];
+};
+
+export type TerminalLayer = {
+  headline: string;
+  thesis: string;
+  operatingQuestion: string;
+  sources: TerminalSource[];
+  aiCapexIndex: {
+    label: string;
+    score: number;
+    maxScore: number;
+    rating: string;
+    caveat: string;
+    metrics: TerminalMetric[];
+    factors: TerminalIndexFactor[];
+  };
+  highWageMonitor: {
+    headline: string;
+    summary: string;
+    metrics: TerminalMetric[];
+  };
+  projectLedger: TerminalProject[];
+  forecasts: TerminalForecast[];
+  policyMemos: TerminalPolicyMemo[];
+  evidenceBlocks: TerminalEvidenceBlock[];
+};
+
 export type TradeHeadlineMetric = {
   id: string;
   label: string;
@@ -273,6 +372,7 @@ export type DashboardDataset = {
   scorecard2030: InsightSection;
   brainNotes: FloridaBrainNote[];
   strategy: StrategyLayer;
+  terminal: TerminalLayer;
   distinctives: {
     snowbirdIndex: InsightSection;
     spaceCoastCadence: InsightSection;
