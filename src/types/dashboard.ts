@@ -100,6 +100,17 @@ export type InsightSection = {
   sources: InsightSource[];
 };
 
+export type FloridaBrainNote = {
+  id: string;
+  kicker: string;
+  status: string;
+  title: string;
+  summary: string;
+  ctaLabel?: string;
+  href?: string;
+  sources: InsightSource[];
+};
+
 export type TradeHeadlineMetric = {
   id: string;
   label: string;
@@ -211,6 +222,7 @@ export type DashboardDataset = {
     resources: InnovationResource[];
   };
   scorecard2030: InsightSection;
+  brainNotes: FloridaBrainNote[];
   distinctives: {
     snowbirdIndex: InsightSection;
     spaceCoastCadence: InsightSection;

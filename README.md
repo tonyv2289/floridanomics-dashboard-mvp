@@ -4,17 +4,19 @@ Florida Brain's public data surface for Florida economic, innovation, and trade 
 
 ## Current product state
 
-- `v2` is the current launch-default dashboard
-- `v1` is preserved behind compare mode for fallback and review
+- `v3` is the current launch-default dashboard
+- `v2` and `v1` are preserved behind compare mode for fallback and review
 - Compare routes:
+  - `?compare=1&version=v3`
   - `?compare=1&version=v2`
   - `?compare=1&version=v1`
 
-The live `v2` experience is built around three tabs:
+The live `v3` experience is built around four tabs:
 
-1. `Florida Scorecard`
-2. `Innovation + Econ Dev`
-3. `International Trade`
+1. `Brief`
+2. `Scorecard`
+3. `Innovation`
+4. `Trade`
 
 It also includes the newer editorial and Florida-specific sections that make the product more than a generic KPI board:
 
@@ -22,6 +24,8 @@ It also includes the newer editorial and Florida-specific sections that make the
 - `Snowbird Index` proxy
 - `Space Coast Cadence`
 - `LATAM Gateway`
+- Florida Brain Notes
+- AI Capex Gap public HTML brief
 - chart and metric-card interpretation copy
 - branded Open Graph and Twitter share previews
 
@@ -34,6 +38,7 @@ This is not a generic state dashboard. The target register is "Florida's Bloombe
 - editorial framing, not just charts
 - screenshot-ready for speeches, decks, WhatsApp shares, and policy/investor discussions
 - grounded in verified public sources plus curated Florida-specific context
+- connected to Florida Brain notes and HTML briefs that turn a dashboard read into a shareable intelligence artifact
 
 ## Tech stack
 
@@ -75,12 +80,13 @@ npm run qa:full
 
 2. **Curated verified sections**
    - `scorecard2030`
+   - `brainNotes`
    - `distinctives.snowbirdIndex`
    - `distinctives.spaceCoastCadence`
    - `distinctives.latamGateway`
    - `trade`
 
-`npm run data:refresh` updates the dynamic labor, population, metro, industry, and innovation metrics while preserving the curated `v2` sections and their source links. That is intentional so a routine refresh cannot wipe the differentiated Florida-specific product work.
+`npm run data:refresh` updates the dynamic labor, population, metro, industry, and innovation metrics while preserving the curated sections, Florida Brain notes, and source links. That is intentional so a routine refresh cannot wipe the differentiated Florida-specific product work.
 
 More detail: [docs/data-sources.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/docs/data-sources.md) and [docs/refresh-runbook.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/docs/refresh-runbook.md).
 
@@ -90,14 +96,16 @@ More detail: [docs/data-sources.md](/Users/pelayopro/Desktop/floridanomics-dashb
 npm run data:validate
 ```
 
-The validator now checks both the refreshed core metrics and the richer `v2` product sections, including insight blocks and trade structure.
+The validator now checks both the refreshed core metrics and the richer `v3` product sections, including insight blocks and trade structure.
 It also enforces the Florida source stack: FloridaCommerce/SelectFlorida, the Governor's Office, Florida Chamber/Scorecard, Florida TaxWatch, JMI, and Florida Council of 100 / Ambition Accelerated.
+It now checks the Florida Brain notes rail as well, including source links for each note.
 
 ## Deployment
 
 GitHub Pages publishes from the repo with the fixed base path:
 
 - production URL: `https://tonyv2289.github.io/floridanomics-dashboard-mvp/`
+- AI Capex Gap brief: `https://tonyv2289.github.io/floridanomics-dashboard-mvp/briefs/ai-capex-gap/`
 - social preview image: `public/og-image.png`
 
 Push to `main` or run the deploy workflow to publish.
@@ -152,4 +160,4 @@ Bound by [DESIGN.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/DE
 
 ## What comes next
 
-See [docs/v2-roadmap.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/docs/v2-roadmap.md) for the post-launch roadmap and remaining product gaps.
+See [docs/v2-roadmap.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/docs/v2-roadmap.md) for the archived v2 roadmap and shipped rebuild context.

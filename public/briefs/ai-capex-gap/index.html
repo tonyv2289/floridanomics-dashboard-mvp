@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Capex Gap</title>
+    <meta name="description" content="Florida is still adding jobs, but the AI infrastructure boom may be deciding where the next industrial layer gets built." />
+    <meta property="og:title" content="AI Capex Gap" />
+    <meta property="og:description" content="Florida is still adding jobs, but the AI infrastructure boom may be deciding where the next industrial layer gets built." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #02060d;
+        --panel: #0a1024;
+        --panel-2: #111934;
+        --text: #e8eef9;
+        --muted: #94a3b8;
+        --line: rgba(148, 163, 184, 0.2);
+        --sun: #ff8f3f;
+        --good: #3ee8b0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--navy);
+        color: var(--text);
+        font-family: "Manrope", sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+
+      a {
+        color: var(--sun);
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 44px 0 64px;
+      }
+
+      .masthead {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 260px;
+        gap: 24px;
+        align-items: end;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .kicker {
+        margin: 0;
+        color: var(--sun);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Sora", sans-serif;
+        line-height: 1.06;
+      }
+
+      .masthead h1 {
+        max-width: 820px;
+        margin-top: 10px;
+        font-size: clamp(2.4rem, 5.8vw, 5.2rem);
+      }
+
+      .meta-card {
+        display: grid;
+        gap: 8px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-top: 3px solid var(--sun);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      .meta-card span {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 28px;
+        margin-top: 28px;
+      }
+
+      .hero-main {
+        padding-top: 30px;
+        border-top: 4px solid var(--sun);
+      }
+
+      .hero-value {
+        margin: 12px 0 14px;
+        color: var(--good);
+        font-family: "Sora", sans-serif;
+        font-size: clamp(5rem, 15vw, 10rem);
+        font-weight: 800;
+        line-height: 0.88;
+      }
+
+      .hero-main p {
+        max-width: 760px;
+        margin: 0;
+        font-family: "Sora", sans-serif;
+        font-size: clamp(1.45rem, 3vw, 2.25rem);
+        line-height: 1.18;
+      }
+
+      .source-chip {
+        display: inline-block;
+        width: fit-content;
+        margin-top: 18px;
+        padding: 7px 9px;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        text-decoration: none;
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--line);
+      }
+
+      .stat-card {
+        min-height: 150px;
+        padding: 18px;
+        background: var(--panel);
+      }
+
+      .stat-card span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .stat-card strong {
+        display: block;
+        margin: 8px 0;
+        font-family: "Sora", sans-serif;
+        font-size: 2rem;
+      }
+
+      .stat-card p {
+        margin: 0;
+        color: #c6d1df;
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      .section-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+
+      .panel {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      .panel h2 {
+        margin-top: 10px;
+        font-size: clamp(1.5rem, 3vw, 2.1rem);
+      }
+
+      .panel p,
+      .panel li {
+        color: #c6d1df;
+        line-height: 1.62;
+      }
+
+      .panel ul,
+      .panel ol {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 0;
+        padding-left: 22px;
+      }
+
+      .watchlist,
+      .sources {
+        margin-top: 18px;
+      }
+
+      .sources-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .sources-grid a {
+        display: block;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(17, 25, 52, 0.55);
+        text-decoration: none;
+      }
+
+      @media (max-width: 820px) {
+        .masthead,
+        .hero,
+        .section-grid,
+        .sources-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stat-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .shell {
+          width: min(100%, calc(100% - 20px));
+          padding-top: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="masthead">
+        <div>
+          <p class="kicker">Florida Brain | Strategic Compute</p>
+          <h1>AI Capex Gap</h1>
+        </div>
+        <aside class="meta-card">
+          <span>Status</span>
+          <strong>Draft intelligence note</strong>
+          <span>2026-05-27</span>
+        </aside>
+      </header>
+
+      <section class="hero">
+        <article class="hero-main">
+          <p class="kicker">Florida unemployment rate | April 2026</p>
+          <div class="hero-value">4.8%</div>
+          <p>Florida added payroll jobs in April, but its unemployment rate is now above the national and Texas readings.</p>
+          <a class="source-chip" href="https://www.bls.gov/news.release/archives/laus_05222026.htm">BLS State Employment and Unemployment, April 2026</a>
+        </article>
+        <aside class="stat-grid">
+          <article class="stat-card">
+  <span>Florida payroll gain</span>
+  <strong>+40,500</strong>
+  <p>Florida posted the largest April 2026 monthly nonfarm payroll gain among states.</p>
+  <a class="source-chip" href="https://www.bls.gov/news.release/archives/laus_05222026.htm">BLS State Employment and Unemployment, April 2026</a>
+</article>
+<article class="stat-card">
+  <span>U.S. unemployment rate</span>
+  <strong>4.3%</strong>
+  <p>The national April 2026 unemployment rate is the benchmark for Florida&#x27;s labor-market spread.</p>
+  <a class="source-chip" href="https://www.bls.gov/news.release/archives/laus_05222026.htm">BLS State Employment and Unemployment, April 2026</a>
+</article>
+<article class="stat-card">
+  <span>Texas unemployment rate</span>
+  <strong>4.3%</strong>
+  <p>Texas is the comparison state for the AI infrastructure and large-load siting thesis.</p>
+  <a class="source-chip" href="https://www.bls.gov/web/laus/lauhsthl.htm">BLS unemployment rates for states</a>
+</article>
+<article class="stat-card">
+  <span>Florida 1Y unemployment move</span>
+  <strong>+1.1 pp</strong>
+  <p>Florida had one of the largest year-over-year unemployment-rate increases in the April 2026 state release.</p>
+  <a class="source-chip" href="https://www.bls.gov/web/laus/laumstch.htm">BLS over-the-year unemployment changes</a>
+</article>
+<article class="stat-card">
+  <span>Global data-center capacity</span>
+  <strong>200 GW by 2030</strong>
+  <p>JLL&#x27;s 2026 outlook says global data-center capacity could nearly double from 103 GW to 200 GW by 2030.</p>
+  <a class="source-chip" href="https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom">JLL 2026 Global Data Center Outlook</a>
+</article>
+<article class="stat-card">
+  <span>Dallas absorption</span>
+  <strong>470.8 MW</strong>
+  <p>CBRE says Dallas absorbed 470.8 MW in H2 2025, a signal that Texas is already scaling in the AI infrastructure market.</p>
+  <a class="source-chip" href="https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025">CBRE North America Data Center Trends H2 2025</a>
+</article>
+        </aside>
+      </section>
+
+      <section class="section-grid">
+        <article class="panel">
+  <p class="kicker">Working thesis</p>
+  <h2>Florida is not job-dead. It may be capex-light.</h2>
+  <p>The surface read is confusing: Florida added 40,500 nonfarm jobs in April, but unemployment is still elevated. The sharper read is that Florida may be underexposed to the AI infrastructure layer now pulling capital, construction labor, power work, fiber, cooling, and advanced operations into competing states.</p>
+<p>This is not a call to subsidize every hyperscale load. It is a call to separate dumb load from strategic compute.</p>
+  
+</article>
+<article class="panel">
+  <p class="kicker">Policy read</p>
+  <h2>The ratepayer concern is real. So is the industrial risk.</h2>
+  <p>Florida&#x27;s 2026 data-center posture protects consumers, water resources, and local control. That is defensible. The risk is that a purely defensive posture lets Texas and other states capture the AI infrastructure base while Florida keeps winning services, migration, tourism, and trade.</p>
+  <ul><li>Do not subsidize dumb load.</li><li>Compete for strategic compute.</li><li>Make the user of power pay for power.</li></ul>
+</article>
+<article class="panel">
+  <p class="kicker">Florida-shaped lane</p>
+  <h2>The play is inference, gateways, edge, space, and resilience.</h2>
+  <p>Florida does not have to copy Texas training campuses. A Florida-shaped compute strategy should prioritize inference near population, LATAM cloud gateways, subsea and fiber assets, disaster-resilient edge compute, Space Coast aerospace compute, and utility models that do not dump costs on households.</p>
+  <ul><li>Inference nodes near population centers.</li><li>LATAM cloud gateways and cross-border enterprise compute.</li><li>Subsea cable, fiber, and carrier-neutral interconnection.</li><li>Space Coast aerospace and defense compute.</li></ul>
+</article>
+<article class="panel">
+  <p class="kicker">Dashboard implication</p>
+  <h2>Add a Strategic Compute Gap module.</h2>
+  <p>Floridanomics should turn this from a thesis into a scoreboard. The next data product should track data-center megawatts announced, megawatts under construction, utility interconnection queue load, large-load tariff posture, incentives by state, power-price exposure, electrician wage pressure, and AI capex announcements.</p>
+  
+</article>
+      </section>
+
+      <section class="panel watchlist">
+  <p class="kicker">Open verification queue</p>
+  <h2>Do not treat these as final until sourced.</h2>
+  <ol><li>Quantify Texas vs Florida data-center MW announced, under construction, and planned.</li><li>Confirm whether Florida&#x27;s current data-center tax treatment materially reduces competitiveness vs Texas, Virginia, Georgia, and Ohio.</li><li>Find primary or industry sources for Florida-specific inference, subsea, carrier-hotel, and edge-compute assets.</li><li>Separate training-campus economics from inference, edge, and LATAM gateway economics.</li><li>Estimate direct and indirect jobs per 100 MW of AI data-center capex, including construction trades.</li></ol>
+</section>
+
+      <footer class="panel sources">
+        <p class="kicker">Sources</p>
+        <h2>Primary links for verification</h2>
+        <div class="sources-grid">
+          <a href="https://www.bls.gov/news.release/archives/laus_05222026.htm">BLS State Employment and Unemployment, April 2026</a>
+<a href="https://www.bls.gov/web/laus/lauhsthl.htm">BLS unemployment rates for states</a>
+<a href="https://www.bls.gov/web/laus/laumstch.htm">BLS over-the-year unemployment changes</a>
+<a href="https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers">Florida Governor SB 484 press release</a>
+<a href="https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025">CBRE North America Data Center Trends H2 2025</a>
+<a href="https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom">JLL 2026 Global Data Center Outlook</a>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
