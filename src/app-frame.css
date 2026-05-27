@@ -3,6 +3,11 @@
   background: #02060d;
 }
 
+.compare-frame,
+.compare-frame * {
+  box-sizing: border-box;
+}
+
 .compare-launch-link {
   position: fixed;
   right: 1rem;
@@ -122,5 +127,8 @@
   .compare-launch-link {
     right: 0.85rem;
     bottom: 0.85rem;
+    left: 0.85rem;
+    max-width: calc(100vw - 1.7rem);
+    text-align: center;
   }
 }
