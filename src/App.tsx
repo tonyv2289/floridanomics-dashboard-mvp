@@ -4,9 +4,10 @@ import "./app-frame.css";
 
 const LegacyDashboard = lazy(() => import("./v1/LegacyDashboard"));
 const DashboardV2 = lazy(() => import("./v2/DashboardV2"));
+const DashboardV3 = lazy(() => import("./v3/DashboardV3"));
 
-type VersionId = "v1" | "v2";
-const DEFAULT_VERSION: VersionId = "v2";
+type VersionId = "v1" | "v2" | "v3";
+const DEFAULT_VERSION: VersionId = "v3";
 
 function resolveVersion(): VersionId {
   if (typeof window === "undefined") {
@@ -15,7 +16,7 @@ function resolveVersion(): VersionId {
 
   const params = new URLSearchParams(window.location.search);
   const version = params.get("version");
-  return version === "v1" || version === "v2" ? version : DEFAULT_VERSION;
+  return version === "v1" || version === "v2" || version === "v3" ? version : DEFAULT_VERSION;
 }
 
 function isCompareMode(version: VersionId): boolean {
@@ -41,13 +42,13 @@ function buildHref(version: VersionId): string {
 function App() {
   const version = resolveVersion();
   const compareMode = isCompareMode(version);
-  const ActiveDashboard = version === "v1" ? LegacyDashboard : DashboardV2;
+  const ActiveDashboard = version === "v1" ? LegacyDashboard : version === "v2" ? DashboardV2 : DashboardV3;
 
   return (
     <div className="compare-frame">
       {!compareMode ? (
-        <a className="compare-launch-link" href={buildHref("v2")}>
-          Compare v1 and v2
+        <a className="compare-launch-link" href={buildHref("v3")}>
+          Compare dashboard versions
         </a>
       ) : null}
 
@@ -55,16 +56,19 @@ function App() {
         <header className="compare-bar">
           <div className="compare-copy">
             <p className="compare-kicker">Floridanomics Comparison Mode</p>
-            <h1>Compare the preserved build against the first-principles rewrite.</h1>
+            <h1>Compare the published builds against the first-principles rewrite.</h1>
             <p className="compare-note">
-              `v2` is now the launch-default surface. `v1` stays preserved behind the compare switch for fallback and side-by-side
-              review.
+              `v3` is the new first-principles candidate. `v2` remains the published dashboard, and `v1` stays preserved
+              for fallback and review.
             </p>
           </div>
 
           <nav className="compare-links" aria-label="Dashboard version switcher">
+            <a className={clsx("compare-link", version === "v3" && "compare-link-active")} href={buildHref("v3")}>
+              Open v3 rewrite
+            </a>
             <a className={clsx("compare-link", version === "v2" && "compare-link-active")} href={buildHref("v2")}>
-              Open v2 rewrite
+              Open published v2
             </a>
             <a className={clsx("compare-link", version === "v1" && "compare-link-active")} href={buildHref("v1")}>
               Open preserved v1
