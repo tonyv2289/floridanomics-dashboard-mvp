@@ -246,7 +246,7 @@ export function buildScorecardLead(dataset: DashboardDataset): DashboardLead {
   nextRelease.setUTCDate(15);
 
   return {
-    eyebrow: `Labor-market read | ${formatDateLabel(dataset.generatedAt)}`,
+    eyebrow: `Florida Today | ${formatDateLabel(dataset.generatedAt)}`,
     title:
       tone === "good"
         ? "Florida is still absorbing workers, but the quality of the expansion matters more than the headline."
@@ -292,7 +292,7 @@ export function buildInnovationLead(dataset: DashboardDataset): DashboardLead {
   const tone: Tone = appDelta && (appDelta.percent ?? 0) > 0 ? "good" : "neutral";
 
   return {
-    eyebrow: `Innovation stack | ${formatDateLabel(dataset.generatedAt)}`,
+    eyebrow: `Innovation Today | ${formatDateLabel(dataset.generatedAt)}`,
     title:
       tone === "good"
         ? "Company formation is still healthy, even while the knowledge-work layer is wobbling."
@@ -325,7 +325,7 @@ export function buildTradeLead(dataset: DashboardDataset): DashboardLead {
   const [totalExports, manufacturedExports, bilateralTrade] = dataset.trade.heroMetrics;
 
   return {
-    eyebrow: `Trade stack | ${dataset.trade.asOf}`,
+    eyebrow: `Trade Today | ${dataset.trade.asOf}`,
     title: dataset.trade.narrative.headline,
     value: formatTradeHero(totalExports.value, totalExports.unit),
     tone: "good",

@@ -11124,8 +11124,8 @@
   },
   "distinctives": {
     "snowbirdIndex": {
-      "eyebrow": "Snowbird index",
-      "title": "Seasonal wealth migration is not a tourism story. It is a capital-and-demand story.",
+      "eyebrow": "Snowbird index proxy",
+      "title": "Seasonal wealth migration is not a tourism story. This is a proxy until the Q4/Q1 snowbird series is wired.",
       "summary": "This proxy build uses Florida Chamber migration metrics and retirement-county pull to show why the state keeps carrying housing, health care, and infrastructure pressure even when payroll growth softens.",
       "stats": [
         {

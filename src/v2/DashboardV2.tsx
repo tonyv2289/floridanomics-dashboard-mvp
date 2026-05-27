@@ -214,6 +214,21 @@ function InsightSectionPanel({ section }: { section: InsightSection }) {
   );
 }
 
+function PullQuote({
+  quote,
+  attribution,
+}: {
+  quote: string;
+  attribution: string;
+}) {
+  return (
+    <section className="v2-pullquote">
+      <p>{quote}</p>
+      <span>{attribution}</span>
+    </section>
+  );
+}
+
 function NarrativePanel({
   eyebrow,
   headline,
@@ -324,6 +339,11 @@ function ScorecardTab({
   return (
     <>
       <LeadStory lead={lead} />
+
+      <PullQuote
+        quote="The labor market story is not unemployment alone. It is where the jobs are coming from, and construction is still the warning light."
+        attribution="TJ, Florida Brain"
+      />
 
       <section className="v2-signal-rail">
         {dataset.heroMetrics.map((metricId) => {
@@ -476,6 +496,11 @@ function ScorecardTab({
             onSelectMetro={onMetroChange}
           />
 
+          <p className="v2-chart-note">
+            The map is the geography read in one glance. Miami is still the tightest of the four major metros, while
+            Jacksonville is the loosest, which is why the statewide line is never the whole story.
+          </p>
+
           <article className="v2-panel">
             <SectionIntro
               eyebrow="Metro pulse"
@@ -604,6 +629,11 @@ function InnovationTab({
   return (
     <>
       <LeadStory lead={lead} />
+
+      <PullQuote
+        quote="Formation is outrunning hiring. Florida can keep selling the innovation story, but the knowledge-work bench still has to deepen."
+        attribution="TJ, Florida Brain"
+      />
 
       <section className="v2-signal-rail">
         {dataset.innovation.heroMetrics.map((metricId) => {
@@ -743,6 +773,11 @@ function InnovationTab({
             </article>
           ))}
         </div>
+
+        <p className="v2-chart-note">
+          The directory matters because ecosystems are only real if operators can see the support stack in plain view.
+          This section is the operating map behind the headline.
+        </p>
       </section>
     </>
   );
@@ -754,6 +789,11 @@ function TradeTab({ dataset }: { dataset: DashboardDataset }) {
   return (
     <>
       <LeadStory lead={lead} />
+
+      <PullQuote
+        quote="Florida's export edge is not abstract. It is aerospace, manufacturing, and a trade map that points south as much as it points north."
+        attribution="TJ, Florida Brain"
+      />
 
       <section className="v2-signal-rail">
         {dataset.trade.heroMetrics.map((metric) => (
@@ -802,6 +842,11 @@ function TradeTab({ dataset }: { dataset: DashboardDataset }) {
               </div>
             ))}
           </div>
+
+          <p className="v2-chart-note">
+            Three of the top five markets sit in Latin America. Florida's gateway language holds up because the customer
+            map keeps proving it.
+          </p>
         </section>
 
         <section className="v2-panel">
@@ -978,10 +1023,10 @@ function DashboardV2() {
         <header className="v2-masthead">
           <div>
             <p className="v2-section-kicker">Floridanomics v2 · First-principles rewrite</p>
-            <h1>Florida intelligence should read like a briefing, not a casino of equal-weight cards.</h1>
+            <h1>Florida Brain data briefing.</h1>
             <p className="v2-copy">
-              This version starts with the editorial question first, then lets the data support it. It preserves the same
-              underlying dataset while changing the architecture, pacing, and emphasis of the app.
+              This version keeps the Florida data stack intact, but reorganizes it around briefing hierarchy, source
+              visibility, and Florida-specific sections.
             </p>
           </div>
 

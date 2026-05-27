@@ -45,6 +45,12 @@ function App() {
 
   return (
     <div className="compare-frame">
+      {!compareMode ? (
+        <a className="compare-launch-link" href={buildHref("v2")}>
+          Compare v1 and v2
+        </a>
+      ) : null}
+
       {compareMode ? (
         <header className="compare-bar">
           <div className="compare-copy">
