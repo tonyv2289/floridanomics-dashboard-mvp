@@ -235,6 +235,27 @@
   line-height: 1.45;
 }
 
+.v2-card-source,
+.v2-card-footnote {
+  margin: 0.45rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.v2-card-source a {
+  color: #8fdbff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.v2-card-source a:hover {
+  color: #d8f3ff;
+}
+
+.v2-card-footnote {
+  color: #c3d0e5;
+}
+
 .v2-card-interpretation,
 .v2-chart-note {
   margin: 0.75rem 0 0;

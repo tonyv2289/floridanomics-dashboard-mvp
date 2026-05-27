@@ -191,6 +191,14 @@ function InsightSectionPanel({ section }: { section: InsightSection }) {
             <p className="v2-card-label">{stat.label}</p>
             <h3>{stat.value}</h3>
             <p className="v2-card-context">{stat.context}</p>
+            {stat.source ? (
+              <p className="v2-card-source">
+                <a href={stat.source.url} target="_blank" rel="noreferrer">
+                  {stat.source.label}
+                </a>
+              </p>
+            ) : null}
+            {stat.note ? <p className="v2-card-footnote">{stat.note}</p> : null}
           </article>
         ))}
       </div>

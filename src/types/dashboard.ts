@@ -87,6 +87,8 @@ export type InsightStat = {
   label: string;
   value: string;
   context: string;
+  source?: InsightSource;
+  note?: string;
 };
 
 export type InsightSection = {
