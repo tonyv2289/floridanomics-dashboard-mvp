@@ -109,21 +109,21 @@ const CORE_SERIES: Array<{
   {
     id: "unemploymentRate",
     label: "Unemployment Rate",
-    seriesId: "LAUST120000000000003",
+    seriesId: "LASST120000000000003",
     unit: "percent",
     trendDirection: "down_good",
   },
   {
     id: "laborForce",
     label: "Labor Force",
-    seriesId: "LAUST120000000000006",
+    seriesId: "LASST120000000000006",
     unit: "persons",
     trendDirection: "up_good",
   },
   {
     id: "employmentLevel",
     label: "Employment Level",
-    seriesId: "LAUST120000000000005",
+    seriesId: "LASST120000000000005",
     unit: "persons",
     trendDirection: "up_good",
   },
@@ -309,6 +309,61 @@ const INNOVATION_RESOURCES: InnovationResource[] = [
     region: "Jacksonville",
     summary: "Jacksonville-region business development and strategic growth initiatives.",
     url: "https://www.jaxusa.org/",
+  },
+];
+
+const FLORIDA_BRAIN_NOTES: DashboardDataset["brainNotes"] = [
+  {
+    id: "ai-capex-gap",
+    kicker: "Florida Brain note",
+    status: "Draft intelligence note",
+    title: "Is Florida missing the AI capex boom?",
+    summary:
+      "Florida's 4.8% unemployment rate sits beside a +40,500 payroll month. The next question is whether Texas and other states are capturing the infrastructure-heavy AI layer Florida has not yet measured.",
+    ctaLabel: "Open the brief",
+    href: "briefs/ai-capex-gap/",
+    sources: [
+      {
+        label: "BLS April 2026 state release",
+        url: "https://www.bls.gov/news.release/archives/laus_05222026.htm",
+      },
+      {
+        label: "CBRE North America Data Center Trends",
+        url: "https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025",
+      },
+    ],
+  },
+  {
+    id: "strategic-compute-not-dumb-load",
+    kicker: "Policy read",
+    status: "Watch item",
+    title: "Strategic compute, not dumb load.",
+    summary:
+      "SB 484 makes the ratepayer case explicit: data centers should cover their own power, transmission, and water costs. The harder product question is how Florida competes for strategic compute without shifting the bill to households.",
+    sources: [
+      {
+        label: "Florida Governor SB 484 release",
+        url: "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers",
+      },
+    ],
+  },
+  {
+    id: "florida-shaped-compute-lane",
+    kicker: "Next module",
+    status: "Scoping",
+    title: "The Florida lane is edge, LATAM, Space Coast.",
+    summary:
+      "Florida does not need to copy a Texas training-campus strategy. The stronger lane is inference near population, LATAM gateways, Space Coast aerospace compute, and resilient edge capacity that pays its own way.",
+    sources: [
+      {
+        label: "JLL 2026 Global Data Center Outlook",
+        url: "https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom",
+      },
+      {
+        label: "PortMiami cargo gateway source",
+        url: "https://www.miamidade.gov/portmiami/cargo.page",
+      },
+    ],
   },
 ];
 
@@ -888,6 +943,7 @@ async function main() {
       narrative: buildInnovationNarrative(innovationMetrics),
       resources: INNOVATION_RESOURCES,
     },
+    brainNotes: FLORIDA_BRAIN_NOTES,
     scorecard2030: preservedSections.scorecard2030,
     distinctives: preservedSections.distinctives,
     trade: preservedSections.trade,
@@ -902,7 +958,7 @@ async function main() {
 
   console.log(`Wrote ${OUTPUT_FILE}`);
   console.log(`As-of labor market: ${dataset.asOfLaborMarket}; population: ${dataset.asOfPopulation}`);
-  console.log("Preserved curated sections: scorecard2030, distinctives, trade.");
+  console.log("Preserved curated sections: scorecard2030, brainNotes, distinctives, trade.");
 }
 
 main().catch((error: unknown) => {

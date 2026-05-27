@@ -21,9 +21,10 @@ Output:
 - innovation metrics
 - generated statewide and innovation narratives
 
-### Preserves the curated `v2` sections
+### Preserves the curated product sections
 
 - `scorecard2030`
+- `brainNotes`
 - `distinctives`
 - `trade`
 - existing curated source links
@@ -43,7 +44,7 @@ After refresh, verify:
 
 1. `generatedAt`, `asOfLaborMarket`, and `asOfPopulation` updated correctly
 2. core metrics and metro series still render
-3. `scorecard2030`, `distinctives`, and `trade` still exist in the dataset
+3. `scorecard2030`, `brainNotes`, `distinctives`, and `trade` still exist in the dataset
 4. source links remain present on the curated sections
 
 ## Validation commands
@@ -65,6 +66,7 @@ npm run qa:full
 If you need to change:
 
 - source notes
+- Florida Brain notes
 - verified stat copy
 - Florida-specific section framing
 - trade release framing
@@ -79,4 +81,4 @@ npm run data:validate
 
 - BLS request chunking and retry logic are built in
 - If the BLS daily threshold is exhausted, refresh falls back to cached BLS series from the existing dataset
-- The validator now checks the full `v2` contract, not just the older MVP metric shell
+- The validator now checks the full v3 product contract, not just the older MVP metric shell

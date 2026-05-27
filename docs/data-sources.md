@@ -8,16 +8,16 @@ These are programmatically refreshed by `npm run data:refresh`.
 
 ### Bureau of Labor Statistics
 
-Primary source for statewide labor market, payroll, industry, and metro metrics.
+Primary source for statewide labor market, payroll, industry, and metro metrics. Statewide household-series headlines use the seasonally adjusted `LASST` series so the dashboard matches the official monthly state release.
 
 - API: `https://www.bls.gov/developers/`
 - Endpoint: `POST https://api.bls.gov/publicAPI/v2/timeseries/data/`
 
 ### Florida statewide core series
 
-- Unemployment rate: `LAUST120000000000003`
-- Labor force: `LAUST120000000000006`
-- Employment level: `LAUST120000000000005`
+- Unemployment rate: `LASST120000000000003`
+- Labor force: `LASST120000000000006`
+- Employment level: `LASST120000000000005`
 - Nonfarm payrolls: `SMS12000000000000001`
 
 ### Industry employment
@@ -93,6 +93,14 @@ Primary sources:
 
 - FloridaCommerce / SelectFlorida / official release stack already embedded in the dataset
 
+### `brainNotes`
+
+Primary sources:
+
+- BLS April 2026 state release for the AI Capex Gap labor-market frame
+- Florida Governor's Office SB 484 release for the ratepayer and data-center policy posture
+- CBRE and JLL data-center research for the strategic compute market context
+
 ## 3. Florida policy and strategy source layer
 
 V3 keeps a named Florida source layer in the public dataset so the dashboard can keep moving toward a Florida Brain research terminal without losing provenance. These sources are not all monthly numeric feeds yet; some are validated strategy, policy, or announcement sources used for editorial context and future modules.
@@ -121,5 +129,5 @@ This avoids the old failure mode where a routine data refresh could erase Florid
 
 - Labor metrics are monthly, population is annual
 - Some trade and Florida-specific sections are updated on their own release cadence, not monthly
-- Several `v2` sections are verified and curated rather than programmatically scraped
+- Several v3 sections are verified and curated rather than programmatically scraped
 - `Snowbird Index` is still a proxy build pending a bespoke seasonal migration series

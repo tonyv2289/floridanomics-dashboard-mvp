@@ -103,6 +103,14 @@ function firstSentence(value: string): string {
   return sentence.endsWith(".") ? sentence : `${sentence}.`;
 }
 
+function resolveHref(href: string): string {
+  if (/^https?:\/\//.test(href)) {
+    return href;
+  }
+
+  return `${import.meta.env.BASE_URL}${href.replace(/^\/+/, "")}`;
+}
+
 function SourceAnchor({ source }: { source?: { label: string; url: string } }) {
   if (!source) {
     return null;
@@ -221,6 +229,46 @@ function OperatingRead({ dataset }: { dataset: DashboardDataset }) {
           <span>{read.note}</span>
         </article>
       ))}
+    </section>
+  );
+}
+
+function FloridaBrainNotes({ dataset }: { dataset: DashboardDataset }) {
+  return (
+    <section className="v3-brain-notes" aria-label="Florida Brain notes">
+      <div className="v3-brain-notes-head">
+        <p className="v3-kicker">Florida Brain notes</p>
+        <h2>Turn the dashboard into publishable questions.</h2>
+        <p>
+          These are the active editorial reads coming out of Floridanomics. Each note stays source-linked so the
+          narrative can move without losing the audit trail.
+        </p>
+      </div>
+
+      <div className="v3-brain-note-grid">
+        {dataset.brainNotes.map((note) => (
+          <article key={note.id} className="v3-brain-note">
+            <div>
+              <p className="v3-kicker">{note.kicker}</p>
+              <span>{note.status}</span>
+            </div>
+            <h3>{note.title}</h3>
+            <p>{note.summary}</p>
+            <div className="v3-note-source-list">
+              {note.sources.map((source) => (
+                <a key={source.url} href={source.url} target="_blank" rel="noreferrer">
+                  {source.label}
+                </a>
+              ))}
+            </div>
+            {note.href && note.ctaLabel ? (
+              <a className="v3-note-cta" href={resolveHref(note.href)}>
+                {note.ctaLabel}
+              </a>
+            ) : null}
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
@@ -455,6 +503,7 @@ function BriefTab({ dataset }: { dataset: DashboardDataset }) {
       <ReadHero dataset={dataset} />
       <OperatingRead dataset={dataset} />
       <EvidenceGrid dataset={dataset} />
+      <FloridaBrainNotes dataset={dataset} />
 
       <section className="v3-watch">
         <div>

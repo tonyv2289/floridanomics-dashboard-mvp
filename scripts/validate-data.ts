@@ -1,7 +1,13 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { DashboardDataset, InsightSection, InsightSource, InsightStat } from "../src/types/dashboard";
+import type {
+  DashboardDataset,
+  FloridaBrainNote,
+  InsightSection,
+  InsightSource,
+  InsightStat,
+} from "../src/types/dashboard";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DATA_FILE = path.join(ROOT, "public", "data", "florida-economy.json");
@@ -24,6 +30,12 @@ const REQUIRED_INNOVATION_RESOURCE_IDS = [
   "florida-chamber",
   "florida-taxwatch",
   "james-madison-institute",
+] as const;
+
+const REQUIRED_BRAIN_NOTE_IDS = [
+  "ai-capex-gap",
+  "strategic-compute-not-dumb-load",
+  "florida-shaped-compute-lane",
 ] as const;
 
 function isFiniteNumber(value: unknown): value is number {
@@ -89,6 +101,26 @@ function validateInsightSection(section: InsightSection, label: string, errors: 
   section.interpretation.forEach((paragraph, index) =>
     ensure(isNonEmptyString(paragraph), `${label} interpretation ${index + 1} is empty`, errors),
   );
+}
+
+function validateFloridaBrainNote(note: FloridaBrainNote, label: string, errors: string[]) {
+  ensure(isNonEmptyString(note.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(note.kicker), `${label} missing kicker`, errors);
+  ensure(isNonEmptyString(note.status), `${label} missing status`, errors);
+  ensure(isNonEmptyString(note.title), `${label} missing title`, errors);
+  ensure(isNonEmptyString(note.summary), `${label} missing summary`, errors);
+  ensure(note.sources.length > 0, `${label} must include sources`, errors);
+
+  if (note.ctaLabel !== undefined) {
+    ensure(isNonEmptyString(note.ctaLabel), `${label} has an empty ctaLabel`, errors);
+  }
+
+  if (note.href !== undefined) {
+    ensure(isNonEmptyString(note.href), `${label} has an empty href`, errors);
+    ensure(!note.href.toLowerCase().startsWith("javascript:"), `${label} href must not be javascript`, errors);
+  }
+
+  note.sources.forEach((source, index) => validateSource(source, `${label} source ${index + 1}`, errors));
 }
 
 async function main() {
@@ -168,6 +200,9 @@ async function main() {
   ensure(data.innovation.narrative.momentum.length > 0, "Innovation narrative missing momentum", errors);
 
   validateInsightSection(data.scorecard2030, "scorecard2030", errors);
+  ensure(data.brainNotes.length >= 3, "brainNotes should include at least three Florida Brain notes", errors);
+  validateRequiredIds(data.brainNotes, REQUIRED_BRAIN_NOTE_IDS, "Florida Brain notes", errors);
+  data.brainNotes.forEach((note, index) => validateFloridaBrainNote(note, `brainNotes ${index + 1}`, errors));
   validateInsightSection(data.distinctives.snowbirdIndex, "distinctives.snowbirdIndex", errors);
   validateInsightSection(data.distinctives.spaceCoastCadence, "distinctives.spaceCoastCadence", errors);
   validateInsightSection(data.distinctives.latamGateway, "distinctives.latamGateway", errors);
@@ -259,7 +294,7 @@ async function main() {
     throw new Error(`Data validation failed with ${errors.length} issue(s).`);
   }
 
-  console.log("Dataset contract looks valid, including v2 curated sections.");
+  console.log("Dataset contract looks valid, including curated sections and Florida Brain notes.");
 }
 
 main().catch((error: unknown) => {
