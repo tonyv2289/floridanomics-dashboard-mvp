@@ -26,6 +26,36 @@
       "name": "FloridaCommerce / SelectFlorida - 2025 Export Sales Release",
       "url": "https://www.floridacommerce.gov/",
       "notes": "Official 4/1/2026 release: Florida Businesses Set Record High Export Sales in 2025 ($78.9B). Powers International Trade tab."
+    },
+    {
+      "id": "florida_scorecard",
+      "name": "Florida Scorecard / Florida Chamber Foundation",
+      "url": "https://thefloridascorecard.org/pillar%26c%3DO%26pillar%3D2",
+      "notes": "Statewide 2030 trajectory metrics including GDP, business startups, income migration, and FutureCast job needs."
+    },
+    {
+      "id": "space_florida",
+      "name": "Space Florida",
+      "url": "https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry",
+      "notes": "Official aerospace pipeline, launch cadence, and spaceport investment figures used for Space Coast Cadence in v2."
+    },
+    {
+      "id": "portmiami",
+      "name": "PortMiami Cargo Statistics",
+      "url": "https://www.miamidade.gov/portmiami/cargo.page",
+      "notes": "Official PortMiami cargo, tonnage, TEU, and regional trade-share figures used for the LATAM Gateway section."
+    },
+    {
+      "id": "port_everglades",
+      "name": "Port Everglades Cargo Statistics",
+      "url": "https://www.porteverglades.net/about-us/statistics/cargo-statistics/",
+      "notes": "Official Port Everglades TEU, tonnage, and refrigerated cargo figures used for the LATAM Gateway section."
+    },
+    {
+      "id": "blue_origin_florida",
+      "name": "Reuters - Blue Origin Florida Expansion",
+      "url": "https://www.reuters.com/business/aerospace-defense/blue-origin-expand-florida-campus-with-new-600-million-facility-2026-05-22/",
+      "notes": "Reuters report on Blue Origin's $600M Cape Canaveral manufacturing expansion used in Space Coast Cadence."
     }
   ],
   "heroMetrics": [
@@ -10950,18 +10980,58 @@
       }
     ],
     "topMarkets": [
-      { "rank": 1, "country": "Brazil", "region": "LATAM" },
-      { "rank": 2, "country": "Mexico", "region": "LATAM" },
-      { "rank": 3, "country": "Canada", "region": "North America" },
-      { "rank": 4, "country": "Germany", "region": "Europe" },
-      { "rank": 5, "country": "Colombia", "region": "LATAM" }
+      {
+        "rank": 1,
+        "country": "Brazil",
+        "region": "LATAM"
+      },
+      {
+        "rank": 2,
+        "country": "Mexico",
+        "region": "LATAM"
+      },
+      {
+        "rank": 3,
+        "country": "Canada",
+        "region": "North America"
+      },
+      {
+        "rank": 4,
+        "country": "Germany",
+        "region": "Europe"
+      },
+      {
+        "rank": 5,
+        "country": "Colombia",
+        "region": "LATAM"
+      }
     ],
     "topCategories": [
-      { "rank": 1, "label": "Civilian Aircraft & Parts", "valueUsdBillions": 12.8 },
-      { "rank": 2, "label": "Telephones", "valueUsdBillions": 5.7 },
-      { "rank": 3, "label": "Pharmaceuticals", "valueUsdBillions": 3.6 },
-      { "rank": 4, "label": "Turbojets & Gas Turbines", "valueUsdBillions": 2.4 },
-      { "rank": 5, "label": "Cars", "valueUsdBillions": 2.4 }
+      {
+        "rank": 1,
+        "label": "Civilian Aircraft & Parts",
+        "valueUsdBillions": 12.8
+      },
+      {
+        "rank": 2,
+        "label": "Telephones",
+        "valueUsdBillions": 5.7
+      },
+      {
+        "rank": 3,
+        "label": "Pharmaceuticals",
+        "valueUsdBillions": 3.6
+      },
+      {
+        "rank": 4,
+        "label": "Turbojets & Gas Turbines",
+        "valueUsdBillions": 2.4
+      },
+      {
+        "rank": 5,
+        "label": "Cars",
+        "valueUsdBillions": 2.4
+      }
     ],
     "selectFlorida": {
       "headline": "SelectFlorida Program ROI (since July 2025)",
@@ -11007,6 +11077,186 @@
         "$205B in bilateral trade through Florida seaports and airports reinforces the state's logistics-gateway position.",
         "$1.9B in SelectFlorida-generated exports in FY24-25 (+$500M YoY) is direct, measurable ROI on Florida's trade-mission infrastructure.",
         "A single trade show - Singapore Airshow Feb 2026 - drove $150M+ in reported sales for participating Florida companies."
+      ]
+    }
+  },
+  "scorecard2030": {
+    "eyebrow": "Florida 2030 trajectory",
+    "title": "The Florida Chamber scoreboard says the state is bigger, richer, and still short of its 2030 finish line.",
+    "summary": "This section brings the Florida Scorecard into the app as a real source. It ties the size of the current economy to the state's explicit 2030 targets instead of leaving the growth thesis as generic branding.",
+    "stats": [
+      {
+        "label": "Gross domestic product",
+        "value": "$1.87T",
+        "context": "Florida Scorecard statewide GDP, improving"
+      },
+      {
+        "label": "Global economy rank",
+        "value": "15th",
+        "context": "Largest economy in the world, improving"
+      },
+      {
+        "label": "2030 jobs gap",
+        "value": "786,378",
+        "context": "Net new jobs needed by 2030, Florida FutureCast"
+      },
+      {
+        "label": "Business startups",
+        "value": "61,334",
+        "context": "March 2026, ranked #1 nationally"
+      },
+      {
+        "label": "Income migration",
+        "value": "$2.36M / hr",
+        "context": "Florida Chamber statewide migration income flow"
+      }
+    ],
+    "interpretation": [
+      "The scorecard matters because it turns the Florida thesis into a scoreboard with explicit finish lines. Florida is already enormous, but the gap between rank 4 state GDP today and a number-one ambition by 2030 is still real.",
+      "The cleanest growth signal in this stack is not a vibe metric. It is business formation staying first nationally while income migration still clocks more than two million dollars per hour into the state."
+    ],
+    "sources": [
+      {
+        "label": "Florida Scorecard, statewide innovation and economic development metrics",
+        "url": "https://thefloridascorecard.org/pillar%26c%3DO%26pillar%3D2"
+      }
+    ]
+  },
+  "distinctives": {
+    "snowbirdIndex": {
+      "eyebrow": "Snowbird index",
+      "title": "Seasonal wealth migration is not a tourism story. It is a capital-and-demand story.",
+      "summary": "This proxy build uses Florida Chamber migration metrics and retirement-county pull to show why the state keeps carrying housing, health care, and infrastructure pressure even when payroll growth softens.",
+      "stats": [
+        {
+          "label": "State income migration",
+          "value": "$2.36M / hr",
+          "context": "Florida Chamber statewide scorecard"
+        },
+        {
+          "label": "Collier pull",
+          "value": "$2.32B / yr",
+          "context": "Collier County income migration, Florida Scorecard"
+        },
+        {
+          "label": "Sumter pull",
+          "value": "$711.22M / yr",
+          "context": "Sumter County income migration, Florida Scorecard"
+        },
+        {
+          "label": "2030 population range",
+          "value": "24.9M to 25.9M",
+          "context": "Florida FutureCast statewide range"
+        }
+      ],
+      "interpretation": [
+        "Florida's seasonal population story shows up as capital first. When Collier and Sumter pull that much income, the downstream pressure hits insurance, health care, housing supply, and local roads long before it shows up in a beach photo.",
+        "This is not a Miami-only story. The retirement counties help explain why statewide demand stays hot even when payroll momentum cools."
+      ],
+      "sources": [
+        {
+          "label": "Florida Scorecard, State of Florida metrics",
+          "url": "https://thefloridascorecard.org/pillar%26c%3DO%26pillar%3D2"
+        },
+        {
+          "label": "Florida Scorecard, Collier County metrics",
+          "url": "https://thefloridascorecard.org/pillar%26c%3D11%26pillar%3D2"
+        },
+        {
+          "label": "Florida Scorecard, Sumter County metrics",
+          "url": "https://thefloridascorecard.org/pillar%26c%3D60%26pillar%3D2"
+        }
+      ]
+    },
+    "spaceCoastCadence": {
+      "eyebrow": "Space Coast cadence",
+      "title": "Florida's innovation story is physical before it is financial.",
+      "summary": "Launches, spaceport investment, and aerospace build-out are all rising in the same corridor. This is the part of the Florida innovation thesis that generic startup dashboards usually miss.",
+      "stats": [
+        {
+          "label": "Launches in 2025",
+          "value": "109",
+          "context": "Record-breaking launch count, Space Florida"
+        },
+        {
+          "label": "Aerospace pipeline",
+          "value": "$6B",
+          "context": "220-project pipeline, Space Florida 2025 readout"
+        },
+        {
+          "label": "Economic impact",
+          "value": "$5.9B",
+          "context": "Space Florida impact since 2007"
+        },
+        {
+          "label": "Blue Origin expansion",
+          "value": "$600M",
+          "context": "Cape Canaveral manufacturing project announced May 22, 2026"
+        }
+      ],
+      "interpretation": [
+        "The Space Coast matters because it turns aerospace from a branding asset into an operating system for manufacturing, dual-use, and infrastructure spending.",
+        "When launch cadence, project pipeline, and factory investment all rise together, Florida stops looking like a tourism economy with rockets on the side."
+      ],
+      "sources": [
+        {
+          "label": "Space Florida 2025 aerospace pipeline and launch update",
+          "url": "https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry"
+        },
+        {
+          "label": "Space Florida economic impact FAQ",
+          "url": "https://www.spaceflorida.gov/frequently-asked-questions"
+        },
+        {
+          "label": "Reuters on Blue Origin's Cape Canaveral expansion",
+          "url": "https://www.reuters.com/business/aerospace-defense/blue-origin-expand-florida-campus-with-new-600-million-facility-2026-05-22/"
+        }
+      ]
+    },
+    "latamGateway": {
+      "eyebrow": "LATAM gateway",
+      "title": "Florida's gateway claim is physical, not rhetorical.",
+      "summary": "The South Florida trade corridor is doing real freight work for Latin America and the Caribbean. This section brings PortMiami and Port Everglades into the trade story instead of treating the gateway line as a slogan.",
+      "stats": [
+        {
+          "label": "PortMiami tonnage",
+          "value": "10.1M tons",
+          "context": "FY2024 total tonnage, official PortMiami snapshot"
+        },
+        {
+          "label": "PortMiami container flow",
+          "value": "1.09M TEUs",
+          "context": "FY2024 TEUs, official PortMiami snapshot"
+        },
+        {
+          "label": "LATAM + Caribbean share",
+          "value": "Almost 50%",
+          "context": "PortMiami regional trade share, FY2025"
+        },
+        {
+          "label": "Port Everglades refrigerated cargo",
+          "value": "126,392 TEUs",
+          "context": "FY2024 refrigerated cargo leader in Florida"
+        },
+        {
+          "label": "Port Everglades container flow",
+          "value": "1.09M TEUs",
+          "context": "FY2024 official cargo statistics"
+        }
+      ],
+      "interpretation": [
+        "PortMiami says almost half of its trade is tied to Latin America and the Caribbean, while Port Everglades is moving more than a million TEUs and leading Florida in refrigerated cargo. The gateway thesis is sitting on the dock, not in a keynote deck.",
+        "That matters because South Florida wins on adjacency. The same corridor handles containers, perishables, finance, and commercial relationships that keep Florida plugged into the Americas."
+      ],
+      "sources": [
+        {
+          "label": "PortMiami cargo and historical snapshot",
+          "url": "https://www.miamidade.gov/portmiami/cargo.page"
+        },
+        {
+          "label": "Port Everglades cargo statistics",
+          "url": "https://www.porteverglades.net/about-us/statistics/cargo-statistics/"
+        }
       ]
     }
   }

@@ -21,9 +21,18 @@ import {
   type CoreMetricId,
   type DashboardLead,
   type DashboardTabId,
+  buildCoreMetricChartInterpretation,
+  buildCoreMetricInterpretation,
+  buildIndustryInterpretation,
   buildInnovationLead,
+  buildInnovationMetricInterpretation,
+  buildMetroCardInterpretation,
   buildMetroComparisonData,
+  buildMetroComparisonInterpretation,
   buildScorecardLead,
+  buildTradeCategoryInterpretation,
+  buildTradeDeltaInterpretation,
+  buildTradeHeroInterpretation,
   buildTradeLead,
   chartSeries,
   daysSince,
@@ -41,7 +50,7 @@ import {
   isInnovationMetricId,
   shortMonthLabel,
 } from "../lib/dashboard";
-import type { DashboardDataset, InnovationMetricId, InnovationResource } from "../types/dashboard";
+import type { DashboardDataset, InnovationMetricId, InnovationResource, InsightSection } from "../types/dashboard";
 import "./dashboard-v2.css";
 
 const TOOLTIP_STYLE = {
@@ -152,11 +161,13 @@ function SignalCard({
   label,
   value,
   context,
+  interpretation,
   tone = "neutral",
 }: {
   label: string;
   value: string;
   context: string;
+  interpretation?: string;
   tone?: "good" | "warn" | "neutral";
 }) {
   return (
@@ -164,7 +175,42 @@ function SignalCard({
       <p className="v2-card-label">{label}</p>
       <h3>{value}</h3>
       <p className="v2-card-context">{context}</p>
+      {interpretation ? <p className="v2-card-interpretation">{interpretation}</p> : null}
     </article>
+  );
+}
+
+function InsightSectionPanel({ section }: { section: InsightSection }) {
+  return (
+    <section className="v2-panel v2-insight-panel">
+      <SectionIntro eyebrow={section.eyebrow} title={section.title} description={section.summary} />
+
+      <div className="v2-insight-grid">
+        {section.stats.map((stat) => (
+          <article key={stat.label} className="v2-insight-card">
+            <p className="v2-card-label">{stat.label}</p>
+            <h3>{stat.value}</h3>
+            <p className="v2-card-context">{stat.context}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="v2-interpretation-stack">
+        {section.interpretation.map((paragraph) => (
+          <p key={paragraph} className="v2-copy">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+
+      <div className="v2-source-row">
+        {section.sources.map((source) => (
+          <a key={source.url} href={source.url} target="_blank" rel="noreferrer">
+            {source.label}
+          </a>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -198,10 +244,12 @@ function NarrativePanel({
 }
 
 function MetroCard({
+  dataset,
   metro,
   selected,
   onSelect,
 }: {
+  dataset: DashboardDataset;
   metro: DashboardDataset["metros"][number];
   selected: boolean;
   onSelect: (metroId: string) => void;
@@ -248,6 +296,8 @@ function MetroCard({
           </span>
         </div>
       </div>
+
+      <p className="v2-card-interpretation">{buildMetroCardInterpretation(dataset, metro.id)}</p>
     </article>
   );
 }
@@ -284,11 +334,14 @@ function ScorecardTab({
               label={metric.label}
               value={formatMetricValue(metric, metric.latest.value)}
               context={`1Y ${formatDelta(metric, metric.deltas.oneYear)}`}
+              interpretation={buildCoreMetricInterpretation(metric)}
               tone={deltaTone(metric, metric.deltas.oneYear)}
             />
           );
         })}
       </section>
+
+      <InsightSectionPanel section={dataset.scorecard2030} />
 
       <div className="v2-grid-two">
         <section className="v2-panel">
@@ -348,6 +401,8 @@ function ScorecardTab({
               <Line type="monotone" dataKey="value" stroke="#ff9a3d" strokeWidth={3} dot={false} />
             </LineChart>
           </ResponsiveContainer>
+
+          <p className="v2-chart-note">{buildCoreMetricChartInterpretation(selectedMetric)}</p>
         </section>
 
         <NarrativePanel
@@ -361,6 +416,8 @@ function ScorecardTab({
           ]}
         />
       </div>
+
+      <InsightSectionPanel section={dataset.distinctives.snowbirdIndex} />
 
       <div className="v2-grid-two">
         <section className="v2-panel">
@@ -408,6 +465,8 @@ function ScorecardTab({
               </ul>
             </div>
           </div>
+
+          <p className="v2-chart-note">{buildIndustryInterpretation(dataset)}</p>
         </section>
 
         <section className="v2-map-stack">
@@ -449,6 +508,10 @@ function ScorecardTab({
             </div>
 
             <p className="v2-note">
+              {buildMetroCardInterpretation(dataset, selectedMetro.id)}
+            </p>
+
+            <p className="v2-note">
               Labor-market freshness: {laborDataAge} days since the latest statewide unemployment observation.
             </p>
           </article>
@@ -487,11 +550,19 @@ function ScorecardTab({
             ))}
           </LineChart>
         </ResponsiveContainer>
+
+        <p className="v2-chart-note">{buildMetroComparisonInterpretation(dataset, selectedMetro.id)}</p>
       </section>
 
       <section className="v2-card-grid">
         {dataset.metros.map((metro) => (
-          <MetroCard key={metro.id} metro={metro} selected={metro.id === selectedMetro.id} onSelect={onMetroChange} />
+          <MetroCard
+            key={metro.id}
+            dataset={dataset}
+            metro={metro}
+            selected={metro.id === selectedMetro.id}
+            onSelect={onMetroChange}
+          />
         ))}
       </section>
     </>
@@ -543,6 +614,7 @@ function InnovationTab({
               label={metric.label}
               value={formatMetricValue(metric, metric.latest.value)}
               context={`1Y ${formatDelta(metric, metric.deltas.oneYear)}`}
+              interpretation={buildInnovationMetricInterpretation(metric)}
               tone={deltaTone(metric, metric.deltas.oneYear)}
             />
           );
@@ -604,6 +676,8 @@ function InnovationTab({
               <Line type="monotone" dataKey="value" stroke="#5bc6ff" strokeWidth={3} dot={false} />
             </LineChart>
           </ResponsiveContainer>
+
+          <p className="v2-chart-note">{buildInnovationMetricInterpretation(selectedMetric)}</p>
         </section>
 
         <NarrativePanel
@@ -616,6 +690,8 @@ function InnovationTab({
           ]}
         />
       </div>
+
+      <InsightSectionPanel section={dataset.distinctives.spaceCoastCadence} />
 
       <section className="v2-panel">
         <SectionIntro
@@ -686,6 +762,7 @@ function TradeTab({ dataset }: { dataset: DashboardDataset }) {
             label={metric.label}
             value={formatTradeHero(metric.value, metric.unit)}
             context={metric.helper}
+            interpretation={buildTradeHeroInterpretation(metric.id)}
             tone="neutral"
           />
         ))}
@@ -699,9 +776,12 @@ function TradeTab({ dataset }: { dataset: DashboardDataset }) {
               {delta.absolute !== null ? formatSignedUsdBillions(delta.absolute) : formatSignedPercent(delta.percent)}
             </h3>
             <p className="v2-card-context">{delta.baseLabel}</p>
+            <p className="v2-card-interpretation">{buildTradeDeltaInterpretation(delta)}</p>
           </article>
         ))}
       </section>
+
+      <InsightSectionPanel section={dataset.distinctives.latamGateway} />
 
       <div className="v2-grid-two">
         <section className="v2-panel">
@@ -758,6 +838,8 @@ function TradeTab({ dataset }: { dataset: DashboardDataset }) {
               <Bar dataKey="value" fill="#ff9a3d" radius={[10, 10, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
+
+          <p className="v2-chart-note">{buildTradeCategoryInterpretation(dataset)}</p>
         </section>
       </div>
 
@@ -773,11 +855,13 @@ function TradeTab({ dataset }: { dataset: DashboardDataset }) {
             label="FL businesses served"
             value={dataset.trade.selectFlorida.businessesServed.toLocaleString()}
             context={dataset.trade.selectFlorida.businessesWindow}
+            interpretation="This is the operating funnel behind the export story. Florida is serving firms directly, not just talking about trade on stage."
           />
           <SignalCard
             label="Sales generated"
             value={`${formatUsdMillions(dataset.trade.selectFlorida.salesGeneratedUsdMillions)}+`}
             context="Since July 2025"
+            interpretation="Measured sales are the proof that the trade mission infrastructure is converting activity into booked business."
           />
           {dataset.trade.selectFlorida.showResults.map((show) => (
             <SignalCard
@@ -785,6 +869,7 @@ function TradeTab({ dataset }: { dataset: DashboardDataset }) {
               label={show.show}
               value={`${formatUsdMillions(show.reportedSalesUsdMillions)}+`}
               context={show.window}
+              interpretation="One show can still move real revenue for Florida companies when the category and market line up."
             />
           ))}
         </div>

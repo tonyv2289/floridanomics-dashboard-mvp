@@ -338,3 +338,126 @@ export function buildTradeLead(dataset: DashboardDataset): DashboardLead {
     })),
   };
 }
+
+export function buildCoreMetricInterpretation(metric: AnyMetric): string {
+  switch (metric.id) {
+    case "unemploymentRate":
+      return `Up ${Math.abs(metric.deltas.oneYear?.absolute ?? 0).toFixed(1)} points from ${formatDateLabel(metric.deltas.oneYear?.baseDate ?? metric.latest.date, { month: "long", year: "numeric" })}. Florida is still below the classic 5% stress line, but the labor market is clearly looser than a year ago.`;
+    case "laborForce":
+      return `The labor force is still larger than a year ago by ${formatCompact(Math.abs(metric.deltas.oneYear?.absolute ?? 0), 1)} people. Florida is still attracting workers even while hiring momentum cools.`;
+    case "nonfarmPayrolls":
+      return `Payrolls are down ${formatCompact(Math.abs(displayValue(metric, metric.deltas.oneYear?.absolute ?? 0)), 1)} from a year ago. That is the cleanest sign that migration alone is not enough to carry the hiring story.`;
+    case "population":
+      return `Population is still up ${formatCompact(Math.abs(metric.deltas.oneYear?.absolute ?? 0), 1)} year over year. Demand for housing, services, and infrastructure keeps compounding underneath the labor cycle.`;
+    case "employmentLevel":
+      return `Employment is below the year-ago mark by ${formatCompact(Math.abs(metric.deltas.oneYear?.absolute ?? 0), 1)} people. More residents are here, but fewer are working than the migration story alone would suggest.`;
+    default:
+      return "The headline matters less than the direction of the trend. Florida still rewards close reading.";
+  }
+}
+
+export function buildCoreMetricChartInterpretation(metric: AnyMetric): string {
+  switch (metric.id) {
+    case "unemploymentRate":
+      return `This chart is the fastest reality check in the app. Florida's unemployment rate has climbed from the 2023 lows, which means the state's labor market is no longer running on pure momentum.`;
+    case "laborForce":
+      return "Florida's growth story still starts with people. A rising labor force means the state is still pulling workers in even while employers slow down.";
+    case "nonfarmPayrolls":
+      return "This is the chart to watch if you want the hard employer read. Payrolls have flattened enough that any Florida boom narrative now needs sector detail behind it.";
+    case "population":
+      return "Population is the long-duration Florida advantage. It does not rescue every short-cycle slowdown, but it keeps the demand base moving in one direction.";
+    case "employmentLevel":
+      return "Employment has not kept up with the population story. That gap is why the dashboard keeps labor, migration, and industry mix in the same frame.";
+    default:
+      return buildCoreMetricInterpretation(metric);
+  }
+}
+
+export function buildInnovationMetricInterpretation(metric: Metric): string {
+  switch (metric.id) {
+    case "businessApplications":
+      return "Formation is still outrunning the labor market. Florida keeps producing new companies even while mature hiring and construction soften.";
+    case "informationEmployment":
+      return "This is the wobble inside the knowledge-work layer. If Florida wants a deeper tech bench, information employment cannot keep slipping while startups rise.";
+    case "professionalBusinessEmployment":
+      return "This is still one of the state's biggest advanced-services bases, but the line is flatter than the marketing copy. Florida has scale here, not escape velocity.";
+    case "realGsp":
+      return "Output is still growing, which matters. Florida's innovation story is broader than venture headlines, and real output is the least hype-prone proof point.";
+    case "constructionEmployment":
+      return "Construction is the warning light in an expansion state. When buildout slows in Florida, it usually hits confidence well before it hits branding.";
+    default:
+      return "The innovation stack needs one focal signal at a time. This chart is the operating read, not background decoration.";
+  }
+}
+
+export function buildIndustryInterpretation(dataset: DashboardDataset): string {
+  const topGrower = dataset.industry.strongestGrowers[0];
+  const biggestLaggard = dataset.industry.laggards[0];
+
+  return `${topGrower.label} is carrying the strongest growth print at ${topGrower.deltas.oneYear?.percent?.toFixed(1) ?? "n/a"}% year over year, while ${biggestLaggard.label} is the weakest line at ${biggestLaggard.deltas.oneYear?.percent?.toFixed(1) ?? "n/a"}%. Florida is still expanding, but the composition of growth is narrower than the population story suggests.`;
+}
+
+export function buildMetroComparisonInterpretation(dataset: DashboardDataset, selectedMetroId: string): string {
+  const metros = [...dataset.metros].sort((a, b) => a.unemploymentRate.latest.value - b.unemploymentRate.latest.value);
+  const tightest = metros[0];
+  const loosest = metros[metros.length - 1];
+  const selected = dataset.metros.find((metro) => metro.id === selectedMetroId) ?? tightest;
+
+  return `${tightest.name} is still the tightest major labor market at ${tightest.unemploymentRate.latest.value.toFixed(1)}%, while ${loosest.name} is the loosest at ${loosest.unemploymentRate.latest.value.toFixed(1)}%. ${selected.name} matters because local execution in Florida still happens metro by metro, not statewide.`;
+}
+
+export function buildMetroCardInterpretation(dataset: DashboardDataset, metroId: string): string {
+  const metro = dataset.metros.find((entry) => entry.id === metroId);
+  const statewide = dataset.metrics.unemploymentRate.latest.value;
+
+  if (!metro) {
+    return "Each metro carries its own labor cycle. The statewide read only gets you part of the way.";
+  }
+
+  const gap = metro.unemploymentRate.latest.value - statewide;
+  if (Math.abs(gap) < 0.15) {
+    return `This metro is tracking close to the statewide unemployment rate of ${statewide.toFixed(1)}%. It is a useful baseline read, not an outlier.`;
+  }
+
+  if (gap < 0) {
+    return `This metro is tighter than the statewide labor market by ${Math.abs(gap).toFixed(1)} points. It is still absorbing workers better than Florida overall.`;
+  }
+
+  return `This metro is looser than the statewide labor market by ${gap.toFixed(1)} points. If conditions weaken further, this geography will feel it before the statewide average does.`;
+}
+
+export function buildTradeCategoryInterpretation(dataset: DashboardDataset): string {
+  const topCategory = dataset.trade.topCategories[0];
+
+  return `${topCategory.label} alone accounts for $${topCategory.valueUsdBillions.toFixed(1)}B, and the rest of the top five still leans toward advanced manufactured goods. That keeps Florida's export mix specific, not generic.`;
+}
+
+export function buildTradeDeltaInterpretation(delta: DashboardDataset["trade"]["deltas"][number]): string {
+  switch (delta.id) {
+    case "oneYear":
+      return "This is the cleanest year-over-year expansion read in the trade stack. Florida added real export volume, not just narrative heat.";
+    case "sevenYear":
+      return "The pre-2018 comparison matters because it shows this is a larger machine now, not just a one-year spike.";
+    case "fiscalYear":
+      return "SelectFlorida's measured pipeline is still scaling. That is operating leverage, not macro luck.";
+    case "mfgShare":
+      return "Manufacturing is doing almost all of the heavy lifting. That is a strength, and it is also concentration risk.";
+    default:
+      return "The delta matters because Florida's trade story only works if the growth is durable.";
+  }
+}
+
+export function buildTradeHeroInterpretation(metricId: string): string {
+  switch (metricId) {
+    case "totalExports":
+      return "Record exports matter because they prove Florida is shipping real goods, not just importing growth narratives.";
+    case "manufacturedExports":
+      return "Manufacturing is doing most of the work in this trade story. That is why aerospace and industrial capacity matter so much to Florida.";
+    case "bilateralTrade":
+      return "This is the logistics moat in one number. Florida's ports and airports are moving enough volume to make the gateway claim tangible.";
+    case "selectFloridaFy":
+      return "This is measured execution, not aspiration. Florida can point to transaction outcomes, not just conference slogans.";
+    default:
+      return "The trade stack only matters if it converts headline volume into durable economic position.";
+  }
+}
