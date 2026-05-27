@@ -28,6 +28,12 @@
       "notes": "Official 4/1/2026 release: Florida Businesses Set Record High Export Sales in 2025 ($78.9B). Powers International Trade tab."
     },
     {
+      "id": "florida_governor_press_office",
+      "name": "Florida Governor's Office",
+      "url": "https://www.flgov.com/eog/news/press/",
+      "notes": "Official executive announcements used for state-backed economic development wins, capital investment, and project-level source links."
+    },
+    {
       "id": "florida_scorecard",
       "name": "Florida Scorecard / Florida Chamber Foundation",
       "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2",
@@ -38,6 +44,24 @@
       "name": "Florida Chamber Foundation Income Migration Analysis",
       "url": "https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/",
       "notes": "Canonical public frame for Florida Brain and eMerge external communication: $36.05B per year in net income migration, or more than $4M per hour."
+    },
+    {
+      "id": "florida_taxwatch",
+      "name": "Florida TaxWatch",
+      "url": "https://floridataxwatch.org/",
+      "notes": "Independent Florida fiscal, taxpayer, and economic research source used for policy context and future competitiveness modules."
+    },
+    {
+      "id": "james_madison_institute",
+      "name": "The James Madison Institute",
+      "url": "https://jamesmadison.org/",
+      "notes": "Florida-based policy research source used for economic freedom, regulatory, workforce, housing, education, and competitiveness context."
+    },
+    {
+      "id": "fc100_ambition_accelerated",
+      "name": "Florida Council of 100 / Ambition Accelerated",
+      "url": "https://ambitionaccelerated.com/",
+      "notes": "Business-led Florida competitiveness and innovation platform used for Ambition Accelerated, Gold Coast growth, and long-term state strategy context."
     },
     {
       "id": "world_bank_gdp",
@@ -10888,6 +10912,22 @@
         "url": "https://www.selectflorida.org/"
       },
       {
+        "id": "florida-commerce",
+        "name": "FloridaCommerce",
+        "category": "Programs",
+        "region": "Statewide",
+        "summary": "Official state commerce agency for workforce, business growth, trade, and economic development signals.",
+        "url": "https://www.floridacommerce.gov/"
+      },
+      {
+        "id": "florida-governor-press-office",
+        "name": "Florida Governor's Office",
+        "category": "Policy",
+        "region": "Statewide",
+        "summary": "Official executive announcements for state-backed capital investment and strategic economic development wins.",
+        "url": "https://www.flgov.com/eog/news/press/"
+      },
+      {
         "id": "florida-sbdc",
         "name": "Florida SBDC Network",
         "category": "Programs",
@@ -10953,11 +10993,11 @@
       },
       {
         "id": "florida-council-of-100",
-        "name": "Florida Council of 100",
+        "name": "Florida Council of 100 / Ambition Accelerated",
         "category": "Policy",
         "region": "Statewide",
-        "summary": "Business-led statewide policy organization focused on Florida's long-term competitiveness.",
-        "url": "https://www.fc100.org/"
+        "summary": "Business-led competitiveness agenda and national campaign for Florida's next generation of high-growth companies.",
+        "url": "https://ambitionaccelerated.com/"
       },
       {
         "id": "florida-chamber",
@@ -10966,6 +11006,22 @@
         "region": "Statewide",
         "summary": "Statewide business policy and economic competitiveness organization.",
         "url": "https://www.flchamber.com/"
+      },
+      {
+        "id": "florida-taxwatch",
+        "name": "Florida TaxWatch",
+        "category": "Policy",
+        "region": "Statewide",
+        "summary": "Independent fiscal, taxpayer, and economic research for Florida budget and competitiveness context.",
+        "url": "https://floridataxwatch.org/"
+      },
+      {
+        "id": "james-madison-institute",
+        "name": "The James Madison Institute",
+        "category": "Policy",
+        "region": "Statewide",
+        "summary": "Florida policy research for economic freedom, regulation, workforce, housing, and competitiveness analysis.",
+        "url": "https://jamesmadison.org/"
       },
       {
         "id": "orlando-ep",

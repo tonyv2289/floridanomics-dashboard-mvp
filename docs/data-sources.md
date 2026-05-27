@@ -93,7 +93,22 @@ Primary sources:
 
 - FloridaCommerce / SelectFlorida / official release stack already embedded in the dataset
 
-## 3. Source layering model
+## 3. Florida policy and strategy source layer
+
+V3 keeps a named Florida source layer in the public dataset so the dashboard can keep moving toward a Florida Brain research terminal without losing provenance. These sources are not all monthly numeric feeds yet; some are validated strategy, policy, or announcement sources used for editorial context and future modules.
+
+Required source stack:
+
+- FloridaCommerce and SelectFlorida for state commerce, trade, workforce, and business expansion signals
+- Florida Governor's Office for official executive announcements on capital investment and project wins
+- Florida Chamber Foundation and Florida Scorecard for 2030 trajectory, FutureCast, income migration, and business competitiveness metrics
+- Florida TaxWatch for independent fiscal, taxpayer, economic, and budget policy research
+- The James Madison Institute for Florida policy research on economic freedom, regulatory climate, workforce, housing, education, and competitiveness
+- Florida Council of 100 / Ambition Accelerated for business-led competitiveness strategy and the Gold Coast growth platform
+
+`npm run data:validate` now fails if the required Florida source stack is missing from either the public source footer or the innovation source atlas.
+
+## 4. Source layering model
 
 The key product rule is:
 
@@ -102,7 +117,7 @@ The key product rule is:
 
 This avoids the old failure mode where a routine data refresh could erase Florida-specific editorial work.
 
-## 4. Caveats
+## 5. Caveats
 
 - Labor metrics are monthly, population is annual
 - Some trade and Florida-specific sections are updated on their own release cadence, not monthly
