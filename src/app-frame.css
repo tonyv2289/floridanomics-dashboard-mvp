@@ -1,0 +1,98 @@
+.compare-frame {
+  min-height: 100vh;
+  background: #02060d;
+}
+
+.compare-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: end;
+  padding: 1rem 1.25rem;
+  background: rgba(5, 9, 19, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.compare-copy h1 {
+  margin: 0.2rem 0 0;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  color: #f8fbff;
+}
+
+.compare-kicker {
+  margin: 0;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffb57a;
+}
+
+.compare-note {
+  margin: 0.35rem 0 0;
+  color: #9fb1ca;
+  max-width: 60ch;
+  line-height: 1.45;
+}
+
+.compare-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.compare-link {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  color: #dbe7f5;
+  text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.compare-link:hover {
+  border-color: rgba(255, 143, 63, 0.7);
+  color: #e8eef9;
+}
+
+.compare-link-active {
+  background: rgba(255, 143, 63, 0.16);
+  border-color: rgba(255, 143, 63, 0.72);
+  color: #e8eef9;
+}
+
+.compare-loading {
+  min-height: calc(100vh - 88px);
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.compare-loading-card {
+  width: min(32rem, 100%);
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: rgba(10, 17, 31, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.compare-loading-card h2 {
+  margin: 0.25rem 0 0;
+  color: #f8fbff;
+}
+
+@media (max-width: 900px) {
+  .compare-bar {
+    align-items: start;
+    flex-direction: column;
+  }
+}
