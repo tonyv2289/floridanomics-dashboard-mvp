@@ -6,6 +6,26 @@ import type { DashboardDataset, InsightSection, InsightSource, InsightStat } fro
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DATA_FILE = path.join(ROOT, "public", "data", "florida-economy.json");
 
+const REQUIRED_TOP_LEVEL_SOURCE_IDS = [
+  "selectflorida_exports",
+  "florida_governor_press_office",
+  "florida_scorecard",
+  "florida_chamber_income_migration",
+  "florida_taxwatch",
+  "james_madison_institute",
+  "fc100_ambition_accelerated",
+] as const;
+
+const REQUIRED_INNOVATION_RESOURCE_IDS = [
+  "select-florida",
+  "florida-commerce",
+  "florida-governor-press-office",
+  "florida-council-of-100",
+  "florida-chamber",
+  "florida-taxwatch",
+  "james-madison-institute",
+] as const;
+
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
 }
@@ -27,6 +47,19 @@ function ensure(condition: unknown, message: string, errors: string[]) {
 function validateSource(source: InsightSource, label: string, errors: string[]) {
   ensure(isNonEmptyString(source.label), `${label} missing source label`, errors);
   ensure(isHttpUrl(source.url), `${label} missing valid source URL`, errors);
+}
+
+function validateRequiredIds(
+  items: Array<{ id: string }>,
+  requiredIds: readonly string[],
+  label: string,
+  errors: string[],
+) {
+  const ids = new Set(items.map((item) => item.id));
+
+  requiredIds.forEach((id) => {
+    ensure(ids.has(id), `${label} missing required id: ${id}`, errors);
+  });
 }
 
 function validateInsightStat(stat: InsightStat, label: string, errors: string[]) {
@@ -74,6 +107,7 @@ async function main() {
     ensure(isHttpUrl(source.url), `Top-level source ${index + 1} missing valid URL`, errors);
     ensure(isNonEmptyString(source.notes), `Top-level source ${index + 1} missing notes`, errors);
   });
+  validateRequiredIds(data.sources, REQUIRED_TOP_LEVEL_SOURCE_IDS, "Top-level source stack", errors);
 
   ensure(data.heroMetrics.length >= 4, "heroMetrics should have at least 4 entries", errors);
 
@@ -123,6 +157,12 @@ async function main() {
   }
 
   ensure(data.innovation.resources.length >= 6, "Innovation resources list is unexpectedly short", errors);
+  validateRequiredIds(
+    data.innovation.resources,
+    REQUIRED_INNOVATION_RESOURCE_IDS,
+    "Innovation source atlas",
+    errors,
+  );
   ensure(data.innovation.narrative.signals.length > 0, "Innovation narrative missing signals", errors);
   ensure(data.innovation.narrative.development.length > 0, "Innovation narrative missing development", errors);
   ensure(data.innovation.narrative.momentum.length > 0, "Innovation narrative missing momentum", errors);

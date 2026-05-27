@@ -91,6 +91,7 @@ npm run data:validate
 ```
 
 The validator now checks both the refreshed core metrics and the richer `v2` product sections, including insight blocks and trade structure.
+It also enforces the Florida source stack: FloridaCommerce/SelectFlorida, the Governor's Office, Florida Chamber/Scorecard, Florida TaxWatch, JMI, and Florida Council of 100 / Ambition Accelerated.
 
 ## Deployment
 
