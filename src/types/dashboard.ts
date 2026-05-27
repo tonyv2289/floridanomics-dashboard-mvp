@@ -111,6 +111,55 @@ export type FloridaBrainNote = {
   sources: InsightSource[];
 };
 
+export type PeerStateSnapshot = {
+  id: "FL" | "TX" | "GA" | "NC" | "TN" | "AZ" | "UT" | "CA";
+  name: string;
+  shortName: string;
+  positioning: string;
+  watch: string;
+  unemploymentRate: Pick<Metric, "latest" | "deltas" | "sparkline">;
+  laborForce: Pick<Metric, "latest" | "deltas" | "sparkline">;
+  nonfarmPayrolls: Pick<Metric, "latest" | "deltas" | "sparkline">;
+  sources: InsightSource[];
+};
+
+export type BenchmarkExample = {
+  id: string;
+  name: string;
+  model: string;
+  takeaway: string;
+  source: InsightSource;
+};
+
+export type StrategyCluster = {
+  id: string;
+  title: string;
+  thesis: string;
+  bottleneck: string;
+  proof: string;
+  whatToTrack: string;
+  sources: InsightSource[];
+};
+
+export type StrategyScenario = {
+  id: "base" | "ambition" | "risk";
+  label: string;
+  status: string;
+  summary: string;
+  signals: string[];
+  sources: InsightSource[];
+};
+
+export type StrategyLayer = {
+  headline: string;
+  summary: string;
+  peerStates: PeerStateSnapshot[];
+  benchmarkExamples: BenchmarkExample[];
+  clusters: StrategyCluster[];
+  talentPipeline: InsightSection;
+  scenarios: StrategyScenario[];
+};
+
 export type TradeHeadlineMetric = {
   id: string;
   label: string;
@@ -223,6 +272,7 @@ export type DashboardDataset = {
   };
   scorecard2030: InsightSection;
   brainNotes: FloridaBrainNote[];
+  strategy: StrategyLayer;
   distinctives: {
     snowbirdIndex: InsightSection;
     spaceCoastCadence: InsightSection;

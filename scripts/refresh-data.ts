@@ -9,7 +9,9 @@ import type {
   InnovationResource,
   Metric,
   MetroSnapshot,
+  PeerStateSnapshot,
   PopulationMetric,
+  StrategyLayer,
   TimePoint,
 } from "../src/types/dashboard";
 
@@ -166,6 +168,73 @@ const METRO_DEFS = [
   { id: "tampa", name: "Tampa MSA", lausRoot: "LAUMT124530000000" },
   { id: "orlando", name: "Orlando MSA", lausRoot: "LAUMT123674000000" },
   { id: "jacksonville", name: "Jacksonville MSA", lausRoot: "LAUMT122726000000" },
+] as const;
+
+const PEER_STATE_DEFS = [
+  {
+    id: "FL",
+    name: "Florida",
+    shortName: "FL",
+    fips: "12",
+    positioning: "The scale state with migration, trade, aerospace, and founder formation.",
+    watch: "Whether population and income migration convert into high-wage payroll depth.",
+  },
+  {
+    id: "TX",
+    name: "Texas",
+    shortName: "TX",
+    fips: "48",
+    positioning: "The capex and power-heavy benchmark for energy, chips, data centers, and advanced manufacturing.",
+    watch: "Whether Texas keeps turning infrastructure scale into payroll and wage advantage.",
+  },
+  {
+    id: "GA",
+    name: "Georgia",
+    shortName: "GA",
+    fips: "13",
+    positioning: "The logistics, film, auto, battery, and Atlanta talent benchmark.",
+    watch: "Whether Georgia keeps converting industrial incentives into high-quality job growth.",
+  },
+  {
+    id: "NC",
+    name: "North Carolina",
+    shortName: "NC",
+    fips: "37",
+    positioning: "The county-vitality and research-triangle benchmark for balanced growth.",
+    watch: "Whether research, manufacturing, and county momentum stay synchronized.",
+  },
+  {
+    id: "TN",
+    name: "Tennessee",
+    shortName: "TN",
+    fips: "47",
+    positioning: "The education-to-employment and advanced manufacturing benchmark.",
+    watch: "Whether its talent pipeline keeps pace with industrial project growth.",
+  },
+  {
+    id: "AZ",
+    name: "Arizona",
+    shortName: "AZ",
+    fips: "04",
+    positioning: "The semiconductor, data-center, and desert-growth peer.",
+    watch: "Whether power, water, and chip capex translate into durable wage gains.",
+  },
+  {
+    id: "UT",
+    name: "Utah",
+    shortName: "UT",
+    fips: "49",
+    positioning: "The high-growth, high-participation tech and family-formation peer.",
+    watch: "Whether a smaller state can keep outperforming larger talent markets.",
+  },
+  {
+    id: "CA",
+    name: "California",
+    shortName: "CA",
+    fips: "06",
+    positioning: "The incumbent innovation economy Florida keeps measuring itself against.",
+    watch: "Whether capital and talent leakage continues, or California re-accelerates.",
+  },
 ] as const;
 
 const INNOVATION_FRED_SERIES = {
@@ -367,8 +436,305 @@ const FLORIDA_BRAIN_NOTES: DashboardDataset["brainNotes"] = [
   },
 ];
 
+const STRATEGY_SOURCE_STACK: DashboardDataset["sources"] = [
+  {
+    id: "texas_comptroller_texstats",
+    name: "Texas Comptroller TexStats",
+    url: "https://comptroller.texas.gov/transparency/open-data/dashboards.php",
+    notes: "Peer dashboard model for official statewide and regional economic indicators.",
+  },
+  {
+    id: "texas_2036_data_hub",
+    name: "Texas 2036 Data Hub",
+    url: "https://texas2036.org/data/",
+    notes: "Long-range state strategy and scenario framing model.",
+  },
+  {
+    id: "pennsylvania_on_target",
+    name: "Pennsylvania On Target",
+    url: "https://dced.pa.gov/pennsylvania-on-target/",
+    notes: "Cluster, workforce, supply-chain, and emerging-industry dashboard model.",
+  },
+  {
+    id: "north_carolina_evi",
+    name: "North Carolina County Economic Vitality Dashboard",
+    url: "https://www.commerce.nc.gov/news/the-lead-feed/introducing-county-evi-dashboard",
+    notes: "County comparison, ranking, and improvement-over-time model.",
+  },
+  {
+    id: "tennessee_e2e",
+    name: "Tennessee Education to Employment Dashboard",
+    url: "https://www.tn.gov/finance/oei/tn-data/e2e-dashboard.html",
+    notes: "Education-program to wage-outcome model for talent pipeline analysis.",
+  },
+  {
+    id: "washington_stem_dashboard",
+    name: "Washington STEM Talent Supply and Demand Dashboard",
+    url: "https://wsac.wa.gov/STEM-Alliance",
+    notes: "STEM supply-demand model for workforce gap framing.",
+  },
+  {
+    id: "mass_competitiveness_index",
+    name: "Massachusetts Competitiveness Index",
+    url: "https://www.masstaxpayers.org/massachusetts-competitiveness-index-2025",
+    notes: "Peer-state competitiveness model across economic health, population, business investment, and quality of life.",
+  },
+];
+
+const STRATEGY_BENCHMARK_EXAMPLES: StrategyLayer["benchmarkExamples"] = [
+  {
+    id: "texas-2036",
+    name: "Texas 2036",
+    model: "State futures",
+    takeaway: "Make the dashboard answer where the state is headed, not just what happened last month.",
+    source: {
+      label: "Texas 2036 Data Hub",
+      url: "https://texas2036.org/data/",
+    },
+  },
+  {
+    id: "pennsylvania-on-target",
+    name: "Pennsylvania On Target",
+    model: "Cluster strategy",
+    takeaway: "Organize growth around sectors, supply chains, workforce gaps, and emerging industries.",
+    source: {
+      label: "Pennsylvania On Target",
+      url: "https://dced.pa.gov/pennsylvania-on-target/",
+    },
+  },
+  {
+    id: "north-carolina-evi",
+    name: "North Carolina EVI",
+    model: "County momentum",
+    takeaway: "Rank local momentum so statewide leaders can see where growth is broadening or narrowing.",
+    source: {
+      label: "NC County Economic Vitality",
+      url: "https://www.commerce.nc.gov/news/the-lead-feed/introducing-county-evi-dashboard",
+    },
+  },
+  {
+    id: "tennessee-e2e",
+    name: "Tennessee E2E",
+    model: "Talent pipeline",
+    takeaway: "Tie degrees and credentials to jobs and wage outcomes, not just enrollment.",
+    source: {
+      label: "Tennessee E2E Dashboard",
+      url: "https://www.tn.gov/finance/oei/tn-data/e2e-dashboard.html",
+    },
+  },
+  {
+    id: "mass-competitiveness",
+    name: "Massachusetts Competitiveness Index",
+    model: "Peer-state scoreboard",
+    takeaway: "Put Florida in the ring with competitor states across business, labor, migration, and quality-of-life metrics.",
+    source: {
+      label: "Massachusetts Competitiveness Index",
+      url: "https://www.masstaxpayers.org/massachusetts-competitiveness-index-2025",
+    },
+  },
+];
+
+const STRATEGY_CLUSTERS: StrategyLayer["clusters"] = [
+  {
+    id: "ai-power-readiness",
+    title: "AI capex and power readiness",
+    thesis: "Florida should track whether it is missing the power-heavy AI infrastructure boom while peers absorb larger data-center and semiconductor projects.",
+    bottleneck: "Power, water, transmission, and whether incentives distinguish strategic compute from dumb load.",
+    proof: "The active Florida Brain thesis is that unemployment softness may partly reflect missed industrial capex, not just a normal labor cycle.",
+    whatToTrack: "Data-center megawatts, interconnection queue, industrial power rates, project capex, and high-wage construction plus operations jobs.",
+    sources: [
+      {
+        label: "Florida Brain AI capex brief",
+        url: "https://tonyv2289.github.io/floridanomics-dashboard-mvp/briefs/ai-capex-gap/",
+      },
+      {
+        label: "CBRE data center trends",
+        url: "https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025",
+      },
+    ],
+  },
+  {
+    id: "space-coast-aerospace",
+    title: "Space Coast aerospace cadence",
+    thesis: "Florida's most distinctive innovation cluster is physical: launches, factories, spaceport infrastructure, and dual-use manufacturing.",
+    bottleneck: "Specialized talent, industrial sites, supplier depth, and how much of the value chain stays in Florida.",
+    proof: "The dashboard already tracks 109 launches, a $6B aerospace pipeline, and Blue Origin's $600M Cape Canaveral expansion.",
+    whatToTrack: "Launch cadence, aerospace payrolls, project pipeline, supplier announcements, and advanced manufacturing wage growth.",
+    sources: [
+      {
+        label: "Space Florida",
+        url: "https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry",
+      },
+    ],
+  },
+  {
+    id: "latam-gateway",
+    title: "LATAM gateway and logistics",
+    thesis: "South Florida's gateway claim is strongest where trade, finance, aviation, containers, and relationships stack together.",
+    bottleneck: "Cold-chain capacity, port throughput, customs efficiency, insurance, and last-mile infrastructure.",
+    proof: "PortMiami and Port Everglades give the dashboard a physical trade base instead of a slogan.",
+    whatToTrack: "TEUs, tonnage, refrigerated cargo, LATAM share, air cargo, export categories, and bilateral trade via Florida ports and airports.",
+    sources: [
+      {
+        label: "PortMiami cargo",
+        url: "https://www.miamidade.gov/portmiami/cargo.page",
+      },
+      {
+        label: "Port Everglades cargo",
+        url: "https://www.porteverglades.net/about-us/statistics/cargo-statistics/",
+      },
+    ],
+  },
+  {
+    id: "talent-pipeline",
+    title: "Talent pipeline and wage outcomes",
+    thesis: "Florida cannot become the next-economy state if credentials, degrees, and STEM labor supply do not map to target clusters.",
+    bottleneck: "The dashboard still needs education-to-employment outcomes by region and industry.",
+    proof: "Tennessee and Washington show the better model: talent supply and wage outcomes belong next to economic ambition.",
+    whatToTrack: "Degrees, credentials, target occupations, wage outcomes, STEM gaps, and regional placement into priority clusters.",
+    sources: [
+      {
+        label: "Tennessee E2E",
+        url: "https://www.tn.gov/finance/oei/tn-data/e2e-dashboard.html",
+      },
+      {
+        label: "Washington STEM",
+        url: "https://wsac.wa.gov/STEM-Alliance",
+      },
+    ],
+  },
+];
+
+const STRATEGY_TALENT_PIPELINE: StrategyLayer["talentPipeline"] = {
+  eyebrow: "Talent pipeline layer",
+  title: "The next dashboard gap is education-to-employment proof.",
+  summary:
+    "The benchmark scan says Floridanomics should connect credentials, degrees, target occupations, and wage outcomes. That turns workforce from a talking point into a strategy surface.",
+  stats: [
+    {
+      label: "Model to steal",
+      value: "Tennessee E2E",
+      context: "Education programs linked to employment and wages one to five years after graduation",
+      source: {
+        label: "Tennessee E2E Dashboard",
+        url: "https://www.tn.gov/finance/oei/tn-data/e2e-dashboard.html",
+      },
+    },
+    {
+      label: "Supply-demand model",
+      value: "Washington STEM",
+      context: "STEM talent supply measured against workforce demand",
+      source: {
+        label: "Washington STEM Dashboard",
+        url: "https://wsac.wa.gov/STEM-Alliance",
+      },
+    },
+    {
+      label: "Florida target",
+      value: "Cluster fit",
+      context: "Degrees, credentials, jobs, and wages mapped to aerospace, AI, logistics, life sciences, and fintech",
+      source: {
+        label: "FC100 Ambition Accelerated",
+        url: "https://ambitionaccelerated.com/",
+      },
+    },
+  ],
+  interpretation: [
+    "The talent question is not whether Florida has people. The question is whether the state's education and credential pipeline maps to the clusters it says it wants to win.",
+    "This should become a source-linked module with program output, regional job demand, wage outcomes, and cluster placement. That is the missing bridge between Florida Brain narrative and workforce policy.",
+  ],
+  sources: [
+    {
+      label: "Tennessee Education to Employment Dashboard",
+      url: "https://www.tn.gov/finance/oei/tn-data/e2e-dashboard.html",
+    },
+    {
+      label: "Washington STEM Talent Supply and Demand Dashboard",
+      url: "https://wsac.wa.gov/STEM-Alliance",
+    },
+    {
+      label: "Florida Council of 100 / Ambition Accelerated",
+      url: "https://ambitionaccelerated.com/",
+    },
+  ],
+};
+
+const STRATEGY_SCENARIOS: StrategyLayer["scenarios"] = [
+  {
+    id: "base",
+    label: "Base case",
+    status: "Current trajectory",
+    summary: "Florida keeps gaining people, income, and company formation, but high-wage cluster depth grows unevenly.",
+    signals: [
+      "Labor force keeps expanding while unemployment stays elevated from recent lows.",
+      "Business formation remains strong but information employment is not yet escape velocity.",
+      "Trade and aerospace carry distinctive strength, but AI infrastructure remains under-measured.",
+    ],
+    sources: [
+      {
+        label: "BLS",
+        url: "https://www.bls.gov/developers/",
+      },
+      {
+        label: "Florida Scorecard",
+        url: "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2",
+      },
+    ],
+  },
+  {
+    id: "ambition",
+    label: "Ambition case",
+    status: "Florida wins strategic compute",
+    summary: "Florida captures more AI, aerospace, LATAM logistics, life-sciences, and advanced-services investment without subsidizing dumb load.",
+    signals: [
+      "Data-center and grid investments show up as high-wage construction and operations jobs.",
+      "Space Coast suppliers deepen the aerospace value chain inside Florida.",
+      "Talent pipeline data begins showing cluster-specific wage and placement gains.",
+    ],
+    sources: [
+      {
+        label: "Texas 2036 scenario model",
+        url: "https://texas2036.org/data/",
+      },
+      {
+        label: "Florida Brain AI capex brief",
+        url: "https://tonyv2289.github.io/floridanomics-dashboard-mvp/briefs/ai-capex-gap/",
+      },
+    ],
+  },
+  {
+    id: "risk",
+    label: "Risk case",
+    status: "Population growth without next-economy depth",
+    summary: "Florida keeps the migration story but misses too much of the power-heavy capex and STEM employment boom.",
+    signals: [
+      "Unemployment rises while payroll growth concentrates in lower-wage or population-serving sectors.",
+      "Texas, Georgia, Arizona, and North Carolina absorb more industrial and data-center investment.",
+      "Florida Brain has to explain why a high-growth state is not leading the high-wage cycle.",
+    ],
+    sources: [
+      {
+        label: "Massachusetts peer-state model",
+        url: "https://www.masstaxpayers.org/massachusetts-competitiveness-index-2025",
+      },
+      {
+        label: "Pennsylvania cluster model",
+        url: "https://dced.pa.gov/pennsylvania-on-target/",
+      },
+    ],
+  },
+];
+
 function metricSeriesId(root: string, measureCode: "003" | "005" | "006") {
   return `${root}${measureCode}`;
+}
+
+function stateLausSeriesId(fips: string, measureCode: "003" | "005" | "006") {
+  return `LASST${fips}000000000000${measureCode.slice(2)}`;
+}
+
+function statePayrollSeriesId(fips: string) {
+  return `SMS${fips}000000000000001`;
 }
 
 function parseBlsMonthly(series: BlsSeries): TimePoint[] {
@@ -651,6 +1017,14 @@ type ExistingDatasetFallback = {
     laborForce?: { sparkline?: TimePoint[] };
     employmentLevel?: { sparkline?: TimePoint[] };
   }>;
+  strategy?: {
+    peerStates?: Array<{
+      id: string;
+      unemploymentRate?: { sparkline?: TimePoint[] };
+      laborForce?: { sparkline?: TimePoint[] };
+      nonfarmPayrolls?: { sparkline?: TimePoint[] };
+    }>;
+  };
 };
 
 function buildBlsDataFromExisting(existing: ExistingDatasetFallback): Record<string, TimePoint[]> {
@@ -689,6 +1063,24 @@ function buildBlsDataFromExisting(existing: ExistingDatasetFallback): Record<str
     }
   }
 
+  const peerMap = new Map((existing.strategy?.peerStates ?? []).map((state) => [state.id, state]));
+  for (const state of PEER_STATE_DEFS) {
+    const cachedState = peerMap.get(state.id);
+    const unemployment = cachedState?.unemploymentRate?.sparkline ?? [];
+    const laborForce = cachedState?.laborForce?.sparkline ?? [];
+    const payrolls = cachedState?.nonfarmPayrolls?.sparkline ?? [];
+
+    if (unemployment.length > 0) {
+      cached[stateLausSeriesId(state.fips, "003")] = unemployment;
+    }
+    if (laborForce.length > 0) {
+      cached[stateLausSeriesId(state.fips, "006")] = laborForce;
+    }
+    if (payrolls.length > 0) {
+      cached[statePayrollSeriesId(state.fips)] = payrolls;
+    }
+  }
+
   return cached;
 }
 
@@ -701,8 +1093,13 @@ async function main() {
     metricSeriesId(metro.lausRoot, "006"),
     metricSeriesId(metro.lausRoot, "005"),
   ]);
+  const peerStateSeriesIds = PEER_STATE_DEFS.flatMap((state) => [
+    stateLausSeriesId(state.fips, "003"),
+    stateLausSeriesId(state.fips, "006"),
+    statePayrollSeriesId(state.fips),
+  ]);
 
-  const allBlsIds = [...coreSeriesIds, ...industrySeriesIds, ...metroSeriesIds];
+  const allBlsIds = [...coreSeriesIds, ...industrySeriesIds, ...metroSeriesIds, ...peerStateSeriesIds];
   let blsData: Record<string, TimePoint[]>;
   try {
     blsData = await fetchBlsSeries(allBlsIds);
@@ -889,6 +1286,45 @@ async function main() {
     };
   });
 
+  const peerStates: PeerStateSnapshot[] = PEER_STATE_DEFS.map((state) => {
+    const unemployment = blsData[stateLausSeriesId(state.fips, "003")] ?? [];
+    const laborForce = blsData[stateLausSeriesId(state.fips, "006")] ?? [];
+    const payrolls = blsData[statePayrollSeriesId(state.fips)] ?? [];
+
+    if (unemployment.length === 0 || laborForce.length === 0 || payrolls.length === 0) {
+      throw new Error(`Missing peer-state benchmark series for ${state.name}`);
+    }
+
+    return {
+      id: state.id,
+      name: state.name,
+      shortName: state.shortName,
+      positioning: state.positioning,
+      watch: state.watch,
+      unemploymentRate: {
+        latest: latestPoint(unemployment),
+        deltas: buildDeltas(unemployment),
+        sparkline: lastN(unemployment, 36),
+      },
+      laborForce: {
+        latest: latestPoint(laborForce),
+        deltas: buildDeltas(laborForce),
+        sparkline: lastN(laborForce, 36),
+      },
+      nonfarmPayrolls: {
+        latest: latestPoint(payrolls),
+        deltas: buildDeltas(payrolls),
+        sparkline: lastN(payrolls, 36),
+      },
+      sources: [
+        {
+          label: "BLS LAUS / CES",
+          url: "https://www.bls.gov/developers/",
+        },
+      ],
+    };
+  });
+
   const narrative = buildNarrative({
     metrics,
     strongestGrowers,
@@ -921,7 +1357,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     asOfLaborMarket: prettyMonth(metrics.unemploymentRate.latest.date),
     asOfPopulation: String(new Date(metrics.population.latest.date).getUTCFullYear()),
-    sources: mergeSources(dynamicSources, existingDataset?.sources ?? []),
+    sources: mergeSources(dynamicSources, existingDataset?.sources ?? [], STRATEGY_SOURCE_STACK),
     heroMetrics: ["unemploymentRate", "laborForce", "nonfarmPayrolls", "population", "employmentLevel"],
     metrics,
     industry: {
@@ -944,6 +1380,16 @@ async function main() {
       resources: INNOVATION_RESOURCES,
     },
     brainNotes: FLORIDA_BRAIN_NOTES,
+    strategy: {
+      headline: "Florida needs a strategy cockpit, not another data portal.",
+      summary:
+        "This layer benchmarks Florida against competitor states, translates outside dashboard models into product moves, and frames the next-economy question around peer states, clusters, talent, metros, and scenarios.",
+      peerStates,
+      benchmarkExamples: STRATEGY_BENCHMARK_EXAMPLES,
+      clusters: STRATEGY_CLUSTERS,
+      talentPipeline: STRATEGY_TALENT_PIPELINE,
+      scenarios: STRATEGY_SCENARIOS,
+    },
     scorecard2030: preservedSections.scorecard2030,
     distinctives: preservedSections.distinctives,
     trade: preservedSections.trade,
