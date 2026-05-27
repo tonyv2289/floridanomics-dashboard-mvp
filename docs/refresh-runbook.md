@@ -18,6 +18,7 @@ Output:
 - 1Y / 3Y / 5Y deltas
 - industry growth and laggards
 - metro snapshots
+- peer-state BLS benchmarks for the Strategy tab
 - innovation metrics
 - generated statewide and innovation narratives
 
@@ -25,6 +26,7 @@ Output:
 
 - `scorecard2030`
 - `brainNotes`
+- `strategy` curated copy, benchmark examples, clusters, talent pipeline, and scenarios
 - `distinctives`
 - `trade`
 - existing curated source links
@@ -44,8 +46,9 @@ After refresh, verify:
 
 1. `generatedAt`, `asOfLaborMarket`, and `asOfPopulation` updated correctly
 2. core metrics and metro series still render
-3. `scorecard2030`, `brainNotes`, `distinctives`, and `trade` still exist in the dataset
+3. `scorecard2030`, `brainNotes`, `strategy`, `distinctives`, and `trade` still exist in the dataset
 4. source links remain present on the curated sections
+5. `strategy.peerStates` includes FL, TX, GA, NC, TN, AZ, UT, and CA
 
 ## Validation commands
 
@@ -67,6 +70,7 @@ If you need to change:
 
 - source notes
 - Florida Brain notes
+- Strategy tab copy and source models
 - verified stat copy
 - Florida-specific section framing
 - trade release framing

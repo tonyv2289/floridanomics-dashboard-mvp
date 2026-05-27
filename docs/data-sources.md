@@ -20,6 +20,27 @@ Primary source for statewide labor market, payroll, industry, and metro metrics.
 - Employment level: `LASST120000000000005`
 - Nonfarm payrolls: `SMS12000000000000001`
 
+### Peer-state strategy benchmarks
+
+The `Strategy` tab adds a live BLS peer-state layer for Florida and the states it should be benchmarked against: Texas, Georgia, North Carolina, Tennessee, Arizona, Utah, and California.
+
+For each peer state, the refresh script pulls:
+
+- unemployment rate: `LASST{state_fips}0000000000003`
+- labor force: `LASST{state_fips}0000000000006`
+- nonfarm payrolls: `SMS{state_fips}000000000000001`
+
+Current peer set:
+
+- Florida: `12`
+- Texas: `48`
+- Georgia: `13`
+- North Carolina: `37`
+- Tennessee: `47`
+- Arizona: `04`
+- Utah: `49`
+- California: `06`
+
 ### Industry employment
 
 - Construction: `SMS12000002000000001`
@@ -101,6 +122,28 @@ Primary sources:
 - Florida Governor's Office SB 484 release for the ratepayer and data-center policy posture
 - CBRE and JLL data-center research for the strategic compute market context
 
+### `strategy`
+
+The Strategy tab combines refreshed peer-state BLS benchmarks with curated strategy modules from the state-dashboard comparison analysis.
+
+Primary benchmark examples:
+
+- Texas Comptroller TexStats
+- Texas 2036 Data Hub
+- Pennsylvania On Target
+- North Carolina County Economic Vitality Dashboard
+- Tennessee Education to Employment Dashboard
+- Washington STEM Talent Supply and Demand Dashboard
+- Massachusetts Competitiveness Index
+
+Product modules:
+
+- peer-state benchmark table
+- cluster strategy view
+- talent pipeline source model
+- metro momentum layer
+- base / ambition / risk scenario layer
+
 ## 3. Florida policy and strategy source layer
 
 V3 keeps a named Florida source layer in the public dataset so the dashboard can keep moving toward a Florida Brain research terminal without losing provenance. These sources are not all monthly numeric feeds yet; some are validated strategy, policy, or announcement sources used for editorial context and future modules.
@@ -114,7 +157,17 @@ Required source stack:
 - The James Madison Institute for Florida policy research on economic freedom, regulatory climate, workforce, housing, education, and competitiveness
 - Florida Council of 100 / Ambition Accelerated for business-led competitiveness strategy and the Gold Coast growth platform
 
-`npm run data:validate` now fails if the required Florida source stack is missing from either the public source footer or the innovation source atlas.
+Strategy source stack:
+
+- Texas Comptroller TexStats for official state dashboard discipline
+- Texas 2036 for state-futures and scenario framing
+- Pennsylvania On Target for cluster strategy
+- North Carolina EVI for county momentum
+- Tennessee E2E for education-to-employment outcomes
+- Washington STEM for talent supply-demand
+- Massachusetts Competitiveness Index for peer-state competitiveness framing
+
+`npm run data:validate` now fails if the required Florida source stack is missing from either the public source footer or the innovation source atlas. It also fails if the Strategy source stack, peer-state layer, cluster layer, talent pipeline, or scenarios are missing.
 
 ## 4. Source layering model
 

@@ -3,10 +3,14 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type {
   DashboardDataset,
+  BenchmarkExample,
   FloridaBrainNote,
   InsightSection,
   InsightSource,
   InsightStat,
+  PeerStateSnapshot,
+  StrategyCluster,
+  StrategyScenario,
 } from "../src/types/dashboard";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -37,6 +41,18 @@ const REQUIRED_BRAIN_NOTE_IDS = [
   "strategic-compute-not-dumb-load",
   "florida-shaped-compute-lane",
 ] as const;
+
+const REQUIRED_STRATEGY_SOURCE_IDS = [
+  "texas_comptroller_texstats",
+  "texas_2036_data_hub",
+  "pennsylvania_on_target",
+  "north_carolina_evi",
+  "tennessee_e2e",
+  "washington_stem_dashboard",
+  "mass_competitiveness_index",
+] as const;
+
+const REQUIRED_PEER_STATE_IDS = ["FL", "TX", "GA", "NC", "TN", "AZ", "UT", "CA"] as const;
 
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
@@ -123,6 +139,61 @@ function validateFloridaBrainNote(note: FloridaBrainNote, label: string, errors:
   note.sources.forEach((source, index) => validateSource(source, `${label} source ${index + 1}`, errors));
 }
 
+function validatePeerState(state: PeerStateSnapshot, label: string, errors: string[]) {
+  ensure(isNonEmptyString(state.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(state.name), `${label} missing name`, errors);
+  ensure(isNonEmptyString(state.shortName), `${label} missing shortName`, errors);
+  ensure(isNonEmptyString(state.positioning), `${label} missing positioning`, errors);
+  ensure(isNonEmptyString(state.watch), `${label} missing watch`, errors);
+
+  const metricEntries = [
+    ["unemploymentRate", state.unemploymentRate],
+    ["laborForce", state.laborForce],
+    ["nonfarmPayrolls", state.nonfarmPayrolls],
+  ] as const;
+
+  for (const [metricLabel, metric] of metricEntries) {
+    ensure(isFiniteNumber(metric.latest.value), `${label}.${metricLabel} missing latest value`, errors);
+    ensure(isNonEmptyString(metric.latest.date), `${label}.${metricLabel} missing latest date`, errors);
+    ensure(metric.sparkline.length > 0, `${label}.${metricLabel} missing sparkline`, errors);
+  }
+
+  ensure(state.sources.length > 0, `${label} must include sources`, errors);
+  state.sources.forEach((source, index) => validateSource(source, `${label} source ${index + 1}`, errors));
+}
+
+function validateBenchmarkExample(example: BenchmarkExample, label: string, errors: string[]) {
+  ensure(isNonEmptyString(example.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(example.name), `${label} missing name`, errors);
+  ensure(isNonEmptyString(example.model), `${label} missing model`, errors);
+  ensure(isNonEmptyString(example.takeaway), `${label} missing takeaway`, errors);
+  validateSource(example.source, `${label} source`, errors);
+}
+
+function validateStrategyCluster(cluster: StrategyCluster, label: string, errors: string[]) {
+  ensure(isNonEmptyString(cluster.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(cluster.title), `${label} missing title`, errors);
+  ensure(isNonEmptyString(cluster.thesis), `${label} missing thesis`, errors);
+  ensure(isNonEmptyString(cluster.bottleneck), `${label} missing bottleneck`, errors);
+  ensure(isNonEmptyString(cluster.proof), `${label} missing proof`, errors);
+  ensure(isNonEmptyString(cluster.whatToTrack), `${label} missing whatToTrack`, errors);
+  ensure(cluster.sources.length > 0, `${label} must include sources`, errors);
+  cluster.sources.forEach((source, index) => validateSource(source, `${label} source ${index + 1}`, errors));
+}
+
+function validateStrategyScenario(scenario: StrategyScenario, label: string, errors: string[]) {
+  ensure(isNonEmptyString(scenario.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(scenario.label), `${label} missing label`, errors);
+  ensure(isNonEmptyString(scenario.status), `${label} missing status`, errors);
+  ensure(isNonEmptyString(scenario.summary), `${label} missing summary`, errors);
+  ensure(scenario.signals.length > 0, `${label} must include signals`, errors);
+  ensure(scenario.sources.length > 0, `${label} must include sources`, errors);
+  scenario.signals.forEach((signal, index) =>
+    ensure(isNonEmptyString(signal), `${label} signal ${index + 1} is empty`, errors),
+  );
+  scenario.sources.forEach((source, index) => validateSource(source, `${label} source ${index + 1}`, errors));
+}
+
 async function main() {
   const errors: string[] = [];
   const raw = await readFile(DATA_FILE, "utf8");
@@ -140,6 +211,7 @@ async function main() {
     ensure(isNonEmptyString(source.notes), `Top-level source ${index + 1} missing notes`, errors);
   });
   validateRequiredIds(data.sources, REQUIRED_TOP_LEVEL_SOURCE_IDS, "Top-level source stack", errors);
+  validateRequiredIds(data.sources, REQUIRED_STRATEGY_SOURCE_IDS, "Strategy source stack", errors);
 
   ensure(data.heroMetrics.length >= 4, "heroMetrics should have at least 4 entries", errors);
 
@@ -203,6 +275,24 @@ async function main() {
   ensure(data.brainNotes.length >= 3, "brainNotes should include at least three Florida Brain notes", errors);
   validateRequiredIds(data.brainNotes, REQUIRED_BRAIN_NOTE_IDS, "Florida Brain notes", errors);
   data.brainNotes.forEach((note, index) => validateFloridaBrainNote(note, `brainNotes ${index + 1}`, errors));
+  ensure(isNonEmptyString(data.strategy.headline), "strategy missing headline", errors);
+  ensure(isNonEmptyString(data.strategy.summary), "strategy missing summary", errors);
+  ensure(data.strategy.peerStates.length >= REQUIRED_PEER_STATE_IDS.length, "strategy.peerStates missing peer states", errors);
+  validateRequiredIds(data.strategy.peerStates, REQUIRED_PEER_STATE_IDS, "Strategy peer states", errors);
+  data.strategy.peerStates.forEach((state, index) => validatePeerState(state, `strategy.peerStates ${index + 1}`, errors));
+  ensure(data.strategy.benchmarkExamples.length >= 5, "strategy.benchmarkExamples should include external models", errors);
+  data.strategy.benchmarkExamples.forEach((example, index) =>
+    validateBenchmarkExample(example, `strategy.benchmarkExamples ${index + 1}`, errors),
+  );
+  ensure(data.strategy.clusters.length >= 4, "strategy.clusters should include priority clusters", errors);
+  data.strategy.clusters.forEach((cluster, index) =>
+    validateStrategyCluster(cluster, `strategy.clusters ${index + 1}`, errors),
+  );
+  validateInsightSection(data.strategy.talentPipeline, "strategy.talentPipeline", errors);
+  ensure(data.strategy.scenarios.length === 3, "strategy.scenarios should include base, ambition, and risk cases", errors);
+  data.strategy.scenarios.forEach((scenario, index) =>
+    validateStrategyScenario(scenario, `strategy.scenarios ${index + 1}`, errors),
+  );
   validateInsightSection(data.distinctives.snowbirdIndex, "distinctives.snowbirdIndex", errors);
   validateInsightSection(data.distinctives.spaceCoastCadence, "distinctives.spaceCoastCadence", errors);
   validateInsightSection(data.distinctives.latamGateway, "distinctives.latamGateway", errors);

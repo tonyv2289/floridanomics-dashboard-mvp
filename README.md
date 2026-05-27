@@ -11,12 +11,13 @@ Florida Brain's public data surface for Florida economic, innovation, and trade 
   - `?compare=1&version=v2`
   - `?compare=1&version=v1`
 
-The live `v3` experience is built around four tabs:
+The live `v3` experience is built around five tabs:
 
 1. `Brief`
-2. `Scorecard`
-3. `Innovation`
-4. `Trade`
+2. `Strategy`
+3. `Scorecard`
+4. `Innovation`
+5. `Trade`
 
 It also includes the newer editorial and Florida-specific sections that make the product more than a generic KPI board:
 
@@ -25,6 +26,7 @@ It also includes the newer editorial and Florida-specific sections that make the
 - `Space Coast Cadence`
 - `LATAM Gateway`
 - Florida Brain Notes
+- Strategy cockpit with peer-state BLS benchmarks, cluster strategy, talent pipeline, metro momentum, and scenarios
 - AI Capex Gap public HTML brief
 - chart and metric-card interpretation copy
 - branded Open Graph and Twitter share previews
@@ -81,12 +83,13 @@ npm run qa:full
 2. **Curated verified sections**
    - `scorecard2030`
    - `brainNotes`
+   - `strategy`
    - `distinctives.snowbirdIndex`
    - `distinctives.spaceCoastCadence`
    - `distinctives.latamGateway`
    - `trade`
 
-`npm run data:refresh` updates the dynamic labor, population, metro, industry, and innovation metrics while preserving the curated sections, Florida Brain notes, and source links. That is intentional so a routine refresh cannot wipe the differentiated Florida-specific product work.
+`npm run data:refresh` updates the dynamic labor, population, metro, industry, innovation, and peer-state benchmark metrics while preserving the curated sections, Florida Brain notes, and source links. That is intentional so a routine refresh cannot wipe the differentiated Florida-specific product work.
 
 More detail: [docs/data-sources.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/docs/data-sources.md) and [docs/refresh-runbook.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/docs/refresh-runbook.md).
 
@@ -99,6 +102,7 @@ npm run data:validate
 The validator now checks both the refreshed core metrics and the richer `v3` product sections, including insight blocks and trade structure.
 It also enforces the Florida source stack: FloridaCommerce/SelectFlorida, the Governor's Office, Florida Chamber/Scorecard, Florida TaxWatch, JMI, and Florida Council of 100 / Ambition Accelerated.
 It now checks the Florida Brain notes rail as well, including source links for each note.
+It also checks the Strategy tab contract: peer states, external benchmark examples, cluster strategy, talent pipeline, and scenario layer.
 
 ## Deployment
 
@@ -140,6 +144,9 @@ floridanomics-dashboard-rewrite/
     v2/
       DashboardV2.tsx
       dashboard-v2.css
+    v3/
+      DashboardV3.tsx
+      dashboard-v3.css
     App.tsx
     app-frame.css
     index.css
