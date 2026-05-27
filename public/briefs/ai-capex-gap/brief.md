@@ -1,101 +1,142 @@
-# AI Capex Gap
+# Is Florida Missing the AI Capex Boom?
 
 *Florida Brain | Strategic Compute | Draft intelligence note | 2026-05-27*
 
 ## Florida unemployment rate | April 2026: 4.8%
 
-Florida added payroll jobs in April, but its unemployment rate is now above the national and Texas readings.
+Florida added jobs in April, but its unemployment rate now sits above Texas and the national rate. That tension is the opening signal for the AI capex question.
 
 Source: [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
 
 ## Evidence Stack
 
-### Florida payroll gain: +40,500
+### Florida payroll pulse: +40,500
 
 Florida posted the largest April 2026 monthly nonfarm payroll gain among states.
 
 Source: [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
 
-### U.S. unemployment rate: 4.3%
-
-The national April 2026 unemployment rate is the benchmark for Florida's labor-market spread.
-
-Source: [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
-
-### Texas unemployment rate: 4.3%
+### Texas unemployment: 4.3%
 
 Texas is the comparison state for the AI infrastructure and large-load siting thesis.
 
-Source: [BLS unemployment rates for states](https://www.bls.gov/web/laus/lauhsthl.htm)
+Source: [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
 
-### Florida 1Y unemployment move: +1.1 pp
+### Income migration: $4M+ / hr
 
-Florida had one of the largest year-over-year unemployment-rate increases in the April 2026 state release.
+Florida Chamber's public frame for annual net income migration into Florida.
 
-Source: [BLS over-the-year unemployment changes](https://www.bls.gov/web/laus/laumstch.htm)
+Source: [Florida Chamber Foundation income migration analysis](https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/)
 
-### Global data-center capacity: 200 GW by 2030
+### AI Capex Gap Index: 15 / 25
 
-JLL's 2026 outlook says global data-center capacity could nearly double from 103 GW to 200 GW by 2030.
+Prototype Floridanomics V3 Terminal score. Source-backed, but not an official state score.
 
-Source: [JLL 2026 Global Data Center Outlook](https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom)
+Source: [Floridanomics V3 Terminal](https://tonyv2289.github.io/floridanomics-dashboard-mvp/?version=v3&tab=terminal)
 
-### Dallas absorption: 470.8 MW
+### Dallas data-center absorption: 470.8 MW
 
-CBRE says Dallas absorbed 470.8 MW in H2 2025, a signal that Texas is already scaling in the AI infrastructure market.
+CBRE's H2 2025 primary-market net absorption signal for Dallas.
 
 Source: [CBRE North America Data Center Trends H2 2025](https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025)
 
-## Florida is not job-dead. It may be capex-light.
+### Global data-center capacity: 200 GW by 2030
+
+JLL says global data-center capacity could nearly double from 103 GW to 200 GW by 2030.
+
+Source: [JLL 2026 Global Data Center Outlook](https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom)
+
+### AI infrastructure investment: $3T
+
+JLL estimate for total data-center investment over the next five years.
+
+Source: [JLL 2026 Global Data Center Outlook](https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom)
+
+### Policy posture: SB 484
+
+Florida's 2026 large-load data-center law centers ratepayer protection and cost allocation.
+
+Source: [Florida Senate CS/CS/SB 484 summary](https://www.flsenate.gov/Committees/BillSummaries/2026/html/484)
+
+## Florida is not weak. It may be undermeasured where the next boom is physical.
 
 *Working thesis*
 
-The surface read is confusing: Florida added 40,500 nonfarm jobs in April, but unemployment is still elevated. The sharper read is that Florida may be underexposed to the AI infrastructure layer now pulling capital, construction labor, power work, fiber, cooling, and advanced operations into competing states.
+The surface read is confusing. Florida added payroll jobs in April and still pulls extraordinary income migration, yet unemployment is elevated relative to Texas and the national rate.
 
-This is not a call to subsidize every hyperscale load. It is a call to separate dumb load from strategic compute.
+The sharper read is that Florida may be winning the people-and-services economy while under-capturing the power-heavy AI infrastructure layer now pulling capital, construction labor, grid work, fiber, cooling, and advanced operations into competitor states.
 
 
-## The ratepayer concern is real. So is the industrial risk.
+## The gap is not a verdict. It is a scoreboard waiting to exist.
 
-*Policy read*
+*Terminal read*
 
-Florida's 2026 data-center posture protects consumers, water resources, and local control. That is defensible. The risk is that a purely defensive posture lets Texas and other states capture the AI infrastructure base while Florida keeps winning services, migration, tourism, and trade.
+The Floridanomics V3 Terminal now labels this as an AI Capex Gap Index. The score is deliberately provisional because Florida-specific megawatts, utility queue data, project awards, power-price exposure, and named strategic-compute projects still need to be wired.
 
-- Do not subsidize dumb load.
-- Compete for strategic compute.
-- Make the user of power pay for power.
+That is the point. A blank or underdeveloped project ledger is itself intelligence. Florida Brain should track the absence as aggressively as the wins.
 
-## The play is inference, gateways, edge, space, and resilience.
+- Power readiness is the weak link until Florida-specific MW and interconnection data are visible.
+- Project visibility is the weak link until named AI compute projects can be compared with Space Coast aerospace wins.
+- High-wage conversion is the referee. Total jobs are not enough.
+
+## Texas is the right peer, not because Florida should copy it.
+
+*Texas question*
+
+Dallas absorbed measurable data-center capacity in CBRE's H2 2025 market read, while JLL frames the global data-center cycle as a major infrastructure supercycle.
+
+Florida does not need to become Texas. But it does need to know whether Texas, Arizona, Georgia, North Carolina, Virginia, and Ohio are converting AI infrastructure capex into construction demand, operations jobs, utility assets, and high-wage ecosystems faster than Florida.
+
+
+## Strategic compute, not dumb load.
+
+*Policy alpha*
+
+Florida's ratepayer concern is real. Hyperscale data centers should not push power, transmission, water, or nonpayment risk onto households.
+
+The pro-growth answer is not subsidy or refusal. It is disciplined market design. Strategic compute earns speed when it pays full cost, strengthens infrastructure, creates high-wage operations, and supports Florida-specific workloads.
+
+- Do not write blank checks.
+- Do not socialize utility costs.
+- Do not block every project.
+- Build a fast lane for strategic compute that pays its own way.
+
+## The lane is edge, LATAM, Space Coast, health, finance, and resilience.
 
 *Florida-shaped lane*
 
-Florida does not have to copy Texas training campuses. A Florida-shaped compute strategy should prioritize inference near population, LATAM cloud gateways, subsea and fiber assets, disaster-resilient edge compute, Space Coast aerospace compute, and utility models that do not dump costs on households.
+Florida's best compute strategy is not a copycat training-campus strategy. The stronger lane is inference near population, LATAM cloud gateways, subsea and fiber assets, Space Coast aerospace compute, health and finance workloads, and disaster-resilient edge capacity.
 
-- Inference nodes near population centers.
-- LATAM cloud gateways and cross-border enterprise compute.
-- Subsea cable, fiber, and carrier-neutral interconnection.
-- Space Coast aerospace and defense compute.
+That lane fits the Florida model: disciplined, gateway-oriented, physical, international, and tied to real infrastructure rather than generic tech branding.
 
-## Add a Strategic Compute Gap module.
 
-*Dashboard implication*
+## Turn the thesis into a measurement layer.
 
-Floridanomics should turn this from a thesis into a scoreboard. The next data product should track data-center megawatts announced, megawatts under construction, utility interconnection queue load, large-load tariff posture, incentives by state, power-price exposure, electrician wage pressure, and AI capex announcements.
+*What to build next*
+
+The next Floridanomics module should track data-center megawatts announced, megawatts under construction, utility interconnection queue load, large-load tariff posture, incentives by state, power-price exposure, electrician wage pressure, and AI capex announcements.
+
+The next Florida Brain brief should then ask a harder question: where does strategic infrastructure actually bend the wage curve?
 
 
 ## Open Verification Queue
 
 - Quantify Texas vs Florida data-center MW announced, under construction, and planned.
-- Confirm whether Florida's current data-center tax treatment materially reduces competitiveness vs Texas, Virginia, Georgia, and Ohio.
-- Find primary or industry sources for Florida-specific inference, subsea, carrier-hotel, and edge-compute assets.
-- Separate training-campus economics from inference, edge, and LATAM gateway economics.
-- Estimate direct and indirect jobs per 100 MW of AI data-center capex, including construction trades.
+- Build a Florida-specific strategic compute project ledger with named projects, stage, MW, capex, jobs, utility posture, and water posture.
+- Separate training-campus economics from inference, edge, LATAM gateway, Space Coast, health, finance, and resilience economics.
+- Verify whether current Florida data-center tax and tariff posture materially changes competitiveness against Texas, Virginia, Georgia, Ohio, Arizona, and North Carolina.
+- Add OEWS and QCEW wage data to measure whether strategic infrastructure bends Florida's target-cluster wage curve.
+- Confirm Florida-specific subsea, fiber, carrier-hotel, edge-compute, and utility-interconnection assets from primary or industry sources.
 
 ## Sources
 
 - [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
-- [BLS unemployment rates for states](https://www.bls.gov/web/laus/lauhsthl.htm)
-- [BLS over-the-year unemployment changes](https://www.bls.gov/web/laus/laumstch.htm)
-- [Florida Governor SB 484 press release](https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers)
+- [Florida Chamber Foundation income migration analysis](https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/)
+- [Floridanomics V3 Terminal](https://tonyv2289.github.io/floridanomics-dashboard-mvp/?version=v3&tab=terminal)
 - [CBRE North America Data Center Trends H2 2025](https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025)
 - [JLL 2026 Global Data Center Outlook](https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom)
+- [Florida Governor SB 484 press release](https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers)
+- [Florida Senate CS/CS/SB 484 summary](https://www.flsenate.gov/Committees/BillSummaries/2026/html/484)
+- [Space Florida aerospace readout](https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry)
+- [PortMiami cargo statistics](https://www.miamidade.gov/portmiami/cargo.page)
+- [Port Everglades cargo statistics](https://www.porteverglades.net/about-us/statistics/cargo-statistics/)
