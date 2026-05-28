@@ -741,6 +741,173 @@
   background: rgba(255, 143, 63, 0.08);
 }
 
+.v3-fdi-observatory {
+  display: grid;
+  gap: 16px;
+}
+
+.v3-fdi-observatory-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: start;
+  padding: 20px;
+  border: 1px solid rgba(255, 143, 63, 0.34);
+  border-left: 4px solid var(--v3-sun);
+  border-radius: 8px;
+  background: rgba(255, 143, 63, 0.08);
+}
+
+.v3-fdi-observatory-head h3 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.45rem, 3vw, 2.35rem);
+  line-height: 1.08;
+}
+
+.v3-fdi-observatory-head p,
+.v3-fdi-score-card p,
+.v3-fdi-delta-row p {
+  margin: 0;
+  color: #c6d1df;
+  line-height: 1.55;
+}
+
+.v3-fdi-observatory-head > strong {
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 143, 63, 0.36);
+  border-radius: 999px;
+  color: var(--v3-sun);
+  font-family: "Sora", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.v3-fdi-score-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.v3-fdi-score-card {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--v3-line);
+  border-top: 4px solid #334155;
+  border-radius: 8px;
+  background: rgba(17, 25, 52, 0.58);
+}
+
+.v3-fdi-score-card.is-stock {
+  border-top-color: var(--v3-teal);
+}
+
+.v3-fdi-score-card.is-flow {
+  border-top-color: var(--v3-sun);
+}
+
+.v3-fdi-score-card.is-quality {
+  border-top-color: var(--v3-good);
+}
+
+.v3-fdi-score-card.is-pipeline {
+  border-top-color: var(--v3-warn);
+}
+
+.v3-fdi-score-card span,
+.v3-fdi-score-card small,
+.v3-fdi-delta-row span,
+.v3-fdi-delta-row small {
+  color: var(--v3-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.v3-fdi-score-card > strong {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+  line-height: 0.98;
+  overflow-wrap: anywhere;
+}
+
+.v3-fdi-score-meter {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.18);
+}
+
+.v3-fdi-score-meter i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--v3-sun);
+}
+
+.v3-fdi-delta {
+  padding-top: 10px;
+  border-top: 1px solid var(--v3-line);
+  color: var(--v3-text) !important;
+  font-family: "Sora", sans-serif;
+  font-size: 0.94rem;
+}
+
+.v3-fdi-delta-table {
+  display: grid;
+  gap: 10px;
+}
+
+.v3-fdi-delta-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) minmax(110px, 0.65fr) minmax(110px, 0.65fr) minmax(120px, 0.7fr) minmax(180px, 0.8fr);
+  gap: 14px;
+  align-items: start;
+  padding: 14px;
+  border: 1px solid var(--v3-line);
+  border-left: 4px solid #334155;
+  border-radius: 8px;
+  background: rgba(17, 25, 52, 0.54);
+}
+
+.v3-fdi-delta-row.momentum-accelerating {
+  border-left-color: var(--v3-good);
+}
+
+.v3-fdi-delta-row.momentum-mixed {
+  border-left-color: var(--v3-sun);
+}
+
+.v3-fdi-delta-row.momentum-slowing {
+  border-left-color: var(--v3-warn);
+}
+
+.v3-fdi-delta-row.momentum-suppressed {
+  border-left-color: var(--v3-muted);
+}
+
+.v3-fdi-delta-row.is-florida {
+  border-color: rgba(255, 143, 63, 0.58);
+  border-left-color: var(--v3-sun);
+  background: rgba(255, 143, 63, 0.08);
+}
+
+.v3-fdi-delta-row strong {
+  display: block;
+  padding-top: 4px;
+  font-family: "Sora", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.05;
+}
+
 .v3-federal-spine-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 210px;
@@ -997,7 +1164,8 @@
   gap: 8px;
 }
 
-.v3-competition-source-list span {
+.v3-competition-source-list span,
+.v3-competition-source-list a {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   max-width: 100%;
@@ -1011,6 +1179,7 @@
   font-weight: 800;
   line-height: 1.35;
   overflow-wrap: anywhere;
+  text-decoration: none;
 }
 
 .v3-competition-source-list b,
@@ -1611,7 +1780,9 @@ button.v3-table-row {
   .v3-strategy-hero,
   .v3-competition-hero,
   .v3-federal-spine-head,
+  .v3-fdi-observatory-head,
   .v3-competition-chart-layout,
+  .v3-fdi-delta-row,
   .v3-next-moves,
   .v3-terminal-hero,
   .v3-terminal-index {
@@ -1626,6 +1797,7 @@ button.v3-table-row {
   .v3-scenario-grid,
   .v3-competition-metric-grid,
   .v3-federal-signal-grid,
+  .v3-fdi-score-grid,
   .v3-policy-toolkit-grid,
   .v3-terminal-live-grid,
   .v3-policy-grid,
@@ -1649,7 +1821,8 @@ button.v3-table-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .v3-competition-state-row {
+  .v3-competition-state-row,
+  .v3-fdi-delta-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1679,6 +1852,9 @@ button.v3-table-row {
   .v3-peer-row,
   .v3-competition-metric-grid,
   .v3-federal-signal-grid,
+  .v3-fdi-score-grid,
+  .v3-fdi-observatory-head,
+  .v3-fdi-delta-row,
   .v3-competition-state-row,
   .v3-policy-toolkit-grid,
   .v3-capacity-grid,
@@ -1725,7 +1901,8 @@ button.v3-table-row {
     gap: 6px;
   }
 
-  .v3-competition-source-list span {
+  .v3-competition-source-list span,
+  .v3-competition-source-list a {
     grid-template-columns: 1fr;
     align-items: start;
   }

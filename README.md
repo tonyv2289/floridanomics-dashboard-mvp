@@ -29,7 +29,7 @@ It also includes the newer editorial and Florida-specific sections that make the
 - `LATAM Gateway`
 - Florida Brain Notes
 - Strategy cockpit with peer-state BLS benchmarks, cluster strategy, talent pipeline, metro momentum, and scenarios
-- State competition terminal with FDI, policy-toolkit, institutional-capacity, semiconductor, and federal data spine layers
+- State competition terminal with FDI Observatory scores, peer-state FDI deltas, policy-toolkit, institutional-capacity, semiconductor, and federal data spine layers
 - Florida Model terminal with AI capex index, forecasts, policy memos, and evidence blocks
 - AI Capex Gap public HTML brief
 - chart and metric-card interpretation copy
@@ -111,6 +111,7 @@ The validator now checks both the refreshed core metrics and the richer `v3` pro
 It also enforces the Florida source stack: FloridaCommerce/SelectFlorida, the Governor's Office, Florida Chamber/Scorecard, Florida TaxWatch, JMI, and Florida Council of 100 / Ambition Accelerated.
 It now checks the Florida Brain notes rail as well, including source links for each note.
 It also checks the Strategy tab contract: peer states, external benchmark examples, cluster strategy, talent pipeline, and scenario layer.
+It also checks the Competition FDI Observatory contract: exactly four scores, peer-state deltas, and source references for every FDI score and delta.
 
 ## Deployment
 

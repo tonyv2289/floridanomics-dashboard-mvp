@@ -168,6 +168,24 @@ Product modules:
 - metro momentum layer
 - base / ambition / risk scenario layer
 
+### `competition.fdiScoreboard.observatory`
+
+The Competition tab now includes a four-score FDI Observatory so Florida Brain can separate long-run FDI footprint from the current-year momentum delta.
+
+Scores:
+
+- Stock: accumulated foreign-owned footprint, currently anchored to the SelectFlorida FDI comparison archive until refreshed against the next public BEA affiliate-state tables
+- Flow: first-year new FDI expenditures by state from BEA's 2024 new FDI supplemental state tables
+- Quality: greenfield share and employment composition, using BEA new FDI state expenditure and employment tables
+- Pipeline: announced-project capacity from the SelectFlorida / EFI archive, pending a future conversion ledger with jobs, capex, wage, operating status, and confidence scoring
+
+Public BEA sources:
+
+- BEA release: `https://www.bea.gov/news/2025/new-foreign-direct-investment-united-states-2024`
+- BEA supplemental tables: `https://www.bea.gov/data/intl-trade-investment/new-foreign-direct-investment-united-states/supplemental-data`
+
+Product read: Florida led 2024 current employment from new FDI, but first-year expenditures fell while Texas and Georgia accelerated. That is the core delta the dashboard now exposes.
+
 ## 4. Florida policy and strategy source layer
 
 V3 keeps a named Florida source layer in the public dataset so the dashboard can keep moving toward a Florida Brain research terminal without losing provenance. These sources are not all monthly numeric feeds yet; some are validated strategy, policy, or announcement sources used for editorial context and future modules.

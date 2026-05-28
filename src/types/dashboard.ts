@@ -240,6 +240,7 @@ export type CompetitionSource = {
   kind: "Dropbox source" | "Vault derivative" | "Public source";
   macStudioPath: string;
   localPath?: string;
+  url?: string;
   note: string;
   status: "vault_logged" | "needs_refresh" | "public_source";
 };
@@ -263,6 +264,31 @@ export type FdiCompetitorState = {
   firstYearExpendituresUsdBillions: number | null;
   capitalIntensityRead: string;
   posture: string;
+  sourceIds: string[];
+};
+
+export type FdiObservatoryScore = {
+  id: "stock" | "flow" | "quality" | "pipeline";
+  label: string;
+  score: number;
+  maxScore: number;
+  value: string;
+  delta: string;
+  status: string;
+  read: string;
+  sourceIds: string[];
+};
+
+export type FdiDeltaState = {
+  id: string;
+  state: string;
+  latestExpendituresUsdBillions: number | null;
+  oneYearExpendituresPercent: number | null;
+  currentEmploymentThousands: number | null;
+  oneYearEmploymentPercent: number | null;
+  greenfieldSharePercent: number | null;
+  momentum: "accelerating" | "mixed" | "slowing" | "suppressed";
+  read: string;
   sourceIds: string[];
 };
 
@@ -301,6 +327,12 @@ export type StateCompetitionLayer = {
   fdiScoreboard: {
     headline: string;
     summary: string;
+    observatory: {
+      headline: string;
+      summary: string;
+      scores: FdiObservatoryScore[];
+      deltas: FdiDeltaState[];
+    };
     metrics: CompetitionMetric[];
     states: FdiCompetitorState[];
   };

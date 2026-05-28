@@ -80,6 +80,8 @@ const REQUIRED_TERMINAL_SOURCE_IDS = [
 
 const REQUIRED_COMPETITION_SOURCE_IDS = [
   "sf_fdi_comparison_2025",
+  "bea_new_fdi_2024",
+  "bea_new_fdi_state_tables_2024",
   "sf_incentive_research_2020",
   "efi_bi_side_by_side_2022",
   "fl_program_inventory_2023",
@@ -88,6 +90,10 @@ const REQUIRED_COMPETITION_SOURCE_IDS = [
   "state_appropros_efi",
   "source_map_2026",
 ] as const;
+
+const REQUIRED_FDI_OBSERVATORY_SCORE_IDS = ["stock", "flow", "quality", "pipeline"] as const;
+
+const REQUIRED_FDI_DELTA_STATE_IDS = ["TX", "GA", "CA", "NC", "FL", "NY", "TN"] as const;
 
 const REQUIRED_FEDERAL_SOURCE_IDS = [
   "bls_public_api",
@@ -278,6 +284,16 @@ function validateCompetitionSource(source: CompetitionSource, label: string, err
   if (source.localPath !== undefined) {
     ensure(isNonEmptyString(source.localPath), `${label} localPath is empty`, errors);
   }
+
+  if (source.url !== undefined) {
+    ensure(isHttpUrl(source.url), `${label} has invalid url`, errors);
+  }
+
+  ensure(
+    source.kind !== "Public source" || isHttpUrl(source.url ?? source.macStudioPath),
+    `${label} public source must include a valid URL`,
+    errors,
+  );
 }
 
 function validateCompetitionSourceRefs(
@@ -380,6 +396,69 @@ function validateFdiCompetitorState(
   );
   ensure(isNonEmptyString(state.capitalIntensityRead), `${label} missing capitalIntensityRead`, errors);
   ensure(isNonEmptyString(state.posture), `${label} missing posture`, errors);
+  validateCompetitionSourceRefs(state.sourceIds, sourceIdSet, label, errors);
+}
+
+function validateFdiObservatoryScore(
+  score: DashboardDataset["competition"]["fdiScoreboard"]["observatory"]["scores"][number],
+  sourceIdSet: Set<string>,
+  label: string,
+  errors: string[],
+) {
+  ensure(isNonEmptyString(score.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(score.label), `${label} missing label`, errors);
+  ensure(isFiniteNumber(score.score), `${label} missing score`, errors);
+  ensure(isFiniteNumber(score.maxScore), `${label} missing maxScore`, errors);
+  ensure(score.score >= 0 && score.score <= score.maxScore, `${label} score outside maxScore`, errors);
+  ensure(isNonEmptyString(score.value), `${label} missing value`, errors);
+  ensure(isNonEmptyString(score.delta), `${label} missing delta`, errors);
+  ensure(isNonEmptyString(score.status), `${label} missing status`, errors);
+  ensure(isNonEmptyString(score.read), `${label} missing read`, errors);
+  validateCompetitionSourceRefs(score.sourceIds, sourceIdSet, label, errors);
+}
+
+function validateFdiDeltaState(
+  state: DashboardDataset["competition"]["fdiScoreboard"]["observatory"]["deltas"][number],
+  sourceIdSet: Set<string>,
+  label: string,
+  errors: string[],
+) {
+  ensure(isNonEmptyString(state.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(state.state), `${label} missing state`, errors);
+  ensure(
+    state.latestExpendituresUsdBillions === null || isFiniteNumber(state.latestExpendituresUsdBillions),
+    `${label} has invalid latestExpendituresUsdBillions`,
+    errors,
+  );
+  ensure(
+    state.oneYearExpendituresPercent === null || isFiniteNumber(state.oneYearExpendituresPercent),
+    `${label} has invalid oneYearExpendituresPercent`,
+    errors,
+  );
+  ensure(
+    state.currentEmploymentThousands === null || isFiniteNumber(state.currentEmploymentThousands),
+    `${label} has invalid currentEmploymentThousands`,
+    errors,
+  );
+  ensure(
+    state.oneYearEmploymentPercent === null || isFiniteNumber(state.oneYearEmploymentPercent),
+    `${label} has invalid oneYearEmploymentPercent`,
+    errors,
+  );
+  ensure(
+    state.greenfieldSharePercent === null || isFiniteNumber(state.greenfieldSharePercent),
+    `${label} has invalid greenfieldSharePercent`,
+    errors,
+  );
+  ensure(
+    state.momentum === "accelerating" ||
+      state.momentum === "mixed" ||
+      state.momentum === "slowing" ||
+      state.momentum === "suppressed",
+    `${label} has invalid momentum`,
+    errors,
+  );
+  ensure(isNonEmptyString(state.read), `${label} missing read`, errors);
   validateCompetitionSourceRefs(state.sourceIds, sourceIdSet, label, errors);
 }
 
@@ -649,6 +728,44 @@ async function main() {
   const competitionSourceIds = new Set(data.competition.sources.map((source) => source.id));
   ensure(isNonEmptyString(data.competition.fdiScoreboard.headline), "competition.fdiScoreboard missing headline", errors);
   ensure(isNonEmptyString(data.competition.fdiScoreboard.summary), "competition.fdiScoreboard missing summary", errors);
+  ensure(
+    isNonEmptyString(data.competition.fdiScoreboard.observatory.headline),
+    "competition.fdiScoreboard.observatory missing headline",
+    errors,
+  );
+  ensure(
+    isNonEmptyString(data.competition.fdiScoreboard.observatory.summary),
+    "competition.fdiScoreboard.observatory missing summary",
+    errors,
+  );
+  ensure(
+    data.competition.fdiScoreboard.observatory.scores.length === 4,
+    "competition.fdiScoreboard.observatory must include four scores",
+    errors,
+  );
+  validateRequiredIds(
+    data.competition.fdiScoreboard.observatory.scores,
+    REQUIRED_FDI_OBSERVATORY_SCORE_IDS,
+    "competition.fdiScoreboard.observatory.scores",
+    errors,
+  );
+  data.competition.fdiScoreboard.observatory.scores.forEach((score, index) =>
+    validateFdiObservatoryScore(score, competitionSourceIds, `competition.fdiScoreboard.observatory.scores ${index + 1}`, errors),
+  );
+  ensure(
+    data.competition.fdiScoreboard.observatory.deltas.length >= 7,
+    "competition.fdiScoreboard.observatory missing peer deltas",
+    errors,
+  );
+  validateRequiredIds(
+    data.competition.fdiScoreboard.observatory.deltas,
+    REQUIRED_FDI_DELTA_STATE_IDS,
+    "competition.fdiScoreboard.observatory.deltas",
+    errors,
+  );
+  data.competition.fdiScoreboard.observatory.deltas.forEach((state, index) =>
+    validateFdiDeltaState(state, competitionSourceIds, `competition.fdiScoreboard.observatory.deltas ${index + 1}`, errors),
+  );
   ensure(data.competition.fdiScoreboard.metrics.length >= 4, "competition.fdiScoreboard missing metrics", errors);
   data.competition.fdiScoreboard.metrics.forEach((metric, index) =>
     validateCompetitionMetric(metric, competitionSourceIds, `competition.fdiScoreboard.metrics ${index + 1}`, errors),

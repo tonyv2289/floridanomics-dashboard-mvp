@@ -144,6 +144,42 @@ function formatFdiStock(value: number | null): string {
   return `$${value >= 100 ? value.toFixed(0) : value.toFixed(1)}B`;
 }
 
+function formatNullableUsdBillions(value: number | null): string {
+  if (value === null) {
+    return "suppressed";
+  }
+
+  if (Math.abs(value) < 0.1) {
+    return `$${Math.round(value * 1000)}M`;
+  }
+
+  return `$${value.toFixed(1)}B`;
+}
+
+function formatNullableThousands(value: number | null): string {
+  if (value === null) {
+    return "suppressed";
+  }
+
+  return `${value.toFixed(1)}k`;
+}
+
+function formatNullablePercent(value: number | null): string {
+  if (value === null) {
+    return "suppressed";
+  }
+
+  return `${value.toFixed(1)}%`;
+}
+
+function formatNullableSignedPercent(value: number | null): string {
+  if (value === null) {
+    return "suppressed";
+  }
+
+  return formatSignedPercentage(value);
+}
+
 function formatPeerPayrollDelta(state: PeerStateSnapshot): string {
   const delta = state.nonfarmPayrolls.deltas.oneYear;
   if (!delta) {
@@ -242,10 +278,20 @@ function CompetitionSourceList({ dataset, sourceIds }: { dataset: DashboardDatas
           return null;
         }
 
-        return (
-          <span key={source.id} title={source.macStudioPath}>
+        const content = (
+          <>
             <b>{source.kind}</b>
             <i>{source.label}</i>
+          </>
+        );
+
+        return source.url ? (
+          <a key={source.id} href={source.url} target="_blank" rel="noreferrer">
+            {content}
+          </a>
+        ) : (
+          <span key={source.id} title={source.macStudioPath}>
+            {content}
           </span>
         );
       })}
@@ -1311,6 +1357,7 @@ function FederalDataSpine({ dataset }: { dataset: DashboardDataset }) {
 
 function FdiScoreboard({ dataset }: { dataset: DashboardDataset }) {
   const states = dataset.competition.fdiScoreboard.states;
+  const observatory = dataset.competition.fdiScoreboard.observatory;
   const chartData = states.map((state) => ({
     id: state.id,
     name: state.name,
@@ -1324,6 +1371,69 @@ function FdiScoreboard({ dataset }: { dataset: DashboardDataset }) {
         <div>
           <h2>{dataset.competition.fdiScoreboard.headline}</h2>
           <p>{dataset.competition.fdiScoreboard.summary}</p>
+        </div>
+      </div>
+
+      <div className="v3-fdi-observatory">
+        <div className="v3-fdi-observatory-head">
+          <div>
+            <h3>{observatory.headline}</h3>
+            <p>{observatory.summary}</p>
+          </div>
+          <strong>4 scores</strong>
+        </div>
+
+        <div className="v3-fdi-score-grid">
+          {observatory.scores.map((score) => {
+            const scorePercent = Math.min(100, Math.max(0, (score.score / score.maxScore) * 100));
+
+            return (
+              <article key={score.id} className={clsx("v3-fdi-score-card", `is-${score.id}`)}>
+                <span>{score.label}</span>
+                <strong>{score.value}</strong>
+                <div className="v3-fdi-score-meter" aria-label={`${score.label} score ${score.score} of ${score.maxScore}`}>
+                  <i style={{ width: `${scorePercent}%` }} />
+                </div>
+                <small>
+                  {score.score}/{score.maxScore} | {score.status}
+                </small>
+                <p className="v3-fdi-delta">{score.delta}</p>
+                <p>{score.read}</p>
+                <CompetitionSourceList dataset={dataset} sourceIds={score.sourceIds} />
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="v3-fdi-delta-table" aria-label="FDI momentum deltas by state">
+          {observatory.deltas.map((state) => (
+            <article
+              key={state.id}
+              className={clsx("v3-fdi-delta-row", `momentum-${state.momentum}`, state.id === "FL" && "is-florida")}
+            >
+              <div>
+                <span>{state.momentum}</span>
+                <strong>{state.state}</strong>
+                <p>{state.read}</p>
+              </div>
+              <div>
+                <span>2024 flow</span>
+                <strong>{formatNullableUsdBillions(state.latestExpendituresUsdBillions)}</strong>
+                <small>{formatNullableSignedPercent(state.oneYearExpendituresPercent)} YoY</small>
+              </div>
+              <div>
+                <span>Employment</span>
+                <strong>{formatNullableThousands(state.currentEmploymentThousands)}</strong>
+                <small>{formatNullableSignedPercent(state.oneYearEmploymentPercent)} YoY</small>
+              </div>
+              <div>
+                <span>Greenfield share</span>
+                <strong>{formatNullablePercent(state.greenfieldSharePercent)}</strong>
+                <small>first-year capex mix</small>
+              </div>
+              <CompetitionSourceList dataset={dataset} sourceIds={state.sourceIds} />
+            </article>
+          ))}
         </div>
       </div>
 

@@ -15666,6 +15666,24 @@
         "status": "vault_logged"
       },
       {
+        "id": "bea_new_fdi_2024",
+        "label": "BEA New Foreign Direct Investment in the United States, 2024",
+        "kind": "Public source",
+        "macStudioPath": "https://www.bea.gov/news/2025/new-foreign-direct-investment-united-states-2024",
+        "url": "https://www.bea.gov/news/2025/new-foreign-direct-investment-united-states-2024",
+        "note": "Official BEA release for 2024 new foreign direct investment, including state expenditure leaders, current employment, and greenfield context.",
+        "status": "public_source"
+      },
+      {
+        "id": "bea_new_fdi_state_tables_2024",
+        "label": "BEA new FDI supplemental state tables, 2014-2024",
+        "kind": "Public source",
+        "macStudioPath": "https://www.bea.gov/data/intl-trade-investment/new-foreign-direct-investment-united-states/supplemental-data",
+        "url": "https://www.bea.gov/data/intl-trade-investment/new-foreign-direct-investment-united-states/supplemental-data",
+        "note": "Official BEA supplemental tables used for state-by-year first-year expenditures, greenfield expenditures, and current/planned employment.",
+        "status": "public_source"
+      },
+      {
         "id": "sf_incentive_research_2020",
         "label": "State Incentive Research Project FINAL",
         "kind": "Dropbox source",
@@ -15731,7 +15749,168 @@
     ],
     "fdiScoreboard": {
       "headline": "Florida is top-tier by FDI reach, but not yet by capital intensity.",
-      "summary": "The archive memo says Florida ranks with the national leaders on FDI jobs and greenfield project count, but the capital stock gap versus Texas is the strategic warning light.",
+      "summary": "The archive memo says Florida ranks with the national leaders on FDI jobs and greenfield project count, while BEA's 2024 state tables show the sharper delta: Florida led current employment from new FDI, but Texas and Georgia are gaining the capex flow.",
+      "observatory": {
+        "headline": "Four-score FDI Observatory",
+        "summary": "Stock shows accumulated foreign-owned footprint. Flow shows the newest annual capital. Quality separates greenfield and strategic work from acquisition churn. Pipeline tests whether announcements convert into real jobs, capex, and operating sites.",
+        "scores": [
+          {
+            "id": "stock",
+            "label": "Stock",
+            "score": 52,
+            "maxScore": 100,
+            "value": "$87.7B PP&E",
+            "delta": "Florida is $341.8B below Texas in the archive foreign-owned PP&E baseline.",
+            "status": "Capital gap",
+            "read": "Florida has real foreign-company scale, but the installed capital base is not yet a Texas-style heavy-industry or infrastructure base.",
+            "sourceIds": [
+              "sf_fdi_comparison_2025"
+            ]
+          },
+          {
+            "id": "flow",
+            "label": "Flow",
+            "score": 68,
+            "maxScore": 100,
+            "value": "$3.7B 2024",
+            "delta": "Florida first-year new FDI expenditures fell 7.8% YoY while Texas rose 80.5% and Georgia rose 154.8%.",
+            "status": "Watch share loss",
+            "read": "Florida is still winning deals, but the newest annual capital flow says competitors are converting the capex boom faster.",
+            "sourceIds": [
+              "bea_new_fdi_state_tables_2024"
+            ]
+          },
+          {
+            "id": "quality",
+            "label": "Quality",
+            "score": 58,
+            "maxScore": 100,
+            "value": "18.2% greenfield share",
+            "delta": "Florida current employment from new FDI jumped to 32.7k, but 2024 greenfield current employment rounded to zero.",
+            "status": "Acquisition-heavy",
+            "read": "The jobs headline is excellent, but quality scoring has to ask whether those are new production footprints or acquired existing payrolls.",
+            "sourceIds": [
+              "bea_new_fdi_2024",
+              "bea_new_fdi_state_tables_2024"
+            ]
+          },
+          {
+            "id": "pipeline",
+            "label": "Pipeline",
+            "score": 74,
+            "maxScore": 100,
+            "value": "1,050 projects",
+            "delta": "Strong announced project count, but the next step is conversion scoring against jobs, capex, wage, and operating status.",
+            "status": "Needs conversion ledger",
+            "read": "The WAVTEQ, FPL, SelectFlorida, Outlook, and Dropbox archive can become the forward-looking pipeline if every announcement gets a confidence score and follow-through status.",
+            "sourceIds": [
+              "sf_fdi_comparison_2025",
+              "efi_bi_side_by_side_2022"
+            ]
+          }
+        ],
+        "deltas": [
+          {
+            "id": "TX",
+            "state": "Texas",
+            "latestExpendituresUsdBillions": 22.803,
+            "oneYearExpendituresPercent": 80.5,
+            "currentEmploymentThousands": 18.2,
+            "oneYearEmploymentPercent": 44.4,
+            "greenfieldSharePercent": 3.4,
+            "momentum": "accelerating",
+            "read": "Texas is the 2024 capex leader. The growth is acquisition-heavy, but the scale is what Florida has to compete against.",
+            "sourceIds": [
+              "bea_new_fdi_state_tables_2024"
+            ]
+          },
+          {
+            "id": "GA",
+            "state": "Georgia",
+            "latestExpendituresUsdBillions": 16.292,
+            "oneYearExpendituresPercent": 154.8,
+            "currentEmploymentThousands": 8.5,
+            "oneYearEmploymentPercent": 28.8,
+            "greenfieldSharePercent": 0.1,
+            "momentum": "accelerating",
+            "read": "Georgia is the clean warning light: lower long-run FDI scale than Florida, but 2024 flow surged because the project machine is sharper.",
+            "sourceIds": [
+              "bea_new_fdi_state_tables_2024"
+            ]
+          },
+          {
+            "id": "CA",
+            "state": "California",
+            "latestExpendituresUsdBillions": 12.871,
+            "oneYearExpendituresPercent": -45,
+            "currentEmploymentThousands": 11.7,
+            "oneYearEmploymentPercent": -40.6,
+            "greenfieldSharePercent": null,
+            "momentum": "slowing",
+            "read": "California still has the deepest global-company base, but 2024 new FDI flow and current employment both moved down.",
+            "sourceIds": [
+              "bea_new_fdi_state_tables_2024"
+            ]
+          },
+          {
+            "id": "NC",
+            "state": "North Carolina",
+            "latestExpendituresUsdBillions": 5.639,
+            "oneYearExpendituresPercent": 70.2,
+            "currentEmploymentThousands": null,
+            "oneYearEmploymentPercent": null,
+            "greenfieldSharePercent": null,
+            "momentum": "mixed",
+            "read": "North Carolina's expenditure flow accelerated, but BEA suppressions keep the employment and greenfield-quality read incomplete.",
+            "sourceIds": [
+              "bea_new_fdi_state_tables_2024"
+            ]
+          },
+          {
+            "id": "FL",
+            "state": "Florida",
+            "latestExpendituresUsdBillions": 3.665,
+            "oneYearExpendituresPercent": -7.8,
+            "currentEmploymentThousands": 32.7,
+            "oneYearEmploymentPercent": 275.9,
+            "greenfieldSharePercent": 18.2,
+            "momentum": "mixed",
+            "read": "Florida led current employment from new FDI in 2024, but first-year expenditures slipped and the employment jump appears acquisition-heavy.",
+            "sourceIds": [
+              "bea_new_fdi_2024",
+              "bea_new_fdi_state_tables_2024"
+            ]
+          },
+          {
+            "id": "NY",
+            "state": "New York",
+            "latestExpendituresUsdBillions": 3.07,
+            "oneYearExpendituresPercent": -68.9,
+            "currentEmploymentThousands": 14.2,
+            "oneYearEmploymentPercent": 15.4,
+            "greenfieldSharePercent": null,
+            "momentum": "mixed",
+            "read": "New York's annual capital flow fell hard, but current employment still rose, consistent with a services and acquisition-heavy profile.",
+            "sourceIds": [
+              "bea_new_fdi_state_tables_2024"
+            ]
+          },
+          {
+            "id": "TN",
+            "state": "Tennessee",
+            "latestExpendituresUsdBillions": 0.037,
+            "oneYearExpendituresPercent": -89.8,
+            "currentEmploymentThousands": 2.4,
+            "oneYearEmploymentPercent": 60,
+            "greenfieldSharePercent": 18.9,
+            "momentum": "slowing",
+            "read": "Tennessee's 2024 first-year flow was tiny after a weak 2023, even though its long-run manufacturing FDI posture remains strategically relevant.",
+            "sourceIds": [
+              "bea_new_fdi_state_tables_2024"
+            ]
+          }
+        ]
+      },
       "metrics": [
         {
           "id": "fdi-jobs",
