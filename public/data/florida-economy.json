@@ -15641,6 +15641,479 @@
       }
     ]
   },
+  "competition": {
+    "headline": "Florida needs a competitor-state machine, not a brag book.",
+    "summary": "The SelectFlorida archive shows the next product frontier: compare Florida against the states winning FDI, mega-project tools, institutional capacity, migration, and semiconductor commitments. This layer turns those files into an operating surface for Florida Brain.",
+    "vaultLog": {
+      "macStudioPath": "/Users/tjvillamil/pelayo-vault/60-Florida/data/intel-sweeps/2026-05-27-selectflorida-comparison-docs-discovery.md",
+      "localPath": "/Users/pelayopro/pelayo-vault/60-Florida/data/intel-sweeps/2026-05-27-selectflorida-comparison-docs-discovery.md",
+      "caveat": "Internal SelectFlorida and EFI archive discovery. Refresh each public stat against current primary sources before external publication."
+    },
+    "sources": [
+      {
+        "id": "sf_fdi_comparison_2025",
+        "label": "Measuring and Comparing FDI in Florida vs competitor states",
+        "kind": "Dropbox source",
+        "macStudioPath": "/Users/tjvillamil/Library/CloudStorage/Dropbox/SelectFlorida/2025/Measuring and Comparing FDI in Florida vs.docx",
+        "localPath": "/Users/pelayopro/Library/CloudStorage/Dropbox-Personal/SelectFlorida/2025/Measuring and Comparing FDI in Florida vs.docx",
+        "note": "Internal FDI comparison memo covering FDI stock, FDI jobs, greenfield projects, first-year expenditures, source-country exposure, and policy strategy.",
+        "status": "vault_logged"
+      },
+      {
+        "id": "sf_incentive_research_2020",
+        "label": "State Incentive Research Project FINAL",
+        "kind": "Dropbox source",
+        "macStudioPath": "/Users/tjvillamil/Library/CloudStorage/Dropbox/SelectFlorida/OneDrive - Enterprise Florida/Deputy Secretary of Economic Development 2/Business Documents/State Incentive Research Project FINAL.docx",
+        "localPath": "/Users/pelayopro/Library/CloudStorage/Dropbox-Personal/SelectFlorida/OneDrive - Enterprise Florida/Deputy Secretary of Economic Development 2/Business Documents/State Incentive Research Project FINAL.docx",
+        "note": "DEO Division of Strategic Business Development, August 2020, competitor-state program report covering tax credits, data-center exemptions, mega-project programs, workforce, infrastructure, and local deal tools.",
+        "status": "vault_logged"
+      },
+      {
+        "id": "efi_bi_side_by_side_2022",
+        "label": "ITD Business Intelligence Side by Side Comparison",
+        "kind": "Dropbox source",
+        "macStudioPath": "/Users/tjvillamil/Library/CloudStorage/Dropbox/SelectFlorida/OneDrive - Enterprise Florida/Admin 2/LBRs 2023/More Documentation/28. ITD Business Intelligence Side by Side Comparison.docx",
+        "localPath": "/Users/pelayopro/Library/CloudStorage/Dropbox-Personal/SelectFlorida/OneDrive - Enterprise Florida/Admin 2/LBRs 2023/More Documentation/28. ITD Business Intelligence Side by Side Comparison.docx",
+        "note": "EFI research capacity memo documenting static PDFs, baseline trade and FDI reports, scattered FTEs, Salesforce cleanup needs, and proposed dynamic business-intelligence tools.",
+        "status": "vault_logged"
+      },
+      {
+        "id": "fl_program_inventory_2023",
+        "label": "Summary of current Florida economic development programs and tools",
+        "kind": "Dropbox source",
+        "macStudioPath": "/Users/tjvillamil/Library/CloudStorage/Dropbox/SelectFlorida/OneDrive - Enterprise Florida/TO ORGANIZE 1/Other/To Organize/Desktop aug 2023/SUMMARY OF CURRENT FLORIDA ECONOMIC DEVELOPMENT PROGRAMS AND TOOLS COMBINED v2 (004).docx",
+        "localPath": "/Users/pelayopro/Library/CloudStorage/Dropbox-Personal/SelectFlorida/OneDrive - Enterprise Florida/TO ORGANIZE 1/Other/To Organize/Desktop aug 2023/SUMMARY OF CURRENT FLORIDA ECONOMIC DEVELOPMENT PROGRAMS AND TOOLS COMBINED v2 (004).docx",
+        "note": "Florida toolkit inventory covering CITC, HIPI, JGGF, R&D credit, semiconductor-defense-space exemption, manufacturing M&E exemption, expedited permitting, QRT, IWT, trade programs, and international offices.",
+        "status": "vault_logged"
+      },
+      {
+        "id": "chips_commitment_2024",
+        "label": "Semiconductor State Commitment revised March 2024",
+        "kind": "Dropbox source",
+        "macStudioPath": "/Users/tjvillamil/Library/CloudStorage/Dropbox/SelectFlorida/PRESIDENT OF BD 2/CHIPS/Semiconductor State Commitment (revised 3.12.24).xlsx",
+        "localPath": "/Users/pelayopro/Library/CloudStorage/Dropbox-Personal/SelectFlorida/PRESIDENT OF BD 2/CHIPS/Semiconductor State Commitment (revised 3.12.24).xlsx",
+        "note": "Spreadsheet titled FL Commitment to Chips, totaling $391,985,340 across DOE, JGGF, UCF, BRIDG, and UF semiconductor line items.",
+        "status": "vault_logged"
+      },
+      {
+        "id": "migration_rank_2022",
+        "label": "Ranked state-to-state migration spreadsheet",
+        "kind": "Dropbox source",
+        "macStudioPath": "/Users/tjvillamil/Library/CloudStorage/Dropbox/SelectFlorida/Select Florida Inc 2/Wins/ranked_state_to_state_migration.xlsx",
+        "localPath": "/Users/pelayopro/Library/CloudStorage/Dropbox-Personal/SelectFlorida/Select Florida Inc 2/Wins/ranked_state_to_state_migration.xlsx",
+        "note": "Internal migration ranking showing Florida first in 2021 and 2022 state-to-state net migration, ahead of Texas, North Carolina, Arizona, Georgia, South Carolina, and Tennessee.",
+        "status": "vault_logged"
+      },
+      {
+        "id": "state_appropros_efi",
+        "label": "State appropriations and organizational comparison",
+        "kind": "Dropbox source",
+        "macStudioPath": "/Users/tjvillamil/Library/CloudStorage/Dropbox/SelectFlorida/OneDrive - Enterprise Florida/Admin 2/Budget & Finance/Statewide and Aggregate/State Appropros EFI.xlsx",
+        "localPath": "/Users/pelayopro/Library/CloudStorage/Dropbox-Personal/SelectFlorida/OneDrive - Enterprise Florida/Admin 2/Budget & Finance/Statewide and Aggregate/State Appropros EFI.xlsx",
+        "note": "Statewide and aggregate comparison workbook with Master, ITD, By Quarter, and By State sheets for economic-development funding comparisons.",
+        "status": "vault_logged"
+      },
+      {
+        "id": "source_map_2026",
+        "label": "Florida Brain state-competition source map",
+        "kind": "Vault derivative",
+        "macStudioPath": "/Users/tjvillamil/pelayo-vault/60-Florida/data/source-docs/dropbox/selectflorida-state-competition-source-map-2026-05-27.md",
+        "localPath": "/Users/pelayopro/pelayo-vault/60-Florida/data/source-docs/dropbox/selectflorida-state-competition-source-map-2026-05-27.md",
+        "note": "Florida Brain source-map derivative linking the dashboard Competition tab to the exact Dropbox and vault inputs.",
+        "status": "vault_logged"
+      }
+    ],
+    "fdiScoreboard": {
+      "headline": "Florida is top-tier by FDI reach, but not yet by capital intensity.",
+      "summary": "The archive memo says Florida ranks with the national leaders on FDI jobs and greenfield project count, but the capital stock gap versus Texas is the strategic warning light.",
+      "metrics": [
+        {
+          "id": "fdi-jobs",
+          "label": "FDI jobs",
+          "value": "358,200",
+          "context": "Florida majority-foreign-owned affiliate employment, 2021",
+          "read": "Florida has real FDI scale and leads regional peers on jobs. The question is whether those jobs sit in sectors that lift the wage curve.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        },
+        {
+          "id": "greenfield-projects",
+          "label": "Greenfield projects",
+          "value": "1,050",
+          "context": "Florida announced greenfield FDI projects, 2014-2024",
+          "read": "Project count is strong. The weakness is project weight, industrial depth, and mega-project capital intensity.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        },
+        {
+          "id": "fdi-stock",
+          "label": "FDI stock",
+          "value": "$87.7B",
+          "context": "Florida foreign-owned PP&E, 2021",
+          "read": "The capital stock gap versus Texas is the cleanest proof that Florida's FDI mix skews less heavy-industrial.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        },
+        {
+          "id": "first-year-expenditures",
+          "label": "First-year expenditures",
+          "value": "$9.1B",
+          "context": "Florida 2022 FDI inflow measure",
+          "read": "Momentum exists, but the memo says most recent inflow came mainly through acquisitions rather than new establishments.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        }
+      ],
+      "states": [
+        {
+          "id": "CA",
+          "name": "California",
+          "tier": "national leader",
+          "fdiJobs": 816400,
+          "greenfieldProjects": 2301,
+          "fdiPpeUsdBillions": 261,
+          "firstYearExpendituresUsdBillions": null,
+          "capitalIntensityRead": "Largest jobs and project scale in the comparison set, with deep tech and R&D density.",
+          "posture": "Benchmark for tech, R&D, and global-company depth.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        },
+        {
+          "id": "TX",
+          "name": "Texas",
+          "tier": "capital-heavy peer",
+          "fdiJobs": 660500,
+          "greenfieldProjects": 1798,
+          "fdiPpeUsdBillions": 429.5,
+          "firstYearExpendituresUsdBillions": null,
+          "capitalIntensityRead": "Dominates the capital stock comparison with energy, industrial, and large-project depth.",
+          "posture": "The peer Florida has to beat for heavy capex.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        },
+        {
+          "id": "NY",
+          "name": "New York",
+          "tier": "global services peer",
+          "fdiJobs": 509200,
+          "greenfieldProjects": 1996,
+          "fdiPpeUsdBillions": 238,
+          "firstYearExpendituresUsdBillions": null,
+          "capitalIntensityRead": "Deep services, finance, and foreign-company presence.",
+          "posture": "Useful HQ, services, and source-country benchmark.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        },
+        {
+          "id": "FL",
+          "name": "Florida",
+          "tier": "scale challenger",
+          "fdiJobs": 358200,
+          "greenfieldProjects": 1050,
+          "fdiPpeUsdBillions": 87.7,
+          "firstYearExpendituresUsdBillions": 9.1,
+          "capitalIntensityRead": "Leads regional peers on jobs and projects, but capital stock is far below Texas.",
+          "posture": "Strong FDI reach, weaker mega-project intensity.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        },
+        {
+          "id": "NC",
+          "name": "North Carolina",
+          "tier": "regional industrial peer",
+          "fdiJobs": 303600,
+          "greenfieldProjects": 626,
+          "fdiPpeUsdBillions": null,
+          "firstYearExpendituresUsdBillions": null,
+          "capitalIntensityRead": "Fewer projects than Florida but stronger fit with advanced manufacturing and mega-project recruitment.",
+          "posture": "Watch for advanced manufacturing and training alignment.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        },
+        {
+          "id": "GA",
+          "name": "Georgia",
+          "tier": "regional logistics peer",
+          "fdiJobs": 281800,
+          "greenfieldProjects": 661,
+          "fdiPpeUsdBillions": null,
+          "firstYearExpendituresUsdBillions": null,
+          "capitalIntensityRead": "Lower FDI jobs than Florida but sharper manufacturing, logistics, EV, and supplier posture.",
+          "posture": "Watch EV, battery, port, and supplier wins.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        },
+        {
+          "id": "TN",
+          "name": "Tennessee",
+          "tier": "manufacturing peer",
+          "fdiJobs": 202300,
+          "greenfieldProjects": 367,
+          "fdiPpeUsdBillions": null,
+          "firstYearExpendituresUsdBillions": null,
+          "capitalIntensityRead": "Smaller scale, but auto and Japanese FDI make it strategically important.",
+          "posture": "A reminder that project quality can outweigh project count.",
+          "sourceIds": ["sf_fdi_comparison_2025"]
+        }
+      ]
+    },
+    "policyToolkit": {
+      "headline": "Competitor states are not just cheaper. They are tooled.",
+      "summary": "The 2020 competitor-state report shows why Florida's next growth argument cannot stop at tax climate. The winning states package site readiness, training, infrastructure, local deal authority, data-center exemptions, and mega-project tools into one project machine.",
+      "states": [
+        {
+          "id": "florida",
+          "state": "Florida",
+          "competitorSignal": "Florida has useful tools, but they are not yet framed as a next-economy operating system.",
+          "tools": [
+            "Capital Investment Tax Credit",
+            "High Impact Performance Incentive",
+            "Job Growth Grant Fund",
+            "Quick Response Training",
+            "Semiconductor, defense, and space technology exemption",
+            "Manufacturing machinery and equipment exemption"
+          ],
+          "floridaGap": "The toolkit exists. The open question is whether it is fast and specific enough for AI compute, semiconductors, advanced manufacturing, and large capex projects.",
+          "sourceIds": ["fl_program_inventory_2023"]
+        },
+        {
+          "id": "texas",
+          "state": "Texas",
+          "competitorSignal": "Texas pairs state deal-closing authority with local agreements and a clearer data-center exemption frame.",
+          "tools": [
+            "Data center state sales and use tax exemption",
+            "Texas Enterprise Fund",
+            "Chapter 380 and 381 local economic-development agreements",
+            "Spaceport Trust Fund"
+          ],
+          "floridaGap": "Texas makes it easier to see the capital-stack answer for power-heavy projects.",
+          "sourceIds": ["sf_incentive_research_2020"]
+        },
+        {
+          "id": "north-carolina",
+          "state": "North Carolina",
+          "competitorSignal": "North Carolina's ledger combines data-center exemptions, JDIG, One NC, infrastructure, reuse, and rail access.",
+          "tools": [
+            "Data center sales and use tax exemptions",
+            "Job Development Investment Grant",
+            "One North Carolina Fund",
+            "Golden LEAF infrastructure grants",
+            "Rail Industrial Access Program"
+          ],
+          "floridaGap": "North Carolina is a useful model for aligning recruitment tools with manufacturing, rural infrastructure, and workforce delivery.",
+          "sourceIds": ["sf_incentive_research_2020"]
+        },
+        {
+          "id": "georgia",
+          "state": "Georgia",
+          "competitorSignal": "Georgia's toolkit is built around job credits, quality jobs, mega-projects, investment, and R&D.",
+          "tools": [
+            "Mega Project Tax Credit",
+            "Quality Jobs Tax Credit",
+            "Job Tax Credit",
+            "Investment Tax Credit",
+            "Research and Development Tax Credit"
+          ],
+          "floridaGap": "Georgia's lesson is not just incentives. It is a clearer manufacturing and supplier-chain posture.",
+          "sourceIds": ["sf_incentive_research_2020"]
+        },
+        {
+          "id": "tennessee",
+          "state": "Tennessee",
+          "competitorSignal": "Tennessee uses FastTrack and job credits to make manufacturing projects feel executable.",
+          "tools": [
+            "FastTrack Infrastructure Program",
+            "FastTrack Job Training Assistance",
+            "FastTrack Economic Development",
+            "Super Jobs Tax Credit",
+            "Industrial Machinery Tax Credit"
+          ],
+          "floridaGap": "Tennessee shows how a smaller state can punch above its weight when the training and industrial machinery answer is legible.",
+          "sourceIds": ["sf_incentive_research_2020"]
+        },
+        {
+          "id": "arizona-utah",
+          "state": "Arizona and Utah",
+          "competitorSignal": "Western peers frame data centers, qualified facilities, R&D, and infrastructure as a scale-up package.",
+          "tools": [
+            "Arizona Computer Data Center exemptions",
+            "Arizona Qualified Facility Tax Credits",
+            "Utah EDTIF credit",
+            "Utah High Cost Infrastructure Tax Credit",
+            "Utah life science and technology credit"
+          ],
+          "floridaGap": "The AI capex race rewards states that can answer power, water, infrastructure, and post-performance incentives in one conversation.",
+          "sourceIds": ["sf_incentive_research_2020"]
+        }
+      ]
+    },
+    "institutionalCapacity": {
+      "headline": "The old EFI BI memo is the blueprint for Florida Brain.",
+      "summary": "The archived side-by-side says EFI had useful baseline data, but it was trapped in static PDFs, scattered research roles, and underused data systems. Floridanomics is the product answer to that institutional gap.",
+      "metrics": [
+        {
+          "id": "research-fte-current",
+          "label": "Existing research bench",
+          "value": "3 FTE",
+          "context": "EFI research roles described in September 2022",
+          "read": "The memo says research capacity existed, but it was non-managerial and spread across business development, ITD, and military-defense work.",
+          "sourceIds": ["efi_bi_side_by_side_2022"]
+        },
+        {
+          "id": "research-fte-proposed",
+          "label": "BI target bench",
+          "value": "5 FTE",
+          "context": "Proposed VP, manager, and combined research structure",
+          "read": "The proposal was not just more staff. It was a shift from static reporting to business-intelligence products.",
+          "sourceIds": ["efi_bi_side_by_side_2022"]
+        },
+        {
+          "id": "salesforce-legacy",
+          "label": "Legacy CRM depth",
+          "value": "10+ years",
+          "context": "Salesforce data described as complex, layered, and needing cleanup",
+          "read": "The archive warns that dashboards are only as good as their data architecture. Florida Brain needs source discipline from day one.",
+          "sourceIds": ["efi_bi_side_by_side_2022"]
+        },
+        {
+          "id": "tool-stack",
+          "label": "Data stack named",
+          "value": "8+ systems",
+          "context": "WISERTrade, BEA, JobsEQ, EMSI, Kompass, CoStar, D&B Hoovers, IBISWorld, and more",
+          "read": "The state already knew the right direction: live tools, better visualization, FDI market intelligence, and dynamic web dashboards.",
+          "sourceIds": ["efi_bi_side_by_side_2022", "state_appropros_efi"]
+        }
+      ],
+      "operatingLessons": [
+        "Do not publish static PDF dashboards when the underlying question is moving monthly.",
+        "Treat Salesforce, trade, FDI, incentives, and project pipelines as one intelligence fabric.",
+        "Separate public claims from internal leads so Florida Brain can be bold without losing source integrity.",
+        "Build a competitor-state update rhythm before the next big capex cycle becomes old news."
+      ],
+      "sourceIds": ["efi_bi_side_by_side_2022", "state_appropros_efi"]
+    },
+    "migration": {
+      "headline": "Migration is Florida's flywheel. It is not the whole strategy.",
+      "summary": "The internal migration spreadsheet shows Florida beating Texas on state-to-state migration in 2021 and 2022. That is the demand engine. The competitor tool asks whether the supply side is becoming high-wage enough.",
+      "rankings": [
+        {
+          "rank": 1,
+          "state": "Florida",
+          "netMigration2021": 205163,
+          "netMigration2022": 249064
+        },
+        {
+          "rank": 2,
+          "state": "Texas",
+          "netMigration2021": 144032,
+          "netMigration2022": 174261
+        },
+        {
+          "rank": 3,
+          "state": "North Carolina",
+          "netMigration2021": 99406,
+          "netMigration2022": 82160
+        },
+        {
+          "rank": 4,
+          "state": "Arizona",
+          "netMigration2021": 88165,
+          "netMigration2022": 77995
+        },
+        {
+          "rank": 5,
+          "state": "Georgia",
+          "netMigration2021": 64067,
+          "netMigration2022": 74520
+        }
+      ],
+      "read": "Florida can win people and still lose the next-economy mix. The model has to track whether migration becomes taxable income, technical workforce, founder formation, and strategic investment.",
+      "sourceIds": ["migration_rank_2022"]
+    },
+    "semiconductor": {
+      "headline": "Florida has a chips ledger. Now it needs a compute-and-supply-chain thesis.",
+      "summary": "The 2024 spreadsheet logs $391,985,340 of Florida semiconductor-related commitments across DOE, JGGF, UCF, BRIDG, and UF line items. The next layer should connect those commitments to the AI capex, aerospace, and advanced-manufacturing map.",
+      "commitments": [
+        {
+          "id": "doe-2024-schools",
+          "label": "DOE high schools, tech colleges, and state colleges",
+          "valueUsd": 47004840,
+          "context": "2024 workforce and education line item"
+        },
+        {
+          "id": "jggf-2023-neocity",
+          "label": "JGGF 2023 NeoCity",
+          "valueUsd": 17500000,
+          "context": "Job Growth Grant Fund semiconductor ecosystem line item"
+        },
+        {
+          "id": "jggf-2023-valencia",
+          "label": "JGGF 2023 Valencia College",
+          "valueUsd": 4170000,
+          "context": "Workforce and technical training line item"
+        },
+        {
+          "id": "jggf-2023-santa-fe",
+          "label": "JGGF 2023 Santa Fe College",
+          "valueUsd": 3000000,
+          "context": "Workforce and technical training line item"
+        },
+        {
+          "id": "jggf-2023-lake-technical",
+          "label": "JGGF 2023 Lake Technical College",
+          "valueUsd": 1860500,
+          "context": "Workforce and technical training line item"
+        },
+        {
+          "id": "jggf-2023-eastern-florida",
+          "label": "JGGF 2023 Eastern Florida State College",
+          "valueUsd": 1550000,
+          "context": "Space Coast workforce line item"
+        },
+        {
+          "id": "jggf-2022-neocity",
+          "label": "JGGF 2022 NeoCity",
+          "valueUsd": 5800000,
+          "context": "Earlier NeoCity support line item"
+        },
+        {
+          "id": "jggf-2022-valencia",
+          "label": "JGGF 2022 Valencia College",
+          "valueUsd": 3700000,
+          "context": "Earlier training-support line item"
+        },
+        {
+          "id": "ucf-nonrecurring",
+          "label": "UCF nonrecurring appropriations",
+          "valueUsd": 24500000,
+          "context": "University semiconductor capacity line item"
+        },
+        {
+          "id": "ucf-recurring-degrees",
+          "label": "UCF semiconductor degrees 10-year commitment",
+          "valueUsd": 200000000,
+          "context": "Recurring appropriations commitment"
+        },
+        {
+          "id": "bridg-design-center",
+          "label": "BRIDG Design Center at NeoCity",
+          "valueUsd": 2900000,
+          "context": "NeoCity design-center line item"
+        },
+        {
+          "id": "uf-semi-institute-ops",
+          "label": "UF Semiconductor Institute operations",
+          "valueUsd": 35000000,
+          "context": "2024 operations line item"
+        },
+        {
+          "id": "uf-semi-institute-fco",
+          "label": "UF Semiconductor Institute FCO",
+          "valueUsd": 45000000,
+          "context": "2024 fixed-capital-outlay line item"
+        }
+      ],
+      "read": "The commitment stack is real enough to build around. The missing product is a live comparison against peer-state chips, data-center, aerospace, and advanced-manufacturing commitments.",
+      "sourceIds": ["chips_commitment_2024"]
+    },
+    "nextMoves": [
+      "Refresh the FDI scoreboard against current BEA, SelectUSA, and fDi Markets sources before public citation.",
+      "Convert the 2020 incentive report into a structured state-policy ledger with current URLs, eligibility thresholds, and sunset dates.",
+      "Build a named project ledger for Texas, Georgia, North Carolina, Arizona, Utah, and Tennessee AI capex, chips, EV, battery, and aerospace wins.",
+      "Pair migration with IRS income migration, BLS wage mix, housing constraints, and tax-base yield so the flywheel is measured, not assumed.",
+      "Add a Florida Model export mode that turns this competitor layer into sponsor-ready HTML briefs for Florida Brain."
+    ]
+  },
   "terminal": {
     "headline": "Export the Florida model as an operating system, not a slogan.",
     "thesis": "Florida's advantage is not one metric. It is migration, business formation, low-tax discipline, gateway infrastructure, aerospace cadence, and policy restraint working together. The open question is whether that model can also win the power-heavy AI capex cycle without making households subsidize it.",

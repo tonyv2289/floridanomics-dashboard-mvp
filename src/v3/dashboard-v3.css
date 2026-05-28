@@ -68,7 +68,10 @@
 .v3-table-row > *,
 .v3-tab,
 .v3-read-cell,
-.v3-evidence-card {
+.v3-evidence-card,
+.v3-competition-state-row > *,
+.v3-policy-toolkit-card,
+.v3-semiconductor-row > * {
   min-width: 0;
 }
 
@@ -104,7 +107,7 @@
 
 .v3-tabs {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 1px;
   margin: 20px 0;
   border: 1px solid var(--v3-line);
@@ -677,6 +680,268 @@
   padding-left: 18px;
 }
 
+.v3-competition-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.v3-competition-hero-main {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.v3-competition-hero-main h2 {
+  max-width: 920px;
+  font-size: clamp(2.2rem, 5vw, 4.7rem);
+  overflow-wrap: anywhere;
+}
+
+.v3-competition-hero-main p,
+.v3-competition-hero-main blockquote,
+.v3-competition-read,
+.v3-policy-toolkit-card p,
+.v3-policy-toolkit-card li,
+.v3-capacity-card p,
+.v3-lesson-list li,
+.v3-next-moves p,
+.v3-next-moves li {
+  margin: 0;
+  color: #c6d1df;
+  line-height: 1.6;
+}
+
+.v3-competition-hero-main blockquote {
+  padding: 18px 20px;
+  border-left: 4px solid var(--v3-sun);
+  background: rgba(255, 143, 63, 0.08);
+  color: var(--v3-text);
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.18rem, 2vw, 1.55rem);
+  line-height: 1.38;
+}
+
+.v3-competition-caveat {
+  max-width: 820px;
+  color: var(--v3-muted) !important;
+  font-size: 0.9rem;
+}
+
+.v3-competition-scorecard {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 20px;
+  border: 1px solid rgba(255, 143, 63, 0.42);
+  border-top: 4px solid var(--v3-sun);
+  border-radius: 8px;
+  background: rgba(255, 143, 63, 0.08);
+}
+
+.v3-competition-metric-grid,
+.v3-competition-chart-layout,
+.v3-competition-state-list,
+.v3-policy-toolkit-grid,
+.v3-capacity-grid,
+.v3-migration-list,
+.v3-semiconductor-list,
+.v3-next-moves {
+  display: grid;
+  gap: 14px;
+}
+
+.v3-competition-metric-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.v3-competition-chart-layout {
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  align-items: start;
+}
+
+.v3-competition-state-list {
+  gap: 10px;
+}
+
+.v3-policy-toolkit-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.v3-capacity-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.v3-competition-metric,
+.v3-competition-state-row,
+.v3-policy-toolkit-card,
+.v3-capacity-card,
+.v3-migration-row,
+.v3-semiconductor-row {
+  border: 1px solid var(--v3-line);
+  border-radius: 8px;
+  background: rgba(17, 25, 52, 0.54);
+}
+
+.v3-competition-metric,
+.v3-policy-toolkit-card,
+.v3-capacity-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 18px;
+}
+
+.v3-competition-state-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1.1fr) 110px 110px 110px minmax(190px, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 14px;
+}
+
+.v3-competition-state-row.is-florida,
+.v3-policy-toolkit-card.is-florida,
+.v3-migration-row.is-florida {
+  border-color: rgba(255, 143, 63, 0.58);
+  background: rgba(255, 143, 63, 0.08);
+}
+
+.v3-competition-scorecard span,
+.v3-competition-scorecard small,
+.v3-competition-metric span,
+.v3-competition-metric small,
+.v3-competition-state-row span,
+.v3-policy-toolkit-card span,
+.v3-capacity-card span,
+.v3-capacity-card small,
+.v3-migration-row span,
+.v3-semiconductor-row span,
+.v3-competition-source-list b {
+  color: var(--v3-muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.v3-competition-scorecard strong {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  line-height: 0.92;
+  white-space: nowrap;
+}
+
+.v3-competition-metric strong,
+.v3-competition-state-row strong,
+.v3-capacity-card strong,
+.v3-migration-row strong {
+  font-family: "Sora", sans-serif;
+  line-height: 1.05;
+}
+
+.v3-competition-metric strong {
+  font-size: 1.85rem;
+}
+
+.v3-competition-state-row p {
+  margin: 0;
+  color: #c6d1df;
+  line-height: 1.48;
+}
+
+.v3-policy-toolkit-card h3,
+.v3-next-moves h2 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  line-height: 1.15;
+}
+
+.v3-policy-toolkit-card ul,
+.v3-lesson-list,
+.v3-next-moves ol {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.v3-policy-toolkit-card p strong {
+  color: var(--v3-text);
+  font-family: "Sora", sans-serif;
+}
+
+.v3-competition-source-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.v3-competition-source-list span {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  max-width: 100%;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 143, 63, 0.24);
+  border-radius: 999px;
+  color: var(--v3-sun);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.v3-competition-source-list b,
+.v3-competition-source-list i {
+  min-width: 0;
+}
+
+.v3-competition-source-list b {
+  font-size: 0.62rem;
+}
+
+.v3-competition-source-list i {
+  color: var(--v3-sun);
+  font-style: normal;
+  overflow-wrap: anywhere;
+}
+
+.v3-migration-row,
+.v3-semiconductor-row {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) minmax(90px, 0.8fr) minmax(90px, 0.8fr);
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+}
+
+.v3-migration-row p,
+.v3-semiconductor-row p {
+  margin: 0;
+  color: var(--v3-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.v3-semiconductor-row {
+  grid-template-columns: minmax(0, 1fr) 140px;
+}
+
+.v3-semiconductor-row span {
+  color: var(--v3-sun);
+  font-family: "Sora", sans-serif;
+  font-size: 1rem;
+  text-align: right;
+}
+
+.v3-next-moves {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  align-items: start;
+}
+
 .v3-terminal-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
@@ -1225,6 +1490,9 @@ button.v3-table-row {
   .v3-watch,
   .v3-two-up,
   .v3-strategy-hero,
+  .v3-competition-hero,
+  .v3-competition-chart-layout,
+  .v3-next-moves,
   .v3-terminal-hero,
   .v3-terminal-index {
     grid-template-columns: 1fr;
@@ -1236,6 +1504,8 @@ button.v3-table-row {
   .v3-cluster-grid,
   .v3-momentum-grid,
   .v3-scenario-grid,
+  .v3-competition-metric-grid,
+  .v3-policy-toolkit-grid,
   .v3-terminal-live-grid,
   .v3-policy-grid,
   .v3-forecast-cases {
@@ -1246,6 +1516,7 @@ button.v3-table-row {
   .v3-source-grid,
   .v3-brain-note-grid,
   .v3-benchmark-grid,
+  .v3-capacity-grid,
   .v3-terminal-metric-grid,
   .v3-terminal-memo-grid,
   .v3-project-ledger,
@@ -1254,6 +1525,10 @@ button.v3-table-row {
   }
 
   .v3-peer-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .v3-competition-state-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1281,6 +1556,12 @@ button.v3-table-row {
   .v3-momentum-grid,
   .v3-scenario-grid,
   .v3-peer-row,
+  .v3-competition-metric-grid,
+  .v3-competition-state-row,
+  .v3-policy-toolkit-grid,
+  .v3-capacity-grid,
+  .v3-migration-row,
+  .v3-semiconductor-row,
   .v3-terminal-live-grid,
   .v3-policy-grid,
   .v3-forecast-cases,
@@ -1320,5 +1601,14 @@ button.v3-table-row {
   .v3-table-row {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+
+  .v3-competition-source-list span {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .v3-semiconductor-row span {
+    text-align: left;
   }
 }

@@ -3,6 +3,7 @@ import clsx from "clsx";
 import {
   Bar,
   BarChart,
+  Cell,
   CartesianGrid,
   Line,
   LineChart,
@@ -32,11 +33,12 @@ import {
 import type { DashboardDataset, InnovationMetricId, InsightSection, PeerStateSnapshot } from "../types/dashboard";
 import "./dashboard-v3.css";
 
-type V3TabId = "brief" | "strategy" | "terminal" | "scorecard" | "innovation" | "trade";
+type V3TabId = "brief" | "strategy" | "competition" | "terminal" | "scorecard" | "innovation" | "trade";
 
 const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
   { id: "brief", label: "Brief", line: "what matters now" },
   { id: "strategy", label: "Strategy", line: "peers, clusters, scenarios" },
+  { id: "competition", label: "Competition", line: "FDI, tools, capacity" },
   { id: "terminal", label: "Terminal", line: "forecasts and policy alpha" },
   { id: "scorecard", label: "Scorecard", line: "labor, metros, 2030" },
   { id: "innovation", label: "Innovation", line: "formation and capacity" },
@@ -71,6 +73,7 @@ function isV3TabId(value: string | null): value is V3TabId {
   return (
     value === "brief" ||
     value === "strategy" ||
+    value === "competition" ||
     value === "terminal" ||
     value === "scorecard" ||
     value === "innovation" ||
@@ -119,6 +122,26 @@ function formatSignedPercentage(value: number | null | undefined): string {
 
   const sign = value >= 0 ? "+" : "-";
   return `${sign}${Math.abs(value).toFixed(1)}%`;
+}
+
+function formatUsdValue(value: number): string {
+  if (Math.abs(value) >= 1_000_000_000) {
+    return `$${formatCompact(value / 1_000_000_000, 1)}B`;
+  }
+
+  if (Math.abs(value) >= 1_000_000) {
+    return `$${formatCompact(value / 1_000_000, 1)}M`;
+  }
+
+  return `$${value.toLocaleString()}`;
+}
+
+function formatFdiStock(value: number | null): string {
+  if (value === null) {
+    return "n/a";
+  }
+
+  return `$${value >= 100 ? value.toFixed(0) : value.toFixed(1)}B`;
 }
 
 function formatPeerPayrollDelta(state: PeerStateSnapshot): string {
@@ -202,6 +225,28 @@ function TerminalSourceList({ dataset, sourceIds }: { dataset: DashboardDataset;
             <span>{source.tier}</span>
             {source.label}
           </a>
+        );
+      })}
+    </div>
+  );
+}
+
+function CompetitionSourceList({ dataset, sourceIds }: { dataset: DashboardDataset; sourceIds: string[] }) {
+  const sourceById = new Map(dataset.competition.sources.map((source) => [source.id, source]));
+
+  return (
+    <div className="v3-competition-source-list">
+      {sourceIds.map((sourceId) => {
+        const source = sourceById.get(sourceId);
+        if (!source) {
+          return null;
+        }
+
+        return (
+          <span key={source.id} title={source.macStudioPath}>
+            <b>{source.kind}</b>
+            <i>{source.label}</i>
+          </span>
         );
       })}
     </div>
@@ -1180,6 +1225,277 @@ function StrategyTab({ dataset }: { dataset: DashboardDataset }) {
   );
 }
 
+function CompetitionHero({ dataset }: { dataset: DashboardDataset }) {
+  const competition = dataset.competition;
+  const florida = competition.fdiScoreboard.states.find((state) => state.id === "FL");
+  const texas = competition.fdiScoreboard.states.find((state) => state.id === "TX");
+  const firstMetric = competition.fdiScoreboard.metrics[0];
+
+  return (
+    <Frame label="State competition terminal">
+      <div className="v3-competition-hero">
+        <div className="v3-competition-hero-main">
+          <h2>{competition.headline}</h2>
+          <p>{competition.summary}</p>
+          <blockquote>
+            {texas && florida
+              ? `The live question is not whether Florida is growing. It is whether Florida can convert its migration and trade flywheel into Texas-scale capital intensity: ${formatFdiStock(florida.fdiPpeUsdBillions)} versus ${formatFdiStock(texas.fdiPpeUsdBillions)} in foreign-owned PP&E.`
+              : "The live question is whether Florida can turn a growth story into a competitor-state operating system."}
+          </blockquote>
+          <p className="v3-competition-caveat">{competition.vaultLog.caveat}</p>
+        </div>
+
+        <aside className="v3-competition-scorecard">
+          <span>{firstMetric?.label ?? "FDI read"}</span>
+          <strong>{firstMetric?.value ?? "n/a"}</strong>
+          <p>{firstMetric?.read ?? competition.fdiScoreboard.summary}</p>
+          {firstMetric ? <CompetitionSourceList dataset={dataset} sourceIds={firstMetric.sourceIds} /> : null}
+        </aside>
+      </div>
+    </Frame>
+  );
+}
+
+function FdiScoreboard({ dataset }: { dataset: DashboardDataset }) {
+  const states = dataset.competition.fdiScoreboard.states;
+  const chartData = states.map((state) => ({
+    id: state.id,
+    name: state.name,
+    jobs: state.fdiJobs,
+    projects: state.greenfieldProjects,
+  }));
+
+  return (
+    <Frame label="FDI scoreboard">
+      <div className="v3-panel-head">
+        <div>
+          <h2>{dataset.competition.fdiScoreboard.headline}</h2>
+          <p>{dataset.competition.fdiScoreboard.summary}</p>
+        </div>
+      </div>
+
+      <div className="v3-competition-metric-grid">
+        {dataset.competition.fdiScoreboard.metrics.map((metric) => (
+          <article key={metric.id} className="v3-competition-metric">
+            <span>{metric.label}</span>
+            <strong>{metric.value}</strong>
+            <small>{metric.context}</small>
+            <p>{metric.read}</p>
+            <CompetitionSourceList dataset={dataset} sourceIds={metric.sourceIds} />
+          </article>
+        ))}
+      </div>
+
+      <div className="v3-competition-chart-layout">
+        <div className="v3-chart">
+          <ResponsiveContainer width="100%" height={360}>
+            <BarChart data={chartData} layout="vertical" margin={{ top: 6, right: 18, left: 18, bottom: 6 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(148, 163, 184, 0.14)" horizontal={false} />
+              <XAxis type="number" tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(value) => formatCompact(Number(value), 1)} />
+              <YAxis dataKey="id" type="category" width={44} tick={{ fill: "#94a3b8", fontSize: 11 }} />
+              <Tooltip
+                contentStyle={TOOLTIP_STYLE}
+                labelStyle={TOOLTIP_LABEL_STYLE}
+                itemStyle={TOOLTIP_ITEM_STYLE}
+                formatter={(value, name) => [
+                  name === "jobs" ? formatCompact(Number(value), 1) : Number(value).toLocaleString(),
+                  name === "jobs" ? "FDI jobs" : "Greenfield projects",
+                ]}
+              />
+              <Bar dataKey="jobs" radius={[0, 8, 8, 0]}>
+                {chartData.map((state) => (
+                  <Cell key={state.id} fill={state.id === "FL" ? "#ff8f3f" : state.id === "TX" ? "#56c2ff" : "#334155"} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="v3-competition-state-list">
+          {states.map((state) => (
+            <article key={state.id} className={clsx("v3-competition-state-row", state.id === "FL" && "is-florida")}>
+              <div>
+                <span>{state.tier}</span>
+                <strong>{state.name}</strong>
+                <p>{state.posture}</p>
+              </div>
+              <div>
+                <span>FDI jobs</span>
+                <strong>{state.fdiJobs.toLocaleString()}</strong>
+              </div>
+              <div>
+                <span>Projects</span>
+                <strong>{state.greenfieldProjects.toLocaleString()}</strong>
+              </div>
+              <div>
+                <span>FDI stock</span>
+                <strong>{formatFdiStock(state.fdiPpeUsdBillions)}</strong>
+              </div>
+              <p>{state.capitalIntensityRead}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Frame>
+  );
+}
+
+function PolicyToolkit({ dataset }: { dataset: DashboardDataset }) {
+  return (
+    <Frame label="Policy toolkit ledger">
+      <div className="v3-panel-head">
+        <div>
+          <h2>{dataset.competition.policyToolkit.headline}</h2>
+          <p>{dataset.competition.policyToolkit.summary}</p>
+        </div>
+      </div>
+
+      <div className="v3-policy-toolkit-grid">
+        {dataset.competition.policyToolkit.states.map((state) => (
+          <article key={state.id} className={clsx("v3-policy-toolkit-card", state.id === "florida" && "is-florida")}>
+            <span>{state.state}</span>
+            <h3>{state.competitorSignal}</h3>
+            <ul>
+              {state.tools.map((tool) => (
+                <li key={tool}>{tool}</li>
+              ))}
+            </ul>
+            <p>
+              <strong>Florida read:</strong> {state.floridaGap}
+            </p>
+            <CompetitionSourceList dataset={dataset} sourceIds={state.sourceIds} />
+          </article>
+        ))}
+      </div>
+    </Frame>
+  );
+}
+
+function CapacityAndMigration({ dataset }: { dataset: DashboardDataset }) {
+  return (
+    <div className="v3-two-up">
+      <Frame label="Institutional capacity">
+        <div className="v3-panel-head">
+          <div>
+            <h2>{dataset.competition.institutionalCapacity.headline}</h2>
+            <p>{dataset.competition.institutionalCapacity.summary}</p>
+          </div>
+        </div>
+
+        <div className="v3-capacity-grid">
+          {dataset.competition.institutionalCapacity.metrics.map((metric) => (
+            <article key={metric.id} className="v3-capacity-card">
+              <span>{metric.label}</span>
+              <strong>{metric.value}</strong>
+              <small>{metric.context}</small>
+              <p>{metric.read}</p>
+              <CompetitionSourceList dataset={dataset} sourceIds={metric.sourceIds} />
+            </article>
+          ))}
+        </div>
+
+        <ol className="v3-lesson-list">
+          {dataset.competition.institutionalCapacity.operatingLessons.map((lesson) => (
+            <li key={lesson}>{lesson}</li>
+          ))}
+        </ol>
+      </Frame>
+
+      <Frame label="Migration flywheel">
+        <div className="v3-panel-head">
+          <div>
+            <h2>{dataset.competition.migration.headline}</h2>
+            <p>{dataset.competition.migration.summary}</p>
+          </div>
+        </div>
+
+        <div className="v3-migration-list">
+          {dataset.competition.migration.rankings.map((ranking) => (
+            <article key={ranking.state} className={clsx("v3-migration-row", ranking.state === "Florida" && "is-florida")}>
+              <span>#{ranking.rank}</span>
+              <strong>{ranking.state}</strong>
+              <p>2021: {ranking.netMigration2021.toLocaleString()}</p>
+              <p>2022: {ranking.netMigration2022.toLocaleString()}</p>
+            </article>
+          ))}
+        </div>
+
+        <p className="v3-competition-read">{dataset.competition.migration.read}</p>
+        <CompetitionSourceList dataset={dataset} sourceIds={dataset.competition.migration.sourceIds} />
+      </Frame>
+    </div>
+  );
+}
+
+function SemiconductorCommitments({ dataset }: { dataset: DashboardDataset }) {
+  const commitments = dataset.competition.semiconductor.commitments;
+  const totalCommitment = commitments.reduce((sum, item) => sum + item.valueUsd, 0);
+
+  return (
+    <Frame label="Strategic compute and semiconductors">
+      <div className="v3-panel-head">
+        <div>
+          <h2>{dataset.competition.semiconductor.headline}</h2>
+          <p>{dataset.competition.semiconductor.summary}</p>
+        </div>
+        <div className="v3-panel-number">
+          <strong>{formatUsdValue(totalCommitment)}</strong>
+          <span>logged commitments</span>
+        </div>
+      </div>
+
+      <div className="v3-semiconductor-list">
+        {commitments.map((commitment) => (
+          <article key={commitment.id} className="v3-semiconductor-row">
+            <div>
+              <strong>{commitment.label}</strong>
+              <p>{commitment.context}</p>
+            </div>
+            <span>{formatUsdValue(commitment.valueUsd)}</span>
+          </article>
+        ))}
+      </div>
+
+      <p className="v3-competition-read">{dataset.competition.semiconductor.read}</p>
+      <CompetitionSourceList dataset={dataset} sourceIds={dataset.competition.semiconductor.sourceIds} />
+    </Frame>
+  );
+}
+
+function CompetitionNextMoves({ dataset }: { dataset: DashboardDataset }) {
+  return (
+    <Frame label="Build queue">
+      <div className="v3-next-moves">
+        <div>
+          <h2>The next layer is a live war room.</h2>
+          <p>
+            This tab now turns the SelectFlorida archive into a product surface. The next build should replace static
+            archive reads with refreshed primary-source feeds and a deal-by-deal competitor ledger.
+          </p>
+        </div>
+        <ol>
+          {dataset.competition.nextMoves.map((move) => (
+            <li key={move}>{move}</li>
+          ))}
+        </ol>
+      </div>
+    </Frame>
+  );
+}
+
+function CompetitionTab({ dataset }: { dataset: DashboardDataset }) {
+  return (
+    <>
+      <CompetitionHero dataset={dataset} />
+      <FdiScoreboard dataset={dataset} />
+      <PolicyToolkit dataset={dataset} />
+      <CapacityAndMigration dataset={dataset} />
+      <SemiconductorCommitments dataset={dataset} />
+      <CompetitionNextMoves dataset={dataset} />
+    </>
+  );
+}
+
 function ScorecardTab({
   dataset,
   selectedMetricId,
@@ -1450,6 +1766,7 @@ function DashboardV3() {
 
         {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
         {activeTab === "strategy" ? <StrategyTab dataset={data} /> : null}
+        {activeTab === "competition" ? <CompetitionTab dataset={data} /> : null}
         {activeTab === "terminal" ? <TerminalTab dataset={data} /> : null}
         {activeTab === "scorecard" ? (
           <ScorecardTab dataset={data} selectedMetricId={selectedMetricId} onSelectMetric={setSelectedMetricId} />

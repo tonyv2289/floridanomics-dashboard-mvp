@@ -234,6 +234,105 @@ export type TerminalEvidenceBlock = {
   sourceIds: string[];
 };
 
+export type CompetitionSource = {
+  id: string;
+  label: string;
+  kind: "Dropbox source" | "Vault derivative" | "Public source";
+  macStudioPath: string;
+  localPath?: string;
+  note: string;
+  status: "vault_logged" | "needs_refresh" | "public_source";
+};
+
+export type CompetitionMetric = {
+  id: string;
+  label: string;
+  value: string;
+  context: string;
+  read: string;
+  sourceIds: string[];
+};
+
+export type FdiCompetitorState = {
+  id: "FL" | "TX" | "CA" | "NY" | "GA" | "NC" | "TN";
+  name: string;
+  tier: string;
+  fdiJobs: number;
+  greenfieldProjects: number;
+  fdiPpeUsdBillions: number | null;
+  firstYearExpendituresUsdBillions: number | null;
+  capitalIntensityRead: string;
+  posture: string;
+  sourceIds: string[];
+};
+
+export type PolicyToolkitState = {
+  id: string;
+  state: string;
+  competitorSignal: string;
+  tools: string[];
+  floridaGap: string;
+  sourceIds: string[];
+};
+
+export type MigrationRank = {
+  rank: number;
+  state: string;
+  netMigration2021: number;
+  netMigration2022: number;
+};
+
+export type SemiconductorCommitment = {
+  id: string;
+  label: string;
+  valueUsd: number;
+  context: string;
+};
+
+export type StateCompetitionLayer = {
+  headline: string;
+  summary: string;
+  vaultLog: {
+    macStudioPath: string;
+    localPath: string;
+    caveat: string;
+  };
+  sources: CompetitionSource[];
+  fdiScoreboard: {
+    headline: string;
+    summary: string;
+    metrics: CompetitionMetric[];
+    states: FdiCompetitorState[];
+  };
+  policyToolkit: {
+    headline: string;
+    summary: string;
+    states: PolicyToolkitState[];
+  };
+  institutionalCapacity: {
+    headline: string;
+    summary: string;
+    metrics: CompetitionMetric[];
+    operatingLessons: string[];
+    sourceIds: string[];
+  };
+  migration: {
+    headline: string;
+    summary: string;
+    rankings: MigrationRank[];
+    read: string;
+    sourceIds: string[];
+  };
+  semiconductor: {
+    headline: string;
+    summary: string;
+    commitments: SemiconductorCommitment[];
+    read: string;
+    sourceIds: string[];
+  };
+  nextMoves: string[];
+};
+
 export type TerminalLayer = {
   headline: string;
   thesis: string;
@@ -372,6 +471,7 @@ export type DashboardDataset = {
   scorecard2030: InsightSection;
   brainNotes: FloridaBrainNote[];
   strategy: StrategyLayer;
+  competition: StateCompetitionLayer;
   terminal: TerminalLayer;
   distinctives: {
     snowbirdIndex: InsightSection;
