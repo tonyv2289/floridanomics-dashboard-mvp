@@ -15675,6 +15675,42 @@
         "status": "public_source"
       },
       {
+        "id": "dubai_d33",
+        "label": "Dubai Economic Agenda D33",
+        "kind": "Public source",
+        "macStudioPath": "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/strategies-plans-and-visions/finance-and-economy/dubai-economic-agenda-d33",
+        "url": "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/strategies-plans-and-visions/finance-and-economy/dubai-economic-agenda-d33",
+        "note": "Official UAE Government source for Dubai's D33 agenda to double the economy and rank among the top global cities.",
+        "status": "public_source"
+      },
+      {
+        "id": "saudi_vision_2030",
+        "label": "Saudi Vision 2030",
+        "kind": "Public source",
+        "macStudioPath": "https://www.vision2030.gov.sa/en/",
+        "url": "https://www.vision2030.gov.sa/en/",
+        "note": "Official Saudi Vision 2030 source for Riyadh's national transformation, diversification, and giga-project context.",
+        "status": "public_source"
+      },
+      {
+        "id": "taiwan_ai_invest",
+        "label": "AI Taiwan and Invest Taiwan",
+        "kind": "Public source",
+        "macStudioPath": "https://ai.taiwan.gov.tw/",
+        "url": "https://ai.taiwan.gov.tw/",
+        "note": "Official Taiwan AI portal and investment ecosystem source for semiconductor, AI hardware, and applied-AI strategy context.",
+        "status": "public_source"
+      },
+      {
+        "id": "singapore_edb_ai",
+        "label": "Singapore EDB AI and semiconductor strategy",
+        "kind": "Public source",
+        "macStudioPath": "https://www.edb.gov.sg/en/business-insights/insights/the-ai-boom-has-made-memory-chips-the-star-of-the-show-singapore-stakes-its-role-in-advanced-packaging.html",
+        "url": "https://www.edb.gov.sg/en/business-insights/insights/the-ai-boom-has-made-memory-chips-the-star-of-the-show-singapore-stakes-its-role-in-advanced-packaging.html",
+        "note": "Singapore EDB source for advanced packaging, AI-related semiconductor demand, R&D, and investment positioning.",
+        "status": "public_source"
+      },
+      {
         "id": "sf_fdi_comparison_2025",
         "label": "Measuring and Comparing FDI in Florida vs competitor states",
         "kind": "Dropbox source",
@@ -15766,8 +15802,8 @@
       }
     ],
     "metroComparison": {
-      "headline": "South Florida has scale. Austin has velocity. Seattle has the productivity machine.",
-      "summary": "This layer compares operating regions, not state slogans. The arrows show whether a metro is gaining scale, converting labor into payroll momentum, and building the AI-exposed wage base that should matter most in the next productivity cycle.",
+      "headline": "South Florida is the scale bet. Austin is the velocity warning. Seattle and Boston are the productivity benchmarks.",
+      "summary": "This domestic layer compares operating regions, not state slogans. Florida needs to see its own metros against the few U.S. markets that actually teach us something: software velocity, research density, mega-market scale, healthcare migration, and elite productivity.",
       "asOf": "BLS LAUS March 2026, BLS CES April 2026, QCEW 2025 Q3 and 2024 annual industry data",
       "regions": [
         {
@@ -15777,31 +15813,148 @@
           "role": "Scale market",
           "momentum": "mixed",
           "verdict": "Scale up, payroll soft, AI base still catching up.",
-          "read": "South Florida has the people, firms, capital, and LATAM gateway position. The gap is not energy or ambition. The gap is converting that scale into a deeper AI-convertible technical and R&D employment base.",
+          "read": "South Florida has the people, firms, capital, and LATAM gateway position. The gap is converting that scale into a deeper AI-convertible technical and R&D employment base.",
           "signals": [
             {
               "label": "Scale",
               "direction": "up",
               "value": "3.30M labor force",
-              "detail": "+9.1% over five years, the largest labor pool in this comparison."
+              "detail": "+9.1% over five years, the largest Florida labor pool and bigger than Austin, Seattle, Boston, or Nashville."
             },
             {
               "label": "Velocity",
               "direction": "down",
               "value": "-0.2% payroll YoY",
-              "detail": "April 2026 payrolls slipped slightly even as the long-run five-year payroll gain remains +14.2%."
+              "detail": "April 2026 payrolls slipped slightly even though the five-year payroll gain remains +14.2%."
             },
             {
               "label": "AI base",
               "direction": "right",
               "value": "16.8% AI-exposed jobs",
-              "detail": "Information, finance, professional services, and HQ jobs are meaningful, but less concentrated than Austin or Seattle."
+              "detail": "Meaningful finance, professional-services, information, and HQ base, but less concentrated than Austin, Seattle, or Boston."
             },
             {
-              "label": "Computer systems",
+              "label": "Software depth",
               "direction": "right",
-              "value": "1.2% private jobs",
-              "detail": "This is the clearest gap versus Austin's software-heavy base."
+              "value": "1.2% computer systems",
+              "detail": "The software share is the clearest gap versus Austin's 5.2% and Seattle's 3.1%."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        },
+        {
+          "id": "tampa",
+          "name": "Tampa Bay MSA",
+          "federalName": "Tampa-St. Petersburg-Clearwater, FL",
+          "role": "Florida challenger",
+          "momentum": "mixed",
+          "verdict": "Good AI-exposed share, but labor and covered employment are soft.",
+          "read": "Tampa is the Florida metro that most deserves to be in the domestic comparison set after Miami. It has real business-services and finance depth, but the recent labor signal is not yet an Austin-style breakout.",
+          "signals": [
+            {
+              "label": "Scale",
+              "direction": "right",
+              "value": "1.69M labor force",
+              "detail": "+8.7% over five years, roughly Austin-scale but with softer recent labor-force momentum."
+            },
+            {
+              "label": "Velocity",
+              "direction": "right",
+              "value": "+13.0% payroll 5Y",
+              "detail": "Solid five-year payroll growth, but only +0.1% year over year in April 2026."
+            },
+            {
+              "label": "AI base",
+              "direction": "up",
+              "value": "21.2% AI-exposed jobs",
+              "detail": "A surprisingly strong Florida internal competitor on finance, professional services, information, and HQ exposure."
+            },
+            {
+              "label": "Software depth",
+              "direction": "right",
+              "value": "1.7% computer systems",
+              "detail": "Better than South Florida on share, but still well below Austin."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        },
+        {
+          "id": "orlando",
+          "name": "Orlando MSA",
+          "federalName": "Orlando-Kissimmee-Sanford, FL",
+          "role": "Simulation and experience economy",
+          "momentum": "accelerating",
+          "verdict": "The best Florida velocity signal.",
+          "read": "Orlando is Florida's domestic velocity story: faster labor-force growth than South Florida, better five-year payroll growth, and a plausible applied-AI lane around simulation, defense, training, hospitality tech, and space adjacency.",
+          "signals": [
+            {
+              "label": "Scale",
+              "direction": "up",
+              "value": "1.53M labor force",
+              "detail": "+15.2% over five years, the strongest Florida labor-force velocity in this set."
+            },
+            {
+              "label": "Velocity",
+              "direction": "up",
+              "value": "+20.9% payroll 5Y",
+              "detail": "The Florida metro closest to Austin-style payroll momentum."
+            },
+            {
+              "label": "AI base",
+              "direction": "right",
+              "value": "15.4% AI-exposed jobs",
+              "detail": "Less concentrated than South Florida or Tampa, but improving from a different base."
+            },
+            {
+              "label": "R&D signal",
+              "direction": "up",
+              "value": "0.5% R&D jobs",
+              "detail": "Not Boston, but stronger than South Florida on the QCEW R&D share."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        },
+        {
+          "id": "jacksonville",
+          "name": "Jacksonville MSA",
+          "federalName": "Jacksonville, FL",
+          "role": "Logistics and finance platform",
+          "momentum": "slowing",
+          "verdict": "Strategic platform, but not yet a velocity market.",
+          "read": "Jacksonville matters for logistics, port strategy, finance, and defense adjacency. On current labor and payroll momentum, though, it is not yet the domestic benchmark for the AI-productivity story.",
+          "signals": [
+            {
+              "label": "Scale",
+              "direction": "right",
+              "value": "0.84M labor force",
+              "detail": "+7.1% over five years, useful but much smaller than South Florida, Tampa, or Orlando."
+            },
+            {
+              "label": "Velocity",
+              "direction": "down",
+              "value": "-0.4% payroll YoY",
+              "detail": "April 2026 payrolls and 2025 Q3 covered employment were both down year over year."
+            },
+            {
+              "label": "AI base",
+              "direction": "down",
+              "value": "9.5% AI-exposed jobs",
+              "detail": "The AI-convertible private employment share is materially below the other Florida metros."
+            },
+            {
+              "label": "Wage base",
+              "direction": "right",
+              "value": "$1,310 weekly wage",
+              "detail": "Covered wages are close to Tampa and above Orlando, but still below South Florida and the national tech peers."
             }
           ],
           "sourceIds": [
@@ -15822,13 +15975,13 @@
               "label": "Scale",
               "direction": "right",
               "value": "1.56M labor force",
-              "detail": "Roughly half South Florida's labor-force scale, but growing faster."
+              "detail": "Roughly half South Florida's labor-force scale, but +21.5% over five years."
             },
             {
               "label": "Velocity",
               "direction": "up",
               "value": "+23.3% payroll 5Y",
-              "detail": "Five-year nonfarm payroll growth is materially faster than South Florida and Seattle."
+              "detail": "Five-year payroll growth is the cleanest domestic velocity benchmark in this set."
             },
             {
               "label": "AI base",
@@ -15837,9 +15990,9 @@
               "detail": "Austin has a more concentrated AI-convertible private employment base."
             },
             {
-              "label": "Computer systems",
+              "label": "Software depth",
               "direction": "up",
-              "value": "5.2% private jobs",
+              "value": "5.2% computer systems",
               "detail": "Austin's software share is more than four times South Florida's share."
             }
           ],
@@ -15855,7 +16008,7 @@
           "role": "Productivity market",
           "momentum": "slowing",
           "verdict": "Labor momentum is soft, but the productivity base is elite.",
-          "read": "Seattle shows the difference between labor velocity and productivity power. Its labor market is cooling, but the wage and AI-exposed employment base remains the benchmark for what a mature productivity machine looks like.",
+          "read": "Seattle shows the difference between labor velocity and productivity power. Its labor market is cooling, but the wage and AI-exposed employment base remains the benchmark for a mature productivity machine.",
           "signals": [
             {
               "label": "Scale",
@@ -15873,7 +16026,7 @@
               "label": "AI base",
               "direction": "up",
               "value": "25.4% AI-exposed jobs",
-              "detail": "The highest AI-exposed private employment share in this comparison."
+              "detail": "The highest AI-exposed private employment share in this domestic set."
             },
             {
               "label": "Wage power",
@@ -15885,6 +16038,321 @@
           "sourceIds": [
             "bls_metro_laus_ces",
             "bls_qcew_api"
+          ]
+        },
+        {
+          "id": "boston",
+          "name": "Boston MSA",
+          "federalName": "Boston-Cambridge-Newton, MA-NH",
+          "role": "R&D and life-science machine",
+          "momentum": "mixed",
+          "verdict": "Weak labor velocity, elite research density.",
+          "read": "Boston is not the growth-speed benchmark. It is the research-density benchmark: universities, biotech, R&D services, and high-wage technical employment that Florida has to learn from without copying wholesale.",
+          "signals": [
+            {
+              "label": "Scale",
+              "direction": "right",
+              "value": "2.81M labor force",
+              "detail": "Big, but labor force was down 2.2% year over year in March 2026."
+            },
+            {
+              "label": "Velocity",
+              "direction": "down",
+              "value": "-0.5% payroll YoY",
+              "detail": "Boston is not currently a velocity comp on the headline payroll signal."
+            },
+            {
+              "label": "AI base",
+              "direction": "up",
+              "value": "24.7% AI-exposed jobs",
+              "detail": "Almost Seattle-level AI-exposed private employment share."
+            },
+            {
+              "label": "R&D density",
+              "direction": "up",
+              "value": "4.0% R&D jobs",
+              "detail": "The strongest R&D share in this comparison, and the reason Boston belongs here."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        },
+        {
+          "id": "chicago",
+          "name": "Chicago MSA",
+          "federalName": "Chicago-Naperville-Elgin, IL-IN-WI",
+          "role": "Mega-market incumbent",
+          "momentum": "mixed",
+          "verdict": "Huge scale, modest velocity, finance-heavy exposed base.",
+          "read": "Chicago is useful because it is a giant diversified incumbent, not because it is the future model. It gives South Florida a mega-market comparison for scale, wages, logistics, finance, and institutional depth.",
+          "signals": [
+            {
+              "label": "Scale",
+              "direction": "up",
+              "value": "4.99M labor force",
+              "detail": "The largest labor pool in the domestic comparison."
+            },
+            {
+              "label": "Velocity",
+              "direction": "right",
+              "value": "+8.0% payroll 5Y",
+              "detail": "Stable, but nowhere near Austin or Orlando velocity."
+            },
+            {
+              "label": "Wage base",
+              "direction": "right",
+              "value": "$1,508 weekly wage",
+              "detail": "Higher covered wage level than Florida metros except South Florida."
+            },
+            {
+              "label": "Data caveat",
+              "direction": "neutral",
+              "value": "QCEW tech suppressed",
+              "detail": "Several detailed tech industries are suppressed in QCEW, so Chicago should be read as scale and finance/logistics depth, not a clean software comparison."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        },
+        {
+          "id": "nashville",
+          "name": "Nashville MSA",
+          "federalName": "Nashville-Davidson--Murfreesboro--Franklin, TN",
+          "role": "Healthcare and migration velocity",
+          "momentum": "mixed",
+          "verdict": "Fast growth and tight unemployment, but not a software benchmark.",
+          "read": "Nashville belongs because it is a Southeast growth and healthcare-services competitor. It is not a Seattle or Austin on AI depth, but it is a relevant warning on migration, healthcare HQs, and state-level execution.",
+          "signals": [
+            {
+              "label": "Scale",
+              "direction": "right",
+              "value": "1.19M labor force",
+              "detail": "Smaller than the major Florida metros, but large enough to compete for healthcare and HQ projects."
+            },
+            {
+              "label": "Velocity",
+              "direction": "up",
+              "value": "+15.9% payroll 5Y",
+              "detail": "A stronger five-year payroll signal than South Florida, Tampa, Jacksonville, Seattle, Boston, or Chicago."
+            },
+            {
+              "label": "Labor tightness",
+              "direction": "up",
+              "value": "2.8% unemployment",
+              "detail": "The tightest March 2026 unemployment rate in this domestic set."
+            },
+            {
+              "label": "AI caveat",
+              "direction": "right",
+              "value": "Healthcare first",
+              "detail": "Nashville's lesson is applied AI in healthcare services and HQ operations, not raw software density."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        }
+      ]
+    },
+    "internationalMetroComparison": {
+      "headline": "Miami's international comp set is not New York. It is Dubai, Riyadh, Taipei, and Singapore.",
+      "summary": "These are not apples-to-apples labor-market comparisons. They are operating-model comparisons: gateway capital, sovereign execution, semiconductor supply chain, and regulated global hub discipline. Miami's job is to borrow the right mechanism from each without losing its Florida advantage.",
+      "asOf": "Curated official-source strategy layer, May 2026",
+      "regions": [
+        {
+          "id": "miami",
+          "name": "Miami / South Florida",
+          "federalName": "Miami-Fort Lauderdale-West Palm Beach, FL",
+          "role": "Americas gateway",
+          "momentum": "mixed",
+          "verdict": "The global gateway is real. The execution stack has to get sharper.",
+          "read": "Miami has wealth migration, LATAM connectivity, finance, trade, real estate, hospitality, and cultural magnetism. The next step is turning that into an institutional operating system for applied AI, capital formation, and hemispheric headquarters.",
+          "signals": [
+            {
+              "label": "Gateway",
+              "direction": "up",
+              "value": "LATAM capital lane",
+              "detail": "Miami's native global lane is hemispheric: finance, trade, founders, real estate, healthcare, and family office capital."
+            },
+            {
+              "label": "Velocity",
+              "direction": "right",
+              "value": "Scale before systems",
+              "detail": "The market has energy and inflow, but the economic-development machine is less coordinated than Dubai, Riyadh, or Singapore."
+            },
+            {
+              "label": "AI base",
+              "direction": "right",
+              "value": "Applied AI lane",
+              "detail": "The best Miami lane is applied AI for finance, insurance, LATAM trade, logistics, healthcare, hospitality, and public services."
+            },
+            {
+              "label": "Risk",
+              "direction": "down",
+              "value": "Execution gap",
+              "detail": "Without a sharper project ledger, talent strategy, and infrastructure posture, Miami stays a lifestyle gateway rather than a productivity hub."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        },
+        {
+          "id": "dubai",
+          "name": "Dubai",
+          "federalName": "Dubai, United Arab Emirates",
+          "role": "Global gateway operating system",
+          "momentum": "accelerating",
+          "verdict": "The benchmark for brand, speed, capital attraction, and coordinated execution.",
+          "read": "Dubai is the cleanest international comparison for Miami because it competes as a gateway, not as a traditional industrial city. The lesson is not copy-paste incentives. The lesson is unified ambition, service speed, global investor UX, and an unmistakable city strategy.",
+          "signals": [
+            {
+              "label": "Ambition",
+              "direction": "up",
+              "value": "D33 doubling agenda",
+              "detail": "Dubai's D33 agenda explicitly targets doubling the economy and ranking among top global cities."
+            },
+            {
+              "label": "Gateway",
+              "direction": "up",
+              "value": "Capital and trade hub",
+              "detail": "Dubai runs the global-gateway play with a much clearer operating system than Miami currently has."
+            },
+            {
+              "label": "Execution",
+              "direction": "up",
+              "value": "Single-city machine",
+              "detail": "The governance and investor-service stack is easier to read than fragmented U.S. metro governance."
+            },
+            {
+              "label": "Miami lesson",
+              "direction": "right",
+              "value": "Own the Americas",
+              "detail": "Miami should translate the Dubai playbook into a LATAM and Florida Brain operating system, not mimic Gulf real estate economics."
+            }
+          ],
+          "sourceIds": [
+            "dubai_d33"
+          ]
+        },
+        {
+          "id": "riyadh",
+          "name": "Riyadh",
+          "federalName": "Riyadh, Saudi Arabia",
+          "role": "Sovereign transformation capital",
+          "momentum": "accelerating",
+          "verdict": "The benchmark for state-backed ambition and project scale.",
+          "read": "Riyadh is useful because it shows what happens when national strategy, capital, infrastructure, and place-making are pointed in one direction. Miami cannot and should not copy that model, but Florida can learn from the seriousness of project delivery.",
+          "signals": [
+            {
+              "label": "Capital stack",
+              "direction": "up",
+              "value": "Vision 2030 engine",
+              "detail": "Saudi Vision 2030 puts diversification, investment, infrastructure, and global positioning into one national frame."
+            },
+            {
+              "label": "Velocity",
+              "direction": "up",
+              "value": "Giga-project posture",
+              "detail": "Riyadh competes through large, visible, state-backed projects and institutional urgency."
+            },
+            {
+              "label": "AI base",
+              "direction": "right",
+              "value": "Infrastructure-led",
+              "detail": "The AI angle is less organic software density and more capital, infrastructure, energy, and sovereign execution."
+            },
+            {
+              "label": "Miami lesson",
+              "direction": "right",
+              "value": "Project ledger discipline",
+              "detail": "Florida needs named projects, conversion tracking, and delivery accountability if it wants to be taken seriously at this scale."
+            }
+          ],
+          "sourceIds": [
+            "saudi_vision_2030"
+          ]
+        },
+        {
+          "id": "taipei",
+          "name": "Taipei / Taiwan tech corridor",
+          "federalName": "Taipei, Taiwan",
+          "role": "AI hardware supply-chain core",
+          "momentum": "accelerating",
+          "verdict": "The benchmark for semiconductor and AI-hardware centrality.",
+          "read": "Taipei is not a Miami lifestyle comp. It is the AI supply-chain comp. Taiwan's lesson is how hardware, suppliers, advanced packaging, testing, engineering talent, and government strategy turn AI demand into national economic leverage.",
+          "signals": [
+            {
+              "label": "AI base",
+              "direction": "up",
+              "value": "Semiconductor core",
+              "detail": "Taiwan sits near the center of AI hardware, HPC, server, semiconductor, and advanced packaging supply chains."
+            },
+            {
+              "label": "Velocity",
+              "direction": "up",
+              "value": "AI demand pull",
+              "detail": "Global AI infrastructure demand is pulling investment through Taiwan's supplier ecosystem."
+            },
+            {
+              "label": "Risk",
+              "direction": "down",
+              "value": "Energy and geopolitics",
+              "detail": "Taiwan's advantage comes with grid, security, and geopolitical constraints that Florida should study carefully."
+            },
+            {
+              "label": "Miami lesson",
+              "direction": "right",
+              "value": "Pick a supply-chain lane",
+              "detail": "Florida does not need to become Taiwan, but it does need to choose where it fits in AI hardware, power, cooling, space, defense, and logistics."
+            }
+          ],
+          "sourceIds": [
+            "taiwan_ai_invest"
+          ]
+        },
+        {
+          "id": "singapore",
+          "name": "Singapore",
+          "federalName": "Republic of Singapore",
+          "role": "Regulated global hub",
+          "momentum": "accelerating",
+          "verdict": "The benchmark for trusted hub discipline.",
+          "read": "Singapore is the best comparison for disciplined, source-aware, globally trusted economic development. It combines capital, talent, regulation, logistics, advanced manufacturing, and digital infrastructure into a managed hub strategy.",
+          "signals": [
+            {
+              "label": "Hub discipline",
+              "direction": "up",
+              "value": "Trusted global node",
+              "detail": "Singapore's advantage is reliability: law, talent, logistics, finance, data, and government coordination."
+            },
+            {
+              "label": "AI base",
+              "direction": "up",
+              "value": "Advanced packaging and DCs",
+              "detail": "Singapore is actively positioning around AI-related semiconductor demand, advanced packaging, R&D, and sustainable data-center growth."
+            },
+            {
+              "label": "Execution",
+              "direction": "up",
+              "value": "Policy-to-project loop",
+              "detail": "The public-sector and investment-promotion machine is tighter than most U.S. metro structures."
+            },
+            {
+              "label": "Miami lesson",
+              "direction": "right",
+              "value": "Trust is infrastructure",
+              "detail": "For Miami, global finance and LATAM gateway ambitions need transparent data, source discipline, speed, and institutional reliability."
+            }
+          ],
+          "sourceIds": [
+            "singapore_edb_ai"
           ]
         }
       ]

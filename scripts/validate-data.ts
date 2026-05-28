@@ -98,7 +98,19 @@ const REQUIRED_FDI_OBSERVATORY_SCORE_IDS = ["stock", "flow", "quality", "pipelin
 
 const REQUIRED_FDI_DELTA_STATE_IDS = ["TX", "GA", "CA", "NC", "FL", "NY", "TN"] as const;
 
-const REQUIRED_METRO_COMPETITION_REGION_IDS = ["south-florida", "austin", "seattle"] as const;
+const REQUIRED_METRO_COMPETITION_REGION_IDS = [
+  "south-florida",
+  "tampa",
+  "orlando",
+  "jacksonville",
+  "austin",
+  "seattle",
+  "boston",
+  "chicago",
+  "nashville",
+] as const;
+
+const REQUIRED_INTERNATIONAL_METRO_REGION_IDS = ["miami", "dubai", "riyadh", "taipei", "singapore"] as const;
 
 const REQUIRED_FEDERAL_SOURCE_IDS = [
   "bls_public_api",
@@ -782,6 +794,40 @@ async function main() {
   );
   data.competition.metroComparison.regions.forEach((region, index) =>
     validateMetroCompetitionRegion(region, competitionSourceIds, `competition.metroComparison.regions ${index + 1}`, errors),
+  );
+  ensure(
+    isNonEmptyString(data.competition.internationalMetroComparison.headline),
+    "competition.internationalMetroComparison missing headline",
+    errors,
+  );
+  ensure(
+    isNonEmptyString(data.competition.internationalMetroComparison.summary),
+    "competition.internationalMetroComparison missing summary",
+    errors,
+  );
+  ensure(
+    isNonEmptyString(data.competition.internationalMetroComparison.asOf),
+    "competition.internationalMetroComparison missing asOf",
+    errors,
+  );
+  ensure(
+    data.competition.internationalMetroComparison.regions.length >= REQUIRED_INTERNATIONAL_METRO_REGION_IDS.length,
+    "competition.internationalMetroComparison missing regions",
+    errors,
+  );
+  validateRequiredIds(
+    data.competition.internationalMetroComparison.regions,
+    REQUIRED_INTERNATIONAL_METRO_REGION_IDS,
+    "competition.internationalMetroComparison.regions",
+    errors,
+  );
+  data.competition.internationalMetroComparison.regions.forEach((region, index) =>
+    validateMetroCompetitionRegion(
+      region,
+      competitionSourceIds,
+      `competition.internationalMetroComparison.regions ${index + 1}`,
+      errors,
+    ),
   );
   ensure(isNonEmptyString(data.competition.fdiScoreboard.headline), "competition.fdiScoreboard missing headline", errors);
   ensure(isNonEmptyString(data.competition.fdiScoreboard.summary), "competition.fdiScoreboard missing summary", errors);

@@ -302,7 +302,7 @@ export type MetroCompetitionSignal = {
 };
 
 export type MetroCompetitionRegion = {
-  id: "south-florida" | "austin" | "seattle";
+  id: string;
   name: string;
   federalName: string;
   role: string;
@@ -346,6 +346,12 @@ export type StateCompetitionLayer = {
   };
   sources: CompetitionSource[];
   metroComparison: {
+    headline: string;
+    summary: string;
+    asOf: string;
+    regions: MetroCompetitionRegion[];
+  };
+  internationalMetroComparison: {
     headline: string;
     summary: string;
     asOf: string;

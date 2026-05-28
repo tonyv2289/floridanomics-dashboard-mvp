@@ -168,18 +168,37 @@ Product modules:
 - metro momentum layer
 - base / ambition / risk scenario layer
 
-### `competition.metroComparison`
+### `competition.metroComparison` and `competition.internationalMetroComparison`
 
-The Competition tab now opens with a metro comparison layer before the FDI/toolkit layer. It benchmarks South Florida against Austin and Seattle because those are different operating models:
+The Competition tab now opens with metro comparison layers before the FDI/toolkit layer.
+
+The U.S. metro layer benchmarks South Florida, Tampa, Orlando, Jacksonville, Austin, Seattle, Boston, Chicago, and Nashville because each teaches a different operating lesson:
 
 - South Florida: scale, migration, capital, LATAM gateway, services
+- Tampa: Florida challenger with a meaningful AI-exposed business-services share
+- Orlando: Florida velocity, simulation, space adjacency, and applied-experience economy
+- Jacksonville: logistics, finance, defense adjacency, and port platform
 - Austin: velocity, software density, five-year payroll growth
 - Seattle: productivity, AI-exposed wage power, mature tech-platform base
+- Boston: R&D density, life sciences, universities, and high-wage technical depth
+- Chicago: mega-market incumbent scale, logistics, finance, and institutional depth
+- Nashville: healthcare services, HQ migration, and Southeast growth execution
+
+The international metro layer benchmarks Miami against Dubai, Riyadh, Taipei, and Singapore:
+
+- Dubai: global gateway operating system and D33-style ambition
+- Riyadh: sovereign capital, giga-project discipline, and transformation speed
+- Taipei: AI hardware, semiconductor, and advanced-packaging supply-chain power
+- Singapore: trusted hub discipline, advanced manufacturing, data-center governance, and investment-promotion execution
 
 Primary sources:
 
 - BLS LAUS and CES metropolitan series through the BLS Public Data API
 - BLS QCEW Data API for establishments, covered employment, wages, and industry concentration
+- UAE Government / Dubai D33 official source
+- Saudi Vision 2030 official source
+- AI Taiwan / Invest Taiwan official source layer
+- Singapore EDB official source layer
 
 Current data windows:
 

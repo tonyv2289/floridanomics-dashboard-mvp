@@ -40,7 +40,7 @@ import type {
 import "./dashboard-v3.css";
 
 type V3TabId = "brief" | "competition" | "terminal" | "scorecard" | "innovation" | "trade";
-type CompetitionViewId = "metro" | "strategy" | "fdi";
+type CompetitionViewId = "metro" | "international" | "strategy" | "fdi";
 
 const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
   { id: "brief", label: "Brief", line: "what matters now" },
@@ -52,7 +52,8 @@ const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
 ];
 
 const COMPETITION_VIEW_OPTIONS: Array<{ id: CompetitionViewId; label: string; line: string }> = [
-  { id: "metro", label: "By Metro", line: "South Florida, Austin, Seattle" },
+  { id: "metro", label: "US Metros", line: "Florida, Austin, Seattle, Boston" },
+  { id: "international", label: "International Metros", line: "Miami, Dubai, Riyadh, Taipei, Singapore" },
   { id: "strategy", label: "Strategy", line: "peers, clusters, scenarios" },
   { id: "fdi", label: "FDI / Tools / Capacity", line: "capital, incentives, institutions" },
 ];
@@ -93,7 +94,7 @@ function isV3TabId(value: string | null): value is V3TabId {
 }
 
 function isCompetitionViewId(value: string | null): value is CompetitionViewId {
-  return value === "metro" || value === "strategy" || value === "fdi";
+  return value === "metro" || value === "international" || value === "strategy" || value === "fdi";
 }
 
 function formatDisplayedValue(metric: AnyMetric, value: number): string {
@@ -1379,24 +1380,32 @@ function CompetitionViewMenu({
   );
 }
 
-function MetroCompetitionView({ dataset }: { dataset: DashboardDataset }) {
-  const metroComparison = dataset.competition.metroComparison;
-
+function MetroCompetitionView({
+  dataset,
+  comparison,
+  label,
+}: {
+  dataset: DashboardDataset;
+  comparison:
+    | DashboardDataset["competition"]["metroComparison"]
+    | DashboardDataset["competition"]["internationalMetroComparison"];
+  label: string;
+}) {
   return (
-    <Frame label="By metro">
+    <Frame label={label}>
       <div className="v3-panel-head">
         <div>
-          <h2>{metroComparison.headline}</h2>
-          <p>{metroComparison.summary}</p>
+          <h2>{comparison.headline}</h2>
+          <p>{comparison.summary}</p>
         </div>
         <div className="v3-panel-number">
-          <strong>3</strong>
+          <strong>{comparison.regions.length}</strong>
           <span>metro engines</span>
         </div>
       </div>
 
       <div className="v3-metro-competition-grid">
-        {metroComparison.regions.map((region) => (
+        {comparison.regions.map((region) => (
           <article key={region.id} className={clsx("v3-metro-competition-card", `momentum-${region.momentum}`)}>
             <div className="v3-metro-competition-head">
               <span className="v3-fdi-momentum-label">
@@ -1429,8 +1438,8 @@ function MetroCompetitionView({ dataset }: { dataset: DashboardDataset }) {
       </div>
 
       <p className="v3-competition-read">
-        Data window: {metroComparison.asOf}. The strategic question is whether South Florida can turn scale and
-        migration into Austin-style velocity and Seattle-style productivity.
+        Data window: {comparison.asOf}. The strategic question is whether Miami and Florida can turn scale,
+        migration, and gateway power into velocity, productivity, and institutional execution.
       </p>
     </Frame>
   );
@@ -1796,7 +1805,16 @@ function CompetitionTab({
     <>
       <CompetitionHero dataset={dataset} />
       <CompetitionViewMenu activeView={activeView} onChange={onSelectView} />
-      {activeView === "metro" ? <MetroCompetitionView dataset={dataset} /> : null}
+      {activeView === "metro" ? (
+        <MetroCompetitionView dataset={dataset} comparison={dataset.competition.metroComparison} label="US metros" />
+      ) : null}
+      {activeView === "international" ? (
+        <MetroCompetitionView
+          dataset={dataset}
+          comparison={dataset.competition.internationalMetroComparison}
+          label="International metros"
+        />
+      ) : null}
       {activeView === "strategy" ? <StrategyTab dataset={dataset} /> : null}
       {activeView === "fdi" ? (
         <>

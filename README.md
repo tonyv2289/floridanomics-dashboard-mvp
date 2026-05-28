@@ -22,7 +22,8 @@ The live `v3` experience is built around six top-level tabs:
 
 `Competition` is the operating menu for:
 
-- `By Metro`: South Florida vs Austin vs Seattle, with arrow-based momentum signals
+- `US Metros`: South Florida, Tampa, Orlando, Jacksonville, Austin, Seattle, Boston, Chicago, and Nashville
+- `International Metros`: Miami vs Dubai, Riyadh, Taipei, and Singapore
 - `Strategy`: peers, clusters, scenarios
 - `FDI / Tools / Capacity`: capital intensity, incentives, institutions, semiconductors
 
@@ -116,7 +117,7 @@ The validator now checks both the refreshed core metrics and the richer `v3` pro
 It also enforces the Florida source stack: FloridaCommerce/SelectFlorida, the Governor's Office, Florida Chamber/Scorecard, Florida TaxWatch, JMI, and Florida Council of 100 / Ambition Accelerated.
 It now checks the Florida Brain notes rail as well, including source links for each note.
 It also checks the Strategy tab contract: peer states, external benchmark examples, cluster strategy, talent pipeline, and scenario layer.
-It also checks the Competition metro-comparison contract: South Florida, Austin, and Seattle must be present with arrow-based momentum signals.
+It also checks the Competition metro-comparison contract: the domestic and international metro peer sets must be present with arrow-based momentum signals.
 It also checks the Competition FDI Observatory contract: exactly four scores, peer-state deltas, and source references for every FDI score and delta.
 
 ## Deployment
