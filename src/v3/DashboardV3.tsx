@@ -1256,6 +1256,59 @@ function CompetitionHero({ dataset }: { dataset: DashboardDataset }) {
   );
 }
 
+function FederalDataSpine({ dataset }: { dataset: DashboardDataset }) {
+  const federal = dataset.federal;
+  if (!federal) {
+    return null;
+  }
+
+  const liveSignals = federal.signals.filter((item) => item.status === "live").length;
+
+  return (
+    <Frame label="Federal data spine">
+      <div className="v3-federal-spine-head">
+        <div>
+          <h2>{federal.headline}</h2>
+          <p>{federal.summary}</p>
+        </div>
+        <div className="v3-federal-spine-score">
+          <strong>
+            {liveSignals}/{federal.signals.length}
+          </strong>
+          <span>live federal feeds</span>
+        </div>
+      </div>
+
+      <div className="v3-federal-signal-grid">
+        {federal.signals.map((signal) => (
+          <article key={signal.id} className={clsx("v3-federal-signal", `status-${signal.status}`)}>
+            <div>
+              <span className="v3-federal-agency">{signal.geography}</span>
+              <span className="v3-federal-status">{signal.status.replace(/_/g, " ")}</span>
+            </div>
+            <strong>{signal.value}</strong>
+            <small>
+              {signal.label} | {signal.period}
+            </small>
+            <p>{signal.read}</p>
+            {signal.caveat ? <p className="v3-federal-caveat">{signal.caveat}</p> : null}
+            <a href={signal.sourceUrl} target="_blank" rel="noreferrer">
+              source
+            </a>
+          </article>
+        ))}
+      </div>
+
+      {federal.missingKeys.length > 0 ? (
+        <div className="v3-federal-keys">
+          <span>Keys to activate</span>
+          <p>{federal.missingKeys.join(", ")}</p>
+        </div>
+      ) : null}
+    </Frame>
+  );
+}
+
 function FdiScoreboard({ dataset }: { dataset: DashboardDataset }) {
   const states = dataset.competition.fdiScoreboard.states;
   const chartData = states.map((state) => ({
@@ -1487,6 +1540,7 @@ function CompetitionTab({ dataset }: { dataset: DashboardDataset }) {
   return (
     <>
       <CompetitionHero dataset={dataset} />
+      <FederalDataSpine dataset={dataset} />
       <FdiScoreboard dataset={dataset} />
       <PolicyToolkit dataset={dataset} />
       <CapacityAndMigration dataset={dataset} />

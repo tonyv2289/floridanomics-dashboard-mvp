@@ -74,7 +74,31 @@ Population is pulled from FRED series `FLPOP`, whose source notes cite U.S. Cens
 - Business Applications (Florida, SA): `BABATOTALSAFL`
 - Real Gross State Product (Florida): `FLRGSP`
 
-## 2. Curated verified sections
+## 2. Federal data spine
+
+The `federal` dataset layer is the source-status contract for federal APIs. It makes the dashboard honest about what is live today, what is a federal series reached through FRED, what needs an API key, and what requires a download ingest.
+
+Current status:
+
+- BLS Public Data API: live for LAUS and CES labor-market metrics
+- Census Business Formation Statistics API: wired, requires `CENSUS_API_KEY` for direct calls, currently bridged through FRED
+- Census State Export API: wired, requires `CENSUS_API_KEY` for direct trade reconciliation, currently backed by the verified SelectFlorida release
+- BEA Regional API: represented in the contract, requires `BEA_API_KEY`, currently bridged through FRED for real GSP
+- EIA Open Data API: wired for Florida industrial electricity price, requires `EIA_API_KEY`
+- IRS SOI Migration Data: official download pipeline, not a JSON API
+
+Environment keys:
+
+```bash
+BLS_API_KEY=
+CENSUS_API_KEY=
+BEA_API_KEY=
+EIA_API_KEY=
+```
+
+Product rule: federal APIs are refreshed at build time by `npm run data:refresh`; React reads only the generated static JSON.
+
+## 3. Curated verified sections
 
 These are intentionally maintained as curated product sections inside the dataset and preserved across refreshes.
 
@@ -144,7 +168,7 @@ Product modules:
 - metro momentum layer
 - base / ambition / risk scenario layer
 
-## 3. Florida policy and strategy source layer
+## 4. Florida policy and strategy source layer
 
 V3 keeps a named Florida source layer in the public dataset so the dashboard can keep moving toward a Florida Brain research terminal without losing provenance. These sources are not all monthly numeric feeds yet; some are validated strategy, policy, or announcement sources used for editorial context and future modules.
 
@@ -169,18 +193,20 @@ Strategy source stack:
 
 `npm run data:validate` now fails if the required Florida source stack is missing from either the public source footer or the innovation source atlas. It also fails if the Strategy source stack, peer-state layer, cluster layer, talent pipeline, or scenarios are missing.
 
-## 4. Source layering model
+## 5. Source layering model
 
 The key product rule is:
 
 - **dynamic labor and innovation metrics are refreshed**
+- **federal feed status is explicit**
 - **curated differentiated sections are preserved**
 
 This avoids the old failure mode where a routine data refresh could erase Florida-specific editorial work.
 
-## 5. Caveats
+## 6. Caveats
 
 - Labor metrics are monthly, population is annual
 - Some trade and Florida-specific sections are updated on their own release cadence, not monthly
 - Several v3 sections are verified and curated rather than programmatically scraped
 - `Snowbird Index` is still a proxy build pending a bespoke seasonal migration series
+- Direct Census, BEA, and EIA calls need repository or local environment keys before they turn from fallback/status feeds into live API values

@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildFederalDataLayer } from "./federal-data";
 import type {
   DashboardDataset,
   Delta,
@@ -1799,7 +1800,15 @@ async function main() {
     laggards,
   });
 
+  const refreshedAt = new Date().toISOString();
   const preservedSections = getPreservedSections(existingDataset);
+  const federal = await buildFederalDataLayer({
+    refreshedAt,
+    metrics,
+    innovationMetrics,
+    peerStates,
+    trade: preservedSections.trade,
+  });
   const dynamicSources: DashboardDataset["sources"] = [
     {
       id: "bls",
@@ -1819,10 +1828,17 @@ async function main() {
       url: "https://fred.stlouisfed.org/",
       notes: "Business applications and real gross state product series used for innovation/economic development tab.",
     },
+    {
+      id: "federal_data_spine",
+      name: "Federal data spine feed contract",
+      url: "https://www.bls.gov/developers/",
+      notes:
+        "Source-aware API contract for BLS, Census, BEA, EIA, and IRS feeds, including live status, key requirements, and safe fallbacks.",
+    },
   ];
 
   const dataset: DashboardDataset = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: refreshedAt,
     asOfLaborMarket: prettyMonth(metrics.unemploymentRate.latest.date),
     asOfPopulation: String(new Date(metrics.population.latest.date).getUTCFullYear()),
     sources: mergeSources(dynamicSources, existingDataset?.sources ?? [], STRATEGY_SOURCE_STACK, TERMINAL_SOURCE_STACK),
@@ -1859,6 +1875,7 @@ async function main() {
       scenarios: STRATEGY_SCENARIOS,
     },
     competition: preservedSections.competition,
+    federal,
     terminal: TERMINAL_LAYER,
     scorecard2030: preservedSections.scorecard2030,
     distinctives: preservedSections.distinctives,
@@ -1874,6 +1891,7 @@ async function main() {
 
   console.log(`Wrote ${OUTPUT_FILE}`);
   console.log(`As-of labor market: ${dataset.asOfLaborMarket}; population: ${dataset.asOfPopulation}`);
+  console.log("Federal data spine: BLS live; Census/BEA/EIA key-aware; IRS download queue.");
   console.log("Preserved curated sections: scorecard2030, brainNotes, competition, terminal, distinctives, trade.");
 }
 

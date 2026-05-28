@@ -20,6 +20,7 @@ Output:
 - metro snapshots
 - peer-state BLS benchmarks for the Strategy tab
 - innovation metrics
+- federal feed status for BLS, Census, BEA, EIA, and IRS
 - generated statewide and innovation narratives
 
 ### Preserves the curated product sections
@@ -27,6 +28,8 @@ Output:
 - `scorecard2030`
 - `brainNotes`
 - `strategy` curated copy, benchmark examples, clusters, talent pipeline, and scenarios
+- `competition`
+- `terminal`
 - `distinctives`
 - `trade`
 - existing curated source links
@@ -47,8 +50,9 @@ After refresh, verify:
 1. `generatedAt`, `asOfLaborMarket`, and `asOfPopulation` updated correctly
 2. core metrics and metro series still render
 3. `scorecard2030`, `brainNotes`, `strategy`, `distinctives`, and `trade` still exist in the dataset
-4. source links remain present on the curated sections
-5. `strategy.peerStates` includes FL, TX, GA, NC, TN, AZ, UT, and CA
+4. `federal.signals` includes live BLS records plus clear status for Census, BEA, EIA, and IRS
+5. source links remain present on the curated sections
+6. `strategy.peerStates` includes FL, TX, GA, NC, TN, AZ, UT, and CA
 
 ## Validation commands
 
@@ -85,4 +89,6 @@ npm run data:validate
 
 - BLS request chunking and retry logic are built in
 - If the BLS daily threshold is exhausted, refresh falls back to cached BLS series from the existing dataset
+- `CENSUS_API_KEY`, `BEA_API_KEY`, and `EIA_API_KEY` are optional locally; missing keys are surfaced in `federal.missingKeys`
+- Direct API calls belong in refresh scripts, not browser components
 - The validator now checks the full v3 product contract, not just the older MVP metric shell

@@ -333,6 +333,47 @@ export type StateCompetitionLayer = {
   nextMoves: string[];
 };
 
+export type FederalFeedStatus = "live" | "fallback" | "needs_key" | "download_required" | "error";
+
+export type FederalSourceTier = "federal_api" | "federal_download" | "federal_via_fred";
+
+export type FederalSource = {
+  id: string;
+  agency: string;
+  label: string;
+  tier: FederalSourceTier;
+  url: string;
+  apiUrl?: string;
+  envKey?: string;
+  status: FederalFeedStatus;
+  note: string;
+};
+
+export type FederalSignal = {
+  id: string;
+  label: string;
+  value: string;
+  unit: string;
+  geography: string;
+  period: string;
+  sourceId: string;
+  status: FederalFeedStatus;
+  read: string;
+  retrievedAt: string;
+  sourceUrl: string;
+  caveat?: string;
+};
+
+export type FederalDataLayer = {
+  headline: string;
+  summary: string;
+  refreshedAt: string;
+  sources: FederalSource[];
+  signals: FederalSignal[];
+  missingKeys: string[];
+  nextFeeds: string[];
+};
+
 export type TerminalLayer = {
   headline: string;
   thesis: string;
@@ -472,6 +513,7 @@ export type DashboardDataset = {
   brainNotes: FloridaBrainNote[];
   strategy: StrategyLayer;
   competition: StateCompetitionLayer;
+  federal: FederalDataLayer;
   terminal: TerminalLayer;
   distinctives: {
     snowbirdIndex: InsightSection;

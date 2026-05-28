@@ -7,6 +7,8 @@ import type {
   CompetitionMetric,
   CompetitionSource,
   FdiCompetitorState,
+  FederalSignal,
+  FederalSource,
   FloridaBrainNote,
   InsightSection,
   InsightSource,
@@ -85,6 +87,26 @@ const REQUIRED_COMPETITION_SOURCE_IDS = [
   "migration_rank_2022",
   "state_appropros_efi",
   "source_map_2026",
+] as const;
+
+const REQUIRED_FEDERAL_SOURCE_IDS = [
+  "bls_public_api",
+  "census_bfs_api",
+  "census_state_exports_api",
+  "bea_regional_api",
+  "eia_electricity_api",
+  "irs_soi_migration_download",
+] as const;
+
+const REQUIRED_FEDERAL_SIGNAL_IDS = [
+  "bls-florida-unemployment",
+  "bls-florida-nonfarm-payrolls",
+  "bls-peer-payroll-leader",
+  "census-business-applications",
+  "census-florida-exports",
+  "bea-real-gsp",
+  "eia-industrial-electricity-price",
+  "irs-income-migration",
 ] as const;
 
 function isFiniteNumber(value: unknown): value is number {
@@ -282,6 +304,57 @@ function validateCompetitionMetric(
   ensure(isNonEmptyString(metric.context), `${label} missing context`, errors);
   ensure(isNonEmptyString(metric.read), `${label} missing read`, errors);
   validateCompetitionSourceRefs(metric.sourceIds, sourceIdSet, label, errors);
+}
+
+function isFederalFeedStatus(value: string): boolean {
+  return (
+    value === "live" ||
+    value === "fallback" ||
+    value === "needs_key" ||
+    value === "download_required" ||
+    value === "error"
+  );
+}
+
+function validateFederalSource(source: FederalSource, label: string, errors: string[]) {
+  ensure(isNonEmptyString(source.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(source.agency), `${label} missing agency`, errors);
+  ensure(isNonEmptyString(source.label), `${label} missing label`, errors);
+  ensure(
+    source.tier === "federal_api" || source.tier === "federal_download" || source.tier === "federal_via_fred",
+    `${label} has invalid tier`,
+    errors,
+  );
+  ensure(isHttpUrl(source.url), `${label} missing valid source URL`, errors);
+
+  if (source.apiUrl !== undefined) {
+    ensure(isHttpUrl(source.apiUrl), `${label} has invalid apiUrl`, errors);
+  }
+
+  if (source.envKey !== undefined) {
+    ensure(isNonEmptyString(source.envKey), `${label} has empty envKey`, errors);
+  }
+
+  ensure(isFederalFeedStatus(source.status), `${label} has invalid status`, errors);
+  ensure(isNonEmptyString(source.note), `${label} missing note`, errors);
+}
+
+function validateFederalSignal(signal: FederalSignal, sourceIdSet: Set<string>, label: string, errors: string[]) {
+  ensure(isNonEmptyString(signal.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(signal.label), `${label} missing label`, errors);
+  ensure(isNonEmptyString(signal.value), `${label} missing value`, errors);
+  ensure(isNonEmptyString(signal.unit), `${label} missing unit`, errors);
+  ensure(isNonEmptyString(signal.geography), `${label} missing geography`, errors);
+  ensure(isNonEmptyString(signal.period), `${label} missing period`, errors);
+  ensure(sourceIdSet.has(signal.sourceId), `${label} references missing federal source: ${signal.sourceId}`, errors);
+  ensure(isFederalFeedStatus(signal.status), `${label} has invalid status`, errors);
+  ensure(isNonEmptyString(signal.read), `${label} missing read`, errors);
+  ensure(isNonEmptyString(signal.retrievedAt), `${label} missing retrievedAt`, errors);
+  ensure(isHttpUrl(signal.sourceUrl), `${label} missing valid sourceUrl`, errors);
+
+  if (signal.caveat !== undefined) {
+    ensure(isNonEmptyString(signal.caveat), `${label} has empty caveat`, errors);
+  }
 }
 
 function validateFdiCompetitorState(
@@ -659,6 +732,32 @@ async function main() {
   ensure(data.competition.nextMoves.length >= 4, "competition.nextMoves missing build queue", errors);
   data.competition.nextMoves.forEach((move, index) =>
     ensure(isNonEmptyString(move), `competition.nextMoves ${index + 1} is empty`, errors),
+  );
+
+  ensure(isNonEmptyString(data.federal.headline), "federal missing headline", errors);
+  ensure(isNonEmptyString(data.federal.summary), "federal missing summary", errors);
+  ensure(isNonEmptyString(data.federal.refreshedAt), "federal missing refreshedAt", errors);
+  ensure(data.federal.sources.length >= REQUIRED_FEDERAL_SOURCE_IDS.length, "federal missing source stack", errors);
+  validateRequiredIds(data.federal.sources, REQUIRED_FEDERAL_SOURCE_IDS, "Federal sources", errors);
+  data.federal.sources.forEach((source, index) => validateFederalSource(source, `federal.sources ${index + 1}`, errors));
+
+  const federalSourceIds = new Set(data.federal.sources.map((source) => source.id));
+  ensure(data.federal.signals.length >= REQUIRED_FEDERAL_SIGNAL_IDS.length, "federal missing signal stack", errors);
+  validateRequiredIds(data.federal.signals, REQUIRED_FEDERAL_SIGNAL_IDS, "Federal signals", errors);
+  data.federal.signals.forEach((signal, index) =>
+    validateFederalSignal(signal, federalSourceIds, `federal.signals ${index + 1}`, errors),
+  );
+  ensure(
+    data.federal.signals.some((signal) => signal.status === "live" && signal.sourceId === "bls_public_api"),
+    "federal must include at least one live BLS signal",
+    errors,
+  );
+  data.federal.missingKeys.forEach((key, index) =>
+    ensure(isNonEmptyString(key), `federal.missingKeys ${index + 1} is empty`, errors),
+  );
+  ensure(data.federal.nextFeeds.length >= 4, "federal.nextFeeds missing activation queue", errors);
+  data.federal.nextFeeds.forEach((feed, index) =>
+    ensure(isNonEmptyString(feed), `federal.nextFeeds ${index + 1} is empty`, errors),
   );
 
   ensure(isNonEmptyString(data.terminal.headline), "terminal missing headline", errors);

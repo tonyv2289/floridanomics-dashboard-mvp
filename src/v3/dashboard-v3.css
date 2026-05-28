@@ -58,7 +58,7 @@
   font-size: clamp(1.8rem, 4vw, 3.4rem);
   line-height: 1.04;
   letter-spacing: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .v3-masthead > *,
@@ -171,7 +171,7 @@
   font-family: "Sora", sans-serif;
   font-size: clamp(1.45rem, 3vw, 2.2rem);
   line-height: 1.18;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .v3-hero-meta {
@@ -696,7 +696,7 @@
 .v3-competition-hero-main h2 {
   max-width: 920px;
   font-size: clamp(2.2rem, 5vw, 4.7rem);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .v3-competition-hero-main p,
@@ -733,6 +733,7 @@
   display: grid;
   gap: 12px;
   align-content: start;
+  min-width: 0;
   padding: 20px;
   border: 1px solid rgba(255, 143, 63, 0.42);
   border-top: 4px solid var(--v3-sun);
@@ -740,7 +741,125 @@
   background: rgba(255, 143, 63, 0.08);
 }
 
+.v3-federal-spine-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 22px;
+  align-items: start;
+}
+
+.v3-federal-spine-head h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+}
+
+.v3-federal-spine-head p,
+.v3-federal-signal p,
+.v3-federal-keys p {
+  margin: 0;
+  color: #c6d1df;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.v3-federal-spine-score {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid rgba(86, 194, 255, 0.3);
+  border-top: 4px solid var(--v3-teal);
+  border-radius: 8px;
+  background: rgba(86, 194, 255, 0.08);
+}
+
+.v3-federal-spine-score strong {
+  font-family: "Sora", sans-serif;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.v3-federal-spine-score span,
+.v3-federal-agency,
+.v3-federal-status,
+.v3-federal-keys span,
+.v3-federal-signal small {
+  color: var(--v3-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.v3-federal-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.v3-federal-signal {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 16px;
+  border: 1px solid var(--v3-line);
+  border-top: 4px solid #334155;
+  border-radius: 8px;
+  background: rgba(17, 25, 52, 0.54);
+}
+
+.v3-federal-signal > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.v3-federal-signal strong {
+  font-family: "Sora", sans-serif;
+  font-size: 1.85rem;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.v3-federal-signal a {
+  width: fit-content;
+  color: var(--v3-sun);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.v3-federal-signal.status-live {
+  border-top-color: var(--v3-good);
+}
+
+.v3-federal-signal.status-fallback {
+  border-top-color: var(--v3-sun);
+}
+
+.v3-federal-signal.status-needs_key,
+.v3-federal-signal.status-download_required,
+.v3-federal-signal.status-error {
+  border-top-color: var(--v3-warn);
+}
+
+.v3-federal-caveat {
+  color: var(--v3-muted) !important;
+  font-size: 0.84rem;
+  overflow-wrap: anywhere;
+}
+
+.v3-federal-keys {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 143, 63, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 143, 63, 0.08);
+}
+
 .v3-competition-metric-grid,
+.v3-federal-signal-grid,
 .v3-competition-chart-layout,
 .v3-competition-state-list,
 .v3-policy-toolkit-grid,
@@ -830,7 +949,7 @@
   font-family: "Sora", sans-serif;
   font-size: clamp(2.8rem, 5vw, 4rem);
   line-height: 0.92;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .v3-competition-metric strong,
@@ -1491,6 +1610,7 @@ button.v3-table-row {
   .v3-two-up,
   .v3-strategy-hero,
   .v3-competition-hero,
+  .v3-federal-spine-head,
   .v3-competition-chart-layout,
   .v3-next-moves,
   .v3-terminal-hero,
@@ -1505,6 +1625,7 @@ button.v3-table-row {
   .v3-momentum-grid,
   .v3-scenario-grid,
   .v3-competition-metric-grid,
+  .v3-federal-signal-grid,
   .v3-policy-toolkit-grid,
   .v3-terminal-live-grid,
   .v3-policy-grid,
@@ -1557,6 +1678,7 @@ button.v3-table-row {
   .v3-scenario-grid,
   .v3-peer-row,
   .v3-competition-metric-grid,
+  .v3-federal-signal-grid,
   .v3-competition-state-row,
   .v3-policy-toolkit-grid,
   .v3-capacity-grid,

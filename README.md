@@ -11,13 +11,15 @@ Florida Brain's public data surface for Florida economic, innovation, and trade 
   - `?compare=1&version=v2`
   - `?compare=1&version=v1`
 
-The live `v3` experience is built around five tabs:
+The live `v3` experience is built around seven tabs:
 
 1. `Brief`
 2. `Strategy`
-3. `Scorecard`
-4. `Innovation`
-5. `Trade`
+3. `Competition`
+4. `Terminal`
+5. `Scorecard`
+6. `Innovation`
+7. `Trade`
 
 It also includes the newer editorial and Florida-specific sections that make the product more than a generic KPI board:
 
@@ -27,6 +29,8 @@ It also includes the newer editorial and Florida-specific sections that make the
 - `LATAM Gateway`
 - Florida Brain Notes
 - Strategy cockpit with peer-state BLS benchmarks, cluster strategy, talent pipeline, metro momentum, and scenarios
+- State competition terminal with FDI, policy-toolkit, institutional-capacity, semiconductor, and federal data spine layers
+- Florida Model terminal with AI capex index, forecasts, policy memos, and evidence blocks
 - AI Capex Gap public HTML brief
 - chart and metric-card interpretation copy
 - branded Open Graph and Twitter share previews
@@ -79,11 +83,15 @@ npm run qa:full
    - BLS labor market and payroll data
    - Census-sourced population via FRED `FLPOP`
    - FRED business applications and real GSP indicators
+   - Federal feed-status layer for BLS, Census, BEA, EIA, and IRS
 
 2. **Curated verified sections**
    - `scorecard2030`
    - `brainNotes`
    - `strategy`
+   - `competition`
+   - `federal`
+   - `terminal`
    - `distinctives.snowbirdIndex`
    - `distinctives.spaceCoastCadence`
    - `distinctives.latamGateway`
