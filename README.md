@@ -130,6 +130,30 @@ GitHub Pages publishes from the repo with the fixed base path:
 
 Push to `main` or run the deploy workflow to publish.
 
+## Analytics
+
+Analytics are wired but off by default. Add one or both GitHub Actions secrets to turn them on at deploy time:
+
+- `VITE_GA_MEASUREMENT_ID`: GA4 Measurement ID, for example `G-XXXXXXXXXX`
+- `VITE_PLAUSIBLE_DOMAIN`: Plausible site domain, for example `tonyv2289.github.io`
+- `VITE_PLAUSIBLE_SRC`: optional custom Plausible script URL
+
+The tracker records dashboard pageviews, tab/view changes, outbound source clicks, and campaign parameters from these query keys:
+
+`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `ref`, `invite`, `cohort`, `version`, `tab`, `competitionView`, `metric`, and `innovationMetric`.
+
+For email sharing, use campaign links such as:
+
+```text
+https://tonyv2289.github.io/floridanomics-dashboard-mvp/?version=v3&utm_source=outlook&utm_medium=email&utm_campaign=prototype_share&cohort=econ_dev_contacts
+```
+
+For named follow-up, use a private non-PII token in `invite`, not an email address:
+
+```text
+https://tonyv2289.github.io/floridanomics-dashboard-mvp/?version=v3&utm_source=outlook&utm_medium=email&utm_campaign=prototype_share&invite=contact-001
+```
+
 ## Repo structure
 
 ```text

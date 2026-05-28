@@ -30,6 +30,7 @@ import {
   isCoreMetricId,
   isInnovationMetricId,
 } from "../lib/dashboard";
+import { trackDashboardView } from "../lib/analytics";
 import type {
   CompetitionArrowDirection,
   DashboardDataset,
@@ -2073,6 +2074,12 @@ function DashboardV3() {
     params.set("metric", selectedMetricId);
     params.set("innovationMetric", selectedInnovationMetricId);
     window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
+    trackDashboardView({
+      tab: activeTab,
+      competitionView: activeTab === "competition" ? activeCompetitionView : undefined,
+      metric: selectedMetricId,
+      innovationMetric: selectedInnovationMetricId,
+    });
   }, [activeCompetitionView, activeTab, data, selectedInnovationMetricId, selectedMetricId]);
 
   if (status === "error") {

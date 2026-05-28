@@ -1,5 +1,6 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import clsx from "clsx";
+import { initAnalytics, trackOutboundLink } from "./lib/analytics";
 import "./app-frame.css";
 
 const LegacyDashboard = lazy(() => import("./v1/LegacyDashboard"));
@@ -43,6 +44,20 @@ function App() {
   const version = resolveVersion();
   const compareMode = isCompareMode();
   const ActiveDashboard = version === "v1" ? LegacyDashboard : version === "v2" ? DashboardV2 : DashboardV3;
+
+  useEffect(() => {
+    initAnalytics();
+
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target instanceof Element ? event.target.closest("a") : null;
+      if (target instanceof HTMLAnchorElement) {
+        trackOutboundLink(target.href, target.textContent);
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
 
   return (
     <div className="compare-frame">
