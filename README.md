@@ -11,15 +11,20 @@ Florida Brain's public data surface for Florida economic, innovation, and trade 
   - `?compare=1&version=v2`
   - `?compare=1&version=v1`
 
-The live `v3` experience is built around seven tabs:
+The live `v3` experience is built around six top-level tabs:
 
 1. `Brief`
-2. `Strategy`
-3. `Competition`
-4. `Terminal`
-5. `Scorecard`
-6. `Innovation`
-7. `Trade`
+2. `Competition`
+3. `Terminal`
+4. `Scorecard`
+5. `Innovation`
+6. `Trade`
+
+`Competition` is the operating menu for:
+
+- `By Metro`: South Florida vs Austin vs Seattle, with arrow-based momentum signals
+- `Strategy`: peers, clusters, scenarios
+- `FDI / Tools / Capacity`: capital intensity, incentives, institutions, semiconductors
 
 It also includes the newer editorial and Florida-specific sections that make the product more than a generic KPI board:
 
@@ -29,7 +34,7 @@ It also includes the newer editorial and Florida-specific sections that make the
 - `LATAM Gateway`
 - Florida Brain Notes
 - Strategy cockpit with peer-state BLS benchmarks, cluster strategy, talent pipeline, metro momentum, and scenarios
-- State competition terminal with FDI Observatory scores, peer-state FDI deltas, policy-toolkit, institutional-capacity, semiconductor, and federal data spine layers
+- State competition terminal with metro comparisons, FDI Observatory scores, peer-state FDI deltas, policy-toolkit, institutional-capacity, semiconductor, and federal data spine layers
 - Florida Model terminal with AI capex index, forecasts, policy memos, and evidence blocks
 - AI Capex Gap public HTML brief
 - chart and metric-card interpretation copy
@@ -111,6 +116,7 @@ The validator now checks both the refreshed core metrics and the richer `v3` pro
 It also enforces the Florida source stack: FloridaCommerce/SelectFlorida, the Governor's Office, Florida Chamber/Scorecard, Florida TaxWatch, JMI, and Florida Council of 100 / Ambition Accelerated.
 It now checks the Florida Brain notes rail as well, including source links for each note.
 It also checks the Strategy tab contract: peer states, external benchmark examples, cluster strategy, talent pipeline, and scenario layer.
+It also checks the Competition metro-comparison contract: South Florida, Austin, and Seattle must be present with arrow-based momentum signals.
 It also checks the Competition FDI Observatory contract: exactly four scores, peer-state deltas, and source references for every FDI score and delta.
 
 ## Deployment

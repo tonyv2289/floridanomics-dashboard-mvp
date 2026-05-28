@@ -15657,6 +15657,24 @@
     },
     "sources": [
       {
+        "id": "bls_metro_laus_ces",
+        "label": "BLS metropolitan LAUS and CES series",
+        "kind": "Public source",
+        "macStudioPath": "https://www.bls.gov/developers/",
+        "url": "https://www.bls.gov/developers/",
+        "note": "Official BLS API source for metropolitan unemployment, labor force, employment level, and nonfarm payroll series.",
+        "status": "public_source"
+      },
+      {
+        "id": "bls_qcew_api",
+        "label": "BLS QCEW Data API",
+        "kind": "Public source",
+        "macStudioPath": "https://data.bls.gov/cew/doc/access/data_access_examples.htm",
+        "url": "https://data.bls.gov/cew/doc/access/data_access_examples.htm",
+        "note": "Official QCEW API source for metro establishments, covered employment, wages, and industry concentration.",
+        "status": "public_source"
+      },
+      {
         "id": "sf_fdi_comparison_2025",
         "label": "Measuring and Comparing FDI in Florida vs competitor states",
         "kind": "Dropbox source",
@@ -15747,6 +15765,130 @@
         "status": "vault_logged"
       }
     ],
+    "metroComparison": {
+      "headline": "South Florida has scale. Austin has velocity. Seattle has the productivity machine.",
+      "summary": "This layer compares operating regions, not state slogans. The arrows show whether a metro is gaining scale, converting labor into payroll momentum, and building the AI-exposed wage base that should matter most in the next productivity cycle.",
+      "asOf": "BLS LAUS March 2026, BLS CES April 2026, QCEW 2025 Q3 and 2024 annual industry data",
+      "regions": [
+        {
+          "id": "south-florida",
+          "name": "South Florida MSA",
+          "federalName": "Miami-Fort Lauderdale-West Palm Beach, FL",
+          "role": "Scale market",
+          "momentum": "mixed",
+          "verdict": "Scale up, payroll soft, AI base still catching up.",
+          "read": "South Florida has the people, firms, capital, and LATAM gateway position. The gap is not energy or ambition. The gap is converting that scale into a deeper AI-convertible technical and R&D employment base.",
+          "signals": [
+            {
+              "label": "Scale",
+              "direction": "up",
+              "value": "3.30M labor force",
+              "detail": "+9.1% over five years, the largest labor pool in this comparison."
+            },
+            {
+              "label": "Velocity",
+              "direction": "down",
+              "value": "-0.2% payroll YoY",
+              "detail": "April 2026 payrolls slipped slightly even as the long-run five-year payroll gain remains +14.2%."
+            },
+            {
+              "label": "AI base",
+              "direction": "right",
+              "value": "16.8% AI-exposed jobs",
+              "detail": "Information, finance, professional services, and HQ jobs are meaningful, but less concentrated than Austin or Seattle."
+            },
+            {
+              "label": "Computer systems",
+              "direction": "right",
+              "value": "1.2% private jobs",
+              "detail": "This is the clearest gap versus Austin's software-heavy base."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        },
+        {
+          "id": "austin",
+          "name": "Austin MSA",
+          "federalName": "Austin-Round Rock-San Marcos, TX",
+          "role": "Velocity market",
+          "momentum": "accelerating",
+          "verdict": "Smaller than South Florida, but moving faster and more technical.",
+          "read": "Austin is the warning light. It is not bigger than South Florida, but it has faster five-year labor and payroll growth plus a much denser software employment base.",
+          "signals": [
+            {
+              "label": "Scale",
+              "direction": "right",
+              "value": "1.56M labor force",
+              "detail": "Roughly half South Florida's labor-force scale, but growing faster."
+            },
+            {
+              "label": "Velocity",
+              "direction": "up",
+              "value": "+23.3% payroll 5Y",
+              "detail": "Five-year nonfarm payroll growth is materially faster than South Florida and Seattle."
+            },
+            {
+              "label": "AI base",
+              "direction": "up",
+              "value": "22.8% AI-exposed jobs",
+              "detail": "Austin has a more concentrated AI-convertible private employment base."
+            },
+            {
+              "label": "Computer systems",
+              "direction": "up",
+              "value": "5.2% private jobs",
+              "detail": "Austin's software share is more than four times South Florida's share."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        },
+        {
+          "id": "seattle",
+          "name": "Seattle MSA",
+          "federalName": "Seattle-Tacoma-Bellevue, WA",
+          "role": "Productivity market",
+          "momentum": "slowing",
+          "verdict": "Labor momentum is soft, but the productivity base is elite.",
+          "read": "Seattle shows the difference between labor velocity and productivity power. Its labor market is cooling, but the wage and AI-exposed employment base remains the benchmark for what a mature productivity machine looks like.",
+          "signals": [
+            {
+              "label": "Scale",
+              "direction": "right",
+              "value": "2.32M labor force",
+              "detail": "Large enough to matter, but smaller than South Florida and down 0.9% year over year."
+            },
+            {
+              "label": "Velocity",
+              "direction": "down",
+              "value": "+0.1% payroll YoY",
+              "detail": "Payroll momentum is nearly flat and QCEW covered employment was down 0.8% year over year in 2025 Q3."
+            },
+            {
+              "label": "AI base",
+              "direction": "up",
+              "value": "25.4% AI-exposed jobs",
+              "detail": "The highest AI-exposed private employment share in this comparison."
+            },
+            {
+              "label": "Wage power",
+              "direction": "up",
+              "value": "$240k AI-base pay",
+              "detail": "Weighted annual pay across the AI-exposed stack is dramatically above South Florida and Austin."
+            }
+          ],
+          "sourceIds": [
+            "bls_metro_laus_ces",
+            "bls_qcew_api"
+          ]
+        }
+      ]
+    },
     "fdiScoreboard": {
       "headline": "Florida is top-tier by FDI reach, but not yet by capital intensity.",
       "summary": "The archive memo says Florida ranks with the national leaders on FDI jobs and greenfield project count, while BEA's 2024 state tables show the sharper delta: Florida led current employment from new FDI, but Texas and Georgia are gaining the capex flow.",

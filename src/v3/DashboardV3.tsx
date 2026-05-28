@@ -30,19 +30,31 @@ import {
   isCoreMetricId,
   isInnovationMetricId,
 } from "../lib/dashboard";
-import type { DashboardDataset, InnovationMetricId, InsightSection, PeerStateSnapshot } from "../types/dashboard";
+import type {
+  CompetitionArrowDirection,
+  DashboardDataset,
+  InnovationMetricId,
+  InsightSection,
+  PeerStateSnapshot,
+} from "../types/dashboard";
 import "./dashboard-v3.css";
 
-type V3TabId = "brief" | "strategy" | "competition" | "terminal" | "scorecard" | "innovation" | "trade";
+type V3TabId = "brief" | "competition" | "terminal" | "scorecard" | "innovation" | "trade";
+type CompetitionViewId = "metro" | "strategy" | "fdi";
 
 const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
   { id: "brief", label: "Brief", line: "what matters now" },
-  { id: "strategy", label: "Strategy", line: "peers, clusters, scenarios" },
-  { id: "competition", label: "Competition", line: "FDI, tools, capacity" },
+  { id: "competition", label: "Competition", line: "metros, strategy, FDI" },
   { id: "terminal", label: "Terminal", line: "forecasts and policy alpha" },
   { id: "scorecard", label: "Scorecard", line: "labor, metros, 2030" },
   { id: "innovation", label: "Innovation", line: "formation and capacity" },
   { id: "trade", label: "Trade", line: "exports and gateways" },
+];
+
+const COMPETITION_VIEW_OPTIONS: Array<{ id: CompetitionViewId; label: string; line: string }> = [
+  { id: "metro", label: "By Metro", line: "South Florida, Austin, Seattle" },
+  { id: "strategy", label: "Strategy", line: "peers, clusters, scenarios" },
+  { id: "fdi", label: "FDI / Tools / Capacity", line: "capital, incentives, institutions" },
 ];
 
 const TOOLTIP_STYLE = {
@@ -72,13 +84,16 @@ function readSearchParam(name: string): string | null {
 function isV3TabId(value: string | null): value is V3TabId {
   return (
     value === "brief" ||
-    value === "strategy" ||
     value === "competition" ||
     value === "terminal" ||
     value === "scorecard" ||
     value === "innovation" ||
     value === "trade"
   );
+}
+
+function isCompetitionViewId(value: string | null): value is CompetitionViewId {
+  return value === "metro" || value === "strategy" || value === "fdi";
 }
 
 function formatDisplayedValue(metric: AnyMetric, value: number): string {
@@ -190,6 +205,22 @@ function getMomentumArrow(momentum: DashboardDataset["competition"]["fdiScoreboa
   }
 
   if (momentum === "suppressed") {
+    return "•";
+  }
+
+  return "→";
+}
+
+function getDirectionArrow(direction: CompetitionArrowDirection): string {
+  if (direction === "up") {
+    return "↑";
+  }
+
+  if (direction === "down") {
+    return "↓";
+  }
+
+  if (direction === "neutral") {
     return "•";
   }
 
@@ -1318,6 +1349,93 @@ function CompetitionHero({ dataset }: { dataset: DashboardDataset }) {
   );
 }
 
+function CompetitionViewMenu({
+  activeView,
+  onChange,
+}: {
+  activeView: CompetitionViewId;
+  onChange: (view: CompetitionViewId) => void;
+}) {
+  return (
+    <nav className="v3-competition-menu" aria-label="Competition views">
+      <div>
+        <span>Competition menu</span>
+        <strong>Pick the operating lens.</strong>
+      </div>
+      <div>
+        {COMPETITION_VIEW_OPTIONS.map((view) => (
+          <button
+            key={view.id}
+            type="button"
+            className={clsx("v3-competition-menu-button", activeView === view.id && "is-active")}
+            onClick={() => startTransition(() => onChange(view.id))}
+          >
+            <span>{view.label}</span>
+            <small>{view.line}</small>
+          </button>
+        ))}
+      </div>
+    </nav>
+  );
+}
+
+function MetroCompetitionView({ dataset }: { dataset: DashboardDataset }) {
+  const metroComparison = dataset.competition.metroComparison;
+
+  return (
+    <Frame label="By metro">
+      <div className="v3-panel-head">
+        <div>
+          <h2>{metroComparison.headline}</h2>
+          <p>{metroComparison.summary}</p>
+        </div>
+        <div className="v3-panel-number">
+          <strong>3</strong>
+          <span>metro engines</span>
+        </div>
+      </div>
+
+      <div className="v3-metro-competition-grid">
+        {metroComparison.regions.map((region) => (
+          <article key={region.id} className={clsx("v3-metro-competition-card", `momentum-${region.momentum}`)}>
+            <div className="v3-metro-competition-head">
+              <span className="v3-fdi-momentum-label">
+                <em aria-hidden="true">{getMomentumArrow(region.momentum)}</em>
+                {region.momentum}
+              </span>
+              <b>{region.role}</b>
+            </div>
+            <h3>{region.name}</h3>
+            <small>{region.federalName}</small>
+            <p className="v3-metro-verdict">{region.verdict}</p>
+            <p>{region.read}</p>
+
+            <div className="v3-metro-signal-list">
+              {region.signals.map((signal) => (
+                <div key={signal.label} className={clsx("v3-metro-signal", `direction-${signal.direction}`)}>
+                  <span aria-hidden="true">{getDirectionArrow(signal.direction)}</span>
+                  <div>
+                    <small>{signal.label}</small>
+                    <strong>{signal.value}</strong>
+                    <p>{signal.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <CompetitionSourceList dataset={dataset} sourceIds={region.sourceIds} />
+          </article>
+        ))}
+      </div>
+
+      <p className="v3-competition-read">
+        Data window: {metroComparison.asOf}. The strategic question is whether South Florida can turn scale and
+        migration into Austin-style velocity and Seattle-style productivity.
+      </p>
+    </Frame>
+  );
+}
+
 function FederalDataSpine({ dataset }: { dataset: DashboardDataset }) {
   const federal = dataset.federal;
   if (!federal) {
@@ -1665,16 +1783,31 @@ function CompetitionNextMoves({ dataset }: { dataset: DashboardDataset }) {
   );
 }
 
-function CompetitionTab({ dataset }: { dataset: DashboardDataset }) {
+function CompetitionTab({
+  dataset,
+  activeView,
+  onSelectView,
+}: {
+  dataset: DashboardDataset;
+  activeView: CompetitionViewId;
+  onSelectView: (view: CompetitionViewId) => void;
+}) {
   return (
     <>
       <CompetitionHero dataset={dataset} />
-      <FederalDataSpine dataset={dataset} />
-      <FdiScoreboard dataset={dataset} />
-      <PolicyToolkit dataset={dataset} />
-      <CapacityAndMigration dataset={dataset} />
-      <SemiconductorCommitments dataset={dataset} />
-      <CompetitionNextMoves dataset={dataset} />
+      <CompetitionViewMenu activeView={activeView} onChange={onSelectView} />
+      {activeView === "metro" ? <MetroCompetitionView dataset={dataset} /> : null}
+      {activeView === "strategy" ? <StrategyTab dataset={dataset} /> : null}
+      {activeView === "fdi" ? (
+        <>
+          <FederalDataSpine dataset={dataset} />
+          <FdiScoreboard dataset={dataset} />
+          <PolicyToolkit dataset={dataset} />
+          <CapacityAndMigration dataset={dataset} />
+          <SemiconductorCommitments dataset={dataset} />
+          <CompetitionNextMoves dataset={dataset} />
+        </>
+      ) : null}
     </>
   );
 }
@@ -1883,7 +2016,20 @@ function DashboardV3() {
   const { data, error, status } = useDashboardData();
   const [activeTab, setActiveTab] = useState<V3TabId>(() => {
     const param = readSearchParam("tab");
+    if (param === "strategy") {
+      return "competition";
+    }
+
     return isV3TabId(param) ? param : "brief";
+  });
+  const [activeCompetitionView, setActiveCompetitionView] = useState<CompetitionViewId>(() => {
+    const tabParam = readSearchParam("tab");
+    const viewParam = readSearchParam("competitionView");
+    if (tabParam === "strategy") {
+      return "strategy";
+    }
+
+    return isCompetitionViewId(viewParam) ? viewParam : "metro";
   });
   const [selectedMetricId, setSelectedMetricId] = useState<CoreMetricId>(() => {
     const param = readSearchParam("metric");
@@ -1901,10 +2047,15 @@ function DashboardV3() {
 
     const params = new URLSearchParams(window.location.search);
     params.set("tab", activeTab);
+    if (activeTab === "competition") {
+      params.set("competitionView", activeCompetitionView);
+    } else {
+      params.delete("competitionView");
+    }
     params.set("metric", selectedMetricId);
     params.set("innovationMetric", selectedInnovationMetricId);
     window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
-  }, [activeTab, data, selectedInnovationMetricId, selectedMetricId]);
+  }, [activeCompetitionView, activeTab, data, selectedInnovationMetricId, selectedMetricId]);
 
   if (status === "error") {
     return (
@@ -1948,8 +2099,13 @@ function DashboardV3() {
         <TabNav activeTab={activeTab} onChange={setActiveTab} />
 
         {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
-        {activeTab === "strategy" ? <StrategyTab dataset={data} /> : null}
-        {activeTab === "competition" ? <CompetitionTab dataset={data} /> : null}
+        {activeTab === "competition" ? (
+          <CompetitionTab
+            dataset={data}
+            activeView={activeCompetitionView}
+            onSelectView={setActiveCompetitionView}
+          />
+        ) : null}
         {activeTab === "terminal" ? <TerminalTab dataset={data} /> : null}
         {activeTab === "scorecard" ? (
           <ScorecardTab dataset={data} selectedMetricId={selectedMetricId} onSelectMetric={setSelectedMetricId} />

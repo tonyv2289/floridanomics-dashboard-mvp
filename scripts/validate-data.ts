@@ -7,6 +7,7 @@ import type {
   CompetitionMetric,
   CompetitionSource,
   FdiCompetitorState,
+  MetroCompetitionRegion,
   FederalSignal,
   FederalSource,
   FloridaBrainNote,
@@ -79,6 +80,8 @@ const REQUIRED_TERMINAL_SOURCE_IDS = [
 ] as const;
 
 const REQUIRED_COMPETITION_SOURCE_IDS = [
+  "bls_metro_laus_ces",
+  "bls_qcew_api",
   "sf_fdi_comparison_2025",
   "bea_new_fdi_2024",
   "bea_new_fdi_state_tables_2024",
@@ -94,6 +97,8 @@ const REQUIRED_COMPETITION_SOURCE_IDS = [
 const REQUIRED_FDI_OBSERVATORY_SCORE_IDS = ["stock", "flow", "quality", "pipeline"] as const;
 
 const REQUIRED_FDI_DELTA_STATE_IDS = ["TX", "GA", "CA", "NC", "FL", "NY", "TN"] as const;
+
+const REQUIRED_METRO_COMPETITION_REGION_IDS = ["south-florida", "austin", "seattle"] as const;
 
 const REQUIRED_FEDERAL_SOURCE_IDS = [
   "bls_public_api",
@@ -462,6 +467,41 @@ function validateFdiDeltaState(
   validateCompetitionSourceRefs(state.sourceIds, sourceIdSet, label, errors);
 }
 
+function validateMetroCompetitionRegion(
+  region: MetroCompetitionRegion,
+  sourceIdSet: Set<string>,
+  label: string,
+  errors: string[],
+) {
+  ensure(isNonEmptyString(region.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(region.name), `${label} missing name`, errors);
+  ensure(isNonEmptyString(region.federalName), `${label} missing federalName`, errors);
+  ensure(isNonEmptyString(region.role), `${label} missing role`, errors);
+  ensure(
+    region.momentum === "accelerating" || region.momentum === "mixed" || region.momentum === "slowing",
+    `${label} has invalid momentum`,
+    errors,
+  );
+  ensure(isNonEmptyString(region.verdict), `${label} missing verdict`, errors);
+  ensure(isNonEmptyString(region.read), `${label} missing read`, errors);
+  ensure(region.signals.length >= 3, `${label} must include at least three signals`, errors);
+  region.signals.forEach((signal, index) => {
+    const signalLabel = `${label}.signals ${index + 1}`;
+    ensure(isNonEmptyString(signal.label), `${signalLabel} missing label`, errors);
+    ensure(isNonEmptyString(signal.value), `${signalLabel} missing value`, errors);
+    ensure(isNonEmptyString(signal.detail), `${signalLabel} missing detail`, errors);
+    ensure(
+      signal.direction === "up" ||
+        signal.direction === "right" ||
+        signal.direction === "down" ||
+        signal.direction === "neutral",
+      `${signalLabel} has invalid direction`,
+      errors,
+    );
+  });
+  validateCompetitionSourceRefs(region.sourceIds, sourceIdSet, label, errors);
+}
+
 function validatePolicyToolkitState(
   state: PolicyToolkitState,
   sourceIdSet: Set<string>,
@@ -726,6 +766,23 @@ async function main() {
   );
 
   const competitionSourceIds = new Set(data.competition.sources.map((source) => source.id));
+  ensure(isNonEmptyString(data.competition.metroComparison.headline), "competition.metroComparison missing headline", errors);
+  ensure(isNonEmptyString(data.competition.metroComparison.summary), "competition.metroComparison missing summary", errors);
+  ensure(isNonEmptyString(data.competition.metroComparison.asOf), "competition.metroComparison missing asOf", errors);
+  ensure(
+    data.competition.metroComparison.regions.length >= REQUIRED_METRO_COMPETITION_REGION_IDS.length,
+    "competition.metroComparison missing regions",
+    errors,
+  );
+  validateRequiredIds(
+    data.competition.metroComparison.regions,
+    REQUIRED_METRO_COMPETITION_REGION_IDS,
+    "competition.metroComparison.regions",
+    errors,
+  );
+  data.competition.metroComparison.regions.forEach((region, index) =>
+    validateMetroCompetitionRegion(region, competitionSourceIds, `competition.metroComparison.regions ${index + 1}`, errors),
+  );
   ensure(isNonEmptyString(data.competition.fdiScoreboard.headline), "competition.fdiScoreboard missing headline", errors);
   ensure(isNonEmptyString(data.competition.fdiScoreboard.summary), "competition.fdiScoreboard missing summary", errors);
   ensure(

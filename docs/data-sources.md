@@ -168,6 +168,28 @@ Product modules:
 - metro momentum layer
 - base / ambition / risk scenario layer
 
+### `competition.metroComparison`
+
+The Competition tab now opens with a metro comparison layer before the FDI/toolkit layer. It benchmarks South Florida against Austin and Seattle because those are different operating models:
+
+- South Florida: scale, migration, capital, LATAM gateway, services
+- Austin: velocity, software density, five-year payroll growth
+- Seattle: productivity, AI-exposed wage power, mature tech-platform base
+
+Primary sources:
+
+- BLS LAUS and CES metropolitan series through the BLS Public Data API
+- BLS QCEW Data API for establishments, covered employment, wages, and industry concentration
+
+Current data windows:
+
+- LAUS: March 2026
+- CES payrolls: April 2026
+- QCEW total covered employment and wages: 2025 Q3
+- QCEW private industry concentration: 2024 annual
+
+Product rule: the UI uses arrows for direction and velocity. Scale can rise while payroll momentum weakens; AI-base concentration can be strong even when total labor momentum cools.
+
 ### `competition.fdiScoreboard.observatory`
 
 The Competition tab now includes a four-score FDI Observatory so Florida Brain can separate long-run FDI footprint from the current-year momentum delta.

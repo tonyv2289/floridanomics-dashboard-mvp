@@ -292,6 +292,27 @@ export type FdiDeltaState = {
   sourceIds: string[];
 };
 
+export type CompetitionArrowDirection = "up" | "right" | "down" | "neutral";
+
+export type MetroCompetitionSignal = {
+  label: string;
+  direction: CompetitionArrowDirection;
+  value: string;
+  detail: string;
+};
+
+export type MetroCompetitionRegion = {
+  id: "south-florida" | "austin" | "seattle";
+  name: string;
+  federalName: string;
+  role: string;
+  momentum: "accelerating" | "mixed" | "slowing";
+  verdict: string;
+  read: string;
+  signals: MetroCompetitionSignal[];
+  sourceIds: string[];
+};
+
 export type PolicyToolkitState = {
   id: string;
   state: string;
@@ -324,6 +345,12 @@ export type StateCompetitionLayer = {
     caveat: string;
   };
   sources: CompetitionSource[];
+  metroComparison: {
+    headline: string;
+    summary: string;
+    asOf: string;
+    regions: MetroCompetitionRegion[];
+  };
   fdiScoreboard: {
     headline: string;
     summary: string;
