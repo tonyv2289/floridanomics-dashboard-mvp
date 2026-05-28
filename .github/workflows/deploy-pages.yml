@@ -31,6 +31,11 @@ jobs:
         run: npm ci
 
       - name: Refresh data
+        env:
+          BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          BEA_API_KEY: ${{ secrets.BEA_API_KEY }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
         run: npm run data:refresh
 
       - name: Build static site

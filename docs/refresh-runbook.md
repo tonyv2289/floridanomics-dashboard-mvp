@@ -90,5 +90,6 @@ npm run data:validate
 - BLS request chunking and retry logic are built in
 - If the BLS daily threshold is exhausted, refresh falls back to cached BLS series from the existing dataset
 - `CENSUS_API_KEY`, `BEA_API_KEY`, and `EIA_API_KEY` are optional locally; missing keys are surfaced in `federal.missingKeys`
+- GitHub Actions must pass these secrets into refresh steps explicitly; repository secrets are not automatically available to shell commands
 - Direct API calls belong in refresh scripts, not browser components
 - The validator now checks the full v3 product contract, not just the older MVP metric shell

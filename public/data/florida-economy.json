@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-28T04:12:57.778Z",
+  "generatedAt": "2026-05-28T04:21:03.342Z",
   "asOfLaborMarket": "April 2026",
   "asOfPopulation": "2025",
   "sources": [
@@ -16173,7 +16173,7 @@
   "federal": {
     "headline": "Federal data spine",
     "summary": "BLS is already live. Census, BEA, EIA, and IRS are now represented as explicit feed contracts so the dashboard can separate live federal metrics from safe fallbacks and download-only official sources.",
-    "refreshedAt": "2026-05-28T04:12:57.778Z",
+    "refreshedAt": "2026-05-28T04:21:03.342Z",
     "sources": [
       {
         "id": "bls_public_api",
@@ -16213,11 +16213,11 @@
         "agency": "U.S. Bureau of Economic Analysis",
         "label": "BEA Regional API",
         "tier": "federal_api",
-        "url": "https://apps.bea.gov/api/signup/",
+        "url": "https://www.bea.gov/data/gdp/gdp-state",
         "apiUrl": "https://apps.bea.gov/api/data/",
         "envKey": "BEA_API_KEY",
-        "status": "needs_key",
-        "note": "Direct source for state GDP and income accounts. The current build uses BEA/FRED series until the BEA key is configured."
+        "status": "live",
+        "note": "Direct source for state GDP and income accounts. Falls back to the BEA/FRED bridge when the key is unavailable."
       },
       {
         "id": "eia_electricity_api",
@@ -16252,7 +16252,7 @@
         "status": "live",
         "read": "The labor-market cockpit is already on live BLS LAUS data.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-05-28T04:12:57.778Z"
+        "retrievedAt": "2026-05-28T04:21:03.342Z"
       },
       {
         "id": "bls-florida-nonfarm-payrolls",
@@ -16265,7 +16265,7 @@
         "status": "live",
         "read": "Payrolls are live from BLS CES, which is the right monthly benchmark for jobs by employer.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-05-28T04:12:57.778Z"
+        "retrievedAt": "2026-05-28T04:21:03.342Z"
       },
       {
         "id": "bls-peer-payroll-leader",
@@ -16278,7 +16278,7 @@
         "status": "live",
         "read": "The competitor tab already compares Florida against peers on the same federal labor-series footing.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-05-28T04:12:57.778Z"
+        "retrievedAt": "2026-05-28T04:21:03.342Z"
       },
       {
         "id": "census-business-applications",
@@ -16292,7 +16292,7 @@
         "read": "Business formation is federal data, but this build still uses the Census BFS series through FRED until CENSUS_API_KEY is configured.",
         "sourceUrl": "https://www.census.gov/econ/bfs/index.html",
         "caveat": "Set CENSUS_API_KEY to replace the FRED bridge with direct Census API calls.",
-        "retrievedAt": "2026-05-28T04:12:57.778Z"
+        "retrievedAt": "2026-05-28T04:21:03.342Z"
       },
       {
         "id": "census-florida-exports",
@@ -16306,7 +16306,7 @@
         "read": "Trade is still sourced from the verified SelectFlorida release; direct Census export reconciliation turns on with CENSUS_API_KEY.",
         "sourceUrl": "https://api.census.gov/data/timeseries/intltrade/exports/statehsexport.html",
         "caveat": "Set CENSUS_API_KEY for direct monthly state export calls.",
-        "retrievedAt": "2026-05-28T04:12:57.778Z"
+        "retrievedAt": "2026-05-28T04:21:03.342Z"
       },
       {
         "id": "bea-real-gsp",
@@ -16314,13 +16314,12 @@
         "value": "$1.4T",
         "unit": "chained dollars",
         "geography": "Florida",
-        "period": "2025-01-01",
+        "period": "2025",
         "sourceId": "bea_regional_api",
-        "status": "needs_key",
-        "read": "GSP is currently the BEA state series through FRED. The BEA key is the next step for direct regional-account pulls.",
-        "sourceUrl": "https://apps.bea.gov/api/signup/",
-        "caveat": "Configure BEA_API_KEY before replacing the FRED bridge with direct BEA Regional API calls.",
-        "retrievedAt": "2026-05-28T04:12:57.778Z"
+        "status": "live",
+        "read": "Real GSP is now coming straight from the BEA Regional API, table SAGDP9, line 1, Florida.",
+        "sourceUrl": "https://www.bea.gov/data/gdp/gdp-state",
+        "retrievedAt": "2026-05-28T04:21:03.342Z"
       },
       {
         "id": "eia-industrial-electricity-price",
@@ -16334,7 +16333,7 @@
         "read": "Power-cost monitoring is wired but waiting on EIA_API_KEY.",
         "sourceUrl": "https://www.eia.gov/opendata/documentation.php",
         "caveat": "Set EIA_API_KEY to activate electricity price and sales feeds.",
-        "retrievedAt": "2026-05-28T04:12:57.778Z"
+        "retrievedAt": "2026-05-28T04:21:03.342Z"
       },
       {
         "id": "irs-income-migration",
@@ -16348,17 +16347,16 @@
         "read": "IRS SOI is the right official layer for income migration, but it is a download pipeline rather than a clean JSON endpoint.",
         "sourceUrl": "https://www.irs.gov/statistics/soi-tax-stats-migration-data",
         "caveat": "Build a separate IRS SOI ingest job for county-to-county and state-to-state migration files.",
-        "retrievedAt": "2026-05-28T04:12:57.778Z"
+        "retrievedAt": "2026-05-28T04:21:03.342Z"
       }
     ],
     "missingKeys": [
       "CENSUS_API_KEY",
-      "BEA_API_KEY",
       "EIA_API_KEY"
     ],
     "nextFeeds": [
       "Add CENSUS_API_KEY to turn Business Formation Statistics and state export reconciliation into direct Census API calls.",
-      "Add BEA_API_KEY and replace the FRED bridge for real GSP with direct BEA Regional API pulls.",
+      "Extend BEA Regional API coverage into personal income, GDP by industry, and metro/county output layers.",
       "Add EIA_API_KEY to activate power-cost, sales, and capacity proxies for the AI infrastructure thesis.",
       "Build the IRS SOI download ingest for income migration and AGI flows by state and county."
     ]

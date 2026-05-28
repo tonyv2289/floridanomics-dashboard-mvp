@@ -31,11 +31,27 @@ type EiaRetailSalesResponse = {
   };
 };
 
+type BeaRegionalResponse = {
+  BEAAPI?: {
+    Results?: {
+      Error?: {
+        APIErrorCode?: string;
+        APIErrorDescription?: string;
+      };
+      Data?: Array<{
+        TimePeriod?: string;
+        DataValue?: string;
+        CL_UNIT?: string;
+      }>;
+    };
+  };
+};
+
 const FEDERAL_SOURCE_URLS = {
   bls: "https://www.bls.gov/developers/api_signature_v2.htm",
   censusBfs: "https://www.census.gov/econ/bfs/index.html",
   censusTrade: "https://api.census.gov/data/timeseries/intltrade/exports/statehsexport.html",
-  beaRegional: "https://apps.bea.gov/api/signup/",
+  beaRegional: "https://www.bea.gov/data/gdp/gdp-state",
   eiaElectricity: "https://www.eia.gov/opendata/documentation.php",
   irsMigration: "https://www.irs.gov/statistics/soi-tax-stats-migration-data",
 } as const;
@@ -115,8 +131,8 @@ function buildSources(): FederalSource[] {
       url: FEDERAL_SOURCE_URLS.beaRegional,
       apiUrl: "https://apps.bea.gov/api/data/",
       envKey: "BEA_API_KEY",
-      status: hasBeaKey ? "fallback" : "needs_key",
-      note: "Direct source for state GDP and income accounts. The current build uses BEA/FRED series until the BEA key is configured.",
+      status: hasBeaKey ? "live" : "needs_key",
+      note: "Direct source for state GDP and income accounts. Falls back to the BEA/FRED bridge when the key is unavailable.",
     },
     {
       id: "eia_electricity_api",
@@ -207,6 +223,65 @@ async function fetchCensusStateExports(
   return { valueUsd, period: tradeYear, url: FEDERAL_SOURCE_URLS.censusTrade };
 }
 
+function parseBeaNumber(value: string | undefined): number {
+  if (!value) {
+    return Number.NaN;
+  }
+
+  return Number.parseFloat(value.replace(/,/g, ""));
+}
+
+async function fetchBeaRealGsp(): Promise<{
+  valueMillions: number;
+  unit: string;
+  period: string;
+  url: string;
+} | null> {
+  const key = process.env.BEA_API_KEY?.trim();
+  if (!key) {
+    return null;
+  }
+
+  const url = new URL("https://apps.bea.gov/api/data/");
+  url.searchParams.set("UserID", key);
+  url.searchParams.set("method", "GETDATA");
+  url.searchParams.set("datasetname", "Regional");
+  url.searchParams.set("TableName", "SAGDP9");
+  url.searchParams.set("LineCode", "1");
+  url.searchParams.set("GeoFips", "12000");
+  url.searchParams.set("Year", "LAST10");
+  url.searchParams.set("ResultFormat", "JSON");
+
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`BEA Regional request failed with HTTP ${response.status}`);
+  }
+
+  const payload = (await response.json()) as BeaRegionalResponse;
+  const apiError = payload.BEAAPI?.Results?.Error;
+  if (apiError) {
+    throw new Error(`BEA Regional request unsuccessful: ${apiError.APIErrorDescription ?? apiError.APIErrorCode}`);
+  }
+
+  const latest = (payload.BEAAPI?.Results?.Data ?? [])
+    .map((row) => ({
+      period: row.TimePeriod ?? "",
+      valueMillions: parseBeaNumber(row.DataValue),
+      unit: row.CL_UNIT ?? "Millions of chained 2017 dollars",
+    }))
+    .filter((row) => /^\d{4}$/.test(row.period) && Number.isFinite(row.valueMillions))
+    .sort((a, b) => Number.parseInt(b.period, 10) - Number.parseInt(a.period, 10))[0];
+
+  if (!latest) {
+    throw new Error("BEA Regional response did not include a numeric Florida real GSP value.");
+  }
+
+  return {
+    ...latest,
+    url: FEDERAL_SOURCE_URLS.beaRegional,
+  };
+}
+
 async function fetchEiaIndustrialElectricityPrice(): Promise<{
   value: number;
   unit: string;
@@ -278,6 +353,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
   const tradeHero = input.trade.heroMetrics.find((metric) => metric.id === "totalExports");
   const censusBusinessApps = await safeOptionalSignal(() => fetchCensusBusinessApplications(dateToMonth(businessApplications.date)));
   const censusExports = await safeOptionalSignal(() => fetchCensusStateExports(tradeYear));
+  const beaRealGsp = await safeOptionalSignal(fetchBeaRealGsp);
   const eiaIndustrialPrice = await safeOptionalSignal(fetchEiaIndustrialElectricityPrice);
   const fastestPayrollPeer = [...input.peerStates].sort((a, b) => {
     const aDelta = a.nonfarmPayrolls.deltas.oneYear?.percent ?? Number.NEGATIVE_INFINITY;
@@ -378,15 +454,21 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
       {
         id: "bea-real-gsp",
         label: "Real gross state product",
-        value: `$${formatCompact(realGsp.value * 1_000_000, 1)}`,
+        value: `$${formatCompact((beaRealGsp?.valueMillions ?? realGsp.value) * 1_000_000, 1)}`,
         unit: "chained dollars",
         geography: "Florida",
-        period: realGsp.date,
+        period: beaRealGsp?.period ?? realGsp.date,
         sourceId: "bea_regional_api",
-        status: hasEnvKey("BEA_API_KEY") ? "fallback" : "needs_key",
-        read: "GSP is currently the BEA state series through FRED. The BEA key is the next step for direct regional-account pulls.",
-        sourceUrl: FEDERAL_SOURCE_URLS.beaRegional,
-        caveat: "Configure BEA_API_KEY before replacing the FRED bridge with direct BEA Regional API calls.",
+        status: beaRealGsp ? "live" : hasEnvKey("BEA_API_KEY") ? "fallback" : "needs_key",
+        read: beaRealGsp
+          ? "Real GSP is now coming straight from the BEA Regional API, table SAGDP9, line 1, Florida."
+          : "GSP is currently the BEA state series through FRED. The BEA key activates direct regional-account pulls.",
+        sourceUrl: beaRealGsp?.url ?? FEDERAL_SOURCE_URLS.beaRegional,
+        caveat: beaRealGsp
+          ? undefined
+          : hasEnvKey("BEA_API_KEY")
+            ? "Direct BEA call failed during refresh, so this build is using the FRED bridge."
+            : "Configure BEA_API_KEY before replacing the FRED bridge with direct BEA Regional API calls.",
       },
       refreshedAt,
     ),
@@ -435,9 +517,15 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
     signals,
     missingKeys,
     nextFeeds: [
-      "Add CENSUS_API_KEY to turn Business Formation Statistics and state export reconciliation into direct Census API calls.",
-      "Add BEA_API_KEY and replace the FRED bridge for real GSP with direct BEA Regional API pulls.",
-      "Add EIA_API_KEY to activate power-cost, sales, and capacity proxies for the AI infrastructure thesis.",
+      ...(missingKeys.includes("CENSUS_API_KEY")
+        ? ["Add CENSUS_API_KEY to turn Business Formation Statistics and state export reconciliation into direct Census API calls."]
+        : ["Extend Census feeds from statewide exports into monthly commodity and partner-market detail."]),
+      ...(missingKeys.includes("BEA_API_KEY")
+        ? ["Add BEA_API_KEY and replace the FRED bridge for real GSP with direct BEA Regional API pulls."]
+        : ["Extend BEA Regional API coverage into personal income, GDP by industry, and metro/county output layers."]),
+      ...(missingKeys.includes("EIA_API_KEY")
+        ? ["Add EIA_API_KEY to activate power-cost, sales, and capacity proxies for the AI infrastructure thesis."]
+        : ["Extend EIA feeds from industrial price into sales, load, generation mix, and interconnection proxy data."]),
       "Build the IRS SOI download ingest for income migration and AGI flows by state and county.",
     ],
   };

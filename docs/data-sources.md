@@ -83,7 +83,7 @@ Current status:
 - BLS Public Data API: live for LAUS and CES labor-market metrics
 - Census Business Formation Statistics API: wired, requires `CENSUS_API_KEY` for direct calls, currently bridged through FRED
 - Census State Export API: wired, requires `CENSUS_API_KEY` for direct trade reconciliation, currently backed by the verified SelectFlorida release
-- BEA Regional API: represented in the contract, requires `BEA_API_KEY`, currently bridged through FRED for real GSP
+- BEA Regional API: wired directly for Florida real GSP when `BEA_API_KEY` is present; otherwise bridged through FRED
 - EIA Open Data API: wired for Florida industrial electricity price, requires `EIA_API_KEY`
 - IRS SOI Migration Data: official download pipeline, not a JSON API
 
@@ -209,4 +209,4 @@ This avoids the old failure mode where a routine data refresh could erase Florid
 - Some trade and Florida-specific sections are updated on their own release cadence, not monthly
 - Several v3 sections are verified and curated rather than programmatically scraped
 - `Snowbird Index` is still a proxy build pending a bespoke seasonal migration series
-- Direct Census, BEA, and EIA calls need repository or local environment keys before they turn from fallback/status feeds into live API values
+- Direct Census and EIA calls need repository or local environment keys before they turn from fallback/status feeds into live API values; BEA is live when `BEA_API_KEY` is configured
