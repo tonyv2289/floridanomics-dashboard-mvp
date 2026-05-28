@@ -26,7 +26,7 @@ type BlsSeries = {
   seriesID: string;
   data: BlsPoint[];
 };
-type PreservedSections = Pick<DashboardDataset, "scorecard2030" | "distinctives" | "trade">;
+type PreservedSections = Pick<DashboardDataset, "scorecard2030" | "competition" | "distinctives" | "trade">;
 
 async function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -85,6 +85,7 @@ async function readExistingDataset(): Promise<DashboardDataset | null> {
 function getPreservedSections(existing: DashboardDataset | null): PreservedSections {
   if (
     !existing?.scorecard2030 ||
+    !existing.competition ||
     !existing.distinctives?.snowbirdIndex ||
     !existing.distinctives?.spaceCoastCadence ||
     !existing.distinctives?.latamGateway ||
@@ -97,6 +98,7 @@ function getPreservedSections(existing: DashboardDataset | null): PreservedSecti
 
   return {
     scorecard2030: existing.scorecard2030,
+    competition: existing.competition,
     distinctives: existing.distinctives,
     trade: existing.trade,
   };
@@ -1856,6 +1858,7 @@ async function main() {
       talentPipeline: STRATEGY_TALENT_PIPELINE,
       scenarios: STRATEGY_SCENARIOS,
     },
+    competition: preservedSections.competition,
     terminal: TERMINAL_LAYER,
     scorecard2030: preservedSections.scorecard2030,
     distinctives: preservedSections.distinctives,
@@ -1871,7 +1874,7 @@ async function main() {
 
   console.log(`Wrote ${OUTPUT_FILE}`);
   console.log(`As-of labor market: ${dataset.asOfLaborMarket}; population: ${dataset.asOfPopulation}`);
-  console.log("Preserved curated sections: scorecard2030, brainNotes, terminal, distinctives, trade.");
+  console.log("Preserved curated sections: scorecard2030, brainNotes, competition, terminal, distinctives, trade.");
 }
 
 main().catch((error: unknown) => {

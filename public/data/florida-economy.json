@@ -15733,7 +15733,9 @@
           "value": "358,200",
           "context": "Florida majority-foreign-owned affiliate employment, 2021",
           "read": "Florida has real FDI scale and leads regional peers on jobs. The question is whether those jobs sit in sectors that lift the wage curve.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         },
         {
           "id": "greenfield-projects",
@@ -15741,7 +15743,9 @@
           "value": "1,050",
           "context": "Florida announced greenfield FDI projects, 2014-2024",
           "read": "Project count is strong. The weakness is project weight, industrial depth, and mega-project capital intensity.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         },
         {
           "id": "fdi-stock",
@@ -15749,7 +15753,9 @@
           "value": "$87.7B",
           "context": "Florida foreign-owned PP&E, 2021",
           "read": "The capital stock gap versus Texas is the cleanest proof that Florida's FDI mix skews less heavy-industrial.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         },
         {
           "id": "first-year-expenditures",
@@ -15757,7 +15763,9 @@
           "value": "$9.1B",
           "context": "Florida 2022 FDI inflow measure",
           "read": "Momentum exists, but the memo says most recent inflow came mainly through acquisitions rather than new establishments.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         }
       ],
       "states": [
@@ -15771,7 +15779,9 @@
           "firstYearExpendituresUsdBillions": null,
           "capitalIntensityRead": "Largest jobs and project scale in the comparison set, with deep tech and R&D density.",
           "posture": "Benchmark for tech, R&D, and global-company depth.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         },
         {
           "id": "TX",
@@ -15783,7 +15793,9 @@
           "firstYearExpendituresUsdBillions": null,
           "capitalIntensityRead": "Dominates the capital stock comparison with energy, industrial, and large-project depth.",
           "posture": "The peer Florida has to beat for heavy capex.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         },
         {
           "id": "NY",
@@ -15795,7 +15807,9 @@
           "firstYearExpendituresUsdBillions": null,
           "capitalIntensityRead": "Deep services, finance, and foreign-company presence.",
           "posture": "Useful HQ, services, and source-country benchmark.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         },
         {
           "id": "FL",
@@ -15807,7 +15821,9 @@
           "firstYearExpendituresUsdBillions": 9.1,
           "capitalIntensityRead": "Leads regional peers on jobs and projects, but capital stock is far below Texas.",
           "posture": "Strong FDI reach, weaker mega-project intensity.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         },
         {
           "id": "NC",
@@ -15819,7 +15835,9 @@
           "firstYearExpendituresUsdBillions": null,
           "capitalIntensityRead": "Fewer projects than Florida but stronger fit with advanced manufacturing and mega-project recruitment.",
           "posture": "Watch for advanced manufacturing and training alignment.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         },
         {
           "id": "GA",
@@ -15831,7 +15849,9 @@
           "firstYearExpendituresUsdBillions": null,
           "capitalIntensityRead": "Lower FDI jobs than Florida but sharper manufacturing, logistics, EV, and supplier posture.",
           "posture": "Watch EV, battery, port, and supplier wins.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         },
         {
           "id": "TN",
@@ -15843,7 +15863,9 @@
           "firstYearExpendituresUsdBillions": null,
           "capitalIntensityRead": "Smaller scale, but auto and Japanese FDI make it strategically important.",
           "posture": "A reminder that project quality can outweigh project count.",
-          "sourceIds": ["sf_fdi_comparison_2025"]
+          "sourceIds": [
+            "sf_fdi_comparison_2025"
+          ]
         }
       ]
     },
@@ -15864,7 +15886,9 @@
             "Manufacturing machinery and equipment exemption"
           ],
           "floridaGap": "The toolkit exists. The open question is whether it is fast and specific enough for AI compute, semiconductors, advanced manufacturing, and large capex projects.",
-          "sourceIds": ["fl_program_inventory_2023"]
+          "sourceIds": [
+            "fl_program_inventory_2023"
+          ]
         },
         {
           "id": "texas",
@@ -15877,7 +15901,9 @@
             "Spaceport Trust Fund"
           ],
           "floridaGap": "Texas makes it easier to see the capital-stack answer for power-heavy projects.",
-          "sourceIds": ["sf_incentive_research_2020"]
+          "sourceIds": [
+            "sf_incentive_research_2020"
+          ]
         },
         {
           "id": "north-carolina",
@@ -15891,7 +15917,9 @@
             "Rail Industrial Access Program"
           ],
           "floridaGap": "North Carolina is a useful model for aligning recruitment tools with manufacturing, rural infrastructure, and workforce delivery.",
-          "sourceIds": ["sf_incentive_research_2020"]
+          "sourceIds": [
+            "sf_incentive_research_2020"
+          ]
         },
         {
           "id": "georgia",
@@ -15905,7 +15933,9 @@
             "Research and Development Tax Credit"
           ],
           "floridaGap": "Georgia's lesson is not just incentives. It is a clearer manufacturing and supplier-chain posture.",
-          "sourceIds": ["sf_incentive_research_2020"]
+          "sourceIds": [
+            "sf_incentive_research_2020"
+          ]
         },
         {
           "id": "tennessee",
@@ -15919,7 +15949,9 @@
             "Industrial Machinery Tax Credit"
           ],
           "floridaGap": "Tennessee shows how a smaller state can punch above its weight when the training and industrial machinery answer is legible.",
-          "sourceIds": ["sf_incentive_research_2020"]
+          "sourceIds": [
+            "sf_incentive_research_2020"
+          ]
         },
         {
           "id": "arizona-utah",
@@ -15933,7 +15965,9 @@
             "Utah life science and technology credit"
           ],
           "floridaGap": "The AI capex race rewards states that can answer power, water, infrastructure, and post-performance incentives in one conversation.",
-          "sourceIds": ["sf_incentive_research_2020"]
+          "sourceIds": [
+            "sf_incentive_research_2020"
+          ]
         }
       ]
     },
@@ -15947,7 +15981,9 @@
           "value": "3 FTE",
           "context": "EFI research roles described in September 2022",
           "read": "The memo says research capacity existed, but it was non-managerial and spread across business development, ITD, and military-defense work.",
-          "sourceIds": ["efi_bi_side_by_side_2022"]
+          "sourceIds": [
+            "efi_bi_side_by_side_2022"
+          ]
         },
         {
           "id": "research-fte-proposed",
@@ -15955,7 +15991,9 @@
           "value": "5 FTE",
           "context": "Proposed VP, manager, and combined research structure",
           "read": "The proposal was not just more staff. It was a shift from static reporting to business-intelligence products.",
-          "sourceIds": ["efi_bi_side_by_side_2022"]
+          "sourceIds": [
+            "efi_bi_side_by_side_2022"
+          ]
         },
         {
           "id": "salesforce-legacy",
@@ -15963,7 +16001,9 @@
           "value": "10+ years",
           "context": "Salesforce data described as complex, layered, and needing cleanup",
           "read": "The archive warns that dashboards are only as good as their data architecture. Florida Brain needs source discipline from day one.",
-          "sourceIds": ["efi_bi_side_by_side_2022"]
+          "sourceIds": [
+            "efi_bi_side_by_side_2022"
+          ]
         },
         {
           "id": "tool-stack",
@@ -15971,7 +16011,10 @@
           "value": "8+ systems",
           "context": "WISERTrade, BEA, JobsEQ, EMSI, Kompass, CoStar, D&B Hoovers, IBISWorld, and more",
           "read": "The state already knew the right direction: live tools, better visualization, FDI market intelligence, and dynamic web dashboards.",
-          "sourceIds": ["efi_bi_side_by_side_2022", "state_appropros_efi"]
+          "sourceIds": [
+            "efi_bi_side_by_side_2022",
+            "state_appropros_efi"
+          ]
         }
       ],
       "operatingLessons": [
@@ -15980,7 +16023,10 @@
         "Separate public claims from internal leads so Florida Brain can be bold without losing source integrity.",
         "Build a competitor-state update rhythm before the next big capex cycle becomes old news."
       ],
-      "sourceIds": ["efi_bi_side_by_side_2022", "state_appropros_efi"]
+      "sourceIds": [
+        "efi_bi_side_by_side_2022",
+        "state_appropros_efi"
+      ]
     },
     "migration": {
       "headline": "Migration is Florida's flywheel. It is not the whole strategy.",
@@ -16018,7 +16064,9 @@
         }
       ],
       "read": "Florida can win people and still lose the next-economy mix. The model has to track whether migration becomes taxable income, technical workforce, founder formation, and strategic investment.",
-      "sourceIds": ["migration_rank_2022"]
+      "sourceIds": [
+        "migration_rank_2022"
+      ]
     },
     "semiconductor": {
       "headline": "Florida has a chips ledger. Now it needs a compute-and-supply-chain thesis.",
@@ -16104,7 +16152,9 @@
         }
       ],
       "read": "The commitment stack is real enough to build around. The missing product is a live comparison against peer-state chips, data-center, aerospace, and advanced-manufacturing commitments.",
-      "sourceIds": ["chips_commitment_2024"]
+      "sourceIds": [
+        "chips_commitment_2024"
+      ]
     },
     "nextMoves": [
       "Refresh the FDI scoreboard against current BEA, SelectUSA, and fDi Markets sources before public citation.",
