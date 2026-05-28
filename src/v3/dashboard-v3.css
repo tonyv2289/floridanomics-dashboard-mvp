@@ -908,6 +908,37 @@
   line-height: 1.05;
 }
 
+.v3-fdi-momentum-label {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.v3-fdi-momentum-label em {
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: var(--v3-sun);
+  font-style: normal;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.v3-fdi-delta-row.momentum-accelerating .v3-fdi-momentum-label em {
+  color: var(--v3-good);
+}
+
+.v3-fdi-delta-row.momentum-slowing .v3-fdi-momentum-label em {
+  color: var(--v3-warn);
+}
+
+.v3-fdi-delta-row.momentum-suppressed .v3-fdi-momentum-label em {
+  color: var(--v3-muted);
+}
+
 .v3-federal-spine-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 210px;

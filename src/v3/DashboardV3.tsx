@@ -180,6 +180,22 @@ function formatNullableSignedPercent(value: number | null): string {
   return formatSignedPercentage(value);
 }
 
+function getMomentumArrow(momentum: DashboardDataset["competition"]["fdiScoreboard"]["observatory"]["deltas"][number]["momentum"]): string {
+  if (momentum === "accelerating") {
+    return "↑";
+  }
+
+  if (momentum === "slowing") {
+    return "↓";
+  }
+
+  if (momentum === "suppressed") {
+    return "•";
+  }
+
+  return "→";
+}
+
 function formatPeerPayrollDelta(state: PeerStateSnapshot): string {
   const delta = state.nonfarmPayrolls.deltas.oneYear;
   if (!delta) {
@@ -1412,7 +1428,10 @@ function FdiScoreboard({ dataset }: { dataset: DashboardDataset }) {
               className={clsx("v3-fdi-delta-row", `momentum-${state.momentum}`, state.id === "FL" && "is-florida")}
             >
               <div>
-                <span>{state.momentum}</span>
+                <span className="v3-fdi-momentum-label">
+                  <em aria-hidden="true">{getMomentumArrow(state.momentum)}</em>
+                  {state.momentum}
+                </span>
                 <strong>{state.state}</strong>
                 <p>{state.read}</p>
               </div>
