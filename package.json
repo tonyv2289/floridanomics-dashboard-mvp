@@ -12,9 +12,10 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "typecheck:scripts": "tsc --noEmit -p tsconfig.scripts.json",
     "security:audit": "npm audit --audit-level=high",
     "security:prod": "npm audit --omit=dev --audit-level=moderate",
-    "qa:full": "npm run data:refresh && npm run data:validate && npm run lint && npm run build && npm run security:audit",
+    "qa:full": "npm run data:refresh && npm run data:validate && npm run lint && npm run typecheck:scripts && npm run build && npm run test && npm run security:audit",
     "preview": "vite preview"
   },
   "dependencies": {

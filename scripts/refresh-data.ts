@@ -2,9 +2,20 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildFederalDataLayer } from "./federal-data";
+import {
+  buildDeltas,
+  deltaAbs,
+  deltaMagnitude,
+  lastN,
+  latestPoint,
+  metricSeriesId,
+  prettyMonth,
+  statePayrollSeriesId,
+  stateLausSeriesId,
+} from "./lib/series";
+import { fetchBlsSeries, fetchFredSeries } from "./lib/sources";
 import type {
   DashboardDataset,
-  Delta,
   IndustrySector,
   InnovationMetricId,
   InnovationResource,
@@ -17,36 +28,7 @@ import type {
   TimePoint,
 } from "../src/types/dashboard";
 
-type BlsPoint = {
-  year: string;
-  period: string;
-  value: string;
-};
-
-type BlsSeries = {
-  seriesID: string;
-  data: BlsPoint[];
-};
 type PreservedSections = Pick<DashboardDataset, "scorecard2030" | "competition" | "distinctives" | "trade">;
-
-async function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function withRetry<T>(fn: () => Promise<T>, retries = 3, baseDelayMs = 2000): Promise<T> {
-  for (let attempt = 0; attempt <= retries; attempt++) {
-    try {
-      return await fn();
-    } catch (error) {
-      if (attempt === retries) throw error;
-      const delay = baseDelayMs * Math.pow(2, attempt);
-      const message = error instanceof Error ? error.message : String(error);
-      console.warn(`Attempt ${attempt + 1} failed (${message}), retrying in ${delay}ms...`);
-      await sleep(delay);
-    }
-  }
-  throw new Error("Unreachable");
-}
 
 const CURRENT_YEAR = new Date().getUTCFullYear();
 const START_YEAR = String(CURRENT_YEAR - 9);
@@ -1194,179 +1176,6 @@ const TERMINAL_LAYER: TerminalLayer = {
   ],
 };
 
-function metricSeriesId(root: string, measureCode: "003" | "005" | "006") {
-  return `${root}${measureCode}`;
-}
-
-function stateLausSeriesId(fips: string, measureCode: "003" | "005" | "006") {
-  return `LASST${fips}000000000000${measureCode.slice(2)}`;
-}
-
-function statePayrollSeriesId(fips: string) {
-  return `SMS${fips}000000000000001`;
-}
-
-function parseBlsMonthly(series: BlsSeries): TimePoint[] {
-  return series.data
-    .filter((d) => /^M\d{2}$/.test(d.period))
-    .map((d) => ({
-      date: `${d.year}-${d.period.slice(1)}-01`,
-      value: Number.parseFloat(d.value),
-    }))
-    .filter((d) => Number.isFinite(d.value))
-    .sort((a, b) => a.date.localeCompare(b.date));
-}
-
-function getBasePoint(series: TimePoint[], yearsBack: number): TimePoint | null {
-  const latest = series.at(-1);
-  if (!latest) {
-    return null;
-  }
-
-  const target = new Date(latest.date);
-  target.setUTCFullYear(target.getUTCFullYear() - yearsBack);
-
-  for (let index = series.length - 1; index >= 0; index -= 1) {
-    const current = series[index];
-    if (new Date(current.date) <= target) {
-      return current;
-    }
-  }
-
-  return null;
-}
-
-function computeDelta(series: TimePoint[], yearsBack: 1 | 3 | 5): Delta | null {
-  const latest = series.at(-1);
-  const base = getBasePoint(series, yearsBack);
-  if (!latest || !base) {
-    return null;
-  }
-
-  const absolute = latest.value - base.value;
-  const percent = base.value === 0 ? null : (absolute / base.value) * 100;
-
-  return {
-    years: yearsBack,
-    baseDate: base.date,
-    absolute,
-    percent,
-  };
-}
-
-function buildDeltas(series: TimePoint[]): Metric["deltas"] {
-  return {
-    oneYear: computeDelta(series, 1),
-    threeYear: computeDelta(series, 3),
-    fiveYear: computeDelta(series, 5),
-  };
-}
-
-function latestPoint(series: TimePoint[]): TimePoint {
-  const point = series.at(-1);
-  if (!point) {
-    throw new Error("No time points available for series");
-  }
-  return point;
-}
-
-function lastN<T>(values: T[], size: number): T[] {
-  return values.slice(Math.max(values.length - size, 0));
-}
-
-async function fetchBlsSeries(seriesIds: string[]): Promise<Record<string, TimePoint[]>> {
-  const result: Record<string, TimePoint[]> = {};
-
-  const chunkSize = 24;
-  for (let start = 0; start < seriesIds.length; start += chunkSize) {
-    const chunk = seriesIds.slice(start, start + chunkSize);
-    await withRetry(async () => {
-      const response = await fetch("https://api.bls.gov/publicAPI/v2/timeseries/data/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          seriesid: chunk,
-          startyear: START_YEAR,
-          endyear: END_YEAR,
-          ...(process.env.BLS_API_KEY ? { registrationkey: process.env.BLS_API_KEY } : {}),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`BLS request failed with HTTP ${response.status}`);
-      }
-
-      const payload = (await response.json()) as {
-        status: string;
-        message?: string[];
-        Results?: {
-          series: BlsSeries[];
-        };
-      };
-
-      if (payload.status !== "REQUEST_SUCCEEDED" || !payload.Results?.series) {
-        throw new Error(`BLS request unsuccessful: ${payload.message?.join("; ") ?? "unknown error"}`);
-      }
-
-      for (const series of payload.Results.series) {
-        result[series.seriesID] = parseBlsMonthly(series);
-      }
-    });
-  }
-
-  return result;
-}
-
-async function fetchFredSeries(seriesId: string, transformValue?: (value: number) => number): Promise<TimePoint[]> {
-  const csv = await withRetry(async () => {
-    const response = await fetch(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${seriesId}`);
-    if (!response.ok) {
-      throw new Error(`FRED series request failed for ${seriesId} with HTTP ${response.status}`);
-    }
-    return response.text();
-  });
-  const lines = csv.trim().split("\n").slice(1);
-
-  return lines
-    .map((line) => {
-      const [date, rawValue] = line.split(",");
-      if (!date || !rawValue || rawValue === ".") {
-        return null;
-      }
-
-      const thousands = Number.parseFloat(rawValue);
-      if (!Number.isFinite(thousands)) {
-        return null;
-      }
-
-      const transformed = transformValue ? transformValue(thousands) : thousands;
-
-      return {
-        date,
-        value: transformed,
-      };
-    })
-    .filter((point): point is TimePoint => Boolean(point))
-    .sort((a, b) => a.date.localeCompare(b.date));
-}
-
-function deltaMagnitude(delta: Delta | null): number {
-  return delta?.percent ?? Number.NEGATIVE_INFINITY;
-}
-
-function deltaAbs(delta: Delta | null): number {
-  return delta?.absolute ?? 0;
-}
-
-function prettyMonth(date: string): string {
-  return new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(date));
-}
 
 function normalizeForComparison(dataset: DashboardDataset): Omit<DashboardDataset, "generatedAt"> {
   const { generatedAt, ...rest } = dataset;
@@ -1571,7 +1380,7 @@ async function main() {
   const allBlsIds = [...coreSeriesIds, ...industrySeriesIds, ...metroSeriesIds, ...peerStateSeriesIds];
   let blsData: Record<string, TimePoint[]>;
   try {
-    blsData = await fetchBlsSeries(allBlsIds);
+    blsData = await fetchBlsSeries(allBlsIds, { startYear: START_YEAR, endYear: END_YEAR });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     if (!message.toLowerCase().includes("daily threshold")) {
