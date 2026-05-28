@@ -31,12 +31,29 @@ import {
   isInnovationMetricId,
 } from "../lib/dashboard";
 import { trackDashboardView } from "../lib/analytics";
+import {
+  firstSentence,
+  formatDisplayedValue,
+  formatFdiStock,
+  formatNullablePercent,
+  formatNullableSignedPercent,
+  formatNullableThousands,
+  formatNullableUsdBillions,
+  formatPeerLaborForceDelta,
+  formatPeerPayrollDelta,
+  formatPeerUnemploymentDelta,
+  formatSignedCompact,
+  formatSignedInteger,
+  formatUsdValue,
+  getDirectionArrow,
+  getMomentumArrow,
+  getMonthlyPayrollChange,
+  resolveHref,
+} from "./format";
 import type {
-  CompetitionArrowDirection,
   DashboardDataset,
   InnovationMetricId,
   InsightSection,
-  PeerStateSnapshot,
 } from "../types/dashboard";
 import "./dashboard-v3.css";
 
@@ -98,177 +115,6 @@ function isCompetitionViewId(value: string | null): value is CompetitionViewId {
   return value === "metro" || value === "international" || value === "strategy" || value === "fdi";
 }
 
-function formatDisplayedValue(metric: AnyMetric, value: number): string {
-  if (metric.unit === "percent") {
-    return `${value.toFixed(1)}%`;
-  }
-
-  if (metric.unit === "usd_millions") {
-    return `$${formatCompact(value, 1)}`;
-  }
-
-  return formatCompact(value, 1);
-}
-
-function getMonthlyPayrollChange(dataset: DashboardDataset): number {
-  const series = dataset.metrics.nonfarmPayrolls.series;
-  const latest = series[series.length - 1];
-  const prior = series[series.length - 2] ?? latest;
-
-  if (!latest || !prior) {
-    return 0;
-  }
-
-  return Math.round((latest.value - prior.value) * 1000);
-}
-
-function formatSignedInteger(value: number): string {
-  const sign = value >= 0 ? "+" : "-";
-  return `${sign}${Math.abs(value).toLocaleString()}`;
-}
-
-function formatSignedCompact(value: number, maxFractionDigits = 1): string {
-  const sign = value >= 0 ? "+" : "-";
-  return `${sign}${formatCompact(Math.abs(value), maxFractionDigits)}`;
-}
-
-function formatSignedPercentage(value: number | null | undefined): string {
-  if (value === null || value === undefined) {
-    return "n/a";
-  }
-
-  const sign = value >= 0 ? "+" : "-";
-  return `${sign}${Math.abs(value).toFixed(1)}%`;
-}
-
-function formatUsdValue(value: number): string {
-  if (Math.abs(value) >= 1_000_000_000) {
-    return `$${formatCompact(value / 1_000_000_000, 1)}B`;
-  }
-
-  if (Math.abs(value) >= 1_000_000) {
-    return `$${formatCompact(value / 1_000_000, 1)}M`;
-  }
-
-  return `$${value.toLocaleString()}`;
-}
-
-function formatFdiStock(value: number | null): string {
-  if (value === null) {
-    return "n/a";
-  }
-
-  return `$${value >= 100 ? value.toFixed(0) : value.toFixed(1)}B`;
-}
-
-function formatNullableUsdBillions(value: number | null): string {
-  if (value === null) {
-    return "suppressed";
-  }
-
-  if (Math.abs(value) < 0.1) {
-    return `$${Math.round(value * 1000)}M`;
-  }
-
-  return `$${value.toFixed(1)}B`;
-}
-
-function formatNullableThousands(value: number | null): string {
-  if (value === null) {
-    return "suppressed";
-  }
-
-  return `${value.toFixed(1)}k`;
-}
-
-function formatNullablePercent(value: number | null): string {
-  if (value === null) {
-    return "suppressed";
-  }
-
-  return `${value.toFixed(1)}%`;
-}
-
-function formatNullableSignedPercent(value: number | null): string {
-  if (value === null) {
-    return "suppressed";
-  }
-
-  return formatSignedPercentage(value);
-}
-
-function getMomentumArrow(momentum: DashboardDataset["competition"]["fdiScoreboard"]["observatory"]["deltas"][number]["momentum"]): string {
-  if (momentum === "accelerating") {
-    return "↑";
-  }
-
-  if (momentum === "slowing") {
-    return "↓";
-  }
-
-  if (momentum === "suppressed") {
-    return "•";
-  }
-
-  return "→";
-}
-
-function getDirectionArrow(direction: CompetitionArrowDirection): string {
-  if (direction === "up") {
-    return "↑";
-  }
-
-  if (direction === "down") {
-    return "↓";
-  }
-
-  if (direction === "neutral") {
-    return "•";
-  }
-
-  return "→";
-}
-
-function formatPeerPayrollDelta(state: PeerStateSnapshot): string {
-  const delta = state.nonfarmPayrolls.deltas.oneYear;
-  if (!delta) {
-    return "n/a";
-  }
-
-  return `${formatSignedCompact(delta.absolute * 1000, 1)} (${formatSignedPercentage(delta.percent)})`;
-}
-
-function formatPeerLaborForceDelta(state: PeerStateSnapshot): string {
-  const delta = state.laborForce.deltas.oneYear;
-  if (!delta) {
-    return "n/a";
-  }
-
-  return `${formatSignedCompact(delta.absolute, 1)} (${formatSignedPercentage(delta.percent)})`;
-}
-
-function formatPeerUnemploymentDelta(state: PeerStateSnapshot): string {
-  const delta = state.unemploymentRate.deltas.oneYear;
-  if (!delta) {
-    return "n/a";
-  }
-
-  const sign = delta.absolute >= 0 ? "+" : "-";
-  return `${sign}${Math.abs(delta.absolute).toFixed(1)} pp`;
-}
-
-function firstSentence(value: string): string {
-  const [sentence] = value.split(". ");
-  return sentence.endsWith(".") ? sentence : `${sentence}.`;
-}
-
-function resolveHref(href: string): string {
-  if (/^https?:\/\//.test(href)) {
-    return href;
-  }
-
-  return `${import.meta.env.BASE_URL}${href.replace(/^\/+/, "")}`;
-}
 
 function SourceAnchor({ source }: { source?: { label: string; url: string } }) {
   if (!source) {
