@@ -19,13 +19,13 @@ function resolveVersion(): VersionId {
   return version === "v1" || version === "v2" || version === "v3" ? version : DEFAULT_VERSION;
 }
 
-function isCompareMode(version: VersionId): boolean {
+function isCompareMode(): boolean {
   if (typeof window === "undefined") {
     return false;
   }
 
   const params = new URLSearchParams(window.location.search);
-  return params.get("compare") === "1" || params.has("version") || version === "v1";
+  return params.get("compare") === "1";
 }
 
 function buildHref(version: VersionId): string {
@@ -41,17 +41,11 @@ function buildHref(version: VersionId): string {
 
 function App() {
   const version = resolveVersion();
-  const compareMode = isCompareMode(version);
+  const compareMode = isCompareMode();
   const ActiveDashboard = version === "v1" ? LegacyDashboard : version === "v2" ? DashboardV2 : DashboardV3;
 
   return (
     <div className="compare-frame">
-      {!compareMode ? (
-        <a className="compare-launch-link" href={buildHref("v3")}>
-          Compare dashboard versions
-        </a>
-      ) : null}
-
       {compareMode ? (
         <header className="compare-bar">
           <div className="compare-copy">

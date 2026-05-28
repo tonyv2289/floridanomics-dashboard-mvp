@@ -5,8 +5,8 @@ Florida Brain's public data surface for Florida economic, innovation, and trade 
 ## Current product state
 
 - `v3` is the current launch-default dashboard
-- `v2` and `v1` are preserved behind compare mode for fallback and review
-- Compare routes:
+- `v2` and `v1` are archived behind explicit compare mode for fallback and review
+- Archived compare routes:
   - `?compare=1&version=v3`
   - `?compare=1&version=v2`
   - `?compare=1&version=v1`
