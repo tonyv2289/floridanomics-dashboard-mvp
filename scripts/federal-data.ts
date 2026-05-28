@@ -105,12 +105,13 @@ function buildSources(): FederalSource[] {
       id: "census_bfs_api",
       agency: "U.S. Census Bureau",
       label: "Business Formation Statistics API",
-      tier: "federal_api",
+      tier: "federal_via_fred",
       url: FEDERAL_SOURCE_URLS.censusBfs,
-      apiUrl: "https://api.census.gov/data/timeseries/eits/bfs",
       envKey: "CENSUS_API_KEY",
-      status: hasCensusKey ? "live" : "needs_key",
-      note: "Direct source for business applications. Until the key is configured, the dashboard uses the same Census series via FRED.",
+      status: "fallback",
+      note: hasCensusKey
+        ? "Florida business applications remain on the Census BFS series via FRED while the state-level Census BFS API path is confirmed."
+        : "Florida business applications use the Census BFS series via FRED until a state-level Census API path is confirmed.",
     },
     {
       id: "census_state_exports_api",
@@ -157,41 +158,23 @@ function buildSources(): FederalSource[] {
   ];
 }
 
-function tableRecord(table: CensusTable): Record<string, string> | null {
-  const [headers, firstRow] = table;
-  if (!headers || !firstRow) {
-    return null;
+function tableRecords(table: CensusTable): Record<string, string>[] {
+  const [headers, ...rows] = table;
+  if (!headers) {
+    return [];
   }
 
-  return Object.fromEntries(headers.map((header, index) => [header, firstRow[index] ?? ""]));
+  return rows.map((row) => Object.fromEntries(headers.map((header, index) => [header, row[index] ?? ""])));
 }
 
 async function fetchCensusBusinessApplications(
   period: string,
 ): Promise<{ value: number; period: string; url: string } | null> {
-  const key = process.env.CENSUS_API_KEY?.trim();
-  if (!key) {
-    return null;
-  }
-
-  const url = new URL("https://api.census.gov/data/timeseries/eits/bfs");
-  url.searchParams.set("get", "NAME,BA_BA");
-  url.searchParams.set("for", "state:12");
-  url.searchParams.set("time", period);
-  url.searchParams.set("key", key);
-
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Census BFS request failed with HTTP ${response.status}`);
-  }
-
-  const record = tableRecord((await response.json()) as CensusTable);
-  const value = Number(record?.BA_BA);
-  if (!Number.isFinite(value)) {
-    throw new Error("Census BFS response did not include a numeric BA_BA value.");
-  }
-
-  return { value, period, url: FEDERAL_SOURCE_URLS.censusBfs };
+  void period;
+  // The public Census EITS BFS API exposes a national geography shape that does
+  // not match the Florida state BFS series used in FRED. Keep this honest until
+  // a state-level API endpoint or Census CSV ingest is confirmed.
+  return null;
 }
 
 async function fetchCensusStateExports(
@@ -203,10 +186,9 @@ async function fetchCensusStateExports(
   }
 
   const url = new URL("https://api.census.gov/data/timeseries/intltrade/exports/statehsexport");
-  url.searchParams.set("get", "STATE,ALL_VAL_YR");
-  url.searchParams.set("STATE", "12");
-  url.searchParams.set("YEAR", tradeYear);
-  url.searchParams.set("MONTH", "12");
+  url.searchParams.set("get", "US_STATE,ALL_VAL_YR,YEAR,MONTH");
+  url.searchParams.set("for", "world:1");
+  url.searchParams.set("time", `${tradeYear}-12`);
   url.searchParams.set("key", key);
 
   const response = await fetch(url);
@@ -214,13 +196,14 @@ async function fetchCensusStateExports(
     throw new Error(`Census state export request failed with HTTP ${response.status}`);
   }
 
-  const record = tableRecord((await response.json()) as CensusTable);
+  const records = tableRecords((await response.json()) as CensusTable);
+  const record = records.find((row) => row.US_STATE === "FL");
   const valueUsd = Number(record?.ALL_VAL_YR);
   if (!Number.isFinite(valueUsd)) {
-    throw new Error("Census state export response did not include a numeric ALL_VAL_YR value.");
+    throw new Error("Census state export response did not include a numeric Florida ALL_VAL_YR value.");
   }
 
-  return { valueUsd, period: tradeYear, url: FEDERAL_SOURCE_URLS.censusTrade };
+  return { valueUsd, period: `${record?.YEAR ?? tradeYear}-${record?.MONTH ?? "12"}`, url: FEDERAL_SOURCE_URLS.censusTrade };
 }
 
 function parseBeaNumber(value: string | undefined): number {
@@ -421,9 +404,15 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         status: censusBusinessApps ? "live" : "fallback",
         read: censusBusinessApps
           ? "Business formation is now coming straight from the Census BFS API."
-          : "Business formation is federal data, but this build still uses the Census BFS series through FRED until CENSUS_API_KEY is configured.",
+          : hasEnvKey("CENSUS_API_KEY")
+            ? "Business formation is federal Census BFS data, but Florida state values remain on the FRED bridge until a state-level Census BFS API path is confirmed."
+            : "Business formation is federal Census BFS data, but this build still uses the Census series through FRED until a state-level Census API path is confirmed.",
         sourceUrl: censusBusinessApps?.url ?? FEDERAL_SOURCE_URLS.censusBfs,
-        caveat: censusBusinessApps ? undefined : "Set CENSUS_API_KEY to replace the FRED bridge with direct Census API calls.",
+        caveat: censusBusinessApps
+          ? undefined
+          : hasEnvKey("CENSUS_API_KEY")
+            ? "Census key is installed; BFS remains a FRED bridge because the confirmed Census API path is national, not Florida state-level."
+            : "Configure CENSUS_API_KEY once a Florida state-level Census BFS API path is confirmed.",
       },
       refreshedAt,
     ),
@@ -511,15 +500,20 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
   return {
     headline: "Federal data spine",
     summary:
-      "BLS is already live. Census, BEA, EIA, and IRS are now represented as explicit feed contracts so the dashboard can separate live federal metrics from safe fallbacks and download-only official sources.",
+      "BLS, Census exports, and BEA are live when their keys are present. Census business applications, EIA, and IRS remain explicit feed contracts so the dashboard can separate live federal metrics from safe fallbacks and download-only official sources.",
     refreshedAt,
     sources,
     signals,
     missingKeys,
     nextFeeds: [
       ...(missingKeys.includes("CENSUS_API_KEY")
-        ? ["Add CENSUS_API_KEY to turn Business Formation Statistics and state export reconciliation into direct Census API calls."]
-        : ["Extend Census feeds from statewide exports into monthly commodity and partner-market detail."]),
+        ? [
+            "Add CENSUS_API_KEY to turn state export reconciliation into direct Census API calls; BFS remains on the FRED bridge until a state-level Census path is confirmed.",
+          ]
+        : [
+            "Extend Census exports from statewide totals into monthly commodity and partner-market detail.",
+            "Confirm a Census state-level BFS API path or replace the FRED bridge with an official Census CSV ingest.",
+          ]),
       ...(missingKeys.includes("BEA_API_KEY")
         ? ["Add BEA_API_KEY and replace the FRED bridge for real GSP with direct BEA Regional API pulls."]
         : ["Extend BEA Regional API coverage into personal income, GDP by industry, and metro/county output layers."]),
