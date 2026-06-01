@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-28T04:21:03.342Z",
+  "generatedAt": "2026-06-01T16:40:26.441Z",
   "asOfLaborMarket": "April 2026",
   "asOfPopulation": "2025",
   "sources": [
@@ -16962,7 +16962,7 @@
   "federal": {
     "headline": "Federal data spine",
     "summary": "BLS, Census exports, and BEA are live when their keys are present. Census business applications, EIA, and IRS remain explicit feed contracts so the dashboard can separate live federal metrics from safe fallbacks and download-only official sources.",
-    "refreshedAt": "2026-05-28T04:38:02.302Z",
+    "refreshedAt": "2026-06-01T16:40:26.441Z",
     "sources": [
       {
         "id": "bls_public_api",
@@ -17040,7 +17040,7 @@
         "status": "live",
         "read": "The labor-market cockpit is already on live BLS LAUS data.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-05-28T04:38:02.302Z"
+        "retrievedAt": "2026-06-01T16:40:26.441Z"
       },
       {
         "id": "bls-florida-nonfarm-payrolls",
@@ -17053,7 +17053,7 @@
         "status": "live",
         "read": "Payrolls are live from BLS CES, which is the right monthly benchmark for jobs by employer.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-05-28T04:38:02.302Z"
+        "retrievedAt": "2026-06-01T16:40:26.441Z"
       },
       {
         "id": "bls-peer-payroll-leader",
@@ -17066,7 +17066,7 @@
         "status": "live",
         "read": "The competitor tab already compares Florida against peers on the same federal labor-series footing.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-05-28T04:38:02.302Z"
+        "retrievedAt": "2026-06-01T16:40:26.441Z"
       },
       {
         "id": "census-business-applications",
@@ -17080,7 +17080,7 @@
         "read": "Business formation is federal Census BFS data, but Florida state values remain on the FRED bridge until a state-level Census BFS API path is confirmed.",
         "sourceUrl": "https://www.census.gov/econ/bfs/index.html",
         "caveat": "Census key is installed; BFS remains a FRED bridge because the confirmed Census API path is national, not Florida state-level.",
-        "retrievedAt": "2026-05-28T04:38:02.302Z"
+        "retrievedAt": "2026-06-01T16:40:26.441Z"
       },
       {
         "id": "census-florida-exports",
@@ -17093,7 +17093,7 @@
         "status": "live",
         "read": "The trade layer can now reconcile the SelectFlorida release against the Census state export API.",
         "sourceUrl": "https://api.census.gov/data/timeseries/intltrade/exports/statehsexport.html",
-        "retrievedAt": "2026-05-28T04:38:02.302Z"
+        "retrievedAt": "2026-06-01T16:40:26.441Z"
       },
       {
         "id": "bea-real-gsp",
@@ -17106,7 +17106,7 @@
         "status": "live",
         "read": "Real GSP is now coming straight from the BEA Regional API, table SAGDP9, line 1, Florida.",
         "sourceUrl": "https://www.bea.gov/data/gdp/gdp-state",
-        "retrievedAt": "2026-05-28T04:38:02.302Z"
+        "retrievedAt": "2026-06-01T16:40:26.441Z"
       },
       {
         "id": "eia-industrial-electricity-price",
@@ -17119,7 +17119,7 @@
         "status": "live",
         "read": "Power-cost monitoring is live, which matters for AI infrastructure, advanced manufacturing, and data-center competitiveness.",
         "sourceUrl": "https://www.eia.gov/opendata/documentation.php",
-        "retrievedAt": "2026-05-28T04:38:02.302Z"
+        "retrievedAt": "2026-06-01T16:40:26.441Z"
       },
       {
         "id": "irs-income-migration",
@@ -17133,7 +17133,7 @@
         "read": "IRS SOI is the right official layer for income migration, but it is a download pipeline rather than a clean JSON endpoint.",
         "sourceUrl": "https://www.irs.gov/statistics/soi-tax-stats-migration-data",
         "caveat": "Build a separate IRS SOI ingest job for county-to-county and state-to-state migration files.",
-        "retrievedAt": "2026-05-28T04:38:02.302Z"
+        "retrievedAt": "2026-06-01T16:40:26.441Z"
       }
     ],
     "missingKeys": [],
