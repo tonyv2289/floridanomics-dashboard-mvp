@@ -59,10 +59,10 @@ function PeerStateBenchmarks({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="Peer-state mode">
       <div className="v3-panel-head">
         <div>
-          <h2>Florida has to be read against the states eating at the same table.</h2>
+          <h2>Florida is best read against the states competing for the same capital and talent.</h2>
           <p>
-            This is the first live peer layer: BLS unemployment, labor force, and nonfarm payrolls across the states
-            Florida should benchmark against before making a victory-lap claim.
+            This is the live peer layer: BLS unemployment, labor force, and nonfarm payrolls across the states
+            Florida benchmarks against before drawing strong conclusions.
           </p>
         </div>
       </div>
@@ -124,7 +124,7 @@ function ClusterStrategy({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="Cluster strategy">
       <div className="v3-panel-head">
         <div>
-          <h2>Do not benchmark Florida as one blob. Benchmark the clusters that can change the wage curve.</h2>
+          <h2>Florida is not one economy. The more useful benchmark is the set of clusters that can move the wage curve.</h2>
           <p>
             Pennsylvania's useful lesson is structure: sectors, supply chains, workforce gaps, and emerging industries
             should sit in one operating view.

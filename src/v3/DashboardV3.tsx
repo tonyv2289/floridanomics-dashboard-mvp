@@ -86,9 +86,9 @@ function DashboardV3() {
     return (
       <main className="v3-root">
         <section className="v3-state">
-          <p className="v3-kicker">Floridanomics v3</p>
+          <p className="v3-kicker">Floridanomics</p>
           <h1>Loading the operating brief.</h1>
-          <p>Pulling the current Florida dataset into the new reading surface.</p>
+          <p>Pulling the current Florida dataset.</p>
         </section>
       </main>
     );
@@ -99,8 +99,8 @@ function DashboardV3() {
       <div className="v3-shell">
         <div className="v3-masthead">
           <div>
-            <p className="v3-kicker">Floridanomics v3 | first-principles rewrite</p>
-            <h1>Florida economic intelligence, rewritten as an operating brief.</h1>
+            <p className="v3-kicker">Floridanomics</p>
+            <h1>Florida economic intelligence, built as an operating brief.</h1>
           </div>
           <div className="v3-freshness">
             <span>Dataset</span>

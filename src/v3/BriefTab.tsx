@@ -28,7 +28,8 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
         <h1 className={clsx(`tone-${payrollTone}`)}>{formatSignedInteger(payrollChange)}</h1>
         <p className="v3-hero-line">
           Florida {payrollChange >= 0 ? "added" : "lost"} {Math.abs(payrollChange).toLocaleString()} nonfarm jobs in{" "}
-          {monthName}. The real question is whether hiring, formation, migration, and trade are still moving together.
+          {monthName}. One month is a single data point. The more durable signal is whether hiring, business
+          formation, migration, and trade are still moving in the same direction.
         </p>
         <div className="v3-hero-meta">
           <span>BLS CES / LAUS</span>
@@ -117,10 +118,10 @@ function FloridaBrainNotes({ dataset }: { dataset: DashboardDataset }) {
     <section className="v3-brain-notes" aria-label="Florida Brain notes">
       <div className="v3-brain-notes-head">
         <p className="v3-kicker">Florida Brain notes</p>
-        <h2>Turn the dashboard into publishable questions.</h2>
+        <h2>Where the data becomes published analysis.</h2>
         <p>
           These are the active editorial reads coming out of Floridanomics. Each note stays source-linked so the
-          narrative can move without losing the audit trail.
+          analysis keeps its audit trail as the narrative develops.
         </p>
       </div>
 
@@ -169,7 +170,7 @@ export function BriefTab({ dataset }: { dataset: DashboardDataset }) {
       <section className="v3-watch">
         <div>
           <p className="v3-kicker">What to watch</p>
-          <h2>The dashboard should leave you with a next question.</h2>
+          <h2>Three open questions that will shape the next read.</h2>
         </div>
         <ol>
           {watchItems.map((item) => (

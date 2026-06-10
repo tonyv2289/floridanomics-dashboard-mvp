@@ -229,7 +229,7 @@ export function MetricTable({
       <div className="v3-panel-head">
         <div>
           <h2>Five numbers, one labor-market read.</h2>
-          <p>The table is the control surface. Pick a row to move the chart.</p>
+          <p>Each row is selectable and drives the chart above.</p>
         </div>
       </div>
 
@@ -292,7 +292,7 @@ export function MetroTable({ dataset }: { dataset: DashboardDataset }) {
       <div className="v3-panel-head">
         <div>
           <h2>Florida is still a metro-by-metro economy.</h2>
-          <p>The statewide read is useful. Operators still need the local spread.</p>
+          <p>The statewide number is useful, but the local spread carries most of the story.</p>
         </div>
       </div>
 
@@ -338,7 +338,7 @@ export function SourceFooter({ dataset }: { dataset: DashboardDataset }) {
   return (
     <footer className="v3-sources">
       <p className="v3-kicker">Source stack</p>
-      <h2>Every public claim should have somewhere to land.</h2>
+      <h2>Every public claim here traces to a primary source.</h2>
       <div className="v3-source-grid">
         {dataset.sources.map((source) => (
           <a key={source.id} href={source.url} target="_blank" rel="noreferrer">

@@ -18,7 +18,7 @@ export function ScorecardTab({
       <ChartPanel
         metric={selectedMetric}
         title="Start with the live labor signal."
-        note="A good state dashboard should make the active metric obvious, then show the supporting evidence around it."
+        note="The chart holds the active metric; the scorecard and evidence below carry the supporting context."
       />
       <MetricTable dataset={dataset} selectedMetricId={selectedMetricId} onSelect={onSelectMetric} />
       <InsightBlock section={dataset.scorecard2030} />

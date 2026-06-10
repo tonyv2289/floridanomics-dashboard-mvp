@@ -60,10 +60,10 @@ function AiCapexIndex({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="AI capex gap">
       <div className="v3-panel-head">
         <div>
-          <h2>Turn the Texas anxiety into an index we can update.</h2>
+          <h2>The Texas comparison, scored as an index that can be updated.</h2>
           <p>
-            The point is not to dunk on Florida. It is to separate a solvable strategic-infrastructure gap from a
-            normal labor-market cycle.
+            The purpose of the index is to separate a solvable strategic-infrastructure gap from a normal
+            labor-market cycle.
           </p>
         </div>
       </div>
@@ -187,10 +187,10 @@ function ProjectLedger({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="Project ledger">
       <div className="v3-panel-head">
         <div>
-          <h2>Move from vibes to named assets.</h2>
+          <h2>From announcements to a named-asset ledger.</h2>
           <p>
-            A serious state terminal needs a capex ledger: what is announced, what is real, where it sits, and what
-            wage curve it should bend.
+            A serious state terminal needs a capex ledger: what is announced, what is real, where it sits, and which
+            wage curve it can bend.
           </p>
         </div>
       </div>
@@ -290,7 +290,7 @@ function ForecastBoard({ dataset }: { dataset: DashboardDataset }) {
 
 function PolicyMemoBoard({ dataset }: { dataset: DashboardDataset }) {
   return (
-    <Frame label="Policy alpha">
+    <Frame label="Policy memos">
       <div className="v3-policy-grid">
         {dataset.terminal.policyMemos.map((memo) => (
           <article key={memo.id} className="v3-policy-card">

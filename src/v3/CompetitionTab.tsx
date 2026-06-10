@@ -489,10 +489,10 @@ function CompetitionNextMoves({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="Build queue">
       <div className="v3-next-moves">
         <div>
-          <h2>The next layer is a live war room.</h2>
+          <h2>The next layer is a live competitor ledger.</h2>
           <p>
-            This tab now turns the SelectFlorida archive into a product surface. The next build should replace static
-            archive reads with refreshed primary-source feeds and a deal-by-deal competitor ledger.
+            This view draws on the SelectFlorida archive. The next build replaces static archive reads with
+            refreshed primary-source feeds and a deal-by-deal competitor ledger.
           </p>
         </div>
         <ol>
