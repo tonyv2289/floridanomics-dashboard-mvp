@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T16:40:26.441Z",
+  "generatedAt": "2026-06-10T02:23:52.604Z",
   "asOfLaborMarket": "April 2026",
   "asOfPopulation": "2025",
   "sources": [
@@ -6090,34 +6090,30 @@
       "name": "Miami MSA",
       "unemploymentRate": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 3.7
+          "date": "2026-04-01",
+          "value": 3.9
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": 0.7000000000000002,
-            "percent": 23.33333333333334
+            "baseDate": "2025-04-01",
+            "absolute": 1,
+            "percent": 34.48275862068966
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 1.3000000000000003,
-            "percent": 54.166666666666686
+            "baseDate": "2023-04-01",
+            "absolute": 1.6999999999999997,
+            "percent": 77.27272727272727
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": -2.3999999999999995,
-            "percent": -39.34426229508196
+            "baseDate": "2021-04-01",
+            "absolute": -1.8000000000000003,
+            "percent": -31.578947368421055
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 2.7
-          },
           {
             "date": "2024-04-01",
             "value": 2.6
@@ -6209,39 +6205,39 @@
           {
             "date": "2026-03-01",
             "value": 3.7
+          },
+          {
+            "date": "2026-04-01",
+            "value": 3.9
           }
         ]
       },
       "laborForce": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 3295127
+          "date": "2026-04-01",
+          "value": 3290897
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": 15841,
-            "percent": 0.4830624715258139
+            "baseDate": "2025-04-01",
+            "absolute": 473,
+            "percent": 0.014375047106391151
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 34990,
-            "percent": 1.0732677798509695
+            "baseDate": "2023-04-01",
+            "absolute": 33271,
+            "percent": 1.021326573400384
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 275776,
-            "percent": 9.133618449792687
+            "baseDate": "2021-04-01",
+            "absolute": 247125,
+            "percent": 8.11903782543502
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 3296634
-          },
           {
             "date": "2024-04-01",
             "value": 3295312
@@ -6332,40 +6328,40 @@
           },
           {
             "date": "2026-03-01",
-            "value": 3295127
+            "value": 3294799
+          },
+          {
+            "date": "2026-04-01",
+            "value": 3290897
           }
         ]
       },
       "employmentLevel": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 3172925
+          "date": "2026-04-01",
+          "value": 3164096
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": -6894,
-            "percent": -0.21680479297721034
+            "baseDate": "2025-04-01",
+            "absolute": -30138,
+            "percent": -0.9435125917512619
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": -10191,
-            "percent": -0.32015798356076247
+            "baseDate": "2023-04-01",
+            "absolute": -23254,
+            "percent": -0.7295715876825576
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 336748,
-            "percent": 11.873306919843154
+            "baseDate": "2021-04-01",
+            "absolute": 294046,
+            "percent": 10.245326736468007
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 3208503
-          },
           {
             "date": "2024-04-01",
             "value": 3210966
@@ -6456,7 +6452,11 @@
           },
           {
             "date": "2026-03-01",
-            "value": 3172925
+            "value": 3172660
+          },
+          {
+            "date": "2026-04-01",
+            "value": 3164096
           }
         ]
       }
@@ -6466,34 +6466,30 @@
       "name": "Tampa MSA",
       "unemploymentRate": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 4.5
+          "date": "2026-04-01",
+          "value": 4.7
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": 1,
-            "percent": 28.57142857142857
+            "baseDate": "2025-04-01",
+            "absolute": 1.3000000000000003,
+            "percent": 38.235294117647065
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 1.7999999999999998,
-            "percent": 66.66666666666666
+            "baseDate": "2023-04-01",
+            "absolute": 2.3000000000000003,
+            "percent": 95.83333333333334
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": -0.20000000000000018,
-            "percent": -4.255319148936174
+            "baseDate": "2021-04-01",
+            "absolute": 0.20000000000000018,
+            "percent": 4.444444444444448
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 3.1
-          },
           {
             "date": "2024-04-01",
             "value": 2.9
@@ -6585,39 +6581,39 @@
           {
             "date": "2026-03-01",
             "value": 4.5
+          },
+          {
+            "date": "2026-04-01",
+            "value": 4.7
           }
         ]
       },
       "laborForce": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 1692826
+          "date": "2026-04-01",
+          "value": 1697350
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": -4230,
-            "percent": -0.24925518073652253
+            "baseDate": "2025-04-01",
+            "absolute": 1596,
+            "percent": 0.09411742505103925
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 16254,
-            "percent": 0.9694781971785286
+            "baseDate": "2023-04-01",
+            "absolute": 17509,
+            "percent": 1.0423010272996076
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 135633,
-            "percent": 8.710095665726728
+            "baseDate": "2021-04-01",
+            "absolute": 141123,
+            "percent": 9.06827859945882
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 1694721
-          },
           {
             "date": "2024-04-01",
             "value": 1692705
@@ -6708,40 +6704,40 @@
           },
           {
             "date": "2026-03-01",
-            "value": 1692826
+            "value": 1692962
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1697350
           }
         ]
       },
       "employmentLevel": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 1616360
+          "date": "2026-04-01",
+          "value": 1618289
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": -21834,
-            "percent": -1.3328091788884588
+            "baseDate": "2025-04-01",
+            "absolute": -20115,
+            "percent": -1.2277191706074937
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": -15468,
-            "percent": -0.9478940182421186
+            "baseDate": "2023-04-01",
+            "absolute": -20784,
+            "percent": -1.2680338215564528
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 132422,
-            "percent": 8.923688186433665
+            "baseDate": "2021-04-01",
+            "absolute": 132780,
+            "percent": 8.938350423996084
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 1642219
-          },
           {
             "date": "2024-04-01",
             "value": 1643019
@@ -6832,7 +6828,11 @@
           },
           {
             "date": "2026-03-01",
-            "value": 1616360
+            "value": 1616510
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1618289
           }
         ]
       }
@@ -6842,34 +6842,30 @@
       "name": "Orlando MSA",
       "unemploymentRate": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 4.4
+          "date": "2026-04-01",
+          "value": 4.5
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": 1.0000000000000004,
-            "percent": 29.411764705882366
+            "baseDate": "2025-04-01",
+            "absolute": 1.2000000000000002,
+            "percent": 36.36363636363637
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 1.8000000000000003,
-            "percent": 69.23076923076924
+            "baseDate": "2023-04-01",
+            "absolute": 2.1,
+            "percent": 87.50000000000001
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": -1.1999999999999993,
-            "percent": -21.428571428571416
+            "baseDate": "2021-04-01",
+            "absolute": -1,
+            "percent": -18.181818181818183
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 3
-          },
           {
             "date": "2024-04-01",
             "value": 2.9
@@ -6961,39 +6957,39 @@
           {
             "date": "2026-03-01",
             "value": 4.4
+          },
+          {
+            "date": "2026-04-01",
+            "value": 4.5
           }
         ]
       },
       "laborForce": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 1526989
+          "date": "2026-04-01",
+          "value": 1531539
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": 11642,
-            "percent": 0.7682728774333536
+            "baseDate": "2025-04-01",
+            "absolute": 14282,
+            "percent": 0.9413039452116551
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 30950,
-            "percent": 2.0687963348549068
+            "baseDate": "2023-04-01",
+            "absolute": 31931,
+            "percent": 2.1292897877311936
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 201954,
-            "percent": 15.241408717505575
+            "baseDate": "2021-04-01",
+            "absolute": 196229,
+            "percent": 14.69538908568048
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 1519652
-          },
           {
             "date": "2024-04-01",
             "value": 1519118
@@ -7084,40 +7080,40 @@
           },
           {
             "date": "2026-03-01",
-            "value": 1526989
+            "value": 1525247
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1531539
           }
         ]
       },
       "employmentLevel": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 1460063
+          "date": "2026-04-01",
+          "value": 1462419
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": -3137,
-            "percent": -0.21439311098961183
+            "baseDate": "2025-04-01",
+            "absolute": -4512,
+            "percent": -0.3075809291643574
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 3535,
-            "percent": 0.242700449287621
+            "baseDate": "2023-04-01",
+            "absolute": -819,
+            "percent": -0.05597175579092397
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 209354,
-            "percent": 16.73882573804138
+            "baseDate": "2021-04-01",
+            "absolute": 199894,
+            "percent": 15.832874596542643
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 1473531
-          },
           {
             "date": "2024-04-01",
             "value": 1475716
@@ -7208,7 +7204,11 @@
           },
           {
             "date": "2026-03-01",
-            "value": 1460063
+            "value": 1458352
+          },
+          {
+            "date": "2026-04-01",
+            "value": 1462419
           }
         ]
       }
@@ -7218,34 +7218,30 @@
       "name": "Jacksonville MSA",
       "unemploymentRate": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 4.7
+          "date": "2026-04-01",
+          "value": 4.8
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": 1.1,
-            "percent": 30.555555555555557
+            "baseDate": "2025-04-01",
+            "absolute": 1.2999999999999998,
+            "percent": 37.14285714285714
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 1.9000000000000004,
-            "percent": 67.85714285714288
+            "baseDate": "2023-04-01",
+            "absolute": 2.3,
+            "percent": 92
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 0.20000000000000018,
-            "percent": 4.444444444444448
+            "baseDate": "2021-04-01",
+            "absolute": 0.5,
+            "percent": 11.627906976744185
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 3.2
-          },
           {
             "date": "2024-04-01",
             "value": 3
@@ -7337,39 +7333,39 @@
           {
             "date": "2026-03-01",
             "value": 4.7
+          },
+          {
+            "date": "2026-04-01",
+            "value": 4.8
           }
         ]
       },
       "laborForce": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 841002
+          "date": "2026-04-01",
+          "value": 841759
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": -4875,
-            "percent": -0.5763249266737362
+            "baseDate": "2025-04-01",
+            "absolute": -2518,
+            "percent": -0.29824334904302735
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": 3126,
-            "percent": 0.37308623233032095
+            "baseDate": "2023-04-01",
+            "absolute": 3397,
+            "percent": 0.4051948919440528
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 55638,
-            "percent": 7.084358335752594
+            "baseDate": "2021-04-01",
+            "absolute": 56356,
+            "percent": 7.175424590942485
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 847572
-          },
           {
             "date": "2024-04-01",
             "value": 847907
@@ -7460,40 +7456,40 @@
           },
           {
             "date": "2026-03-01",
-            "value": 841002
+            "value": 840994
+          },
+          {
+            "date": "2026-04-01",
+            "value": 841759
           }
         ]
       },
       "employmentLevel": {
         "latest": {
-          "date": "2026-03-01",
-          "value": 801647
+          "date": "2026-04-01",
+          "value": 801075
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-03-01",
-            "absolute": -14117,
-            "percent": -1.7305250047807943
+            "baseDate": "2025-04-01",
+            "absolute": -14037,
+            "percent": -1.722094632394076
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-03-01",
-            "absolute": -12907,
-            "percent": -1.5845481085354682
+            "baseDate": "2023-04-01",
+            "absolute": -16116,
+            "percent": -1.9721215725577008
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-03-01",
-            "absolute": 51647,
-            "percent": 6.886266666666667
+            "baseDate": "2021-04-01",
+            "absolute": 49144,
+            "percent": 6.535706068774926
           }
         },
         "sparkline": [
-          {
-            "date": "2024-03-01",
-            "value": 820635
-          },
           {
             "date": "2024-04-01",
             "value": 822710
@@ -7584,7 +7580,11 @@
           },
           {
             "date": "2026-03-01",
-            "value": 801647
+            "value": 801662
+          },
+          {
+            "date": "2026-04-01",
+            "value": 801075
           }
         ]
       }
@@ -16962,7 +16962,7 @@
   "federal": {
     "headline": "Federal data spine",
     "summary": "BLS, Census exports, and BEA are live when their keys are present. Census business applications, EIA, and IRS remain explicit feed contracts so the dashboard can separate live federal metrics from safe fallbacks and download-only official sources.",
-    "refreshedAt": "2026-06-01T16:40:26.441Z",
+    "refreshedAt": "2026-06-10T02:23:52.604Z",
     "sources": [
       {
         "id": "bls_public_api",
@@ -17040,7 +17040,7 @@
         "status": "live",
         "read": "The labor-market cockpit is already on live BLS LAUS data.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-06-01T16:40:26.441Z"
+        "retrievedAt": "2026-06-10T02:23:52.604Z"
       },
       {
         "id": "bls-florida-nonfarm-payrolls",
@@ -17053,7 +17053,7 @@
         "status": "live",
         "read": "Payrolls are live from BLS CES, which is the right monthly benchmark for jobs by employer.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-06-01T16:40:26.441Z"
+        "retrievedAt": "2026-06-10T02:23:52.604Z"
       },
       {
         "id": "bls-peer-payroll-leader",
@@ -17066,7 +17066,7 @@
         "status": "live",
         "read": "The competitor tab already compares Florida against peers on the same federal labor-series footing.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-06-01T16:40:26.441Z"
+        "retrievedAt": "2026-06-10T02:23:52.604Z"
       },
       {
         "id": "census-business-applications",
@@ -17080,12 +17080,12 @@
         "read": "Business formation is federal Census BFS data, but Florida state values remain on the FRED bridge until a state-level Census BFS API path is confirmed.",
         "sourceUrl": "https://www.census.gov/econ/bfs/index.html",
         "caveat": "Census key is installed; BFS remains a FRED bridge because the confirmed Census API path is national, not Florida state-level.",
-        "retrievedAt": "2026-06-01T16:40:26.441Z"
+        "retrievedAt": "2026-06-10T02:23:52.604Z"
       },
       {
         "id": "census-florida-exports",
         "label": "Florida exports",
-        "value": "$78.9B",
+        "value": "$79.1B",
         "unit": "current dollars",
         "geography": "Florida",
         "period": "2025-12",
@@ -17093,7 +17093,7 @@
         "status": "live",
         "read": "The trade layer can now reconcile the SelectFlorida release against the Census state export API.",
         "sourceUrl": "https://api.census.gov/data/timeseries/intltrade/exports/statehsexport.html",
-        "retrievedAt": "2026-06-01T16:40:26.441Z"
+        "retrievedAt": "2026-06-10T02:23:52.604Z"
       },
       {
         "id": "bea-real-gsp",
@@ -17106,7 +17106,7 @@
         "status": "live",
         "read": "Real GSP is now coming straight from the BEA Regional API, table SAGDP9, line 1, Florida.",
         "sourceUrl": "https://www.bea.gov/data/gdp/gdp-state",
-        "retrievedAt": "2026-06-01T16:40:26.441Z"
+        "retrievedAt": "2026-06-10T02:23:52.604Z"
       },
       {
         "id": "eia-industrial-electricity-price",
@@ -17119,7 +17119,7 @@
         "status": "live",
         "read": "Power-cost monitoring is live, which matters for AI infrastructure, advanced manufacturing, and data-center competitiveness.",
         "sourceUrl": "https://www.eia.gov/opendata/documentation.php",
-        "retrievedAt": "2026-06-01T16:40:26.441Z"
+        "retrievedAt": "2026-06-10T02:23:52.604Z"
       },
       {
         "id": "irs-income-migration",
@@ -17133,7 +17133,7 @@
         "read": "IRS SOI is the right official layer for income migration, but it is a download pipeline rather than a clean JSON endpoint.",
         "sourceUrl": "https://www.irs.gov/statistics/soi-tax-stats-migration-data",
         "caveat": "Build a separate IRS SOI ingest job for county-to-county and state-to-state migration files.",
-        "retrievedAt": "2026-06-01T16:40:26.441Z"
+        "retrievedAt": "2026-06-10T02:23:52.604Z"
       }
     ],
     "missingKeys": [],
