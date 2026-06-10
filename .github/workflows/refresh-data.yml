@@ -2,7 +2,12 @@ name: Refresh Data
 
 on:
   schedule:
+    # 1st of month: baseline refresh (population, FRED revisions)
     - cron: "0 11 1 * *"
+    # 22nd of month: catch the mid-month BLS state employment release
+    # (BLS publishes prior-month state data ~3rd week, so this picks it
+    # up ~1 week after release instead of waiting for the next 1st)
+    - cron: "0 11 22 * *"
   workflow_dispatch:
 
 permissions:
