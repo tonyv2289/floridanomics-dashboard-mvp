@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import {
   daysSince,
@@ -11,8 +12,36 @@ import { firstSentence, formatSignedInteger, getMonthlyPayrollChange, resolveHre
 import { EvidenceGrid } from "./primitives";
 import type { DashboardDataset } from "../types/dashboard";
 
+function useCountUp(target: number, durationMs = 900): number {
+  const [value, setValue] = useState(target);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let frame = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const progress = reduceMotion ? 1 : Math.min((now - start) / durationMs, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(target * eased));
+      if (progress < 1) {
+        frame = requestAnimationFrame(tick);
+      }
+    };
+    frame = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(frame);
+  }, [target, durationMs]);
+
+  return value;
+}
+
 function ReadHero({ dataset }: { dataset: DashboardDataset }) {
   const payrollChange = getMonthlyPayrollChange(dataset);
+  const animatedChange = useCountUp(payrollChange);
   const payrollTone = payrollChange >= 0 ? "good" : "warn";
   const latestPayrollDate = dataset.metrics.nonfarmPayrolls.latest.date;
   const monthName = formatDateLabel(latestPayrollDate, { month: "long", year: "numeric" });
@@ -25,7 +54,7 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
     <header className="v3-hero">
       <div className="v3-hero-main">
         <p className="v3-kicker">Florida Today | {dataset.asOfLaborMarket}</p>
-        <h1 className={clsx(`tone-${payrollTone}`)}>{formatSignedInteger(payrollChange)}</h1>
+        <h1 className={clsx(`tone-${payrollTone}`)}>{formatSignedInteger(animatedChange)}</h1>
         <p className="v3-hero-line">
           Florida {payrollChange >= 0 ? "added" : "lost"} {Math.abs(payrollChange).toLocaleString()} nonfarm jobs in{" "}
           {monthName}. One month is a single data point. The more durable signal is whether hiring, business

@@ -84,6 +84,49 @@
   text-transform: uppercase;
 }
 
+.v3-brand {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.v3-brand-bars {
+  flex: none;
+}
+
+.v3-brand-bars rect {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: v3-bar-grow 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+@keyframes v3-bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.v3-wordmark {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  color: var(--v3-text);
+}
+
+.v3-wordmark span {
+  font-weight: 700;
+  color: var(--v3-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v3-brand-bars rect {
+    animation: none;
+  }
+}
+
 .v3-freshness {
   display: grid;
   gap: 6px;

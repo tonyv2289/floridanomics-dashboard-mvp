@@ -10,6 +10,7 @@ import { trackDashboardView } from "../lib/analytics";
 import { type CompetitionViewId, type V3TabId } from "./constants";
 import { isCompetitionViewId, isV3TabId, readSearchParam } from "./url";
 import { SourceFooter, TabNav } from "./primitives";
+import { BrandMark } from "./BrandMark";
 import { BriefTab } from "./BriefTab";
 import { CompetitionTab } from "./CompetitionTab";
 import { TerminalTab } from "./TerminalTab";
@@ -99,7 +100,12 @@ function DashboardV3() {
       <div className="v3-shell">
         <div className="v3-masthead">
           <div>
-            <p className="v3-kicker">Floridanomics</p>
+            <div className="v3-brand">
+              <BrandMark metric={data.metrics.nonfarmPayrolls} />
+              <p className="v3-wordmark">
+                FLORIDA<span>NOMICS</span>
+              </p>
+            </div>
             <h1>Florida economic intelligence, built as an operating brief.</h1>
           </div>
           <div className="v3-freshness">
