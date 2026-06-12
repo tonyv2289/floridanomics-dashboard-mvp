@@ -124,6 +124,9 @@ function DashboardV3() {
             <span>Dataset</span>
             <strong>{formatDateLabel(data.generatedAt)}</strong>
             <small>Labor: {data.asOfLaborMarket} | Population: {data.asOfPopulation}</small>
+            <a className="v3-briefing-link" href="?view=briefing">
+              Download the briefing
+            </a>
           </div>
         </div>
 

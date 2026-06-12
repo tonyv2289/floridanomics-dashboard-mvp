@@ -1,30 +1,8 @@
 import clsx from "clsx";
 import { formatDateLabel } from "../lib/dashboard";
 import { Frame } from "./primitives";
-import type { LeadingSignal, LeadingSignalChange } from "../types/dashboard";
-
-function formatSignalValue(signal: LeadingSignal): string {
-  if (signal.unit === "index") {
-    return signal.latest.value.toFixed(1);
-  }
-  return Math.round(signal.latest.value).toLocaleString();
-}
-
-function formatChange(change: LeadingSignalChange): string {
-  if (change.percent === null) {
-    return `${change.absolute >= 0 ? "+" : "-"}${Math.abs(Math.round(change.absolute)).toLocaleString()} ${change.label}`;
-  }
-  const sign = change.percent >= 0 ? "+" : "-";
-  return `${sign}${Math.abs(change.percent).toFixed(1)}% ${change.label}`;
-}
-
-function changeTone(signal: LeadingSignal, change: LeadingSignalChange): "good" | "warn" | "flat" {
-  if (Math.abs(change.percent ?? change.absolute) < 1e-9) {
-    return "flat";
-  }
-  const improved = (change.absolute > 0) === (signal.trendDirection === "up_good");
-  return improved ? "good" : "warn";
-}
+import { changeTone, formatChange, formatSignalValue } from "./signal-format";
+import type { LeadingSignal } from "../types/dashboard";
 
 function Sparkline({ signal }: { signal: LeadingSignal }) {
   const points = signal.series.slice(-40);

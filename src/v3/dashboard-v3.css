@@ -127,6 +127,23 @@
   }
 }
 
+.v3-briefing-link {
+  margin-top: 6px;
+  justify-self: start;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--v3-sun);
+  text-decoration: none;
+  border: 1px solid rgba(255, 143, 63, 0.45);
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+
+.v3-briefing-link:hover {
+  background: rgba(255, 143, 63, 0.12);
+}
+
 .v3-signal-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

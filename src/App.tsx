@@ -4,6 +4,14 @@ import { initAnalytics, trackOutboundLink } from "./lib/analytics";
 import "./app-frame.css";
 
 const DashboardV3 = lazy(() => import("./v3/DashboardV3"));
+const Briefing = lazy(() => import("./briefing/Briefing"));
+
+function isBriefingView(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
+  return new URLSearchParams(window.location.search).get("view") === "briefing";
+}
 
 function App() {
   useEffect(() => {
@@ -32,7 +40,7 @@ function App() {
           </main>
         }
       >
-        <DashboardV3 />
+        {isBriefingView() ? <Briefing /> : <DashboardV3 />}
       </Suspense>
     </div>
   );
