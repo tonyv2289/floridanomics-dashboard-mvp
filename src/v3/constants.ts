@@ -1,8 +1,9 @@
-export type V3TabId = "brief" | "competition" | "terminal" | "scorecard" | "innovation" | "trade";
+export type V3TabId = "brief" | "lens" | "competition" | "terminal" | "scorecard" | "innovation" | "trade";
 export type CompetitionViewId = "metro" | "international" | "strategy" | "fdi";
 
 export const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
   { id: "brief", label: "Brief", line: "what matters now" },
+  { id: "lens", label: "Lenses", line: "reads by industry" },
   { id: "competition", label: "Competition", line: "metros, strategy, FDI" },
   { id: "terminal", label: "Terminal", line: "forecasts and policy positions" },
   { id: "scorecard", label: "Scorecard", line: "labor, metros, 2030" },

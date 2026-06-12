@@ -12,6 +12,8 @@ import { isCompetitionViewId, isV3TabId, readSearchParam } from "./url";
 import { SourceFooter, TabNav } from "./primitives";
 import { BrandMark } from "./BrandMark";
 import { BriefTab } from "./BriefTab";
+import { LensTab } from "./LensTab";
+import { isLensId, type LensId } from "./lenses";
 import { CompetitionTab } from "./CompetitionTab";
 import { TerminalTab } from "./TerminalTab";
 import { ScorecardTab } from "./ScorecardTab";
@@ -39,6 +41,10 @@ function DashboardV3() {
 
     return isCompetitionViewId(viewParam) ? viewParam : "metro";
   });
+  const [activeLens, setActiveLens] = useState<LensId>(() => {
+    const param = readSearchParam("lens");
+    return isLensId(param) ? param : "logistics";
+  });
   const [selectedMetricId, setSelectedMetricId] = useState<CoreMetricId>(() => {
     const param = readSearchParam("metric");
     return isCoreMetricId(param) ? param : "nonfarmPayrolls";
@@ -60,16 +66,22 @@ function DashboardV3() {
     } else {
       params.delete("competitionView");
     }
+    if (activeTab === "lens") {
+      params.set("lens", activeLens);
+    } else {
+      params.delete("lens");
+    }
     params.set("metric", selectedMetricId);
     params.set("innovationMetric", selectedInnovationMetricId);
     window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
     trackDashboardView({
       tab: activeTab,
       competitionView: activeTab === "competition" ? activeCompetitionView : undefined,
+      lens: activeTab === "lens" ? activeLens : undefined,
       metric: selectedMetricId,
       innovationMetric: selectedInnovationMetricId,
     });
-  }, [activeCompetitionView, activeTab, data, selectedInnovationMetricId, selectedMetricId]);
+  }, [activeCompetitionView, activeLens, activeTab, data, selectedInnovationMetricId, selectedMetricId]);
 
   if (status === "error") {
     return (
@@ -118,6 +130,9 @@ function DashboardV3() {
         <TabNav activeTab={activeTab} onChange={setActiveTab} />
 
         {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
+        {activeTab === "lens" ? (
+          <LensTab dataset={data} activeLens={activeLens} onSelectLens={setActiveLens} />
+        ) : null}
         {activeTab === "competition" ? (
           <CompetitionTab
             dataset={data}
