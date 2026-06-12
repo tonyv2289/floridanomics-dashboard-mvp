@@ -14,6 +14,7 @@ import {
   stateLausSeriesId,
 } from "./lib/series";
 import { fetchBlsSeries, fetchFredSeries } from "./lib/sources";
+import { buildLeadingSection } from "./lib/leading";
 import type {
   DashboardDataset,
   IndustrySector,
@@ -1611,6 +1612,7 @@ async function main() {
 
   const refreshedAt = new Date().toISOString();
   const preservedSections = getPreservedSections(existingDataset);
+  const leading = await buildLeadingSection();
   const federal = await buildFederalDataLayer({
     refreshedAt,
     metrics,
@@ -1689,6 +1691,7 @@ async function main() {
     scorecard2030: preservedSections.scorecard2030,
     distinctives: preservedSections.distinctives,
     trade: preservedSections.trade,
+    leading,
   };
 
   if (existingDataset && JSON.stringify(normalizeForComparison(existingDataset)) === JSON.stringify(normalizeForComparison(dataset))) {

@@ -108,3 +108,38 @@ export async function fetchFredSeries(
     .filter((point): point is TimePoint => Boolean(point))
     .sort((a, b) => a.date.localeCompare(b.date));
 }
+
+const INDEED_STATE_POSTINGS_URL =
+  "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/US/state_job_postings_us.csv";
+
+export async function fetchIndeedStatePostings(stateCode: string): Promise<TimePoint[]> {
+  const csv = await withRetry(async () => {
+    const response = await fetch(INDEED_STATE_POSTINGS_URL);
+    if (!response.ok) {
+      throw new Error(`Indeed postings request failed with HTTP ${response.status}`);
+    }
+    return response.text();
+  });
+
+  const target = stateCode.toLowerCase();
+
+  return csv
+    .trim()
+    .split("\n")
+    .slice(1)
+    .map((line) => {
+      const [date, state, rawValue] = line.split(",");
+      if (!date || state?.toLowerCase() !== target || !rawValue) {
+        return null;
+      }
+
+      const value = Number.parseFloat(rawValue);
+      if (!Number.isFinite(value)) {
+        return null;
+      }
+
+      return { date, value };
+    })
+    .filter((point): point is TimePoint => Boolean(point))
+    .sort((a, b) => a.date.localeCompare(b.date));
+}

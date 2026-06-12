@@ -127,6 +127,74 @@
   }
 }
 
+.v3-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.v3-signal-card {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--v3-line);
+  border-radius: 12px;
+  background: var(--v3-panel);
+}
+
+.v3-signal-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.v3-signal-head span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--v3-text);
+}
+
+.v3-signal-head small {
+  font-size: 0.7rem;
+  color: var(--v3-muted);
+}
+
+.v3-signal-reading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.v3-signal-reading strong {
+  font-family: "Sora", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.v3-signal-spark {
+  flex: none;
+  opacity: 0.85;
+}
+
+.v3-signal-changes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.v3-signal-changes small {
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.v3-signal-card > p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--v3-muted);
+}
+
 .v3-change-list {
   margin: 0;
   padding: 0;

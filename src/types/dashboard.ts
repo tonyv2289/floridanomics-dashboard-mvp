@@ -62,6 +62,34 @@ export type MetroSnapshot = {
   employmentLevel: Pick<Metric, "latest" | "deltas" | "sparkline">;
 };
 
+export type LeadingSignalChange = {
+  label: string;
+  absolute: number;
+  percent: number | null;
+};
+
+export type LeadingSignal = {
+  id: string;
+  label: string;
+  cadence: "daily" | "weekly" | "monthly";
+  unit: "index" | "claims" | "units";
+  trendDirection: "up_good" | "down_good";
+  latest: TimePoint;
+  changes: {
+    recent: LeadingSignalChange | null;
+    yearOver: LeadingSignalChange | null;
+  };
+  leads: string;
+  source: { label: string; url: string };
+  series: TimePoint[];
+};
+
+export type LeadingSection = {
+  headline: string;
+  summary: string;
+  signals: LeadingSignal[];
+};
+
 export type InnovationMetricId =
   | "informationEmployment"
   | "professionalBusinessEmployment"
@@ -586,4 +614,5 @@ export type DashboardDataset = {
     latamGateway: InsightSection;
   };
   trade: TradeSection;
+  leading?: LeadingSection;
 };
