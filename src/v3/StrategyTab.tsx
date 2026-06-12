@@ -102,6 +102,58 @@ function PeerStateBenchmarks({ dataset }: { dataset: DashboardDataset }) {
   );
 }
 
+function CostBenchmarks({ dataset }: { dataset: DashboardDataset }) {
+  const benchmarks = dataset.benchmarks;
+  if (!benchmarks) {
+    return null;
+  }
+
+  const powerByState = new Map((benchmarks.power?.rows ?? []).map((row) => [row.stateId, row]));
+  const hasPower = benchmarks.power !== null && powerByState.size > 0;
+
+  return (
+    <Frame label="Cost benchmarks">
+      <div className="v3-panel-head">
+        <div>
+          <h2>{benchmarks.headline}</h2>
+          <p>{benchmarks.summary}</p>
+        </div>
+      </div>
+
+      <div className={clsx("v3-cost-table", !hasPower && "no-power")}>
+        <div className="v3-cost-row v3-cost-head">
+          <span>State</span>
+          <span>Avg weekly wage ({benchmarks.wages.period})</span>
+          <span>Wage growth YoY</span>
+          {hasPower ? <span>Industrial power</span> : null}
+        </div>
+        {benchmarks.wages.rows.map((row) => {
+          const power = powerByState.get(row.stateId);
+          return (
+            <div key={row.stateId} className={clsx("v3-cost-row", row.stateId === "FL" && "is-florida")}>
+              <span>{row.name}</span>
+              <strong>${row.avgWeeklyWage.toLocaleString()}/wk</strong>
+              <small>
+                {row.yoyPercent === null
+                  ? "n/a"
+                  : `${row.yoyPercent >= 0 ? "+" : ""}${row.yoyPercent.toFixed(1)}%`}
+              </small>
+              {hasPower ? <small>{power ? `${power.industrialCentsPerKwh.toFixed(1)} cents/kWh` : "n/a"}</small> : null}
+            </div>
+          );
+        })}
+      </div>
+
+      {!hasPower ? (
+        <p className="v3-note">Industrial power rates activate with the next scheduled data refresh.</p>
+      ) : null}
+      <SourceList
+        sources={[benchmarks.wages.source, ...(benchmarks.power ? [benchmarks.power.source] : [])]}
+      />
+    </Frame>
+  );
+}
+
 function BenchmarkModels({ dataset }: { dataset: DashboardDataset }) {
   return (
     <Frame label="Models to steal from">
@@ -224,6 +276,7 @@ export function StrategyTab({ dataset }: { dataset: DashboardDataset }) {
     <>
       <StrategyHero dataset={dataset} />
       <PeerStateBenchmarks dataset={dataset} />
+      <CostBenchmarks dataset={dataset} />
       <ClusterStrategy dataset={dataset} />
       <div className="v3-two-up">
         <InsightBlock section={dataset.strategy.talentPipeline} />

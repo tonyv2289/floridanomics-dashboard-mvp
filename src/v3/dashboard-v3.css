@@ -127,6 +127,70 @@
   }
 }
 
+.v3-cost-table {
+  display: grid;
+  gap: 6px;
+}
+
+.v3-cost-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1.2fr 0.8fr 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 14px;
+  border: 1px solid var(--v3-line);
+  border-radius: 10px;
+  background: var(--v3-panel);
+}
+
+.v3-cost-table.no-power .v3-cost-row {
+  grid-template-columns: 1.4fr 1.2fr 1fr;
+}
+
+.v3-cost-head {
+  background: transparent;
+  border-color: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.v3-cost-head span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v3-muted);
+}
+
+.v3-cost-row > span {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.v3-cost-row strong {
+  font-family: "Sora", sans-serif;
+  font-size: 0.95rem;
+}
+
+.v3-cost-row small {
+  font-size: 0.78rem;
+  color: var(--v3-muted);
+}
+
+.v3-cost-row.is-florida {
+  border-color: rgba(255, 143, 63, 0.55);
+}
+
+.v3-cost-row.is-florida > span {
+  color: var(--v3-sun);
+}
+
+@media (max-width: 720px) {
+  .v3-cost-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .v3-briefing-link {
   margin-top: 6px;
   justify-self: start;

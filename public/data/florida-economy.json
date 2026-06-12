@@ -19623,5 +19623,67 @@
         ]
       }
     ]
+  },
+  "benchmarks": {
+    "headline": "The cost of operating, against the same eight states.",
+    "summary": "Site decisions come down to operating math. Average weekly wages show what labor costs across the peer set; industrial power prices show what the capex-heavy projects will pay to run.",
+    "wages": {
+      "period": "2025 Q4",
+      "rows": [
+        {
+          "stateId": "UT",
+          "name": "Utah",
+          "avgWeeklyWage": 1389,
+          "yoyPercent": 4.1
+        },
+        {
+          "stateId": "NC",
+          "name": "North Carolina",
+          "avgWeeklyWage": 1409,
+          "yoyPercent": 3.8
+        },
+        {
+          "stateId": "TN",
+          "name": "Tennessee",
+          "avgWeeklyWage": 1424,
+          "yoyPercent": 3.8
+        },
+        {
+          "stateId": "GA",
+          "name": "Georgia",
+          "avgWeeklyWage": 1440,
+          "yoyPercent": 3.5
+        },
+        {
+          "stateId": "AZ",
+          "name": "Arizona",
+          "avgWeeklyWage": 1446,
+          "yoyPercent": 3
+        },
+        {
+          "stateId": "FL",
+          "name": "Florida",
+          "avgWeeklyWage": 1471,
+          "yoyPercent": 4.8
+        },
+        {
+          "stateId": "TX",
+          "name": "Texas",
+          "avgWeeklyWage": 1549,
+          "yoyPercent": 4.2
+        },
+        {
+          "stateId": "CA",
+          "name": "California",
+          "avgWeeklyWage": 1954,
+          "yoyPercent": 4.6
+        }
+      ],
+      "source": {
+        "label": "BLS QCEW, total covered employment",
+        "url": "https://www.bls.gov/cew/"
+      }
+    },
+    "power": null
   }
 }

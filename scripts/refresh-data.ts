@@ -15,6 +15,7 @@ import {
 } from "./lib/series";
 import { fetchBlsSeries, fetchFredSeries } from "./lib/sources";
 import { buildLeadingSection } from "./lib/leading";
+import { buildBenchmarksSection } from "./lib/benchmarks";
 import type {
   DashboardDataset,
   IndustrySector,
@@ -1613,6 +1614,7 @@ async function main() {
   const refreshedAt = new Date().toISOString();
   const preservedSections = getPreservedSections(existingDataset);
   const leading = await buildLeadingSection();
+  const benchmarks = await buildBenchmarksSection();
   const federal = await buildFederalDataLayer({
     refreshedAt,
     metrics,
@@ -1692,6 +1694,7 @@ async function main() {
     distinctives: preservedSections.distinctives,
     trade: preservedSections.trade,
     leading,
+    benchmarks,
   };
 
   if (existingDataset && JSON.stringify(normalizeForComparison(existingDataset)) === JSON.stringify(normalizeForComparison(dataset))) {

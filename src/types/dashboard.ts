@@ -90,6 +90,34 @@ export type LeadingSection = {
   signals: LeadingSignal[];
 };
 
+export type BenchmarkWageRow = {
+  stateId: string;
+  name: string;
+  avgWeeklyWage: number;
+  yoyPercent: number | null;
+};
+
+export type BenchmarkPowerRow = {
+  stateId: string;
+  name: string;
+  industrialCentsPerKwh: number;
+  period: string;
+};
+
+export type BenchmarksSection = {
+  headline: string;
+  summary: string;
+  wages: {
+    period: string;
+    rows: BenchmarkWageRow[];
+    source: { label: string; url: string };
+  };
+  power: {
+    rows: BenchmarkPowerRow[];
+    source: { label: string; url: string };
+  } | null;
+};
+
 export type InnovationMetricId =
   | "informationEmployment"
   | "professionalBusinessEmployment"
@@ -615,4 +643,5 @@ export type DashboardDataset = {
   };
   trade: TradeSection;
   leading?: LeadingSection;
+  benchmarks?: BenchmarksSection;
 };
