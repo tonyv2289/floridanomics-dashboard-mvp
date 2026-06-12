@@ -24,7 +24,7 @@ function useCountUp(target: number, durationMs = 900): number {
     let frame = 0;
     const start = performance.now();
     const tick = (now: number) => {
-      const progress = reduceMotion ? 1 : Math.min((now - start) / durationMs, 1);
+      const progress = reduceMotion ? 1 : Math.min(Math.max((now - start) / durationMs, 0), 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       setValue(Math.round(target * eased));
       if (progress < 1) {
