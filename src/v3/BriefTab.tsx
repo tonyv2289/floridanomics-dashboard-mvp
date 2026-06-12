@@ -10,6 +10,7 @@ import {
 } from "../lib/dashboard";
 import { firstSentence, formatSignedInteger, getMonthlyPayrollChange, resolveHref } from "./format";
 import { EvidenceGrid } from "./primitives";
+import { WhatChanged } from "./WhatChanged";
 import type { DashboardDataset } from "../types/dashboard";
 
 function useCountUp(target: number, durationMs = 900): number {
@@ -193,6 +194,7 @@ export function BriefTab({ dataset }: { dataset: DashboardDataset }) {
     <>
       <ReadHero dataset={dataset} />
       <OperatingRead dataset={dataset} />
+      <WhatChanged />
       <EvidenceGrid dataset={dataset} />
       <FloridaBrainNotes dataset={dataset} />
 

@@ -41,6 +41,9 @@ jobs:
       - name: Validate dataset
         run: npm run data:validate
 
+      - name: Generate what-changed memo
+        run: npm run memo:generate
+
       - name: Commit, push, and deploy changes
         env:
           GH_TOKEN: ${{ github.token }}
@@ -53,7 +56,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/florida-economy.json
+          git add public/data/florida-economy.json public/data/what-changed.json docs/memos
           git commit -m "chore(data): refresh Florida dashboard dataset"
           git push
           # GITHUB_TOKEN pushes never trigger on:push workflows, so the

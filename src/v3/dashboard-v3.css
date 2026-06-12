@@ -127,6 +127,39 @@
   }
 }
 
+.v3-change-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.v3-change-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--v3-text);
+}
+
+.v3-change-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--v3-muted);
+}
+
+.v3-change-dot.tone-good {
+  background: var(--v3-good);
+}
+
+.v3-change-dot.tone-warn {
+  background: var(--v3-warn);
+}
+
 .v3-freshness {
   display: grid;
   gap: 6px;

@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-06-10T02:23:52.604Z",
+  "period": "April 2026",
+  "prevPeriod": "April 2026",
+  "items": [
+    {
+      "id": "metro-tampa",
+      "label": "Tampa MSA unemployment",
+      "kind": "new_period",
+      "scope": "metro",
+      "prevDate": "2026-03-01",
+      "nextDate": "2026-04-01",
+      "prevValue": 4.5,
+      "nextValue": 4.7,
+      "absolute": 0.20000000000000018,
+      "tone": "warn",
+      "headline": "Tampa MSA unemployment rose to 4.7% in April 2026, up 0.2 points versus March 2026."
+    },
+    {
+      "id": "metro-miami",
+      "label": "Miami MSA unemployment",
+      "kind": "new_period",
+      "scope": "metro",
+      "prevDate": "2026-03-01",
+      "nextDate": "2026-04-01",
+      "prevValue": 3.7,
+      "nextValue": 3.9,
+      "absolute": 0.19999999999999973,
+      "tone": "warn",
+      "headline": "Miami MSA unemployment rose to 3.9% in April 2026, up 0.2 points versus March 2026."
+    }
+  ]
+}

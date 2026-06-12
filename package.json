@@ -6,6 +6,7 @@
   "scripts": {
     "data:refresh": "tsx scripts/refresh-data.ts",
     "data:validate": "tsx scripts/validate-data.ts",
+    "memo:generate": "tsx scripts/generate-memo.ts",
     "dev:dashboard": "npm run data:refresh && npm run dev",
     "dev": "vite",
     "build": "tsc -b && vite build",
