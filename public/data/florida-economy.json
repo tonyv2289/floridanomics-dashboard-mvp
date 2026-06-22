@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-10T02:23:52.604Z",
+  "generatedAt": "2026-06-22T15:49:34.790Z",
   "asOfLaborMarket": "April 2026",
   "asOfPopulation": "2025",
   "sources": [
@@ -8883,34 +8883,30 @@
         "unit": "count",
         "trendDirection": "up_good",
         "latest": {
-          "date": "2026-04-01",
-          "value": 59941
+          "date": "2026-05-01",
+          "value": 64521
         },
         "deltas": {
           "oneYear": {
             "years": 1,
-            "baseDate": "2025-04-01",
-            "absolute": 8487,
-            "percent": 16.49434446301551
+            "baseDate": "2025-05-01",
+            "absolute": 13004,
+            "percent": 25.242153075683753
           },
           "threeYear": {
             "years": 3,
-            "baseDate": "2023-04-01",
-            "absolute": 693,
-            "percent": 1.1696597353497165
+            "baseDate": "2023-05-01",
+            "absolute": 8688,
+            "percent": 15.560689914566655
           },
           "fiveYear": {
             "years": 5,
-            "baseDate": "2021-04-01",
-            "absolute": 5025,
-            "percent": 9.150338699104086
+            "baseDate": "2021-05-01",
+            "absolute": -1039,
+            "percent": -1.5848078096400244
           }
         },
         "sparkline": [
-          {
-            "date": "2023-05-01",
-            "value": 55833
-          },
           {
             "date": "2023-06-01",
             "value": 53239
@@ -9001,11 +8997,11 @@
           },
           {
             "date": "2025-04-01",
-            "value": 51454
+            "value": 51823
           },
           {
             "date": "2025-05-01",
-            "value": 52801
+            "value": 51517
           },
           {
             "date": "2025-06-01",
@@ -9045,11 +9041,15 @@
           },
           {
             "date": "2026-03-01",
-            "value": 61468
+            "value": 61825
           },
           {
             "date": "2026-04-01",
-            "value": 59941
+            "value": 60459
+          },
+          {
+            "date": "2026-05-01",
+            "value": 64521
           }
         ],
         "series": [
@@ -10051,11 +10051,11 @@
           },
           {
             "date": "2025-04-01",
-            "value": 51454
+            "value": 51823
           },
           {
             "date": "2025-05-01",
-            "value": 52801
+            "value": 51517
           },
           {
             "date": "2025-06-01",
@@ -10095,11 +10095,15 @@
           },
           {
             "date": "2026-03-01",
-            "value": 61468
+            "value": 61825
           },
           {
             "date": "2026-04-01",
-            "value": 59941
+            "value": 60459
+          },
+          {
+            "date": "2026-05-01",
+            "value": 64521
           }
         ],
         "source": "FRED"
@@ -10966,7 +10970,7 @@
     "narrative": {
       "headline": "Florida’s innovation stack is expanding alongside its development engine.",
       "signals": [
-        "Business applications are up 16.5% year-over-year.",
+        "Business applications are up 25.2% year-over-year.",
         "Information employment is down 2.3% year-over-year.",
         "Professional & business services employment is up 0.8% year-over-year."
       ],
@@ -16962,7 +16966,7 @@
   "federal": {
     "headline": "Federal data spine",
     "summary": "BLS, Census exports, and BEA are live when their keys are present. Census business applications, EIA, and IRS remain explicit feed contracts so the dashboard can separate live federal metrics from safe fallbacks and download-only official sources.",
-    "refreshedAt": "2026-06-10T02:23:52.604Z",
+    "refreshedAt": "2026-06-22T15:49:34.790Z",
     "sources": [
       {
         "id": "bls_public_api",
@@ -17040,7 +17044,7 @@
         "status": "live",
         "read": "The labor-market cockpit is already on live BLS LAUS data.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-06-10T02:23:52.604Z"
+        "retrievedAt": "2026-06-22T15:49:34.790Z"
       },
       {
         "id": "bls-florida-nonfarm-payrolls",
@@ -17053,7 +17057,7 @@
         "status": "live",
         "read": "Payrolls are live from BLS CES, which is the right monthly benchmark for jobs by employer.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-06-10T02:23:52.604Z"
+        "retrievedAt": "2026-06-22T15:49:34.790Z"
       },
       {
         "id": "bls-peer-payroll-leader",
@@ -17066,21 +17070,21 @@
         "status": "live",
         "read": "The competitor tab already compares Florida against peers on the same federal labor-series footing.",
         "sourceUrl": "https://www.bls.gov/developers/api_signature_v2.htm",
-        "retrievedAt": "2026-06-10T02:23:52.604Z"
+        "retrievedAt": "2026-06-22T15:49:34.790Z"
       },
       {
         "id": "census-business-applications",
         "label": "Business applications",
-        "value": "59,941",
+        "value": "64,521",
         "unit": "applications",
         "geography": "Florida",
-        "period": "2026-04-01",
+        "period": "2026-05-01",
         "sourceId": "census_bfs_api",
         "status": "fallback",
         "read": "Business formation is federal Census BFS data, but Florida state values remain on the FRED bridge until a state-level Census BFS API path is confirmed.",
         "sourceUrl": "https://www.census.gov/econ/bfs/index.html",
         "caveat": "Census key is installed; BFS remains a FRED bridge because the confirmed Census API path is national, not Florida state-level.",
-        "retrievedAt": "2026-06-10T02:23:52.604Z"
+        "retrievedAt": "2026-06-22T15:49:34.790Z"
       },
       {
         "id": "census-florida-exports",
@@ -17093,7 +17097,7 @@
         "status": "live",
         "read": "The trade layer can now reconcile the SelectFlorida release against the Census state export API.",
         "sourceUrl": "https://api.census.gov/data/timeseries/intltrade/exports/statehsexport.html",
-        "retrievedAt": "2026-06-10T02:23:52.604Z"
+        "retrievedAt": "2026-06-22T15:49:34.790Z"
       },
       {
         "id": "bea-real-gsp",
@@ -17106,7 +17110,7 @@
         "status": "live",
         "read": "Real GSP is now coming straight from the BEA Regional API, table SAGDP9, line 1, Florida.",
         "sourceUrl": "https://www.bea.gov/data/gdp/gdp-state",
-        "retrievedAt": "2026-06-10T02:23:52.604Z"
+        "retrievedAt": "2026-06-22T15:49:34.790Z"
       },
       {
         "id": "eia-industrial-electricity-price",
@@ -17119,7 +17123,7 @@
         "status": "live",
         "read": "Power-cost monitoring is live, which matters for AI infrastructure, advanced manufacturing, and data-center competitiveness.",
         "sourceUrl": "https://www.eia.gov/opendata/documentation.php",
-        "retrievedAt": "2026-06-10T02:23:52.604Z"
+        "retrievedAt": "2026-06-22T15:49:34.790Z"
       },
       {
         "id": "irs-income-migration",
@@ -17133,7 +17137,7 @@
         "read": "IRS SOI is the right official layer for income migration, but it is a download pipeline rather than a clean JSON endpoint.",
         "sourceUrl": "https://www.irs.gov/statistics/soi-tax-stats-migration-data",
         "caveat": "Build a separate IRS SOI ingest job for county-to-county and state-to-state migration files.",
-        "retrievedAt": "2026-06-10T02:23:52.604Z"
+        "retrievedAt": "2026-06-22T15:49:34.790Z"
       }
     ],
     "missingKeys": [],
@@ -18069,19 +18073,19 @@
         "unit": "index",
         "trendDirection": "up_good",
         "latest": {
-          "date": "2026-06-05",
-          "value": 103.12
+          "date": "2026-06-12",
+          "value": 103.28
         },
         "changes": {
           "recent": {
             "label": "vs 30-day average",
-            "absolute": -1.0056666666666558,
-            "percent": -0.9658201468097739
+            "absolute": -0.5353333333333552,
+            "percent": -0.5156592154017278
           },
           "yearOver": {
             "label": "vs a year earlier",
-            "absolute": -8.149999999999991,
-            "percent": -7.324525927923063
+            "absolute": -7.989999999999995,
+            "percent": -7.18073155387795
           }
         },
         "leads": "Leads hiring; payroll prints follow postings by months.",
@@ -18090,34 +18094,6 @@
           "url": "https://github.com/hiring-lab/job_postings_tracker"
         },
         "series": [
-          {
-            "date": "2026-03-08",
-            "value": 110.8
-          },
-          {
-            "date": "2026-03-09",
-            "value": 110.64
-          },
-          {
-            "date": "2026-03-10",
-            "value": 110.77
-          },
-          {
-            "date": "2026-03-11",
-            "value": 110.53
-          },
-          {
-            "date": "2026-03-12",
-            "value": 110.17
-          },
-          {
-            "date": "2026-03-13",
-            "value": 109.96
-          },
-          {
-            "date": "2026-03-14",
-            "value": 109.78
-          },
           {
             "date": "2026-03-15",
             "value": 109.47
@@ -18449,6 +18425,34 @@
           {
             "date": "2026-06-05",
             "value": 103.12
+          },
+          {
+            "date": "2026-06-06",
+            "value": 103.17
+          },
+          {
+            "date": "2026-06-07",
+            "value": 103.24
+          },
+          {
+            "date": "2026-06-08",
+            "value": 103.29
+          },
+          {
+            "date": "2026-06-09",
+            "value": 103.34
+          },
+          {
+            "date": "2026-06-10",
+            "value": 103.34
+          },
+          {
+            "date": "2026-06-11",
+            "value": 103.3
+          },
+          {
+            "date": "2026-06-12",
+            "value": 103.28
           }
         ]
       },
@@ -18459,19 +18463,19 @@
         "unit": "claims",
         "trendDirection": "down_good",
         "latest": {
-          "date": "2026-05-23",
-          "value": 5970
+          "date": "2026-06-13",
+          "value": 6943
         },
         "changes": {
           "recent": {
             "label": "vs 4-week average",
-            "absolute": -417,
-            "percent": -6.5288868013151715
+            "absolute": 636,
+            "percent": 10.084033613445378
           },
           "yearOver": {
             "label": "vs a year earlier",
-            "absolute": -207,
-            "percent": -3.3511413307430793
+            "absolute": -1843,
+            "percent": -20.976553608012747
           }
         },
         "leads": "Leads the unemployment rate by roughly six weeks.",
@@ -18480,18 +18484,6 @@
           "url": "https://fred.stlouisfed.org/series/FLICLAIMS"
         },
         "series": [
-          {
-            "date": "2024-09-07",
-            "value": 6005
-          },
-          {
-            "date": "2024-09-14",
-            "value": 6696
-          },
-          {
-            "date": "2024-09-21",
-            "value": 6454
-          },
           {
             "date": "2024-09-28",
             "value": 5535
@@ -18839,6 +18831,18 @@
           {
             "date": "2026-05-23",
             "value": 5970
+          },
+          {
+            "date": "2026-05-30",
+            "value": 5363
+          },
+          {
+            "date": "2026-06-06",
+            "value": 7671
+          },
+          {
+            "date": "2026-06-13",
+            "value": 6943
           }
         ]
       },
@@ -18849,19 +18853,19 @@
         "unit": "claims",
         "trendDirection": "down_good",
         "latest": {
-          "date": "2026-05-16",
-          "value": 33123
+          "date": "2026-06-06",
+          "value": 31745
         },
         "changes": {
           "recent": {
             "label": "vs 4-week average",
-            "absolute": 3066.25,
-            "percent": 10.201535428813827
+            "absolute": -126.25,
+            "percent": -0.3961250343177629
           },
           "yearOver": {
             "label": "vs a year earlier",
-            "absolute": -995,
-            "percent": -2.9163491412157803
+            "absolute": -3582,
+            "percent": -10.139553316160443
           }
         },
         "leads": "Confirms whether laid-off workers are being reabsorbed.",
@@ -18870,18 +18874,6 @@
           "url": "https://fred.stlouisfed.org/series/FLCCLAIMS"
         },
         "series": [
-          {
-            "date": "2024-08-31",
-            "value": 37480
-          },
-          {
-            "date": "2024-09-07",
-            "value": 38230
-          },
-          {
-            "date": "2024-09-14",
-            "value": 37679
-          },
           {
             "date": "2024-09-21",
             "value": 36383
@@ -19229,6 +19221,18 @@
           {
             "date": "2026-05-16",
             "value": 33123
+          },
+          {
+            "date": "2026-05-23",
+            "value": 30822
+          },
+          {
+            "date": "2026-05-30",
+            "value": 33314
+          },
+          {
+            "date": "2026-06-06",
+            "value": 31745
           }
         ]
       },
@@ -19684,6 +19688,61 @@
         "url": "https://www.bls.gov/cew/"
       }
     },
-    "power": null
+    "power": {
+      "rows": [
+        {
+          "stateId": "TX",
+          "name": "Texas",
+          "industrialCentsPerKwh": 6.26,
+          "period": "2026-03"
+        },
+        {
+          "stateId": "GA",
+          "name": "Georgia",
+          "industrialCentsPerKwh": 6.7,
+          "period": "2026-03"
+        },
+        {
+          "stateId": "NC",
+          "name": "North Carolina",
+          "industrialCentsPerKwh": 7.05,
+          "period": "2026-03"
+        },
+        {
+          "stateId": "TN",
+          "name": "Tennessee",
+          "industrialCentsPerKwh": 7.06,
+          "period": "2026-03"
+        },
+        {
+          "stateId": "AZ",
+          "name": "Arizona",
+          "industrialCentsPerKwh": 7.17,
+          "period": "2026-03"
+        },
+        {
+          "stateId": "UT",
+          "name": "Utah",
+          "industrialCentsPerKwh": 8.28,
+          "period": "2026-03"
+        },
+        {
+          "stateId": "FL",
+          "name": "Florida",
+          "industrialCentsPerKwh": 9.16,
+          "period": "2026-03"
+        },
+        {
+          "stateId": "CA",
+          "name": "California",
+          "industrialCentsPerKwh": 20.06,
+          "period": "2026-03"
+        }
+      ],
+      "source": {
+        "label": "EIA electricity retail sales",
+        "url": "https://www.eia.gov/electricity/data.php"
+      }
+    }
   }
 }
