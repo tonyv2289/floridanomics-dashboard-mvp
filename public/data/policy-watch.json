@@ -1,6 +1,52 @@
 {
-  "status": "pending",
-  "generatedAt": null,
-  "items": [],
-  "note": "Set LEGISCAN_API_KEY to activate Florida policy tracking."
+  "status": "live",
+  "generatedAt": "2026-06-27T11:58:32.035Z",
+  "attribution": "Legislative data via LegiScan (CC BY 4.0).",
+  "items": [
+    {
+      "billId": 2051570,
+      "number": "H0325",
+      "title": "Education and Workforce Development for Inmates",
+      "status": "Enrolled",
+      "lastAction": "Ordered enrolled",
+      "lastActionDate": "2026-03-09",
+      "url": "https://legiscan.com/FL/bill/H0325/2026"
+    },
+    {
+      "billId": 2051800,
+      "number": "H0385",
+      "title": "Economic Hardship Grant Program",
+      "status": "Failed",
+      "lastAction": "Died in Human Services Subcommittee",
+      "lastActionDate": "2026-03-13",
+      "url": "https://legiscan.com/FL/bill/H0385/2026"
+    },
+    {
+      "billId": 2056706,
+      "number": "H0659",
+      "title": "Interactions with Artificial Intelligence",
+      "status": "Failed",
+      "lastAction": "Died in Industries & Professional Activities Subcommittee",
+      "lastActionDate": "2026-03-13",
+      "url": "https://legiscan.com/FL/bill/H0659/2026"
+    },
+    {
+      "billId": 2060395,
+      "number": "H0847",
+      "title": "Research and Development Tax Credit",
+      "status": "Failed",
+      "lastAction": "Died in Ways & Means Committee",
+      "lastActionDate": "2026-03-13",
+      "url": "https://legiscan.com/FL/bill/H0847/2026"
+    },
+    {
+      "billId": 2060846,
+      "number": "H0899",
+      "title": "Task Force on Artificial Intelligence in Public Postsecondary Education",
+      "status": "Failed",
+      "lastAction": "Died in Education Administration Subcommittee",
+      "lastActionDate": "2026-03-13",
+      "url": "https://legiscan.com/FL/bill/H0899/2026"
+    }
+  ]
 }
