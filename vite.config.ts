@@ -6,6 +6,12 @@ export default defineConfig(() => ({
   plugins: [react()],
   base: "/floridanomics-dashboard-mvp/",
   build: {
+    // Do not modulepreload the Recharts chunk on the landing: it is only needed when a
+    // chart tab opens, where the dynamic-import runtime fetches it on demand.
+    modulePreload: {
+      resolveDependencies: (_filename: string, deps: string[]) =>
+        deps.filter((dep) => !dep.includes("recharts")),
+    },
     rollupOptions: {
       output: {
         // Split heavy vendors so the chartless landing does not ship Recharts,
