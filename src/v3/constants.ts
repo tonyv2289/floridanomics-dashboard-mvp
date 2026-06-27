@@ -1,11 +1,20 @@
-export type V3TabId = "brief" | "lens" | "competition" | "terminal" | "scorecard" | "innovation" | "trade";
-export type CompetitionViewId = "metro" | "international" | "strategy" | "fdi";
+export type V3TabId =
+  | "brief"
+  | "lens"
+  | "competition"
+  | "strategy"
+  | "terminal"
+  | "scorecard"
+  | "innovation"
+  | "trade";
+export type CompetitionViewId = "metro" | "international" | "fdi";
 
 export const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
   { id: "brief", label: "Brief", line: "what matters now" },
   { id: "lens", label: "Lenses", line: "reads by industry" },
-  { id: "competition", label: "Competition", line: "metros, strategy, FDI" },
-  { id: "terminal", label: "Terminal", line: "forecasts and policy positions" },
+  { id: "competition", label: "Competition", line: "metros and FDI" },
+  { id: "strategy", label: "Strategy", line: "peers, clusters, scenarios" },
+  { id: "terminal", label: "Terminal", line: "forecasts and policy" },
   { id: "scorecard", label: "Scorecard", line: "labor, metros, 2030" },
   { id: "innovation", label: "Innovation", line: "formation and capacity" },
   { id: "trade", label: "Trade", line: "exports and gateways" },
@@ -14,7 +23,6 @@ export const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = 
 export const COMPETITION_VIEW_OPTIONS: Array<{ id: CompetitionViewId; label: string; line: string }> = [
   { id: "metro", label: "US Metros", line: "Florida, Austin, Seattle, Boston" },
   { id: "international", label: "International Metros", line: "Miami, Dubai, Riyadh, Taipei, Singapore" },
-  { id: "strategy", label: "Strategy", line: "peers, clusters, scenarios" },
   { id: "fdi", label: "FDI / Tools / Capacity", line: "capital, incentives, institutions" },
 ];
 

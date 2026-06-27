@@ -1515,7 +1515,7 @@ async function main() {
     },
     realGsp: {
       id: "realGsp",
-      label: "Real Gross State Product",
+      label: "Real GSP (chained dollars)",
       unit: "usd_millions",
       trendDirection: "up_good",
       latest: latestPoint(realGspSeries),
@@ -1708,7 +1708,9 @@ async function main() {
   }
 
   await mkdir(path.dirname(OUTPUT_FILE), { recursive: true });
-  await writeFile(OUTPUT_FILE, `${JSON.stringify(dataset, null, 2)}\n`, "utf8");
+  // Minified (no indent): the dashboard fetches this whole payload on load, so the
+  // ~240 KB of pretty-print whitespace was pure transfer/parse cost. ~504 KB to ~276 KB.
+  await writeFile(OUTPUT_FILE, `${JSON.stringify(dataset)}\n`, "utf8");
 
   console.log(`Wrote ${OUTPUT_FILE}`);
   console.log(`As-of labor market: ${dataset.asOfLaborMarket}; population: ${dataset.asOfPopulation}`);

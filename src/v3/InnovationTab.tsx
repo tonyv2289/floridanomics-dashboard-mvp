@@ -6,7 +6,8 @@ import {
   formatDelta,
   formatMetricValue,
 } from "../lib/dashboard";
-import { ChartPanel, Frame, InsightBlock } from "./primitives";
+import { Frame, InsightBlock } from "./primitives";
+import { ChartPanel } from "./ChartPanel";
 import type { DashboardDataset, InnovationMetricId } from "../types/dashboard";
 
 export function InnovationTab({

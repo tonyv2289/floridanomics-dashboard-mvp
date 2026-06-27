@@ -13,6 +13,7 @@ export function isV3TabId(value: string | null): value is V3TabId {
     value === "brief" ||
     value === "lens" ||
     value === "competition" ||
+    value === "strategy" ||
     value === "terminal" ||
     value === "scorecard" ||
     value === "innovation" ||
@@ -21,5 +22,5 @@ export function isV3TabId(value: string | null): value is V3TabId {
 }
 
 export function isCompetitionViewId(value: string | null): value is CompetitionViewId {
-  return value === "metro" || value === "international" || value === "strategy" || value === "fdi";
+  return value === "metro" || value === "international" || value === "fdi";
 }

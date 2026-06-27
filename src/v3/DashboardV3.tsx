@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { useDashboardData } from "../hooks/useDashboardData";
 import {
   type CoreMetricId,
@@ -11,14 +11,18 @@ import { type CompetitionViewId, type V3TabId } from "./constants";
 import { isCompetitionViewId, isV3TabId, readSearchParam } from "./url";
 import { SourceFooter, TabNav } from "./primitives";
 import { BrandMark } from "./BrandMark";
+import { SignupForm } from "../components/SignupForm";
 import { BriefTab } from "./BriefTab";
 import { LensTab } from "./LensTab";
 import { isLensId, type LensId } from "./lenses";
-import { CompetitionTab } from "./CompetitionTab";
-import { TerminalTab } from "./TerminalTab";
-import { ScorecardTab } from "./ScorecardTab";
-import { InnovationTab } from "./InnovationTab";
-import { TradeTab } from "./TradeTab";
+// Chart-bearing tabs are lazy-loaded so the chart library (Recharts) stays off the
+// default Brief landing and only loads when a chart tab is opened.
+const CompetitionTab = lazy(() => import("./CompetitionTab").then((m) => ({ default: m.CompetitionTab })));
+const StrategyTab = lazy(() => import("./StrategyTab").then((m) => ({ default: m.StrategyTab })));
+const TerminalTab = lazy(() => import("./TerminalTab").then((m) => ({ default: m.TerminalTab })));
+const ScorecardTab = lazy(() => import("./ScorecardTab").then((m) => ({ default: m.ScorecardTab })));
+const InnovationTab = lazy(() => import("./InnovationTab").then((m) => ({ default: m.InnovationTab })));
+const TradeTab = lazy(() => import("./TradeTab").then((m) => ({ default: m.TradeTab })));
 import type { InnovationMetricId } from "../types/dashboard";
 import "./dashboard-v3.css";
 
@@ -26,19 +30,10 @@ function DashboardV3() {
   const { data, error, status } = useDashboardData();
   const [activeTab, setActiveTab] = useState<V3TabId>(() => {
     const param = readSearchParam("tab");
-    if (param === "strategy") {
-      return "competition";
-    }
-
     return isV3TabId(param) ? param : "brief";
   });
   const [activeCompetitionView, setActiveCompetitionView] = useState<CompetitionViewId>(() => {
-    const tabParam = readSearchParam("tab");
     const viewParam = readSearchParam("competitionView");
-    if (tabParam === "strategy") {
-      return "strategy";
-    }
-
     return isCompetitionViewId(viewParam) ? viewParam : "metro";
   });
   const [activeLens, setActiveLens] = useState<LensId>(() => {
@@ -139,7 +134,15 @@ function DashboardV3() {
 
         <TabNav activeTab={activeTab} onChange={setActiveTab} />
 
-        {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
+        <Suspense
+          fallback={
+            <div className="v3-state" role="status" aria-live="polite">
+              <p className="v3-kicker">Loading</p>
+              <h2>Opening the view.</h2>
+            </div>
+          }
+        >
+          {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
         {activeTab === "lens" ? (
           <LensTab dataset={data} activeLens={activeLens} onSelectLens={setActiveLens} />
         ) : null}
@@ -150,6 +153,7 @@ function DashboardV3() {
             onSelectView={setActiveCompetitionView}
           />
         ) : null}
+        {activeTab === "strategy" ? <StrategyTab dataset={data} /> : null}
         {activeTab === "terminal" ? <TerminalTab dataset={data} /> : null}
         {activeTab === "scorecard" ? (
           <ScorecardTab dataset={data} selectedMetricId={selectedMetricId} onSelectMetric={setSelectedMetricId} />
@@ -162,7 +166,9 @@ function DashboardV3() {
           />
         ) : null}
         {activeTab === "trade" ? <TradeTab dataset={data} /> : null}
+        </Suspense>
 
+        <SignupForm source={`dashboard:${activeTab}`} />
         <SourceFooter dataset={data} />
       </div>
     </main>

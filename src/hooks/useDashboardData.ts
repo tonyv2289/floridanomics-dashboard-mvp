@@ -9,6 +9,33 @@ type DashboardDataState = {
   status: DashboardStatus;
 };
 
+// Top-level keys the UI depends on. A boundary check here turns a schema drift into a
+// clean error state instead of a downstream white screen.
+const REQUIRED_KEYS: Array<keyof DashboardDataset> = [
+  "metrics",
+  "heroMetrics",
+  "industry",
+  "metros",
+  "innovation",
+  "scorecard2030",
+  "competition",
+  "terminal",
+  "trade",
+];
+
+function assertDataset(payload: unknown): asserts payload is DashboardDataset {
+  if (!payload || typeof payload !== "object") {
+    throw new Error("Dataset payload is not an object.");
+  }
+  const record = payload as Record<string, unknown>;
+  const missing = REQUIRED_KEYS.filter((key) => record[key] == null);
+  if (missing.length > 0) {
+    throw new Error(`Dataset is missing required sections: ${missing.join(", ")}.`);
+  }
+}
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export function useDashboardData(enabled = true): DashboardDataState {
   const [data, setData] = useState<DashboardDataset | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -21,31 +48,46 @@ export function useDashboardData(enabled = true): DashboardDataState {
     }
 
     let cancelled = false;
+    const controller = new AbortController();
 
     async function load() {
       setStatus("loading");
       setError(null);
 
-      try {
-        const response = await fetch(`${import.meta.env.BASE_URL}data/florida-economy.json`, {
-          cache: "no-cache",
-        });
+      const url = `${import.meta.env.BASE_URL}data/florida-economy.json`;
+      const maxAttempts = 2;
+      let lastError: unknown = null;
 
-        if (!response.ok) {
-          throw new Error(`Unable to load dataset (${response.status})`);
-        }
+      for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        try {
+          // cache: "default" lets etag/last-modified revalidation reuse bytes across
+          // remounts and back-navigation, so warm loads stop behaving like cold loads.
+          const response = await fetch(url, { cache: "default", signal: controller.signal });
+          if (!response.ok) {
+            throw new Error(`Unable to load dataset (${response.status})`);
+          }
+          const payload = (await response.json()) as unknown;
+          assertDataset(payload);
 
-        const payload = (await response.json()) as DashboardDataset;
+          if (!cancelled) {
+            setData(payload);
+            setStatus("ready");
+          }
+          return;
+        } catch (loadError) {
+          if (controller.signal.aborted || cancelled) {
+            return;
+          }
+          lastError = loadError;
+          if (attempt < maxAttempts) {
+            await sleep(400 * attempt);
+          }
+        }
+      }
 
-        if (!cancelled) {
-          setData(payload);
-          setStatus("ready");
-        }
-      } catch (loadError) {
-        if (!cancelled) {
-          setError(loadError instanceof Error ? loadError.message : "Unknown error");
-          setStatus("error");
-        }
+      if (!cancelled) {
+        setError(lastError instanceof Error ? lastError.message : "Unknown error");
+        setStatus("error");
       }
     }
 
@@ -53,6 +95,7 @@ export function useDashboardData(enabled = true): DashboardDataState {
 
     return () => {
       cancelled = true;
+      controller.abort();
     };
   }, [enabled]);
 
