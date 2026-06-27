@@ -6,7 +6,39 @@ import {
   formatSignedCompact,
 } from "./format";
 import { Frame, InsightBlock, SourceAnchor, SourceList } from "./primitives";
+import { deltaTone, formatDelta, formatMetricValue } from "../lib/dashboard";
 import type { DashboardDataset } from "../types/dashboard";
+
+function HighWageJobsMonitor({ dataset }: { dataset: DashboardDataset }) {
+  const innovation = dataset.innovation.metrics;
+  const rows = [
+    { metric: innovation.professionalBusinessEmployment, note: "Largest high-wage employment base." },
+    { metric: innovation.informationEmployment, note: "The tech and knowledge core; watch the direction." },
+    { metric: innovation.realGsp, note: "Real output the high-wage base produces." },
+  ];
+
+  return (
+    <Frame label="High-wage sectors">
+      <div className="v3-panel-head">
+        <div>
+          <h2>Where the high-wage base is heading.</h2>
+          <p>Sector-level read on Florida&apos;s knowledge economy. Occupation-level (OEWS) detail is the next upgrade.</p>
+        </div>
+      </div>
+      <div className="v3-table">
+        {rows.map(({ metric }) => (
+          <div key={metric.id} className="v3-table-row is-static">
+            <span>{metric.label}</span>
+            <strong>{formatMetricValue(metric, metric.latest.value)}</strong>
+            <small className={clsx(`tone-${deltaTone(metric, metric.deltas.oneYear)}`)}>
+              {formatDelta(metric, metric.deltas.oneYear)}
+            </small>
+          </div>
+        ))}
+      </div>
+    </Frame>
+  );
+}
 
 function StrategyHero({ dataset }: { dataset: DashboardDataset }) {
   const peerStates = dataset.strategy.peerStates;
@@ -275,6 +307,7 @@ export function StrategyTab({ dataset }: { dataset: DashboardDataset }) {
   return (
     <>
       <StrategyHero dataset={dataset} />
+      <HighWageJobsMonitor dataset={dataset} />
       <PeerStateBenchmarks dataset={dataset} />
       <CostBenchmarks dataset={dataset} />
       <ClusterStrategy dataset={dataset} />
