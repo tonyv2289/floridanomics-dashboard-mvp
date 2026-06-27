@@ -177,7 +177,13 @@ function DashboardV3() {
         {activeTab === "strategy" ? <StrategyTab dataset={data} /> : null}
         {activeTab === "terminal" ? <TerminalTab dataset={data} /> : null}
         {activeTab === "scorecard" ? (
-          <ScorecardTab dataset={data} selectedMetricId={selectedMetricId} onSelectMetric={setSelectedMetricId} />
+          <ScorecardTab
+            dataset={data}
+            selectedMetricId={selectedMetricId}
+            onSelectMetric={setSelectedMetricId}
+            region={region}
+            onSelectRegion={setRegion}
+          />
         ) : null}
         {activeTab === "innovation" ? (
           <InnovationTab

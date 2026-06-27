@@ -204,6 +204,31 @@
   overflow-x: auto;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
+.v3-florida-map {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+  margin: 8px auto 0;
+}
+.v3-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--v3-muted);
+}
+.v3-map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.v3-map-legend i {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  display: inline-block;
+}
 
 /* "New since your last visit" personalization cue. */
 .v3-fresh-pill {
