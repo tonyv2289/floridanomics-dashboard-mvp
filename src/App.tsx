@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect } from "react";
 import clsx from "clsx";
 import { initAnalytics, trackOutboundLink } from "./lib/analytics";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import "./app-frame.css";
 
 const DashboardV3 = lazy(() => import("./v3/DashboardV3"));
@@ -30,18 +31,23 @@ function App() {
 
   return (
     <div className="compare-frame">
-      <Suspense
-        fallback={
-          <main className={clsx("compare-loading")}>
-            <div className="compare-loading-card">
-              <p className="compare-kicker">Loading dashboard</p>
-              <h2>Pulling the dashboard into view.</h2>
-            </div>
-          </main>
-        }
-      >
-        {isBriefingView() ? <Briefing /> : <DashboardV3 />}
-      </Suspense>
+      <a className="v3-skip-link" href="#v3-main">
+        Skip to content
+      </a>
+      <ErrorBoundary>
+        <Suspense
+          fallback={
+            <main className={clsx("compare-loading")} role="status" aria-live="polite">
+              <div className="compare-loading-card">
+                <p className="compare-kicker">Loading dashboard</p>
+                <h2>Pulling the dashboard into view.</h2>
+              </div>
+            </main>
+          }
+        >
+          {isBriefingView() ? <Briefing /> : <DashboardV3 />}
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }

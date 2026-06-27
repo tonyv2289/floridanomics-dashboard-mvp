@@ -1,4 +1,4 @@
-import { startTransition, type ReactNode } from "react";
+import { startTransition, type CSSProperties, type ReactNode } from "react";
 import clsx from "clsx";
 import {
   CartesianGrid,
@@ -118,11 +118,16 @@ export function Frame({ children, label }: { children: ReactNode; label?: string
 
 export function TabNav({ activeTab, onChange }: { activeTab: V3TabId; onChange: (tab: V3TabId) => void }) {
   return (
-    <nav className="v3-tabs" aria-label="Floridanomics v3 views">
+    <nav
+      className="v3-tabs"
+      aria-label="Floridanomics views"
+      style={{ "--v3-tab-count": TAB_OPTIONS.length } as CSSProperties}
+    >
       {TAB_OPTIONS.map((tab) => (
         <button
           key={tab.id}
           type="button"
+          aria-current={activeTab === tab.id ? "true" : undefined}
           className={clsx("v3-tab", activeTab === tab.id && "is-active")}
           onClick={() => startTransition(() => onChange(tab.id))}
         >

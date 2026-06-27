@@ -42,7 +42,7 @@
     {
       "id": "florida_scorecard",
       "name": "Florida Scorecard / Florida Chamber Foundation",
-      "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2",
+      "url": "https://thefloridascorecard.org/",
       "notes": "Statewide 2030 trajectory metrics including GDP, business startups, income migration, and FutureCast job needs."
     },
     {
@@ -15603,7 +15603,7 @@
           },
           {
             "label": "Florida Scorecard",
-            "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2"
+            "url": "https://thefloridascorecard.org/"
           }
         ]
       },
@@ -17627,7 +17627,7 @@
         "context": "Florida Scorecard statewide GDP, improving",
         "source": {
           "label": "Florida Scorecard GDP",
-          "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2"
+          "url": "https://thefloridascorecard.org/"
         }
       },
       {
@@ -17646,7 +17646,7 @@
         "context": "Net new jobs needed by 2030, State of Florida FutureCast",
         "source": {
           "label": "Florida Scorecard FutureCast",
-          "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D1"
+          "url": "https://thefloridascorecard.org/"
         }
       },
       {
@@ -17655,7 +17655,7 @@
         "context": "March 2026, ranked #1 nationally",
         "source": {
           "label": "Florida Scorecard startups",
-          "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2"
+          "url": "https://thefloridascorecard.org/"
         }
       },
       {
@@ -17676,11 +17676,11 @@
     "sources": [
       {
         "label": "Florida Scorecard, statewide innovation and economic development metrics",
-        "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D2"
+        "url": "https://thefloridascorecard.org/"
       },
       {
         "label": "Florida Scorecard, State of Florida FutureCast",
-        "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D1"
+        "url": "https://thefloridascorecard.org/"
       },
       {
         "label": "Florida Chamber Foundation income migration analysis",
@@ -17714,7 +17714,7 @@
           "context": "Collier County income migration, Florida Scorecard",
           "source": {
             "label": "Collier County Scorecard",
-            "url": "https://thefloridascorecard.org/pillar%26c%3D11%26pillar%3D2"
+            "url": "https://thefloridascorecard.org/"
           }
         },
         {
@@ -17723,7 +17723,7 @@
           "context": "Sumter County income migration, Florida Scorecard",
           "source": {
             "label": "Sumter County Scorecard",
-            "url": "https://thefloridascorecard.org/pillar%26c%3D60%26pillar%3D2"
+            "url": "https://thefloridascorecard.org/"
           }
         },
         {
@@ -17732,7 +17732,7 @@
           "context": "Statewide 2030 range, State of Florida FutureCast",
           "source": {
             "label": "Florida Scorecard FutureCast",
-            "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D1"
+            "url": "https://thefloridascorecard.org/"
           }
         }
       ],
@@ -17747,15 +17747,15 @@
         },
         {
           "label": "Florida Scorecard, Collier County metrics",
-          "url": "https://thefloridascorecard.org/pillar%26c%3D11%26pillar%3D2"
+          "url": "https://thefloridascorecard.org/"
         },
         {
           "label": "Florida Scorecard, Sumter County metrics",
-          "url": "https://thefloridascorecard.org/pillar%26c%3D60%26pillar%3D2"
+          "url": "https://thefloridascorecard.org/"
         },
         {
           "label": "Florida Scorecard, State of Florida FutureCast",
-          "url": "https://thefloridascorecard.org/pillar%26c%3D0%26pillar%3D1"
+          "url": "https://thefloridascorecard.org/"
         }
       ]
     },
@@ -17898,7 +17898,7 @@
   "trade": {
     "headline": "Florida Exports Hit $78.9B in 2025 - Largest Year in History",
     "asOf": "Calendar Year 2025",
-    "releaseDate": "2026-04-01",
+    "releaseDate": "2026-05-20",
     "releaseTitle": "Florida Businesses Set Record High Export Sales in 2025",
     "releaseUrl": "https://www.floridajobs.org/news-center/DEO-Press/floridacommerce-press-2026/2026/04/01/florida-businesses-set-record-high-export-sales-in-2025",
     "heroMetrics": [

@@ -85,7 +85,7 @@ function DashboardV3() {
 
   if (status === "error") {
     return (
-      <main className="v3-root">
+      <main className="v3-root" role="alert">
         <section className="v3-state">
           <p className="v3-kicker">Data load error</p>
           <h1>The dashboard could not load the Florida dataset.</h1>
@@ -98,7 +98,7 @@ function DashboardV3() {
   if (!data || status === "loading") {
     return (
       <main className="v3-root">
-        <section className="v3-state">
+        <section className="v3-state" role="status" aria-live="polite">
           <p className="v3-kicker">Floridanomics</p>
           <h1>Loading the operating brief.</h1>
           <p>Pulling the current Florida dataset.</p>
@@ -108,7 +108,7 @@ function DashboardV3() {
   }
 
   return (
-    <main className="v3-root">
+    <main className="v3-root" id="v3-main">
       <div className="v3-shell">
         <div className="v3-masthead">
           <div>
@@ -125,7 +125,14 @@ function DashboardV3() {
             <strong>{formatDateLabel(data.generatedAt)}</strong>
             <small>Labor: {data.asOfLaborMarket} | Population: {data.asOfPopulation}</small>
             <a className="v3-briefing-link" href="?view=briefing">
-              Download the briefing
+              Open the briefing
+            </a>
+            <a
+              className="v3-briefing-link"
+              href={`${import.meta.env.BASE_URL}briefings/latest.png`}
+              download
+            >
+              Download brief (PNG)
             </a>
           </div>
         </div>
