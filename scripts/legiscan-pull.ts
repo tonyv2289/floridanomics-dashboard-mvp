@@ -11,8 +11,8 @@ import { fetchFloridaWatchlist } from "./lib/legiscan";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public", "data", "policy-watch.json");
 
-// Florida economic-policy watch-list. Expand as bills of interest come up.
-const WATCH_BILLS = ["SB 484"];
+// Florida economic-policy watch-list (2026 Regular Session). Review each session.
+const WATCH_BILLS = ["H0847", "H0385", "H0659", "H0899", "H0325"];
 
 function write(payload: unknown): void {
   mkdirSync(dirname(OUT), { recursive: true });
