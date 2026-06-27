@@ -191,6 +191,19 @@
   transform: translateY(2px);
   background: var(--v3-warn);
 }
+.v3-evidence-block {
+  margin: 12px 0 0;
+  padding: 14px 16px;
+  border: 1px solid var(--v3-line);
+  border-radius: 10px;
+  background: var(--v3-navy);
+  color: var(--v3-muted);
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 
 /* "New since your last visit" personalization cue. */
 .v3-fresh-pill {
