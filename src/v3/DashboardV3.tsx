@@ -1,6 +1,8 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { useDashboardData } from "../hooks/useDashboardData";
 import { useFreshnessMemory } from "../hooks/useFreshnessMemory";
+import { usePreferences, REGION_OPTIONS } from "../hooks/usePreferences";
+import { AttentionStrip } from "./AttentionStrip";
 import {
   type CoreMetricId,
   formatDateLabel,
@@ -30,6 +32,7 @@ import "./dashboard-v3.css";
 function DashboardV3() {
   const { data, error, status } = useDashboardData();
   const { isReturningWithUpdate } = useFreshnessMemory(data?.generatedAt);
+  const { region, setRegion } = usePreferences();
   const [activeTab, setActiveTab] = useState<V3TabId>(() => {
     const param = readSearchParam("tab");
     return isV3TabId(param) ? param : "brief";
@@ -134,6 +137,16 @@ function DashboardV3() {
             >
               Download brief (PNG)
             </a>
+            <label className="v3-region-select">
+              <span className="v3-visually-hidden">Focus region</span>
+              <select value={region} onChange={(event) => setRegion(event.target.value as typeof region)}>
+                {REGION_OPTIONS.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
         </div>
 
@@ -147,6 +160,7 @@ function DashboardV3() {
             </div>
           }
         >
+          {activeTab === "brief" ? <AttentionStrip dataset={data} region={region} /> : null}
           {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
         {activeTab === "lens" ? (
           <LensTab dataset={data} activeLens={activeLens} onSelectLens={setActiveLens} />

@@ -161,6 +161,37 @@
   }
 }
 
+.v3-region-select select {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--v3-line);
+  border-radius: 8px;
+  background: var(--v3-navy);
+  color: var(--v3-text);
+  font-size: 12px;
+  cursor: pointer;
+}
+.v3-attention-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.v3-attention-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.v3-attention-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+  transform: translateY(2px);
+  background: var(--v3-warn);
+}
+
 /* "New since your last visit" personalization cue. */
 .v3-fresh-pill {
   display: inline-block;
