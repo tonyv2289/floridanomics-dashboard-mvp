@@ -41,6 +41,11 @@ jobs:
       - name: Regenerate freshness memo (what-changed)
         run: npm run memo:generate
 
+      - name: Pull Florida policy watch-list (LegiScan)
+        env:
+          LEGISCAN_API_KEY: ${{ secrets.LEGISCAN_API_KEY }}
+        run: npm run data:legiscan
+
       - name: Build static site
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/

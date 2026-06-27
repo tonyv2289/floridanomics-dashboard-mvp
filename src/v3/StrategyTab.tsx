@@ -6,6 +6,7 @@ import {
   formatSignedCompact,
 } from "./format";
 import { Frame, InsightBlock, SourceAnchor, SourceList } from "./primitives";
+import { PolicyMemo } from "./PolicyMemo";
 import { deltaTone, formatDelta, formatMetricValue } from "../lib/dashboard";
 import type { DashboardDataset } from "../types/dashboard";
 
@@ -317,6 +318,7 @@ export function StrategyTab({ dataset }: { dataset: DashboardDataset }) {
       </div>
       <MetroMomentumLayer dataset={dataset} />
       <ScenarioLayer dataset={dataset} />
+      <PolicyMemo />
     </>
   );
 }
