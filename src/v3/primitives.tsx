@@ -1,32 +1,15 @@
 import { startTransition, type CSSProperties, type ReactNode } from "react";
 import clsx from "clsx";
 import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
-import {
   CORE_METRIC_IDS,
   type AnyMetric,
   type CoreMetricId,
-  chartSeries,
   deltaTone,
   formatCompact,
   formatDelta,
   formatMetricValue,
 } from "../lib/dashboard";
-import { formatDisplayedValue } from "./format";
-import {
-  TAB_OPTIONS,
-  TOOLTIP_ITEM_STYLE,
-  TOOLTIP_LABEL_STYLE,
-  TOOLTIP_STYLE,
-  type V3TabId,
-} from "./constants";
+import { TAB_OPTIONS, type V3TabId } from "./constants";
 import type { DashboardDataset, InsightSection } from "../types/dashboard";
 
 export function SourceAnchor({ source }: { source?: { label: string; url: string } }) {
@@ -166,57 +149,6 @@ export function EvidenceGrid({ dataset }: { dataset: DashboardDataset }) {
         </article>
       ))}
     </section>
-  );
-}
-
-export function ChartPanel({
-  metric,
-  title,
-  note,
-  accent = "sun",
-}: {
-  metric: AnyMetric;
-  title: string;
-  note: string;
-  accent?: "sun" | "teal";
-}) {
-  const lineColor = accent === "sun" ? "#ff8f3f" : "#56c2ff";
-
-  return (
-    <Frame label="Trend">
-      <div className="v3-panel-head">
-        <div>
-          <h2>{title}</h2>
-          <p>{metric.label}</p>
-        </div>
-        <div className="v3-panel-number">
-          <strong>{formatMetricValue(metric, metric.latest.value)}</strong>
-          <span className={clsx(`tone-${deltaTone(metric, metric.deltas.oneYear)}`)}>
-            1Y {formatDelta(metric, metric.deltas.oneYear)}
-          </span>
-        </div>
-      </div>
-
-      <div className="v3-chart">
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={chartSeries(metric)} margin={{ top: 8, right: 10, left: 0, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(148, 163, 184, 0.14)" />
-            <XAxis dataKey="label" minTickGap={24} tick={{ fill: "#94a3b8", fontSize: 11 }} />
-            <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(value) => formatDisplayedValue(metric, Number(value))} />
-            <Tooltip
-              contentStyle={TOOLTIP_STYLE}
-              labelStyle={TOOLTIP_LABEL_STYLE}
-              itemStyle={TOOLTIP_ITEM_STYLE}
-              cursor={{ stroke: "rgba(255, 143, 63, 0.32)", strokeDasharray: "4 4" }}
-              formatter={(value) => [formatDisplayedValue(metric, Number(value)), metric.label]}
-            />
-            <Line type="monotone" dataKey="value" stroke={lineColor} strokeWidth={3} dot={false} />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-
-      <p className="v3-note">{note}</p>
-    </Frame>
   );
 }
 

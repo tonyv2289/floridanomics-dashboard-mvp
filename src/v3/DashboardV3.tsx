@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { useDashboardData } from "../hooks/useDashboardData";
 import {
   type CoreMetricId,
@@ -14,11 +14,13 @@ import { BrandMark } from "./BrandMark";
 import { BriefTab } from "./BriefTab";
 import { LensTab } from "./LensTab";
 import { isLensId, type LensId } from "./lenses";
-import { CompetitionTab } from "./CompetitionTab";
-import { TerminalTab } from "./TerminalTab";
-import { ScorecardTab } from "./ScorecardTab";
-import { InnovationTab } from "./InnovationTab";
-import { TradeTab } from "./TradeTab";
+// Chart-bearing tabs are lazy-loaded so the chart library (Recharts) stays off the
+// default Brief landing and only loads when a chart tab is opened.
+const CompetitionTab = lazy(() => import("./CompetitionTab").then((m) => ({ default: m.CompetitionTab })));
+const TerminalTab = lazy(() => import("./TerminalTab").then((m) => ({ default: m.TerminalTab })));
+const ScorecardTab = lazy(() => import("./ScorecardTab").then((m) => ({ default: m.ScorecardTab })));
+const InnovationTab = lazy(() => import("./InnovationTab").then((m) => ({ default: m.InnovationTab })));
+const TradeTab = lazy(() => import("./TradeTab").then((m) => ({ default: m.TradeTab })));
 import type { InnovationMetricId } from "../types/dashboard";
 import "./dashboard-v3.css";
 
@@ -139,7 +141,15 @@ function DashboardV3() {
 
         <TabNav activeTab={activeTab} onChange={setActiveTab} />
 
-        {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
+        <Suspense
+          fallback={
+            <div className="v3-state" role="status" aria-live="polite">
+              <p className="v3-kicker">Loading</p>
+              <h2>Opening the view.</h2>
+            </div>
+          }
+        >
+          {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
         {activeTab === "lens" ? (
           <LensTab dataset={data} activeLens={activeLens} onSelectLens={setActiveLens} />
         ) : null}
@@ -162,6 +172,7 @@ function DashboardV3() {
           />
         ) : null}
         {activeTab === "trade" ? <TradeTab dataset={data} /> : null}
+        </Suspense>
 
         <SourceFooter dataset={data} />
       </div>

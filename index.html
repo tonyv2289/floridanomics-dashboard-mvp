@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Preload the dataset so its download runs in parallel with the JS, not after it. -->
+    <link
+      rel="preload"
+      href="/floridanomics-dashboard-mvp/data/florida-economy.json"
+      as="fetch"
+      type="application/json"
+      crossorigin="anonymous"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Floridanomics Dashboard.</title>
     <meta name="description" content="Florida economic + innovation data, live." />

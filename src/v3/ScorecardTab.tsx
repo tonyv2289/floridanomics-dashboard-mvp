@@ -1,5 +1,6 @@
 import type { CoreMetricId } from "../lib/dashboard";
-import { ChartPanel, IndustryTable, InsightBlock, MetricTable, MetroTable } from "./primitives";
+import { IndustryTable, InsightBlock, MetricTable, MetroTable } from "./primitives";
+import { ChartPanel } from "./ChartPanel";
 import type { DashboardDataset } from "../types/dashboard";
 
 export function ScorecardTab({

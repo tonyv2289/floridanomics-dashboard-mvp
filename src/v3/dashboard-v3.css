@@ -83,6 +83,19 @@
   border-color: var(--v3-teal);
 }
 
+/* Visually hidden but available to assistive tech (e.g. chart data tables). */
+.v3-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .v3-shell {
   width: min(1180px, calc(100% - 32px));
   max-width: 100%;
