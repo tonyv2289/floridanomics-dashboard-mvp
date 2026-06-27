@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { useDashboardData } from "../hooks/useDashboardData";
+import { useFreshnessMemory } from "../hooks/useFreshnessMemory";
 import {
   type CoreMetricId,
   formatDateLabel,
@@ -28,6 +29,7 @@ import "./dashboard-v3.css";
 
 function DashboardV3() {
   const { data, error, status } = useDashboardData();
+  const { isReturningWithUpdate } = useFreshnessMemory(data?.generatedAt);
   const [activeTab, setActiveTab] = useState<V3TabId>(() => {
     const param = readSearchParam("tab");
     return isV3TabId(param) ? param : "brief";
@@ -116,6 +118,9 @@ function DashboardV3() {
             <h1>Florida economic intelligence, built as an operating brief.</h1>
           </div>
           <div className="v3-freshness">
+            {isReturningWithUpdate ? (
+              <span className="v3-fresh-pill">Updated since your last visit</span>
+            ) : null}
             <span>Dataset</span>
             <strong>{formatDateLabel(data.generatedAt)}</strong>
             <small>Labor: {data.asOfLaborMarket} | Population: {data.asOfPopulation}</small>
