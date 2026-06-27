@@ -161,6 +161,19 @@
   }
 }
 
+/* "New since your last visit" personalization cue. */
+.v3-fresh-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  margin-bottom: 6px;
+  border-radius: 999px;
+  background: rgba(62, 232, 176, 0.14);
+  color: var(--v3-good);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 .v3-shell {
   width: min(1180px, calc(100% - 32px));
   max-width: 100%;
