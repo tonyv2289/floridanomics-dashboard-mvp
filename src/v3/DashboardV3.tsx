@@ -11,12 +11,14 @@ import { type CompetitionViewId, type V3TabId } from "./constants";
 import { isCompetitionViewId, isV3TabId, readSearchParam } from "./url";
 import { SourceFooter, TabNav } from "./primitives";
 import { BrandMark } from "./BrandMark";
+import { SignupForm } from "../components/SignupForm";
 import { BriefTab } from "./BriefTab";
 import { LensTab } from "./LensTab";
 import { isLensId, type LensId } from "./lenses";
 // Chart-bearing tabs are lazy-loaded so the chart library (Recharts) stays off the
 // default Brief landing and only loads when a chart tab is opened.
 const CompetitionTab = lazy(() => import("./CompetitionTab").then((m) => ({ default: m.CompetitionTab })));
+const StrategyTab = lazy(() => import("./StrategyTab").then((m) => ({ default: m.StrategyTab })));
 const TerminalTab = lazy(() => import("./TerminalTab").then((m) => ({ default: m.TerminalTab })));
 const ScorecardTab = lazy(() => import("./ScorecardTab").then((m) => ({ default: m.ScorecardTab })));
 const InnovationTab = lazy(() => import("./InnovationTab").then((m) => ({ default: m.InnovationTab })));
@@ -28,19 +30,10 @@ function DashboardV3() {
   const { data, error, status } = useDashboardData();
   const [activeTab, setActiveTab] = useState<V3TabId>(() => {
     const param = readSearchParam("tab");
-    if (param === "strategy") {
-      return "competition";
-    }
-
     return isV3TabId(param) ? param : "brief";
   });
   const [activeCompetitionView, setActiveCompetitionView] = useState<CompetitionViewId>(() => {
-    const tabParam = readSearchParam("tab");
     const viewParam = readSearchParam("competitionView");
-    if (tabParam === "strategy") {
-      return "strategy";
-    }
-
     return isCompetitionViewId(viewParam) ? viewParam : "metro";
   });
   const [activeLens, setActiveLens] = useState<LensId>(() => {
@@ -160,6 +153,7 @@ function DashboardV3() {
             onSelectView={setActiveCompetitionView}
           />
         ) : null}
+        {activeTab === "strategy" ? <StrategyTab dataset={data} /> : null}
         {activeTab === "terminal" ? <TerminalTab dataset={data} /> : null}
         {activeTab === "scorecard" ? (
           <ScorecardTab dataset={data} selectedMetricId={selectedMetricId} onSelectMetric={setSelectedMetricId} />
@@ -174,6 +168,7 @@ function DashboardV3() {
         {activeTab === "trade" ? <TradeTab dataset={data} /> : null}
         </Suspense>
 
+        <SignupForm source={`dashboard:${activeTab}`} />
         <SourceFooter dataset={data} />
       </div>
     </main>

@@ -1515,7 +1515,7 @@ async function main() {
     },
     realGsp: {
       id: "realGsp",
-      label: "Real Gross State Product",
+      label: "Real GSP (chained dollars)",
       unit: "usd_millions",
       trendDirection: "up_good",
       latest: latestPoint(realGspSeries),

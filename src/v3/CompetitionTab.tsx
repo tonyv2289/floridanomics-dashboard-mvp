@@ -29,7 +29,6 @@ import {
   type CompetitionViewId,
 } from "./constants";
 import { CompetitionSourceList, Frame } from "./primitives";
-import { StrategyTab } from "./StrategyTab";
 import type { DashboardDataset } from "../types/dashboard";
 
 function CompetitionHero({ dataset }: { dataset: DashboardDataset }) {
@@ -528,7 +527,6 @@ export function CompetitionTab({
           label="International metros"
         />
       ) : null}
-      {activeView === "strategy" ? <StrategyTab dataset={dataset} /> : null}
       {activeView === "fdi" ? (
         <>
           <FederalDataSpine dataset={dataset} />

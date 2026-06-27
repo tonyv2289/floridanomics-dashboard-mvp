@@ -96,6 +96,71 @@
   border: 0;
 }
 
+/* Email capture: the daily-habit funnel. */
+.v3-signup {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  align-items: center;
+  margin: 32px 0;
+  padding: 28px;
+  border: 1px solid var(--v3-line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(86, 194, 255, 0.06), rgba(255, 143, 63, 0.04));
+}
+.v3-signup h2 {
+  margin: 6px 0;
+  font-size: 22px;
+}
+.v3-signup-copy p {
+  color: var(--v3-muted);
+  margin: 0;
+}
+.v3-signup.is-success {
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+.v3-signup-row {
+  display: flex;
+  gap: 10px;
+}
+.v3-signup-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--v3-line);
+  border-radius: 10px;
+  background: var(--v3-navy);
+  color: var(--v3-text);
+}
+.v3-signup-row button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--v3-sun);
+  color: #02060d;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.v3-signup-row button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.v3-signup-error {
+  color: var(--v3-warn);
+  margin-top: 8px;
+  font-size: 13px;
+}
+@media (max-width: 720px) {
+  .v3-signup {
+    grid-template-columns: 1fr;
+  }
+  .v3-signup-row {
+    flex-direction: column;
+  }
+}
+
 .v3-shell {
   width: min(1180px, calc(100% - 32px));
   max-width: 100%;
@@ -399,6 +464,13 @@
   border: 1px solid var(--v3-line);
   border-radius: 8px;
   overflow: hidden;
+}
+
+/* Wrap the tab row into two columns on small screens so a growing tab set never overflows. */
+@media (max-width: 720px) {
+  .v3-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .v3-tab {
