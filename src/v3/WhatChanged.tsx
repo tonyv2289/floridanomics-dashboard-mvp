@@ -46,7 +46,10 @@ export function WhatChanged() {
     };
   }, []);
 
-  if (!payload) {
+  // Freshness integrity guard: if the latest period equals the previous period, the
+  // what-changed memo is out of sync with the dataset (the stale/contradictory state).
+  // Render nothing rather than show a freshness panel that undercuts trust.
+  if (!payload || payload.period === payload.prevPeriod) {
     return null;
   }
 

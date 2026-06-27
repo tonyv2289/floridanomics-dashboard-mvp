@@ -4,14 +4,9 @@ Florida Brain's public data surface for Florida economic, innovation, and trade 
 
 ## Current product state
 
-- `v3` is the current launch-default dashboard
-- `v2` and `v1` are archived behind explicit compare mode for fallback and review
-- Archived compare routes:
-  - `?compare=1&version=v3`
-  - `?compare=1&version=v2`
-  - `?compare=1&version=v1`
+`v3` is the live dashboard, served at the root route. (Earlier v1/v2 prototypes have been retired; there are no compare routes.)
 
-The live `v3` experience is built around six top-level tabs:
+The live experience is built around these top-level tabs:
 
 1. `Brief`
 2. `Competition`
