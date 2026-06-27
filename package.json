@@ -7,6 +7,7 @@
     "data:refresh": "tsx scripts/refresh-data.ts",
     "data:validate": "tsx scripts/validate-data.ts",
     "data:wser": "tsx scripts/wser-check.ts",
+    "data:legiscan": "tsx scripts/legiscan-pull.ts",
     "memo:generate": "tsx scripts/generate-memo.ts",
     "dev:dashboard": "npm run data:refresh && npm run dev",
     "dev": "vite",

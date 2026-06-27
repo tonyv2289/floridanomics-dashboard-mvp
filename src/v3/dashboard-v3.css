@@ -229,6 +229,33 @@
   border-radius: 999px;
   display: inline-block;
 }
+.v3-policy-row {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: var(--v3-text);
+  border-top: 1px solid var(--v3-line);
+}
+.v3-policy-row:first-child {
+  border-top: 0;
+}
+.v3-policy-number {
+  font-weight: 700;
+  color: var(--v3-teal);
+}
+.v3-policy-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.v3-policy-status {
+  color: var(--v3-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
 
 /* "New since your last visit" personalization cue. */
 .v3-fresh-pill {
