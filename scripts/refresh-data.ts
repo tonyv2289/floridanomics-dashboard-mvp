@@ -16,6 +16,7 @@ import {
 import { fetchBlsSeries, fetchFredSeries } from "./lib/sources";
 import { buildLeadingSection } from "./lib/leading";
 import { buildBenchmarksSection } from "./lib/benchmarks";
+import { WSER_SOURCE } from "./lib/wser";
 import type {
   DashboardDataset,
   IndustrySector,
@@ -1629,6 +1630,7 @@ async function main() {
       url: "https://www.bls.gov/developers/",
       notes: "Monthly state and metro labor market + payroll employment series.",
     },
+    { ...WSER_SOURCE },
     {
       id: "census_population",
       name: "U.S. Census Bureau Population Estimates (via FRED FLPOP)",
@@ -1651,6 +1653,10 @@ async function main() {
   ];
 
   const dataset: DashboardDataset = {
+    // Data-contract safety net: spread the existing dataset first so any curated or
+    // future-added top-level section is preserved unless a computed field below
+    // explicitly overwrites it. Prevents silent drift/stripping on refresh.
+    ...(existingDataset ?? ({} as DashboardDataset)),
     generatedAt: refreshedAt,
     asOfLaborMarket: prettyMonth(metrics.unemploymentRate.latest.date),
     asOfPopulation: String(new Date(metrics.population.latest.date).getUTCFullYear()),
