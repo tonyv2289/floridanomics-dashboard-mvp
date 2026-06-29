@@ -1,8 +1,11 @@
 import { useState, type FormEvent } from "react";
 
-// Set VITE_SIGNUP_ENDPOINT (e.g. a Make.com / webhook URL) to capture real leads.
-// Without it, the form still validates and confirms so the surface is shippable today.
+// Lead capture has two paths:
+//  1. VITE_SIGNUP_ENDPOINT (a webhook / hosted-form URL) POSTs the signup as JSON. Preferred.
+//  2. No endpoint set: fall back to a mailto to the Floridanomics inbox so the signup still
+//     reaches a real person instead of being silently dropped.
 const ENDPOINT = import.meta.env.VITE_SIGNUP_ENDPOINT as string | undefined;
+const SUBSCRIBE_EMAIL = "info@floridanomics.com";
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -33,13 +36,20 @@ export function SignupForm({ source = "dashboard" }: { source?: string }) {
         if (!response.ok) {
           throw new Error(`Signup failed (${response.status})`);
         }
+        setMessage("You are on the list. The Florida morning brief will land in your inbox.");
+      } else {
+        const subject = encodeURIComponent("Subscribe me to the Florida morning brief");
+        const body = encodeURIComponent(
+          `Please add me to the Florida morning brief.\n\nEmail: ${value}\nSource: ${source}`,
+        );
+        window.location.href = `mailto:${SUBSCRIBE_EMAIL}?subject=${subject}&body=${body}`;
+        setMessage("Almost there. Your email app will open with a pre-filled note, just hit send to lock in your spot.");
       }
       setState("success");
-      setMessage("You are on the list. The Florida morning brief will land in your inbox.");
       setEmail("");
     } catch {
       setState("error");
-      setMessage("Could not sign you up just now. Please try again.");
+      setMessage(`Could not sign you up just now. Please try again, or email ${SUBSCRIBE_EMAIL}.`);
     }
   }
 
