@@ -46,6 +46,9 @@ jobs:
           LEGISCAN_API_KEY: ${{ secrets.LEGISCAN_API_KEY }}
         run: npm run data:legiscan
 
+      - name: Validate refreshed data
+        run: npm run data:validate
+
       - name: Build static site
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/

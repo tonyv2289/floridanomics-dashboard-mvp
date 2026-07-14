@@ -10,6 +10,8 @@ Output:
 
 - `public/data/florida-economy.json`
 
+For production updates, prefer the GitHub Actions **Refresh Data** workflow. It has the API-key secrets needed for Census, BEA, EIA, and LegiScan-backed sections. A keyless local refresh is useful for development, but it may mark optional federal feeds as `needs_key` and omit the EIA power benchmark.
+
 ## What the refresh now does
 
 ### Rebuilds the dynamic core
@@ -89,6 +91,7 @@ npm run data:validate
 
 - BLS request chunking and retry logic are built in
 - If the BLS daily threshold is exhausted, refresh falls back to cached BLS series from the existing dataset
+- The 1st-of-month GitHub Actions refresh runs after the BLS metropolitan release window so state and metro labor data do not drift because of same-day release timing.
 - `CENSUS_API_KEY`, `BEA_API_KEY`, and `EIA_API_KEY` are optional locally; missing keys are surfaced in `federal.missingKeys`
 - `CENSUS_API_KEY` activates the Census state export API. Florida business applications intentionally remain on the Census BFS FRED bridge until a state-level Census API or official CSV ingest is confirmed
 - EIA registration verification links are activation URLs, not API keys. Only set `EIA_API_KEY` after the EIA API accepts the actual key
