@@ -11,6 +11,7 @@ import {
 import { deltaTone, formatDelta, formatMetricValue } from "../lib/dashboard";
 import { TOOLTIP_ITEM_STYLE, TOOLTIP_LABEL_STYLE, TOOLTIP_STYLE } from "./constants";
 import { Frame, TerminalSourceList } from "./primitives";
+import { ProjectCapexLedger } from "./ProjectCapexLedger";
 import type { DashboardDataset } from "../types/dashboard";
 
 function TerminalHero({ dataset }: { dataset: DashboardDataset }) {
@@ -182,50 +183,6 @@ function HighWageTerminal({ dataset }: { dataset: DashboardDataset }) {
   );
 }
 
-function ProjectLedger({ dataset }: { dataset: DashboardDataset }) {
-  return (
-    <Frame label="Project ledger">
-      <div className="v3-panel-head">
-        <div>
-          <h2>From announcements to a named-asset ledger.</h2>
-          <p>
-            A serious state terminal needs a capex ledger: what is announced, what is real, where it sits, and which
-            wage curve it can bend.
-          </p>
-        </div>
-      </div>
-
-      <div className="v3-project-ledger">
-        {dataset.terminal.projectLedger.map((project) => (
-          <article key={project.id} className="v3-project-card">
-            <div>
-              <span>{project.geography}</span>
-              <b>{project.stage}</b>
-            </div>
-            <h3>{project.name}</h3>
-            <div className="v3-project-meta">
-              <p>
-                <span>Sector</span>
-                {project.sector}
-              </p>
-              <p>
-                <span>Capex / capacity</span>
-                {project.capex}
-              </p>
-              <p>
-                <span>Jobs</span>
-                {project.jobs}
-              </p>
-            </div>
-            <p>{project.strategicRead}</p>
-            <TerminalSourceList dataset={dataset} sourceIds={project.sourceIds} />
-          </article>
-        ))}
-      </div>
-    </Frame>
-  );
-}
-
 function ForecastBoard({ dataset }: { dataset: DashboardDataset }) {
   return (
     <Frame label="Forecast board">
@@ -353,7 +310,7 @@ export function TerminalTab({ dataset }: { dataset: DashboardDataset }) {
       <TerminalHero dataset={dataset} />
       <AiCapexIndex dataset={dataset} />
       <HighWageTerminal dataset={dataset} />
-      <ProjectLedger dataset={dataset} />
+      <ProjectCapexLedger dataset={dataset} compact />
       <ForecastBoard dataset={dataset} />
       <PolicyMemoBoard dataset={dataset} />
       <EvidenceExport dataset={dataset} />

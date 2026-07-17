@@ -29,6 +29,7 @@ import {
   type CompetitionViewId,
 } from "./constants";
 import { CompetitionSourceList, Frame } from "./primitives";
+import { ProjectCapexLedger } from "./ProjectCapexLedger";
 import type { DashboardDataset } from "../types/dashboard";
 
 function CompetitionHero({ dataset }: { dataset: DashboardDataset }) {
@@ -517,6 +518,7 @@ export function CompetitionTab({
     <>
       <CompetitionHero dataset={dataset} />
       <CompetitionViewMenu activeView={activeView} onChange={onSelectView} />
+      {activeView === "projects" ? <ProjectCapexLedger dataset={dataset} /> : null}
       {activeView === "metro" ? (
         <MetroCompetitionView dataset={dataset} comparison={dataset.competition.metroComparison} label="US metros" />
       ) : null}

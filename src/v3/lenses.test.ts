@@ -13,7 +13,7 @@ describe("lens definitions stay in contract with the dataset", () => {
   const innovationIds = new Set(Object.keys(dataset.innovation.metrics));
   const tradeHeroIds = new Set(dataset.trade.heroMetrics.map((metric) => metric.id));
   const clusterIds = new Set(dataset.strategy.clusters.map((cluster) => cluster.id));
-  const projectIds = new Set(dataset.terminal.projectLedger.map((project) => project.id));
+  const projectIds = new Set(dataset.terminal.projectLedger.projects.map((project) => project.id));
 
   for (const lens of LENSES) {
     it(`${lens.id}: every referenced id exists in the dataset`, () => {

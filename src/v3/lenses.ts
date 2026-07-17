@@ -28,7 +28,7 @@ export const LENSES: LensDefinition[] = [
     innovationIds: ["realGsp"],
     tradeHeroIds: ["totalExports", "manufacturedExports", "bilateralTrade", "selectFloridaFy"],
     clusterId: "latam-gateway",
-    projectIds: ["portmiami-gateway", "port-everglades-cold-chain"],
+    projectIds: [],
     watch: [
       "Trade, transportation, and utilities is Florida's largest private supersector; its monthly trend is the demand signal for freight and warehousing.",
       "Port capacity projects determine whether the export record extends; the gateway thesis depends on infrastructure absorbing the growth.",
@@ -45,7 +45,13 @@ export const LENSES: LensDefinition[] = [
     innovationIds: ["constructionEmployment", "realGsp"],
     tradeHeroIds: [],
     clusterId: "ai-power-readiness",
-    projectIds: ["blue-origin-cape", "ai-compute-gap"],
+    projectIds: [
+      "blue-origin-project-horizon",
+      "amazon-leo-expansion",
+      "aura-aero-daytona",
+      "spacex-gigabay-starship",
+      "williams-international-okaloosa",
+    ],
     watch: [
       "Construction payrolls lead the capex story; a sustained decline while projects are announced means announcements are not converting.",
       "Power readiness decides which large projects break ground in Florida instead of Georgia or Texas; the interconnection queue is the early signal.",
@@ -62,7 +68,7 @@ export const LENSES: LensDefinition[] = [
     innovationIds: ["businessApplications", "realGsp"],
     tradeHeroIds: ["bilateralTrade"],
     clusterId: "talent-pipeline",
-    projectIds: ["ai-compute-gap"],
+    projectIds: [],
     watch: [
       "Business applications are the leading indicator of future demand for banking, legal, and advisory services.",
       "The question for allocators is whether Florida converts income migration into capital formation, not whether the migration is happening.",
@@ -79,7 +85,7 @@ export const LENSES: LensDefinition[] = [
     innovationIds: ["professionalBusinessEmployment"],
     tradeHeroIds: [],
     clusterId: "talent-pipeline",
-    projectIds: [],
+    projectIds: ["abbvie-durham-campus", "ucb-rowen-biologics"],
     watch: [
       "Health employment growth that lags population growth signals a widening care gap and rising wage pressure for clinical roles.",
       "Credential output from the university system is the supply-side number to watch against the demand curve.",
@@ -96,7 +102,12 @@ export const LENSES: LensDefinition[] = [
     innovationIds: ["informationEmployment", "businessApplications"],
     tradeHeroIds: [],
     clusterId: "ai-power-readiness",
-    projectIds: ["ai-compute-gap", "space-florida-pipeline", "blue-origin-cape"],
+    projectIds: [
+      "blue-origin-project-horizon",
+      "amazon-leo-processing",
+      "spacex-gigabay-starship",
+      "boeing-embry-riddle-center",
+    ],
     watch: [
       "Information-sector jobs are the truth serum for the tech narrative; formation without information-sector growth means startups are not scaling in state.",
       "The AI capex scoreboard against Texas and Georgia decides whether the next decade's high-wage tech jobs land here.",
