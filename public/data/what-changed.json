@@ -1,46 +1,6 @@
 {
-  "generatedAt": "2026-07-14T00:20:31.228Z",
+  "generatedAt": "2026-07-17T01:06:21.309Z",
   "period": "May 2026",
   "prevPeriod": "May 2026",
-  "items": [
-    {
-      "id": "businessApplications",
-      "label": "Business Applications",
-      "scope": "innovation",
-      "prevDate": "2026-05-01",
-      "nextDate": "2026-06-01",
-      "prevValue": 64521,
-      "nextValue": 61256,
-      "kind": "new_period",
-      "absolute": -3265,
-      "tone": "warn",
-      "headline": "Business Applications reached 61.3K in June 2026, a loss of 3.3K versus May 2026."
-    },
-    {
-      "id": "metro-miami",
-      "label": "Miami MSA unemployment",
-      "kind": "new_period",
-      "scope": "metro",
-      "prevDate": "2026-04-01",
-      "nextDate": "2026-05-01",
-      "prevValue": 3.9,
-      "nextValue": 3.6,
-      "absolute": -0.2999999999999998,
-      "tone": "good",
-      "headline": "Miami MSA unemployment eased to 3.6% in May 2026, down 0.3 points versus April 2026."
-    },
-    {
-      "id": "metro-tampa",
-      "label": "Tampa MSA unemployment",
-      "kind": "new_period",
-      "scope": "metro",
-      "prevDate": "2026-04-01",
-      "nextDate": "2026-05-01",
-      "prevValue": 4.7,
-      "nextValue": 4.5,
-      "absolute": -0.20000000000000018,
-      "tone": "good",
-      "headline": "Tampa MSA unemployment eased to 4.5% in May 2026, down 0.2 points versus April 2026."
-    }
-  ]
+  "items": []
 }
