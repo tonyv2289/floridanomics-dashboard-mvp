@@ -168,6 +168,102 @@ function validateRequiredIds(
   });
 }
 
+type LatestDateCarrier = { latest: { date: string } };
+
+const MONTH_LABELS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+] as const;
+
+const MONTH_KEYS = new Map(MONTH_LABELS.map((month, index) => [month.toLowerCase(), index]));
+
+function monthKeyFromDate(date: string): number | null {
+  const match = /^(\d{4})-(\d{2})-\d{2}/.exec(date);
+  if (!match) {
+    return null;
+  }
+
+  const year = Number.parseInt(match[1], 10);
+  const month = Number.parseInt(match[2], 10) - 1;
+  if (!Number.isInteger(year) || month < 0 || month > 11) {
+    return null;
+  }
+
+  return year * 12 + month;
+}
+
+function monthKeyFromLabel(label: string): number | null {
+  const match = /^([A-Za-z]+)\s+(\d{4})$/.exec(label.trim());
+  if (!match) {
+    return null;
+  }
+
+  const month = MONTH_KEYS.get(match[1].toLowerCase());
+  const year = Number.parseInt(match[2], 10);
+  if (month === undefined || !Number.isInteger(year)) {
+    return null;
+  }
+
+  return year * 12 + month;
+}
+
+function monthLabel(key: number | null): string {
+  if (key === null) {
+    return "unknown";
+  }
+
+  const year = Math.floor(key / 12);
+  const month = key % 12;
+  return `${MONTH_LABELS[month]} ${year}`;
+}
+
+function validateLatestMonth(
+  item: LatestDateCarrier,
+  expectedMonth: number,
+  label: string,
+  errors: string[],
+) {
+  const actualMonth = monthKeyFromDate(item.latest.date);
+  ensure(actualMonth !== null, `${label} has an invalid latest date: ${item.latest.date}`, errors);
+  ensure(
+    actualMonth === expectedMonth,
+    `${label} latest month is ${monthLabel(actualMonth)}, expected ${monthLabel(expectedMonth)}`,
+    errors,
+  );
+}
+
+function validateMaxOneMonthLag(
+  item: LatestDateCarrier,
+  expectedMonth: number,
+  label: string,
+  errors: string[],
+) {
+  const actualMonth = monthKeyFromDate(item.latest.date);
+  ensure(actualMonth !== null, `${label} has an invalid latest date: ${item.latest.date}`, errors);
+  if (actualMonth === null) {
+    return;
+  }
+
+  const lag = expectedMonth - actualMonth;
+  ensure(
+    lag >= 0 && lag <= 1,
+    `${label} latest month is ${monthLabel(actualMonth)}, which is ${Math.abs(lag)} month(s) ${
+      lag < 0 ? "ahead of" : "behind"
+    } asOfLaborMarket ${monthLabel(expectedMonth)}`,
+    errors,
+  );
+}
+
 function validateInsightStat(stat: InsightStat, label: string, errors: string[]) {
   ensure(isNonEmptyString(stat.label), `${label} missing stat label`, errors);
   ensure(isNonEmptyString(stat.value), `${label} missing stat value`, errors);
@@ -664,6 +760,12 @@ async function main() {
   ensure(isNonEmptyString(data.generatedAt), "Missing generatedAt", errors);
   ensure(isNonEmptyString(data.asOfLaborMarket), "Missing asOfLaborMarket", errors);
   ensure(isNonEmptyString(data.asOfPopulation), "Missing asOfPopulation", errors);
+  const asOfLaborMarketMonth = monthKeyFromLabel(data.asOfLaborMarket);
+  ensure(
+    asOfLaborMarketMonth !== null,
+    `asOfLaborMarket must be a month label like "May 2026"; received ${data.asOfLaborMarket}`,
+    errors,
+  );
 
   ensure(data.sources.length >= 3, "Expected at least three top-level sources", errors);
   data.sources.forEach((source, index) => {
@@ -699,14 +801,43 @@ async function main() {
     ensure(isNonEmptyString(metric.latest.date), `Metric ${metricId} missing latest date`, errors);
   }
 
+  if (asOfLaborMarketMonth !== null) {
+    const laborMetricIds: Array<keyof Omit<DashboardDataset["metrics"], "population">> = [
+      "unemploymentRate",
+      "laborForce",
+      "employmentLevel",
+      "nonfarmPayrolls",
+    ];
+    laborMetricIds.forEach((metricId) =>
+      validateLatestMonth(data.metrics[metricId], asOfLaborMarketMonth, `Metric ${metricId}`, errors),
+    );
+  }
+
   ensure(data.industry.sectors.length >= 8, "Industry sectors should include major categories", errors);
   ensure(data.industry.strongestGrowers.length > 0, "Missing strongestGrowers", errors);
   ensure(data.industry.laggards.length > 0, "Missing laggards", errors);
+  if (asOfLaborMarketMonth !== null) {
+    data.industry.sectors.forEach((sector) =>
+      validateLatestMonth(sector, asOfLaborMarketMonth, `Industry sector ${sector.id}`, errors),
+    );
+  }
 
   ensure(data.metros.length === 4, "Expected exactly four metro cards", errors);
   const requiredMetros = ["Miami MSA", "Tampa MSA", "Orlando MSA", "Jacksonville MSA"];
   for (const metroName of requiredMetros) {
     ensure(data.metros.some((metro) => metro.name === metroName), `Missing metro ${metroName}`, errors);
+  }
+  if (asOfLaborMarketMonth !== null) {
+    data.metros.forEach((metro) => {
+      validateMaxOneMonthLag(
+        metro.unemploymentRate,
+        asOfLaborMarketMonth,
+        `${metro.name} unemploymentRate`,
+        errors,
+      );
+      validateMaxOneMonthLag(metro.laborForce, asOfLaborMarketMonth, `${metro.name} laborForce`, errors);
+      validateMaxOneMonthLag(metro.employmentLevel, asOfLaborMarketMonth, `${metro.name} employmentLevel`, errors);
+    });
   }
 
   ensure(data.narrative.whatStandsOut.length > 0, "Narrative missing whatStandsOut", errors);
@@ -743,6 +874,28 @@ async function main() {
   ensure(data.strategy.peerStates.length >= REQUIRED_PEER_STATE_IDS.length, "strategy.peerStates missing peer states", errors);
   validateRequiredIds(data.strategy.peerStates, REQUIRED_PEER_STATE_IDS, "Strategy peer states", errors);
   data.strategy.peerStates.forEach((state, index) => validatePeerState(state, `strategy.peerStates ${index + 1}`, errors));
+  if (asOfLaborMarketMonth !== null) {
+    data.strategy.peerStates.forEach((state) => {
+      validateLatestMonth(
+        state.unemploymentRate,
+        asOfLaborMarketMonth,
+        `strategy.peerStates ${state.id}.unemploymentRate`,
+        errors,
+      );
+      validateLatestMonth(
+        state.laborForce,
+        asOfLaborMarketMonth,
+        `strategy.peerStates ${state.id}.laborForce`,
+        errors,
+      );
+      validateLatestMonth(
+        state.nonfarmPayrolls,
+        asOfLaborMarketMonth,
+        `strategy.peerStates ${state.id}.nonfarmPayrolls`,
+        errors,
+      );
+    });
+  }
   ensure(data.strategy.benchmarkExamples.length >= 5, "strategy.benchmarkExamples should include external models", errors);
   data.strategy.benchmarkExamples.forEach((example, index) =>
     validateBenchmarkExample(example, `strategy.benchmarkExamples ${index + 1}`, errors),

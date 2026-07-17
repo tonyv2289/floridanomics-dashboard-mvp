@@ -2,8 +2,10 @@ name: Refresh Data
 
 on:
   schedule:
-    # 1st of month: baseline refresh (population, FRED revisions)
-    - cron: "0 11 1 * *"
+    # 1st of month: baseline refresh after the BLS metro release window.
+    # 18:00 UTC is early afternoon Eastern, so same-day 10 a.m. ET
+    # metropolitan releases are available before the pull runs.
+    - cron: "0 18 1 * *"
     # 22nd of month: catch the mid-month BLS state employment release
     # (BLS publishes prior-month state data ~3rd week, so this picks it
     # up ~1 week after release instead of waiting for the next 1st)

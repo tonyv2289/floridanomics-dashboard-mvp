@@ -14,6 +14,21 @@ import { fetchWserReleaseInfo, WSER_RELEASE_FILES } from "./lib/wser";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DATA_FILE = path.join(ROOT, "public", "data", "florida-economy.json");
 
+function coveredMonthLabel(releaseDate: string): string {
+  const date = new Date(`${releaseDate}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) {
+    return "unknown";
+  }
+
+  // Florida monthly releases are for the prior month's labor-market data.
+  date.setUTCMonth(date.getUTCMonth() - 1);
+  return date.toLocaleString("en-US", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
 async function main(): Promise<void> {
   let asOf = "unknown";
   try {
@@ -38,13 +53,9 @@ async function main(): Promise<void> {
   }
 
   if (info.latestReleaseDate) {
-    const releaseMonth = new Date(`${info.latestReleaseDate}T00:00:00Z`).toLocaleString("en-US", {
-      month: "long",
-      year: "numeric",
-      timeZone: "UTC",
-    });
+    const releaseMonth = coveredMonthLabel(info.latestReleaseDate);
     console.log(
-      `  Note: WSER's latest release posted ${info.latestReleaseDate} (covers data through roughly ${releaseMonth}). ` +
+      `  Note: WSER's latest release posted ${info.latestReleaseDate} (covers ${releaseMonth} data). ` +
         `If the dashboard as-of is older than WSER's covered month, run "npm run data:refresh".`,
     );
   }
