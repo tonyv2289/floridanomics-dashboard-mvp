@@ -55,17 +55,24 @@ export function summarizeCapexProjects(projects: TerminalProject[]) {
   const peers = disclosed.filter((project) => !project.isFlorida);
   const sumCapex = (items: TerminalProject[]) =>
     items.reduce((sum, project) => sum + (project.capexUsdMillions ?? 0), 0);
-  const announcedJobs = projects.reduce(
-    (sum, project) =>
-      project.jobsQualifier === "exact" || project.jobsQualifier === "minimum"
-        ? sum + (project.jobsAnnounced ?? 0)
-        : sum,
-    0,
-  );
+  const sumAnnouncedJobs = (items: TerminalProject[]) =>
+    items.reduce(
+      (sum, project) =>
+        project.jobsQualifier === "exact" || project.jobsQualifier === "minimum"
+          ? sum + (project.jobsAnnounced ?? 0)
+          : sum,
+      0,
+    );
   const disclosedCapex = sumCapex(disclosed);
   const convertedCapex = sumCapex(disclosed.filter(isConvertedProject));
   const floridaCapex = sumCapex(florida);
+  const floridaConvertedCapex = sumCapex(florida.filter(isConvertedProject));
   const peerCapex = sumCapex(peers);
+  const largestPeerProject = peers.reduce<TerminalProject | null>(
+    (largest, project) =>
+      largest === null || (project.capexUsdMillions ?? 0) > (largest.capexUsdMillions ?? 0) ? project : largest,
+    null,
+  );
 
   return {
     projectCount: projects.length,
@@ -74,10 +81,15 @@ export function summarizeCapexProjects(projects: TerminalProject[]) {
     convertedCapex,
     convertedShare: disclosedCapex > 0 ? convertedCapex / disclosedCapex : 0,
     floridaCapex,
+    floridaConvertedCapex,
+    floridaConvertedShare: floridaCapex > 0 ? floridaConvertedCapex / floridaCapex : 0,
     peerCapex,
     floridaGap: Math.max(0, peerCapex - floridaCapex),
-    announcedJobs,
+    announcedJobs: sumAnnouncedJobs(projects),
+    floridaAnnouncedJobs: sumAnnouncedJobs(projects.filter((project) => project.isFlorida)),
     wageDisclosureCount: projects.filter((project) => project.averageWageUsd !== null).length,
+    floridaWageDisclosureCount: projects.filter((project) => project.isFlorida && project.averageWageUsd !== null).length,
+    largestPeerProject,
   };
 }
 

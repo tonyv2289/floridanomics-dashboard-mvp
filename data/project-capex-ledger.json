@@ -1,7 +1,7 @@
 {
   "headline": "The announcement is the start. Conversion is the score.",
   "summary": "A source-backed ledger of named strategic projects in Florida and competitor states, normalized so executives can compare disclosed capital, jobs, timing, and delivery stage without double-counting headline packages.",
-  "coverageNote": "Curated strategic-project coverage, not a complete census of statewide business investment. Totals include only disclosed capital tied to named facilities in this ledger.",
+  "coverageNote": "Curated strategic-project coverage, not a complete census of statewide business investment. Totals include only disclosed capital tied to named facilities. Peer projects span four states and are not aggregated as a state-to-state ranking.",
   "methodology": [
     "Count disclosed investment only when it is tied to a named facility or expansion.",
     "Exclude contracts, purchase orders, grants, aggregate pipelines, and public-program totals from project capex.",

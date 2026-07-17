@@ -156,19 +156,26 @@ export function ProjectCapexLedger({ dataset, compact = false }: { dataset: Dash
           note={`${ledger.projects.filter((project) => project.isFlorida).length} named projects`}
         />
         <LedgerMetric
-          label="Peer disclosed"
-          value={formatCapexMillions(summary.peerCapex)}
-          note={`${formatCapexMillions(summary.floridaGap)} above Florida in this sample`}
+          label="Florida converted"
+          value={`${Math.round(summary.floridaConvertedShare * 100)}%`}
+          note={`${formatCapexMillions(summary.floridaConvertedCapex)} building or operating`}
         />
         <LedgerMetric
-          label="Converted capital"
-          value={`${Math.round(summary.convertedShare * 100)}%`}
-          note={`${formatCapexMillions(summary.convertedCapex)} building or operating`}
+          label="Largest peer project"
+          value={formatCapexMillions(
+            summary.largestPeerProject?.capexUsdMillions ?? null,
+            summary.largestPeerProject?.amountQualifier,
+          )}
+          note={
+            summary.largestPeerProject
+              ? `${summary.largestPeerProject.company} | ${summary.largestPeerProject.state}`
+              : "No disclosed peer project"
+          }
         />
         <LedgerMetric
-          label="Direct announced jobs"
-          value={summary.announcedJobs.toLocaleString("en-US")}
-          note={`Wages disclosed for ${summary.wageDisclosureCount} projects`}
+          label="Florida direct jobs"
+          value={summary.floridaAnnouncedJobs.toLocaleString("en-US")}
+          note={`Wages disclosed for ${summary.floridaWageDisclosureCount} Florida ${summary.floridaWageDisclosureCount === 1 ? "project" : "projects"}`}
         />
       </div>
 

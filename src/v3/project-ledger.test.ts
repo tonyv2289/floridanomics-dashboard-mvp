@@ -67,8 +67,11 @@ describe("project capex ledger", () => {
     expect(summary.disclosedCapex).toBe(3600);
     expect(summary.convertedCapex).toBe(3000);
     expect(summary.convertedShare).toBeCloseTo(5 / 6);
+    expect(summary.floridaConvertedShare).toBe(0);
     expect(summary.floridaGap).toBe(2400);
     expect(summary.announcedJobs).toBe(10500);
+    expect(summary.floridaAnnouncedJobs).toBe(500);
+    expect(summary.largestPeerProject?.id).toBe("peer-project");
   });
 
   it("does not count supported positions as newly announced jobs", () => {
