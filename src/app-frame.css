@@ -107,3 +107,21 @@
     flex-direction: column;
   }
 }
+.v3-skip-link {
+  position: absolute;
+  left: 12px;
+  top: -48px;
+  z-index: 999;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #56c2ff;
+  color: #02060d;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.v3-skip-link:focus {
+  top: 12px;
+}

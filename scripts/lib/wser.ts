@@ -37,12 +37,23 @@ export const WSER_RELEASE_FILES = {
 } as const;
 
 export interface WserReleaseInfo {
-  /** Most recent release date parsed from the published 2026 schedule (ISO, or null). */
+  /** Most recent due date parsed from the published 2026 schedule (ISO, or null). */
   latestReleaseDate: string | null;
   /** All release dates found on the page, ascending (ISO). */
   scheduledDates: string[];
   releasesPageUrl: string;
   files: typeof WSER_RELEASE_FILES;
+}
+
+export function floridaIsoDate(now: Date = new Date()): string {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(now);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
 }
 
 async function fetchText(url: string): Promise<string> {
@@ -74,7 +85,7 @@ function parseScheduleDates(text: string): string[] {
 }
 
 /**
- * Fetch WSER's monthly-data-release schedule and report the latest release date.
+ * Fetch WSER's monthly-data-release schedule and report the latest due date in Florida.
  * Best-effort: returns nulls (not throws) on network/parse failure so it never breaks a refresh.
  */
 export async function fetchWserReleaseInfo(now: Date = new Date()): Promise<WserReleaseInfo> {
@@ -85,7 +96,7 @@ export async function fetchWserReleaseInfo(now: Date = new Date()): Promise<Wser
   } catch {
     scheduledDates = [];
   }
-  const todayIso = now.toISOString().slice(0, 10);
+  const todayIso = floridaIsoDate(now);
   const past = scheduledDates.filter((d) => d <= todayIso);
   return {
     latestReleaseDate: past.length ? past[past.length - 1] : null,

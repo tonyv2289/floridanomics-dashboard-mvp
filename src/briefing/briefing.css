@@ -269,8 +269,25 @@
 }
 
 @media (max-width: 720px) {
+  .briefing-root {
+    padding-inline: 10px;
+  }
+
   .briefing {
     padding: 24px 20px;
+  }
+
+  .briefing-masthead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .briefing-brand {
+    align-items: center;
+  }
+
+  .briefing-stamp {
+    text-align: left;
   }
 
   .briefing-hero,
@@ -280,6 +297,10 @@
 
   .briefing-hero-stats {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .briefing-actions {
+    align-items: stretch;
   }
 }
 

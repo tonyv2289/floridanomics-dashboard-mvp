@@ -1,0 +1,141 @@
+.signup {
+  --signup-background: #0a1024;
+  --signup-border: rgba(148, 163, 184, 0.28);
+  --signup-text: #e8eef9;
+  --signup-muted: #a9b5c6;
+  --signup-input: #02060d;
+  --signup-accent: #ff8f3f;
+  --signup-button-text: #02060d;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  align-items: center;
+  margin: 32px 0;
+  padding: 28px;
+  border: 1px solid var(--signup-border);
+  border-radius: 8px;
+  background: var(--signup-background);
+  color: var(--signup-text);
+  font-family: "Manrope", sans-serif;
+}
+
+.signup h2 {
+  margin: 6px 0;
+  font-family: "Sora", sans-serif;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.signup-copy > p:last-child {
+  margin: 0;
+  color: var(--signup-muted);
+  line-height: 1.5;
+}
+
+.signup-kicker {
+  margin: 0;
+  color: var(--signup-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.signup-fields {
+  min-width: 0;
+}
+
+.signup-row {
+  display: flex;
+  gap: 10px;
+}
+
+.signup-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--signup-border);
+  border-radius: 6px;
+  background: var(--signup-input);
+  color: var(--signup-text);
+  font: inherit;
+}
+
+.signup-row button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--signup-accent);
+  color: var(--signup-button-text);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.signup-row button:hover {
+  filter: brightness(1.06);
+}
+
+.signup :is(a, button, input):focus-visible {
+  outline: 2px solid #56c2ff;
+  outline-offset: 2px;
+}
+
+.signup-consent {
+  margin: 8px 0 0;
+  color: var(--signup-muted);
+  font-size: 0.7rem;
+  line-height: 1.45;
+}
+
+.signup-consent a {
+  color: inherit;
+}
+
+.signup-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.signup--briefing {
+  --signup-background: #f5f7fa;
+  --signup-border: #d7dee8;
+  --signup-text: #0b1526;
+  --signup-muted: #5c6878;
+  --signup-input: #ffffff;
+  --signup-accent: #e85d2f;
+  --signup-button-text: #ffffff;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 20px 0 4px;
+  padding: 20px;
+  border-top: 3px solid var(--signup-accent);
+}
+
+.signup--briefing h2 {
+  font-size: 1.05rem;
+}
+
+@media (max-width: 720px) {
+  .signup {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .signup-row {
+    flex-direction: column;
+  }
+
+  .signup-row button {
+    width: 100%;
+  }
+}

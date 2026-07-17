@@ -2,19 +2,15 @@ import { Suspense, lazy, useEffect } from "react";
 import clsx from "clsx";
 import { initAnalytics, trackOutboundLink } from "./lib/analytics";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { resolveAppView } from "./lib/routing";
 import "./app-frame.css";
 
 const DashboardV3 = lazy(() => import("./v3/DashboardV3"));
 const Briefing = lazy(() => import("./briefing/Briefing"));
 
-function isBriefingView(): boolean {
-  if (typeof window === "undefined") {
-    return false;
-  }
-  return new URLSearchParams(window.location.search).get("view") === "briefing";
-}
-
 function App() {
+  const appView = resolveAppView(typeof window === "undefined" ? "" : window.location.search);
+
   useEffect(() => {
     initAnalytics();
 
@@ -31,7 +27,7 @@ function App() {
 
   return (
     <div className="compare-frame">
-      <a className="v3-skip-link" href="#v3-main">
+      <a className="v3-skip-link" href={appView === "dashboard" ? "#v3-main" : "#briefing-main"}>
         Skip to content
       </a>
       <ErrorBoundary>
@@ -39,13 +35,13 @@ function App() {
           fallback={
             <main className={clsx("compare-loading")} role="status" aria-live="polite">
               <div className="compare-loading-card">
-                <p className="compare-kicker">Loading dashboard</p>
-                <h2>Pulling the dashboard into view.</h2>
+                <p className="compare-kicker">Loading Floridanomics</p>
+                <h2>Preparing the latest Florida read.</h2>
               </div>
             </main>
           }
         >
-          {isBriefingView() ? <Briefing /> : <DashboardV3 />}
+          {appView === "dashboard" ? <DashboardV3 /> : <Briefing />}
         </Suspense>
       </ErrorBoundary>
     </div>
