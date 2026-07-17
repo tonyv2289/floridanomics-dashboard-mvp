@@ -22,5 +22,5 @@ export function isV3TabId(value: string | null): value is V3TabId {
 }
 
 export function isCompetitionViewId(value: string | null): value is CompetitionViewId {
-  return value === "projects" || value === "metro" || value === "international" || value === "fdi";
+  return value === "projects" || value === "grants" || value === "metro" || value === "international" || value === "fdi";
 }
