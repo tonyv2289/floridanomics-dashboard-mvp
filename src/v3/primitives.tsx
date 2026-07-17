@@ -101,23 +101,37 @@ export function Frame({ children, label }: { children: ReactNode; label?: string
 
 export function TabNav({ activeTab, onChange }: { activeTab: V3TabId; onChange: (tab: V3TabId) => void }) {
   return (
-    <nav
-      className="v3-tabs"
-      aria-label="Floridanomics views"
-      style={{ "--v3-tab-count": TAB_OPTIONS.length } as CSSProperties}
-    >
-      {TAB_OPTIONS.map((tab) => (
-        <button
-          key={tab.id}
-          type="button"
-          aria-current={activeTab === tab.id ? "true" : undefined}
-          className={clsx("v3-tab", activeTab === tab.id && "is-active")}
-          onClick={() => startTransition(() => onChange(tab.id))}
+    <nav className="v3-view-nav" aria-label="Floridanomics views">
+      <label className="v3-tab-select">
+        <span>Explore the data</span>
+        <select
+          value={activeTab}
+          onChange={(event) => startTransition(() => onChange(event.target.value as V3TabId))}
         >
-          <span>{tab.label}</span>
-          <small>{tab.line}</small>
-        </button>
-      ))}
+          {TAB_OPTIONS.map((tab) => (
+            <option key={tab.id} value={tab.id}>
+              {tab.label} - {tab.line}
+            </option>
+          ))}
+        </select>
+      </label>
+      <div
+        className="v3-tabs"
+        style={{ "--v3-tab-count": TAB_OPTIONS.length } as CSSProperties}
+      >
+        {TAB_OPTIONS.map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            aria-current={activeTab === tab.id ? "true" : undefined}
+            className={clsx("v3-tab", activeTab === tab.id && "is-active")}
+            onClick={() => startTransition(() => onChange(tab.id))}
+          >
+            <span>{tab.label}</span>
+            <small>{tab.line}</small>
+          </button>
+        ))}
+      </div>
     </nav>
   );
 }

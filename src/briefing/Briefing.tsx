@@ -12,6 +12,7 @@ import {
 import { formatSignedInteger, getMonthlyPayrollChange } from "../v3/format";
 import { changeTone, formatChange, formatSignalValue } from "../v3/signal-format";
 import { BrandMark } from "../v3/BrandMark";
+import { SignupForm } from "../components/SignupForm";
 import "./briefing.css";
 
 type WhatChangedPayload = {
@@ -45,11 +46,11 @@ function Briefing() {
   const whatChanged = useWhatChanged();
 
   if (status === "error") {
-    return <main className="briefing-root"><p className="briefing-state">The briefing could not load the dataset. {error}</p></main>;
+    return <main className="briefing-root" id="briefing-main"><p className="briefing-state">The briefing could not load the dataset. {error}</p></main>;
   }
 
   if (!data || status === "loading") {
-    return <main className="briefing-root"><p className="briefing-state">Preparing the briefing.</p></main>;
+    return <main className="briefing-root" id="briefing-main"><p className="briefing-state">Preparing the briefing.</p></main>;
   }
 
   const payrollChange = getMonthlyPayrollChange(data);
@@ -62,10 +63,10 @@ function Briefing() {
     typeof window !== "undefined" && new URLSearchParams(window.location.search).get("snapshot") === "1";
 
   return (
-    <main className="briefing-root">
+    <main className="briefing-root" id="briefing-main">
       {isSnapshot ? null : (
         <div className="briefing-actions">
-          <a href={`${import.meta.env.BASE_URL}`}>Back to the dashboard</a>
+          <a href="?view=dashboard">Explore the full dashboard</a>
           <button type="button" onClick={() => window.print()}>
             Download as PDF
           </button>
@@ -165,11 +166,13 @@ function Briefing() {
           </section>
         ) : null}
 
+        {isSnapshot ? null : <SignupForm source="briefing" variant="briefing" />}
+
         <footer className="briefing-footer">
           <p>
             Sources: BLS CES and LAUS, FRED, US Census Bureau, US DOL, Indeed Hiring Lab, US Census USA Trade,
             SelectFlorida, Florida Chamber Foundation. Full charts and source links:
-            tonyv2289.github.io/floridanomics-dashboard-mvp
+            tonyv2289.github.io/floridanomics-dashboard-mvp/?view=dashboard
           </p>
           <p>Generated automatically by the Floridanomics data pipeline. One month is a single data point; read trends, not prints.</p>
         </footer>
