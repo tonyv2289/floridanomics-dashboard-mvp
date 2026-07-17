@@ -1,8 +1,18 @@
 import type { TalentCluster, TalentMatchLayer } from "../types/dashboard";
 
-export type TalentFocus = "all" | "thin" | "fast" | "projects";
-export type TalentSort = "coverage" | "openings" | "growth" | "earnings";
+export const DEFAULT_TALENT_CLUSTER_ID = "healthcare";
+
+export type TalentFocus = "all" | "under-50" | "fast-growth" | "project-linked";
+export type TalentSort = "coverage" | "openings" | "growth" | "wage";
 export type TalentCoverageBand = "thin" | "watch" | "broad";
+
+export function isTalentFocus(value: string | null): value is TalentFocus {
+  return value === "all" || value === "under-50" || value === "fast-growth" || value === "project-linked";
+}
+
+export function isTalentSort(value: string | null): value is TalentSort {
+  return value === "coverage" || value === "openings" || value === "growth" || value === "wage";
+}
 
 export function getTalentCoverage(cluster: TalentCluster): number {
   return cluster.pipeline.graduates / cluster.demand.annualOpenings;
@@ -22,15 +32,15 @@ export function filterTalentClusters(
 ): TalentCluster[] {
   return clusters
     .filter((cluster) => {
-      if (focus === "thin") return getTalentCoverage(cluster) < 0.5;
-      if (focus === "fast") return cluster.demand.growthPercent >= 20;
-      if (focus === "projects") return cluster.projectIds.length > 0;
+      if (focus === "under-50") return getTalentCoverage(cluster) < 0.5;
+      if (focus === "fast-growth") return cluster.demand.growthPercent >= 20;
+      if (focus === "project-linked") return cluster.projectIds.length > 0;
       return true;
     })
     .sort((a, b) => {
       if (sort === "openings") return b.demand.annualOpenings - a.demand.annualOpenings;
       if (sort === "growth") return b.demand.growthPercent - a.demand.growthPercent;
-      if (sort === "earnings") return b.pipeline.averageAnnualWageUsd - a.pipeline.averageAnnualWageUsd;
+      if (sort === "wage") return b.pipeline.averageAnnualWageUsd - a.pipeline.averageAnnualWageUsd;
       return getTalentCoverage(a) - getTalentCoverage(b);
     });
 }

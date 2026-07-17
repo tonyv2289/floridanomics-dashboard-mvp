@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, type CSSProperties } from "react";
 import clsx from "clsx";
 import type { DashboardDataset, TalentCluster, TerminalProject } from "../types/dashboard";
 import { formatProjectJobs, formatProjectStage } from "./project-ledger";
@@ -14,16 +14,16 @@ import { Frame, SourceList } from "./primitives";
 
 const FOCUS_OPTIONS: Array<{ id: TalentFocus; label: string }> = [
   { id: "all", label: "All pathways" },
-  { id: "thin", label: "Under 50%" },
-  { id: "fast", label: "20%+ growth" },
-  { id: "projects", label: "Project-linked" },
+  { id: "under-50", label: "Under 50%" },
+  { id: "fast-growth", label: "20%+ growth" },
+  { id: "project-linked", label: "Project-linked" },
 ];
 
 const SORT_OPTIONS: Array<{ id: TalentSort; label: string }> = [
   { id: "coverage", label: "Coverage proxy" },
   { id: "openings", label: "Annual openings" },
   { id: "growth", label: "Projected growth" },
-  { id: "earnings", label: "First-year wage" },
+  { id: "wage", label: "First-year wage" },
 ];
 
 function formatNumber(value: number): string {
@@ -81,7 +81,7 @@ function TalentHero({ dataset }: { dataset: DashboardDataset }) {
             <dd>{formatNumber(summary.coveredGraduates)}</dd>
           </div>
           <div>
-            <dt>First-year wage</dt>
+            <dt>Avg. first-year wage</dt>
             <dd>{formatCurrency(summary.weightedAverageWage)}</dd>
           </div>
         </dl>
@@ -308,14 +308,14 @@ function SelectedPathway({ dataset, cluster }: { dataset: DashboardDataset; clus
 
       <div className="v3-talent-evidence">
         <SourceList sources={sources} />
-        <details>
-          <summary>Method and limits</summary>
+        <section className="v3-talent-method" id="talent-methodology" aria-labelledby="talent-methodology-title">
+          <h3 id="talent-methodology-title">Method and limits</h3>
           <ol>
             {dataset.talent.methodology.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ol>
-        </details>
+        </section>
       </div>
     </Frame>
   );
@@ -325,13 +325,19 @@ export function TalentTab({
   dataset,
   selectedClusterId,
   onSelectCluster,
+  focus,
+  onFocusChange,
+  sort,
+  onSortChange,
 }: {
   dataset: DashboardDataset;
   selectedClusterId: string;
   onSelectCluster: (clusterId: string) => void;
+  focus: TalentFocus;
+  onFocusChange: (focus: TalentFocus) => void;
+  sort: TalentSort;
+  onSortChange: (sort: TalentSort) => void;
 }) {
-  const [focus, setFocus] = useState<TalentFocus>("all");
-  const [sort, setSort] = useState<TalentSort>("coverage");
   const clusters = useMemo(
     () => filterTalentClusters(dataset.talent.clusters, focus, sort),
     [dataset.talent.clusters, focus, sort],
@@ -360,7 +366,7 @@ export function TalentTab({
                 type="button"
                 aria-pressed={focus === option.id}
                 className={focus === option.id ? "is-active" : undefined}
-                onClick={() => setFocus(option.id)}
+                onClick={() => onFocusChange(option.id)}
               >
                 {option.label}
               </button>
@@ -368,7 +374,7 @@ export function TalentTab({
           </div>
           <label className="v3-talent-sort">
             <span>Sort by</span>
-            <select value={sort} onChange={(event) => setSort(event.target.value as TalentSort)}>
+            <select value={sort} onChange={(event) => onSortChange(event.target.value as TalentSort)}>
               {SORT_OPTIONS.map((option) => (
                 <option key={option.id} value={option.id}>
                   {option.label}
@@ -376,6 +382,12 @@ export function TalentTab({
               ))}
             </select>
           </label>
+        </div>
+        <div className="v3-talent-legend">
+          <span>
+            Coverage tiers: <b>Thin</b> under 25% | <b>Watch</b> 25-74% | <b>Broad</b> 75%+
+          </span>
+          <a href="#talent-methodology">Method and limits</a>
         </div>
         <PathwayMatrix
           clusters={clusters}

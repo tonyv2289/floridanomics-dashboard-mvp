@@ -7,6 +7,8 @@ import {
   getTalentCoverage,
   getTalentCoverageBand,
   isTalentClusterId,
+  isTalentFocus,
+  isTalentSort,
   summarizeTalentMatch,
 } from "./talent-match";
 
@@ -31,15 +33,21 @@ describe("Talent Match", () => {
   });
 
   it("filters fast-growth and project-linked pathways", () => {
-    expect(filterTalentClusters(layer.clusters, "fast", "growth").map((cluster) => cluster.id)).toEqual([
+    expect(filterTalentClusters(layer.clusters, "fast-growth", "growth").map((cluster) => cluster.id)).toEqual([
       "ai-software",
       "logistics",
       "aerospace-space",
     ]);
-    expect(filterTalentClusters(layer.clusters, "projects", "coverage").map((cluster) => cluster.id)).toEqual([
-      "aerospace-space",
-      "life-sciences",
-    ]);
+    expect(
+      filterTalentClusters(layer.clusters, "project-linked", "coverage").map((cluster) => cluster.id),
+    ).toEqual(["aerospace-space", "life-sciences"]);
+  });
+
+  it("accepts only canonical shareable filter and sort values", () => {
+    expect(isTalentFocus("under-50")).toBe(true);
+    expect(isTalentFocus("thin")).toBe(false);
+    expect(isTalentSort("wage")).toBe(true);
+    expect(isTalentSort("earnings")).toBe(false);
   });
 
   it("summarizes covered openings, graduates, and project pressure", () => {

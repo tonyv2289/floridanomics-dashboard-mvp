@@ -141,7 +141,7 @@ Analytics are wired but off by default. Add one or both GitHub Actions secrets t
 
 The tracker records dashboard pageviews, tab/view changes, outbound source clicks, and campaign parameters from these query keys:
 
-`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `ref`, `invite`, `cohort`, `version`, `tab`, `competitionView`, `talentCluster`, `metric`, and `innovationMetric`.
+`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `ref`, `invite`, `cohort`, `version`, `tab`, `competitionView`, `talentCluster`, `talentFilter`, `talentSort`, `metric`, and `innovationMetric`.
 
 For email sharing, use campaign links such as:
 

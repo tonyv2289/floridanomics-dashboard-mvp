@@ -19,7 +19,15 @@ import { SignupForm } from "../components/SignupForm";
 import { BriefTab } from "./BriefTab";
 import { LensTab } from "./LensTab";
 import { isLensId, type LensId } from "./lenses";
-import { isTalentClusterId } from "./talent-match";
+import {
+  DEFAULT_TALENT_CLUSTER_ID,
+  filterTalentClusters,
+  isTalentClusterId,
+  isTalentFocus,
+  isTalentSort,
+  type TalentFocus,
+  type TalentSort,
+} from "./talent-match";
 // Chart-bearing tabs are lazy-loaded so the chart library (Recharts) stays off the
 // default Brief landing and only loads when a chart tab is opened.
 const CompetitionTab = lazy(() => import("./CompetitionTab").then((m) => ({ default: m.CompetitionTab })));
@@ -57,12 +65,25 @@ function DashboardV3() {
     return isInnovationMetricId(param) ? param : "businessApplications";
   });
   const [selectedTalentClusterId, setSelectedTalentClusterId] = useState(
-    () => readSearchParam("talentCluster") ?? "ai-software",
+    () => readSearchParam("talentCluster") ?? DEFAULT_TALENT_CLUSTER_ID,
   );
+  const [talentFocus, setTalentFocus] = useState<TalentFocus>(() => {
+    const param = readSearchParam("talentFilter");
+    return isTalentFocus(param) ? param : "all";
+  });
+  const [talentSort, setTalentSort] = useState<TalentSort>(() => {
+    const param = readSearchParam("talentSort");
+    return isTalentSort(param) ? param : "coverage";
+  });
+  const visibleTalentClusters = data
+    ? filterTalentClusters(data.talent.clusters, talentFocus, talentSort)
+    : [];
   const activeTalentClusterId =
-    data && isTalentClusterId(selectedTalentClusterId, data.talent)
+    data &&
+    isTalentClusterId(selectedTalentClusterId, data.talent) &&
+    visibleTalentClusters.some((cluster) => cluster.id === selectedTalentClusterId)
       ? selectedTalentClusterId
-      : "ai-software";
+      : (visibleTalentClusters[0]?.id ?? DEFAULT_TALENT_CLUSTER_ID);
 
   useEffect(() => {
     if (!data || typeof window === "undefined") {
@@ -83,19 +104,41 @@ function DashboardV3() {
     }
     if (activeTab === "talent") {
       params.set("talentCluster", activeTalentClusterId);
+      if (talentFocus === "all") {
+        params.delete("talentFilter");
+      } else {
+        params.set("talentFilter", talentFocus);
+      }
+      if (talentSort === "coverage") {
+        params.delete("talentSort");
+      } else {
+        params.set("talentSort", talentSort);
+      }
     } else {
       params.delete("talentCluster");
+      params.delete("talentFilter");
+      params.delete("talentSort");
     }
-    params.set("metric", selectedMetricId);
-    params.set("innovationMetric", selectedInnovationMetricId);
+    if (activeTab === "scorecard") {
+      params.set("metric", selectedMetricId);
+    } else {
+      params.delete("metric");
+    }
+    if (activeTab === "innovation") {
+      params.set("innovationMetric", selectedInnovationMetricId);
+    } else {
+      params.delete("innovationMetric");
+    }
     window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
     trackDashboardView({
       tab: activeTab,
       competitionView: activeTab === "competition" ? activeCompetitionView : undefined,
       lens: activeTab === "lens" ? activeLens : undefined,
       talentCluster: activeTab === "talent" ? activeTalentClusterId : undefined,
-      metric: selectedMetricId,
-      innovationMetric: selectedInnovationMetricId,
+      talentFilter: activeTab === "talent" ? talentFocus : undefined,
+      talentSort: activeTab === "talent" ? talentSort : undefined,
+      metric: activeTab === "scorecard" ? selectedMetricId : undefined,
+      innovationMetric: activeTab === "innovation" ? selectedInnovationMetricId : undefined,
     });
   }, [
     activeCompetitionView,
@@ -105,6 +148,8 @@ function DashboardV3() {
     data,
     selectedInnovationMetricId,
     selectedMetricId,
+    talentFocus,
+    talentSort,
   ]);
 
   if (status === "error") {
@@ -203,6 +248,10 @@ function DashboardV3() {
             dataset={data}
             selectedClusterId={activeTalentClusterId}
             onSelectCluster={setSelectedTalentClusterId}
+            focus={talentFocus}
+            onFocusChange={setTalentFocus}
+            sort={talentSort}
+            onSortChange={setTalentSort}
           />
         ) : null}
         {activeTab === "terminal" ? <TerminalTab dataset={data} /> : null}
