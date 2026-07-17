@@ -7,12 +7,12 @@ export type V3TabId =
   | "scorecard"
   | "innovation"
   | "trade";
-export type CompetitionViewId = "metro" | "international" | "fdi";
+export type CompetitionViewId = "projects" | "metro" | "international" | "fdi";
 
 export const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
   { id: "brief", label: "Brief", line: "what matters now" },
   { id: "lens", label: "Lenses", line: "reads by industry" },
-  { id: "competition", label: "Competition", line: "metros and FDI" },
+  { id: "competition", label: "Competition", line: "projects, metros, FDI" },
   { id: "strategy", label: "Strategy", line: "peers, clusters, scenarios" },
   { id: "terminal", label: "Terminal", line: "forecasts and policy" },
   { id: "scorecard", label: "Scorecard", line: "labor, metros, 2030" },
@@ -21,6 +21,7 @@ export const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = 
 ];
 
 export const COMPETITION_VIEW_OPTIONS: Array<{ id: CompetitionViewId; label: string; line: string }> = [
+  { id: "projects", label: "Project Capex", line: "announced, building, operating" },
   { id: "metro", label: "US Metros", line: "Florida, Austin, Seattle, Boston" },
   { id: "international", label: "International Metros", line: "Miami, Dubai, Riyadh, Taipei, Singapore" },
   { id: "fdi", label: "FDI / Tools / Capacity", line: "capital, incentives, institutions" },

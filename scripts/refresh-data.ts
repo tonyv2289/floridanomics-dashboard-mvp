@@ -26,6 +26,7 @@ import type {
   MetroSnapshot,
   PeerStateSnapshot,
   PopulationMetric,
+  ProjectCapexLedger,
   StrategyLayer,
   TerminalLayer,
   TimePoint,
@@ -39,6 +40,11 @@ const END_YEAR = String(CURRENT_YEAR);
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT_FILE = path.join(ROOT, "public", "data", "florida-economy.json");
+const PROJECT_CAPEX_LEDGER_FILE = path.join(ROOT, "data", "project-capex-ledger.json");
+
+async function readProjectCapexLedger(): Promise<ProjectCapexLedger> {
+  return JSON.parse(await readFile(PROJECT_CAPEX_LEDGER_FILE, "utf8")) as ProjectCapexLedger;
+}
 
 function mergeSources(...sourceLists: DashboardDataset["sources"][]): DashboardDataset["sources"] {
   const seen = new Set<string>();
@@ -747,7 +753,7 @@ const STRATEGY_SCENARIOS: StrategyLayer["scenarios"] = [
   },
 ];
 
-const TERMINAL_LAYER: TerminalLayer = {
+const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger"> = {
   headline: "Export the Florida model as an operating system, not a slogan.",
   thesis:
     "Florida's advantage is not one metric. It is migration, business formation, low-tax discipline, gateway infrastructure, aerospace cadence, and policy restraint working together. The open question is whether that model can also win the power-heavy AI capex cycle without making households subsidize it.",
@@ -802,6 +808,48 @@ const TERMINAL_LAYER: TerminalLayer = {
       url: "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-announces-600m-blue-origin-manufacturing-expansion-500-high",
       tier: "official",
       note: "Project-level source for the $600M Cape Canaveral manufacturing expansion and 500 high-wage jobs frame.",
+    },
+    {
+      id: "saronic_port_alpha",
+      label: "Saronic Port Alpha announcement",
+      url: "https://www.prnewswire.com/news-releases/saronic-to-build-port-alpha-americas-next-generation-shipyard-in-brownsville-texas-302827950.html",
+      tier: "industry",
+      note: "Company announcement for the $3B-plus Brownsville shipyard, construction timeline, and up to 10,000 direct jobs.",
+    },
+    {
+      id: "nc_jetzero_groundbreaking",
+      label: "North Carolina JetZero groundbreaking",
+      url: "https://www.commerce.nc.gov/news/press-releases/2026/06/15/governor-stein-celebrates-jetzero-groundbreaking-launch-greensboro-airplane-makers-14500-job-project",
+      tier: "official",
+      note: "Official source for the $4.7B Greensboro aerospace project, 14,500-job commitment, and construction milestone.",
+    },
+    {
+      id: "nc_abbvie_durham",
+      label: "North Carolina AbbVie Durham announcement",
+      url: "https://www.commerce.nc.gov/news/press-releases/2026/04/22/governor-stein-announces-abbvie-build-new-14-billion-manufacturing-campus-durham",
+      tier: "official",
+      note: "Official source for AbbVie's $1.4B Durham campus, 734 jobs, and $118,041 disclosed average salary.",
+    },
+    {
+      id: "ga_ucb_biologics",
+      label: "Georgia UCB biologics announcement",
+      url: "https://georgia.org/press-releases/2026/ucb-invest-2-billion-georgia-establish-first-us-manufacturing-facility",
+      tier: "official",
+      note: "Official source for UCB's $2B biologics manufacturing facility and 330 jobs at Rowen.",
+    },
+    {
+      id: "ga_unified_legacy",
+      label: "Georgia Unified Legacy announcement",
+      url: "https://georgia.org/press-releases/2026/georgia-based-unified-legacy-create-500-new-jobs-macon-bibb-county",
+      tier: "official",
+      note: "Official source for the $125M Macon precision-manufacturing facility and 500 jobs.",
+    },
+    {
+      id: "pa_defense_summit_2026",
+      label: "2026 Pennsylvania Defense and Innovation Summit",
+      url: "https://www.mccormick.senate.gov/news/press-releases/senator-mccormick-announces-nearly-10-billion-in-new-investment-supporting-4000-pennsylvania-jobs-at-2026-pennsylvania-defense-and-innovation-summit-2/",
+      tier: "official",
+      note: "Official project list used to separate countable facility investment from contracts, orders, and strategic agreements.",
     },
     {
       id: "portmiami",
@@ -969,68 +1017,6 @@ const TERMINAL_LAYER: TerminalLayer = {
       },
     ],
   },
-  projectLedger: [
-    {
-      id: "blue-origin-cape",
-      name: "Blue Origin Cape Canaveral expansion",
-      geography: "Space Coast",
-      sector: "Aerospace manufacturing",
-      capex: "$600M",
-      jobs: "500 high-wage jobs",
-      stage: "Announced",
-      strategicRead:
-        "This is the model project: physical innovation, manufacturing depth, and Space Coast specialization in one investable proof point.",
-      sourceIds: ["blue_origin_florida"],
-    },
-    {
-      id: "space-florida-pipeline",
-      name: "Space Florida aerospace pipeline",
-      geography: "Statewide aerospace corridor",
-      sector: "Aerospace and spaceport infrastructure",
-      capex: "$6B",
-      jobs: "220-project pipeline",
-      stage: "Pipeline",
-      strategicRead:
-        "A project pipeline this large deserves to sit beside labor, supplier, and wage data so Florida can prove the cluster is deepening.",
-      sourceIds: ["space_florida"],
-    },
-    {
-      id: "ai-compute-gap",
-      name: "Florida strategic compute ledger",
-      geography: "TBD",
-      sector: "AI infrastructure",
-      capex: "Measurement gap",
-      jobs: "TBD",
-      stage: "Needs source wiring",
-      strategicRead:
-        "This is the glaring blank space. If peers can publish megawatts, capex, tenants, and construction timelines, Florida Brain should track the absence as aggressively as the wins.",
-      sourceIds: ["cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
-    },
-    {
-      id: "portmiami-gateway",
-      name: "PortMiami gateway capacity",
-      geography: "Miami-Dade",
-      sector: "LATAM logistics",
-      capex: "10.1M tons / 1.09M TEUs",
-      jobs: "Capacity proxy",
-      stage: "Operating asset",
-      strategicRead:
-        "The Americas gateway is not marketing copy. It is a physical logistics base that can support trade, finance, perishables, and regional compute demand.",
-      sourceIds: ["portmiami"],
-    },
-    {
-      id: "port-everglades-cold-chain",
-      name: "Port Everglades cold-chain capacity",
-      geography: "Broward",
-      sector: "Refrigerated logistics",
-      capex: "126,392 reefer TEUs",
-      jobs: "Capacity proxy",
-      stage: "Operating asset",
-      strategicRead:
-        "Cold-chain depth is part of the Florida model because gateway trade is a high-infrastructure business, not just a tourism-adjacent story.",
-      sourceIds: ["port_everglades"],
-    },
-  ],
   forecasts: [
     {
       id: "ai-capex-gap",
@@ -1367,6 +1353,7 @@ function buildBlsDataFromExisting(existing: ExistingDatasetFallback): Record<str
 
 async function main() {
   const existingDataset = await readExistingDataset();
+  const projectLedger = await readProjectCapexLedger();
   const coreSeriesIds = CORE_SERIES.map((series) => series.seriesId);
   const industrySeriesIds = INDUSTRY_SERIES.map((series) => series.seriesId);
   const metroSeriesIds = METRO_DEFS.flatMap((metro) => [
@@ -1695,7 +1682,7 @@ async function main() {
     },
     competition: preservedSections.competition,
     federal,
-    terminal: TERMINAL_LAYER,
+    terminal: { ...TERMINAL_LAYER, projectLedger },
     scorecard2030: preservedSections.scorecard2030,
     distinctives: preservedSections.distinctives,
     trade: preservedSections.trade,

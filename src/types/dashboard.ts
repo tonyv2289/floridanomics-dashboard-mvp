@@ -242,16 +242,51 @@ export type TerminalIndexFactor = {
   sourceIds: string[];
 };
 
+export type ProjectStage = "announced" | "site_selected" | "under_construction" | "operational";
+
+export type ProjectAmountQualifier = "exact" | "minimum" | "undisclosed";
+
+export type ProjectJobsQualifier = "exact" | "minimum" | "supports" | "undisclosed";
+
 export type TerminalProject = {
   id: string;
-  name: string;
+  company: string;
+  project: string;
+  stateId: string;
+  state: string;
   geography: string;
+  isFlorida: boolean;
   sector: string;
-  capex: string;
-  jobs: string;
-  stage: string;
+  capexUsdMillions: number | null;
+  amountQualifier: ProjectAmountQualifier;
+  jobsAnnounced: number | null;
+  jobsQualifier: ProjectJobsQualifier;
+  averageWageUsd: number | null;
+  stage: ProjectStage;
+  stageDetail: string;
+  announcedDate: string;
+  expectedOperationalDate: string | null;
+  facilityScale: string | null;
+  lastVerifiedDate: string;
   strategicRead: string;
   sourceIds: string[];
+};
+
+export type ProjectHeadlineContext = {
+  id: string;
+  label: string;
+  headline: string;
+  treatment: string;
+  sourceIds: string[];
+};
+
+export type ProjectCapexLedger = {
+  headline: string;
+  summary: string;
+  coverageNote: string;
+  methodology: string[];
+  context: ProjectHeadlineContext[];
+  projects: TerminalProject[];
 };
 
 export type TerminalForecast = {
@@ -514,7 +549,7 @@ export type TerminalLayer = {
     summary: string;
     metrics: TerminalMetric[];
   };
-  projectLedger: TerminalProject[];
+  projectLedger: ProjectCapexLedger;
   forecasts: TerminalForecast[];
   policyMemos: TerminalPolicyMemo[];
   evidenceBlocks: TerminalEvidenceBlock[];

@@ -687,12 +687,51 @@ function validateTerminalIndexFactor(
 
 function validateTerminalProject(project: TerminalProject, sourceIdSet: Set<string>, label: string, errors: string[]) {
   ensure(isNonEmptyString(project.id), `${label} missing id`, errors);
-  ensure(isNonEmptyString(project.name), `${label} missing name`, errors);
+  ensure(isNonEmptyString(project.company), `${label} missing company`, errors);
+  ensure(isNonEmptyString(project.project), `${label} missing project`, errors);
+  ensure(isNonEmptyString(project.stateId), `${label} missing stateId`, errors);
+  ensure(isNonEmptyString(project.state), `${label} missing state`, errors);
   ensure(isNonEmptyString(project.geography), `${label} missing geography`, errors);
+  ensure(typeof project.isFlorida === "boolean", `${label} missing isFlorida`, errors);
   ensure(isNonEmptyString(project.sector), `${label} missing sector`, errors);
-  ensure(isNonEmptyString(project.capex), `${label} missing capex`, errors);
-  ensure(isNonEmptyString(project.jobs), `${label} missing jobs`, errors);
-  ensure(isNonEmptyString(project.stage), `${label} missing stage`, errors);
+  ensure(
+    project.capexUsdMillions === null || (isFiniteNumber(project.capexUsdMillions) && project.capexUsdMillions > 0),
+    `${label} has invalid capexUsdMillions`,
+    errors,
+  );
+  ensure(
+    ["exact", "minimum", "undisclosed"].includes(project.amountQualifier),
+    `${label} has invalid amountQualifier`,
+    errors,
+  );
+  ensure(
+    project.jobsAnnounced === null || (isFiniteNumber(project.jobsAnnounced) && project.jobsAnnounced > 0),
+    `${label} has invalid jobsAnnounced`,
+    errors,
+  );
+  ensure(
+    ["exact", "minimum", "supports", "undisclosed"].includes(project.jobsQualifier),
+    `${label} has invalid jobsQualifier`,
+    errors,
+  );
+  ensure(
+    project.averageWageUsd === null || (isFiniteNumber(project.averageWageUsd) && project.averageWageUsd > 0),
+    `${label} has invalid averageWageUsd`,
+    errors,
+  );
+  ensure(
+    ["announced", "site_selected", "under_construction", "operational"].includes(project.stage),
+    `${label} has invalid stage`,
+    errors,
+  );
+  ensure(isNonEmptyString(project.stageDetail), `${label} missing stageDetail`, errors);
+  ensure(/^\d{4}-\d{2}-\d{2}$/.test(project.announcedDate), `${label} has invalid announcedDate`, errors);
+  ensure(
+    project.expectedOperationalDate === null || /^\d{4}-\d{2}-\d{2}$/.test(project.expectedOperationalDate),
+    `${label} has invalid expectedOperationalDate`,
+    errors,
+  );
+  ensure(/^\d{4}-\d{2}-\d{2}$/.test(project.lastVerifiedDate), `${label} has invalid lastVerifiedDate`, errors);
   ensure(isNonEmptyString(project.strategicRead), `${label} missing strategicRead`, errors);
   validateTerminalSourceRefs(project.sourceIds, sourceIdSet, label, errors);
 }
@@ -1166,8 +1205,34 @@ async function main() {
   data.terminal.highWageMonitor.metrics.forEach((metric, index) =>
     validateTerminalMetric(metric, terminalSourceIds, `terminal.highWageMonitor.metrics ${index + 1}`, errors),
   );
-  ensure(data.terminal.projectLedger.length >= 4, "terminal.projectLedger missing projects", errors);
-  data.terminal.projectLedger.forEach((project, index) =>
+  ensure(isNonEmptyString(data.terminal.projectLedger.headline), "terminal.projectLedger missing headline", errors);
+  ensure(isNonEmptyString(data.terminal.projectLedger.summary), "terminal.projectLedger missing summary", errors);
+  ensure(isNonEmptyString(data.terminal.projectLedger.coverageNote), "terminal.projectLedger missing coverageNote", errors);
+  ensure(data.terminal.projectLedger.methodology.length >= 3, "terminal.projectLedger missing methodology", errors);
+  data.terminal.projectLedger.methodology.forEach((item, index) =>
+    ensure(isNonEmptyString(item), `terminal.projectLedger methodology ${index + 1} is empty`, errors),
+  );
+  ensure(data.terminal.projectLedger.context.length >= 2, "terminal.projectLedger missing headline context", errors);
+  data.terminal.projectLedger.context.forEach((item, index) => {
+    const label = `terminal.projectLedger context ${index + 1}`;
+    ensure(isNonEmptyString(item.id), `${label} missing id`, errors);
+    ensure(isNonEmptyString(item.label), `${label} missing label`, errors);
+    ensure(isNonEmptyString(item.headline), `${label} missing headline`, errors);
+    ensure(isNonEmptyString(item.treatment), `${label} missing treatment`, errors);
+    validateTerminalSourceRefs(item.sourceIds, terminalSourceIds, label, errors);
+  });
+  ensure(data.terminal.projectLedger.projects.length >= 12, "terminal.projectLedger missing projects", errors);
+  ensure(
+    data.terminal.projectLedger.projects.some((project) => project.isFlorida),
+    "terminal.projectLedger missing Florida projects",
+    errors,
+  );
+  ensure(
+    data.terminal.projectLedger.projects.some((project) => !project.isFlorida),
+    "terminal.projectLedger missing peer projects",
+    errors,
+  );
+  data.terminal.projectLedger.projects.forEach((project, index) =>
     validateTerminalProject(project, terminalSourceIds, `terminal.projectLedger ${index + 1}`, errors),
   );
   ensure(data.terminal.forecasts.length >= 2, "terminal.forecasts missing forecasts", errors);

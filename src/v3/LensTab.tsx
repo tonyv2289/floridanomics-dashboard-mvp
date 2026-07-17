@@ -10,6 +10,7 @@ import {
 } from "../lib/dashboard";
 import { Frame, SourceList, TerminalSourceList } from "./primitives";
 import { LENSES, getLens, type LensId } from "./lenses";
+import { formatCapexMillions, formatProjectJobs, formatProjectStage } from "./project-ledger";
 import type { DashboardDataset } from "../types/dashboard";
 
 function LensMenu({ activeLens, onChange }: { activeLens: LensId; onChange: (lens: LensId) => void }) {
@@ -53,7 +54,7 @@ export function LensTab({
   const sectors = dataset.industry.sectors.filter((sector) => lens.sectorIds.includes(sector.id));
   const innovationMetrics = lens.innovationIds.map((id) => dataset.innovation.metrics[id]).filter(Boolean);
   const tradeMetrics = dataset.trade.heroMetrics.filter((metric) => lens.tradeHeroIds.includes(metric.id));
-  const projects = dataset.terminal.projectLedger.filter((project) => lens.projectIds.includes(project.id));
+  const projects = dataset.terminal.projectLedger.projects.filter((project) => lens.projectIds.includes(project.id));
   const cluster = lens.clusterId
     ? dataset.strategy.clusters.find((candidate) => candidate.id === lens.clusterId)
     : undefined;
@@ -110,9 +111,10 @@ export function LensTab({
               <article key={project.id} className="v3-project-card">
                 <div>
                   <span>{project.geography}</span>
-                  <b>{project.stage}</b>
+                  <b>{formatProjectStage(project.stage)}</b>
                 </div>
-                <h3>{project.name}</h3>
+                <h3>{project.company}</h3>
+                <p>{project.project}</p>
                 <div className="v3-project-meta">
                   <p>
                     <span>Sector</span>
@@ -120,11 +122,11 @@ export function LensTab({
                   </p>
                   <p>
                     <span>Capex / capacity</span>
-                    {project.capex}
+                    {formatCapexMillions(project.capexUsdMillions, project.amountQualifier)}
                   </p>
                   <p>
                     <span>Jobs</span>
-                    {project.jobs}
+                    {formatProjectJobs(project)}
                   </p>
                 </div>
                 <p>{project.strategicRead}</p>
