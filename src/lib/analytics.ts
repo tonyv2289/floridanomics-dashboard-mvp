@@ -29,6 +29,9 @@ const TRACKED_QUERY_KEYS = [
   "version",
   "tab",
   "competitionView",
+  "talentCluster",
+  "talentFilter",
+  "talentSort",
   "metric",
   "innovationMetric",
 ] as const;

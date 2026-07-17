@@ -21,6 +21,8 @@ import type {
   SemiconductorCommitment,
   StrategyCluster,
   StrategyScenario,
+  TalentCluster,
+  TalentSource,
   TerminalEvidenceBlock,
   TerminalForecast,
   TerminalIndexFactor,
@@ -70,6 +72,16 @@ const REQUIRED_STRATEGY_SOURCE_IDS = [
 ] as const;
 
 const REQUIRED_PEER_STATE_IDS = ["FL", "TX", "GA", "NC", "TN", "AZ", "UT", "CA"] as const;
+
+const REQUIRED_TALENT_CLUSTER_IDS = [
+  "ai-software",
+  "aerospace-space",
+  "semiconductors-electronics",
+  "healthcare",
+  "logistics",
+  "fintech-finance",
+  "life-sciences",
+] as const;
 
 const REQUIRED_TERMINAL_SOURCE_IDS = [
   "bls_state_april_2026",
@@ -861,6 +873,71 @@ function validateTerminalEvidenceBlock(
   validateTerminalSourceRefs(block.sourceIds, sourceIdSet, label, errors);
 }
 
+function validateTalentSource(source: TalentSource, label: string, errors: string[]) {
+  ensure(isNonEmptyString(source.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(source.label), `${label} missing label`, errors);
+  ensure(isHttpUrl(source.url), `${label} missing valid URL`, errors);
+  ensure(isNonEmptyString(source.note), `${label} missing note`, errors);
+}
+
+function validatePercent(value: number | null, label: string, errors: string[]) {
+  ensure(value === null || (isFiniteNumber(value) && value >= 0 && value <= 100), `${label} must be 0-100 or null`, errors);
+}
+
+function validateTalentCluster(
+  cluster: TalentCluster,
+  sourceIds: Set<string>,
+  projectIds: Set<string>,
+  label: string,
+  errors: string[],
+) {
+  ensure(isNonEmptyString(cluster.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(cluster.label), `${label} missing label`, errors);
+  ensure(isNonEmptyString(cluster.shortLabel), `${label} missing shortLabel`, errors);
+  ensure(isNonEmptyString(cluster.question), `${label} missing question`, errors);
+  ensure(isNonEmptyString(cluster.read), `${label} missing read`, errors);
+
+  ensure(isNonEmptyString(cluster.demand.occupation), `${label} demand missing occupation`, errors);
+  ensure(/^\d{2}-\d{4}$/.test(cluster.demand.soc), `${label} demand has invalid SOC`, errors);
+  ensure(cluster.demand.baseYear < cluster.demand.projectedYear, `${label} demand has invalid projection years`, errors);
+  ensure(cluster.demand.baseEmployment > 0, `${label} demand missing base employment`, errors);
+  ensure(cluster.demand.projectedEmployment > 0, `${label} demand missing projected employment`, errors);
+  ensure(isFiniteNumber(cluster.demand.growthPercent), `${label} demand missing growth percent`, errors);
+  ensure(cluster.demand.annualOpenings > 0, `${label} demand missing annual openings`, errors);
+
+  ensure(isNonEmptyString(cluster.pipeline.program), `${label} pipeline missing program`, errors);
+  ensure(/^\d{6}$/.test(cluster.pipeline.cip), `${label} pipeline has invalid CIP`, errors);
+  ensure(cluster.pipeline.credential === "Bachelor's degree", `${label} pipeline has invalid credential`, errors);
+  ensure(/^\d{4}-\d{2}$/.test(cluster.pipeline.academicYear), `${label} pipeline has invalid academic year`, errors);
+  ensure(cluster.pipeline.graduates > 0, `${label} pipeline missing graduates`, errors);
+  ensure(cluster.pipeline.employed >= 0 && cluster.pipeline.employed <= cluster.pipeline.graduates, `${label} pipeline has invalid employed count`, errors);
+  ensure(cluster.pipeline.fullTimeEmployed >= 0 && cluster.pipeline.fullTimeEmployed <= cluster.pipeline.employed, `${label} pipeline has invalid full-time count`, errors);
+  ensure(cluster.pipeline.continuingEducation >= 0 && cluster.pipeline.continuingEducation <= cluster.pipeline.graduates, `${label} pipeline has invalid continuing-education count`, errors);
+  validatePercent(cluster.pipeline.employedPercent, `${label} employedPercent`, errors);
+  validatePercent(cluster.pipeline.fullTimePercent, `${label} fullTimePercent`, errors);
+  validatePercent(cluster.pipeline.continuingEducationPercent, `${label} continuingEducationPercent`, errors);
+  ensure(cluster.pipeline.averageAnnualWageUsd > 0, `${label} pipeline missing annual wage`, errors);
+
+  ensure(cluster.institutions.length >= 2, `${label} needs at least two institution records`, errors);
+  cluster.institutions.forEach((institution, index) => {
+    const institutionLabel = `${label} institution ${index + 1}`;
+    ensure(isNonEmptyString(institution.name), `${institutionLabel} missing name`, errors);
+    ensure(isNonEmptyString(institution.region), `${institutionLabel} missing region`, errors);
+    ensure(institution.graduates > 0, `${institutionLabel} missing graduates`, errors);
+    validatePercent(institution.employedPercent, `${institutionLabel} employedPercent`, errors);
+    validatePercent(institution.fullTimePercent, `${institutionLabel} fullTimePercent`, errors);
+    ensure(
+      institution.averageAnnualWageUsd === null || institution.averageAnnualWageUsd > 0,
+      `${institutionLabel} has invalid wage`,
+      errors,
+    );
+  });
+
+  ensure(cluster.sourceIds.length >= 2, `${label} needs at least two sources`, errors);
+  cluster.sourceIds.forEach((sourceId) => ensure(sourceIds.has(sourceId), `${label} references missing source: ${sourceId}`, errors));
+  cluster.projectIds.forEach((projectId) => ensure(projectIds.has(projectId), `${label} references missing project: ${projectId}`, errors));
+}
+
 async function main() {
   const errors: string[] = [];
   const raw = await readFile(DATA_FILE, "utf8");
@@ -1014,6 +1091,23 @@ async function main() {
     validateStrategyCluster(cluster, `strategy.clusters ${index + 1}`, errors),
   );
   validateInsightSection(data.strategy.talentPipeline, "strategy.talentPipeline", errors);
+
+  ensure(isNonEmptyString(data.talent.headline), "talent missing headline", errors);
+  ensure(isNonEmptyString(data.talent.summary), "talent missing summary", errors);
+  ensure(isNonEmptyString(data.talent.coverageNote), "talent missing coverage note", errors);
+  ensure(data.talent.methodology.length >= 4, "talent missing methodology", errors);
+  data.talent.methodology.forEach((item, index) =>
+    ensure(isNonEmptyString(item), `talent methodology ${index + 1} is empty`, errors),
+  );
+  ensure(data.talent.sources.length >= 8, "talent missing source stack", errors);
+  data.talent.sources.forEach((source, index) => validateTalentSource(source, `talent source ${index + 1}`, errors));
+  const talentSourceIds = new Set(data.talent.sources.map((source) => source.id));
+  const projectIds = new Set(data.terminal.projectLedger.projects.map((project) => project.id));
+  ensure(data.talent.clusters.length >= 7, "talent missing strategic pathways", errors);
+  validateRequiredIds(data.talent.clusters, REQUIRED_TALENT_CLUSTER_IDS, "Talent pathways", errors);
+  data.talent.clusters.forEach((cluster, index) =>
+    validateTalentCluster(cluster, talentSourceIds, projectIds, `talent cluster ${index + 1}`, errors),
+  );
   ensure(data.strategy.scenarios.length === 3, "strategy.scenarios should include base, ambition, and risk cases", errors);
   data.strategy.scenarios.forEach((scenario, index) =>
     validateStrategyScenario(scenario, `strategy.scenarios ${index + 1}`, errors),
@@ -1469,7 +1563,9 @@ async function main() {
     throw new Error(`Data validation failed with ${errors.length} issue(s).`);
   }
 
-  console.log("Dataset contract looks valid, including curated sections, State Competition, Terminal, and Florida Brain notes.");
+  console.log(
+    "Dataset contract looks valid, including Talent Match, curated sections, State Competition, Terminal, and Florida Brain notes.",
+  );
 }
 
 main().catch((error: unknown) => {

@@ -9,11 +9,14 @@ Florida Brain's public data surface for Florida economic, innovation, and trade 
 The live experience is built around these top-level tabs:
 
 1. `Brief`
-2. `Competition`
-3. `Terminal`
-4. `Scorecard`
-5. `Innovation`
-6. `Trade`
+2. `Lenses`
+3. `Competition`
+4. `Strategy`
+5. `Talent`
+6. `Terminal`
+7. `Scorecard`
+8. `Innovation`
+9. `Trade`
 
 `Competition` is the operating menu for:
 
@@ -30,6 +33,7 @@ It also includes the newer editorial and Florida-specific sections that make the
 - `LATAM Gateway`
 - Florida Brain Notes
 - Strategy cockpit with peer-state BLS benchmarks, cluster strategy, talent pipeline, metro momentum, and scenarios
+- Talent Match with occupational demand, covered public-university bachelor's outcomes, institution leaders, and named project pressure
 - State competition terminal with metro comparisons, FDI Observatory scores, peer-state FDI deltas, policy-toolkit, institutional-capacity, semiconductor, and federal data spine layers
 - Florida Model terminal with AI capex index, forecasts, policy memos, and evidence blocks
 - AI Capex Gap public HTML brief
@@ -90,6 +94,7 @@ npm run qa:full
    - `scorecard2030`
    - `brainNotes`
    - `strategy`
+   - `talent`
    - `competition`
    - `federal`
    - `terminal`
@@ -112,6 +117,7 @@ The validator now checks both the refreshed core metrics and the richer `v3` pro
 It also enforces the Florida source stack: FloridaCommerce/SelectFlorida, the Governor's Office, Florida Chamber/Scorecard, Florida TaxWatch, JMI, and Florida Council of 100 / Ambition Accelerated.
 It now checks the Florida Brain notes rail as well, including source links for each note.
 It also checks the Strategy tab contract: peer states, external benchmark examples, cluster strategy, talent pipeline, and scenario layer.
+It checks the Talent Match contract as well: seven required pathways, source references, CIP/SOC identifiers, demand and outcome ranges, institution leaders, and valid project-ledger links.
 It also checks the Competition metro-comparison contract: the domestic and international metro peer sets must be present with arrow-based momentum signals.
 It also checks the Competition FDI Observatory contract: exactly four scores, peer-state deltas, and source references for every FDI score and delta.
 
@@ -135,7 +141,7 @@ Analytics are wired but off by default. Add one or both GitHub Actions secrets t
 
 The tracker records dashboard pageviews, tab/view changes, outbound source clicks, and campaign parameters from these query keys:
 
-`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `ref`, `invite`, `cohort`, `version`, `tab`, `competitionView`, `metric`, and `innovationMetric`.
+`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `ref`, `invite`, `cohort`, `version`, `tab`, `competitionView`, `talentCluster`, `talentFilter`, `talentSort`, `metric`, and `innovationMetric`.
 
 For email sharing, use campaign links such as:
 
