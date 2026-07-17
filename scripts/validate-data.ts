@@ -11,6 +11,7 @@ import type {
   FederalSignal,
   FederalSource,
   FloridaBrainNote,
+  GovernmentGrantAward,
   InsightSection,
   InsightSource,
   InsightStat,
@@ -736,6 +737,75 @@ function validateTerminalProject(project: TerminalProject, sourceIdSet: Set<stri
   validateTerminalSourceRefs(project.sourceIds, sourceIdSet, label, errors);
 }
 
+function validateGovernmentGrantAward(
+  award: GovernmentGrantAward,
+  sourceIdSet: Set<string>,
+  label: string,
+  errors: string[],
+) {
+  ensure(isNonEmptyString(award.id), `${label} missing id`, errors);
+  ensure(isNonEmptyString(award.recipient), `${label} missing recipient`, errors);
+  ensure(
+    ["state_agency", "local_government", "university", "nonprofit", "business"].includes(award.recipientType),
+    `${label} has invalid recipientType`,
+    errors,
+  );
+  ensure(isNonEmptyString(award.fundingAgency), `${label} missing fundingAgency`, errors);
+  ensure(
+    award.administeringAgency === null || isNonEmptyString(award.administeringAgency),
+    `${label} has invalid administeringAgency`,
+    errors,
+  );
+  ensure(isNonEmptyString(award.program), `${label} missing program`, errors);
+  ensure(isNonEmptyString(award.stateId), `${label} missing stateId`, errors);
+  ensure(isNonEmptyString(award.state), `${label} missing state`, errors);
+  ensure(isNonEmptyString(award.geography), `${label} missing geography`, errors);
+  ensure(typeof award.isFlorida === "boolean", `${label} missing isFlorida`, errors);
+  ensure(isNonEmptyString(award.sector), `${label} missing sector`, errors);
+  ensure(["grant", "cooperative_agreement"].includes(award.fundingType), `${label} has invalid fundingType`, errors);
+  ensure(["federal", "state"].includes(award.fundingLevel), `${label} has invalid fundingLevel`, errors);
+  ensure(
+    isFiniteNumber(award.awardAmountUsdMillions) && award.awardAmountUsdMillions > 0,
+    `${label} has invalid awardAmountUsdMillions`,
+    errors,
+  );
+  ensure(["exact", "minimum"].includes(award.amountQualifier), `${label} has invalid amountQualifier`, errors);
+  ensure(
+    award.leveragedCapitalUsdMillions === null ||
+      (isFiniteNumber(award.leveragedCapitalUsdMillions) && award.leveragedCapitalUsdMillions > 0),
+    `${label} has invalid leveragedCapitalUsdMillions`,
+    errors,
+  );
+  ensure(
+    award.jobsCreated === null || (isFiniteNumber(award.jobsCreated) && award.jobsCreated > 0),
+    `${label} has invalid jobsCreated`,
+    errors,
+  );
+  ensure(
+    award.jobsRetained === null || (isFiniteNumber(award.jobsRetained) && award.jobsRetained > 0),
+    `${label} has invalid jobsRetained`,
+    errors,
+  );
+  ensure(["awarded", "active", "completed"].includes(award.stage), `${label} has invalid stage`, errors);
+  ensure(isNonEmptyString(award.stageDetail), `${label} missing stageDetail`, errors);
+  ensure(/^\d{4}-\d{2}-\d{2}$/.test(award.awardDate), `${label} has invalid awardDate`, errors);
+  ensure(
+    award.performanceEndDate === null || /^\d{4}-\d{2}-\d{2}$/.test(award.performanceEndDate),
+    `${label} has invalid performanceEndDate`,
+    errors,
+  );
+  ensure(
+    award.assistanceListing === null || isNonEmptyString(award.assistanceListing),
+    `${label} has invalid assistanceListing`,
+    errors,
+  );
+  ensure(award.awardId === null || isNonEmptyString(award.awardId), `${label} has invalid awardId`, errors);
+  ensure(typeof award.countInTotals === "boolean", `${label} missing countInTotals`, errors);
+  ensure(isNonEmptyString(award.strategicRead), `${label} missing strategicRead`, errors);
+  ensure(/^\d{4}-\d{2}-\d{2}$/.test(award.lastVerifiedDate), `${label} has invalid lastVerifiedDate`, errors);
+  validateTerminalSourceRefs(award.sourceIds, sourceIdSet, label, errors);
+}
+
 function validateTerminalForecast(forecast: TerminalForecast, sourceIdSet: Set<string>, label: string, errors: string[]) {
   ensure(isNonEmptyString(forecast.id), `${label} missing id`, errors);
   ensure(isNonEmptyString(forecast.claim), `${label} missing claim`, errors);
@@ -1234,6 +1304,66 @@ async function main() {
   );
   data.terminal.projectLedger.projects.forEach((project, index) =>
     validateTerminalProject(project, terminalSourceIds, `terminal.projectLedger ${index + 1}`, errors),
+  );
+  ensure(
+    isNonEmptyString(data.terminal.governmentGrantsLedger.headline),
+    "terminal.governmentGrantsLedger missing headline",
+    errors,
+  );
+  ensure(
+    isNonEmptyString(data.terminal.governmentGrantsLedger.summary),
+    "terminal.governmentGrantsLedger missing summary",
+    errors,
+  );
+  ensure(
+    isNonEmptyString(data.terminal.governmentGrantsLedger.coverageNote),
+    "terminal.governmentGrantsLedger missing coverageNote",
+    errors,
+  );
+  ensure(
+    data.terminal.governmentGrantsLedger.methodology.length >= 4,
+    "terminal.governmentGrantsLedger missing methodology",
+    errors,
+  );
+  data.terminal.governmentGrantsLedger.methodology.forEach((item, index) =>
+    ensure(isNonEmptyString(item), `terminal.governmentGrantsLedger methodology ${index + 1} is empty`, errors),
+  );
+  ensure(
+    data.terminal.governmentGrantsLedger.context.length >= 4,
+    "terminal.governmentGrantsLedger missing non-award context",
+    errors,
+  );
+  data.terminal.governmentGrantsLedger.context.forEach((item, index) => {
+    const label = `terminal.governmentGrantsLedger context ${index + 1}`;
+    ensure(isNonEmptyString(item.id), `${label} missing id`, errors);
+    ensure(["appropriation", "opportunity", "contract"].includes(item.category), `${label} has invalid category`, errors);
+    ensure(isNonEmptyString(item.label), `${label} missing label`, errors);
+    ensure(isNonEmptyString(item.headline), `${label} missing headline`, errors);
+    ensure(isNonEmptyString(item.treatment), `${label} missing treatment`, errors);
+    validateTerminalSourceRefs(item.sourceIds, terminalSourceIds, label, errors);
+  });
+  ensure(
+    data.terminal.governmentGrantsLedger.awards.length >= 15,
+    "terminal.governmentGrantsLedger missing awards",
+    errors,
+  );
+  ensure(
+    data.terminal.governmentGrantsLedger.awards.some((award) => award.isFlorida),
+    "terminal.governmentGrantsLedger missing Florida awards",
+    errors,
+  );
+  ensure(
+    data.terminal.governmentGrantsLedger.awards.some((award) => !award.isFlorida),
+    "terminal.governmentGrantsLedger missing peer awards",
+    errors,
+  );
+  data.terminal.governmentGrantsLedger.awards.forEach((award, index) =>
+    validateGovernmentGrantAward(
+      award,
+      terminalSourceIds,
+      `terminal.governmentGrantsLedger ${index + 1}`,
+      errors,
+    ),
   );
   ensure(data.terminal.forecasts.length >= 2, "terminal.forecasts missing forecasts", errors);
   data.terminal.forecasts.forEach((forecast, index) =>

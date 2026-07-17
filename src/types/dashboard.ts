@@ -289,6 +289,63 @@ export type ProjectCapexLedger = {
   projects: TerminalProject[];
 };
 
+export type GrantFundingType = "grant" | "cooperative_agreement";
+
+export type GrantFundingLevel = "federal" | "state";
+
+export type GrantStage = "awarded" | "active" | "completed";
+
+export type GrantAmountQualifier = "exact" | "minimum";
+
+export type GovernmentGrantAward = {
+  id: string;
+  recipient: string;
+  recipientType: "state_agency" | "local_government" | "university" | "nonprofit" | "business";
+  fundingAgency: string;
+  administeringAgency: string | null;
+  program: string;
+  stateId: string;
+  state: string;
+  geography: string;
+  isFlorida: boolean;
+  sector: string;
+  fundingType: GrantFundingType;
+  fundingLevel: GrantFundingLevel;
+  awardAmountUsdMillions: number;
+  amountQualifier: GrantAmountQualifier;
+  leveragedCapitalUsdMillions: number | null;
+  jobsCreated: number | null;
+  jobsRetained: number | null;
+  stage: GrantStage;
+  stageDetail: string;
+  awardDate: string;
+  performanceEndDate: string | null;
+  assistanceListing: string | null;
+  awardId: string | null;
+  countInTotals: boolean;
+  strategicRead: string;
+  lastVerifiedDate: string;
+  sourceIds: string[];
+};
+
+export type GovernmentGrantContext = {
+  id: string;
+  category: "appropriation" | "opportunity" | "contract";
+  label: string;
+  headline: string;
+  treatment: string;
+  sourceIds: string[];
+};
+
+export type GovernmentGrantsLedger = {
+  headline: string;
+  summary: string;
+  coverageNote: string;
+  methodology: string[];
+  context: GovernmentGrantContext[];
+  awards: GovernmentGrantAward[];
+};
+
 export type TerminalForecast = {
   id: string;
   claim: string;
@@ -550,6 +607,7 @@ export type TerminalLayer = {
     metrics: TerminalMetric[];
   };
   projectLedger: ProjectCapexLedger;
+  governmentGrantsLedger: GovernmentGrantsLedger;
   forecasts: TerminalForecast[];
   policyMemos: TerminalPolicyMemo[];
   evidenceBlocks: TerminalEvidenceBlock[];

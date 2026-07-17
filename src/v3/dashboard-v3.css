@@ -1175,7 +1175,7 @@
 
 .v3-competition-menu > div:last-child {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1px;
 }
 
@@ -2300,6 +2300,10 @@
   background: rgba(17, 25, 52, 0.28);
 }
 
+.v3-capex-row.v3-grant-row {
+  grid-template-columns: minmax(250px, 1.45fr) minmax(105px, 0.5fr) minmax(170px, 0.85fr) minmax(170px, 0.75fr);
+}
+
 .v3-capex-row:last-child {
   border-bottom: 0;
 }
@@ -2402,6 +2406,22 @@
   color: var(--v3-good);
 }
 
+.v3-capex-stage.is-awarded {
+  border-color: rgba(86, 194, 255, 0.45);
+  color: var(--v3-teal);
+}
+
+.v3-capex-stage.is-active,
+.v3-capex-stage.is-completed {
+  border-color: rgba(62, 232, 176, 0.42);
+  color: var(--v3-good);
+}
+
+.v3-capex-cell .v3-grant-agency {
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
 .v3-capex-detail {
   grid-column: 1 / -1;
   min-width: 0;
@@ -2434,6 +2454,10 @@
   grid-template-columns: 1.5fr 1fr 0.7fr;
   gap: 12px;
   margin: 0;
+}
+
+.v3-capex-detail dl.v3-grant-detail-grid {
+  grid-template-columns: minmax(220px, 1.4fr) repeat(2, minmax(130px, 0.8fr));
 }
 
 .v3-capex-detail dl div {
@@ -2896,6 +2920,10 @@ button.v3-table-row {
   .v3-capex-row {
     grid-template-columns: 1fr;
     gap: 14px;
+  }
+
+  .v3-capex-row.v3-grant-row {
+    grid-template-columns: 1fr;
   }
 
   .v3-capex-cell {

@@ -19,6 +19,7 @@ import { buildBenchmarksSection } from "./lib/benchmarks";
 import { WSER_SOURCE } from "./lib/wser";
 import type {
   DashboardDataset,
+  GovernmentGrantsLedger,
   IndustrySector,
   InnovationMetricId,
   InnovationResource,
@@ -41,9 +42,14 @@ const END_YEAR = String(CURRENT_YEAR);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT_FILE = path.join(ROOT, "public", "data", "florida-economy.json");
 const PROJECT_CAPEX_LEDGER_FILE = path.join(ROOT, "data", "project-capex-ledger.json");
+const GOVERNMENT_GRANTS_LEDGER_FILE = path.join(ROOT, "data", "government-grants-ledger.json");
 
 async function readProjectCapexLedger(): Promise<ProjectCapexLedger> {
   return JSON.parse(await readFile(PROJECT_CAPEX_LEDGER_FILE, "utf8")) as ProjectCapexLedger;
+}
+
+async function readGovernmentGrantsLedger(): Promise<GovernmentGrantsLedger> {
+  return JSON.parse(await readFile(GOVERNMENT_GRANTS_LEDGER_FILE, "utf8")) as GovernmentGrantsLedger;
 }
 
 function mergeSources(...sourceLists: DashboardDataset["sources"][]): DashboardDataset["sources"] {
@@ -753,7 +759,7 @@ const STRATEGY_SCENARIOS: StrategyLayer["scenarios"] = [
   },
 ];
 
-const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger"> = {
+const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLedger"> = {
   headline: "Export the Florida model as an operating system, not a slogan.",
   thesis:
     "Florida's advantage is not one metric. It is migration, business formation, low-tax discipline, gateway infrastructure, aerospace cadence, and policy restraint working together. The open question is whether that model can also win the power-heavy AI capex cycle without making households subsidize it.",
@@ -850,6 +856,125 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger"> = {
       url: "https://www.mccormick.senate.gov/news/press-releases/senator-mccormick-announces-nearly-10-billion-in-new-investment-supporting-4000-pennsylvania-jobs-at-2026-pennsylvania-defense-and-innovation-summit-2/",
       tier: "official",
       note: "Official project list used to separate countable facility investment from contracts, orders, and strategic agreements.",
+    },
+    {
+      id: "dol_apprenticeship_awards_2026",
+      label: "U.S. DOL apprenticeship incentive awards",
+      url: "https://www.dol.gov/newsroom/releases/eta/eta20260707",
+      tier: "official",
+      note: "Federal announcement for five cooperative agreements totaling nearly $162M, including FloridaCommerce's $40M award.",
+    },
+    {
+      id: "dol_training_fund_tegl_02_25_change_1",
+      label: "U.S. DOL Training Fund, TEGL 02-25 Change 1",
+      url: "https://www.dol.gov/agencies/eta/advisories/tegl-02-25-change-1",
+      tier: "official",
+      note: "Official $40M national funding opportunity, including at least $5M for shipbuilding training; tracked as an opportunity rather than a Florida award.",
+    },
+    {
+      id: "floridacommerce_dol_40m_2026",
+      label: "FloridaCommerce $40M apprenticeship award",
+      url: "https://floridajobs.org/news-center/DEO-Press/2026/07/08/u.s.-department-of-labor-awards--40-million-to-expand-registered-apprenticeships-in-florida",
+      tier: "official",
+      note: "Florida announcement for the defense, shipbuilding, and maritime manufacturing apprenticeship cooperative agreement.",
+    },
+    {
+      id: "fl_job_growth_mar3_2026",
+      label: "Florida Job Growth awards: aerospace and shipbuilding",
+      url: "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-awards-more-13-million-infrastructure-development-through",
+      tier: "official",
+      note: "Recipient-level source for Bay County, Port St. Joe, and Gulf County infrastructure awards.",
+    },
+    {
+      id: "fl_job_growth_mar6_2026",
+      label: "Florida Job Growth awards: Bradford and Nassau",
+      url: "https://www.floridajobs.org/news-center/DEO-Press/2026/03/06/icymi--governor-ron-desantis-awards-more-than--9-million-for-workforce-and-infrastructure-development-and-announces-nassau-county-as-a-north-central-florida-rural-area-of-opportunity",
+      tier: "official",
+      note: "Recipient-level source for Bradford County workforce and Nassau County industrial-site infrastructure awards.",
+    },
+    {
+      id: "fl_resilience_ian_may2026",
+      label: "FloridaCommerce Hurricane Ian recovery awards",
+      url: "https://www.floridajobs.org/news-center/DEO-Press/2026/05/20/floridacommerce-awards-more-than--10-million-for-hurricane-ian-recovery",
+      tier: "official",
+      note: "Recipient-level CDBG-DR resilience awards administered by FloridaCommerce.",
+    },
+    {
+      id: "nsf_florida_semiconductor_engine",
+      label: "NSF Florida Semiconductor Engine portfolio",
+      url: "https://www.nsf.gov/funding/initiatives/regional-innovation-engines/portfolio/florida-semiconductor-engine",
+      tier: "official",
+      note: "Official program profile for geography, partners, talent coverage, and documented follow-on capital.",
+    },
+    {
+      id: "nsf_award_2315320",
+      label: "NSF award 2315320",
+      url: "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2315320",
+      tier: "official",
+      note: "Federal award record used for recipient, period of performance, assistance listing, and current obligations.",
+    },
+    {
+      id: "fl_budget_fy2627",
+      label: "Florida FY 2026-27 budget signing",
+      url: "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-florida-fiscal-year-2026-2027-budget-capping-eight",
+      tier: "official",
+      note: "Appropriation context used to keep program capacity separate from named awards.",
+    },
+    {
+      id: "fl_defense_grant_cycle_2026",
+      label: "Florida defense grant application cycle",
+      url: "https://floridajobs.org/news/detail/2026/06/10/floridacommerce-announces-opening-of-application-cycle-for-defense-reinvestment-grant-and-florida-defense-support-commission-grant-programs",
+      tier: "official",
+      note: "Open-opportunity context; no recipient award is counted from the application announcement.",
+    },
+    {
+      id: "fsu_caps_navsea_2026",
+      label: "FSU CAPS NAVSEA contract",
+      url: "https://news.fsu.edu/news/science-technology/2026/07/15/fsu-research-center-secures-88m-navy-contract-to-support-development-of-future-naval-ship-power-systems/",
+      tier: "official",
+      note: "Contract context used to prevent procurement revenue from being classified as grant assistance.",
+    },
+    {
+      id: "tx_tsif_program",
+      label: "Texas Semiconductor Innovation Fund",
+      url: "https://gov.texas.gov/business/page/tsif",
+      tier: "official",
+      note: "Program authority and appropriation context for Texas's standing semiconductor finance tool.",
+    },
+    {
+      id: "tx_tsif_samsung",
+      label: "Texas TSIF award to Samsung",
+      url: "https://gov.texas.gov/news/post/governor-abbott-announces-texas-semiconductor-innovation-fund-grant-to-samsung-austin-semiconductor",
+      tier: "official",
+      note: "Recipient-level source for the $250M grant and $4.73B company investment.",
+    },
+    {
+      id: "tx_tsif_coherent",
+      label: "Texas TSIF award to Coherent",
+      url: "https://gov.texas.gov/news/post/governor-abbott-announces-texas-semiconductor-innovation-fund-grant-to-coherent",
+      tier: "official",
+      note: "Recipient-level source for the $14.076M grant and more than $154M company investment.",
+    },
+    {
+      id: "tx_tsif_arm",
+      label: "Texas TSIF award to Arm",
+      url: "https://gov.texas.gov/news/post/governor-abbott-announces-texas-semiconductor-innovation-fund-grant-to-arm-inc",
+      tier: "official",
+      note: "Recipient-level source for the $4.163M grant, company investment, and jobs commitment.",
+    },
+    {
+      id: "tx_tsif_ltd",
+      label: "Texas TSIF award to LTD Material",
+      url: "https://gov.texas.gov/news/post/governor-abbott-announces-texas-semiconductor-innovation-fund-grant-to-ltd-material",
+      tier: "official",
+      note: "Recipient-level source for the $1.007M supplier grant, company investment, and jobs commitment.",
+    },
+    {
+      id: "tx_tsif_tstc",
+      label: "Texas TSIF award to Texas State Technical College",
+      url: "https://gov.texas.gov/news/post/governor-abbott-announces-texas-semiconductor-innovation-fund-grant-to-texas-state-technical-college",
+      tier: "official",
+      note: "Recipient-level source for the $3.5M accelerated semiconductor technician-training award.",
     },
     {
       id: "portmiami",
@@ -1354,6 +1479,7 @@ function buildBlsDataFromExisting(existing: ExistingDatasetFallback): Record<str
 async function main() {
   const existingDataset = await readExistingDataset();
   const projectLedger = await readProjectCapexLedger();
+  const governmentGrantsLedger = await readGovernmentGrantsLedger();
   const coreSeriesIds = CORE_SERIES.map((series) => series.seriesId);
   const industrySeriesIds = INDUSTRY_SERIES.map((series) => series.seriesId);
   const metroSeriesIds = METRO_DEFS.flatMap((metro) => [
@@ -1682,7 +1808,7 @@ async function main() {
     },
     competition: preservedSections.competition,
     federal,
-    terminal: { ...TERMINAL_LAYER, projectLedger },
+    terminal: { ...TERMINAL_LAYER, projectLedger, governmentGrantsLedger },
     scorecard2030: preservedSections.scorecard2030,
     distinctives: preservedSections.distinctives,
     trade: preservedSections.trade,
