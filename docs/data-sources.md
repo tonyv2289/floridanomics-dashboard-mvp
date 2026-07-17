@@ -250,7 +250,16 @@ Strategy source stack:
 - Washington STEM for talent supply-demand
 - Massachusetts Competitiveness Index for peer-state competitiveness framing
 
-`npm run data:validate` now fails if the required Florida source stack is missing from either the public source footer or the innovation source atlas. It also fails if the Strategy source stack, peer-state layer, cluster layer, talent pipeline, or scenarios are missing.
+Talent Match source stack:
+
+- Florida Education & Training Placement Information Program (FETPIP) for 2023-24 public-university program completions, Florida employment matches, full-time outcomes, and first-year wages
+- Florida Department of Education program resources for CIP-to-SOC crosswalk context
+- O*NET OnLine / Projections Central for Florida 2022-32 occupation growth and annual openings
+- Floridanomics project capex ledger for named project-pressure links
+
+Talent Match is intentionally a directional coverage proxy. It compares one representative occupation with one closely related public-university bachelor's program in each pathway; it is not a labor-shortage or surplus forecast.
+
+`npm run data:validate` now fails if the required Florida source stack is missing from either the public source footer or the innovation source atlas. It also fails if the Strategy source stack, peer-state layer, cluster layer, talent pipeline, or scenarios are missing. The validator separately enforces the seven Talent Match pathways, source references, CIP/SOC identifiers, institution outcomes, and project-ledger links.
 
 ## 5. Source layering model
 

@@ -3,6 +3,7 @@ export type V3TabId =
   | "lens"
   | "competition"
   | "strategy"
+  | "talent"
   | "terminal"
   | "scorecard"
   | "innovation"
@@ -14,6 +15,7 @@ export const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = 
   { id: "lens", label: "Lenses", line: "reads by industry" },
   { id: "competition", label: "Competition", line: "projects, awards, metros, FDI" },
   { id: "strategy", label: "Strategy", line: "peers, clusters, scenarios" },
+  { id: "talent", label: "Talent", line: "degrees, demand, wages" },
   { id: "terminal", label: "Terminal", line: "forecasts and policy" },
   { id: "scorecard", label: "Scorecard", line: "labor, metros, 2030" },
   { id: "innovation", label: "Innovation", line: "formation and capacity" },

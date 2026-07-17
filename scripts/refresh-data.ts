@@ -29,6 +29,7 @@ import type {
   PopulationMetric,
   ProjectCapexLedger,
   StrategyLayer,
+  TalentMatchLayer,
   TerminalLayer,
   TimePoint,
 } from "../src/types/dashboard";
@@ -43,6 +44,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT_FILE = path.join(ROOT, "public", "data", "florida-economy.json");
 const PROJECT_CAPEX_LEDGER_FILE = path.join(ROOT, "data", "project-capex-ledger.json");
 const GOVERNMENT_GRANTS_LEDGER_FILE = path.join(ROOT, "data", "government-grants-ledger.json");
+const TALENT_MATCH_FILE = path.join(ROOT, "data", "talent-match.json");
 
 async function readProjectCapexLedger(): Promise<ProjectCapexLedger> {
   return JSON.parse(await readFile(PROJECT_CAPEX_LEDGER_FILE, "utf8")) as ProjectCapexLedger;
@@ -50,6 +52,10 @@ async function readProjectCapexLedger(): Promise<ProjectCapexLedger> {
 
 async function readGovernmentGrantsLedger(): Promise<GovernmentGrantsLedger> {
   return JSON.parse(await readFile(GOVERNMENT_GRANTS_LEDGER_FILE, "utf8")) as GovernmentGrantsLedger;
+}
+
+async function readTalentMatch(): Promise<TalentMatchLayer> {
+  return JSON.parse(await readFile(TALENT_MATCH_FILE, "utf8")) as TalentMatchLayer;
 }
 
 function mergeSources(...sourceLists: DashboardDataset["sources"][]): DashboardDataset["sources"] {
@@ -623,9 +629,9 @@ const STRATEGY_CLUSTERS: StrategyLayer["clusters"] = [
     id: "talent-pipeline",
     title: "Talent pipeline and wage outcomes",
     thesis: "Florida cannot become the next-economy state if credentials, degrees, and STEM labor supply do not map to target clusters.",
-    bottleneck: "The dashboard still needs education-to-employment outcomes by region and industry.",
-    proof: "Tennessee and Washington show the better model: talent supply and wage outcomes belong next to economic ambition.",
-    whatToTrack: "Degrees, credentials, target occupations, wage outcomes, STEM gaps, and regional placement into priority clusters.",
+    bottleneck: "The first Talent Match view covers selected public-university bachelor's pathways; state-college, private, certificate, graduate, migration, and employer-demand layers remain outside the proxy.",
+    proof: "Talent Match now places selected degrees, first-year Florida outcomes, occupational demand, and named project pressure next to economic ambition.",
+    whatToTrack: "Broader credentials, regional placement, retention, target occupations, wage outcomes, and employer demand in priority clusters.",
     sources: [
       {
         label: "Tennessee E2E",
@@ -641,9 +647,9 @@ const STRATEGY_CLUSTERS: StrategyLayer["clusters"] = [
 
 const STRATEGY_TALENT_PIPELINE: StrategyLayer["talentPipeline"] = {
   eyebrow: "Talent pipeline layer",
-  title: "The next dashboard gap is education-to-employment proof.",
+  title: "Talent Match turns education-to-employment proof into an operating view.",
   summary:
-    "The benchmark scan says Floridanomics should connect credentials, degrees, target occupations, and wage outcomes. That turns workforce from a talking point into a strategy surface.",
+    "Floridanomics now connects selected degrees, target occupations, first-year wage outcomes, and project pressure in a dedicated Talent view.",
   stats: [
     {
       label: "Model to steal",
@@ -675,7 +681,7 @@ const STRATEGY_TALENT_PIPELINE: StrategyLayer["talentPipeline"] = {
   ],
   interpretation: [
     "The talent question is not whether Florida has people. The question is whether the state's education and credential pipeline maps to the clusters it says it wants to win.",
-    "This should become a source-linked module with program output, regional job demand, wage outcomes, and cluster placement. That is the missing bridge between Florida Brain narrative and workforce policy.",
+    "Talent Match establishes that bridge with a deliberately narrow public-university coverage proxy; state colleges, credentials, and regional detail are the next expansion.",
   ],
   sources: [
     {
@@ -1480,6 +1486,7 @@ async function main() {
   const existingDataset = await readExistingDataset();
   const projectLedger = await readProjectCapexLedger();
   const governmentGrantsLedger = await readGovernmentGrantsLedger();
+  const talent = await readTalentMatch();
   const coreSeriesIds = CORE_SERIES.map((series) => series.seriesId);
   const industrySeriesIds = INDUSTRY_SERIES.map((series) => series.seriesId);
   const metroSeriesIds = METRO_DEFS.flatMap((metro) => [
@@ -1806,6 +1813,7 @@ async function main() {
       talentPipeline: STRATEGY_TALENT_PIPELINE,
       scenarios: STRATEGY_SCENARIOS,
     },
+    talent,
     competition: preservedSections.competition,
     federal,
     terminal: { ...TERMINAL_LAYER, projectLedger, governmentGrantsLedger },
@@ -1828,7 +1836,9 @@ async function main() {
   console.log(`Wrote ${OUTPUT_FILE}`);
   console.log(`As-of labor market: ${dataset.asOfLaborMarket}; population: ${dataset.asOfPopulation}`);
   console.log("Federal data spine: BLS live; Census/BEA/EIA key-aware; IRS download queue.");
-  console.log("Preserved curated sections: scorecard2030, brainNotes, competition, terminal, distinctives, trade.");
+  console.log(
+    "Preserved curated sections: scorecard2030, brainNotes, strategy, talent, competition, terminal, distinctives, trade.",
+  );
 }
 
 main().catch((error: unknown) => {

@@ -1,0 +1,344 @@
+{
+  "headline": "Can Florida staff the economy it is trying to build?",
+  "summary": "Talent Match connects one representative high-value occupation in each strategic cluster to the closest Florida public-university bachelor's pipeline, its first-year employment outcomes, and the named projects already creating delivery pressure.",
+  "coverageNote": "This is a directional coverage proxy, not a labor-shortage forecast. Each pathway compares one representative occupation with one public-university bachelor's program. It excludes state-college, private, certificate, graduate, migration, promotion, and adjacent-occupation supply.",
+  "methodology": [
+    "Demand uses Florida 2022-32 long-term occupational projections published through O*NET OnLine from Projections Central; openings include growth and replacement.",
+    "Pipeline outcomes use FETPIP's 2023-24 Florida public-university graduate report and the report's Florida employment matches.",
+    "The coverage proxy divides covered bachelor's graduates by projected annual openings. It sizes a visible pipeline; it does not label a shortage or surplus.",
+    "Institution leaders are the three largest disclosed producers in the selected FETPIP program; suppressed values remain unavailable.",
+    "Project pressure links only to named records in the Floridanomics project capex ledger and is not a complete hiring forecast."
+  ],
+  "sources": [
+    {
+      "id": "fetpip_2324_program_outcomes",
+      "label": "FETPIP 2023-24 graduate outcomes by program",
+      "url": "https://www.fldoe.org/file/7592/2324SUS-PgmsByDegBySchl.pdf",
+      "note": "Florida public-university graduates, Florida employment matches, full-time employment, wages, and continuing education by CIP program."
+    },
+    {
+      "id": "florida_cip_soc_crosswalk",
+      "label": "Florida DOE CIP-to-SOC program resources",
+      "url": "https://www.fldoe.org/academics/career-adult-edu/career-tech-edu/program-resources.stml",
+      "note": "Florida's official program-to-occupation crosswalk resources and Master Credential List."
+    },
+    {
+      "id": "onet_software_developers_fl",
+      "label": "O*NET Florida trends: Software Developers",
+      "url": "https://www.onetonline.org/link/localtrends/15-1252.00?st=FL",
+      "note": "Florida 2022-32 employment projection and annual openings for Software Developers."
+    },
+    {
+      "id": "onet_aerospace_engineers_fl",
+      "label": "O*NET Florida trends: Aerospace Engineers",
+      "url": "https://www.onetonline.org/link/localtrends/17-2011.00?st=FL",
+      "note": "Florida 2022-32 employment projection and annual openings for Aerospace Engineers."
+    },
+    {
+      "id": "onet_electrical_engineers_fl",
+      "label": "O*NET Florida trends: Electrical Engineers",
+      "url": "https://www.onetonline.org/link/localtrends/17-2071.00?st=FL",
+      "note": "Florida 2022-32 employment projection and annual openings for Electrical Engineers."
+    },
+    {
+      "id": "onet_registered_nurses_fl",
+      "label": "O*NET Florida trends: Registered Nurses",
+      "url": "https://www.onetonline.org/link/localtrends/29-1141.00?st=FL",
+      "note": "Florida 2022-32 employment projection and annual openings for Registered Nurses."
+    },
+    {
+      "id": "onet_logisticians_fl",
+      "label": "O*NET Florida trends: Logisticians",
+      "url": "https://www.onetonline.org/link/localtrends/13-1081.00?st=FL",
+      "note": "Florida 2022-32 employment projection and annual openings for Logisticians."
+    },
+    {
+      "id": "onet_financial_analysts_fl",
+      "label": "O*NET Florida trends: Financial and Investment Analysts",
+      "url": "https://www.onetonline.org/link/localtrends/13-2051.00?st=FL",
+      "note": "Florida 2022-32 employment projection and annual openings for Financial Analysts."
+    },
+    {
+      "id": "onet_biomedical_engineers_fl",
+      "label": "O*NET Florida trends: Bioengineers and Biomedical Engineers",
+      "url": "https://www.onetonline.org/link/localtrends/17-2031.00?st=FL",
+      "note": "Florida 2022-32 employment projection and annual openings for Biomedical Engineers."
+    }
+  ],
+  "clusters": [
+    {
+      "id": "ai-software",
+      "label": "AI & Software",
+      "shortLabel": "AI / software",
+      "question": "Is Florida's computing pipeline scaling as fast as software demand?",
+      "read": "The visible bachelor's pipeline covers less than one-third of projected Software Developer openings. That is not a shortage count, but it makes retention and adjacent credentials strategically important.",
+      "demand": {
+        "occupation": "Software Developers",
+        "soc": "15-1252",
+        "baseYear": 2022,
+        "projectedYear": 2032,
+        "baseEmployment": 75620,
+        "projectedEmployment": 101940,
+        "growthPercent": 35,
+        "annualOpenings": 7330
+      },
+      "pipeline": {
+        "program": "Computer and Information Sciences, General",
+        "cip": "110101",
+        "credential": "Bachelor's degree",
+        "academicYear": "2023-24",
+        "graduates": 2262,
+        "employed": 1137,
+        "employedPercent": 50,
+        "fullTimeEmployed": 912,
+        "fullTimePercent": 40,
+        "averageAnnualWageUsd": 72268,
+        "continuingEducation": 244,
+        "continuingEducationPercent": 11
+      },
+      "institutions": [
+        { "name": "Florida International University", "region": "South Florida", "graduates": 638, "employedPercent": 57, "fullTimePercent": 45, "averageAnnualWageUsd": 69149 },
+        { "name": "University of Florida", "region": "North Florida", "graduates": 537, "employedPercent": 38, "fullTimePercent": 32, "averageAnnualWageUsd": 78042 },
+        { "name": "University of Central Florida", "region": "Central Florida", "graduates": 496, "employedPercent": 56, "fullTimePercent": 44, "averageAnnualWageUsd": 77921 }
+      ],
+      "projectIds": [],
+      "sourceIds": ["fetpip_2324_program_outcomes", "florida_cip_soc_crosswalk", "onet_software_developers_fl"]
+    },
+    {
+      "id": "aerospace-space",
+      "label": "Aerospace & Space",
+      "shortLabel": "Aerospace",
+      "question": "Can the Space Coast convert a strong degree pipeline into project delivery?",
+      "read": "Aerospace engineering output is roughly the scale of annual openings, but FETPIP finds only 41% of graduates in full-time Florida employment in the first follow-up window. Retention is the operating question.",
+      "demand": {
+        "occupation": "Aerospace Engineers",
+        "soc": "17-2011",
+        "baseYear": 2022,
+        "projectedYear": 2032,
+        "baseEmployment": 4720,
+        "projectedEmployment": 5670,
+        "growthPercent": 20,
+        "annualOpenings": 360
+      },
+      "pipeline": {
+        "program": "Aerospace, Aeronautical and Astronautical Engineering",
+        "cip": "140201",
+        "credential": "Bachelor's degree",
+        "academicYear": "2023-24",
+        "graduates": 367,
+        "employed": 189,
+        "employedPercent": 51,
+        "fullTimeEmployed": 152,
+        "fullTimePercent": 41,
+        "averageAnnualWageUsd": 73074,
+        "continuingEducation": 74,
+        "continuingEducationPercent": 20
+      },
+      "institutions": [
+        { "name": "University of Central Florida", "region": "Central Florida", "graduates": 226, "employedPercent": 59, "fullTimePercent": 46, "averageAnnualWageUsd": 71214 },
+        { "name": "University of Florida", "region": "North Florida", "graduates": 141, "employedPercent": 39, "fullTimePercent": 33, "averageAnnualWageUsd": 77227 }
+      ],
+      "projectIds": [
+        "blue-origin-project-horizon",
+        "amazon-leo-processing",
+        "amazon-leo-expansion",
+        "aura-aero-daytona",
+        "blue-origin-lunar-production",
+        "boeing-embry-riddle-center",
+        "spacex-gigabay-starship",
+        "williams-international-okaloosa"
+      ],
+      "sourceIds": ["fetpip_2324_program_outcomes", "florida_cip_soc_crosswalk", "onet_aerospace_engineers_fl"]
+    },
+    {
+      "id": "semiconductors-electronics",
+      "label": "Semiconductors & Electronics",
+      "shortLabel": "Electronics",
+      "question": "Does Florida have the engineering bench for a larger semiconductor lane?",
+      "read": "Electrical engineering output is broad relative to one representative occupation, but only 53% of graduates appear in full-time Florida employment. The next proof point is employer conversion, not simply more degrees.",
+      "demand": {
+        "occupation": "Electrical Engineers",
+        "soc": "17-2071",
+        "baseYear": 2022,
+        "projectedYear": 2032,
+        "baseEmployment": 7260,
+        "projectedEmployment": 8130,
+        "growthPercent": 12,
+        "annualOpenings": 490
+      },
+      "pipeline": {
+        "program": "Electrical and Electronics Engineering",
+        "cip": "141001",
+        "credential": "Bachelor's degree",
+        "academicYear": "2023-24",
+        "graduates": 552,
+        "employed": 325,
+        "employedPercent": 59,
+        "fullTimeEmployed": 295,
+        "fullTimePercent": 53,
+        "averageAnnualWageUsd": 79690,
+        "continuingEducation": 71,
+        "continuingEducationPercent": 13
+      },
+      "institutions": [
+        { "name": "University of Central Florida", "region": "Central Florida", "graduates": 138, "employedPercent": 67, "fullTimePercent": 62, "averageAnnualWageUsd": 80619 },
+        { "name": "University of Florida", "region": "North Florida", "graduates": 111, "employedPercent": 38, "fullTimePercent": 32, "averageAnnualWageUsd": 82446 },
+        { "name": "Florida International University", "region": "South Florida", "graduates": 88, "employedPercent": 56, "fullTimePercent": 49, "averageAnnualWageUsd": 86847 }
+      ],
+      "projectIds": [],
+      "sourceIds": ["fetpip_2324_program_outcomes", "florida_cip_soc_crosswalk", "onet_electrical_engineers_fl"]
+    },
+    {
+      "id": "healthcare",
+      "label": "Healthcare",
+      "shortLabel": "Healthcare",
+      "question": "Can Florida's nursing pipeline keep pace with a growing and aging state?",
+      "read": "Registered Nursing has the largest covered pipeline and the strongest first-year placement, yet it reaches only one-fifth of projected annual RN openings. State-college and private-program supply matter here and are intentionally outside this first view.",
+      "demand": {
+        "occupation": "Registered Nurses",
+        "soc": "29-1141",
+        "baseYear": 2022,
+        "projectedYear": 2032,
+        "baseEmployment": 202780,
+        "projectedEmployment": 228070,
+        "growthPercent": 13,
+        "annualOpenings": 14110
+      },
+      "pipeline": {
+        "program": "Registered Nursing/Registered Nurse",
+        "cip": "513801",
+        "credential": "Bachelor's degree",
+        "academicYear": "2023-24",
+        "graduates": 2815,
+        "employed": 2328,
+        "employedPercent": 83,
+        "fullTimeEmployed": 2192,
+        "fullTimePercent": 78,
+        "averageAnnualWageUsd": 75598,
+        "continuingEducation": 189,
+        "continuingEducationPercent": 7
+      },
+      "institutions": [
+        { "name": "University of Central Florida", "region": "Central Florida", "graduates": 707, "employedPercent": 89, "fullTimePercent": 85, "averageAnnualWageUsd": 75166 },
+        { "name": "University of South Florida", "region": "Southwest Florida", "graduates": 346, "employedPercent": 82, "fullTimePercent": 80, "averageAnnualWageUsd": 77251 },
+        { "name": "University of West Florida", "region": "North Florida", "graduates": 311, "employedPercent": 72, "fullTimePercent": 68, "averageAnnualWageUsd": 79698 }
+      ],
+      "projectIds": [],
+      "sourceIds": ["fetpip_2324_program_outcomes", "florida_cip_soc_crosswalk", "onet_registered_nurses_fl"]
+    },
+    {
+      "id": "logistics",
+      "label": "Logistics & Supply Chain",
+      "shortLabel": "Logistics",
+      "question": "Is Florida producing enough logistics talent to match its gateway advantage?",
+      "read": "The covered logistics bachelor's pipeline is small against projected openings even as the occupation grows 31%. This is the clearest case for expanding the view into state colleges, certificates, and employer-linked credentials.",
+      "demand": {
+        "occupation": "Logisticians",
+        "soc": "13-1081",
+        "baseYear": 2022,
+        "projectedYear": 2032,
+        "baseEmployment": 12590,
+        "projectedEmployment": 16520,
+        "growthPercent": 31,
+        "annualOpenings": 1540
+      },
+      "pipeline": {
+        "program": "Logistics, Materials and Supply Chain Management",
+        "cip": "520203",
+        "credential": "Bachelor's degree",
+        "academicYear": "2023-24",
+        "graduates": 152,
+        "employed": 98,
+        "employedPercent": 64,
+        "fullTimeEmployed": 85,
+        "fullTimePercent": 56,
+        "averageAnnualWageUsd": 65130,
+        "continuingEducation": 13,
+        "continuingEducationPercent": 9
+      },
+      "institutions": [
+        { "name": "Florida International University", "region": "South Florida", "graduates": 61, "employedPercent": 66, "fullTimePercent": 54, "averageAnnualWageUsd": 66224 },
+        { "name": "University of North Florida", "region": "North Florida", "graduates": 38, "employedPercent": 68, "fullTimePercent": 55, "averageAnnualWageUsd": 59113 },
+        { "name": "University of West Florida", "region": "North Florida", "graduates": 19, "employedPercent": null, "fullTimePercent": null, "averageAnnualWageUsd": null }
+      ],
+      "projectIds": [],
+      "sourceIds": ["fetpip_2324_program_outcomes", "florida_cip_soc_crosswalk", "onet_logisticians_fl"]
+    },
+    {
+      "id": "fintech-finance",
+      "label": "Fintech & Finance",
+      "shortLabel": "Fintech",
+      "question": "Can Florida turn a large finance pipeline into higher-value financial technology work?",
+      "read": "Finance produces a large bachelor's class, but the first-year full-time Florida wage trails engineering pathways. The strategic move is specialization into analytics, risk, payments, and software-enabled finance.",
+      "demand": {
+        "occupation": "Financial and Investment Analysts",
+        "soc": "13-2051",
+        "baseYear": 2022,
+        "projectedYear": 2032,
+        "baseEmployment": 15980,
+        "projectedEmployment": 18310,
+        "growthPercent": 15,
+        "annualOpenings": 1310
+      },
+      "pipeline": {
+        "program": "Finance, General",
+        "cip": "520801",
+        "credential": "Bachelor's degree",
+        "academicYear": "2023-24",
+        "graduates": 2622,
+        "employed": 1661,
+        "employedPercent": 63,
+        "fullTimeEmployed": 1396,
+        "fullTimePercent": 53,
+        "averageAnnualWageUsd": 61535,
+        "continuingEducation": 338,
+        "continuingEducationPercent": 13
+      },
+      "institutions": [
+        { "name": "Florida State University", "region": "North Florida", "graduates": 657, "employedPercent": 54, "fullTimePercent": 40, "averageAnnualWageUsd": 60848 },
+        { "name": "Florida International University", "region": "South Florida", "graduates": 488, "employedPercent": 66, "fullTimePercent": 59, "averageAnnualWageUsd": 65005 },
+        { "name": "University of Central Florida", "region": "Central Florida", "graduates": 369, "employedPercent": 70, "fullTimePercent": 63, "averageAnnualWageUsd": 60139 }
+      ],
+      "projectIds": [],
+      "sourceIds": ["fetpip_2324_program_outcomes", "florida_cip_soc_crosswalk", "onet_financial_analysts_fl"]
+    },
+    {
+      "id": "life-sciences",
+      "label": "Life Sciences",
+      "shortLabel": "Life sciences",
+      "question": "Can Florida convert biomedical graduates into an investable life-sciences cluster?",
+      "read": "Biomedical engineering output is broad relative to one narrow occupation, but only 34% of graduates appear in full-time Florida employment. Competitor projects show why commercialization and employer density matter as much as degree volume.",
+      "demand": {
+        "occupation": "Bioengineers and Biomedical Engineers",
+        "soc": "17-2031",
+        "baseYear": 2022,
+        "projectedYear": 2032,
+        "baseEmployment": 930,
+        "projectedEmployment": 1050,
+        "growthPercent": 13,
+        "annualOpenings": 70
+      },
+      "pipeline": {
+        "program": "Bioengineering and Biomedical Engineering",
+        "cip": "140501",
+        "credential": "Bachelor's degree",
+        "academicYear": "2023-24",
+        "graduates": 258,
+        "employed": 119,
+        "employedPercent": 46,
+        "fullTimeEmployed": 87,
+        "fullTimePercent": 34,
+        "averageAnnualWageUsd": 64595,
+        "continuingEducation": 65,
+        "continuingEducationPercent": 25
+      },
+      "institutions": [
+        { "name": "University of Florida", "region": "North Florida", "graduates": 100, "employedPercent": 33, "fullTimePercent": 24, "averageAnnualWageUsd": 59786 },
+        { "name": "Florida International University", "region": "South Florida", "graduates": 76, "employedPercent": 59, "fullTimePercent": 47, "averageAnnualWageUsd": 62479 },
+        { "name": "Florida State University", "region": "North Florida", "graduates": 41, "employedPercent": 51, "fullTimePercent": 34, "averageAnnualWageUsd": 75545 }
+      ],
+      "projectIds": ["abbvie-durham-campus", "ucb-rowen-biologics"],
+      "sourceIds": ["fetpip_2324_program_outcomes", "florida_cip_soc_crosswalk", "onet_biomedical_engineers_fl"]
+    }
+  ]
+}

@@ -216,6 +216,70 @@ export type StrategyLayer = {
   scenarios: StrategyScenario[];
 };
 
+export type TalentSource = {
+  id: string;
+  label: string;
+  url: string;
+  note: string;
+};
+
+export type TalentInstitution = {
+  name: string;
+  region: "Central Florida" | "North Florida" | "South Florida" | "Southwest Florida" | "Statewide";
+  graduates: number;
+  employedPercent: number | null;
+  fullTimePercent: number | null;
+  averageAnnualWageUsd: number | null;
+};
+
+export type TalentDemandSignal = {
+  occupation: string;
+  soc: string;
+  baseYear: number;
+  projectedYear: number;
+  baseEmployment: number;
+  projectedEmployment: number;
+  growthPercent: number;
+  annualOpenings: number;
+};
+
+export type TalentPipelineSignal = {
+  program: string;
+  cip: string;
+  credential: "Bachelor's degree";
+  academicYear: string;
+  graduates: number;
+  employed: number;
+  employedPercent: number;
+  fullTimeEmployed: number;
+  fullTimePercent: number;
+  averageAnnualWageUsd: number;
+  continuingEducation: number;
+  continuingEducationPercent: number;
+};
+
+export type TalentCluster = {
+  id: string;
+  label: string;
+  shortLabel: string;
+  question: string;
+  read: string;
+  demand: TalentDemandSignal;
+  pipeline: TalentPipelineSignal;
+  institutions: TalentInstitution[];
+  projectIds: string[];
+  sourceIds: string[];
+};
+
+export type TalentMatchLayer = {
+  headline: string;
+  summary: string;
+  coverageNote: string;
+  methodology: string[];
+  sources: TalentSource[];
+  clusters: TalentCluster[];
+};
+
 export type TerminalSource = {
   id: string;
   label: string;
@@ -726,6 +790,7 @@ export type DashboardDataset = {
   scorecard2030: InsightSection;
   brainNotes: FloridaBrainNote[];
   strategy: StrategyLayer;
+  talent: TalentMatchLayer;
   competition: StateCompetitionLayer;
   federal: FederalDataLayer;
   terminal: TerminalLayer;

@@ -14,6 +14,7 @@ export function isV3TabId(value: string | null): value is V3TabId {
     value === "lens" ||
     value === "competition" ||
     value === "strategy" ||
+    value === "talent" ||
     value === "terminal" ||
     value === "scorecard" ||
     value === "innovation" ||
