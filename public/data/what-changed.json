@@ -1,6 +1,111 @@
 {
-  "generatedAt": "2026-07-17T01:06:21.309Z",
-  "period": "May 2026",
+  "generatedAt": "2026-07-22T12:24:12.456Z",
+  "period": "June 2026",
   "prevPeriod": "May 2026",
-  "items": []
+  "items": [
+    {
+      "id": "nonfarmPayrolls",
+      "label": "Nonfarm Payrolls",
+      "scope": "labor",
+      "prevDate": "2026-05-01",
+      "nextDate": "2026-06-01",
+      "prevValue": 10024.3,
+      "nextValue": 10033.3,
+      "kind": "new_period",
+      "absolute": 9,
+      "tone": "good",
+      "headline": "Nonfarm Payrolls reached 10M in June 2026, a gain of 9K jobs versus May 2026."
+    },
+    {
+      "id": "unemploymentRate",
+      "label": "Unemployment Rate",
+      "scope": "labor",
+      "prevDate": "2026-05-01",
+      "nextDate": "2026-06-01",
+      "prevValue": 4.8,
+      "nextValue": 4.7,
+      "kind": "new_period",
+      "absolute": -0.09999999999999964,
+      "tone": "good",
+      "headline": "Unemployment Rate moved to 4.7% in June 2026, down 0.1 points versus May 2026."
+    },
+    {
+      "id": "laborForce",
+      "label": "Labor Force",
+      "scope": "labor",
+      "prevDate": "2026-05-01",
+      "nextDate": "2026-06-01",
+      "prevValue": 11144581,
+      "nextValue": 11139030,
+      "kind": "new_period",
+      "absolute": -5551,
+      "tone": "warn",
+      "headline": "Labor Force reached 11.1M in June 2026, a loss of 5.6K versus May 2026."
+    },
+    {
+      "id": "employmentLevel",
+      "label": "Employment Level",
+      "scope": "labor",
+      "prevDate": "2026-05-01",
+      "nextDate": "2026-06-01",
+      "prevValue": 10613169,
+      "nextValue": 10614471,
+      "kind": "new_period",
+      "absolute": 1302,
+      "tone": "good",
+      "headline": "Employment Level reached 10.6M in June 2026, a gain of 1.3K versus May 2026."
+    },
+    {
+      "id": "informationEmployment",
+      "label": "Information Employment",
+      "scope": "innovation",
+      "prevDate": "2026-05-01",
+      "nextDate": "2026-06-01",
+      "prevValue": 149,
+      "nextValue": 150.1,
+      "kind": "new_period",
+      "absolute": 1.0999999999999943,
+      "tone": "good",
+      "headline": "Information Employment reached 150.1K in June 2026, a gain of 1.1K jobs versus May 2026."
+    },
+    {
+      "id": "professionalBusinessEmployment",
+      "label": "Professional & Business Services Employment",
+      "scope": "innovation",
+      "prevDate": "2026-05-01",
+      "nextDate": "2026-06-01",
+      "prevValue": 1637.3,
+      "nextValue": 1632.7,
+      "kind": "new_period",
+      "absolute": -4.599999999999909,
+      "tone": "warn",
+      "headline": "Professional & Business Services Employment reached 1.6M in June 2026, a loss of 4.6K jobs versus May 2026."
+    },
+    {
+      "id": "constructionEmployment",
+      "label": "Construction Employment",
+      "scope": "innovation",
+      "prevDate": "2026-05-01",
+      "nextDate": "2026-06-01",
+      "prevValue": 655.9,
+      "nextValue": 654.8,
+      "kind": "new_period",
+      "absolute": -1.1000000000000227,
+      "tone": "warn",
+      "headline": "Construction Employment reached 654.8K in June 2026, a loss of 1.1K jobs versus May 2026."
+    },
+    {
+      "id": "sector-professional_business_services",
+      "label": "Professional & Business Services",
+      "scope": "industry",
+      "prevDate": "2026-05-01",
+      "nextDate": "2026-06-01",
+      "prevValue": 1637.3,
+      "nextValue": 1632.7,
+      "kind": "new_period",
+      "absolute": -4.599999999999909,
+      "tone": "warn",
+      "headline": "Professional & Business Services reached 1.6M in June 2026, a loss of 4.6K jobs versus May 2026."
+    }
+  ]
 }
