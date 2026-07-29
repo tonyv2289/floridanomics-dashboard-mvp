@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import {
-  daysSince,
   deltaTone,
   formatDateLabel,
   formatDelta,
@@ -12,6 +11,7 @@ import { firstSentence, formatSignedInteger, getMonthlyPayrollChange, resolveHre
 import { EvidenceGrid } from "./primitives";
 import { WhatChanged } from "./WhatChanged";
 import { LeadingSignals } from "./LeadingSignals";
+import { ExecutiveRead } from "./ExecutiveRead";
 import type { DashboardDataset } from "../types/dashboard";
 
 function useCountUp(target: number, durationMs = 900): number {
@@ -51,6 +51,7 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
   const laborForce = dataset.metrics.laborForce;
   const exportMetric = dataset.trade.heroMetrics[0];
   const incomeMigration = dataset.scorecard2030.stats.find((stat) => stat.label === "Income migration");
+  const laborRelease = dataset.trust.releaseCalendar.find((release) => release.id === "florida-labor");
 
   return (
     <header className="v3-hero">
@@ -64,7 +65,16 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
         </p>
         <div className="v3-hero-meta">
           <span>BLS CES / LAUS</span>
-          <span>{daysSince(latestPayrollDate)} days since latest payroll observation</span>
+          <span>
+            {laborRelease?.latestReleaseDate
+              ? `Released ${formatDateLabel(laborRelease.latestReleaseDate, { month: "short", day: "numeric" })}`
+              : `Latest available ${monthName}`}
+          </span>
+          {laborRelease?.nextExpectedRelease ? (
+            <span>
+              Next expected {formatDateLabel(laborRelease.nextExpectedRelease, { month: "short", day: "numeric" })}
+            </span>
+          ) : null}
         </div>
       </div>
 
@@ -195,6 +205,7 @@ export function BriefTab({ dataset }: { dataset: DashboardDataset }) {
     <>
       <ReadHero dataset={dataset} />
       <OperatingRead dataset={dataset} />
+      <ExecutiveRead dataset={dataset} />
       {dataset.leading ? (
         <LeadingSignals
           signals={dataset.leading.signals}

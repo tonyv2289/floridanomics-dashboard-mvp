@@ -57,8 +57,11 @@ export function WhatChanged() {
     <Frame label="What changed">
       <div className="v3-panel-head">
         <div>
-          <h2>The numbers that moved in the latest refresh.</h2>
-          <p>From the {formatDateLabel(payload.generatedAt)} data update. Generated automatically by the pipeline.</p>
+          <h2>{payload.period} versus {payload.prevPeriod}.</h2>
+          <p>
+            Release-to-release comparison generated {formatDateLabel(payload.generatedAt)}. Revisions are labeled
+            separately from new observations.
+          </p>
         </div>
       </div>
 

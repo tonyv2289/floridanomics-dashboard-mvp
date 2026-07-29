@@ -2,6 +2,8 @@
 
 Floridanomics now uses a two-layer source model: refreshed core metrics plus curated verified Florida-specific sections.
 
+The public dataset also carries a trust contract. It records each headline metric's observation period, release date, next expected release, revision status, and source. Top-level sources are classified as `official_data`, `official_announcement`, `industry_research`, or `advocacy_analysis`; forecasts and strategic reads are presented as editorial inference rather than silently blended into official statistics.
+
 ## 1. Refreshed core metrics
 
 These are programmatically refreshed by `npm run data:refresh`.

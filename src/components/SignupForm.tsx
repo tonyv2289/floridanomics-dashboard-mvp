@@ -1,5 +1,6 @@
 import { useId } from "react";
 import clsx from "clsx";
+import { trackEvent } from "../lib/analytics";
 import "./signup-form.css";
 
 const SUBSTACK_SIGNUP_URL = "https://floridanomics.substack.com/api/v1/free?nojs=true";
@@ -18,13 +19,14 @@ export function SignupForm({ source = "dashboard", variant = "dashboard" }: Sign
       className={clsx("signup", `signup--${variant}`)}
       action={SUBSTACK_SIGNUP_URL}
       method="post"
-      aria-label="Subscribe to Floridanomics Weekly"
+      aria-label="Subscribe to the Floridanomics briefing"
+      onSubmit={() => trackEvent("brief_signup_started", { source, variant })}
     >
       <input type="hidden" name="source" value={source} />
       <div className="signup-copy">
-        <p className="signup-kicker">Floridanomics Weekly</p>
+        <p className="signup-kicker">Floridanomics Briefing</p>
         <h2>One story. Three signals. The Florida read.</h2>
-        <p>The weekly briefing on Florida's innovation economy, delivered every Monday.</p>
+        <p>Published around major Florida data releases, with additional briefs when the evidence warrants one.</p>
       </div>
       <div className="signup-fields">
         <div className="signup-row">

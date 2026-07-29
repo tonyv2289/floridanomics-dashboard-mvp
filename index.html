@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <!-- Preload the dataset so its download runs in parallel with the JS, not after it. -->
     <link
       rel="preload"
-      href="/floridanomics-dashboard-mvp/data/florida-economy.json"
+      href="%BASE_URL%data/florida-economy.json"
       as="fetch"
       type="application/json"
       crossorigin="anonymous"
@@ -15,14 +15,14 @@
     <title>Floridanomics Dashboard.</title>
     <meta name="description" content="Florida economic + innovation data, live." />
     <meta name="theme-color" content="#02060d" />
-    <link rel="canonical" href="https://tonyv2289.github.io/floridanomics-dashboard-mvp/" />
+    <link rel="canonical" href="%VITE_PUBLIC_URL%" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Floridanomics Dashboard." />
     <meta property="og:title" content="Floridanomics Dashboard." />
     <meta property="og:description" content="Florida economic + innovation data, live." />
-    <meta property="og:url" content="https://tonyv2289.github.io/floridanomics-dashboard-mvp/" />
-    <meta property="og:image" content="https://tonyv2289.github.io/floridanomics-dashboard-mvp/og-image.png" />
+    <meta property="og:url" content="%VITE_PUBLIC_URL%" />
+    <meta property="og:image" content="%VITE_PUBLIC_URL%og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
@@ -33,7 +33,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Floridanomics Dashboard." />
     <meta name="twitter:description" content="Florida economic + innovation data, live." />
-    <meta name="twitter:image" content="https://tonyv2289.github.io/floridanomics-dashboard-mvp/og-image.png" />
+    <meta name="twitter:image" content="%VITE_PUBLIC_URL%og-image.png" />
     <meta
       name="twitter:image:alt"
       content="Floridanomics Dashboard preview over a deep navy field."

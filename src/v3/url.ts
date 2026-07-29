@@ -11,6 +11,8 @@ export function readSearchParam(name: string): string | null {
 export function isV3TabId(value: string | null): value is V3TabId {
   return (
     value === "brief" ||
+    value === "policy" ||
+    value === "evidence" ||
     value === "lens" ||
     value === "competition" ||
     value === "strategy" ||

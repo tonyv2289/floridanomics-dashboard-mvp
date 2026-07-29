@@ -14,6 +14,20 @@ const OUT = join(ROOT, "public", "data", "policy-watch.json");
 // Florida economic-policy watch-list (2026 Regular Session). Review each session.
 const WATCH_BILLS = ["H0847", "H0385", "H0659", "H0899", "H0325"];
 
+function reviewMetadata(reviewedAt: string) {
+  const nextReview = new Date(reviewedAt);
+  nextReview.setUTCDate(nextReview.getUTCDate() + 7);
+  return {
+    reviewedAt,
+    nextReviewDue: nextReview.toISOString(),
+    cadence: "weekly",
+    owner: "Floridanomics editorial desk",
+    session: "2026 Regular Session - post-session outcomes",
+    coverageNote:
+      "A focused economic-development, technology, workforce, and innovation watch list; not a complete inventory of Florida legislation.",
+  };
+}
+
 function write(payload: unknown): void {
   mkdirSync(dirname(OUT), { recursive: true });
   writeFileSync(OUT, `${JSON.stringify(payload, null, 2)}\n`);
@@ -25,6 +39,7 @@ async function main(): Promise<void> {
     write({
       status: "pending",
       generatedAt: null,
+      ...reviewMetadata(new Date().toISOString()),
       items: [],
       note: "Set LEGISCAN_API_KEY to activate Florida policy tracking.",
     });
@@ -34,9 +49,11 @@ async function main(): Promise<void> {
 
   try {
     const items = await fetchFloridaWatchlist(apiKey, WATCH_BILLS);
+    const generatedAt = new Date().toISOString();
     write({
       status: "live",
-      generatedAt: new Date().toISOString(),
+      generatedAt,
+      ...reviewMetadata(generatedAt),
       attribution: "Legislative data via LegiScan (CC BY 4.0).",
       items,
     });

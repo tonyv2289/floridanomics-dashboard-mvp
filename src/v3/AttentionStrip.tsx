@@ -5,11 +5,14 @@ import type { DashboardDataset } from "../types/dashboard";
 
 const SCANNED: CoreMetricId[] = ["unemploymentRate", "laborForce", "nonfarmPayrolls", "employmentLevel"];
 
-type Flag = { label: string; detail: string };
+type Flag = { label: string; detail: string; threshold: string };
 
-function movedBadly(trendDirection: "up_good" | "down_good", oneYearAbsolute: number): boolean {
+function movedBadly(id: CoreMetricId, trendDirection: "up_good" | "down_good", oneYearAbsolute: number): boolean {
   if (oneYearAbsolute === 0) {
     return false;
+  }
+  if (id === "unemploymentRate") {
+    return oneYearAbsolute >= 0.5;
   }
   return trendDirection === "up_good" ? oneYearAbsolute < 0 : oneYearAbsolute > 0;
 }
@@ -20,10 +23,11 @@ export function AttentionStrip({ dataset, region }: { dataset: DashboardDataset;
   for (const id of SCANNED) {
     const metric = dataset.metrics[id];
     const absolute = metric.deltas.oneYear?.absolute ?? 0;
-    if (movedBadly(metric.trendDirection, absolute)) {
+    if (movedBadly(id, metric.trendDirection, absolute)) {
       flags.push({
         label: metric.label,
         detail: `${formatMetricValue(metric, metric.latest.value)}, ${formatDelta(metric, metric.deltas.oneYear)} over one year`,
+        threshold: id === "unemploymentRate" ? "Triggered at +0.5 percentage points YoY" : "Triggered below 0 YoY",
       });
     }
   }
@@ -36,6 +40,7 @@ export function AttentionStrip({ dataset, region }: { dataset: DashboardDataset;
         flags.push({
           label: `${metro.name} unemployment`,
           detail: `${metro.unemploymentRate.latest.value.toFixed(1)}%, up ${unemploymentDelta.toFixed(1)} points over one year`,
+          threshold: "Triggered at any YoY deterioration for the selected metro",
         });
       }
     }
@@ -47,7 +52,7 @@ export function AttentionStrip({ dataset, region }: { dataset: DashboardDataset;
     <Frame label="What needs your attention">
       <div className="v3-panel-head">
         <div>
-          <h2>{flags.length > 0 ? `${flags.length} signal${flags.length > 1 ? "s" : ""} moving the wrong way` : "Momentum looks clean"}</h2>
+          <h2>{flags.length > 0 ? `${flags.length} threshold alert${flags.length > 1 ? "s" : ""}` : "No core threshold alerts"}</h2>
           <p>
             {flags.length > 0
               ? `For ${regionLabel}, these moved against trend in the latest data.`
@@ -61,8 +66,9 @@ export function AttentionStrip({ dataset, region }: { dataset: DashboardDataset;
             <li key={flag.label}>
               <span className="v3-attention-dot tone-warn" aria-hidden="true" />
               <span>
-                <strong>{flag.label}:</strong> {flag.detail}
-              </span>
+                  <strong>{flag.label}:</strong> {flag.detail}
+                  <small>{flag.threshold}</small>
+                </span>
             </li>
           ))}
         </ul>
