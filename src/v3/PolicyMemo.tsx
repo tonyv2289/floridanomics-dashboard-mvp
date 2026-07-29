@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { formatDateLabel } from "../lib/dashboard";
 import { Frame } from "./primitives";
 
 type PolicyItem = {
@@ -14,6 +15,13 @@ type PolicyItem = {
 type PolicyPayload = {
   status: "pending" | "live";
   generatedAt: string | null;
+  reviewedAt?: string;
+  nextReviewDue?: string;
+  cadence?: string;
+  owner?: string;
+  session?: string;
+  coverageNote?: string;
+  attribution?: string;
   items: PolicyItem[];
   note?: string;
 };
@@ -48,18 +56,29 @@ export function PolicyMemo() {
   }
 
   const live = payload.status === "live" && payload.items.length > 0;
+  const enacted = payload.items.filter((item) => item.status === "Enrolled").length;
+  const failed = payload.items.filter((item) => item.status === "Failed").length;
 
   return (
     <Frame label="Policy watch">
       <div className="v3-panel-head">
         <div>
-          <h2>{live ? "Where Florida economic-policy bills stand." : "Florida policy tracking, ready to connect."}</h2>
+          <h2>{live ? "What survived Florida's 2026 session." : "Florida policy tracking, ready to connect."}</h2>
           <p>
             {live
-              ? "Tracked bills relevant to economic development, technology, and workforce. Source: LegiScan (CC BY 4.0)."
+              ? (payload.coverageNote ?? "Tracked bills relevant to economic development, technology, and workforce.")
               : "Connect a LegiScan API key to track Florida economic-policy legislation here."}
           </p>
         </div>
+        {live ? (
+          <div className="v3-policy-review-meta">
+            <span>{payload.session ?? "Florida policy watch"}</span>
+            <strong>{enacted} enrolled / {failed} failed</strong>
+            <small>
+              Reviewed {payload.reviewedAt ? formatDateLabel(payload.reviewedAt) : "not recorded"} · {payload.cadence ?? "scheduled"}
+            </small>
+          </div>
+        ) : null}
       </div>
 
       {live ? (
@@ -70,6 +89,7 @@ export function PolicyMemo() {
               <span className="v3-policy-title">{item.title}</span>
               <span className="v3-policy-status">
                 {item.status} · {item.lastActionDate}
+                <small>{item.lastAction}</small>
               </span>
             </a>
           ))}

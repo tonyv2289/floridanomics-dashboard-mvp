@@ -1,5 +1,7 @@
 export type V3TabId =
   | "brief"
+  | "policy"
+  | "evidence"
   | "lens"
   | "competition"
   | "strategy"
@@ -10,13 +12,18 @@ export type V3TabId =
   | "trade";
 export type CompetitionViewId = "projects" | "grants" | "metro" | "international" | "fdi";
 
-export const TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
-  { id: "brief", label: "Brief", line: "what matters now" },
-  { id: "lens", label: "Lenses", line: "reads by industry" },
+export const PRIMARY_TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
+  { id: "brief", label: "Today", line: "what changed and why" },
   { id: "competition", label: "Competition", line: "projects, awards, metros, FDI" },
+  { id: "policy", label: "Policy", line: "bills, choices, implications" },
+  { id: "evidence", label: "Evidence", line: "vintages, sources, methods" },
+];
+
+export const DEEP_TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
+  { id: "lens", label: "Lenses", line: "reads by industry" },
   { id: "strategy", label: "Strategy", line: "peers, clusters, scenarios" },
   { id: "talent", label: "Talent", line: "degrees, demand, wages" },
-  { id: "terminal", label: "Terminal", line: "forecasts and policy" },
+  { id: "terminal", label: "Terminal", line: "forecasts and model" },
   { id: "scorecard", label: "Scorecard", line: "labor, metros, 2030" },
   { id: "innovation", label: "Innovation", line: "formation and capacity" },
   { id: "trade", label: "Trade", line: "exports and gateways" },

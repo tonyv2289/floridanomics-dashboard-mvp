@@ -6,17 +6,14 @@ Florida Brain's public data surface for Florida economic, innovation, and trade 
 
 `v3` is the live dashboard, served at the root route. (Earlier v1/v2 prototypes have been retired; there are no compare routes.)
 
-The live experience is built around these top-level tabs:
+The executive navigation is built around four jobs:
 
-1. `Brief`
-2. `Lenses`
-3. `Competition`
-4. `Strategy`
-5. `Talent`
-6. `Terminal`
-7. `Scorecard`
-8. `Innovation`
-9. `Trade`
+1. `Today`: what changed, why it matters, what to watch, and the decision implication
+2. `Competition`: project capex, government awards, metros, and FDI
+3. `Policy`: live policy watch and decision memos
+4. `Evidence`: metric vintages, release calendar, source classes, methodology, and corrections
+
+Specialist drill-downs remain available for Lenses, Strategy, Talent, Terminal, Scorecard, Innovation, and Trade.
 
 `Competition` is the operating menu for:
 
@@ -82,7 +79,7 @@ npm run qa:full
 
 ## Data model
 
-`public/data/florida-economy.json` is a merged product dataset with two layers:
+`public/data/florida-economy.json` is a merged product dataset with three layers:
 
 1. **Refreshed core metrics**
    - BLS labor market and payroll data
@@ -103,9 +100,16 @@ npm run qa:full
    - `distinctives.latamGateway`
    - `trade`
 
+3. **Trust contract**
+   - headline metric observation and release vintages
+   - next expected release dates
+   - revision status
+   - source classifications
+   - methodology and corrections policy
+
 `npm run data:refresh` updates the dynamic labor, population, metro, industry, innovation, and peer-state benchmark metrics while preserving the curated sections, Florida Brain notes, and source links. That is intentional so a routine refresh cannot wipe the differentiated Florida-specific product work.
 
-More detail: [docs/data-sources.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/docs/data-sources.md) and [docs/refresh-runbook.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/docs/refresh-runbook.md).
+More detail: [docs/data-sources.md](docs/data-sources.md) and [docs/refresh-runbook.md](docs/refresh-runbook.md).
 
 ## Validation
 
@@ -113,7 +117,7 @@ More detail: [docs/data-sources.md](/Users/pelayopro/Desktop/floridanomics-dashb
 npm run data:validate
 ```
 
-The validator now checks both the refreshed core metrics and the richer `v3` product sections, including insight blocks and trade structure.
+The validator now checks both the refreshed core metrics and the richer `v3` product sections, including the trust contract, source classifications, insight blocks, and trade structure.
 It also enforces the Florida source stack: FloridaCommerce/SelectFlorida, the Governor's Office, Florida Chamber/Scorecard, Florida TaxWatch, JMI, and Florida Council of 100 / Ambition Accelerated.
 It now checks the Florida Brain notes rail as well, including source links for each note.
 It also checks the Strategy tab contract: peer states, external benchmark examples, cluster strategy, talent pipeline, and scenario layer.
@@ -129,7 +133,7 @@ GitHub Pages publishes from the repo with the fixed base path:
 - AI Capex Gap brief: `https://tonyv2289.github.io/floridanomics-dashboard-mvp/briefs/ai-capex-gap/`
 - social preview image: `public/og-image.png`
 
-Push to `main` or run the deploy workflow to publish.
+Push to `main` or run the deploy workflow to publish. The deployment accepts repository variables `VITE_BASE_PATH` and `VITE_PUBLIC_URL`, allowing the same build to serve the current project path or the future `floridanomics.com` root.
 
 ## Analytics
 
@@ -155,12 +159,19 @@ For named follow-up, use a private non-PII token in `invite`, not an email addre
 https://tonyv2289.github.io/floridanomics-dashboard-mvp/?version=v3&utm_source=outlook&utm_medium=email&utm_campaign=prototype_share&invite=contact-001
 ```
 
+The briefing signup posts directly to the Floridanomics Substack subscription endpoint. No email address is stored by this repository.
+
+## Executive beta
+
+The launch beta runs across the August 21, September 18, and October 16, 2026 Florida labor releases. See [docs/executive-beta.md](docs/executive-beta.md) for the operating gate, measures, and interview protocol. The private named cohort and feedback log live in Pelayo Vault.
+
 ## Repo structure
 
 ```text
 floridanomics-dashboard-rewrite/
   docs/
     data-sources.md
+    executive-beta.md
     refresh-runbook.md
     security-audit.md
     v2-roadmap.md
@@ -180,11 +191,6 @@ floridanomics-dashboard-rewrite/
       dashboard.ts
     types/
       dashboard.ts
-    v1/
-      LegacyDashboard.tsx
-    v2/
-      DashboardV2.tsx
-      dashboard-v2.css
     v3/
       DashboardV3.tsx
       dashboard-v3.css
@@ -198,7 +204,7 @@ floridanomics-dashboard-rewrite/
 
 ## Design direction
 
-Bound by [DESIGN.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/DESIGN.md):
+Bound by [DESIGN.md](DESIGN.md):
 
 - deep navy primary surface
 - Sora + Manrope
@@ -208,4 +214,4 @@ Bound by [DESIGN.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/DE
 
 ## What comes next
 
-See [docs/v2-roadmap.md](/Users/pelayopro/Desktop/floridanomics-dashboard-rewrite/docs/v2-roadmap.md) for the archived v2 roadmap and shipped rebuild context.
+See [docs/v2-roadmap.md](docs/v2-roadmap.md) for the archived v2 roadmap and shipped rebuild context.

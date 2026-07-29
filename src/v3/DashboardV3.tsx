@@ -28,9 +28,10 @@ import {
   type TalentFocus,
   type TalentSort,
 } from "./talent-match";
-// Chart-bearing tabs are lazy-loaded so the chart library (Recharts) stays off the
-// default Brief landing and only loads when a chart tab is opened.
+// Secondary views are lazy-loaded so they stay off the default Brief landing.
 const CompetitionTab = lazy(() => import("./CompetitionTab").then((m) => ({ default: m.CompetitionTab })));
+const EvidenceTab = lazy(() => import("./EvidenceTab").then((m) => ({ default: m.EvidenceTab })));
+const PolicyTab = lazy(() => import("./PolicyTab").then((m) => ({ default: m.PolicyTab })));
 const StrategyTab = lazy(() => import("./StrategyTab").then((m) => ({ default: m.StrategyTab })));
 const TalentTab = lazy(() => import("./TalentTab").then((m) => ({ default: m.TalentTab })));
 const TerminalTab = lazy(() => import("./TerminalTab").then((m) => ({ default: m.TerminalTab })));
@@ -193,9 +194,9 @@ function DashboardV3() {
             {isReturningWithUpdate ? (
               <span className="v3-fresh-pill">Updated since your last visit</span>
             ) : null}
-            <span>Dataset</span>
+            <span>Data bundle built</span>
             <strong>{formatDateLabel(data.generatedAt)}</strong>
-            <small>Labor: {data.asOfLaborMarket} | Population: {data.asOfPopulation}</small>
+            <small>Latest official labor period: {data.asOfLaborMarket} | Population vintage: {data.asOfPopulation}</small>
             <a className="v3-briefing-link" href={import.meta.env.BASE_URL}>
               Open the briefing
             </a>
@@ -232,46 +233,48 @@ function DashboardV3() {
           {activeTab === "brief" ? <AttentionStrip dataset={data} region={region} /> : null}
           {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
           {activeTab === "brief" ? <EvidenceExport dataset={data} /> : null}
-        {activeTab === "lens" ? (
-          <LensTab dataset={data} activeLens={activeLens} onSelectLens={setActiveLens} />
-        ) : null}
-        {activeTab === "competition" ? (
-          <CompetitionTab
-            dataset={data}
-            activeView={activeCompetitionView}
-            onSelectView={setActiveCompetitionView}
-          />
-        ) : null}
-        {activeTab === "strategy" ? <StrategyTab dataset={data} /> : null}
-        {activeTab === "talent" ? (
-          <TalentTab
-            dataset={data}
-            selectedClusterId={activeTalentClusterId}
-            onSelectCluster={setSelectedTalentClusterId}
-            focus={talentFocus}
-            onFocusChange={setTalentFocus}
-            sort={talentSort}
-            onSortChange={setTalentSort}
-          />
-        ) : null}
-        {activeTab === "terminal" ? <TerminalTab dataset={data} /> : null}
-        {activeTab === "scorecard" ? (
-          <ScorecardTab
-            dataset={data}
-            selectedMetricId={selectedMetricId}
-            onSelectMetric={setSelectedMetricId}
-            region={region}
-            onSelectRegion={setRegion}
-          />
-        ) : null}
-        {activeTab === "innovation" ? (
-          <InnovationTab
-            dataset={data}
-            selectedMetricId={selectedInnovationMetricId}
-            onSelectMetric={setSelectedInnovationMetricId}
-          />
-        ) : null}
-        {activeTab === "trade" ? <TradeTab dataset={data} /> : null}
+          {activeTab === "policy" ? <PolicyTab dataset={data} /> : null}
+          {activeTab === "evidence" ? <EvidenceTab dataset={data} /> : null}
+          {activeTab === "lens" ? (
+            <LensTab dataset={data} activeLens={activeLens} onSelectLens={setActiveLens} />
+          ) : null}
+          {activeTab === "competition" ? (
+            <CompetitionTab
+              dataset={data}
+              activeView={activeCompetitionView}
+              onSelectView={setActiveCompetitionView}
+            />
+          ) : null}
+          {activeTab === "strategy" ? <StrategyTab dataset={data} /> : null}
+          {activeTab === "talent" ? (
+            <TalentTab
+              dataset={data}
+              selectedClusterId={activeTalentClusterId}
+              onSelectCluster={setSelectedTalentClusterId}
+              focus={talentFocus}
+              onFocusChange={setTalentFocus}
+              sort={talentSort}
+              onSortChange={setTalentSort}
+            />
+          ) : null}
+          {activeTab === "terminal" ? <TerminalTab dataset={data} /> : null}
+          {activeTab === "scorecard" ? (
+            <ScorecardTab
+              dataset={data}
+              selectedMetricId={selectedMetricId}
+              onSelectMetric={setSelectedMetricId}
+              region={region}
+              onSelectRegion={setRegion}
+            />
+          ) : null}
+          {activeTab === "innovation" ? (
+            <InnovationTab
+              dataset={data}
+              selectedMetricId={selectedInnovationMetricId}
+              onSelectMetric={setSelectedInnovationMetricId}
+            />
+          ) : null}
+          {activeTab === "trade" ? <TradeTab dataset={data} /> : null}
         </Suspense>
 
         <SignupForm source={`dashboard:${activeTab}`} />

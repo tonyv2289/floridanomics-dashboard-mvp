@@ -12,6 +12,60 @@ export type Delta = {
 
 export type MetricUnit = "percent" | "persons" | "thousands_jobs" | "count" | "usd_millions";
 export type MetricSource = "BLS" | "FRED" | "Census_via_FRED";
+export type SourceClassification =
+  | "official_data"
+  | "official_announcement"
+  | "industry_research"
+  | "advocacy_analysis";
+
+export type DashboardSource = {
+  id: string;
+  name: string;
+  url: string;
+  notes: string;
+  classification?: SourceClassification;
+};
+
+export type MetricVintage = {
+  metricId: string;
+  label: string;
+  observationDate: string;
+  observationPeriod: string;
+  releaseDate: string | null;
+  nextExpectedRelease: string | null;
+  revisionStatus: string;
+  sourceClass: SourceClassification;
+  sourceLabel: string;
+  sourceUrl: string;
+};
+
+export type ReleaseCalendarItem = {
+  id: string;
+  label: string;
+  cadence: "monthly" | "quarterly" | "annual";
+  latestPeriod: string;
+  latestReleaseDate: string | null;
+  nextExpectedRelease: string | null;
+  sourceLabel: string;
+  sourceUrl: string;
+  note: string;
+};
+
+export type DataTrustLayer = {
+  methodologyVersion: string;
+  metricVintages: MetricVintage[];
+  releaseCalendar: ReleaseCalendarItem[];
+  sourceClasses: Array<{
+    id: SourceClassification | "editorial_inference";
+    label: string;
+    description: string;
+  }>;
+  correctionPolicy: {
+    reviewedAt: string;
+    contact: string;
+    commitment: string;
+  };
+};
 
 export type Metric = {
   id: string;
@@ -749,12 +803,8 @@ export type DashboardDataset = {
   generatedAt: string;
   asOfLaborMarket: string;
   asOfPopulation: string;
-  sources: Array<{
-    id: string;
-    name: string;
-    url: string;
-    notes: string;
-  }>;
+  sources: DashboardSource[];
+  trust: DataTrustLayer;
   heroMetrics: Array<"unemploymentRate" | "laborForce" | "nonfarmPayrolls" | "population" | "employmentLevel">;
   metrics: {
     unemploymentRate: Metric;

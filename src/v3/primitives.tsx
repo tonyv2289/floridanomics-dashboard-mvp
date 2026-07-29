@@ -9,7 +9,7 @@ import {
   formatDelta,
   formatMetricValue,
 } from "../lib/dashboard";
-import { TAB_OPTIONS, type V3TabId } from "./constants";
+import { DEEP_TAB_OPTIONS, PRIMARY_TAB_OPTIONS, type V3TabId } from "./constants";
 import type { DashboardDataset, InsightSection } from "../types/dashboard";
 
 export function SourceAnchor({ source }: { source?: { label: string; url: string } }) {
@@ -100,6 +100,9 @@ export function Frame({ children, label }: { children: ReactNode; label?: string
 }
 
 export function TabNav({ activeTab, onChange }: { activeTab: V3TabId; onChange: (tab: V3TabId) => void }) {
+  const primaryTab = PRIMARY_TAB_OPTIONS.some((tab) => tab.id === activeTab) ? activeTab : null;
+  const deepTab = DEEP_TAB_OPTIONS.some((tab) => tab.id === activeTab) ? activeTab : "";
+
   return (
     <nav className="v3-view-nav" aria-label="Floridanomics views">
       <label className="v3-tab-select">
@@ -108,23 +111,32 @@ export function TabNav({ activeTab, onChange }: { activeTab: V3TabId; onChange: 
           value={activeTab}
           onChange={(event) => startTransition(() => onChange(event.target.value as V3TabId))}
         >
-          {TAB_OPTIONS.map((tab) => (
-            <option key={tab.id} value={tab.id}>
-              {tab.label} - {tab.line}
-            </option>
-          ))}
+          <optgroup label="Executive views">
+            {PRIMARY_TAB_OPTIONS.map((tab) => (
+              <option key={tab.id} value={tab.id}>
+                {tab.label} - {tab.line}
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Specialist views">
+            {DEEP_TAB_OPTIONS.map((tab) => (
+              <option key={tab.id} value={tab.id}>
+                {tab.label} - {tab.line}
+              </option>
+            ))}
+          </optgroup>
         </select>
       </label>
       <div
         className="v3-tabs"
-        style={{ "--v3-tab-count": TAB_OPTIONS.length } as CSSProperties}
+        style={{ "--v3-tab-count": PRIMARY_TAB_OPTIONS.length } as CSSProperties}
       >
-        {TAB_OPTIONS.map((tab) => (
+        {PRIMARY_TAB_OPTIONS.map((tab) => (
           <button
             key={tab.id}
             type="button"
-            aria-current={activeTab === tab.id ? "true" : undefined}
-            className={clsx("v3-tab", activeTab === tab.id && "is-active")}
+            aria-current={primaryTab === tab.id ? "true" : undefined}
+            className={clsx("v3-tab", primaryTab === tab.id && "is-active")}
             onClick={() => startTransition(() => onChange(tab.id))}
           >
             <span>{tab.label}</span>
@@ -132,6 +144,24 @@ export function TabNav({ activeTab, onChange }: { activeTab: V3TabId; onChange: 
           </button>
         ))}
       </div>
+      <label className="v3-drilldown-select">
+        <span>Specialist view</span>
+        <select
+          value={deepTab}
+          onChange={(event) => {
+            if (event.target.value) {
+              startTransition(() => onChange(event.target.value as V3TabId));
+            }
+          }}
+        >
+          <option value="">Choose a drill-down</option>
+          {DEEP_TAB_OPTIONS.map((tab) => (
+            <option key={tab.id} value={tab.id}>
+              {tab.label} - {tab.line}
+            </option>
+          ))}
+        </select>
+      </label>
     </nav>
   );
 }
@@ -286,17 +316,33 @@ export function IndustryTable({ dataset }: { dataset: DashboardDataset }) {
 }
 
 export function SourceFooter({ dataset }: { dataset: DashboardDataset }) {
+  const classificationLabels = {
+    official_data: "Official data",
+    official_announcement: "Official announcement",
+    industry_research: "Industry research",
+    advocacy_analysis: "Advocacy / analysis",
+  } as const;
+
   return (
     <footer className="v3-sources">
       <p className="v3-kicker">Source stack</p>
-      <h2>Every public claim here traces to a primary source.</h2>
+      <h2>Every source is visible. Its evidence class matters.</h2>
+      <p className="v3-source-disclosure">
+        Floridanomics uses official data, official announcements, industry research, and advocacy analysis. Strategic
+        reads are editorial inference, not official statistics.
+      </p>
       <div className="v3-source-grid">
         {dataset.sources.map((source) => (
           <a key={source.id} href={source.url} target="_blank" rel="noreferrer">
+            <small>{source.classification ? classificationLabels[source.classification] : "Source"}</small>
             <strong>{source.name}</strong>
             <span>{source.notes}</span>
           </a>
         ))}
+      </div>
+      <div className="v3-source-policies">
+        <a href={`${import.meta.env.BASE_URL}?tab=evidence#methodology`}>Methodology</a>
+        <a href={`${import.meta.env.BASE_URL}?tab=evidence#corrections`}>Corrections policy</a>
       </div>
     </footer>
   );

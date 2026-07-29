@@ -43,7 +43,6 @@ export function useDashboardData(enabled = true): DashboardDataState {
 
   useEffect(() => {
     if (!enabled) {
-      setStatus("idle");
       return;
     }
 
@@ -99,5 +98,5 @@ export function useDashboardData(enabled = true): DashboardDataState {
     };
   }, [enabled]);
 
-  return { data, error, status };
+  return enabled ? { data, error, status } : { data: null, error: null, status: "idle" };
 }

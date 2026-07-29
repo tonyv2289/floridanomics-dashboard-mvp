@@ -145,6 +145,21 @@ const REQUIRED_FEDERAL_SIGNAL_IDS = [
   "irs-income-migration",
 ] as const;
 
+const REQUIRED_HEADLINE_VINTAGE_IDS = [
+  "unemploymentRate",
+  "laborForce",
+  "employmentLevel",
+  "nonfarmPayrolls",
+  "population",
+] as const;
+
+const VALID_SOURCE_CLASSIFICATIONS = [
+  "official_data",
+  "official_announcement",
+  "industry_research",
+  "advocacy_analysis",
+] as const;
+
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
 }
@@ -959,10 +974,43 @@ async function main() {
     ensure(isNonEmptyString(source.name), `Top-level source ${index + 1} missing name`, errors);
     ensure(isHttpUrl(source.url), `Top-level source ${index + 1} missing valid URL`, errors);
     ensure(isNonEmptyString(source.notes), `Top-level source ${index + 1} missing notes`, errors);
+    ensure(
+      VALID_SOURCE_CLASSIFICATIONS.includes(source.classification as (typeof VALID_SOURCE_CLASSIFICATIONS)[number]),
+      `Top-level source ${index + 1} missing valid classification`,
+      errors,
+    );
   });
   validateRequiredIds(data.sources, REQUIRED_TOP_LEVEL_SOURCE_IDS, "Top-level source stack", errors);
   validateRequiredIds(data.sources, REQUIRED_STRATEGY_SOURCE_IDS, "Strategy source stack", errors);
   validateRequiredIds(data.sources, REQUIRED_TERMINAL_SOURCE_IDS, "Terminal source stack", errors);
+
+  ensure(isNonEmptyString(data.trust?.methodologyVersion), "Trust layer missing methodologyVersion", errors);
+  ensure(data.trust?.metricVintages?.length >= 5, "Trust layer missing headline metric vintages", errors);
+  const metricVintageIds = new Set(data.trust?.metricVintages?.map((vintage) => vintage.metricId) ?? []);
+  REQUIRED_HEADLINE_VINTAGE_IDS.forEach((metricId) =>
+    ensure(metricVintageIds.has(metricId), `Headline metric vintages missing required id: ${metricId}`, errors),
+  );
+  data.trust?.metricVintages?.forEach((vintage, index) => {
+    const label = `Metric vintage ${index + 1}`;
+    ensure(isNonEmptyString(vintage.label), `${label} missing label`, errors);
+    ensure(isNonEmptyString(vintage.observationDate), `${label} missing observationDate`, errors);
+    ensure(isNonEmptyString(vintage.observationPeriod), `${label} missing observationPeriod`, errors);
+    ensure(isNonEmptyString(vintage.revisionStatus), `${label} missing revisionStatus`, errors);
+    ensure(isNonEmptyString(vintage.sourceLabel), `${label} missing sourceLabel`, errors);
+    ensure(isHttpUrl(vintage.sourceUrl), `${label} missing sourceUrl`, errors);
+  });
+  ensure(data.trust?.releaseCalendar?.length >= 2, "Trust layer missing release calendar", errors);
+  data.trust?.releaseCalendar?.forEach((item, index) => {
+    const label = `Release calendar item ${index + 1}`;
+    ensure(isNonEmptyString(item.label), `${label} missing label`, errors);
+    ensure(isNonEmptyString(item.latestPeriod), `${label} missing latestPeriod`, errors);
+    ensure(isNonEmptyString(item.note), `${label} missing note`, errors);
+    ensure(isHttpUrl(item.sourceUrl), `${label} missing sourceUrl`, errors);
+  });
+  ensure(data.trust?.sourceClasses?.length === 5, "Trust layer must define five source classes", errors);
+  ensure(isNonEmptyString(data.trust?.correctionPolicy?.reviewedAt), "Correction policy missing reviewedAt", errors);
+  ensure(isNonEmptyString(data.trust?.correctionPolicy?.contact), "Correction policy missing contact", errors);
+  ensure(isNonEmptyString(data.trust?.correctionPolicy?.commitment), "Correction policy missing commitment", errors);
 
   ensure(data.heroMetrics.length >= 4, "heroMetrics should have at least 4 entries", errors);
 

@@ -89,13 +89,9 @@ function parseScheduleDates(text: string): string[] {
  * Best-effort: returns nulls (not throws) on network/parse failure so it never breaks a refresh.
  */
 export async function fetchWserReleaseInfo(now: Date = new Date()): Promise<WserReleaseInfo> {
-  let scheduledDates: string[] = [];
-  try {
-    const html = await fetchText(RELEASES_PAGE);
-    scheduledDates = parseScheduleDates(html);
-  } catch {
-    scheduledDates = [];
-  }
+  const scheduledDates = await fetchText(RELEASES_PAGE)
+    .then(parseScheduleDates)
+    .catch(() => []);
   const todayIso = floridaIsoDate(now);
   const past = scheduledDates.filter((d) => d <= todayIso);
   return {

@@ -24,6 +24,8 @@ For production updates, prefer the GitHub Actions **Refresh Data** workflow. It 
 - innovation metrics
 - federal feed status for BLS, Census, BEA, EIA, and IRS
 - generated statewide and innovation narratives
+- headline metric vintages and expected release dates
+- source classifications, methodology version, and corrections policy
 
 ### Preserves the curated product sections
 
@@ -55,6 +57,9 @@ After refresh, verify:
 4. `federal.signals` includes live BLS records plus clear status for Census, BEA, EIA, and IRS
 5. source links remain present on the curated sections
 6. `strategy.peerStates` includes FL, TX, GA, NC, TN, AZ, UT, and CA
+7. `trust.metricVintages` matches the current headline observations and releases
+8. `trust.releaseCalendar` distinguishes a scheduled wait from a failed pipeline
+9. every top-level source has an allowed evidence classification
 
 ## Validation commands
 

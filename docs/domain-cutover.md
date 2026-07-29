@@ -3,20 +3,19 @@
 Goal: point floridanomics.com at the new dashboard (GitHub Pages).
 Old 2012 site is archived at `~/code/_archive/floridanomics-2012-site-20260610/`.
 
-## Step 1: GoDaddy (Haydee / mom's account) — ~5 minutes
+## Step 1: GoDaddy renewal check
 
 **First, regardless of anything else: confirm AUTO-RENEW is ON for
 floridanomics.com. It expires September 26, 2026.**
 
-The domain currently uses outside nameservers (NS1/NS2.LUNARIFFIC.COM,
-legacy Lunarpages hosting). In GoDaddy:
+The domain is registered at GoDaddy. Confirm auto-renew is enabled, but do not
+change nameservers during the web cutover.
 
-1. My Products → floridanomics.com → DNS / Manage DNS.
-2. If it says "We can't display your DNS because you're using custom
-   nameservers": click "Change Nameservers" and choose
-   **"GoDaddy nameservers (recommended)"**. Save.
-3. Once GoDaddy DNS is active, delete any existing A / CNAME records for
-   `@` and `www`, then add:
+## Step 2: HostPapa DNS
+
+As verified July 29, 2026, authoritative DNS is `ns1.hostpapa.com` and
+`ns2.hostpapa.com`. Keep those nameservers so the existing mailbox remains
+undisturbed. In HostPapa DNS, change only the website records:
 
    | Type  | Name | Value                   |
    |-------|------|-------------------------|
@@ -26,15 +25,19 @@ legacy Lunarpages hosting). In GoDaddy:
    | A     | @    | 185.199.111.153         |
    | CNAME | www  | tonyv2289.github.io     |
 
-Note: switching nameservers away from Lunarpages will also drop any old
-email/MX records hosted there. info@floridanomics.com on the old host will
-stop working (it may already be dead; the site backend returns errors).
-If that mailbox matters, check it before switching.
+Do not delete or alter the current mail records:
 
-## Step 2: Repo flip (TJ / Claude) — after DNS is set
+- `MX @ -> mail.floridanomics.com` (priority 10)
+- `A mail -> 216.222.196.82`
+- the existing SPF TXT record
 
-1. Merge the prepared `domain/floridanomics-com` branch (Vite base "/",
-   canonical + OG URLs updated to https://www.floridanomics.com/).
+Current web records before cutover are `A @ -> 216.222.196.82` and
+`CNAME www -> floridanomics.com`.
+
+## Step 3: Repo flip — after DNS is set
+
+1. Set repository variables `VITE_BASE_PATH=/` and
+   `VITE_PUBLIC_URL=https://www.floridanomics.com/`.
 2. Set the custom domain on GitHub Pages:
    `gh api -X PUT repos/tonyv2289/floridanomics-dashboard-mvp/pages -f cname=www.floridanomics.com`
 3. Wait for the certificate, then enforce HTTPS:

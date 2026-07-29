@@ -16,9 +16,11 @@ import {
 import { fetchBlsSeries, fetchFredSeries } from "./lib/sources";
 import { buildLeadingSection } from "./lib/leading";
 import { buildBenchmarksSection } from "./lib/benchmarks";
-import { WSER_SOURCE } from "./lib/wser";
+import { fetchWserReleaseInfo, floridaIsoDate, WSER_SOURCE } from "./lib/wser";
 import type {
+  DataTrustLayer,
   DashboardDataset,
+  DashboardSource,
   GovernmentGrantsLedger,
   IndustrySector,
   InnovationMetricId,
@@ -58,6 +60,51 @@ async function readTalentMatch(): Promise<TalentMatchLayer> {
   return JSON.parse(await readFile(TALENT_MATCH_FILE, "utf8")) as TalentMatchLayer;
 }
 
+function classifySource(source: DashboardSource): NonNullable<DashboardSource["classification"]> {
+  if (source.classification) {
+    return source.classification;
+  }
+
+  const id = source.id.toLowerCase();
+  const haystack = `${source.id} ${source.name} ${source.url}`.toLowerCase();
+
+  if (
+    ["florida_chamber", "florida_taxwatch", "james_madison", "fc100", "mass_competitiveness", "texas_2036"].some(
+      (token) => id.includes(token),
+    )
+  ) {
+    return "advocacy_analysis";
+  }
+
+  if (
+    ["governor", "selectflorida", "space_florida", "blue_origin", "on_target"].some((token) => id.includes(token))
+  ) {
+    return "official_announcement";
+  }
+
+  if (
+    [
+      "bls",
+      "census",
+      "fred",
+      "world_bank",
+      "wser",
+      "federal_data",
+      "comptroller",
+      "portmiami",
+      "port_everglades",
+      "tennessee_e2e",
+      "north_carolina_evi",
+      "washington_stem",
+      "florida_senate",
+    ].some((token) => haystack.includes(token))
+  ) {
+    return "official_data";
+  }
+
+  return "industry_research";
+}
+
 function mergeSources(...sourceLists: DashboardDataset["sources"][]): DashboardDataset["sources"] {
   const seen = new Set<string>();
   const merged: DashboardDataset["sources"] = [];
@@ -70,11 +117,125 @@ function mergeSources(...sourceLists: DashboardDataset["sources"][]): DashboardD
       }
 
       seen.add(key);
-      merged.push(source);
+      merged.push({ ...source, classification: classifySource(source) });
     }
   }
 
   return merged;
+}
+
+function buildTrustLayer({
+  metrics,
+  releaseInfo,
+  existing,
+}: {
+  metrics: DashboardDataset["metrics"];
+  releaseInfo: Awaited<ReturnType<typeof fetchWserReleaseInfo>>;
+  existing: DashboardDataset | null;
+}): DataTrustLayer {
+  const today = floridaIsoDate();
+  const previousLabor = existing?.trust?.releaseCalendar.find((item) => item.id === "florida-labor");
+  const latestReleaseDate = releaseInfo.latestReleaseDate ?? previousLabor?.latestReleaseDate ?? null;
+  const nextExpectedRelease =
+    releaseInfo.scheduledDates.find((date) => date > today) ?? previousLabor?.nextExpectedRelease ?? null;
+  const laborRevision = "Preliminary monthly estimate; subject to BLS monthly and annual benchmark revisions.";
+  const laborSourceUrl = releaseInfo.files.fullRelease;
+  const laborMetricIds: Array<keyof Omit<DashboardDataset["metrics"], "population">> = [
+    "unemploymentRate",
+    "laborForce",
+    "employmentLevel",
+    "nonfarmPayrolls",
+  ];
+
+  return {
+    methodologyVersion: "2026-07-29",
+    metricVintages: [
+      ...laborMetricIds.map((metricId) => {
+        const metric = metrics[metricId];
+        return {
+          metricId,
+          label: metric.label,
+          observationDate: metric.latest.date,
+          observationPeriod: prettyMonth(metric.latest.date),
+          releaseDate: latestReleaseDate,
+          nextExpectedRelease,
+          revisionStatus: laborRevision,
+          sourceClass: "official_data" as const,
+          sourceLabel: "FloridaCommerce WSER / BLS",
+          sourceUrl: laborSourceUrl,
+        };
+      }),
+      {
+        metricId: "population",
+        label: metrics.population.label,
+        observationDate: metrics.population.latest.date,
+        observationPeriod: String(new Date(metrics.population.latest.date).getUTCFullYear()),
+        releaseDate: null,
+        nextExpectedRelease: null,
+        revisionStatus: "Annual Census estimate; prior vintages may be revised when a new estimate series is published.",
+        sourceClass: "official_data",
+        sourceLabel: "U.S. Census Bureau via FRED",
+        sourceUrl: "https://fred.stlouisfed.org/series/FLPOP",
+      },
+    ],
+    releaseCalendar: [
+      {
+        id: "florida-labor",
+        label: "Florida employment and unemployment",
+        cadence: "monthly",
+        latestPeriod: prettyMonth(metrics.nonfarmPayrolls.latest.date),
+        latestReleaseDate,
+        nextExpectedRelease,
+        sourceLabel: "FloridaCommerce monthly data releases",
+        sourceUrl: releaseInfo.releasesPageUrl,
+        note: "LAUS and CES headline metrics. A scheduled release date can move; Floridanomics confirms the new period before publishing.",
+      },
+      {
+        id: "florida-population",
+        label: "Florida population estimate",
+        cadence: "annual",
+        latestPeriod: String(new Date(metrics.population.latest.date).getUTCFullYear()),
+        latestReleaseDate: null,
+        nextExpectedRelease: null,
+        sourceLabel: "U.S. Census Bureau Population Estimates",
+        sourceUrl: "https://www.census.gov/programs-surveys/popest.html",
+        note: "Annual estimate with vintage revisions; Floridanomics does not infer an exact next publication date.",
+      },
+    ],
+    sourceClasses: [
+      {
+        id: "official_data",
+        label: "Official data",
+        description: "Statistical releases, APIs, tables, and administrative records published by public agencies.",
+      },
+      {
+        id: "official_announcement",
+        label: "Official announcement",
+        description: "Government or public-authority releases describing laws, awards, projects, or agency actions.",
+      },
+      {
+        id: "industry_research",
+        label: "Industry research",
+        description: "Company disclosures, trade research, market reports, and reporting outside government statistics.",
+      },
+      {
+        id: "advocacy_analysis",
+        label: "Advocacy and analysis",
+        description: "Chamber, think-tank, nonprofit, and policy-organization analysis with an institutional point of view.",
+      },
+      {
+        id: "editorial_inference",
+        label: "Editorial inference",
+        description: "Floridanomics interpretation assembled from cited evidence; it is analysis, not an official statistic.",
+      },
+    ],
+    correctionPolicy: {
+      reviewedAt: "2026-07-29",
+      contact: "info@floridanomics.com",
+      commitment:
+        "Material errors are corrected promptly, the affected claim is re-sourced, and a dated correction note is retained with the product record.",
+    },
+  };
 }
 
 async function readExistingDataset(): Promise<DashboardDataset | null> {
@@ -1511,7 +1672,9 @@ async function main() {
     }
 
     if (!existingDataset) {
-      throw new Error("BLS daily threshold reached and no existing dataset was available for cached fallback.");
+      throw new Error("BLS daily threshold reached and no existing dataset was available for cached fallback.", {
+        cause: error,
+      });
     }
 
     blsData = buildBlsDataFromExisting(existingDataset);
@@ -1734,8 +1897,11 @@ async function main() {
 
   const refreshedAt = new Date().toISOString();
   const preservedSections = getPreservedSections(existingDataset);
-  const leading = await buildLeadingSection();
-  const benchmarks = await buildBenchmarksSection();
+  const [leading, benchmarks, releaseInfo] = await Promise.all([
+    buildLeadingSection(),
+    buildBenchmarksSection(),
+    fetchWserReleaseInfo(),
+  ]);
   const federal = await buildFederalDataLayer({
     refreshedAt,
     metrics,
@@ -1771,6 +1937,7 @@ async function main() {
         "Source-aware API contract for BLS, Census, BEA, EIA, and IRS feeds, including live status, key requirements, and safe fallbacks.",
     },
   ];
+  const trust = buildTrustLayer({ metrics, releaseInfo, existing: existingDataset });
 
   const dataset: DashboardDataset = {
     // Data-contract safety net: spread the existing dataset first so any curated or
@@ -1781,6 +1948,7 @@ async function main() {
     asOfLaborMarket: prettyMonth(metrics.unemploymentRate.latest.date),
     asOfPopulation: String(new Date(metrics.population.latest.date).getUTCFullYear()),
     sources: mergeSources(dynamicSources, existingDataset?.sources ?? [], STRATEGY_SOURCE_STACK, TERMINAL_SOURCE_STACK),
+    trust,
     heroMetrics: ["unemploymentRate", "laborForce", "nonfarmPayrolls", "population", "employmentLevel"],
     metrics,
     industry: {
