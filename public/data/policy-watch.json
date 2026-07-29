@@ -1,6 +1,12 @@
 {
   "status": "live",
-  "generatedAt": "2026-06-27T12:00:06.002Z",
+  "generatedAt": "2026-07-29T05:20:59.283Z",
+  "reviewedAt": "2026-07-29T05:20:59.283Z",
+  "nextReviewDue": "2026-08-05T05:20:59.283Z",
+  "cadence": "weekly",
+  "owner": "Floridanomics editorial desk",
+  "session": "2026 Regular Session - post-session outcomes",
+  "coverageNote": "A focused economic-development, technology, workforce, and innovation watch list; not a complete inventory of Florida legislation.",
   "attribution": "Legislative data via LegiScan (CC BY 4.0).",
   "items": [
     {
