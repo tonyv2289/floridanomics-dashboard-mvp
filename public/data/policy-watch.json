@@ -1,8 +1,8 @@
 {
   "status": "live",
-  "generatedAt": "2026-07-29T05:20:59.283Z",
-  "reviewedAt": "2026-07-29T05:20:59.283Z",
-  "nextReviewDue": "2026-08-05T05:20:59.283Z",
+  "generatedAt": "2026-08-03T15:37:53.489Z",
+  "reviewedAt": "2026-08-03T15:37:53.489Z",
+  "nextReviewDue": "2026-08-10T15:37:53.489Z",
   "cadence": "weekly",
   "owner": "Floridanomics editorial desk",
   "session": "2026 Regular Session - post-session outcomes",
@@ -13,9 +13,9 @@
       "billId": 2051570,
       "number": "H0325",
       "title": "Education and Workforce Development for Inmates",
-      "status": "Enrolled",
-      "lastAction": "Ordered enrolled",
-      "lastActionDate": "2026-03-09",
+      "status": "Vetoed",
+      "lastAction": "Vetoed by Governor",
+      "lastActionDate": "2026-06-26",
       "url": "https://legiscan.com/FL/bill/H0325/2026"
     },
     {
