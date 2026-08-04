@@ -1,7 +1,12 @@
-# floridanomics.com cutover plan
+# floridanomics.com cutover record
 
-Goal: point floridanomics.com at the new dashboard (GitHub Pages).
-Old 2012 site is archived at `~/code/_archive/floridanomics-2012-site-20260610/`.
+**Completed:** August 4, 2026. Production is live at
+https://www.floridanomics.com/ on GitHub Pages.
+
+The legacy site is archived at
+`~/code/_archive/floridanomics-2012-site-20260804/`. The recovery set includes
+the cPanel home backup, extracted `public_html`, a verified 13-table MySQL dump,
+DNS snapshots, and SHA-256 checksums.
 
 ## Step 1: GoDaddy renewal check
 
@@ -31,7 +36,7 @@ Do not delete or alter the current mail records:
 - `A mail -> 216.222.196.82`
 - the existing SPF TXT record
 
-Current web records before cutover are `A @ -> 216.222.196.82` and
+The web records before cutover were `A @ -> 216.222.196.82` and
 `CNAME www -> floridanomics.com`.
 
 ## Step 3: Repo flip — after DNS is set
@@ -46,5 +51,7 @@ Current web records before cutover are `A @ -> 216.222.196.82` and
    (apex redirects to www), and that
    https://tonyv2289.github.io/floridanomics-dashboard-mvp/ redirects.
 
-DNS propagation can take minutes to a few hours. The GitHub Pages
-certificate usually issues within an hour of DNS resolving.
+The production deployment was GitHub Actions run `30941458349`. The certificate
+covers both the apex and `www`; HTTPS enforcement is enabled. The prior web
+records had a 24-hour TTL, so devices with a cached answer may temporarily show
+the legacy HostPapa site after cutover.
