@@ -32,7 +32,7 @@ Source: [Florida Chamber Foundation income migration analysis](https://www.flcha
 
 Prototype Floridanomics V3 Terminal score. Source-backed, but not an official state score.
 
-Source: [Floridanomics V3 Terminal](https://tonyv2289.github.io/floridanomics-dashboard-mvp/?version=v3&tab=terminal)
+Source: [Floridanomics V3 Terminal](https://www.floridanomics.com/?version=v3&tab=terminal)
 
 ### Dallas data-center absorption: 470.8 MW
 
@@ -132,7 +132,7 @@ The next Florida Brain brief should then ask a harder question: where does strat
 
 - [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
 - [Florida Chamber Foundation income migration analysis](https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/)
-- [Floridanomics V3 Terminal](https://tonyv2289.github.io/floridanomics-dashboard-mvp/?version=v3&tab=terminal)
+- [Floridanomics V3 Terminal](https://www.floridanomics.com/?version=v3&tab=terminal)
 - [CBRE North America Data Center Trends H2 2025](https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025)
 - [JLL 2026 Global Data Center Outlook](https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom)
 - [Florida Governor SB 484 press release](https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers)

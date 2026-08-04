@@ -12,4 +12,4 @@ One month is a single data point. The more durable signal is whether hiring, bus
 - Miami MSA unemployment eased to 3.6% in May 2026, down 0.3 points versus April 2026.
 - Tampa MSA unemployment eased to 4.5% in May 2026, down 0.2 points versus April 2026.
 
-Full detail, charts, and sources: https://tonyv2289.github.io/floridanomics-dashboard-mvp/
+Full detail, charts, and sources: https://www.floridanomics.com/

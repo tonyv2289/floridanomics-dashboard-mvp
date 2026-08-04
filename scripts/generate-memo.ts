@@ -15,13 +15,13 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { DashboardDataset } from "../src/types/dashboard";
-import { buildPayload, renderMemoMarkdown } from "./lib/memo";
+import { buildPayload, renderMemoMarkdown, resolveSiteUrl } from "./lib/memo";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DATASET_PATH = "public/data/florida-economy.json";
 const JSON_OUT = join(ROOT, "public/data/what-changed.json");
 const MEMO_DIR = join(ROOT, "docs/memos");
-const SITE_URL = "https://tonyv2289.github.io/floridanomics-dashboard-mvp/";
+const SITE_URL = resolveSiteUrl(process.env.VITE_PUBLIC_URL);
 
 function parsePrevRef(): string {
   const index = process.argv.indexOf("--prev-ref");

@@ -11,6 +11,12 @@ on:
     # up ~1 week after release instead of waiting for the next 1st)
     - cron: "0 11 22 * *"
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Commit and deploy the refreshed dataset after reviewing the preview artifact
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -44,12 +50,27 @@ jobs:
         run: npm run data:validate
 
       - name: Generate what-changed memo
+        env:
+          VITE_PUBLIC_URL: ${{ vars.VITE_PUBLIC_URL || 'https://www.floridanomics.com/' }}
         run: npm run memo:generate
 
       - name: Snapshot briefing image
         run: bash scripts/snapshot-briefing.sh
 
-      - name: Commit, push, and deploy changes
+      - name: Upload review artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: floridanomics-data-preview-${{ github.run_id }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            public/data/florida-economy.json
+            public/data/what-changed.json
+            public/briefings/
+            docs/memos/
+
+      - name: Publish approved changes
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -64,7 +85,5 @@ jobs:
           git add public/data/florida-economy.json public/data/what-changed.json public/briefings docs/memos
           git commit -m "chore(data): refresh Florida dashboard dataset"
           git push
-          # GITHUB_TOKEN pushes never trigger on:push workflows, so the
-          # Pages deploy must be dispatched explicitly or the live site
-          # keeps serving the previous dataset
+          # GITHUB_TOKEN pushes never trigger on:push workflows.
           gh workflow run deploy-pages.yml --ref main

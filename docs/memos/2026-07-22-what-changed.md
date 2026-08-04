@@ -17,4 +17,4 @@ One month is a single data point. The more durable signal is whether hiring, bus
 - Construction Employment reached 654.8K in June 2026, a loss of 1.1K jobs versus May 2026.
 - Professional & Business Services reached 1.6M in June 2026, a loss of 4.6K jobs versus May 2026.
 
-Full detail, charts, and sources: https://tonyv2289.github.io/floridanomics-dashboard-mvp/
+Full detail, charts, and sources: https://www.floridanomics.com/

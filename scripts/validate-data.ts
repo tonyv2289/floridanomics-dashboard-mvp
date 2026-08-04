@@ -958,6 +958,11 @@ async function main() {
   const raw = await readFile(DATA_FILE, "utf8");
   const data = JSON.parse(raw) as DashboardDataset;
 
+  ensure(
+    !raw.includes("https://tonyv2289.github.io/floridanomics-dashboard-mvp"),
+    "Dataset contains the retired GitHub Pages project URL; use https://www.floridanomics.com/",
+    errors,
+  );
   ensure(isNonEmptyString(data.generatedAt), "Missing generatedAt", errors);
   ensure(isNonEmptyString(data.asOfLaborMarket), "Missing asOfLaborMarket", errors);
   ensure(isNonEmptyString(data.asOfPopulation), "Missing asOfPopulation", errors);

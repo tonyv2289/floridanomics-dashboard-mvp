@@ -10,4 +10,4 @@ One month is a single data point. The more durable signal is whether hiring, bus
 
 - Business Applications reached 64.5K in May 2026, a gain of 4.6K versus April 2026.
 
-Full detail, charts, and sources: https://tonyv2289.github.io/floridanomics-dashboard-mvp/
+Full detail, charts, and sources: https://www.floridanomics.com/

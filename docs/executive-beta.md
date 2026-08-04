@@ -28,14 +28,17 @@ The scheduled data refresh on the 22nd remains the production backstop. On relea
 
 Each cycle follows the same sequence:
 
-1. Refresh official data and preserve the previous vintage.
-2. Run data validation, lint, type checking, tests, build, and security audit.
-3. Review revisions and the generated `What Changed` memo.
+1. Run `Refresh Data` with `publish=false` to stage a review artifact while preserving the live vintage.
+2. Download the artifact and review revisions, the generated `What Changed` memo, and the briefing image.
+3. Run data validation, lint, type checking, tests, build, and security audit.
 4. Review policy and project ledgers for material developments.
 5. Add editorial interpretation only after the evidence review.
-6. Publish the briefing and dashboard update.
-7. Send one tracked cohort link per participant using a non-PII `invite` token.
-8. Log replies, forwards, citations, evidence opens, and missing decisions.
+6. Run `Refresh Data` with `publish=true`; the workflow commits the approved files and dispatches the deterministic Pages deploy.
+7. Verify the production domain, data vintage, evidence links, and briefing before distribution.
+8. Send one tracked cohort link per participant using a non-PII `invite` token.
+9. Log replies, forwards, citations, evidence opens, and missing decisions.
+
+The deploy workflow never fetches new data. It validates and publishes the files committed to `main`, so the reviewed commit and the public artifact stay identical. Policy Watch uses the same preview-first rule.
 
 ## What to measure
 
@@ -70,4 +73,3 @@ Choose one path based on observed behavior:
 - public launch with the monthly executive brief as the primary habit
 - continue a controlled beta while repairing trust or distribution gaps
 - narrow the product around the strongest repeated job, such as competitor-state monitoring, a board brief, a policy watch, or a site-selection evidence pack
-

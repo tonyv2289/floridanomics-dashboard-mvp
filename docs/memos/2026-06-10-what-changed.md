@@ -11,4 +11,4 @@ One month is a single data point. The more durable signal is whether hiring, bus
 - Tampa MSA unemployment rose to 4.7% in April 2026, up 0.2 points versus March 2026.
 - Miami MSA unemployment rose to 3.9% in April 2026, up 0.2 points versus March 2026.
 
-Full detail, charts, and sources: https://tonyv2289.github.io/floridanomics-dashboard-mvp/
+Full detail, charts, and sources: https://www.floridanomics.com/

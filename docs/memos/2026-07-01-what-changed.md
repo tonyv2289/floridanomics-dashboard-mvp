@@ -17,4 +17,4 @@ One month is a single data point. The more durable signal is whether hiring, bus
 - Construction Employment reached 655.9K in May 2026, a loss of 1.9K jobs versus April 2026.
 - Trade, Transportation, Utilities reached 2M in May 2026, a loss of 5.6K jobs versus April 2026.
 
-Full detail, charts, and sources: https://tonyv2289.github.io/floridanomics-dashboard-mvp/
+Full detail, charts, and sources: https://www.floridanomics.com/

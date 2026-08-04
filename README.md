@@ -129,8 +129,8 @@ It also checks the Competition FDI Observatory contract: exactly four scores, pe
 
 GitHub Pages publishes from the repo with the fixed base path:
 
-- production URL: `https://tonyv2289.github.io/floridanomics-dashboard-mvp/`
-- AI Capex Gap brief: `https://tonyv2289.github.io/floridanomics-dashboard-mvp/briefs/ai-capex-gap/`
+- production URL: `https://www.floridanomics.com/`
+- AI Capex Gap brief: `https://www.floridanomics.com/briefs/ai-capex-gap/`
 - social preview image: `public/og-image.png`
 
 Push to `main` or run the deploy workflow to publish. The deployment accepts repository variables `VITE_BASE_PATH` and `VITE_PUBLIC_URL`, allowing the same build to serve the current project path or the future `floridanomics.com` root.
@@ -150,13 +150,13 @@ The tracker records dashboard pageviews, tab/view changes, outbound source click
 For email sharing, use campaign links such as:
 
 ```text
-https://tonyv2289.github.io/floridanomics-dashboard-mvp/?version=v3&utm_source=outlook&utm_medium=email&utm_campaign=prototype_share&cohort=econ_dev_contacts
+https://www.floridanomics.com/?version=v3&utm_source=outlook&utm_medium=email&utm_campaign=prototype_share&cohort=econ_dev_contacts
 ```
 
 For named follow-up, use a private non-PII token in `invite`, not an email address:
 
 ```text
-https://tonyv2289.github.io/floridanomics-dashboard-mvp/?version=v3&utm_source=outlook&utm_medium=email&utm_campaign=prototype_share&invite=contact-001
+https://www.floridanomics.com/?version=v3&utm_source=outlook&utm_medium=email&utm_campaign=prototype_share&invite=contact-001
 ```
 
 The briefing signup posts directly to the Floridanomics Substack subscription endpoint. No email address is stored by this repository.

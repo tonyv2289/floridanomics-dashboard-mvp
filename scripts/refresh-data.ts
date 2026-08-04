@@ -746,7 +746,7 @@ const STRATEGY_CLUSTERS: StrategyLayer["clusters"] = [
     sources: [
       {
         label: "Florida Brain AI capex brief",
-        url: "https://tonyv2289.github.io/floridanomics-dashboard-mvp/briefs/ai-capex-gap/",
+        url: "https://www.floridanomics.com/briefs/ai-capex-gap/",
       },
       {
         label: "CBRE data center trends",
@@ -899,7 +899,7 @@ const STRATEGY_SCENARIOS: StrategyLayer["scenarios"] = [
       },
       {
         label: "Florida Brain AI capex brief",
-        url: "https://tonyv2289.github.io/floridanomics-dashboard-mvp/briefs/ai-capex-gap/",
+        url: "https://www.floridanomics.com/briefs/ai-capex-gap/",
       },
     ],
   },

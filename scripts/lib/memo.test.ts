@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { DashboardDataset, Metric } from "../../src/types/dashboard";
-import { buildPayload, diffDatasets, diffMetric, formatLevel, formatMove, monthLabel } from "./memo";
+import { buildPayload, diffDatasets, diffMetric, formatLevel, formatMove, monthLabel, resolveSiteUrl } from "./memo";
 
 function metric(overrides: Partial<Metric> & { latest: Metric["latest"] }): Metric {
   return {
@@ -69,6 +69,11 @@ describe("formatters", () => {
 
   it("renders month labels in UTC", () => {
     expect(monthLabel("2026-04-01")).toBe("April 2026");
+  });
+
+  it("defaults generated memo links to the production domain", () => {
+    expect(resolveSiteUrl()).toBe("https://www.floridanomics.com/");
+    expect(resolveSiteUrl(" https://preview.example/ ")).toBe("https://preview.example/");
   });
 });
 

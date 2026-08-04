@@ -6,6 +6,12 @@ import type {
 } from "../../src/types/dashboard";
 import { formatCompact } from "../../src/lib/dashboard";
 
+export const DEFAULT_SITE_URL = "https://www.floridanomics.com/";
+
+export function resolveSiteUrl(value?: string): string {
+  return value?.trim() || DEFAULT_SITE_URL;
+}
+
 export type ChangeScope = "labor" | "innovation" | "industry" | "metro";
 
 export type ChangeItem = {

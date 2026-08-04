@@ -4,6 +4,12 @@ on:
   schedule:
     - cron: "0 13 * * 1"
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Commit and deploy the policy update after reviewing the preview artifact
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -33,7 +39,16 @@ jobs:
       - name: Validate application
         run: npm run build
 
-      - name: Publish reviewed policy file
+      - name: Upload review artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: floridanomics-policy-preview-${{ github.run_id }}
+          retention-days: 14
+          if-no-files-found: error
+          path: public/data/policy-watch.json
+
+      - name: Publish approved policy file
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

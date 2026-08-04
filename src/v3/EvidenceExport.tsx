@@ -7,7 +7,7 @@ const EXPORT_METRICS: CoreMetricId[] = ["unemploymentRate", "nonfarmPayrolls", "
 
 function siteUrl(): string {
   if (typeof window === "undefined") {
-    return "https://tonyv2289.github.io/floridanomics-dashboard-mvp/";
+    return "https://www.floridanomics.com/";
   }
   return window.location.origin + window.location.pathname;
 }
