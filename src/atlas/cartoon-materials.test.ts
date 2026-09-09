@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { BackSide, Mesh, MeshToonMaterial, NearestFilter } from "three";
+import { Mesh, MeshToonMaterial, NearestFilter } from "three";
 import { createCartoonPalette } from "./cartoon-materials";
 import { REGIONS } from "./data";
 import { buildRegionalWorld } from "./regional-worlds";
 
-describe("cartoon atlas treatment", () => {
+describe("voxel atlas treatment", () => {
   it("uses a crisp four-band ramp, cached painted materials, and releases the texture", () => {
     const palette = createCartoonPalette();
     const material = palette.material(0x69b7a1);
@@ -20,24 +20,22 @@ describe("cartoon atlas treatment", () => {
     expect(textureDisposals).toBe(1);
   });
 
-  it.each(REGIONS.map((r) => [r.id, r] as const))("gives %s rounded forms and outlines that keep the original profile mapping", (_id, region) => {
+  it.each(REGIONS.map((r) => [r.id, r] as const))("gives %s crisp block forms while retaining its original profile mapping", (_id, region) => {
     const world = buildRegionalWorld(region);
-    let rounded = 0, outlines = 0, triangles = 0;
+    let boxes = 0, voxels = 0, triangles = 0;
     world.root.traverse((object) => {
       if (!(object instanceof Mesh)) return;
       triangles += (object.geometry.index?.count ?? object.geometry.attributes.position.count) / 3;
-      if (object.geometry.type === "RoundedBoxGeometry") rounded++;
-      if (object.userData.decoration) {
-        outlines++;
-        expect(object.material.side).toBe(BackSide);
-        expect(object.parent).toBeInstanceOf(Mesh);
-        expect(object.geometry).toBe((object.parent as Mesh).geometry);
-        expect(object.userData.assetId).toBe(object.parent!.userData.assetId);
-        expect(object.castShadow).toBe(false);
-      } else expect(object.material).toBeInstanceOf(MeshToonMaterial);
+      if (object.geometry.type === "BoxGeometry") boxes++;
+      if (object.geometry.userData.voxel) voxels++;
+      expect(object.geometry.type).not.toBe("RoundedBoxGeometry");
+      expect(object.geometry.type).not.toBe("SphereGeometry");
+      expect(object.material).toBeInstanceOf(MeshToonMaterial);
+      expect(object.userData.regionId).toBe(region.id);
+      if (object.userData.assetId) expect(world.assets.has(object.userData.assetId)).toBe(true);
     });
-    expect(rounded).toBeGreaterThan(3);
-    expect(outlines).toBeGreaterThan(5);
+    expect(boxes).toBeGreaterThan(3);
+    expect(voxels).toBeGreaterThan(0);
     expect(triangles).toBeLessThan(100_000);
     world.dispose();
   });

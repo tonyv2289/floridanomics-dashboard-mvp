@@ -4,7 +4,7 @@ import { REGIONAL_IDENTITIES } from "./regional-identity";
 import { LAND_HEIGHT, REGION_PIECES, pieceTransform } from "./regional-geography";
 import type { RegionPiece } from "./regional-geography";
 import { buildRegionalWorld } from "./regional-worlds";
-import { CARTOON_INK } from "./cartoon-materials";
+import { REGIONAL_SEAM } from "./cartoon-materials";
 
 export function buildRegionPiece(piece: RegionPiece) {
   const region = REGIONS.find((r) => r.id === piece.id)!;
@@ -15,7 +15,7 @@ export function buildRegionPiece(piece: RegionPiece) {
   const color = new T.Color(identity.ground);
   const landMaterial = new T.MeshToonMaterial({ color });
   const sideMaterial = new T.MeshToonMaterial({ color: new T.Color(identity.ground).multiplyScalar(0.58) });
-  const borderMaterial = new T.MeshBasicMaterial({ color: CARTOON_INK, transparent: true, opacity: 1 });
+  const borderMaterial = new T.MeshBasicMaterial({ color: REGIONAL_SEAM, transparent: true, opacity: 1 });
   for (const polygon of piece.polygons) {
     const shape = new T.Shape();
     polygon.forEach((ring, ringIndex) => {
@@ -79,7 +79,9 @@ export function mapCameraPose(pieces: MapPiece[], regionId: string | null, aspec
   }
   const box = new T.Box3().setFromPoints(points);
   const target = box.getCenter(new T.Vector3());
-  const back = new T.Vector3(selected ? 0.28 : 0.06, 1, selected ? 0.7 : 0.48).normalize();
+  // An oblique game-world view in close-up; a gentler tilt keeps the whole
+  // Florida silhouette immediately recognizable in the opening frame.
+  const back = new T.Vector3(selected ? 0.65 : 0.19, 1, selected ? 0.78 : 0.52).normalize();
   const right = new T.Vector3().crossVectors(new T.Vector3(0, 1, 0), back).normalize();
   const up = new T.Vector3().crossVectors(back, right).normalize();
   const tan = Math.tan(T.MathUtils.degToRad(20));

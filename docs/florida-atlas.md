@@ -29,11 +29,11 @@ The preview uses a separate owner-only Sites audience. This change does not push
 
 ## Regional art direction
 
-`regional-identity.ts` is the editorial art-direction registry; `regional-worlds.ts` builds original Three.js geometry. The design is a playful painted miniature atlas, with different silhouettes, colors, environmental context and motion for every region:
+`regional-identity.ts` is the editorial art-direction registry; `regional-worlds.ts` builds original Three.js geometry. The design is a dark, voxel-built miniature atlas, with different silhouettes, colors, environmental context and motion for every region:
 
 - Space Coast: launch tower, multi-stage rocket, orbital satellite and recovery harbor.
-- Orlando–Osceola: patterned silicon wafer, suspended chip, cleanroom and wireframe simulation dome.
-- Tampa Bay: cargo gantries, container ship, hexagonal defense pavilion and university research building.
+- Orlando–Osceola: patterned silicon wafer, suspended chip, cleanroom and stepped simulation dome.
+- Tampa Bay: cargo gantries, container ship, block-built defense pavilion and university research building.
 - South Florida: tropical waterfront skyline, stepped architecture, palms, cargo vessel and rotating global-trade motif.
 - Jacksonville: cable-stayed bridge, river channel, vehicle yard and moving freight train.
 - Gainesville–Tallahassee: brick research campus, rotating DNA helix, superconducting magnet and shaded grove.
@@ -42,8 +42,10 @@ The preview uses a separate owner-only Sites audience. This change does not push
 
 The eight scenes intentionally avoid using one generic asset icon for unrelated institutions. Shared components are limited to genuine repeated infrastructure such as cargo vessels, trees and cranes.
 
-### Cartoon treatment, September 9
+### Yamauchi No.10 direction, September 9
 
-Four-band cel shading, rounded buildings and smooth tree canopies replace the metallic architectural finish. Selective inverted-hull ink outlines follow the animated objects; small wiring and windows are not outlined. Bright geographic pieces keep their exact coastline, with dark dimensional boundary strokes. The backdrop is blue water without an engineering grid. The rocket has a porthole and stylized vapor, while the Northwest robot has an oversized head, blinking visor and antenna. These are original illustrative additions, not logos or representations of actual facility designs. No Yamaguchi/other artist attribution was established for the reference website, and none is asserted here.
+TJ clarified that the visual reference is [Yamauchi No.10 Family Office](https://y-n10.com/), whose [mount inc. case study](https://www.mount.jp/projects/yamauchi-no-10-family-office/) describes a miniature game-world journey. This supersedes the earlier rounded cartoon treatment. The reference informs the art direction, not the content: no characters, buildings, artwork, logos or assets from that site have been copied, and no claim is made about Packy's production tools or inspiration.
 
-The treatment uses the existing Three.js dependency, including its RoundedBoxGeometry addon. No downloaded illustration, image asset, external runtime request or new package was introduced. Material-ramp disposal, geometry reuse, profile ownership on outlines, expressive motion and a per-region triangle budget are unit-tested alongside the existing geographic and camera tests. No screenshot or interactive browser QA was performed.
+Original voxel geometry now supplies stepped trees, palms, rocket towers, vapor, robotics, mangroves and science motifs. Buildings have square edges; rings have restrained angular facets. Four-band flat lighting, saturated citrus/cyan accents, slate-green geographic pieces, pale regional seams, a near-black ocean and square controls support the game-world feel. The close-up camera uses a stronger oblique angle; the opening view retains a gentler tilt and the exact Florida coastline. Expressive rocket vapor, blinking robot eyes and the eight regional animations remain intact.
+
+`voxel-geometry.ts` emits one exterior-face mesh per voxel object, culling shared internal faces instead of creating a mesh for every cube. Full Retina density and antialiasing are retained: the geometry is block-built, not the rendered image. No downloaded illustration, image asset, external runtime request or new package was introduced. Unit tests cover face winding, normal direction, internal-face culling, deduplication, orb/tower bounds, finite path geometry, material-ramp disposal, profile ownership, expressive motion and a per-region triangle budget, alongside the existing geographic and camera tests. All 139 tests and lint pass. No screenshot or interactive browser QA was performed in this pass.

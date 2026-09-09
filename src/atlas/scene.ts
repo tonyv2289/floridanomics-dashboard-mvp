@@ -22,12 +22,12 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.domElement.setAttribute("aria-hidden", "true");
   host.prepend(renderer.domElement);
   const scene = new THREE.Scene();
-  scene.add(new THREE.HemisphereLight(0xe1f9ff, 0x396969, 1.6));
-  const key = new THREE.DirectionalLight(0xffedbb, 2.3);
+  scene.add(new THREE.HemisphereLight(0xf1f6ff, 0x303c33, 1.4));
+  const key = new THREE.DirectionalLight(0xfff5dd, 2.3);
   key.position.set(-6, 16, 9);
   key.castShadow = true;
   key.shadow.mapSize.set(2048, 2048);
@@ -51,7 +51,7 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   controls.rotateSpeed = 0.45;
   controls.zoomSpeed = 0.6;
 
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.MeshToonMaterial({ color: 0x14516b }));
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.MeshToonMaterial({ color: 0x080d12 }));
   floor.rotation.x = -Math.PI / 2;
   floor.position.y = -0.34;
   floor.receiveShadow = true;

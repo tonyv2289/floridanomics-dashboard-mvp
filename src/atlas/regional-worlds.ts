@@ -1,14 +1,14 @@
 import * as T from "three";
-import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import type { Region } from "./data";
-import { addCartoonOutline, createCartoonPalette } from "./cartoon-materials";
+import { createCartoonPalette } from "./cartoon-materials";
+import { voxelColumn, voxelOrb, voxelPath } from "./voxel-geometry";
 
 type V3 = readonly [number, number, number];
 export type RegionalWorld = { root: T.Group; animated: Array<(time: number) => void>; assets: Map<string, T.Group>; dispose: () => void };
-const IVORY = 0xfff3d6;
-const INK = 0x142534;
-const COPPER = 0xff9a47;
-const GLASS = 0x51bbd0;
+const IVORY = 0xf3f4e9;
+const INK = 0x1e252c;
+const COPPER = 0xffb322;
+const GLASS = 0x43cbd4;
 
 // Original, procedural 3D maquettes. These are regional visual metaphors, not
 // surveyed buildings. No downloaded logos, image textures or private data.
@@ -27,20 +27,19 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     object.position.set(...pos);
     object.castShadow = true;
     object.receiveShadow = true;
-    addCartoonOutline(object, palette.ink);
     parent.add(object);
     return object;
   };
-  const box = (p: T.Group, size: V3, pos: V3, color = IVORY, metal = 0.12) => {
-    const shortest = Math.min(...size);
-    const geometry = shortest >= 0.05 ? new RoundedBoxGeometry(...size, 2, Math.min(shortest * 0.28, 0.065)) : new T.BoxGeometry(...size);
-    return mesh(p, geometry, color, pos, metal);
+  const box = (p: T.Group, size: V3, pos: V3, color = IVORY, metal = 0.12) => mesh(p, new T.BoxGeometry(...size), color, pos, metal);
+  const cyl = (p: T.Group, r: number, h: number, pos: V3, color = IVORY, r2 = r, sides = 24) => {
+    const geometry = Math.max(r, r2) < .06 ? new T.CylinderGeometry(r, r2, h, 4) : voxelColumn(r, h, r2);
+    void sides; // Existing landmark proportions survive the change in art direction.
+    return mesh(p, geometry, color, pos);
   };
-  const cyl = (p: T.Group, r: number, h: number, pos: V3, color = IVORY, r2 = r, sides = 24) => mesh(p, new T.CylinderGeometry(r, r2, h, sides), color, pos);
-  const orb = (p: T.Group, r: number, pos: V3, color = IVORY) => mesh(p, new T.SphereGeometry(r, 14, 10), color, pos);
+  const orb = (p: T.Group, r: number, pos: V3, color = IVORY) => mesh(p, voxelOrb(r), color, pos);
   const tube = (p: T.Group, points: V3[], radius: number, color: number, closed = false) => {
     const curve = new T.CatmullRomCurve3(points.map((point) => new T.Vector3(...point)), closed);
-    return mesh(p, new T.TubeGeometry(curve, Math.max(points.length * 4, 24), radius, 6, closed), color);
+    return mesh(p, voxelPath(curve, radius), color);
   };
   const beam = (p: T.Group, start: V3, end: V3, radius: number, color: number) => {
     const a = new T.Vector3(...start), b = new T.Vector3(...end);
@@ -49,7 +48,7 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     object.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), b.sub(a).normalize());
     return object;
   };
-  const torus = (p: T.Group, radius: number, thickness: number, pos: V3, color: number) => mesh(p, new T.TorusGeometry(radius, thickness, 8, 48), color, pos, 0.5);
+  const torus = (p: T.Group, radius: number, thickness: number, pos: V3, color: number) => mesh(p, new T.TorusGeometry(radius, thickness, 4, 16), color, pos, 0.5);
   const asset = (id: string, pos: V3 = [0, 0, 0]) => {
     const group = new T.Group();
     group.name = id;
@@ -69,8 +68,8 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
       }
     } else {
       cyl(g, 0.03, 0.25, [0, 0.125, 0], 0x7b6651, 0.045, 7);
-      orb(g, 0.19, [0, 0.36, 0], 0x60876a);
-      orb(g, 0.13, [-0.09, 0.29, 0.06], 0x385f51);
+      orb(g, 0.19, [0, 0.36, 0], 0x69ad53);
+      orb(g, 0.13, [-0.09, 0.29, 0.06], 0x367d45);
     }
   };
   const windows = (p: T.Group, w: number, h: number, d: number, x: number, z: number, floors = 4) => {
@@ -156,9 +155,9 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     for (let i = 0; i < 5; i++) tube(root, [[-0.55, 0.11, 0.67], [-0.55, 0.11, 0.78 + i * 0.05], [0.7 + i * 0.09, 0.11, 0.78 + i * 0.05]], 0.012, i % 2 ? COPPER : GLASS);
     const sim = asset("ucf-ist", [0.73, 0.15, -0.33]);
     cyl(sim, 0.51, 0.12, [0, 0.05, 0], INK, 0.51, 32);
-    const dome = mesh(sim, new T.SphereGeometry(0.46, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), 0x87bccb, [0, 0.12, 0], 0.6);
+    const dome = mesh(sim, voxelOrb(0.46, true), 0x87bccb, [0, 0.12, 0], 0.6);
     const wireMat = new T.LineBasicMaterial({ color: IVORY, transparent: true, opacity: 0.48 }); extras.add(wireMat);
-    const wireGeo = new T.WireframeGeometry(dome.geometry); geometries.add(wireGeo); const wire = new T.LineSegments(wireGeo, wireMat); wire.position.copy(dome.position); sim.add(wire);
+    const wireGeo = new T.EdgesGeometry(dome.geometry); geometries.add(wireGeo); const wire = new T.LineSegments(wireGeo, wireMat); wire.position.copy(dome.position); sim.add(wire);
     const scan = torus(sim, 0.49, 0.017, [0, 0.21, 0], COPPER); scan.rotation.x = Math.PI / 2;
     box(neo, [0.64, 0.31, 0.37], [0.35, 0.14, -0.86]);
     box(neo, [0.65, 0.07, 0.38], [0.35, 0.25, -0.86], GLASS);
@@ -177,7 +176,7 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     const roof = cyl(defense, 0.47, 0.06, [0, 0.4, 0], COPPER, 0.47, 6); roof.rotation.y = Math.PI / 6;
     const radar = new T.Group(); radar.position.y = 0.49; defense.add(radar);
     cyl(radar, 0.026, 0.25, [0, 0.08, 0], IVORY);
-    const dish = mesh(radar, new T.SphereGeometry(0.23, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), GLASS, [0, 0.22, 0]); dish.rotation.x = Math.PI; dish.rotation.z = 0.4;
+    const dish = mesh(radar, voxelOrb(0.23, true), GLASS, [0, 0.22, 0]); dish.rotation.x = Math.PI; dish.rotation.z = 0.4;
     animated.push((t) => { radar.rotation.y = t * 0.23; });
     const research = asset("usf", [-0.6, 0.13, -0.65]);
     windows(research, 0.6, 0.42, 0.34, 0, 0, 3);
@@ -221,6 +220,7 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     const vessel = ship(freight, [-0.07, 0.12, 0.62], 0.65);
     animated.push((t) => { train.position.z = Math.sin(t * 0.27) * 0.17; vessel.position.z = 0.62 + Math.sin(t * 0.31) * 0.12; });
     windows(freight, 0.48, 0.28, 0.47, 0.89, -0.6, 2);
+    tree(freight, 0.28, -0.92, 0.55); tree(freight, 0.77, -0.99, 0.55);
   } else if (region.id === "north-central") {
     const uf = asset("uf-innovate", [-0.58, 0.12, 0.14]);
     box(uf, [0.84, 0.32, 0.53], [0, 0.2, 0], 0x9e7157);
