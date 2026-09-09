@@ -66,6 +66,7 @@ function Briefing() {
     <main className="briefing-root" id="briefing-main">
       {isSnapshot ? null : (
         <div className="briefing-actions">
+          <a href="?view=atlas">Explore Florida atlas</a>
           <a href="?view=dashboard">Explore the full dashboard</a>
           <button type="button" onClick={() => window.print()}>
             Download as PDF

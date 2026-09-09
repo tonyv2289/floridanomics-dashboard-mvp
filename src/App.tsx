@@ -7,6 +7,7 @@ import "./app-frame.css";
 
 const DashboardV3 = lazy(() => import("./v3/DashboardV3"));
 const Briefing = lazy(() => import("./briefing/Briefing"));
+const FloridaAtlas = lazy(() => import("./atlas/FloridaAtlas"));
 
 function App() {
   const appView = resolveAppView(typeof window === "undefined" ? "" : window.location.search);
@@ -27,7 +28,7 @@ function App() {
 
   return (
     <div className="compare-frame">
-      <a className="v3-skip-link" href={appView === "dashboard" ? "#v3-main" : "#briefing-main"}>
+      <a className="v3-skip-link" href={appView === "atlas" ? "#atlas-main" : appView === "dashboard" ? "#v3-main" : "#briefing-main"}>
         Skip to content
       </a>
       <ErrorBoundary>
@@ -41,7 +42,7 @@ function App() {
             </main>
           }
         >
-          {appView === "dashboard" ? <DashboardV3 /> : <Briefing />}
+          {appView === "atlas" ? <FloridaAtlas /> : appView === "dashboard" ? <DashboardV3 /> : <Briefing />}
         </Suspense>
       </ErrorBoundary>
     </div>

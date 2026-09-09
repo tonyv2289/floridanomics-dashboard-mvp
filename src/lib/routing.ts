@@ -1,10 +1,14 @@
-export type AppView = "briefing" | "dashboard";
+export type AppView = "briefing" | "dashboard" | "atlas";
 
 const DASHBOARD_DEEP_LINKS = ["tab", "competitionView", "lens", "metric", "innovationMetric"];
 
 export function resolveAppView(search: string): AppView {
   const params = new URLSearchParams(search);
   const requestedView = params.get("view");
+
+  if (requestedView === "atlas") {
+    return "atlas";
+  }
 
   if (requestedView === "briefing") {
     return "briefing";

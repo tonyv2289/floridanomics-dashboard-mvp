@@ -11,6 +11,12 @@ describe("resolveAppView", () => {
     expect(resolveAppView("?view=dashboard")).toBe("dashboard");
   });
 
+  it("adds the atlas without breaking existing deep links", () => {
+    expect(resolveAppView("?view=atlas")).toBe("atlas");
+    expect(resolveAppView("?view=atlas&tab=trade&region=space-coast")).toBe("atlas");
+    expect(resolveAppView("?view=unknown")).toBe("briefing");
+  });
+
   it("preserves existing dashboard deep links", () => {
     expect(resolveAppView("?tab=trade")).toBe("dashboard");
     expect(resolveAppView("?metric=unemploymentRate")).toBe("dashboard");

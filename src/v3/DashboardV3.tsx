@@ -200,6 +200,7 @@ function DashboardV3() {
             <a className="v3-briefing-link" href={import.meta.env.BASE_URL}>
               Open the briefing
             </a>
+            <a className="v3-briefing-link" href="?view=atlas">Explore Florida atlas</a>
             <a
               className="v3-briefing-link"
               href={`${import.meta.env.BASE_URL}briefings/latest.png`}
