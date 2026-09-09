@@ -57,9 +57,12 @@ export const REGIONS: Region[] = [
   },
   {
     id: "south-florida", name: "South Florida", shortName: "South Florida", coordinates: [-80.3, 26.16],
-    headline: "Research with a path to market.",
-    description: "Start with Boca Raton’s university-affiliated research park. This regional overview will grow as more public-source assets are curated.",
-    assets: [{ id: "fau-park", name: "Research Park at FAU", kind: "Technology campus", sector: "Research & life sciences", coordinates: [-80.1, 26.39], model: "campus", summary: "The Research Park at Florida Atlantic University supports research and development companies, university partnerships and technology-led economic development in South Florida.", source: "https://researchparkfau.com/", sourceName: "Research Park at Florida Atlantic University" }],
+    headline: "A waterfront open to the world.",
+    description: "International cargo moves through PortMiami while university-linked research finds a path to market in Boca Raton. A first look at South Florida’s gateway economy.",
+    assets: [
+      { id: "fau-park", name: "Research Park at FAU", kind: "Technology campus", sector: "Research & life sciences", coordinates: [-80.1, 26.39], model: "campus", summary: "The Research Park at Florida Atlantic University supports research and development companies, university partnerships and technology-led economic development in South Florida.", source: "https://researchparkfau.com/", sourceName: "Research Park at Florida Atlantic University" },
+      { id: "portmiami", name: "PortMiami", kind: "Seaport", sector: "Trade & logistics", coordinates: [-80.17, 25.77], model: "port", summary: "PortMiami connects international cargo markets with the United States through container terminals, trucking and on-dock rail. Its cargo network includes Latin America, the Caribbean, Asia and Europe.", source: "https://www.miamidade.gov/portmiami/cargo.page", sourceName: "Miami-Dade County · PortMiami Cargo" },
+    ],
   },
   {
     id: "northeast", name: "Jacksonville & Northeast", shortName: "Jacksonville", coordinates: [-81.65, 30.33],
@@ -112,6 +115,6 @@ export function readAtlasQuery(search: string): { regionId: string | null; secto
 }
 
 export function overviewPose(aspect: number): { position: [number, number, number]; target: [number, number, number] } {
-  const distance = aspect < 0.9 ? 1.22 : 1;
-  return { position: [6 * distance, 13.4 * distance, 14.8 * distance], target: [0, 0, 0.25] };
+  const distance = Math.max(1, 0.8 / Math.max(aspect, 0.25));
+  return { position: [8 * distance, 16.6 * distance, 19.5 * distance], target: [1.1, 0.3, -0.1] };
 }

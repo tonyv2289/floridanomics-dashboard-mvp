@@ -1,0 +1,124 @@
+/* Regional worlds: larger scene silhouettes, readable labels, quiet framing. */
+.atlas-workspace {
+  grid-template-columns: 226px minmax(320px, 1fr) 320px;
+  min-height: 720px;
+  height: calc(100svh - 280px);
+  max-height: 980px;
+}
+.atlas-intro { font-size: 13px; line-height: 1.7; }
+.atlas-region-nav button { font-size: 12px; min-height: 37px; }
+.atlas-nav-number, .atlas-nav-count { font-size: 11px; }
+.atlas-region-label, .atlas-detail-label { font-size: 11px; letter-spacing: .08em; }
+.atlas-sidebar-bottom > span { font-size: 11px; }
+.atlas-sidebar-bottom p { font-size: 12px; max-width: 190px; }
+.atlas-marker { min-width: 0; min-height: 0; }
+.atlas-marker-pin { display: none; }
+.atlas-marker-text,
+.marker-tampa-bay .atlas-marker-text,
+.marker-southwest .atlas-marker-text,
+.marker-orlando-osceola .atlas-marker-text,
+.marker-north-central .atlas-marker-text {
+  left: -76px;
+  right: auto;
+  top: -14px;
+  width: 152px;
+  padding: 7px 3px;
+  text-align: center;
+  border: 0;
+  background: #06111cd9;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: normal;
+  color: #e1ebee;
+  border-radius: 3px;
+}
+.atlas-marker:hover .atlas-marker-text { background: #132939; color: #ffad71; }
+.atlas-marker:focus-visible { outline: 0; }
+.atlas-marker:focus-visible .atlas-marker-text { outline: 2px solid var(--atlas-sun); outline-offset: 3px; }
+.atlas-marker.is-selected { display: none; }
+.atlas-map-caption { font-size: 11px; letter-spacing: .08em; }
+.atlas-map-bottom { justify-content: center; gap: 12px; }
+.atlas-map-bottom p { text-align: center; width: 100%; font-size: 12px; line-height: 1.5; }
+.atlas-map-bottom button { font-size: 12px; padding: 7px 10px; min-height: 34px; }
+.atlas-map-tools { bottom: 115px; }
+.atlas-map-tools button { width: 36px; height: 36px; }
+.atlas-detail-scroll { padding: 24px 22px; }
+.atlas-detail-heading > p, .atlas-profile p { font-size: 16px; line-height: 1.65; }
+.atlas-detail .atlas-eyebrow { font-size: 11px; letter-spacing: .12em; }
+.atlas-detail h2 { font-size: 29px; line-height: 1.25; }
+.atlas-asset-list button { font-size: 14px; line-height: 1.4; padding: 15px 0; }
+.atlas-asset-list small { font-size: 12px; }
+.atlas-profile h3 { font-size: 19px; }
+.atlas-profile a { font-size: 13px; }
+.atlas-profile > small { font-size: 12px; }
+.atlas-sector-tag { font-size: 12px; line-height: 1.5; }
+.atlas-back { font-size: 12px!important; }
+.atlas-detail-foot { font-size: 10px; line-height: 1.5; }
+.atlas-strengths { display: flex; flex-wrap: wrap; gap: 7px; margin: -4px 0 27px; }
+.atlas-strengths span { display: inline-block; padding: 5px 7px; border: 1px solid #374553; border-radius: 2px; font-size: 12px; line-height: 1.5; color: #c6d8e1; }
+.atlas-stats span { font-size: 12px; }
+.atlas-stats { gap: 26px; }
+.atlas-start h3 { font-size: 19px; }
+.atlas-start p { font-size: 15px; }
+.atlas-start button { font-size: 13px; gap: 10px; line-height: 1.5; }
+.atlas-source-note { font-size: 12px; }
+.atlas-filter-bar > .atlas-eyebrow { font-size: 11px; }
+.atlas-sector-filters button { font-size: 12px; }
+.atlas-filter-count { font-size: 11px; }
+.atlas-tour { grid-template-columns: 226px repeat(3, minmax(0, 1fr)) 78px; }
+.atlas-tour strong { font-size: 13px; }
+.atlas-tour small { font-size: 11px; line-height: 1.5; }
+.atlas-tour > button { height: 78px; }
+.atlas-tour-intro .atlas-eyebrow { font-size: 11px; }
+.atlas-tour-intro p { font-size: 12px; }
+.atlas-footer details p { font-size: 13px; }
+.atlas-footer summary { font-size: 12px; }
+.atlas-flat-regions button { font-size: 12px; }
+@media (min-width: 1600px) {
+  .atlas-workspace { grid-template-columns: 250px minmax(400px, 1fr) 355px; }
+  .atlas-tour { grid-template-columns: 250px repeat(3, minmax(0, 1fr)) 88px; }
+}
+@media (max-width: 1180px) {
+  .atlas-workspace { grid-template-columns: 195px minmax(270px, 1fr) 295px; }
+  .atlas-region-nav button { padding-left: 4px; gap: 6px; }
+  .atlas-intro { font-size: 12px; }
+  .atlas-tour { grid-template-columns: 170px repeat(3, minmax(0, 1fr)) 70px; }
+  .atlas-tour small { font-size: 10px; }
+  .atlas-detail-heading > p, .atlas-profile p { font-size: 15px; }
+}
+@media (max-width: 1000px) {
+  .atlas-workspace { grid-template-columns: 1fr 300px; height: auto; min-height: 0; }
+  .atlas-sidebar { grid-column: 1/-1; padding: 24px 0 17px; display: grid; grid-template-columns: 1fr 240px; gap: 8px 24px; align-items: center; }
+  .atlas-sidebar > .atlas-eyebrow { grid-column: 1/-1; font-size: 11px; }
+  .atlas h1 { font-size: 30px; margin: 3px 0; }
+  .atlas h1 br { display: none; }
+  .atlas-intro { grid-column: 1; font-size: 14px; max-width: 440px; margin: 0; }
+  .atlas-region-label, .atlas-region-nav, .atlas-sidebar-bottom { display: none; }
+  .atlas-mobile-select { display: grid; grid-column: 2; grid-row: 2/4; gap: 8px; font-size: 12px; color: var(--atlas-muted); }
+  .atlas-mobile-select select { padding: 11px; background: #0b1726; border: 1px solid #3a4b5e; border-radius: 3px; width: 100%; font-size: 14px; color: #e8eef9; }
+  .atlas-map-section { height: 730px; }
+  .atlas-detail { margin: 10px 0 20px; }
+  .atlas-tour { grid-template-columns: repeat(3, minmax(0, 1fr)) 70px; padding: 15px 0; }
+  .atlas-tour-intro { grid-column: 1/-1; display: flex; gap: 14px; align-items: center; }
+  .atlas-filter-bar { flex-wrap: wrap; gap: 12px; padding: 14px 0; }
+  .atlas-sector-filters { padding: 0; }
+}
+@media (max-width: 700px) {
+  .atlas-workspace { display: block; }
+  .atlas-sidebar { display: block; }
+  .atlas-sidebar > .atlas-eyebrow { margin-bottom: 10px; }
+  .atlas-intro { max-width: 360px; margin-top: 12px; }
+  .atlas-mobile-select { display: flex; align-items: center; margin-top: 20px; gap: 15px; }
+  .atlas-mobile-select select { flex: 1; }
+  .atlas-map-section { height: 550px; margin: 0 -16px; }
+  .atlas-map-caption { font-size: 10px; }
+  .atlas-map-bottom p { font-size: 11px; }
+  .atlas-detail-scroll { overflow: visible; padding: 23px; }
+  .atlas-detail-heading > p, .atlas-profile p { font-size: 16px; }
+  .atlas-marker-text, .marker-tampa-bay .atlas-marker-text, .marker-southwest .atlas-marker-text, .marker-orlando-osceola .atlas-marker-text, .marker-north-central .atlas-marker-text { width: 128px; left: -64px; font-size: 11px; }
+  .atlas-tour { grid-template-columns: 1fr; }
+  .atlas-tour-controls { justify-content: space-between; }
+  .atlas-tour strong { font-size: 15px; }
+  .atlas-tour small { font-size: 12px; }
+}
