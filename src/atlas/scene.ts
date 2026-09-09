@@ -1,11 +1,10 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import florida from "../data/florida.geo.json";
-import { REGIONS, overviewPose, projectLocation, regionMatches } from "./data";
+import { REGIONS, regionMatches } from "./data";
 import type { Sector } from "./data";
-import { REGIONAL_IDENTITIES, crispPixelRatio, regionalCameraPose, snapToDevicePixel } from "./regional-identity";
-import { buildRegionalWorld } from "./regional-worlds";
-import type { RegionalWorld } from "./regional-worlds";
+import { crispPixelRatio, snapToDevicePixel } from "./regional-identity";
+import { buildFloridaMap, mapCameraPose, setPieceProgress } from "./regional-map";
+import { LAND_HEIGHT, smoothStep } from "./regional-geography";
 
 type SceneState = { regionId: string | null; assetId: string | null; sector: Sector; motion: boolean };
 type SceneOptions = {
@@ -14,7 +13,6 @@ type SceneOptions = {
   onAsset: (regionId: string, assetId: string) => void;
   onFailure: () => void;
 };
-const TOP = 0.18;
 
 export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOptions) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -46,35 +44,13 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = false;
   controls.enablePan = false;
-  controls.minDistance = 5.5;
-  controls.maxDistance = 40;
+  controls.minDistance = 2.5;
+  controls.maxDistance = 60;
   controls.minPolarAngle = 0.2;
   controls.maxPolarAngle = Math.PI / 2.25;
   controls.rotateSpeed = 0.45;
   controls.zoomSpeed = 0.6;
 
-  const landMat = new THREE.MeshStandardMaterial({ color: 0x132939, roughness: 0.87, transparent: true, opacity: 0.8 });
-  const sideMat = new THREE.MeshStandardMaterial({ color: 0x102230, transparent: true, opacity: 0.8 });
-  const coastMat = new THREE.LineBasicMaterial({ color: 0x658fa2, transparent: true, opacity: 0.65 });
-  for (const polygon of florida.geometry.coordinates) {
-    const shape = new THREE.Shape();
-    polygon.forEach((ring, ringIndex) => {
-      const path = ringIndex === 0 ? shape : new THREE.Path();
-      ring.forEach((coordinate, index) => {
-        const [x, z] = projectLocation(coordinate);
-        if (index === 0) path.moveTo(x, -z); else path.lineTo(x, -z);
-      });
-      path.closePath();
-      if (ringIndex > 0) shape.holes.push(path as THREE.Path);
-      const points = ring.map((coordinate) => { const [x, z] = projectLocation(coordinate); return new THREE.Vector3(x, TOP + 0.012, z); });
-      scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), coastMat));
-    });
-    const geometry = new THREE.ExtrudeGeometry(shape, { depth: TOP, bevelEnabled: false, steps: 1, curveSegments: 1 });
-    geometry.rotateX(-Math.PI / 2);
-    const land = new THREE.Mesh(geometry, [landMat, sideMat]);
-    land.receiveShadow = true;
-    scene.add(land);
-  }
   const grid = new THREE.GridHelper(50, 50, 0x192b38, 0x0c1925);
   grid.position.y = -0.32;
   scene.add(grid);
@@ -84,27 +60,11 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   floor.receiveShadow = true;
   scene.add(floor);
 
-  const worlds: Array<RegionalWorld & { id: string; leader: THREE.Line; pin: THREE.Mesh }> = [];
+  const pieces = buildFloridaMap();
   const hitTargets: THREE.Object3D[] = [];
-  for (const region of REGIONS) {
-    const world = buildRegionalWorld(region);
-    const identity = REGIONAL_IDENTITIES[region.id];
-    world.root.position.set(...identity.position);
-    world.root.scale.setScalar(0.78);
-    scene.add(world.root);
-    world.root.traverse((object) => { if (object instanceof THREE.Mesh) hitTargets.push(object); });
-    const [x, z] = projectLocation(region.coordinates);
-    const anchor = new THREE.Vector3(x, TOP + 0.02, z);
-    const end = new THREE.Vector3(...identity.position);
-    end.y = 0.35;
-    const leader = new THREE.Line(new THREE.BufferGeometry().setFromPoints([anchor, end]), new THREE.LineDashedMaterial({ color: identity.accent, dashSize: 0.055, gapSize: 0.035, opacity: 0.5, transparent: true }));
-    leader.computeLineDistances();
-    scene.add(leader);
-    const pin = new THREE.Mesh(new THREE.RingGeometry(0.065, 0.09, 32), new THREE.MeshBasicMaterial({ color: identity.accent, side: THREE.DoubleSide }));
-    pin.rotation.x = -Math.PI / 2;
-    pin.position.copy(anchor);
-    scene.add(pin);
-    worlds.push({ ...world, id: region.id, leader, pin });
+  for (const map of pieces) {
+    scene.add(map.root);
+    map.root.traverse((object) => { if (object instanceof THREE.Mesh) hitTargets.push(object); });
   }
 
   let state: SceneState = { regionId: null, assetId: null, sector: "All sectors", motion: true };
@@ -114,24 +74,25 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   let lastTime = 0;
   let traveling = false;
   let travelStarted = 0;
+  let assembling = false;
+  let assemblyStarted = 0;
+  let assemblyFrom = pieces.map(() => 0);
   let width = 1;
   let height = 1;
   const fromPosition = new THREE.Vector3();
   const toPosition = new THREE.Vector3();
   const fromTarget = new THREE.Vector3();
   const toTarget = new THREE.Vector3();
+  const middlePosition = new THREE.Vector3();
+  const middleTarget = new THREE.Vector3();
   const projected = new THREE.Vector3();
-  const scaleTarget = new THREE.Vector3();
   const resetPose = () => {
-    if (state.regionId) {
-      const pose = regionalCameraPose(state.regionId, width / height);
-      toTarget.set(...pose.target);
-      toPosition.set(...pose.position);
-    } else {
-      const pose = overviewPose(width / height);
-      toTarget.set(...pose.target);
-      toPosition.set(...pose.position);
-    }
+    const pose = mapCameraPose(pieces, state.regionId, width / height);
+    toTarget.copy(pose.target);
+    toPosition.copy(pose.position);
+    const middle = mapCameraPose(pieces, state.regionId, width / height, false);
+    middleTarget.copy(middle.target);
+    middlePosition.copy(middle.position);
   };
   const frame = (now: number) => {
     frameId = 0;
@@ -140,43 +101,51 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
     lastTime = now;
     if (state.motion) animationTime += dt;
     if (traveling) {
-      const progress = state.motion ? Math.min((now - travelStarted) / 1200, 1) : 1;
-      const ease = progress * progress * (3 - 2 * progress);
-      camera.position.lerpVectors(fromPosition, toPosition, ease);
-      controls.target.lerpVectors(fromTarget, toTarget, ease);
+      const progress = state.motion ? Math.min((now - travelStarted) / 2400, 1) : 1;
+      if (state.regionId && progress < 0.55) {
+        const ease = smoothStep(progress / 0.55);
+        camera.position.lerpVectors(fromPosition, middlePosition, ease);
+        controls.target.lerpVectors(fromTarget, middleTarget, ease);
+      } else {
+        const ease = smoothStep(state.regionId ? (progress - 0.55) / 0.45 : progress);
+        camera.position.lerpVectors(state.regionId ? middlePosition : fromPosition, toPosition, ease);
+        controls.target.lerpVectors(state.regionId ? middleTarget : fromTarget, toTarget, ease);
+      }
       if (progress === 1) traveling = false;
     }
-    landMat.opacity = state.regionId ? 0.2 : 0.8;
-    sideMat.opacity = state.regionId ? 0.2 : 0.8;
-    coastMat.opacity = state.regionId ? 0.17 : 0.65;
-    for (const world of worlds) {
-      const focused = state.regionId === world.id;
-      const region = REGIONS.find((r) => r.id === world.id)!;
-      const visible = regionMatches(region, state.sector) && (!state.regionId || focused);
-      world.root.visible = visible;
-      world.leader.visible = visible && !focused;
-      world.pin.visible = visible && !focused;
-      const targetScale = focused ? 1.55 : 0.78;
-      world.root.scale.lerp(scaleTarget.setScalar(targetScale), state.motion ? 0.12 : 1);
-      if (visible) {
-        for (const [id, assetGroup] of world.assets) {
+    const assemblyProgress = state.motion ? Math.min((now - assemblyStarted) / 1650, 1) : 1;
+    for (const [index, map] of pieces.entries()) {
+      const focused = state.regionId === map.piece.id;
+      const region = REGIONS[index];
+      const matches = regionMatches(region, state.sector);
+      if (assembling) {
+        const ease = smoothStep(assemblyProgress);
+        setPieceProgress(map, THREE.MathUtils.lerp(assemblyFrom[index], focused ? 1 : 0, ease));
+      }
+      // The state never disappears, even while a region is lifted or filtered.
+      map.landMaterial.color.copy(map.color).multiplyScalar(matches ? state.regionId && !focused ? 0.68 : 1 : 0.38);
+      map.borderMaterial.opacity = focused ? 1 : 0.72;
+      map.world.root.visible = matches;
+      if (matches) {
+        for (const [id, assetGroup] of map.world.assets) {
           const asset = region.assets.find((a) => a.id === id);
           assetGroup.visible = state.sector === "All sectors" || asset?.sector === state.sector;
         }
-        world.animated.forEach((update) => update(animationTime));
+        map.world.animated.forEach((update) => update(animationTime));
       }
     }
+    if (assemblyProgress === 1) assembling = false;
     controls.update();
     camera.updateMatrixWorld();
     REGIONS.forEach((region) => {
       const label = labels.get(region.id);
       if (!label) return;
-      const world = worlds.find((w) => w.id === region.id)!;
-      // Labels sit above the diorama, never on top of its important silhouette.
-      projected.copy(world.root.position);
-      projected.y += state.regionId ? 3.85 : region.id === "space-coast" ? 2.2 : 1.65;
+      const map = pieces.find((p) => p.piece.id === region.id)!;
+      projected.copy(map.root.position);
+      projected.y += LAND_HEIGHT + 0.12;
+      projected.z += map.piece.radius * 0.92;
       projected.project(camera);
-      const visible = world.root.visible && projected.z > -1 && projected.z < 1 && Math.abs(projected.x) < 0.94 && Math.abs(projected.y) < 0.88;
+      const visible = !state.regionId && regionMatches(region, state.sector) && projected.z > -1 && projected.z < 1 && Math.abs(projected.x) < 0.94 && Math.abs(projected.y) < 0.88;
       label.style.visibility = visible ? "visible" : "hidden";
       const ratio = window.devicePixelRatio || 1;
       const x = snapToDevicePixel((projected.x * 0.5 + 0.5) * width, ratio);
@@ -184,7 +153,7 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
       label.style.transform = "translate(" + x + "px, " + y + "px)";
     });
     renderer.render(scene, camera);
-    if (state.motion || traveling) requestFrame();
+    if (state.motion || traveling || assembling) requestFrame();
   };
   function requestFrame() { if (!frameId && !disposed && !document.hidden) frameId = requestAnimationFrame(frame); }
   function travel() {
@@ -195,21 +164,22 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
     traveling = true;
     requestFrame();
   }
-  const resize = () => {
+  const resize = (refit = true) => {
     width = host.clientWidth || 1;
     height = host.clientHeight || 1;
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setPixelRatio(crispPixelRatio(window.devicePixelRatio || 1));
     renderer.setSize(width, height);
+    if (refit) travel();
     requestFrame();
   };
-  resize();
+  resize(false);
   resetPose();
   camera.position.copy(toPosition);
   controls.target.copy(toTarget);
   controls.update();
-  const observer = new ResizeObserver(resize);
+  const observer = new ResizeObserver(() => resize());
   observer.observe(host);
   const controlsStart = () => { traveling = false; };
   controls.addEventListener("start", controlsStart);
@@ -257,7 +227,12 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
     update(next: SceneState) {
       const regionChanged = state.regionId !== next.regionId;
       state = next;
-      if (regionChanged) travel();
+      if (regionChanged) {
+        assemblyFrom = pieces.map((map) => map.progress);
+        assemblyStarted = performance.now();
+        assembling = true;
+        travel();
+      }
       requestFrame();
     },
     reset() { travel(); },
@@ -281,7 +256,7 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
       renderer.domElement.removeEventListener("pointercancel", pointerCancel);
       renderer.domElement.removeEventListener("webglcontextlost", lost);
       document.removeEventListener("visibilitychange", visibility);
-      worlds.forEach((world) => { scene.remove(world.root); world.dispose(); });
+      pieces.forEach((map) => { map.root.remove(map.world.root); map.world.dispose(); });
       const geometries = new Set<THREE.BufferGeometry>();
       const materials = new Set<THREE.Material>();
       scene.traverse((object) => {

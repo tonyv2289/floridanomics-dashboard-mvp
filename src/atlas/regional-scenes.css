@@ -122,3 +122,54 @@
   .atlas-tour strong { font-size: 15px; }
   .atlas-tour small { font-size: 12px; }
 }
+
+/* Florida is the object: more canvas, quiet numeric keys, no floating plaques. */
+.atlas-workspace { grid-template-columns: 205px minmax(330px, 1fr) 302px; min-height: 770px; height: calc(100svh - 155px); max-height: 1050px; }
+.atlas-map-section { background: radial-gradient(ellipse at 52% 42%, #16304066, transparent 67%); }
+.atlas-map-host { bottom: 105px; }
+.atlas-marker { width: 36px; height: 36px; margin: -18px; border-radius: 50%; }
+.atlas-marker-index { display: grid; place-items: center; position: absolute; inset: 5px; border: 1px solid #c7ab7ca6; background: #071521e8; color: #eedcc3; border-radius: 50%; font: 10px Sora, sans-serif; }
+.atlas-marker .atlas-marker-text { visibility: hidden; opacity: 0; left: 22px; top: 4px; width: 145px; padding: 6px 10px; font-size: 11px; border: 1px solid #7b715c; transition: opacity .12s; text-align: left; }
+.atlas-marker:hover, .atlas-marker:focus-visible { z-index: 5; }
+.atlas-marker:hover .atlas-marker-text, .atlas-marker:focus-visible .atlas-marker-text { visibility: visible; opacity: 1; }
+.atlas-marker:hover .atlas-marker-index, .atlas-marker:focus-visible .atlas-marker-index { border-color: #ff9a50; color: #ffb77e; }
+.atlas-map-bottom { gap: 8px; padding-top: 14px; background: linear-gradient(transparent, #06121dd9 38%); }
+.atlas-map-bottom .atlas-journey-controls { display: flex; align-items: center; justify-content: center; gap: 16px; width: 100%; margin: 0 0 3px; }
+.atlas-journey-controls > span { color: #b5c5cb; font-size: 9px; letter-spacing: .13em; }
+.atlas-map-bottom .atlas-journey-controls button { background: #172b37; border: 1px solid #587080; padding: 9px 13px; color: #e9f0ed; font-size: 12px; }
+.atlas-map-bottom .atlas-journey-controls button:last-child { color: #ffd0a8; border-color: #ab7547; background: #33271d; }
+.atlas-map-tools { bottom: 160px; }
+.atlas-tour { grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 23px 0; gap: 12px; }
+.atlas-tour-intro { grid-column: 1 / 4; display: flex; align-items: center; gap: 20px; }
+.atlas-tour-controls { grid-row: 1; grid-column: 4; }
+.atlas-tour > button { min-height: 84px; height: auto; }
+.atlas-tour small { font-size: 11px; }
+.atlas-flat-map { bottom: 155px; }
+@media (min-width: 1600px) {
+  .atlas-workspace { grid-template-columns: 220px minmax(500px, 1fr) 320px; }
+}
+@media (max-width: 1180px) {
+  .atlas-workspace { grid-template-columns: 175px minmax(290px, 1fr) 285px; }
+  .atlas-sidebar { padding-right: 12px; }
+}
+@media (max-width: 1000px) {
+  .atlas-workspace { grid-template-columns: minmax(0, 1fr) 285px; height: auto; min-height: 0; max-height: none; }
+  .atlas-map-section { height: 750px; }
+  .atlas-journey-controls > span { display: none; }
+  .atlas-tour { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .atlas-tour-intro { grid-column: 1; display: block; }
+  .atlas-tour-controls { grid-column: 2; }
+}
+@media (max-width: 700px) {
+  .atlas-workspace { display: block; }
+  .atlas-map-section { height: 650px; }
+  .atlas-map-caption { font-size: 9px; }
+  .atlas-tour { grid-template-columns: 1fr; }
+  .atlas-tour-intro { grid-column: 1; padding-right: 88px; }
+  .atlas-tour-controls { grid-column: 1; justify-self: end; align-self: start; }
+  .atlas-tour-controls button { width: 35px; }
+  .atlas-tour > button { min-height: 72px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atlas-marker .atlas-marker-text { transition: none; }
+}

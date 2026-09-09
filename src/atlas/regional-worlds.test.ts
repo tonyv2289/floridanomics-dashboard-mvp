@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { Box3, Mesh, PerspectiveCamera, Vector3 } from "three";
-import { REGIONS, overviewPose } from "./data";
-import { REGIONAL_IDENTITIES, crispPixelRatio, regionalCameraPose, snapToDevicePixel } from "./regional-identity";
+import { Box3, Mesh, Vector3 } from "three";
+import { REGIONS } from "./data";
+import { REGIONAL_IDENTITIES, crispPixelRatio, snapToDevicePixel } from "./regional-identity";
 import { buildRegionalWorld } from "./regional-worlds";
 
 describe("bespoke regional worlds", () => {
-  it("gives all eight regions a distinct identity, material palette and position", () => {
+  it("gives all eight regions a distinct identity, material palette", () => {
     expect(Object.keys(REGIONAL_IDENTITIES).sort()).toEqual(REGIONS.map((r) => r.id).sort());
     expect(new Set(Object.values(REGIONAL_IDENTITIES).map((identity) => identity.title)).size).toBe(8);
     expect(new Set(Object.values(REGIONAL_IDENTITIES).map((identity) => identity.material)).size).toBe(8);
@@ -38,47 +38,7 @@ describe("bespoke regional worlds", () => {
     world.dispose();
   });
 
-  it.each([0.49, 0.64, 0.9, 1.4])("keeps focused worlds inside the camera at viewport ratio %s", (aspect) => {
-    for (const region of REGIONS) {
-      const world = buildRegionalWorld(region);
-      world.root.position.set(...REGIONAL_IDENTITIES[region.id].position);
-      world.root.scale.setScalar(1.55);
-      world.root.updateMatrixWorld(true);
-      const bounds = new Box3().setFromObject(world.root);
-      const pose = regionalCameraPose(region.id, aspect);
-      const camera = new PerspectiveCamera(40, aspect, 0.1, 120);
-      camera.position.set(...pose.position);
-      camera.lookAt(new Vector3(...pose.target));
-      camera.updateMatrixWorld(true);
-      for (const x of [bounds.min.x, bounds.max.x]) for (const y of [bounds.min.y, bounds.max.y]) for (const z of [bounds.min.z, bounds.max.z]) {
-        const point = new Vector3(x, y, z).project(camera);
-        expect(Math.abs(point.x), region.id + " horizontal framing").toBeLessThan(1);
-        expect(Math.abs(point.y), region.id + " vertical framing").toBeLessThan(1);
-      }
-      world.dispose();
-    }
-  });
 
-  it.each([0.49, 0.64, 0.9, 1.4])("keeps overview worlds on screen at viewport ratio %s", (aspect) => {
-    const pose = overviewPose(aspect);
-    const camera = new PerspectiveCamera(40, aspect, 0.1, 120);
-    camera.position.set(...pose.position);
-    camera.lookAt(new Vector3(...pose.target));
-    camera.updateMatrixWorld(true);
-    for (const region of REGIONS) {
-      const world = buildRegionalWorld(region);
-      world.root.position.set(...REGIONAL_IDENTITIES[region.id].position);
-      world.root.scale.setScalar(0.78);
-      world.root.updateMatrixWorld(true);
-      const bounds = new Box3().setFromObject(world.root);
-      for (const x of [bounds.min.x, bounds.max.x]) for (const y of [bounds.min.y, bounds.max.y]) for (const z of [bounds.min.z, bounds.max.z]) {
-        const point = new Vector3(x, y, z).project(camera);
-        expect(Math.abs(point.x), region.id).toBeLessThan(1);
-        expect(Math.abs(point.y), region.id).toBeLessThan(1);
-      }
-      world.dispose();
-    }
-  });
 });
 
 describe("high-density display rendering", () => {

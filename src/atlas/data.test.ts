@@ -1,12 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { PerspectiveCamera, Vector3 } from "three";
 import florida from "../data/florida.geo.json";
-import { ALL_ASSETS, REGIONS, SECTORS, TOUR, nextTourRegion, overviewPose, projectLocation, readAtlasQuery, regionMatches } from "./data";
+import { ALL_ASSETS, REGIONS, SECTORS, TOUR, nextTourRegion, projectLocation, readAtlasQuery, regionMatches } from "./data";
 
 describe("public atlas content", () => {
-  it("has eight curated regions, three detailed chapters and unique identifiers", () => {
+  it("has eight curated regions, eight guided chapters and unique identifiers", () => {
     expect(REGIONS).toHaveLength(8);
-    expect(TOUR.map((r) => r.id)).toEqual(["space-coast", "orlando-osceola", "tampa-bay"]);
+    expect(TOUR.map((r) => r.id)).toEqual(REGIONS.map((r) => r.id));
     expect(new Set(REGIONS.map((r) => r.id)).size).toBe(REGIONS.length);
     expect(new Set(ALL_ASSETS.map((a) => a.id)).size).toBe(ALL_ASSETS.length);
     expect(REGIONS.every((r) => r.assets.length > 0)).toBe(true);
@@ -36,10 +35,10 @@ describe("public atlas content", () => {
 describe("atlas navigation", () => {
   it("starts and wraps the guided tour in both directions", () => {
     expect(nextTourRegion(null, 1)).toBe("space-coast");
-    expect(nextTourRegion(null, -1)).toBe("tampa-bay");
-    expect(nextTourRegion("space-coast", -1)).toBe("tampa-bay");
-    expect(nextTourRegion("tampa-bay", 1)).toBe("space-coast");
-    expect(nextTourRegion("south-florida", 1)).toBe("space-coast");
+    expect(nextTourRegion(null, -1)).toBe("southwest");
+    expect(nextTourRegion("space-coast", -1)).toBe("southwest");
+    expect(nextTourRegion("tampa-bay", 1)).toBe("south-florida");
+    expect(nextTourRegion("southwest", 1)).toBe("space-coast");
   });
 
   it("restores valid deep links and sanitizes unknown or incompatible filters", () => {
@@ -63,17 +62,4 @@ describe("Florida map geometry", () => {
     expect(florida.geometry.coordinates.flat(2).every((p) => projectLocation(p).every(Number.isFinite))).toBe(true);
   });
 
-  it.each([1.4, 1, 0.82, 0.64])("fits statewide geographic anchors at viewport aspect %s", (aspect) => {
-    const camera = new PerspectiveCamera(40, aspect, 0.1, 120);
-    const pose = overviewPose(aspect);
-    camera.position.fromArray(pose.position);
-    camera.lookAt(new Vector3(...pose.target));
-    camera.updateMatrixWorld();
-    for (const region of REGIONS) {
-      const [x, z] = projectLocation(region.coordinates);
-      const screen = new Vector3(x, 0.9, z).project(camera);
-      expect(Math.abs(screen.x), region.id).toBeLessThan(0.95);
-      expect(Math.abs(screen.y), region.id).toBeLessThan(0.85);
-    }
-  });
 });

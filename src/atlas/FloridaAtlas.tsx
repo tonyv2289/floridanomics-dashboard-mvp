@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
-import florida from "../data/florida.geo.json";
-import { ALL_ASSETS, REGIONS, SECTORS, SOURCE_CHECKED, TOUR, nextTourRegion, projectLocation, readAtlasQuery, regionMatches } from "./data";
+import { ALL_ASSETS, REGIONS, SECTORS, SOURCE_CHECKED, TOUR, nextTourRegion, readAtlasQuery, regionMatches } from "./data";
 import type { Sector } from "./data";
 import type { AtlasSceneController } from "./scene";
 import { REGIONAL_IDENTITIES } from "./regional-identity";
+import { REGION_PIECES, regionMapPath } from "./regional-geography";
 import "./atlas.css";
 import "./regional-scenes.css";
 
@@ -15,10 +15,6 @@ function subscribeMotion(callback: () => void) {
 }
 const getReducedMotion = () => window.matchMedia(motionQuery).matches;
 const getServerMotion = () => true;
-const mapPath = florida.geometry.coordinates.flatMap((polygon) => polygon.map((ring) => ring.map((coordinate, i) => {
-  const [x, z] = projectLocation(coordinate);
-  return `${i === 0 ? "M" : "L"}${(x + 6) * 40},${(z + 5) * 40}`;
-}).join(" ") + "Z")).join(" ");
 
 export default function FloridaAtlas() {
   const [regionId, setRegionId] = useState<string | null>(() => readAtlasQuery(window.location.search).regionId);
@@ -109,14 +105,14 @@ export default function FloridaAtlas() {
           <a href="?view=dashboard">Dashboard</a>
           <a href="?view=atlas" aria-current="page">Explore Florida</a>
         </nav>
-        <span className="atlas-edition"><i /> REGIONAL WORLDS / 02</span>
+        <span className="atlas-edition"><i /> ONE FLORIDA / 08 REGIONS</span>
       </header>
 
       <div className="atlas-workspace">
         <aside className="atlas-sidebar" aria-label="Atlas navigation">
           <p className="atlas-eyebrow">ONE STATE. MANY FRONTIERS.</p>
           <h1>Meet the Florida<br />being <em>built.</em></h1>
-          <p className="atlas-intro">The places, institutions and infrastructure shaping what comes next.</p>
+          <p className="atlas-intro">Start with the whole state. Lift out a region. Discover what makes it move.</p>
           <div className="atlas-region-label"><span>EXPLORE BY REGION</span><span>08</span></div>
           <nav className="atlas-region-nav" aria-label="Regions">
             <button type="button" className={!regionId ? "is-active" : ""} aria-pressed={!regionId} onClick={() => selectRegion(null)}><span className="atlas-nav-dot" />All of Florida<span className="atlas-nav-count">↗</span></button>
@@ -136,17 +132,19 @@ export default function FloridaAtlas() {
         </aside>
 
         <section className="atlas-map-section" aria-label="Interactive Florida regional map">
-          <div className="atlas-map-caption"><span><i />{selectedRegion ? selectedRegion.name.toUpperCase() : "FLORIDA / REGIONAL SCENES"}</span><span>{isFlat ? "2D MAP" : "3D ATLAS"}</span></div>
+          <div className="atlas-map-caption"><span><i />{selectedRegion ? selectedRegion.name.toUpperCase() : "FLORIDA / THE WHOLE PICTURE"}</span><span>{isFlat ? "2D MAP" : selectedRegion ? "REGION IN FOCUS" : "ASSEMBLED ATLAS"}</span></div>
           <div className="atlas-map-host" ref={hostRef} style={isFlat ? { display: "none" } : undefined}>
             {sceneStatus === "loading" ? <div className="atlas-map-loading" role="status">Building your Florida view…</div> : null}
-            {REGIONS.map((region) => <button type="button" key={region.id} ref={(element) => { if (element) labelsRef.current.set(region.id, element); else labelsRef.current.delete(region.id); }} className={`atlas-marker marker-${region.id}${regionId === region.id ? " is-selected" : ""}`} style={{ visibility: "hidden" }} onClick={() => selectRegion(region.id)} aria-label={`Explore ${region.name}`}><span className="atlas-marker-pin" /><span className="atlas-marker-text">{region.shortName}</span></button>)}
+            {REGIONS.map((region, index) => <button type="button" key={region.id} ref={(element) => { if (element) labelsRef.current.set(region.id, element); else labelsRef.current.delete(region.id); }} className={`atlas-marker marker-${region.id}${regionId === region.id ? " is-selected" : ""}`} style={{ visibility: "hidden" }} onClick={() => selectRegion(region.id)} aria-label={`Explore ${region.name}`}><span className="atlas-marker-index">{String(index + 1).padStart(2, "0")}</span><span className="atlas-marker-text">{region.shortName}</span></button>)}
           </div>
           {isFlat ? <div className="atlas-flat-map">
-            <svg viewBox="0 0 470 455" role="img" aria-labelledby="flat-map-title"><title id="flat-map-title">Florida geography and curated regional anchors. Choose a region using the buttons below or the region menu.</title>
-              <path d={mapPath} fill="#172b3d" stroke="#ff8f3f" strokeWidth="0.9" fillRule="evenodd" />
-              {visibleRegions.map((region, index) => { const [x, z] = projectLocation(region.coordinates); return <g key={region.id} transform={`translate(${(x + 6) * 40},${(z + 5) * 40})`}><circle r={regionId === region.id ? 9 : 6} fill={regionId === region.id ? "#ff8f3f" : "#56c2ff"} /><text x="11" y="4" fill="#e8eef9" fontSize="11">{index + 1}</text></g>; })}
+            <svg viewBox="0 0 450 440" role="img" aria-labelledby="flat-map-title"><title id="flat-map-title">Florida divided into eight illustrative regions. Choose a region using the buttons below or the region menu.</title>
+              {REGION_PIECES.map((piece, index) => <g key={piece.id} opacity={regionMatches(REGIONS[index], sector) ? 1 : 0.3}>
+                <path d={regionMapPath(piece)} fill={regionId === piece.id ? "#c98650" : `#${REGIONAL_IDENTITIES[piece.id].ground.toString(16)}`} stroke="#e8dbc0" strokeWidth={regionId === piece.id ? 2.4 : 1} fillRule="evenodd" />
+                <g transform={`translate(${(piece.center[0] + 6) * 40},${(piece.center[1] + 5) * 40})`}><circle r="10" fill="#0a1824" /><text textAnchor="middle" y="4" fill="#f4ddc6" fontSize="11">{index + 1}</text></g>
+              </g>)}
             </svg>
-            <div className="atlas-flat-regions">{visibleRegions.map((region, index) => <button type="button" key={region.id} aria-pressed={regionId === region.id} onClick={() => selectRegion(region.id)}>{index + 1}. {region.shortName}</button>)}</div>
+            <div className="atlas-flat-regions">{visibleRegions.map((region) => <button type="button" key={region.id} aria-pressed={regionId === region.id} onClick={() => selectRegion(region.id)}>{REGIONS.indexOf(region) + 1}. {region.shortName}</button>)}</div>
           </div> : null}
           <div className="atlas-map-tools">
             <button type="button" aria-label="Zoom in" disabled={isFlat || sceneStatus !== "ready"} onClick={() => controllerRef.current?.zoom(1)}>+</button>
@@ -154,7 +152,11 @@ export default function FloridaAtlas() {
             <button type="button" aria-label="Reset camera" disabled={isFlat || sceneStatus !== "ready"} onClick={() => controllerRef.current?.reset()}>↺</button>
           </div>
           <div className="atlas-map-bottom">
-            <p>{sceneStatus === "unavailable" ? "3D is unavailable on this device. All profiles work in 2D." : isFlat ? "Every region is also available in the navigation." : selectedRegion ? "Drag to orbit · Select a landmark for its profile" : "Choose a regional world · Drag to orbit"}</p>
+            <div className="atlas-journey-controls" aria-label="Explore the regional chapters">
+              {selectedRegion ? <button type="button" onClick={() => selectRegion(null)}>↙ Whole Florida</button> : <span>ONE STATE · EIGHT DISTINCT STORIES</span>}
+              <button type="button" onClick={() => tour(1)}>{selectedRegion ? "Next region →" : "Begin the journey →"}</button>
+            </div>
+            <p>{sceneStatus === "unavailable" ? "3D is unavailable on this device. All profiles work in 2D." : isFlat ? "Illustrative regional boundaries · Choose a region to explore" : selectedRegion ? "Drag to orbit · Select a landmark for its profile" : "Select a piece to lift it out · Illustrative regional boundaries"}</p>
             <div>
               <button type="button" aria-pressed={!motion} disabled={reducedMotion || isFlat} onClick={() => setPaused((value) => !value)}>{reducedMotion ? "Reduced motion" : motion ? "Ⅱ Pause motion" : "▷ Resume motion"}</button>
               <button type="button" aria-pressed={isFlat} onClick={toggleMap} disabled={sceneStatus === "unavailable"}>{sceneStatus === "unavailable" ? "2D fallback" : isFlat ? "3D view" : "2D view"}</button>
@@ -185,7 +187,7 @@ export default function FloridaAtlas() {
               <button className="atlas-back" type="button" onClick={() => selectRegion(null)}>← Back to the whole state</button>
             </> : <>
               <div className="atlas-stats"><div><strong>08</strong><span>regional views</span></div><div><strong>{ALL_ASSETS.length}</strong><span>curated anchors</span></div></div>
-              <div className="atlas-start"><span className="atlas-eyebrow">START EXPLORING</span><h3>From orbit to industry.</h3><p>Three closer looks at the infrastructure beneath Florida’s next chapter.</p><button type="button" onClick={() => { setSector("All sectors"); selectRegion(TOUR[0].id); }}>Take the three-region tour <span aria-hidden="true">↗</span></button></div>
+              <div className="atlas-start"><span className="atlas-eyebrow">START EXPLORING</span><h3>One state. Eight stories.</h3><p>Watch Florida unfold, region by region—from launch infrastructure to living estuaries.</p><button type="button" onClick={() => { setSector("All sectors"); selectRegion(TOUR[0].id); }}>Explore the eight regions <span aria-hidden="true">↗</span></button></div>
               <p className="atlas-source-note">Public sources. Human-curated regions. Every anchor has a source you can open.</p>
             </>}
           </div>
@@ -199,12 +201,12 @@ export default function FloridaAtlas() {
         <span className="atlas-filter-count" role="status">{visibleRegions.length} / 8 regions</span>
       </section>
 
-      <section className="atlas-tour" aria-label="Three-region guided tour">
-        <div className="atlas-tour-intro"><span className="atlas-eyebrow">A CLOSER LOOK</span><p>Three regional chapters.</p></div>
-        {TOUR.map((region, index) => <button type="button" className={regionId === region.id ? "is-active" : ""} key={region.id} onClick={() => { setSector("All sectors"); selectRegion(region.id); }} aria-pressed={regionId === region.id}><span className="atlas-tour-number">0{index + 1}</span><span><strong>{region.name}</strong><small>{["Launch + logistics", "Chips + simulation", "Trade + defense + research"][index]}</small></span><span className="atlas-tour-arrow" aria-hidden="true">↗</span></button>)}
+      <section className="atlas-tour" aria-label="Eight-region guided tour">
+        <div className="atlas-tour-intro"><span className="atlas-eyebrow">FLORIDA, UNFOLDED</span><p>Eight regional chapters. Choose your next stop.</p></div>
+        {TOUR.map((region, index) => <button type="button" className={regionId === region.id ? "is-active" : ""} key={region.id} onClick={() => { setSector("All sectors"); selectRegion(region.id); }} aria-pressed={regionId === region.id}><span className="atlas-tour-number">0{index + 1}</span><span><strong>{region.shortName}</strong><small>{REGIONAL_IDENTITIES[region.id].strengths.slice(0, 2).join(" + ")}</small></span><span className="atlas-tour-arrow" aria-hidden="true">↗</span></button>)}
         <div className="atlas-tour-controls"><button type="button" aria-label="Previous tour region" onClick={() => tour(-1)}>←</button><button type="button" aria-label="Next tour region" onClick={() => tour(1)}>→</button></div>
       </section>
-      <footer className="atlas-footer"><span>FLORIDA BRAIN <span className="atlas-footer-divider">/</span> AN ATLAS OF WHAT COMES NEXT</span><details><summary>Sources & map notes</summary><p>Sources checked {SOURCE_CHECKED}. This is a curated starting set, not an exhaustive inventory, a ranking or an official definition of Florida’s regions. Each profile links to its public primary source. Geography uses the project’s existing Florida outline. Each regional scene is a visual metaphor for its strengths, not a model of specific buildings. Scenes are enlarged and separated for readability; leader lines connect them to approximate regional anchors, not measured economic flows. Motion is illustrative, never live telemetry. No private CRM or relationship data is included.</p></details></footer>
+      <footer className="atlas-footer"><span>FLORIDA BRAIN <span className="atlas-footer-divider">/</span> AN ATLAS OF WHAT COMES NEXT</span><details><summary>Sources & map notes</summary><p>Sources checked {SOURCE_CHECKED}. This is a curated starting set, not an exhaustive inventory or ranking. Each profile links to its public primary source. Regional pieces partition the project’s existing Florida coastline using nearest-anchor cells. These are illustrative editorial dividers, not county boundaries or official regional designations. Miniatures sit within their regional pieces and enlarge with them; their placement and scale illustrate regional strengths, not the exact locations or designs of specific buildings. Motion is illustrative, never live telemetry. No private CRM or relationship data is included.</p></details></footer>
     </main>
   );
 }

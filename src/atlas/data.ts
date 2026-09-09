@@ -93,7 +93,7 @@ export const REGIONS: Region[] = [
   },
 ];
 
-export const TOUR = REGIONS.filter((region) => region.detailed);
+export const TOUR = REGIONS;
 export const ALL_ASSETS = REGIONS.flatMap((region) => region.assets);
 export function regionMatches(region: Region, sector: Sector): boolean {
   return sector === "All sectors" || region.assets.some((asset) => asset.sector === sector);
@@ -112,9 +112,4 @@ export function readAtlasQuery(search: string): { regionId: string | null; secto
   const sector = SECTORS.find((value) => value === params.get("sector")) ?? "All sectors";
   const region = REGIONS.find((value) => value.id === params.get("region") && regionMatches(value, sector));
   return { regionId: region?.id ?? null, sector };
-}
-
-export function overviewPose(aspect: number): { position: [number, number, number]; target: [number, number, number] } {
-  const distance = Math.max(1, 0.8 / Math.max(aspect, 0.25));
-  return { position: [8 * distance, 16.6 * distance, 19.5 * distance], target: [1.1, 0.3, -0.1] };
 }

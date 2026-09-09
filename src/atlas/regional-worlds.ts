@@ -1,5 +1,4 @@
 import * as T from "three";
-import { REGIONAL_IDENTITIES } from "./regional-identity";
 import type { Region } from "./data";
 
 type V3 = readonly [number, number, number];
@@ -12,7 +11,6 @@ const GLASS = 0x6cafc6;
 // Original, procedural 3D maquettes. These are regional visual metaphors, not
 // surveyed buildings. No downloaded logos, image textures or private data.
 export function buildRegionalWorld(region: Region): RegionalWorld {
-  const identity = REGIONAL_IDENTITIES[region.id];
   const root = new T.Group();
   root.name = `world-${region.id}`;
   const assets = new Map<string, T.Group>();
@@ -58,21 +56,6 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     root.add(group);
     return group;
   };
-  const terrain = (color = identity.ground) => {
-    const shape = new T.Shape();
-    const points = [[-1.5, -0.8], [-1.15, -1.15], [-0.3, -1.28], [0.95, -1.08], [1.5, -0.48], [1.42, 0.7], [0.7, 1.15], [-0.72, 1.2], [-1.48, 0.55]];
-    points.forEach(([x, z], i) => { if (i) shape.lineTo(x, z); else shape.moveTo(x, z); });
-    shape.closePath();
-    const base = new T.ExtrudeGeometry(shape, { depth: 0.22, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.075, bevelSegments: 1, steps: 1 });
-    base.rotateX(-Math.PI / 2);
-    mesh(root, base, color, [0, -0.14, 0]);
-    const strata = new T.ExtrudeGeometry(shape, { depth: 0.18, bevelEnabled: false, steps: 1 });
-    strata.rotateX(-Math.PI / 2);
-    mesh(root, strata, 0x1b3036, [0, -0.29, 0]);
-    const seam = points.map(([x, z]) => [x, -0.11, -z] as V3);
-    tube(root, seam, 0.018, identity.accent, true);
-  };
-  const water = (size: V3, pos: V3) => box(root, size, pos, identity.water, 0.48);
   const tree = (p: T.Group, x: number, z: number, scale = 1, palm = false) => {
     const g = new T.Group(); g.position.set(x, 0.08, z); g.scale.setScalar(scale); p.add(g);
     if (palm) {
@@ -112,10 +95,8 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     box(g, [0.22, 0.08, 0.14], [0, 0.4, -0.61], INK);
   };
 
-  terrain();
 
   if (region.id === "space-coast") {
-    water([1.1, 0.035, 2.05], [0.89, 0.09, 0]);
     const launch = asset("kennedy", [-0.53, 0.13, -0.13]);
     cyl(launch, 0.53, 0.08, [0, 0.06, 0], INK, 0.53, 32);
     const launchRing = torus(launch, 0.45, 0.026, [0, 0.11, 0], COPPER); launchRing.rotation.x = Math.PI / 2;
@@ -175,7 +156,6 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     for (let i = 0; i < 3; i++) cyl(neo, 0.06, 0.1, [0.16 + i * 0.16, 0.34, -0.86], INK, 0.06, 12);
     animated.push((t) => { silicon.position.y = 0.5 + Math.sin(t * 0.6) * 0.07; silicon.rotation.y = Math.sin(t * 0.18) * 0.12; scan.position.y = 0.23 + (Math.sin(t * 0.6) + 1) * 0.12; });
   } else if (region.id === "tampa-bay") {
-    water([2.7, 0.035, 0.78], [0, 0.085, 0.59]);
     const port = asset("port-tampa", [-0.55, 0.1, 0.1]);
     box(port, [1.5, 0.1, 0.43], [0, 0.02, 0.17], 0x8c8d7b);
     crane(port, -0.37, 0.12, 0.85); crane(port, 0.39, 0.12, 0.85);
@@ -195,7 +175,6 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     box(research, [0.66, 0.04, 0.4], [0, 0.57, 0], 0x6e9674);
     tree(root, -1.17, -0.68, 0.7); tree(root, 0.02, -0.94, 0.58);
   } else if (region.id === "south-florida") {
-    water([2.77, 0.045, 0.7], [0, 0.1, 0.72]);
     const skyline = asset("fau-park", [-0.24, 0.11, -0.35]);
     const heights = [0.58, 1.06, 1.42, 0.84];
     heights.forEach((h, i) => {
@@ -215,7 +194,6 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     const equator = torus(gateway, 0.34, 0.014, [0.12, 1.22, -0.25], IVORY); equator.rotation.x = Math.PI / 2;
     animated.push((t) => { globe.rotation.y = t * 0.14; meridian.rotation.y = Math.PI / 2 + t * 0.14; vessel.position.x = 0.2 + Math.sin(t * 0.22) * 0.25; });
   } else if (region.id === "northeast") {
-    water([0.86, 0.045, 2.03], [-0.04, 0.09, 0]);
     const freight = asset("jaxport");
     const bridge = new T.Group(); bridge.position.set(0, 0.14, -0.2); freight.add(bridge);
     box(bridge, [2.5, 0.085, 0.35], [0, 0.54, 0], 0x7d9da7);
@@ -258,7 +236,6 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     for (const [x, z] of [[-1.13, -0.59], [-0.67, -0.84], [-0.17, -0.8], [1.12, 0.61], [0.62, 0.91], [-0.51, 0.86]]) tree(root, x, z, 0.75);
     box(root, [1.2, 0.025, 0.18], [0, 0.13, 0.58], 0xb3a58b);
   } else if (region.id === "panhandle") {
-    water([2.5, 0.04, 0.48], [0, 0.095, 0.84]);
     const robotics = asset("ihmc");
     cyl(robotics, 0.61, 0.08, [-0.42, 0.15, 0.04], INK, 0.61, 32);
     const robot = new T.Group(); robot.position.set(-0.42, 0.23, 0.04); robotics.add(robot);
@@ -281,7 +258,6 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     for (let i = 0; i < 4; i++) tree(root, -1.08 + i * 0.4, -0.71, 0.7);
     animated.push((t) => { legs[0].rotation.x = Math.sin(t * 1.05) * 0.12; legs[1].rotation.x = -Math.sin(t * 1.05) * 0.12; forearm.rotation.z = Math.sin(t * 0.45) * 0.18; });
   } else if (region.id === "southwest") {
-    water([2.64, 0.055, 1.98], [0, 0.14, 0]);
     const lab = asset("fgcu-water");
     for (const x of [0.3, 0.94]) for (const z of [-0.61, -0.04]) cyl(lab, 0.028, 0.44, [x, 0.34, z], IVORY, 0.028, 8);
     box(lab, [0.95, 0.055, 0.81], [0.62, 0.51, -0.33], 0xc1b99d);
