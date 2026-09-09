@@ -71,19 +71,15 @@ export function CompetitionSourceList({ dataset, sourceIds }: { dataset: Dashboa
 
         const content = (
           <>
-            <b>{source.kind}</b>
+            <b>Public source</b>
             <i>{source.label}</i>
           </>
         );
 
-        return source.url ? (
+        return (
           <a key={source.id} href={source.url} target="_blank" rel="noreferrer">
             {content}
           </a>
-        ) : (
-          <span key={source.id} title={source.macStudioPath}>
-            {content}
-          </span>
         );
       })}
     </div>

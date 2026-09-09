@@ -1,3 +1,4 @@
+import { assertPublicDataset } from "./lib/public-data";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -1996,6 +1997,7 @@ async function main() {
     dataset.generatedAt = existingDataset.generatedAt;
   }
 
+  assertPublicDataset(dataset);
   await mkdir(path.dirname(OUTPUT_FILE), { recursive: true });
   // Minified (no indent): the dashboard fetches this whole payload on load, so the
   // ~240 KB of pretty-print whitespace was pure transfer/parse cost. ~504 KB to ~276 KB.

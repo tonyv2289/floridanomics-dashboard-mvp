@@ -20,7 +20,7 @@ Specialist drill-downs remain available for Lenses, Strategy, Talent, Terminal, 
 - `US Metros`: South Florida, Tampa, Orlando, Jacksonville, Austin, Seattle, Boston, Chicago, and Nashville
 - `International Metros`: Miami vs Dubai, Riyadh, Taipei, and Singapore
 - `Strategy`: peers, clusters, scenarios
-- `FDI / Tools / Capacity`: capital intensity, incentives, institutions, semiconductors
+- `FDI`: publicly sourced investment flows, employment, and greenfield share
 
 It also includes the newer editorial and Florida-specific sections that make the product more than a generic KPI board:
 
@@ -31,7 +31,7 @@ It also includes the newer editorial and Florida-specific sections that make the
 - Florida Brain Notes
 - Strategy cockpit with peer-state BLS benchmarks, cluster strategy, talent pipeline, metro momentum, and scenarios
 - Talent Match with occupational demand, covered public-university bachelor's outcomes, institution leaders, and named project pressure
-- State competition terminal with metro comparisons, FDI Observatory scores, peer-state FDI deltas, policy-toolkit, institutional-capacity, semiconductor, and federal data spine layers
+- State competition terminal with metro comparisons, editorial FDI flow/quality scores, peer-state FDI deltas, and federal data spine layers
 - Florida Model terminal with AI capex index, forecasts, policy memos, and evidence blocks
 - AI Capex Gap public HTML brief
 - chart and metric-card interpretation copy
@@ -123,7 +123,17 @@ It now checks the Florida Brain notes rail as well, including source links for e
 It also checks the Strategy tab contract: peer states, external benchmark examples, cluster strategy, talent pipeline, and scenario layer.
 It checks the Talent Match contract as well: seven required pathways, source references, CIP/SOC identifiers, demand and outcome ranges, institution leaders, and valid project-ledger links.
 It also checks the Competition metro-comparison contract: the domestic and international metro peer sets must be present with arrow-based momentum signals.
-It also checks the Competition FDI Observatory contract: exactly four scores, peer-state deltas, and source references for every FDI score and delta.
+It also checks the Competition FDI Observatory contract: two public-source editorial scores, peer-state deltas, and source references for every FDI score and delta.
+
+### Public/private publication boundary
+
+Only public evidence belongs in this repository, including its source history. The competition source contract contains only `id`, `label`, `url`, and a public explanatory `note`. Every published comparison must resolve to an approved public HTTPS citation. Do not substitute a generic public URL for a private document that actually supports a claim.
+
+Private-only research comparisons are withheld pending independent public-source verification; they must not be restored by a routine data refresh. Backups and provenance remain outside this repository. Historical BEA figures retain their labeled vintage and are not presented as the latest estimates.
+
+Refresh and data validation reject private metadata keys, local filesystem paths, and known private-source markers. Every build scans `public` before compilation and `dist` afterward, blocking those markers, credential/configuration files, symlinks, and source maps. These targeted regression checks supplement human source review and secret scanning; they cannot classify every possible confidential sentence. Keep the guards in place when extending the schema.
+
+Removing a file from the latest release does not remove old Git commits, cached copies, forks, or downloads. Any history rewrite, repository-visibility change, or DNS migration requires a separate reviewed recovery plan.
 
 ## Deployment
 

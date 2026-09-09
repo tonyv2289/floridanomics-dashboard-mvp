@@ -503,12 +503,8 @@ export type TerminalEvidenceBlock = {
 export type CompetitionSource = {
   id: string;
   label: string;
-  kind: "Dropbox source" | "Vault derivative" | "Public source";
-  macStudioPath: string;
-  localPath?: string;
-  url?: string;
+  url: string;
   note: string;
-  status: "vault_logged" | "needs_refresh" | "public_source";
 };
 
 export type CompetitionMetric = {
@@ -605,11 +601,7 @@ export type SemiconductorCommitment = {
 export type StateCompetitionLayer = {
   headline: string;
   summary: string;
-  vaultLog: {
-    macStudioPath: string;
-    localPath: string;
-    caveat: string;
-  };
+  publicationNote: string;
   sources: CompetitionSource[];
   metroComparison: {
     headline: string;
@@ -632,36 +624,7 @@ export type StateCompetitionLayer = {
       scores: FdiObservatoryScore[];
       deltas: FdiDeltaState[];
     };
-    metrics: CompetitionMetric[];
-    states: FdiCompetitorState[];
   };
-  policyToolkit: {
-    headline: string;
-    summary: string;
-    states: PolicyToolkitState[];
-  };
-  institutionalCapacity: {
-    headline: string;
-    summary: string;
-    metrics: CompetitionMetric[];
-    operatingLessons: string[];
-    sourceIds: string[];
-  };
-  migration: {
-    headline: string;
-    summary: string;
-    rankings: MigrationRank[];
-    read: string;
-    sourceIds: string[];
-  };
-  semiconductor: {
-    headline: string;
-    summary: string;
-    commitments: SemiconductorCommitment[];
-    read: string;
-    sourceIds: string[];
-  };
-  nextMoves: string[];
 };
 
 export type FederalFeedStatus = "live" | "fallback" | "needs_key" | "download_required" | "error";

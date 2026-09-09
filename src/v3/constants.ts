@@ -34,7 +34,7 @@ export const COMPETITION_VIEW_OPTIONS: Array<{ id: CompetitionViewId; label: str
   { id: "grants", label: "Government Awards", line: "awards, leverage, delivery" },
   { id: "metro", label: "US Metros", line: "Florida, Austin, Seattle, Boston" },
   { id: "international", label: "International Metros", line: "Miami, Dubai, Riyadh, Taipei, Singapore" },
-  { id: "fdi", label: "FDI / Tools / Capacity", line: "capital, incentives, institutions" },
+  { id: "fdi", label: "FDI", line: "investment flows, employment, sources" },
 ];
 
 export const TOOLTIP_STYLE = {

@@ -8,7 +8,7 @@
  *  - cross-origin requests (analytics, etc.) are ignored
  * Because HTML is network-first, a future deploy can always update or disable this worker.
  */
-const VERSION = "v1";
+const VERSION = "v2-public-data";
 const CACHE = `fn-${VERSION}`;
 
 self.addEventListener("install", () => {
@@ -19,7 +19,7 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
       const keys = await caches.keys();
-      await Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)));
+      await Promise.all(keys.filter((key) => key.startsWith("fn-") && key !== CACHE).map((key) => caches.delete(key)));
       await self.clients.claim();
     })(),
   );

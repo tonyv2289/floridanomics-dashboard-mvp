@@ -11,7 +11,7 @@
     "memo:generate": "tsx scripts/generate-memo.ts",
     "dev:dashboard": "npm run data:refresh && npm run dev",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsx scripts/check-public-artifacts.ts public && tsc -b && vite build && tsx scripts/check-public-artifacts.ts dist",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -1,12 +1,11 @@
+import { assertPublicDataset, isPublicSourceUrl } from "./lib/public-data";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type {
   DashboardDataset,
   BenchmarkExample,
-  CompetitionMetric,
   CompetitionSource,
-  FdiCompetitorState,
   MetroCompetitionRegion,
   FederalSignal,
   FederalSource,
@@ -15,10 +14,7 @@ import type {
   InsightSection,
   InsightSource,
   InsightStat,
-  MigrationRank,
   PeerStateSnapshot,
-  PolicyToolkitState,
-  SemiconductorCommitment,
   StrategyCluster,
   StrategyScenario,
   TalentCluster,
@@ -92,22 +88,9 @@ const REQUIRED_TERMINAL_SOURCE_IDS = [
   "fc100_ambition_accelerated",
 ] as const;
 
-const REQUIRED_COMPETITION_SOURCE_IDS = [
-  "bls_metro_laus_ces",
-  "bls_qcew_api",
-  "sf_fdi_comparison_2025",
-  "bea_new_fdi_2024",
-  "bea_new_fdi_state_tables_2024",
-  "sf_incentive_research_2020",
-  "efi_bi_side_by_side_2022",
-  "fl_program_inventory_2023",
-  "chips_commitment_2024",
-  "migration_rank_2022",
-  "state_appropros_efi",
-  "source_map_2026",
-] as const;
+const REQUIRED_COMPETITION_SOURCE_IDS = ["bls_metro_laus_ces", "bls_qcew_api", "bea_new_fdi_2024", "bea_new_fdi_state_tables_2024"] as const;
 
-const REQUIRED_FDI_OBSERVATORY_SCORE_IDS = ["stock", "flow", "quality", "pipeline"] as const;
+const REQUIRED_FDI_OBSERVATORY_SCORE_IDS = ["flow", "quality"] as const;
 
 const REQUIRED_FDI_DELTA_STATE_IDS = ["TX", "GA", "CA", "NC", "FL", "NY", "TN"] as const;
 
@@ -399,42 +382,8 @@ function validateStrategyScenario(scenario: StrategyScenario, label: string, err
 function validateCompetitionSource(source: CompetitionSource, label: string, errors: string[]) {
   ensure(isNonEmptyString(source.id), `${label} missing id`, errors);
   ensure(isNonEmptyString(source.label), `${label} missing label`, errors);
-  ensure(
-    source.kind === "Dropbox source" || source.kind === "Vault derivative" || source.kind === "Public source",
-    `${label} has invalid kind`,
-    errors,
-  );
-  ensure(isNonEmptyString(source.macStudioPath), `${label} missing Mac Studio path`, errors);
-  ensure(
-    source.kind !== "Dropbox source" || source.macStudioPath.startsWith("/Users/tjvillamil/Library/CloudStorage/Dropbox/"),
-    `${label} Dropbox source must point at the Mac Studio Dropbox tree`,
-    errors,
-  );
-  ensure(
-    source.kind !== "Vault derivative" || source.macStudioPath.startsWith("/Users/tjvillamil/pelayo-vault/"),
-    `${label} vault derivative must point at the Mac Studio Pelayo Vault`,
-    errors,
-  );
   ensure(isNonEmptyString(source.note), `${label} missing note`, errors);
-  ensure(
-    source.status === "vault_logged" || source.status === "needs_refresh" || source.status === "public_source",
-    `${label} has invalid status`,
-    errors,
-  );
-
-  if (source.localPath !== undefined) {
-    ensure(isNonEmptyString(source.localPath), `${label} localPath is empty`, errors);
-  }
-
-  if (source.url !== undefined) {
-    ensure(isHttpUrl(source.url), `${label} has invalid url`, errors);
-  }
-
-  ensure(
-    source.kind !== "Public source" || isHttpUrl(source.url ?? source.macStudioPath),
-    `${label} public source must include a valid URL`,
-    errors,
-  );
+  ensure(isPublicSourceUrl(source.url), `${label} must have a public HTTPS URL`, errors);
 }
 
 function validateCompetitionSourceRefs(
@@ -447,20 +396,6 @@ function validateCompetitionSourceRefs(
   sourceIds.forEach((sourceId) => {
     ensure(sourceIdSet.has(sourceId), `${label} references missing competition source: ${sourceId}`, errors);
   });
-}
-
-function validateCompetitionMetric(
-  metric: CompetitionMetric,
-  sourceIdSet: Set<string>,
-  label: string,
-  errors: string[],
-) {
-  ensure(isNonEmptyString(metric.id), `${label} missing id`, errors);
-  ensure(isNonEmptyString(metric.label), `${label} missing label`, errors);
-  ensure(isNonEmptyString(metric.value), `${label} missing value`, errors);
-  ensure(isNonEmptyString(metric.context), `${label} missing context`, errors);
-  ensure(isNonEmptyString(metric.read), `${label} missing read`, errors);
-  validateCompetitionSourceRefs(metric.sourceIds, sourceIdSet, label, errors);
 }
 
 function isFederalFeedStatus(value: string): boolean {
@@ -512,32 +447,6 @@ function validateFederalSignal(signal: FederalSignal, sourceIdSet: Set<string>, 
   if (signal.caveat !== undefined) {
     ensure(isNonEmptyString(signal.caveat), `${label} has empty caveat`, errors);
   }
-}
-
-function validateFdiCompetitorState(
-  state: FdiCompetitorState,
-  sourceIdSet: Set<string>,
-  label: string,
-  errors: string[],
-) {
-  ensure(isNonEmptyString(state.id), `${label} missing id`, errors);
-  ensure(isNonEmptyString(state.name), `${label} missing name`, errors);
-  ensure(isNonEmptyString(state.tier), `${label} missing tier`, errors);
-  ensure(isFiniteNumber(state.fdiJobs), `${label} missing fdiJobs`, errors);
-  ensure(isFiniteNumber(state.greenfieldProjects), `${label} missing greenfieldProjects`, errors);
-  ensure(
-    state.fdiPpeUsdBillions === null || isFiniteNumber(state.fdiPpeUsdBillions),
-    `${label} has invalid fdiPpeUsdBillions`,
-    errors,
-  );
-  ensure(
-    state.firstYearExpendituresUsdBillions === null || isFiniteNumber(state.firstYearExpendituresUsdBillions),
-    `${label} has invalid firstYearExpendituresUsdBillions`,
-    errors,
-  );
-  ensure(isNonEmptyString(state.capitalIntensityRead), `${label} missing capitalIntensityRead`, errors);
-  ensure(isNonEmptyString(state.posture), `${label} missing posture`, errors);
-  validateCompetitionSourceRefs(state.sourceIds, sourceIdSet, label, errors);
 }
 
 function validateFdiObservatoryScore(
@@ -636,37 +545,6 @@ function validateMetroCompetitionRegion(
     );
   });
   validateCompetitionSourceRefs(region.sourceIds, sourceIdSet, label, errors);
-}
-
-function validatePolicyToolkitState(
-  state: PolicyToolkitState,
-  sourceIdSet: Set<string>,
-  label: string,
-  errors: string[],
-) {
-  ensure(isNonEmptyString(state.id), `${label} missing id`, errors);
-  ensure(isNonEmptyString(state.state), `${label} missing state`, errors);
-  ensure(isNonEmptyString(state.competitorSignal), `${label} missing competitorSignal`, errors);
-  ensure(state.tools.length > 0, `${label} missing tools`, errors);
-  state.tools.forEach((tool, index) => ensure(isNonEmptyString(tool), `${label} tool ${index + 1} is empty`, errors));
-  ensure(isNonEmptyString(state.floridaGap), `${label} missing floridaGap`, errors);
-  validateCompetitionSourceRefs(state.sourceIds, sourceIdSet, label, errors);
-}
-
-function validateMigrationRank(rank: MigrationRank, label: string, errors: string[]) {
-  ensure(isFiniteNumber(rank.rank), `${label} missing rank`, errors);
-  ensure(rank.rank > 0, `${label} rank must be positive`, errors);
-  ensure(isNonEmptyString(rank.state), `${label} missing state`, errors);
-  ensure(isFiniteNumber(rank.netMigration2021), `${label} missing netMigration2021`, errors);
-  ensure(isFiniteNumber(rank.netMigration2022), `${label} missing netMigration2022`, errors);
-}
-
-function validateSemiconductorCommitment(commitment: SemiconductorCommitment, label: string, errors: string[]) {
-  ensure(isNonEmptyString(commitment.id), `${label} missing id`, errors);
-  ensure(isNonEmptyString(commitment.label), `${label} missing label`, errors);
-  ensure(isFiniteNumber(commitment.valueUsd), `${label} missing valueUsd`, errors);
-  ensure(commitment.valueUsd > 0, `${label} valueUsd must be positive`, errors);
-  ensure(isNonEmptyString(commitment.context), `${label} missing context`, errors);
 }
 
 function validateTerminalSource(source: TerminalSource, label: string, errors: string[]) {
@@ -957,6 +835,7 @@ async function main() {
   const errors: string[] = [];
   const raw = await readFile(DATA_FILE, "utf8");
   const data = JSON.parse(raw) as DashboardDataset;
+  assertPublicDataset(data);
 
   ensure(
     !raw.includes("https://tonyv2289.github.io/floridanomics-dashboard-mvp"),
@@ -1168,14 +1047,7 @@ async function main() {
 
   ensure(isNonEmptyString(data.competition.headline), "competition missing headline", errors);
   ensure(isNonEmptyString(data.competition.summary), "competition missing summary", errors);
-  ensure(isNonEmptyString(data.competition.vaultLog.macStudioPath), "competition.vaultLog missing Mac Studio path", errors);
-  ensure(
-    data.competition.vaultLog.macStudioPath.startsWith("/Users/tjvillamil/pelayo-vault/"),
-    "competition.vaultLog must point at the Mac Studio Pelayo Vault",
-    errors,
-  );
-  ensure(isNonEmptyString(data.competition.vaultLog.localPath), "competition.vaultLog missing localPath", errors);
-  ensure(isNonEmptyString(data.competition.vaultLog.caveat), "competition.vaultLog missing caveat", errors);
+  ensure(isNonEmptyString(data.competition.publicationNote), "competition missing publication note", errors);
   ensure(
     data.competition.sources.length >= REQUIRED_COMPETITION_SOURCE_IDS.length,
     "competition missing source stack",
@@ -1251,8 +1123,8 @@ async function main() {
     errors,
   );
   ensure(
-    data.competition.fdiScoreboard.observatory.scores.length === 4,
-    "competition.fdiScoreboard.observatory must include four scores",
+    data.competition.fdiScoreboard.observatory.scores.length === 2,
+    "competition.fdiScoreboard.observatory must include two public-source editorial scores",
     errors,
   );
   validateRequiredIds(
@@ -1278,91 +1150,6 @@ async function main() {
   data.competition.fdiScoreboard.observatory.deltas.forEach((state, index) =>
     validateFdiDeltaState(state, competitionSourceIds, `competition.fdiScoreboard.observatory.deltas ${index + 1}`, errors),
   );
-  ensure(data.competition.fdiScoreboard.metrics.length >= 4, "competition.fdiScoreboard missing metrics", errors);
-  data.competition.fdiScoreboard.metrics.forEach((metric, index) =>
-    validateCompetitionMetric(metric, competitionSourceIds, `competition.fdiScoreboard.metrics ${index + 1}`, errors),
-  );
-  ensure(data.competition.fdiScoreboard.states.length >= 7, "competition.fdiScoreboard missing peer states", errors);
-  data.competition.fdiScoreboard.states.forEach((state, index) =>
-    validateFdiCompetitorState(state, competitionSourceIds, `competition.fdiScoreboard.states ${index + 1}`, errors),
-  );
-
-  ensure(isNonEmptyString(data.competition.policyToolkit.headline), "competition.policyToolkit missing headline", errors);
-  ensure(isNonEmptyString(data.competition.policyToolkit.summary), "competition.policyToolkit missing summary", errors);
-  ensure(data.competition.policyToolkit.states.length >= 5, "competition.policyToolkit missing states", errors);
-  data.competition.policyToolkit.states.forEach((state, index) =>
-    validatePolicyToolkitState(state, competitionSourceIds, `competition.policyToolkit.states ${index + 1}`, errors),
-  );
-
-  ensure(
-    isNonEmptyString(data.competition.institutionalCapacity.headline),
-    "competition.institutionalCapacity missing headline",
-    errors,
-  );
-  ensure(
-    isNonEmptyString(data.competition.institutionalCapacity.summary),
-    "competition.institutionalCapacity missing summary",
-    errors,
-  );
-  ensure(
-    data.competition.institutionalCapacity.metrics.length >= 3,
-    "competition.institutionalCapacity missing metrics",
-    errors,
-  );
-  data.competition.institutionalCapacity.metrics.forEach((metric, index) =>
-    validateCompetitionMetric(metric, competitionSourceIds, `competition.institutionalCapacity.metrics ${index + 1}`, errors),
-  );
-  ensure(
-    data.competition.institutionalCapacity.operatingLessons.length >= 3,
-    "competition.institutionalCapacity missing operating lessons",
-    errors,
-  );
-  data.competition.institutionalCapacity.operatingLessons.forEach((lesson, index) =>
-    ensure(isNonEmptyString(lesson), `competition.institutionalCapacity lesson ${index + 1} is empty`, errors),
-  );
-  validateCompetitionSourceRefs(
-    data.competition.institutionalCapacity.sourceIds,
-    competitionSourceIds,
-    "competition.institutionalCapacity",
-    errors,
-  );
-
-  ensure(isNonEmptyString(data.competition.migration.headline), "competition.migration missing headline", errors);
-  ensure(isNonEmptyString(data.competition.migration.summary), "competition.migration missing summary", errors);
-  ensure(data.competition.migration.rankings.length >= 5, "competition.migration missing rankings", errors);
-  data.competition.migration.rankings.forEach((rank, index) =>
-    validateMigrationRank(rank, `competition.migration.rankings ${index + 1}`, errors),
-  );
-  ensure(isNonEmptyString(data.competition.migration.read), "competition.migration missing read", errors);
-  validateCompetitionSourceRefs(data.competition.migration.sourceIds, competitionSourceIds, "competition.migration", errors);
-
-  ensure(isNonEmptyString(data.competition.semiconductor.headline), "competition.semiconductor missing headline", errors);
-  ensure(isNonEmptyString(data.competition.semiconductor.summary), "competition.semiconductor missing summary", errors);
-  ensure(data.competition.semiconductor.commitments.length >= 10, "competition.semiconductor missing commitments", errors);
-  data.competition.semiconductor.commitments.forEach((commitment, index) =>
-    validateSemiconductorCommitment(commitment, `competition.semiconductor.commitments ${index + 1}`, errors),
-  );
-  const semiconductorTotal = data.competition.semiconductor.commitments.reduce(
-    (sum, commitment) => sum + commitment.valueUsd,
-    0,
-  );
-  ensure(
-    semiconductorTotal === 391_985_340,
-    "competition.semiconductor commitments must sum to the logged $391,985,340 spreadsheet total",
-    errors,
-  );
-  ensure(isNonEmptyString(data.competition.semiconductor.read), "competition.semiconductor missing read", errors);
-  validateCompetitionSourceRefs(
-    data.competition.semiconductor.sourceIds,
-    competitionSourceIds,
-    "competition.semiconductor",
-    errors,
-  );
-  ensure(data.competition.nextMoves.length >= 4, "competition.nextMoves missing build queue", errors);
-  data.competition.nextMoves.forEach((move, index) =>
-    ensure(isNonEmptyString(move), `competition.nextMoves ${index + 1} is empty`, errors),
-  );
-
   ensure(isNonEmptyString(data.federal.headline), "federal missing headline", errors);
   ensure(isNonEmptyString(data.federal.summary), "federal missing summary", errors);
   ensure(isNonEmptyString(data.federal.refreshedAt), "federal missing refreshedAt", errors);
