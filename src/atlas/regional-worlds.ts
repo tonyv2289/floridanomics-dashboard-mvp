@@ -5,10 +5,10 @@ import { voxelColumn, voxelOrb, voxelPath } from "./voxel-geometry";
 
 type V3 = readonly [number, number, number];
 export type RegionalWorld = { root: T.Group; animated: Array<(time: number) => void>; assets: Map<string, T.Group>; dispose: () => void };
-const IVORY = 0xf3f4e9;
-const INK = 0x1e252c;
-const COPPER = 0xffb322;
-const GLASS = 0x43cbd4;
+const IVORY = 0xfff3d6;
+const INK = 0x142534;
+const COPPER = 0xff9a47;
+const GLASS = 0x51bbd0;
 
 // Original, procedural 3D maquettes. These are regional visual metaphors, not
 // surveyed buildings. No downloaded logos, image textures or private data.
@@ -68,8 +68,8 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
       }
     } else {
       cyl(g, 0.03, 0.25, [0, 0.125, 0], 0x7b6651, 0.045, 7);
-      orb(g, 0.19, [0, 0.36, 0], 0x69ad53);
-      orb(g, 0.13, [-0.09, 0.29, 0.06], 0x367d45);
+      orb(g, 0.19, [0, 0.36, 0], 0x60876a);
+      orb(g, 0.13, [-0.09, 0.29, 0.06], 0x385f51);
     }
   };
   const windows = (p: T.Group, w: number, h: number, d: number, x: number, z: number, floors = 4) => {

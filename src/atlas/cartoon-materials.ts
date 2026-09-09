@@ -1,6 +1,6 @@
 import * as T from "three";
 
-export const REGIONAL_SEAM = 0xb4bf9b;
+export const REGIONAL_SEAM = 0x163446;
 
 // Four discrete lighting bands keep the voxel faces readable at state scale.
 // This four-pixel data ramp is a shader lookup, not a raster illustration.

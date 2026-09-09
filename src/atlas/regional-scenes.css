@@ -174,32 +174,32 @@
   .atlas-marker .atlas-marker-text { transition: none; }
 }
 
-/* Voxel game world: dark space, squared controls and bright local landmarks. */
-.atlas { --atlas-border: #343b3b; --atlas-muted: #acb7b0; --atlas-sun: #f4c638; background: #0c1013; color: #f0f1e7; }
-.atlas-map-section { border-radius: 0; margin: 16px 0; background: #090e13; border: 1px solid #303937; }
-.atlas-map-caption { color: #d5ded1; font-size: 12px; letter-spacing: .06em; }
-.atlas-map-caption i { border-radius: 0; background: #f4c638; box-shadow: none; }
+/* Voxel form, Florida Brain color. Brand tokens stay in atlas.css. */
+.atlas-map-section { border-radius: 0; margin: 16px 0; background: #174d65; border: 1px solid var(--atlas-border); }
+.atlas-map-caption { color: #d2e6e6; font-size: 12px; letter-spacing: .06em; }
+.atlas-map-caption i { border-radius: 0; background: var(--atlas-sun); box-shadow: none; }
 .atlas-marker, .atlas-marker-index { border-radius: 0; }
-.atlas-marker-index { border: 1px solid #b8c398; background: #141d1be8; color: #f4eed2; font: 600 11px ui-monospace, SFMono-Regular, Consolas, monospace; }
-.atlas-marker:hover .atlas-marker-index, .atlas-marker:focus-visible .atlas-marker-index { color: #11180f; background: #f4c638; border-color: #f4c638; }
-.atlas-marker .atlas-marker-text { background: #141c1b; color: #f0f1e7; border: 1px solid #87967d; border-radius: 0; font-size: 12px; }
-.atlas-marker:hover .atlas-marker-text { background: #141c1b; color: #f4c638; }
-.atlas-map-bottom { background: linear-gradient(transparent, #090e13f5 32%); border-radius: 0; padding: 17px 8px 9px; }
-.atlas-map-bottom p { color: #becabf; font-size: 12px; }
+.atlas-marker-index { border: 1px solid #587080; background: #07111be8; color: #e8eef9; font: 600 11px ui-monospace, SFMono-Regular, Consolas, monospace; }
+.atlas-marker:hover .atlas-marker-index, .atlas-marker:focus-visible .atlas-marker-index { color: #02060d; background: var(--atlas-sun); border-color: var(--atlas-sun); }
+.atlas-marker .atlas-marker-text { background: #07111b; color: #e8eef9; border: 1px solid #587080; border-radius: 0; font-size: 12px; }
+.atlas-marker:hover .atlas-marker-text { background: #07111b; color: var(--atlas-sun); }
+.atlas-map-bottom { background: linear-gradient(transparent, #10364cf2 32%); border-radius: 0; padding: 17px 8px 9px; }
+.atlas-map-bottom p { color: #c2dada; font-size: 12px; }
 .atlas-map-bottom button { border-radius: 0; }
-.atlas-map-bottom .atlas-journey-controls button { border: 1px solid #7a8778; border-radius: 0; background: #17201d; color: #f0f1e7; font-size: 14px; }
-.atlas-map-bottom .atlas-journey-controls button:last-child { background: #f4c638; border-color: #f4c638; color: #171c11; box-shadow: none; }
-.atlas-map-bottom .atlas-journey-controls button:last-child:hover { background: #ffdf70; }
-.atlas-map-tools { border-radius: 0; border-color: #6c786e; background: #131b19; }
-.atlas-detail { border-radius: 0; background: #121917; overflow: hidden; }
-.atlas-strengths span { border-radius: 0; border-color: #455045; color: #d6dfd0; }
+.atlas-map-bottom .atlas-journey-controls button { border: 1px solid #587080; border-radius: 0; background: #172b37; color: #e8eef9; font-size: 14px; }
+.atlas-map-bottom .atlas-journey-controls button:last-child { background: var(--atlas-sun); border-color: var(--atlas-sun); color: #02060d; box-shadow: none; }
+.atlas-map-bottom .atlas-journey-controls button:last-child:hover { background: #ffac6c; }
+.atlas-map-tools { border-radius: 0; border-color: #587080; background: #07111bdc; }
+.atlas-detail { border-radius: 0; background: #080f1b; overflow: hidden; }
+.atlas-strengths span { border-radius: 0; border-color: #374553; color: #c6d8e1; }
 .atlas-region-nav button, .atlas-sector-filters button { border-radius: 0; }
-.atlas-region-nav button.is-active { background: #232d23; color: #f4c638; }
-.atlas-start button { border-radius: 0; background: #293021; border-color: #a29d56; color: #f4d567; }
-.atlas-tour > button { border-radius: 0; border-color: #364336; background: #121917; }
-.atlas-tour > button:hover, .atlas-tour > button.is-active { background: #273323; border-color: #d2b64f; }
+.atlas-region-nav button.is-active { background: #152032; color: var(--atlas-sun); }
+.atlas-start button { border-radius: 0; background: var(--atlas-sun); color: #02060d; }
+.atlas-start button:hover { background: #ffac6c; }
+.atlas-tour > button { border-radius: 0; border-color: var(--atlas-border); background: #080f1b; }
+.atlas-tour > button:hover, .atlas-tour > button.is-active { background: #0e1b2a; border-color: var(--atlas-sun); }
 .atlas-eyebrow, .atlas-nav-number, .atlas-map-caption, .atlas-tour-number, .atlas-journey-controls > span { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
-.atlas-flat-map svg { filter: drop-shadow(0 4px 0 #050b09); }
+.atlas-flat-map svg { filter: drop-shadow(0 4px 0 #102e3e); }
 @media (max-width: 700px) {
   .atlas-map-section { margin: 16px -8px; border-radius: 0; }
   .atlas-map-caption { font-size: 12px; flex-wrap: wrap; }
