@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: Commit and deploy the policy update after reviewing the preview artifact
+        description: Stage a checked branch for the policy file after reviewing the preview artifact
         required: true
         default: false
         type: boolean
@@ -20,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 24
           cache: npm
@@ -40,7 +40,7 @@ jobs:
         run: npm run build
 
       - name: Upload review artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: floridanomics-policy-preview-${{ github.run_id }}
           retention-days: 14
@@ -56,9 +56,13 @@ jobs:
             echo "No policy-watch changes detected."
             exit 0
           fi
+          git switch -c "codex/policy-refresh-${{ github.run_id }}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/data/policy-watch.json
           git commit -m "chore(policy): refresh Florida watch list"
-          git push
-          gh workflow run deploy-pages.yml --ref main
+          git push --set-upstream origin HEAD
+          # Token-created pushes do not trigger other workflows automatically.
+          gh workflow run ci.yml --ref "codex/policy-refresh-${{ github.run_id }}"
+          gh workflow run security.yml --ref "codex/policy-refresh-${{ github.run_id }}"
+          echo "Checked update staged for review: https://github.com/${{ github.repository }}/compare/main...codex/policy-refresh-${{ github.run_id }}" >> "$GITHUB_STEP_SUMMARY"

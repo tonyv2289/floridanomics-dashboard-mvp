@@ -1,3 +1,5 @@
+import { safeCampaignProps, sanitizeAnalyticsUrl } from "./analytics-privacy";
+
 type AnalyticsValue = string | number | boolean | null | undefined;
 type AnalyticsProps = Record<string, AnalyticsValue>;
 
@@ -16,25 +18,6 @@ declare global {
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim();
 const PLAUSIBLE_DOMAIN = import.meta.env.VITE_PLAUSIBLE_DOMAIN?.trim();
 const PLAUSIBLE_SRC = import.meta.env.VITE_PLAUSIBLE_SRC?.trim() || "https://plausible.io/js/script.manual.js";
-
-const TRACKED_QUERY_KEYS = [
-  "utm_source",
-  "utm_medium",
-  "utm_campaign",
-  "utm_content",
-  "utm_term",
-  "ref",
-  "invite",
-  "cohort",
-  "version",
-  "tab",
-  "competitionView",
-  "talentCluster",
-  "talentFilter",
-  "talentSort",
-  "metric",
-  "innovationMetric",
-] as const;
 
 let initialized = false;
 let lastPageViewKey = "";
@@ -87,14 +70,15 @@ function queryProps(): AnalyticsProps {
     return {};
   }
 
-  const params = new URLSearchParams(window.location.search);
-  return TRACKED_QUERY_KEYS.reduce<AnalyticsProps>((acc, key) => {
-    const value = params.get(key);
-    if (value) {
-      acc[key] = value;
-    }
-    return acc;
-  }, {});
+  return safeCampaignProps(window.location.search);
+}
+
+function pageContext(): Record<string, string> {
+  return {
+    page_location: sanitizeAnalyticsUrl(window.location.href, window.location.origin),
+    page_path: window.location.pathname,
+    page_referrer: document.referrer ? sanitizeAnalyticsUrl(document.referrer, window.location.origin) : "",
+  };
 }
 
 export function analyticsEnabled(): boolean {
@@ -114,7 +98,12 @@ export function initAnalytics(): void {
         window.dataLayer?.push(args);
       };
     window.gtag("js", new Date());
-    window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
+    window.gtag("config", GA_MEASUREMENT_ID, {
+      send_page_view: false,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      ...pageContext(),
+    });
     appendScript("ga4-script", `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`);
   }
 
@@ -139,11 +128,11 @@ export function trackEvent(eventName: string, props: AnalyticsProps = {}): void 
   const mergedProps = cleanProps({ ...queryProps(), ...props });
 
   if (GA_MEASUREMENT_ID && window.gtag) {
-    window.gtag("event", eventName, mergedProps);
+    window.gtag("event", eventName, { ...mergedProps, ...pageContext() });
   }
 
   if (PLAUSIBLE_DOMAIN && window.plausible) {
-    window.plausible(eventName, { props: mergedProps });
+    window.plausible(eventName, { props: mergedProps, u: pageContext().page_location });
   }
 }
 
@@ -154,7 +143,8 @@ export function trackPageView(props: AnalyticsProps = {}): void {
 
   initAnalytics();
   const mergedProps = cleanProps({ ...queryProps(), ...props });
-  const url = window.location.href;
+  const context = pageContext();
+  const url = context.page_location;
   const pageViewKey = `${url}|${JSON.stringify(mergedProps)}`;
   if (pageViewKey === lastPageViewKey) {
     return;
@@ -163,10 +153,9 @@ export function trackPageView(props: AnalyticsProps = {}): void {
 
   if (GA_MEASUREMENT_ID && window.gtag) {
     window.gtag("event", "page_view", {
-      page_location: url,
-      page_path: `${window.location.pathname}${window.location.search}`,
       page_title: document.title,
       ...mergedProps,
+      ...context,
     });
   }
 
@@ -191,7 +180,7 @@ export function trackOutboundLink(href: string, label?: string | null): void {
 
   trackEvent("outbound_link", {
     link_domain: url.hostname,
-    link_url: url.href,
+    link_url: url.origin,
     link_label: label?.trim().slice(0, 80),
   });
 }

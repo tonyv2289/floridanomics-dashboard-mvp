@@ -3,7 +3,15 @@ import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
 export default defineConfig(() => ({
-  plugins: [react()],
+  plugins: [react(), {
+    name: "development-csp",
+    apply: "serve",
+    // React's local hot-reload preamble is inline. Every production build retains
+    // the strict policy; only the development HTML transform removes it.
+    transformIndexHtml(html) {
+      return html.replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/, "");
+    },
+  }],
   base: process.env.VITE_BASE_PATH || "/floridanomics-dashboard-mvp/",
   build: {
     // Do not modulepreload the Recharts chunk on the landing: it is only needed when a

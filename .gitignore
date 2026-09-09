@@ -12,6 +12,16 @@ dist
 dist-ssr
 *.local
 
+# Keep credentials out of the public repository. Production contains only the public URL.
+.env
+.env.*
+!.env.example
+!.env.production
+*.pem
+*.p12
+*.pfx
+*.key
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: Commit and deploy the refreshed dataset after reviewing the preview artifact
+        description: Stage a checked branch for the refreshed dataset after reviewing the preview artifact
         required: true
         default: false
         type: boolean
@@ -27,10 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 24
           cache: npm
@@ -58,7 +58,7 @@ jobs:
         run: bash scripts/snapshot-briefing.sh
 
       - name: Upload review artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: floridanomics-data-preview-${{ github.run_id }}
           retention-days: 14
@@ -80,10 +80,13 @@ jobs:
             echo "No dataset changes detected."
             exit 0
           fi
+          git switch -c "codex/data-refresh-${{ github.run_id }}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/data/florida-economy.json public/data/what-changed.json public/briefings docs/memos
           git commit -m "chore(data): refresh Florida dashboard dataset"
-          git push
-          # GITHUB_TOKEN pushes never trigger on:push workflows.
-          gh workflow run deploy-pages.yml --ref main
+          git push --set-upstream origin HEAD
+          # Token-created pushes do not trigger other workflows automatically.
+          gh workflow run ci.yml --ref "codex/data-refresh-${{ github.run_id }}"
+          gh workflow run security.yml --ref "codex/data-refresh-${{ github.run_id }}"
+          echo "Checked update staged for review: https://github.com/${{ github.repository }}/compare/main...codex/data-refresh-${{ github.run_id }}" >> "$GITHUB_STEP_SUMMARY"

@@ -133,7 +133,9 @@ GitHub Pages publishes from the repo with the fixed base path:
 - AI Capex Gap brief: `https://www.floridanomics.com/briefs/ai-capex-gap/`
 - social preview image: `public/og-image.png`
 
-Push to `main` or run the deploy workflow to publish. The deployment accepts repository variables `VITE_BASE_PATH` and `VITE_PUBLIC_URL`, allowing the same build to serve the current project path or the future `floridanomics.com` root.
+Push a `codex/**` branch and wait for CI (`quality`) and Security Audit (`dependency-audit`) before merging or fast-forwarding `main`. Both checks are required by branch protection, including for administrators. Publishing from `main` also reruns the dependency audits, lint, tests, and data validation before uploading an artifact. Manual deploys from other branches are skipped. The deployment accepts repository variables `VITE_BASE_PATH` and `VITE_PUBLIC_URL`.
+
+Approved data/policy refreshes now stage a `codex/**` branch and explicitly dispatch its checks. Review that branch and merge after checks pass; refresh jobs cannot bypass production protection. Dependabot proposes dependency and pinned-action updates weekly, and automated security fixes are enabled.
 
 ## Analytics
 
@@ -141,23 +143,19 @@ Analytics are wired but off by default. Add one or both GitHub Actions secrets t
 
 - `VITE_GA_MEASUREMENT_ID`: GA4 Measurement ID, for example `G-XXXXXXXXXX`
 - `VITE_PLAUSIBLE_DOMAIN`: Plausible site domain, for example `tonyv2289.github.io`
-- `VITE_PLAUSIBLE_SRC`: optional custom Plausible script URL
+- `VITE_PLAUSIBLE_SRC`: optional script URL; the Content Security Policy permits only the approved `plausible.io` host (review the policy before using a custom host).
 
-The tracker records dashboard pageviews, tab/view changes, outbound source clicks, and campaign parameters from these query keys:
+The tracker records dashboard pageviews, explicit tab/view events, outbound source domains, and non-personal campaign slugs from only these query keys:
 
-`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `ref`, `invite`, `cohort`, `version`, `tab`, `competitionView`, `talentCluster`, `talentFilter`, `talentSort`, `metric`, and `innovationMetric`.
+`utm_source`, `utm_medium`, and `utm_campaign` (letters, numbers, hyphens and underscores; maximum 48 characters). Do not put names, emails or per-recipient identifiers into campaign slugs. Page URLs and referrers have credentials, query strings and fragments removed; outbound click URLs contain only the destination origin.
 
 For email sharing, use campaign links such as:
 
 ```text
-https://www.floridanomics.com/?version=v3&utm_source=outlook&utm_medium=email&utm_campaign=prototype_share&cohort=econ_dev_contacts
+https://www.floridanomics.com/?view=atlas&utm_source=outlook&utm_medium=email&utm_campaign=atlas_launch
 ```
 
-For named follow-up, use a private non-PII token in `invite`, not an email address:
-
-```text
-https://www.floridanomics.com/?version=v3&utm_source=outlook&utm_medium=email&utm_campaign=prototype_share&invite=contact-001
-```
+Invite/ref tokens and free-text query fields are intentionally not collected. Keep named follow-up in private systems. Before enabling GA4, disable automatic enhanced-measurement collection in the property and verify the actual network payloads; this app supplies its own sanitized events. Analytics remains off until explicitly configured.
 
 The briefing signup posts directly to the Floridanomics Substack subscription endpoint. No email address is stored by this repository.
 
