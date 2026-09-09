@@ -76,7 +76,7 @@ export const REGIONS: Region[] = [
     description: "Two research anchors across North Florida: startup incubation in Gainesville and Alachua, and high-field science in Tallahassee. A curated grouping, not an administrative region.",
     assets: [
       { id: "uf-innovate", name: "UF Innovate | Accelerate", kind: "Research", sector: "Research & life sciences", coordinates: [-82.43, 29.72], model: "campus", summary: "UF Innovate | Accelerate supports early-stage ventures through The Hub in Gainesville and Sid Martin Biotech in Alachua, with facilities, resources and business support.", source: "https://ufinnovateaccelerate.com/", sourceName: "University of Florida · UF Innovate | Accelerate" },
-      { id: "maglab", name: "National MagLab", kind: "Research", sector: "Advanced industry", coordinates: [-84.32, 30.42], model: "dish", summary: "The National High Magnetic Field Laboratory conducts high-field research across materials, energy, health and the environment. Its headquarters are in Tallahassee, with facilities at FSU, UF and Los Alamos.", source: "https://www.magnet.fsu.edu/", sourceName: "National High Magnetic Field Laboratory" },
+      { id: "maglab", name: "National MagLab", kind: "Research", sector: "Advanced industry", coordinates: [-84.32, 30.42], model: "dish", summary: "The National High Magnetic Field Laboratory conducts high-field research across materials, energy, health and the environment. Its headquarters are in Tallahassee, with facilities at FSU, UF and Los Alamos.", source: "https://nationalmaglab.org/", sourceName: "National High Magnetic Field Laboratory" },
     ],
   },
   {

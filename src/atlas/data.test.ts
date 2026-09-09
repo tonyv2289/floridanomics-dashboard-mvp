@@ -13,7 +13,7 @@ describe("public atlas content", () => {
   });
 
   it("requires a public primary source for every asset and contains no contacts", () => {
-    const hosts = new Set(["www.nasa.gov", "www.portcanaveral.com", "www.neocityfl.com", "www.ist.ucf.edu", "www.porttb.com", "www.sofwerx.org", "www.usf.edu", "researchparkfau.com", "www.miamidade.gov", "www.jaxport.com", "ufinnovateaccelerate.com", "www.magnet.fsu.edu", "www.ihmc.us", "www.fgcu.edu"]);
+    const hosts = new Set(["www.nasa.gov", "www.portcanaveral.com", "www.neocityfl.com", "www.ist.ucf.edu", "www.porttb.com", "www.sofwerx.org", "www.usf.edu", "researchparkfau.com", "www.miamidade.gov", "www.jaxport.com", "ufinnovateaccelerate.com", "nationalmaglab.org", "www.ihmc.us", "www.fgcu.edu"]);
     for (const asset of ALL_ASSETS) {
       const url = new URL(asset.source);
       expect(url.protocol).toBe("https:");
@@ -29,6 +29,10 @@ describe("public atlas content", () => {
     for (const sector of SECTORS) expect(REGIONS.some((r) => regionMatches(r, sector))).toBe(true);
     expect(REGIONS.filter((r) => regionMatches(r, "Trade & logistics")).map((r) => r.id)).toEqual(["space-coast", "tampa-bay", "south-florida", "northeast"]);
     expect(REGIONS.filter((r) => regionMatches(r, "Advanced industry")).map((r) => r.id)).toEqual(["orlando-osceola", "north-central"]);
+  });
+
+  it("links MagLab to its current official HTTPS host", () => {
+    expect(ALL_ASSETS.find((asset) => asset.id === "maglab")?.source).toBe("https://nationalmaglab.org/");
   });
 });
 

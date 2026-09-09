@@ -111,7 +111,7 @@ export default function FloridaAtlas() {
       <div className="atlas-workspace">
         <aside className="atlas-sidebar" aria-label="Atlas navigation">
           <p className="atlas-eyebrow">ONE STATE. MANY FRONTIERS.</p>
-          <h1>Meet the Florida<br />being <em>built.</em></h1>
+          <h1>Meet the Florida<br />{" "}being <em>built.</em></h1>
           <p className="atlas-intro">Start with the whole state. Lift out a region. Discover what makes it move.</p>
           <div className="atlas-region-label"><span>EXPLORE BY REGION</span><span>08</span></div>
           <nav className="atlas-region-nav" aria-label="Regions">
@@ -168,7 +168,7 @@ export default function FloridaAtlas() {
           <div className="atlas-detail-scroll">
             <p className="atlas-eyebrow">{identity ? identity.title : "THE BIG PICTURE"}</p>
             <div aria-live="polite" aria-atomic="true" className="atlas-detail-heading">
-              <h2>{selectedRegion ? selectedRegion.headline : <>A whole state<br />of possibility.</>}</h2>
+              <h2>{selectedRegion ? selectedRegion.headline : <>A whole state<br />{" "}of possibility.</>}</h2>
               <p>{selectedRegion ? selectedRegion.description : "Follow the coast. Look beyond the skyline. Discover Florida’s launchpads, research campuses, working ports and emerging industrial clusters."}</p>
             </div>
             {identity ? <div className="atlas-strengths" aria-label="Regional strengths">{identity.strengths.map((strength) => <span key={strength}>{strength}</span>)}</div> : null}

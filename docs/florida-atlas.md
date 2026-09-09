@@ -21,11 +21,11 @@ Motion respects the operating system's reduced-motion preference and can be paus
 
 Use the existing `npm run dev`, `npm run build`, `npm run lint` and `npm test` workflow. For the owner-only Sites preview, build with `VITE_BASE_PATH=/ VITE_PUBLIC_URL=https://florida-brain-atlas.jose2289.chatgpt.site/ npm run build`. The default build base for existing GitHub Pages is unchanged.
 
-Unit tests cover public-source requirements, IDs, sector overlaps, eight-region guided-tour wrapping, deep-link validation, map orientation, generated geometry, asset-to-profile mappings, reversible lift/expand transforms, area conservation, pairwise non-overlap, coastline coverage, and camera framing at five viewport ratios (0.42–2.0). Both the regional breakout and strengths close-up are tested, including moving miniature bounds. Rendering uses full 2× Retina density, with a 2.5× cap, and physical-pixel-snapped labels. Build and lint cover all TypeScript. No screenshot or interactive browser QA was performed in this implementation pass; the live preview is available for design review.
+Unit tests cover public-source requirements, IDs, sector overlaps, eight-region guided-tour wrapping, deep-link validation, map orientation, generated geometry, asset-to-profile mappings, reversible lift/expand transforms, area conservation, pairwise non-overlap, coastline coverage, and camera framing at five viewport ratios (0.42–2.0). Both the regional breakout and strengths close-up are tested, including moving miniature bounds. Rendering uses full 2× Retina density, with a 2.5× cap, and physical-pixel-snapped labels. Build and lint cover all TypeScript. The September 9 pre-publication walkthrough verified the atlas in desktop Chromium and iPhone 15 emulation; details are below.
 
 The deployed browser dependencies passed the production-only dependency audit. Six inherited development-tool advisory entries were reported in the full audit; the atlas does not depend on those tools at runtime. No broad dependency upgrade was included.
 
-The preview uses a separate owner-only Sites audience. This change does not push to the existing public GitHub Pages branch or publish private Vault content.
+The development preview uses a separate owner-only Sites audience. TJ authorized publication to the existing Floridanomics website on September 9. The public destination is https://www.floridanomics.com/?view=atlas, added through the existing GitHub Pages deployment without replacing the briefing or dashboard. No private Vault content is included.
 
 ## Regional art direction
 
@@ -50,4 +50,14 @@ Original voxel geometry now supplies stepped trees, palms, rocket towers, vapor,
 
 Brand correction: the reference's yellow/olive palette was not requested. Florida Brain retains its established orange (#ff8f3f), midnight navy (#02060d) and cool white (#e8eef9), with the prior blue-water and regional miniature colors restored. The scene stylesheet consumes the original brand tokens without overriding them. Reference-inspired geometry and motion must not replace the site's identity. Regression tests guard the brand tokens and reject the introduced yellow UI accents.
 
-`voxel-geometry.ts` emits one exterior-face mesh per voxel object, culling shared internal faces instead of creating a mesh for every cube. Full Retina density and antialiasing are retained: the geometry is block-built, not the rendered image. No downloaded illustration, image asset, external runtime request or new package was introduced. Unit tests cover face winding, normal direction, internal-face culling, deduplication, orb/tower bounds, finite path geometry, material-ramp disposal, profile ownership, expressive motion and a per-region triangle budget, alongside the existing geographic, camera and brand tests. No screenshot or interactive browser QA was performed in this pass.
+`voxel-geometry.ts` emits one exterior-face mesh per voxel object, culling shared internal faces instead of creating a mesh for every cube. Full Retina density and antialiasing are retained: the geometry is block-built, not the rendered image. No downloaded illustration, image asset, external runtime request or new package was introduced. Unit tests cover face winding, normal direction, internal-face culling, deduplication, orb/tower bounds, finite path geometry, material-ramp disposal, profile ownership, expressive motion and a per-region triangle budget, alongside the existing geographic, camera and brand tests.
+
+## Pre-publication walkthrough, September 9, 2026
+
+- Desktop Chromium at 1440 × 1000 and iPhone 15 emulation at 393 × 852, DPR 3. WebGL rendered, with no horizontal overflow or page errors. This is browser emulation, not a physical iPhone/Safari certification.
+- Visually inspected the assembled Florida, Space Coast close-up and South Florida mobile close-up. The restored Florida Brain colors and voxel geometry remain intact.
+- Visited all eight regional chapters and verified wraparound to Space Coast; checked profile selection, camera zoom/reset, whole-state return, sector filtering, pause/resume, 2D/3D switching, and reduced-motion mode.
+- Checked mobile region selection and navigation from atlas to briefing, dashboard, and back. Existing routes and datasets are unchanged.
+- All 15 source endpoints respond successfully after replacing the old MagLab host, which had a TLS certificate-name mismatch, with https://nationalmaglab.org/.
+- Fixed missing word spacing where headline line breaks are hidden on mobile. Confirmed both headings read correctly after the fix.
+- The site remains a curated eight-region, 15-anchor beta, not an exhaustive cluster census.
