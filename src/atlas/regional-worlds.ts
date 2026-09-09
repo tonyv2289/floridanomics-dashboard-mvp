@@ -1,12 +1,14 @@
 import * as T from "three";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import type { Region } from "./data";
+import { addCartoonOutline, createCartoonPalette } from "./cartoon-materials";
 
 type V3 = readonly [number, number, number];
 export type RegionalWorld = { root: T.Group; animated: Array<(time: number) => void>; assets: Map<string, T.Group>; dispose: () => void };
-const IVORY = 0xf1ead9;
+const IVORY = 0xfff3d6;
 const INK = 0x142534;
-const COPPER = 0xf2a264;
-const GLASS = 0x6cafc6;
+const COPPER = 0xff9a47;
+const GLASS = 0x51bbd0;
 
 // Original, procedural 3D maquettes. These are regional visual metaphors, not
 // surveyed buildings. No downloaded logos, image textures or private data.
@@ -15,26 +17,27 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
   root.name = `world-${region.id}`;
   const assets = new Map<string, T.Group>();
   const animated: Array<(time: number) => void> = [];
-  const materials = new Map<string, T.MeshStandardMaterial>();
+  const palette = createCartoonPalette();
   const geometries = new Set<T.BufferGeometry>();
   const extras = new Set<T.Material>();
-  const material = (color: number, metal = 0.12) => {
-    const key = `${color}:${metal}`;
-    if (!materials.has(key)) materials.set(key, new T.MeshStandardMaterial({ color, metalness: metal, roughness: metal > 0.4 ? 0.29 : 0.62, flatShading: true }));
-    return materials.get(key)!;
-  };
+  const material = (color: number, _metal = 0.12) => { void _metal; return palette.material(color); };
   const mesh = (parent: T.Group, geometry: T.BufferGeometry, color: number, pos: V3 = [0, 0, 0], metal = 0.12) => {
     geometries.add(geometry);
     const object = new T.Mesh(geometry, material(color, metal));
     object.position.set(...pos);
     object.castShadow = true;
     object.receiveShadow = true;
+    addCartoonOutline(object, palette.ink);
     parent.add(object);
     return object;
   };
-  const box = (p: T.Group, size: V3, pos: V3, color = IVORY, metal = 0.12) => mesh(p, new T.BoxGeometry(...size), color, pos, metal);
+  const box = (p: T.Group, size: V3, pos: V3, color = IVORY, metal = 0.12) => {
+    const shortest = Math.min(...size);
+    const geometry = shortest >= 0.05 ? new RoundedBoxGeometry(...size, 2, Math.min(shortest * 0.28, 0.065)) : new T.BoxGeometry(...size);
+    return mesh(p, geometry, color, pos, metal);
+  };
   const cyl = (p: T.Group, r: number, h: number, pos: V3, color = IVORY, r2 = r, sides = 24) => mesh(p, new T.CylinderGeometry(r, r2, h, sides), color, pos);
-  const orb = (p: T.Group, r: number, pos: V3, color = IVORY) => mesh(p, new T.IcosahedronGeometry(r, 1), color, pos);
+  const orb = (p: T.Group, r: number, pos: V3, color = IVORY) => mesh(p, new T.SphereGeometry(r, 14, 10), color, pos);
   const tube = (p: T.Group, points: V3[], radius: number, color: number, closed = false) => {
     const curve = new T.CatmullRomCurve3(points.map((point) => new T.Vector3(...point)), closed);
     return mesh(p, new T.TubeGeometry(curve, Math.max(points.length * 4, 24), radius, 6, closed), color);
@@ -101,16 +104,22 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     cyl(launch, 0.53, 0.08, [0, 0.06, 0], INK, 0.53, 32);
     const launchRing = torus(launch, 0.45, 0.026, [0, 0.11, 0], COPPER); launchRing.rotation.x = Math.PI / 2;
     const rocket = new T.Group(); launch.add(rocket);
+    rocket.scale.set(1.14, 1, 1.14);
     cyl(rocket, 0.14, 1.05, [0, 0.79, 0], IVORY, 0.14, 32);
     cyl(rocket, 0, 0.29, [0, 1.46, 0], IVORY, 0.14, 32);
     cyl(rocket, 0.145, 0.13, [0, 0.76, 0], INK, 0.145, 32);
     cyl(rocket, 0.145, 0.07, [0, 1.16, 0], COPPER, 0.145, 32);
+    orb(rocket, 0.068, [0, 1.025, 0.126], GLASS);
+    torus(rocket, 0.075, 0.017, [0, 1.025, 0.161], INK);
     for (const side of [-1, 1]) {
       cyl(rocket, 0.067, 0.76, [side * 0.19, 0.61, 0], IVORY, 0.067, 16);
       cyl(rocket, 0, 0.15, [side * 0.19, 1.06, 0], IVORY, 0.067, 16);
       const fin = box(rocket, [0.2, 0.24, 0.055], [side * 0.17, 0.3, 0], INK); fin.rotation.z = -side * 0.4;
     }
     const flame = cyl(rocket, 0.12, 0.45, [0, 0.035, 0], COPPER, 0, 12);
+    const vapor = new T.Group(); vapor.name = "launch-vapor"; launch.add(vapor);
+    for (const [x, z, radius] of [[-0.3, 0.17, 0.14], [0.28, 0.12, 0.17], [0.08, 0.32, 0.13]]) orb(vapor, radius, [x, 0.14, z], IVORY);
+    animated.push((t) => { vapor.scale.set(1 + Math.sin(t * 0.7) * 0.06, 0.65 + Math.sin(t * 0.7) * 0.035, 1 + Math.sin(t * 0.7) * 0.06); });
     const gantry = new T.Group(); gantry.position.set(-0.43, 0, -0.12); launch.add(gantry);
     for (const x of [-0.1, 0.1]) for (const z of [-0.1, 0.1]) box(gantry, [0.04, 1.55, 0.04], [x, 0.8, z], 0x95a4a6);
     for (let i = 0; i < 6; i++) {
@@ -247,7 +256,11 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     }
     box(robot, [0.29, 0.29, 0.19], [0, 0.78, 0], IVORY);
     box(robot, [0.21, 0.14, 0.03], [0, 0.8, 0.105], GLASS);
-    orb(robot, 0.115, [0, 1.04, 0], IVORY); box(robot, [0.14, 0.05, 0.04], [0, 1.06, 0.092], INK);
+    orb(robot, 0.16, [0, 1.065, 0], IVORY); box(robot, [0.22, 0.085, 0.045], [0, 1.075, 0.129], INK);
+    const eyes = new T.Group(); eyes.name = "robot-eyes"; eyes.position.set(0, 1.084, 0.157); robot.add(eyes);
+    for (const side of [-1, 1]) orb(eyes, 0.023, [side * 0.056, 0, 0], 0x71f1d7);
+    cyl(robot, 0.011, 0.12, [0, 1.25, 0], INK); orb(robot, 0.035, [0, 1.32, 0], COPPER);
+    animated.push((t) => { const phase = t % 5.2; eyes.scale.y = phase > 4.8 && phase < 4.96 ? 0.16 : 1; });
     for (const side of [-1, 1]) { orb(robot, 0.07, [side * 0.23, 0.87, 0], COPPER); beam(robot, [side * 0.23, 0.85, 0], [side * 0.31, 0.58, 0.08], 0.047, IVORY); orb(robot, 0.059, [side * 0.31, 0.56, 0.08], INK); }
     const arm = new T.Group(); arm.position.set(0.83, 0.13, 0.08); robotics.add(arm);
     cyl(arm, 0.23, 0.14, [0, 0.06, 0], INK, 0.27, 16);
@@ -294,5 +307,5 @@ export function buildRegionalWorld(region: Region): RegionalWorld {
     object.userData = { ...object.userData, regionId: region.id, assetId: owner?.userData.assetId ?? null };
   });
   animated.forEach((update) => update(0));
-  return { root, animated, assets, dispose: () => { geometries.forEach((g) => g.dispose()); materials.forEach((m) => m.dispose()); extras.forEach((m) => m.dispose()); } };
+  return { root, animated, assets, dispose: () => { geometries.forEach((g) => g.dispose()); palette.dispose(); extras.forEach((m) => m.dispose()); } };
 }

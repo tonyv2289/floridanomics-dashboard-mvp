@@ -4,6 +4,7 @@ import { REGIONAL_IDENTITIES } from "./regional-identity";
 import { LAND_HEIGHT, REGION_PIECES, pieceTransform } from "./regional-geography";
 import type { RegionPiece } from "./regional-geography";
 import { buildRegionalWorld } from "./regional-worlds";
+import { CARTOON_INK } from "./cartoon-materials";
 
 export function buildRegionPiece(piece: RegionPiece) {
   const region = REGIONS.find((r) => r.id === piece.id)!;
@@ -11,10 +12,10 @@ export function buildRegionPiece(piece: RegionPiece) {
   const root = new T.Group();
   root.name = `land-${piece.id}`;
   root.position.set(piece.center[0], 0, piece.center[1]);
-  const color = new T.Color(identity.ground).lerp(new T.Color(identity.accent), 0.22);
-  const landMaterial = new T.MeshStandardMaterial({ color, roughness: 0.85, metalness: 0.08 });
-  const sideMaterial = new T.MeshStandardMaterial({ color: new T.Color(identity.ground).multiplyScalar(0.55), roughness: 0.82 });
-  const borderMaterial = new T.LineBasicMaterial({ color: 0xe8dbc0, transparent: true, opacity: 0.82 });
+  const color = new T.Color(identity.ground);
+  const landMaterial = new T.MeshToonMaterial({ color });
+  const sideMaterial = new T.MeshToonMaterial({ color: new T.Color(identity.ground).multiplyScalar(0.58) });
+  const borderMaterial = new T.MeshBasicMaterial({ color: CARTOON_INK, transparent: true, opacity: 1 });
   for (const polygon of piece.polygons) {
     const shape = new T.Shape();
     polygon.forEach((ring, ringIndex) => {
@@ -26,7 +27,11 @@ export function buildRegionPiece(piece: RegionPiece) {
       path.closePath();
       if (ringIndex) shape.holes.push(path);
       const points = ring.map(([x, z]) => new T.Vector3(x - piece.center[0], LAND_HEIGHT + 0.012, z - piece.center[1]));
-      root.add(new T.Line(new T.BufferGeometry().setFromPoints(points), borderMaterial));
+      const coast = new T.CurvePath<T.Vector3>();
+      for (let i = 1; i < points.length; i++) if (points[i].distanceToSquared(points[i - 1]) > 1e-10) coast.add(new T.LineCurve3(points[i - 1], points[i]));
+      const border = new T.Mesh(new T.TubeGeometry(coast, Math.max(12, points.length * 3), 0.014, 5, true), borderMaterial);
+      border.userData = { regionId: piece.id, assetId: null, decoration: true };
+      root.add(border);
     });
     const geometry = new T.ExtrudeGeometry(shape, { depth: LAND_HEIGHT, bevelEnabled: false, steps: 1, curveSegments: 1 });
     geometry.rotateX(-Math.PI / 2);

@@ -20,14 +20,14 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   renderer.setClearColor(0x02060d, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.25;
+  renderer.toneMappingExposure = 1.05;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.domElement.setAttribute("aria-hidden", "true");
   host.prepend(renderer.domElement);
   const scene = new THREE.Scene();
-  scene.add(new THREE.HemisphereLight(0xd6eafa, 0x26302c, 2.6));
-  const key = new THREE.DirectionalLight(0xfff2da, 3.4);
+  scene.add(new THREE.HemisphereLight(0xe1f9ff, 0x396969, 1.6));
+  const key = new THREE.DirectionalLight(0xffedbb, 2.3);
   key.position.set(-6, 16, 9);
   key.castShadow = true;
   key.shadow.mapSize.set(2048, 2048);
@@ -36,7 +36,7 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   key.shadow.camera.near = 1; key.shadow.camera.far = 45;
   key.shadow.normalBias = 0.025;
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0x92cbe5, 1.5);
+  const rim = new THREE.DirectionalLight(0xa5e7ff, 0.65);
   rim.position.set(9, 6, -7);
   scene.add(rim);
 
@@ -51,10 +51,7 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   controls.rotateSpeed = 0.45;
   controls.zoomSpeed = 0.6;
 
-  const grid = new THREE.GridHelper(50, 50, 0x192b38, 0x0c1925);
-  grid.position.y = -0.32;
-  scene.add(grid);
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.MeshStandardMaterial({ color: 0x04101a, roughness: 0.95 }));
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.MeshToonMaterial({ color: 0x14516b }));
   floor.rotation.x = -Math.PI / 2;
   floor.position.y = -0.34;
   floor.receiveShadow = true;
@@ -64,7 +61,7 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   const hitTargets: THREE.Object3D[] = [];
   for (const map of pieces) {
     scene.add(map.root);
-    map.root.traverse((object) => { if (object instanceof THREE.Mesh) hitTargets.push(object); });
+    map.root.traverse((object) => { if (object instanceof THREE.Mesh && !object.userData.decoration) hitTargets.push(object); });
   }
 
   let state: SceneState = { regionId: null, assetId: null, sector: "All sectors", motion: true };

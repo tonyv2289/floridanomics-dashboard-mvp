@@ -173,3 +173,34 @@
 @media (prefers-reduced-motion: reduce) {
   .atlas-marker .atlas-marker-text { transition: none; }
 }
+
+/* Painted miniature world, with the working controls kept calm and legible. */
+.atlas { --atlas-border: #2e4b59; --atlas-muted: #aac2c9; --atlas-sun: #ffad56; background: #06131d; }
+.atlas-map-section { border-radius: 18px; margin: 16px 0; background: #174d65; }
+.atlas-map-caption { color: #d2e6e6; font-size: 12px; letter-spacing: .04em; }
+.atlas-map-caption i { background: #ffd076; box-shadow: 0 0 0 4px #ffe5a222; }
+.atlas-marker-index { border: 2px solid #193a48; background: #fff1c9; color: #143747; font-size: 12px; font-weight: 700; }
+.atlas-marker:hover .atlas-marker-index, .atlas-marker:focus-visible .atlas-marker-index { color: #143747; background: #ffd085; }
+.atlas-marker .atlas-marker-text { background: #fff1d7; color: #173d4b; border: 2px solid #173d4b; border-radius: 9px; font-size: 12px; }
+.atlas-marker:hover .atlas-marker-text { background: #fff1d7; color: #173d4b; }
+.atlas-map-bottom { background: linear-gradient(transparent, #10364cf2 32%); border-radius: 12px; padding: 17px 8px 9px; }
+.atlas-map-bottom p { color: #c2dada; font-size: 12px; }
+.atlas-map-bottom button { border-radius: 8px; }
+.atlas-map-bottom .atlas-journey-controls button { border: 2px solid #173946; border-radius: 10px; background: #e4f1e8; color: #153a49; font-size: 14px; }
+.atlas-map-bottom .atlas-journey-controls button:last-child { background: #ffc46f; border-color: #4c432d; color: #293629; box-shadow: 0 3px 0 #203d48; }
+.atlas-map-tools { border-radius: 10px; border-color: #7c9eaa; }
+.atlas-detail { border-radius: 13px; background: #0b1b28; overflow: hidden; }
+.atlas-strengths span { border-radius: 8px; border-color: #405967; color: #d3e4df; }
+.atlas-region-nav button, .atlas-sector-filters button { border-radius: 8px; }
+.atlas-region-nav button.is-active { background: #1d3b48; }
+.atlas-start button { border-radius: 10px; }
+.atlas-tour > button { border-radius: 11px; border-color: #385765; }
+.atlas-tour > button:hover, .atlas-tour > button.is-active { background: #153441; border-color: #dba867; }
+.atlas-flat-map svg { filter: drop-shadow(0 4px 0 #102e3e); }
+@media (max-width: 700px) {
+  .atlas-map-section { margin: 16px -8px; border-radius: 14px; }
+  .atlas-map-caption { font-size: 12px; flex-wrap: wrap; }
+  .atlas-map-caption > span:last-child { display: none; }
+  .atlas-map-bottom .atlas-journey-controls { gap: 8px; }
+  .atlas-map-bottom .atlas-journey-controls button { padding: 8px 10px; font-size: 13px; }
+}

@@ -29,7 +29,7 @@ The preview uses a separate owner-only Sites audience. This change does not push
 
 ## Regional art direction
 
-`regional-identity.ts` is the editorial art-direction registry; `regional-worlds.ts` builds original Three.js geometry. The design is architectural maquettes, with different silhouettes, materials, environmental context and motion for every region:
+`regional-identity.ts` is the editorial art-direction registry; `regional-worlds.ts` builds original Three.js geometry. The design is a playful painted miniature atlas, with different silhouettes, colors, environmental context and motion for every region:
 
 - Space Coast: launch tower, multi-stage rocket, orbital satellite and recovery harbor.
 - Orlando–Osceola: patterned silicon wafer, suspended chip, cleanroom and wireframe simulation dome.
@@ -41,3 +41,9 @@ The preview uses a separate owner-only Sites audience. This change does not push
 - Southwest: elevated water lab, solar roof, mangrove roots, skiff, sensors and tidal ripples.
 
 The eight scenes intentionally avoid using one generic asset icon for unrelated institutions. Shared components are limited to genuine repeated infrastructure such as cargo vessels, trees and cranes.
+
+### Cartoon treatment, September 9
+
+Four-band cel shading, rounded buildings and smooth tree canopies replace the metallic architectural finish. Selective inverted-hull ink outlines follow the animated objects; small wiring and windows are not outlined. Bright geographic pieces keep their exact coastline, with dark dimensional boundary strokes. The backdrop is blue water without an engineering grid. The rocket has a porthole and stylized vapor, while the Northwest robot has an oversized head, blinking visor and antenna. These are original illustrative additions, not logos or representations of actual facility designs. No Yamaguchi/other artist attribution was established for the reference website, and none is asserted here.
+
+The treatment uses the existing Three.js dependency, including its RoundedBoxGeometry addon. No downloaded illustration, image asset, external runtime request or new package was introduced. Material-ramp disposal, geometry reuse, profile ownership on outlines, expressive motion and a per-region triangle budget are unit-tested alongside the existing geographic and camera tests. No screenshot or interactive browser QA was performed.
