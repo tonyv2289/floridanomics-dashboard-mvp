@@ -11,6 +11,13 @@ function fixture(): DashboardDataset {
 }
 
 describe("reviewed data consistency", () => {
+  it("does not advertise dated screenshots as the current briefing or link preview", () => {
+    const html = readFileSync(new URL("../../index.html", import.meta.url), "utf8");
+    const dashboard = readFileSync(new URL("../../src/v3/DashboardV3.tsx", import.meta.url), "utf8");
+    expect(html).not.toContain("og-image.png");
+    expect(dashboard).not.toContain("briefings/latest.png");
+  });
+
   it("synchronizes terminal labor cards with the latest observations", () => {
     const d = fixture();
     d.metrics.nonfarmPayrolls.series = [{ date: "2026-06-01", value: 10032.8 }, { date: "2026-07-01", value: 10037.3 }];

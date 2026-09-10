@@ -188,7 +188,7 @@ function DashboardV3() {
                 FLORIDA<span>NOMICS</span>
               </p>
             </div>
-            <h1>Florida economic intelligence, built as an operating brief.</h1>
+            <h1>Florida's economy, by the numbers and across its regions.</h1>
           </div>
           <div className="v3-freshness">
             {isReturningWithUpdate ? (
@@ -201,13 +201,6 @@ function DashboardV3() {
               Open the briefing
             </a>
             <a className="v3-briefing-link" href="?view=atlas">Explore Florida atlas</a>
-            <a
-              className="v3-briefing-link"
-              href={`${import.meta.env.BASE_URL}briefings/latest.png`}
-              download
-            >
-              Download brief (PNG)
-            </a>
             <label className="v3-region-select">
               <span className="v3-visually-hidden">Focus region</span>
               <select value={region} onChange={(event) => setRegion(event.target.value as typeof region)}>
