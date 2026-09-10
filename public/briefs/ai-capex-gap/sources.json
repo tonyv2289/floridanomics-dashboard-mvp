@@ -1,42 +1,26 @@
 [
   {
-    "label": "BLS State Employment and Unemployment, April 2026",
-    "url": "https://www.bls.gov/news.release/archives/laus_05222026.htm"
+    "label": "BLS State Employment and Unemployment, July 2026",
+    "url": "https://www.bls.gov/news.release/laus.nr0.htm"
   },
   {
-    "label": "Florida Chamber Foundation income migration analysis",
-    "url": "https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/"
+    "label": "EIA Electric Power Monthly, June 2026",
+    "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a"
   },
   {
-    "label": "Floridanomics V3 Terminal",
-    "url": "https://www.floridanomics.com/?version=v3&tab=terminal"
+    "label": "CBRE Dallas-Fort Worth Data Center Market, H1 2026",
+    "url": "https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026/dallas-ft-worth-data-center-market"
   },
   {
-    "label": "CBRE North America Data Center Trends H2 2025",
-    "url": "https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025"
+    "label": "Florida Senate CS/CS/SB 484, Chapter 2026-65",
+    "url": "https://www.flsenate.gov/Session/Bill/2026/484"
   },
   {
-    "label": "JLL 2026 Global Data Center Outlook",
-    "url": "https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom"
+    "label": "Florida Scorecard, checked September 10, 2026",
+    "url": "https://thefloridascorecard.org/pillar&c=0&pillar=2"
   },
   {
-    "label": "Florida Governor SB 484 press release",
-    "url": "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers"
-  },
-  {
-    "label": "Florida Senate CS/CS/SB 484 summary",
-    "url": "https://www.flsenate.gov/Committees/BillSummaries/2026/html/484"
-  },
-  {
-    "label": "Space Florida aerospace readout",
-    "url": "https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry"
-  },
-  {
-    "label": "PortMiami cargo statistics",
-    "url": "https://www.miamidade.gov/portmiami/cargo.page"
-  },
-  {
-    "label": "Port Everglades cargo statistics",
-    "url": "https://www.porteverglades.net/about-us/statistics/cargo-statistics/"
+    "label": "Floridanomics current data and source notes",
+    "url": "https://www.floridanomics.com/?view=dashboard&tab=evidence"
   }
 ]

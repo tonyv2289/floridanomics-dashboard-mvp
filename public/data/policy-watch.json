@@ -1,14 +1,22 @@
 {
   "status": "live",
-  "generatedAt": "2026-08-03T15:37:53.489Z",
-  "reviewedAt": "2026-08-03T15:37:53.489Z",
-  "nextReviewDue": "2026-08-10T15:37:53.489Z",
-  "cadence": "weekly",
+  "generatedAt": "2026-09-10T13:17:04.429Z",
+  "reviewedAt": "2026-09-10T13:17:04.429Z",
+  "cadence": "post-session source review",
   "owner": "Floridanomics editorial desk",
   "session": "2026 Regular Session - post-session outcomes",
-  "coverageNote": "A focused economic-development, technology, workforce, and innovation watch list; not a complete inventory of Florida legislation.",
-  "attribution": "Legislative data via LegiScan (CC BY 4.0).",
+  "coverageNote": "Six selected 2026 bills, checked against Florida Senate histories on September 10. Enacted laws, failed proposals, and vetoes are distinguished. This is a scoped post-session review, not a live legislative feed.",
+  "attribution": "Original bill identifiers via LegiScan (CC BY 4.0); outcomes independently checked against Florida Senate histories.",
   "items": [
+    {
+      "billId": 484,
+      "number": "S0484",
+      "title": "Data Centers",
+      "status": "Enacted",
+      "lastAction": "Chapter 2026-65; principal effective date July 1, 2026, with exceptions",
+      "lastActionDate": "2026-05-08",
+      "url": "https://www.flsenate.gov/Session/Bill/2026/484"
+    },
     {
       "billId": 2051570,
       "number": "H0325",
@@ -16,7 +24,7 @@
       "status": "Vetoed",
       "lastAction": "Vetoed by Governor",
       "lastActionDate": "2026-06-26",
-      "url": "https://legiscan.com/FL/bill/H0325/2026"
+      "url": "https://www.flsenate.gov/Session/Bill/2026/325"
     },
     {
       "billId": 2051800,
@@ -25,7 +33,7 @@
       "status": "Failed",
       "lastAction": "Died in Human Services Subcommittee",
       "lastActionDate": "2026-03-13",
-      "url": "https://legiscan.com/FL/bill/H0385/2026"
+      "url": "https://www.flsenate.gov/Session/Bill/2026/385"
     },
     {
       "billId": 2056706,
@@ -34,7 +42,7 @@
       "status": "Failed",
       "lastAction": "Died in Industries & Professional Activities Subcommittee",
       "lastActionDate": "2026-03-13",
-      "url": "https://legiscan.com/FL/bill/H0659/2026"
+      "url": "https://www.flsenate.gov/Session/Bill/2026/659"
     },
     {
       "billId": 2060395,
@@ -43,7 +51,7 @@
       "status": "Failed",
       "lastAction": "Died in Ways & Means Committee",
       "lastActionDate": "2026-03-13",
-      "url": "https://legiscan.com/FL/bill/H0847/2026"
+      "url": "https://www.flsenate.gov/Session/Bill/2026/847"
     },
     {
       "billId": 2060846,
@@ -52,7 +60,7 @@
       "status": "Failed",
       "lastAction": "Died in Education Administration Subcommittee",
       "lastActionDate": "2026-03-13",
-      "url": "https://legiscan.com/FL/bill/H0899/2026"
+      "url": "https://www.flsenate.gov/Session/Bill/2026/899"
     }
   ]
 }

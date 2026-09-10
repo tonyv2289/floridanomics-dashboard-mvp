@@ -1123,11 +1123,11 @@ async function main() {
     errors,
   );
   ensure(
-    data.competition.fdiScoreboard.observatory.scores.length === 2,
-    "competition.fdiScoreboard.observatory must include two public-source editorial scores",
+    [0, 2].includes(data.competition.fdiScoreboard.observatory.scores.length),
+    "competition.fdiScoreboard.observatory scores must be omitted or include both reviewed scores",
     errors,
   );
-  validateRequiredIds(
+  if (data.competition.fdiScoreboard.observatory.scores.length > 0) validateRequiredIds(
     data.competition.fdiScoreboard.observatory.scores,
     REQUIRED_FDI_OBSERVATORY_SCORE_IDS,
     "competition.fdiScoreboard.observatory.scores",

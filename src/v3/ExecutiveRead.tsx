@@ -22,20 +22,20 @@ export function ExecutiveRead({ dataset }: { dataset: DashboardDataset }) {
     : "not yet scheduled";
   const implications: Record<AudienceId, { headline: string; action: string }> = {
     operator: {
-      headline: "Hiring is still expanding, but the labor bench is not deepening at the same speed.",
-      action: "Stress-test critical-role recruiting and wage assumptions before the next labor release.",
+      headline: "Statewide employment figures provide context, but hiring conditions vary by occupation and region.",
+      action: "Compare local recruiting conditions and compensation before committing to an expansion.",
     },
     investor: {
-      headline: "Florida demand remains large; durable upside depends on conversion into high-wage productive capacity.",
-      action: "Separate migration-led consumption exposure from companies building exportable technology and infrastructure.",
+      headline: "Population growth supports demand; productivity and export earnings determine the longer-term contribution.",
+      action: "Distinguish businesses serving local demand from those developing technology, manufacturing and services for outside markets.",
     },
     policymaker: {
-      headline: "A headline win is not the same as a production ecosystem.",
-      action: "Track private capex, construction, supplier depth, wages, and operating milestones on one scoreboard.",
+      headline: "An announced project becomes an economic contribution as investment, operations and employment materialize.",
+      action: "Track construction, private spending, supplier relationships and wages against the original commitments.",
     },
     developer: {
-      headline: "Competitor states are packaging sites, talent, power, financing, and executive access as one product.",
-      action: "Advance named projects against readiness gaps instead of marketing broad statewide advantages alone.",
+      headline: "Investment decisions depend on available sites, reliable utilities and workers with the required skills.",
+      action: "Use the project comparisons to identify the local infrastructure and workforce requirements for each prospect.",
     },
   };
   const implication = implications[audience];
@@ -46,7 +46,7 @@ export function ExecutiveRead({ dataset }: { dataset: DashboardDataset }) {
         <article>
           <span>What changed</span>
           <strong>{formatSignedInteger(payrollChange)} jobs</strong>
-          <p>{dataset.asOfLaborMarket} payroll move</p>
+          <p>{dataset.asOfLaborMarket} monthly payroll change</p>
         </article>
         <article>
           <span>Why it matters</span>
@@ -73,7 +73,7 @@ export function ExecutiveRead({ dataset }: { dataset: DashboardDataset }) {
           ))}
         </div>
         <div>
-          <p className="v3-kicker">Decision implication</p>
+          <p className="v3-kicker">Economic Implications</p>
           <h2>{implication.headline}</h2>
           <p>{implication.action}</p>
         </div>

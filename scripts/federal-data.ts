@@ -355,7 +355,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         period: input.metrics.unemploymentRate.latest.date,
         sourceId: "bls_public_api",
         status: "live",
-        read: "The labor-market cockpit is already on live BLS LAUS data.",
+        read: "Seasonally adjusted unemployment among Florida residents in the civilian labor force.",
         sourceUrl: FEDERAL_SOURCE_URLS.bls,
       },
       refreshedAt,
@@ -370,7 +370,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         period: input.metrics.nonfarmPayrolls.latest.date,
         sourceId: "bls_public_api",
         status: "live",
-        read: "Payrolls are live from BLS CES, which is the right monthly benchmark for jobs by employer.",
+        read: "Monthly nonfarm payroll positions reported by employers; distinct from the number of employed residents.",
         sourceUrl: FEDERAL_SOURCE_URLS.bls,
       },
       refreshedAt,
@@ -387,7 +387,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         period: fastestPayrollPeer?.nonfarmPayrolls.latest.date ?? input.metrics.nonfarmPayrolls.latest.date,
         sourceId: "bls_public_api",
         status: "live",
-        read: "The competitor tab already compares Florida against peers on the same federal labor-series footing.",
+        read: "The highest year-over-year payroll growth rate among the states included in this comparison.",
         sourceUrl: FEDERAL_SOURCE_URLS.bls,
       },
       refreshedAt,
@@ -498,9 +498,9 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
   ];
 
   return {
-    headline: "Federal data spine",
+    headline: "Federal economic series",
     summary:
-      "BLS, Census exports, and BEA are live when their keys are present. Census business applications, EIA, and IRS remain explicit feed contracts so the dashboard can separate live federal metrics from safe fallbacks and download-only official sources.",
+      "Observation periods and retrieval status are shown separately. Some measures use dated, retained public-source benchmarks when a direct feed is unavailable.",
     refreshedAt,
     sources,
     signals,

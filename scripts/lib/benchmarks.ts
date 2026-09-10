@@ -162,9 +162,9 @@ export async function buildBenchmarksSection(): Promise<BenchmarksSection> {
   }
 
   return {
-    headline: "The cost of operating, against the same eight states.",
+    headline: "Wages and electricity prices across eight states.",
     summary:
-      "Site decisions come down to operating math. Average weekly wages show what labor costs across the peer set; industrial power prices show what the capex-heavy projects will pay to run.",
+      "QCEW average wages reflect each state's industry mix, not a matched-occupation wage offer. Industrial electricity prices are statewide monthly averages, not quoted rates for a specific project.",
     wages: {
       ...wages,
       source: { label: "BLS QCEW, total covered employment", url: "https://www.bls.gov/cew/" },

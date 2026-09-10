@@ -26,7 +26,7 @@ export function InnovationTab({
       <ChartPanel
         metric={selectedMetric}
         title="Formation, output, and advanced jobs need one focal signal."
-        note="The useful read is the spread between new company formation and the depth of Florida's knowledge-work bench."
+        note="Business applications and sector employment are distinct measures. Neither provides a complete count of innovation activity."
         accent="teal"
       />
 

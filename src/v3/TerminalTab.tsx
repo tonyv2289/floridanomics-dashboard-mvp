@@ -1,15 +1,5 @@
 import clsx from "clsx";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { deltaTone, formatDelta, formatMetricValue } from "../lib/dashboard";
-import { TOOLTIP_ITEM_STYLE, TOOLTIP_LABEL_STYLE, TOOLTIP_STYLE } from "./constants";
 import { Frame, TerminalSourceList } from "./primitives";
 import { ProjectCapexLedger } from "./ProjectCapexLedger";
 import type { DashboardDataset } from "../types/dashboard";
@@ -31,19 +21,9 @@ function TerminalHero({ dataset }: { dataset: DashboardDataset }) {
         </div>
 
         <aside className="v3-terminal-score">
-          <span>{terminal.aiCapexIndex.label}</span>
-          <strong>
-            {terminal.aiCapexIndex.score}/{terminal.aiCapexIndex.maxScore}
-          </strong>
-          <b>{terminal.aiCapexIndex.rating}</b>
-          <div className="v3-terminal-score-meter" aria-hidden="true">
-            <i
-              style={{
-                width: `${(terminal.aiCapexIndex.score / terminal.aiCapexIndex.maxScore) * 100}%`,
-              }}
-            />
-          </div>
-          <p>{terminal.aiCapexIndex.caveat}</p>
+          <span>AI infrastructure</span>
+          <strong>Research agenda</strong>
+          <p>A comparable Florida project-capacity inventory is needed before an investment gap can be measured.</p>
           <div className="v3-terminal-peer-read">
             <small>FL vs TX unemployment spread</small>
             <b>{spread === null ? "n/a" : `${spread >= 0 ? "+" : ""}${spread.toFixed(1)} pp`}</b>
@@ -58,13 +38,12 @@ function AiCapexIndex({ dataset }: { dataset: DashboardDataset }) {
   const index = dataset.terminal.aiCapexIndex;
 
   return (
-    <Frame label="AI capex gap">
+    <Frame label="AI infrastructure investment">
       <div className="v3-panel-head">
         <div>
-          <h2>The Texas comparison, scored as an index that can be updated.</h2>
+          <h2>Infrastructure investment and the evidence needed.</h2>
           <p>
-            The purpose of the index is to separate a solvable strategic-infrastructure gap from a normal
-            labor-market cycle.
+            Comparable project data are needed to assess Florida's position. State labor statistics alone cannot identify an AI investment gap.
           </p>
         </div>
       </div>
@@ -83,39 +62,13 @@ function AiCapexIndex({ dataset }: { dataset: DashboardDataset }) {
         </div>
 
         <div className="v3-terminal-factor-panel">
-          <h3>Index factors</h3>
-          <div className="v3-terminal-factor-chart">
-            <ResponsiveContainer width="100%" height={260}>
-              <BarChart
-                data={index.factors.map((factor) => ({
-                  label: factor.label,
-                  score: factor.score,
-                }))}
-                layout="vertical"
-                margin={{ top: 4, right: 12, left: 24, bottom: 4 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(148, 163, 184, 0.14)" horizontal={false} />
-                <XAxis type="number" domain={[0, 5]} tick={{ fill: "#94a3b8", fontSize: 11 }} />
-                <YAxis dataKey="label" type="category" width={142} tick={{ fill: "#94a3b8", fontSize: 11 }} />
-                <Tooltip
-                  contentStyle={TOOLTIP_STYLE}
-                  labelStyle={TOOLTIP_LABEL_STYLE}
-                  itemStyle={TOOLTIP_ITEM_STYLE}
-                  formatter={(value) => [`${Number(value).toFixed(0)} / 5`, "Score"]}
-                />
-                <Bar dataKey="score" fill="#ff8f3f" radius={[0, 8, 8, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
+          <h3>Research priorities</h3>
           <div className="v3-terminal-factor-list">
             {index.factors.map((factor) => (
               <article key={factor.id}>
                 <div>
                   <strong>{factor.label}</strong>
-                  <span>
-                    {factor.score}/{factor.maxScore}
-                  </span>
+
                 </div>
                 <p>{factor.read}</p>
                 <TerminalSourceList dataset={dataset} sourceIds={factor.sourceIds} />
@@ -133,17 +86,17 @@ function HighWageTerminal({ dataset }: { dataset: DashboardDataset }) {
     {
       label: "Information jobs",
       metric: dataset.innovation.metrics.informationEmployment,
-      note: "knowledge-work bench",
+      note: "information-sector employment",
     },
     {
       label: "Construction jobs",
       metric: dataset.innovation.metrics.constructionEmployment,
-      note: "capex build-out proxy",
+      note: "construction-sector employment",
     },
     {
       label: "Professional services",
       metric: dataset.innovation.metrics.professionalBusinessEmployment,
-      note: "managerial and technical depth",
+      note: "professional and business services",
     },
   ];
 
@@ -185,13 +138,13 @@ function HighWageTerminal({ dataset }: { dataset: DashboardDataset }) {
 
 function ForecastBoard({ dataset }: { dataset: DashboardDataset }) {
   return (
-    <Frame label="Forecast board">
+    <Frame label="Scenario analysis">
       <div className="v3-forecast-grid">
         {dataset.terminal.forecasts.map((forecast) => (
           <article key={forecast.id} className="v3-forecast-card">
             <div className="v3-forecast-card-head">
               <span>{forecast.horizon}</span>
-              <b>{forecast.confidence} confidence</b>
+              <b>Editorial scenario</b>
             </div>
             <h3>{forecast.claim}</h3>
             <p>{forecast.mechanism}</p>

@@ -1,142 +1,59 @@
-# Is Florida Missing the AI Capex Boom?
+# Florida's Position in AI Infrastructure Investment
 
-*Florida Brain | Strategic Compute | Draft intelligence note | 2026-05-27*
+Updated September 10, 2026. Observation periods vary by source.
 
-## Florida unemployment rate | April 2026: 4.8%
+Florida's regional industries provide potential demand for computing services. Assessing the state's investment position requires comparable evidence on project capacity, infrastructure costs, construction, and operations. The available labor statistics do not establish that Florida is missing an AI investment boom.
 
-Florida added jobs in April, but its unemployment rate now sits above Texas and the national rate. That tension is the opening signal for the AI capex question.
+## Florida unemployment: 4.6%
 
-Source: [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
+July 2026, seasonally adjusted. [BLS State Employment and Unemployment, July 2026](https://www.bls.gov/news.release/laus.nr0.htm).
 
-## Evidence Stack
+## Florida monthly payroll change: +4,500
 
-### Florida payroll pulse: +40,500
+July 2026 change from revised June employment. The estimate covers all nonfarm industries and is subject to revision. [BLS State Employment and Unemployment, July 2026](https://www.bls.gov/news.release/laus.nr0.htm).
 
-Florida posted the largest April 2026 monthly nonfarm payroll gain among states.
+## Texas unemployment: 4.5%
 
-Source: [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
+July 2026, seasonally adjusted. Florida's rate was 4.6%. The difference is not a measure of AI investment. [BLS State Employment and Unemployment, July 2026](https://www.bls.gov/news.release/laus.nr0.htm).
 
-### Texas unemployment: 4.3%
+## Florida industrial electricity: 9.12¢ / kWh
 
-Texas is the comparison state for the AI infrastructure and large-load siting thesis.
+June 2026 preliminary state average. A particular project's tariff, load profile, and infrastructure charges may differ. [EIA Electric Power Monthly, June 2026](https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a).
 
-Source: [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
+## Dallas capacity under construction: 765+ MW
 
-### Income migration: $4M+ / hr
+CBRE's H1 2026 Dallas-Fort Worth review reports more than 765 MW under construction, with 95% preleased. Planned development is a separate measure. [CBRE Dallas-Fort Worth Data Center Market, H1 2026](https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026/dallas-ft-worth-data-center-market).
 
-Florida Chamber's public frame for annual net income migration into Florida.
+## Net income migration: $2.36M / hr
 
-Source: [Florida Chamber Foundation income migration analysis](https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/)
+The Scorecard's current IRS-based hourly equivalent. This annual household-income measure is not capital committed to data centers. [Florida Scorecard, checked September 10, 2026](https://thefloridascorecard.org/pillar&c=0&pillar=2).
 
-### AI Capex Gap Index: 15 / 25
+## Data-center legislation: Chapter 2026-65
 
-Prototype Floridanomics V3 Terminal score. Source-backed, but not an official state score.
+CS/CS/SB 484 was approved in May 2026. Its principal effective date is July 1, 2026, with exceptions in the law. [Florida Senate CS/CS/SB 484, Chapter 2026-65](https://www.flsenate.gov/Session/Bill/2026/484).
 
-Source: [Floridanomics V3 Terminal](https://www.floridanomics.com/?version=v3&tab=terminal)
+## Infrastructure investment can support regional production.
 
-### Dallas data-center absorption: 470.8 MW
+Data-center development can generate construction, engineering, utility, and operating activity. The magnitude and duration depend on project design, spending, local procurement, and staffing. Announced investment is not the same as completed construction or ongoing regional output.
 
-CBRE's H2 2025 primary-market net absorption signal for Dallas.
+Florida's aerospace, health care, finance, and international-business activities may support specialized computing demand. A project-specific assessment is needed to determine commercial viability and local benefits.
 
-Source: [CBRE North America Data Center Trends H2 2025](https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025)
+## Compare like measures across markets.
 
-### Global data-center capacity: 200 GW by 2030
+Capacity in operation, capacity under construction, planned megawatts, capital expenditure, and net absorption describe different aspects of the market. A statewide investment ranking requires consistent geographic coverage and definitions.
 
-JLL says global data-center capacity could nearly double from 103 GW to 200 GW by 2030.
+An incomplete Florida inventory is a research limitation. It is not evidence that projects are absent, nor does it establish a causal explanation for unemployment.
 
-Source: [JLL 2026 Global Data Center Outlook](https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom)
+## Identify costs, risks, and public benefits.
 
-### AI infrastructure investment: $3T
+Project review should consider power procurement, grid capacity, water use, local approvals, and the allocation of infrastructure costs. The enacted law and applicable utility decisions govern specific requirements.
 
-JLL estimate for total data-center investment over the next five years.
+Floridanomics' editorial recommendation is to assess each proposal against measurable commitments and costs. Public benefits should be demonstrated through evidence on employment, wages, infrastructure, and regional economic activity.
 
-Source: [JLL 2026 Global Data Center Outlook](https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom)
+## Establish a comparable project inventory.
 
-### Policy posture: SB 484
+The next analytical step is a named inventory distinguishing announced, permitted, under-construction, and operating facilities. It should include megawatts, disclosed capital, expected and actual employment, utility arrangements, and water requirements.
 
-Florida's 2026 large-load data-center law centers ratepayer protection and cost allocation.
+Occupational wages and supplier activity can then help assess economic effects. Until those inputs are available, the AI investment-gap proposition remains a research question.
 
-Source: [Florida Senate CS/CS/SB 484 summary](https://www.flsenate.gov/Committees/BillSummaries/2026/html/484)
-
-## Florida is not weak. It may be undermeasured where the next boom is physical.
-
-*Working thesis*
-
-The surface read is confusing. Florida added payroll jobs in April and still pulls extraordinary income migration, yet unemployment is elevated relative to Texas and the national rate.
-
-The sharper read is that Florida may be winning the people-and-services economy while under-capturing the power-heavy AI infrastructure layer now pulling capital, construction labor, grid work, fiber, cooling, and advanced operations into competitor states.
-
-
-## The gap is not a verdict. It is a scoreboard waiting to exist.
-
-*Terminal read*
-
-The Floridanomics V3 Terminal now labels this as an AI Capex Gap Index. The score is deliberately provisional because Florida-specific megawatts, utility queue data, project awards, power-price exposure, and named strategic-compute projects still need to be wired.
-
-That is the point. A blank or underdeveloped project ledger is itself intelligence. Florida Brain should track the absence as aggressively as the wins.
-
-- Power readiness is the weak link until Florida-specific MW and interconnection data are visible.
-- Project visibility is the weak link until named AI compute projects can be compared with Space Coast aerospace wins.
-- High-wage conversion is the referee. Total jobs are not enough.
-
-## Texas is the right peer, not because Florida should copy it.
-
-*Texas question*
-
-Dallas absorbed measurable data-center capacity in CBRE's H2 2025 market read, while JLL frames the global data-center cycle as a major infrastructure supercycle.
-
-Florida does not need to become Texas. But it does need to know whether Texas, Arizona, Georgia, North Carolina, Virginia, and Ohio are converting AI infrastructure capex into construction demand, operations jobs, utility assets, and high-wage ecosystems faster than Florida.
-
-
-## Strategic compute, not dumb load.
-
-*Policy alpha*
-
-Florida's ratepayer concern is real. Hyperscale data centers should not push power, transmission, water, or nonpayment risk onto households.
-
-The pro-growth answer is not subsidy or refusal. It is disciplined market design. Strategic compute earns speed when it pays full cost, strengthens infrastructure, creates high-wage operations, and supports Florida-specific workloads.
-
-- Do not write blank checks.
-- Do not socialize utility costs.
-- Do not block every project.
-- Build a fast lane for strategic compute that pays its own way.
-
-## The lane is edge, LATAM, Space Coast, health, finance, and resilience.
-
-*Florida-shaped lane*
-
-Florida's best compute strategy is not a copycat training-campus strategy. The stronger lane is inference near population, LATAM cloud gateways, subsea and fiber assets, Space Coast aerospace compute, health and finance workloads, and disaster-resilient edge capacity.
-
-That lane fits the Florida model: disciplined, gateway-oriented, physical, international, and tied to real infrastructure rather than generic tech branding.
-
-
-## Turn the thesis into a measurement layer.
-
-*What to build next*
-
-The next Floridanomics module should track data-center megawatts announced, megawatts under construction, utility interconnection queue load, large-load tariff posture, incentives by state, power-price exposure, electrician wage pressure, and AI capex announcements.
-
-The next Florida Brain brief should then ask a harder question: where does strategic infrastructure actually bend the wage curve?
-
-
-## Open Verification Queue
-
-- Quantify Texas vs Florida data-center MW announced, under construction, and planned.
-- Build a Florida-specific strategic compute project ledger with named projects, stage, MW, capex, jobs, utility posture, and water posture.
-- Separate training-campus economics from inference, edge, LATAM gateway, Space Coast, health, finance, and resilience economics.
-- Verify whether current Florida data-center tax and tariff posture materially changes competitiveness against Texas, Virginia, Georgia, Ohio, Arizona, and North Carolina.
-- Add OEWS and QCEW wage data to measure whether strategic infrastructure bends Florida's target-cluster wage curve.
-- Confirm Florida-specific subsea, fiber, carrier-hotel, edge-compute, and utility-interconnection assets from primary or industry sources.
-
-## Sources
-
-- [BLS State Employment and Unemployment, April 2026](https://www.bls.gov/news.release/archives/laus_05222026.htm)
-- [Florida Chamber Foundation income migration analysis](https://www.flchamber.com/breaking-news-income-migration-to-florida-remains-above-4m-per-hour-significantly-more-than-any-other-state/)
-- [Floridanomics V3 Terminal](https://www.floridanomics.com/?version=v3&tab=terminal)
-- [CBRE North America Data Center Trends H2 2025](https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025)
-- [JLL 2026 Global Data Center Outlook](https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom)
-- [Florida Governor SB 484 press release](https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers)
-- [Florida Senate CS/CS/SB 484 summary](https://www.flsenate.gov/Committees/BillSummaries/2026/html/484)
-- [Space Florida aerospace readout](https://www.spaceflorida.gov/news/space-florida-drives-major-wins-for-the-global-aerospace-industry)
-- [PortMiami cargo statistics](https://www.miamidade.gov/portmiami/cargo.page)
-- [Port Everglades cargo statistics](https://www.porteverglades.net/about-us/statistics/cargo-statistics/)
+This is economic analysis and a research agenda, not a quantified impact study or legal advice. [Current data and source notes](https://www.floridanomics.com/?view=dashboard&tab=evidence).

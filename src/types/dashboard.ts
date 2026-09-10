@@ -53,6 +53,7 @@ export type ReleaseCalendarItem = {
 
 export type DataTrustLayer = {
   methodologyVersion: string;
+  review?: { reviewedAt: string; summary: string; sections: Array<{ label: string; note: string }> };
   metricVintages: MetricVintage[];
   releaseCalendar: ReleaseCalendarItem[];
   sourceClasses: Array<{

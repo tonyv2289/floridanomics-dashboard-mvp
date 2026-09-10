@@ -35,7 +35,7 @@ export type WhatChangedPayload = {
   items: ChangeItem[];
 };
 
-type DiffableMetric = Pick<Metric, "label" | "unit" | "trendDirection" | "latest">;
+type DiffableMetric = Pick<Metric, "label" | "unit" | "trendDirection" | "latest"> & Partial<Pick<Metric, "series">>;
 
 const FLAT_EPSILON = 1e-9;
 
@@ -112,9 +112,12 @@ export function diffMetric(
   };
 
   if (next.latest.date > prev.latest.date) {
-    const absolute = next.latest.value - prev.latest.value;
+    // Compare months within the current vintage, so a revision is not counted as new growth.
+    const prevValue = next.series?.find((point) => point.date === prev.latest.date)?.value ?? prev.latest.value;
+    const absolute = next.latest.value - prevValue;
     return {
       ...base,
+      prevValue,
       kind: "new_period",
       absolute,
       tone: toneFor(next, absolute),
@@ -150,7 +153,8 @@ function metroChange(
     return null;
   }
 
-  const absolute = next.value - prev.value;
+  const prevValue = nextMetro.unemploymentRate.sparkline.find((point) => point.date === prev.date)?.value ?? prev.value;
+  const absolute = next.value - prevValue;
   const tone: ChangeItem["tone"] =
     Math.abs(absolute) < FLAT_EPSILON ? "flat" : absolute < 0 ? "good" : "warn";
 
@@ -161,11 +165,11 @@ function metroChange(
     scope: "metro",
     prevDate: prev.date,
     nextDate: next.date,
-    prevValue: prev.value,
+    prevValue,
     nextValue: next.value,
     absolute,
     tone,
-    headline: `${nextMetro.name} unemployment ${absolute >= 0 ? "rose" : "eased"} to ${next.value.toFixed(1)}% in ${monthLabel(next.date)}, ${formatMove("percent", absolute).replace(/^(up|down) /, "$1 ")} versus ${monthLabel(prev.date)}.`,
+    headline: `${nextMetro.name} unemployment ${Math.abs(absolute) < FLAT_EPSILON ? "was" : absolute > 0 ? "rose to" : "eased to"} ${next.value.toFixed(1)}% in ${monthLabel(next.date)}, ${Math.abs(absolute) < FLAT_EPSILON ? "unchanged" : formatMove("percent", absolute)} versus ${monthLabel(prev.date)}.`,
   };
 }
 

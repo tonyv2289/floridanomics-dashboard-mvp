@@ -28,8 +28,8 @@ export type Region = {
 export const REGIONS: Region[] = [
   {
     id: "space-coast", name: "Space Coast", shortName: "Space Coast", coordinates: [-80.68, 28.5], detailed: true,
-    headline: "Where Florida leaves Earth.",
-    description: "Explore a multi-user spaceport and the neighboring seaport. The Space Coast brings launch infrastructure and maritime logistics into the same regional view.",
+headline: "Launch, manufacturing and maritime logistics.",
+description: "Kennedy Space Center and Port Canaveral place space operations and cargo infrastructure in close proximity. These assets support the Space Coast’s aerospace and logistics industries.",
     assets: [
       { id: "kennedy", name: "Kennedy Space Center", kind: "Spaceport", sector: "Space", coordinates: [-80.65, 28.59], model: "rocket", summary: "NASA’s Kennedy Space Center is a multi-user spaceport supporting government and commercial space operations, with launch, research and development facilities.", source: "https://www.nasa.gov/kennedy/", sourceName: "NASA · Kennedy Space Center" },
       { id: "canaveral", name: "Port Canaveral", kind: "Seaport", sector: "Trade & logistics", coordinates: [-80.6, 28.41], model: "port", summary: "Port Canaveral operates cargo facilities on Florida’s Atlantic coast. Its cargo resources cover maritime facilities and services for shippers.", source: "https://www.portcanaveral.com/Cargo", sourceName: "Port Canaveral · Cargo" },
@@ -37,8 +37,8 @@ export const REGIONS: Region[] = [
   },
   {
     id: "orlando-osceola", name: "Orlando–Osceola", shortName: "Orlando–Osceola", coordinates: [-81.28, 28.38], detailed: true,
-    headline: "The next layer of industry.",
-    description: "A closer look at the region’s semiconductor campus and modeling, simulation and training research. Two different capabilities, one Central Florida chapter.",
+headline: "Semiconductors, simulation and specialized research.",
+description: "NeoCity’s semiconductor facilities and UCF’s simulation research provide distinct foundations for advanced industry in Central Florida.",
     assets: [
       { id: "neocity", name: "NeoCity", kind: "Technology campus", sector: "Advanced industry", coordinates: [-81.35, 28.29], model: "chip", summary: "NeoCity is Osceola County’s 500-acre technology campus, south of Orlando. Its Center for Neovation is a semiconductor fabrication facility supporting the district’s technology ecosystem.", source: "https://www.neocityfl.com/what-is-neocity/", sourceName: "Osceola County · What is NeoCity?" },
       { id: "ucf-ist", name: "UCF Institute for Simulation & Training", kind: "Research", sector: "Defense & simulation", coordinates: [-81.2, 28.59], model: "dish", summary: "UCF’s Institute for Simulation & Training develops modeling, simulation and training technologies, tools, processes and systems in Orlando.", source: "https://www.ist.ucf.edu/", sourceName: "UCF · Institute for Simulation & Training" },
@@ -47,8 +47,8 @@ export const REGIONS: Region[] = [
   },
   {
     id: "tampa-bay", name: "Tampa Bay", shortName: "Tampa Bay", coordinates: [-82.46, 27.95], detailed: true,
-    headline: "Ideas meet the working waterfront.",
-    description: "Move between cargo infrastructure, defense innovation and university commercialization. This chapter makes the region’s range visible in one place.",
+headline: "Port commerce, defense technology and university research.",
+description: "Port Tampa Bay, SOFWERX and USF connect the region to freight markets, defense customers and research-based businesses.",
     assets: [
       { id: "port-tampa", name: "Port Tampa Bay", kind: "Seaport", sector: "Trade & logistics", coordinates: [-82.44, 27.94], model: "port", summary: "Port Tampa Bay handles container, bulk, general, refrigerated and roll-on/roll-off cargo. Its facilities serve the Tampa Bay region and the I-4 corridor.", source: "https://www.porttb.com/cargo/", sourceName: "Port Tampa Bay · Cargo" },
       { id: "sofwerx", name: "SOFWERX", kind: "Research", sector: "Defense & simulation", coordinates: [-82.43, 27.96], model: "dish", summary: "SOFWERX brings technical experts and industry together to address Special Operations Forces challenges, including prototyping and USSOCOM-focused collaboration events.", source: "https://www.sofwerx.org/", sourceName: "SOFWERX · Mission and capabilities" },
@@ -57,8 +57,8 @@ export const REGIONS: Region[] = [
   },
   {
     id: "south-florida", name: "South Florida", shortName: "South Florida", coordinates: [-80.3, 26.16],
-    headline: "A waterfront open to the world.",
-    description: "International cargo moves through PortMiami while university-linked research finds a path to market in Boca Raton. A first look at South Florida’s gateway economy.",
+headline: "International trade and research-based business.",
+description: "PortMiami links South Florida to international cargo markets. The Research Park at FAU supports companies working with university research and technology.",
     assets: [
       { id: "fau-park", name: "Research Park at FAU", kind: "Technology campus", sector: "Research & life sciences", coordinates: [-80.1, 26.39], model: "campus", summary: "The Research Park at Florida Atlantic University supports research and development companies, university partnerships and technology-led economic development in South Florida.", source: "https://researchparkfau.com/", sourceName: "Research Park at Florida Atlantic University" },
       { id: "portmiami", name: "PortMiami", kind: "Seaport", sector: "Trade & logistics", coordinates: [-80.17, 25.77], model: "port", summary: "PortMiami connects international cargo markets with the United States through container terminals, trucking and on-dock rail. Its cargo network includes Latin America, the Caribbean, Asia and Europe.", source: "https://www.miamidade.gov/portmiami/cargo.page", sourceName: "Miami-Dade County · PortMiami Cargo" },
@@ -66,14 +66,14 @@ export const REGIONS: Region[] = [
   },
   {
     id: "northeast", name: "Jacksonville & Northeast", shortName: "Jacksonville", coordinates: [-81.65, 30.33],
-    headline: "Florida’s Atlantic gateway.",
-    description: "Begin at Jacksonville’s cargo port, where marine terminals connect with the region’s rail and highway network.",
+headline: "Cargo terminals connected to inland markets.",
+description: "JAXPORT’s marine terminals and access to rail and highways support Northeast Florida’s role in vehicle, container and general cargo trade.",
     assets: [{ id: "jaxport", name: "JAXPORT", kind: "Seaport", sector: "Trade & logistics", coordinates: [-81.56, 30.4], model: "port", summary: "The Jacksonville Port Authority is an international cargo gateway in Northeast Florida, handling containers, vehicles and other freight with access to rail and highway networks.", source: "https://www.jaxport.com/", sourceName: "Jacksonville Port Authority" }],
   },
   {
     id: "north-central", name: "Gainesville & Tallahassee", shortName: "Research corridor", coordinates: [-82.65, 29.9],
-    headline: "From the lab to what comes next.",
-    description: "Two research anchors across North Florida: startup incubation in Gainesville and Alachua, and high-field science in Tallahassee. A curated grouping, not an administrative region.",
+headline: "Scientific research and early-stage companies.",
+description: "UF Innovate supports early-stage companies in Gainesville and Alachua; the National MagLab conducts high-field research from Tallahassee. This map groups selected institutions across North Florida rather than defining an administrative region.",
     assets: [
       { id: "uf-innovate", name: "UF Innovate | Accelerate", kind: "Research", sector: "Research & life sciences", coordinates: [-82.43, 29.72], model: "campus", summary: "UF Innovate | Accelerate supports early-stage ventures through The Hub in Gainesville and Sid Martin Biotech in Alachua, with facilities, resources and business support.", source: "https://ufinnovateaccelerate.com/", sourceName: "University of Florida · UF Innovate | Accelerate" },
       { id: "maglab", name: "National MagLab", kind: "Research", sector: "Advanced industry", coordinates: [-84.32, 30.42], model: "dish", summary: "The National High Magnetic Field Laboratory conducts high-field research across materials, energy, health and the environment. Its headquarters are in Tallahassee, with facilities at FSU, UF and Los Alamos.", source: "https://nationalmaglab.org/", sourceName: "National High Magnetic Field Laboratory" },
@@ -81,14 +81,14 @@ export const REGIONS: Region[] = [
   },
   {
     id: "panhandle", name: "Northwest & Panhandle", shortName: "Northwest Florida", coordinates: [-87.21, 30.42],
-    headline: "Human ingenuity. Machine capability.",
-    description: "Pensacola’s IHMC is the first research anchor in this Northwest Florida overview, spanning robotics, AI and human performance.",
+headline: "Robotics, artificial intelligence and human performance.",
+description: "IHMC’s Pensacola campus conducts research in robotics, artificial intelligence and human performance. It is the first institution included in this Northwest Florida overview.",
     assets: [{ id: "ihmc", name: "Institute for Human & Machine Cognition", kind: "Research", sector: "Defense & simulation", coordinates: [-87.21, 30.41], model: "dish", summary: "IHMC’s Pensacola campus is home to work in artificial intelligence, human-centered computing, robotics, exoskeletons and human performance. The institute also has an Ocala campus.", source: "https://www.ihmc.us/aboutihmc/", sourceName: "IHMC · The IHMC Story" }],
   },
   {
     id: "southwest", name: "Southwest Florida", shortName: "Southwest Florida", coordinates: [-81.8, 26.55],
-    headline: "A living laboratory for water.",
-    description: "Explore the Water School at Florida Gulf Coast University, a starting point for understanding the region’s water and environmental research.",
+headline: "Water research with regional applications.",
+description: "FGCU’s Water School studies the freshwater, coastal and environmental systems that affect Southwest Florida’s communities and economy.",
     assets: [{ id: "fgcu-water", name: "FGCU Water School", kind: "Research", sector: "Water & resilience", coordinates: [-81.77, 26.46], model: "water", summary: "The Water School at FGCU studies climate, natural resources, ecosystem health, restoration and remediation, drawing on Southwest Florida’s freshwater and saltwater environments.", source: "https://www.fgcu.edu/thewaterschool/", sourceName: "Florida Gulf Coast University · The Water School" }],
   },
 ];

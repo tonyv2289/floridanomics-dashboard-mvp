@@ -60,8 +60,8 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
         <h1 className={clsx(`tone-${payrollTone}`)}>{formatSignedInteger(animatedChange)}</h1>
         <p className="v3-hero-line">
           Florida {payrollChange >= 0 ? "added" : "lost"} {Math.abs(payrollChange).toLocaleString()} nonfarm jobs in{" "}
-          {monthName}. One month is a single data point. The more durable signal is whether hiring, business
-          formation, migration, and trade are still moving in the same direction.
+          {monthName}. Assess this monthly change alongside annual employment growth,
+          labor-force participation and the composition of new investment.
         </p>
         <div className="v3-hero-meta">
           <span>BLS CES / LAUS</span>
@@ -116,19 +116,19 @@ function OperatingRead({ dataset }: { dataset: DashboardDataset }) {
 
   const reads = [
     {
-      label: "Hiring pulse",
+      label: "Payroll Change",
       value: formatSignedInteger(payrollChange),
-      note: "latest monthly payroll move",
+      note: "latest monthly change",
       tone: payrollChange >= 0 ? "good" : "warn",
     },
     {
-      label: "Formation",
+      label: "Business Applications",
       value: formatMetricValue(businessApplications, businessApplications.latest.value),
       note: `1Y ${formatDelta(businessApplications, businessApplications.deltas.oneYear)}`,
       tone: deltaTone(businessApplications, businessApplications.deltas.oneYear),
     },
     {
-      label: "Knowledge-work bench",
+      label: "Information-Sector Jobs",
       value: formatMetricValue(informationJobs, informationJobs.latest.value),
       note: `1Y ${formatDelta(informationJobs, informationJobs.deltas.oneYear)}`,
       tone: deltaTone(informationJobs, informationJobs.deltas.oneYear),
@@ -159,10 +159,10 @@ function FloridaBrainNotes({ dataset }: { dataset: DashboardDataset }) {
     <section className="v3-brain-notes" aria-label="Florida Brain notes">
       <div className="v3-brain-notes-head">
         <p className="v3-kicker">Florida Brain notes</p>
-        <h2>Where the data becomes published analysis.</h2>
+        <h2>Florida Economic Analysis</h2>
         <p>
-          These are the active editorial reads coming out of Floridanomics. Each note stays source-linked so the
-          analysis keeps its audit trail as the narrative develops.
+          Source-linked analysis of Florida's investment, infrastructure and industry development.
+          Each note distinguishes reported results from policy recommendations.
         </p>
       </div>
 
@@ -220,7 +220,7 @@ export function BriefTab({ dataset }: { dataset: DashboardDataset }) {
       <section className="v3-watch">
         <div>
           <p className="v3-kicker">What to watch</p>
-          <h2>Three open questions that will shape the next read.</h2>
+          <h2>Developments to Watch</h2>
         </div>
         <ol>
           {watchItems.map((item) => (

@@ -50,7 +50,7 @@ function StrategyHero({ dataset }: { dataset: DashboardDataset }) {
   const florida = peerStates.find((state) => state.id === "FL");
 
   return (
-    <Frame label="Strategy cockpit">
+    <Frame label="Economic strategy">
       <div className="v3-strategy-hero">
         <div>
           <h2>{dataset.strategy.headline}</h2>
@@ -209,7 +209,7 @@ function ClusterStrategy({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="Cluster strategy">
       <div className="v3-panel-head">
         <div>
-          <h2>Florida is not one economy. The more useful benchmark is the set of clusters that can move the wage curve.</h2>
+          <h2>Regional industries and the conditions supporting their development.</h2>
           <p>
             Pennsylvania's useful lesson is structure: sectors, supply chains, workforce gaps, and emerging industries
             should sit in one operating view.

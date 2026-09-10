@@ -45,6 +45,14 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
         </dl>
       </header>
 
+      {dataset.trust.review ? (
+        <Frame label="Editorial and data review">
+          <h2>Reviewed {formatDateLabel(dataset.trust.review.reviewedAt)}</h2>
+          <p>{dataset.trust.review.summary}</p>
+          <dl>{dataset.trust.review.sections.map((section) => <div key={section.label}><dt>{section.label}</dt><dd>{section.note}</dd></div>)}</dl>
+        </Frame>
+      ) : null}
+
       <Frame label="Release calendar">
         <div className="v3-panel-head">
           <div>

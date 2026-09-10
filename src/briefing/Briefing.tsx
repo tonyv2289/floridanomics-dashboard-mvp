@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { useDashboardData } from "../hooks/useDashboardData";
 import {
-  daysSince,
   deltaTone,
   formatDateLabel,
   formatDelta,
@@ -88,7 +87,7 @@ function Briefing() {
           <div className="briefing-stamp">
             <strong>{formatDateLabel(data.generatedAt)}</strong>
             <span>Labor data: {data.asOfLaborMarket}</span>
-            <span>{daysSince(payrollDate)} days since latest payroll observation</span>
+            <span>Annual and research benchmarks retain their stated periods</span>
           </div>
         </header>
 
@@ -128,13 +127,14 @@ function Briefing() {
 
         {data.leading ? (
           <section className="briefing-section">
-            <h2>Ahead of the print</h2>
+            <h2>Early Economic Indicators</h2>
             <p className="briefing-note">{data.leading.summary}</p>
             <div className="briefing-signals">
               {data.leading.signals.map((signal) => (
                 <div key={signal.id} className="briefing-signal">
                   <span>{signal.label}</span>
                   <strong>{formatSignalValue(signal)}</strong>
+                  <small>As of {formatDateLabel(signal.latest.date)}</small>
                   <div>
                     {signal.changes.recent ? (
                       <small className={clsx(`tone-${changeTone(signal, signal.changes.recent)}`)}>
@@ -172,10 +172,9 @@ function Briefing() {
         <footer className="briefing-footer">
           <p>
             Sources: BLS CES and LAUS, FRED, US Census Bureau, US DOL, Indeed Hiring Lab, US Census USA Trade,
-            SelectFlorida, Florida Chamber Foundation. Full charts and source links:
-            tonyv2289.github.io/floridanomics-dashboard-mvp/?view=dashboard
+            SelectFlorida, Florida Chamber Foundation. Full charts and source links: <a href="https://www.floridanomics.com/?view=dashboard&tab=evidence">floridanomics.com</a>.
           </p>
-          <p>Generated automatically by the Floridanomics data pipeline. One month is a single data point; read trends, not prints.</p>
+          <p>Figures reflect the source periods shown and may be revised. Monthly changes should be considered alongside longer-term employment, income and investment trends.</p>
         </footer>
       </article>
     </main>

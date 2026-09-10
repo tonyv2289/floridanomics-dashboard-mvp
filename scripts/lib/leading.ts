@@ -89,7 +89,7 @@ export async function buildLeadingSection(): Promise<LeadingSection> {
       cadence: "daily",
       unit: "index",
       trendDirection: "up_good",
-      leads: "Leads hiring; payroll prints follow postings by months.",
+      leads: "Advertised hiring demand; vacancies do not necessarily become filled jobs.",
       source: { label: "Indeed Hiring Lab", url: "https://github.com/hiring-lab/job_postings_tracker" },
       recentWindow: 30,
       recentLabel: "vs 30-day average",
@@ -101,7 +101,7 @@ export async function buildLeadingSection(): Promise<LeadingSection> {
       cadence: "weekly",
       unit: "claims",
       trendDirection: "down_good",
-      leads: "Leads the unemployment rate by roughly six weeks.",
+      leads: "New claims for unemployment insurance; affected by eligibility, seasonality, and reporting.",
       source: { label: "US DOL via FRED (FLICLAIMS)", url: "https://fred.stlouisfed.org/series/FLICLAIMS" },
       recentWindow: 4,
       recentLabel: "vs 4-week average",
@@ -113,7 +113,7 @@ export async function buildLeadingSection(): Promise<LeadingSection> {
       cadence: "weekly",
       unit: "claims",
       trendDirection: "down_good",
-      leads: "Confirms whether laid-off workers are being reabsorbed.",
+      leads: "Ongoing benefit claims; changes can reflect hiring, benefit exhaustion, and other factors.",
       source: { label: "US DOL via FRED (FLCCLAIMS)", url: "https://fred.stlouisfed.org/series/FLCCLAIMS" },
       recentWindow: 4,
       recentLabel: "vs 4-week average",
@@ -125,7 +125,7 @@ export async function buildLeadingSection(): Promise<LeadingSection> {
       cadence: "monthly",
       unit: "units",
       trendDirection: "up_good",
-      leads: "Leads construction employment and the housing supply pipeline.",
+      leads: "Authorized housing units, not completed construction.",
       source: { label: "US Census via FRED (FLBPPRIV)", url: "https://fred.stlouisfed.org/series/FLBPPRIV" },
       recentWindow: 3,
       recentLabel: "vs 3-month average",
@@ -134,9 +134,9 @@ export async function buildLeadingSection(): Promise<LeadingSection> {
   ].filter((signal): signal is LeadingSignal => Boolean(signal));
 
   return {
-    headline: "Ahead of the print.",
+    headline: "Early economic indicators.",
     summary:
-      "Official labor data arrives about six weeks after the fact. These signals move first: postings lead hiring, claims lead the unemployment rate, and permits lead construction payrolls.",
+      "Job postings, unemployment claims, and building permits provide additional context between monthly labor releases. Their timing and coverage differ; none guarantees a future outcome.",
     signals,
   };
 }

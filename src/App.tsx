@@ -37,7 +37,7 @@ function App() {
             <main className={clsx("compare-loading")} role="status" aria-live="polite">
               <div className="compare-loading-card">
                 <p className="compare-kicker">Loading Floridanomics</p>
-                <h2>Preparing the latest Florida read.</h2>
+                <h2>Loading Florida's Economic Data.</h2>
               </div>
             </main>
           }

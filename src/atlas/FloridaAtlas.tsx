@@ -187,7 +187,7 @@ export default function FloridaAtlas() {
               <button className="atlas-back" type="button" onClick={() => selectRegion(null)}>← Back to the whole state</button>
             </> : <>
               <div className="atlas-stats"><div><strong>08</strong><span>regional views</span></div><div><strong>{ALL_ASSETS.length}</strong><span>curated anchors</span></div></div>
-              <div className="atlas-start"><span className="atlas-eyebrow">START EXPLORING</span><h3>One state. Eight stories.</h3><p>Watch Florida unfold, region by region—from launch infrastructure to living estuaries.</p><button type="button" onClick={() => { setSector("All sectors"); selectRegion(TOUR[0].id); }}>Explore the eight regions <span aria-hidden="true">↗</span></button></div>
+              <div className="atlas-start"><span className="atlas-eyebrow">START EXPLORING</span><h3>One state. Eight stories.</h3><p>Watch Florida unfold, region by region, from space operations to water research.</p><button type="button" onClick={() => { setSector("All sectors"); selectRegion(TOUR[0].id); }}>Explore the eight regions <span aria-hidden="true">↗</span></button></div>
               <p className="atlas-source-note">Public sources. Human-curated regions. Every anchor has a source you can open.</p>
             </>}
           </div>

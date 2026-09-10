@@ -56,14 +56,15 @@ export function PolicyMemo() {
   }
 
   const live = payload.status === "live" && payload.items.length > 0;
-  const enacted = payload.items.filter((item) => item.status === "Enrolled").length;
+  const enacted = payload.items.filter((item) => item.status === "Enacted").length;
   const failed = payload.items.filter((item) => item.status === "Failed").length;
+  const vetoed = payload.items.filter((item) => item.status === "Vetoed").length;
 
   return (
     <Frame label="Policy watch">
       <div className="v3-panel-head">
         <div>
-          <h2>{live ? "What survived Florida's 2026 session." : "Florida policy tracking, ready to connect."}</h2>
+          <h2>{live ? "Selected 2026 legislative outcomes." : "Florida legislative updates."}</h2>
           <p>
             {live
               ? (payload.coverageNote ?? "Tracked bills relevant to economic development, technology, and workforce.")
@@ -73,7 +74,7 @@ export function PolicyMemo() {
         {live ? (
           <div className="v3-policy-review-meta">
             <span>{payload.session ?? "Florida policy watch"}</span>
-            <strong>{enacted} enrolled / {failed} failed</strong>
+            <strong>{enacted} enacted / {failed} failed / {vetoed} vetoed</strong>
             <small>
               Reviewed {payload.reviewedAt ? formatDateLabel(payload.reviewedAt) : "not recorded"} · {payload.cadence ?? "scheduled"}
             </small>

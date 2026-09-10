@@ -19,7 +19,7 @@ import type { DashboardDataset } from "../types/dashboard";
 
 function CompetitionHero({ dataset }: { dataset: DashboardDataset }) {
   const competition = dataset.competition;
-  const firstScore = competition.fdiScoreboard.observatory.scores[0];
+  const floridaFdi = competition.fdiScoreboard.observatory.deltas.find((state) => state.id === "FL");
 
   return (
     <Frame label="State competition terminal">
@@ -31,10 +31,10 @@ function CompetitionHero({ dataset }: { dataset: DashboardDataset }) {
         </div>
 
         <aside className="v3-competition-scorecard">
-          <span>{firstScore?.label ?? "FDI read"}</span>
-          <strong>{firstScore?.value ?? "n/a"}</strong>
-          <p>{firstScore?.read ?? competition.fdiScoreboard.summary}</p>
-          {firstScore ? <CompetitionSourceList dataset={dataset} sourceIds={firstScore.sourceIds} /> : null}
+          <span>Florida new FDI, 2025</span>
+          <strong>{formatNullableUsdBillions(floridaFdi?.latestExpendituresUsdBillions ?? null)}</strong>
+          <p>{competition.fdiScoreboard.summary}</p>
+          {floridaFdi ? <CompetitionSourceList dataset={dataset} sourceIds={floridaFdi.sourceIds} /> : null}
         </aside>
       </div>
     </Frame>
@@ -52,7 +52,7 @@ function CompetitionViewMenu({
     <nav className="v3-competition-menu" aria-label="Competition views">
       <div>
         <span>Competition menu</span>
-        <strong>Pick the operating lens.</strong>
+        <strong>Choose a Comparison</strong>
       </div>
       <div>
         {COMPETITION_VIEW_OPTIONS.map((view) => (
@@ -88,10 +88,11 @@ function MetroCompetitionView({
         <div>
           <h2>{comparison.headline}</h2>
           <p>{comparison.summary}</p>
+          <p>{comparison.asOf}</p>
         </div>
         <div className="v3-panel-number">
           <strong>{comparison.regions.length}</strong>
-          <span>metro engines</span>
+          <span>regions compared</span>
         </div>
       </div>
 
@@ -129,8 +130,8 @@ function MetroCompetitionView({
       </div>
 
       <p className="v3-competition-read">
-        Data window: {comparison.asOf}. The strategic question is whether Miami and Florida can turn scale,
-        migration, and gateway power into velocity, productivity, and institutional execution.
+        Data window: {comparison.asOf}. These comparisons describe regional strengths and investment conditions.
+        Definitions and geographic coverage differ across countries; they are not a standardized economic ranking.
       </p>
     </Frame>
   );
@@ -145,7 +146,7 @@ function FederalDataSpine({ dataset }: { dataset: DashboardDataset }) {
   const liveSignals = federal.signals.filter((item) => item.status === "live").length;
 
   return (
-    <Frame label="Federal data spine">
+    <Frame label="Federal economic series">
       <div className="v3-federal-spine-head">
         <div>
           <h2>{federal.headline}</h2>
@@ -155,7 +156,7 @@ function FederalDataSpine({ dataset }: { dataset: DashboardDataset }) {
           <strong>
             {liveSignals}/{federal.signals.length}
           </strong>
-          <span>live federal feeds</span>
+          <span>series retrieved in this refresh</span>
         </div>
       </div>
 
@@ -179,12 +180,6 @@ function FederalDataSpine({ dataset }: { dataset: DashboardDataset }) {
         ))}
       </div>
 
-      {federal.missingKeys.length > 0 ? (
-        <div className="v3-federal-keys">
-          <span>Keys to activate</span>
-          <p>{federal.missingKeys.join(", ")}</p>
-        </div>
-      ) : null}
     </Frame>
   );
 }
@@ -207,7 +202,7 @@ function FdiScoreboard({ dataset }: { dataset: DashboardDataset }) {
             <h3>{observatory.headline}</h3>
             <p>{observatory.summary}</p>
           </div>
-          <strong>{observatory.scores.length} editorial scores</strong>
+          <strong>2025 preliminary estimates</strong>
         </div>
 
         <div className="v3-fdi-score-grid">
@@ -247,7 +242,7 @@ function FdiScoreboard({ dataset }: { dataset: DashboardDataset }) {
                 <p>{state.read}</p>
               </div>
               <div>
-                <span>2024 flow</span>
+                <span>2025 first-year expenditures</span>
                 <strong>{formatNullableUsdBillions(state.latestExpendituresUsdBillions)}</strong>
                 <small>{formatNullableSignedPercent(state.oneYearExpendituresPercent)} YoY</small>
               </div>
