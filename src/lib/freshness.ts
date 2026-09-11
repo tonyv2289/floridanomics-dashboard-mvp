@@ -26,7 +26,9 @@ export function assessFreshness(dataset: DashboardDataset, economy: RegionalEcon
     if (age(signal.latest.date, now) > maxAge) findings.push({ id: signal.id, label: signal.label, level: "overdue", detail: `The latest observation is ${signal.latest.date}. Check its source; no new observation has been published here within the ${maxAge}-day review window.` });
   }
   const exports = dataset.federal.signals.find((signal) => signal.id === "census-florida-exports");
-  if (exports && exports.status !== "live") findings.push({ id: "trade-benchmark", label: "Trade", level: "review", detail: "Annual 2025 figures are retained. The direct monthly Census feed is not verified; do not describe this as current-month trade." });
+  const annualTrade = exports && /^\d{4}-12$/.test(exports.period) && Number(exports.period.slice(0, 4)) < now.getUTCFullYear();
+  if (annualTrade) findings.push({ id: "trade-benchmark", label: "Trade", level: "review", detail: `Annual ${exports.period.slice(0, 4)} figures are retained. These are dated annual benchmarks, not current-month trade.${exports.status !== "live" ? " Direct Census API revalidation is still needed." : " A successful API check does not make an annual observation monthly."}` });
+  else if (exports && exports.status !== "live") findings.push({ id: "trade-benchmark", label: "Trade", level: "review", detail: `The ${exports.period} Census trade observation needs source revalidation. Its retrieval date is not its observation period.` });
   const power = dataset.benchmarks?.power?.rows.find((row) => row.stateId === "FL");
   if (power && age(`${power.period.slice(0, 7)}-01`, now) > 130) findings.push({ id: "power", label: "Industrial electricity price", level: "overdue", detail: `The price benchmark is ${power.period}; check the latest EIA monthly table.` });
   return findings;

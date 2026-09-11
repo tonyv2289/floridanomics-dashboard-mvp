@@ -13,7 +13,9 @@ const data = () => {
   for (const signal of d.leading?.signals ?? []) signal.latest.date = signal.id === "buildingPermits" ? "2026-07-01" : "2026-09-03";
   const power = d.benchmarks?.power?.rows.find((entry) => entry.stateId === "FL");
   if (power) power.period = "2026-06";
-  d.federal.signals.find((signal) => signal.id === "census-florida-exports")!.status = "fallback";
+  const exports = d.federal.signals.find((signal) => signal.id === "census-florida-exports")!;
+  exports.status = "fallback";
+  exports.period = "2025-12";
   return d;
 };
 const regionalEconomy = { ...regionalData, employmentMonth: "2026-03-01", retrievedAt: "2026-09-11" };
@@ -48,10 +50,16 @@ describe("freshness alerts", () => {
   it("flags the published state data after the release grace period", () => {
     expect(assessFreshness(data(), regionalEconomy, calendar, new Date("2026-09-21T18:00:00Z")).some((finding) => finding.id === "state-labor")).toBe(true);
   });
-  it("clears the trade fallback notice when the feed is verified live", () => {
+  it("clears the trade fallback notice for a verified current monthly observation", () => {
     const d = data();
     d.federal.signals.find((signal) => signal.id === "census-florida-exports")!.status = "live";
+    d.federal.signals.find((signal) => signal.id === "census-florida-exports")!.period = "2026-07";
     expect(assessFreshness(d, regionalEconomy, calendar, new Date("2026-09-11")).some((finding) => finding.id === "trade-benchmark")).toBe(false);
+  });
+  it("does not mistake a verified annual trade total for current-month trade", () => {
+    const d = data();
+    d.federal.signals.find((signal) => signal.id === "census-florida-exports")!.status = "live";
+    expect(assessFreshness(d, regionalEconomy, calendar, new Date("2026-09-11")).find((finding) => finding.id === "trade-benchmark")?.detail).toContain("Annual 2025");
   });
   it("clears a state alert only when every headline series has the new observation", () => {
     const d = data();

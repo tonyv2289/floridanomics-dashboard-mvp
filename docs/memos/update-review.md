@@ -1,5 +1,5 @@
 ## Floridanomics data review
-- Trade: Annual 2025 figures are retained. The direct monthly Census feed is not verified; do not describe this as current-month trade.
+- Trade: Annual 2025 figures are retained. These are dated annual benchmarks, not current-month trade. Direct Census API revalidation is still needed.
 
 ### Publication gate
 Review the dated sources, the data differences and any affected interpretation. Project announcements and TJ’s Read require separate editorial review. The scheduled check does not publish to the website or merge a branch.
