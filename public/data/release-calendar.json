@@ -1,0 +1,186 @@
+{
+  "checkedAt": "2026-09-11",
+  "sourceUrl": "https://www.bls.gov/schedule/2026/home.htm",
+  "releases": [
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-01-07",
+      "observationDate": "2025-11-01",
+      "label": "State Employment and Unemployment (Monthly) for November 2025"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-01-16",
+      "observationDate": "2025-11-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for November 2025"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-01-27",
+      "observationDate": "2025-12-01",
+      "label": "State Employment and Unemployment (Monthly) for December 2025"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-02-06",
+      "observationDate": "2025-12-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for December 2025"
+    },
+    {
+      "program": "county-wages",
+      "releaseDate": "2026-03-10",
+      "observationDate": "2025-09-01",
+      "label": "County Employment and Wages for Third Quarter 2025"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-04-08",
+      "observationDate": "2026-01-01",
+      "label": "State Employment and Unemployment (Monthly) for January 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-04-16",
+      "observationDate": "2026-01-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for January 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-04-22",
+      "observationDate": "2026-02-01",
+      "label": "State Employment and Unemployment (Monthly) for February 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-04-29",
+      "observationDate": "2026-02-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for February 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-05-06",
+      "observationDate": "2026-03-01",
+      "label": "State Employment and Unemployment (Monthly) for March 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-05-19",
+      "observationDate": "2026-03-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for March 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-05-22",
+      "observationDate": "2026-04-01",
+      "label": "State Employment and Unemployment (Monthly) for April 2026"
+    },
+    {
+      "program": "county-wages",
+      "releaseDate": "2026-06-02",
+      "observationDate": "2025-12-01",
+      "label": "County Employment and Wages for Fourth Quarter 2025"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-06-03",
+      "observationDate": "2026-04-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for April 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-06-23",
+      "observationDate": "2026-05-01",
+      "label": "State Employment and Unemployment (Monthly) for May 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-07-01",
+      "observationDate": "2026-05-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for May 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-07-21",
+      "observationDate": "2026-06-01",
+      "label": "State Employment and Unemployment (Monthly) for June 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-07-29",
+      "observationDate": "2026-06-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for June 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-08-21",
+      "observationDate": "2026-07-01",
+      "label": "State Employment and Unemployment (Monthly) for July 2026"
+    },
+    {
+      "program": "county-wages",
+      "releaseDate": "2026-08-28",
+      "observationDate": "2026-03-01",
+      "label": "County Employment and Wages for First Quarter 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-09-02",
+      "observationDate": "2026-07-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for July 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-09-18",
+      "observationDate": "2026-08-01",
+      "label": "State Employment and Unemployment (Monthly) for August 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-09-30",
+      "observationDate": "2026-08-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for August 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-10-20",
+      "observationDate": "2026-09-01",
+      "label": "State Employment and Unemployment (Monthly) for September 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-10-28",
+      "observationDate": "2026-09-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for September 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-11-20",
+      "observationDate": "2026-10-01",
+      "label": "State Employment and Unemployment (Monthly) for October 2026"
+    },
+    {
+      "program": "county-wages",
+      "releaseDate": "2026-12-02",
+      "observationDate": "2026-06-01",
+      "label": "County Employment and Wages for Second Quarter 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-12-02",
+      "observationDate": "2026-10-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for October 2026"
+    },
+    {
+      "program": "state-labor",
+      "releaseDate": "2026-12-18",
+      "observationDate": "2026-11-01",
+      "label": "State Employment and Unemployment (Monthly) for November 2026"
+    },
+    {
+      "program": "metro-labor",
+      "releaseDate": "2026-12-30",
+      "observationDate": "2026-11-01",
+      "label": "Metropolitan Area Employment and Unemployment (Monthly) for November 2026"
+    }
+  ]
+}

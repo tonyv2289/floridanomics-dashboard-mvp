@@ -14,6 +14,7 @@ export default defineConfig(() => ({
   }],
   base: process.env.VITE_BASE_PATH || "/floridanomics-dashboard-mvp/",
   build: {
+    manifest: true,
     // Do not modulepreload the Recharts chunk on the landing: it is only needed when a
     // chart tab opens, where the dynamic-import runtime fetches it on demand.
     modulePreload: {

@@ -66,8 +66,8 @@ description: "PortMiami links South Florida to international cargo markets. The 
   },
   {
     id: "northeast", name: "Jacksonville & Northeast", shortName: "Jacksonville", coordinates: [-81.65, 30.33],
-headline: "Cargo terminals connected to inland markets.",
-description: "JAXPORT’s marine terminals and access to rail and highways support Northeast Florida’s role in vehicle, container and general cargo trade.",
+headline: "Logistics, financial technology and specialized medicine.",
+description: "JAXPORT connects Northeast Florida to cargo markets. The full regional profile also examines FIS, Mayo Clinic and the workforce behind Jacksonville’s wider economy.",
     assets: [{ id: "jaxport", name: "JAXPORT", kind: "Seaport", sector: "Trade & logistics", coordinates: [-81.56, 30.4], model: "port", summary: "The Jacksonville Port Authority is an international cargo gateway in Northeast Florida, handling containers, vehicles and other freight with access to rail and highway networks.", source: "https://www.jaxport.com/", sourceName: "Jacksonville Port Authority" }],
   },
   {
@@ -81,14 +81,14 @@ description: "UF Innovate supports early-stage companies in Gainesville and Alac
   },
   {
     id: "panhandle", name: "Northwest & Panhandle", shortName: "Northwest Florida", coordinates: [-87.21, 30.42],
-headline: "Robotics, artificial intelligence and human performance.",
-description: "IHMC’s Pensacola campus conducts research in robotics, artificial intelligence and human performance. It is the first institution included in this Northwest Florida overview.",
+headline: "Research capabilities and established employers.",
+description: "IHMC’s Pensacola campus conducts research in robotics, artificial intelligence and human performance. The full profile adds Navy Federal’s local operations, research facilities and county employment benchmarks.",
     assets: [{ id: "ihmc", name: "Institute for Human & Machine Cognition", kind: "Research", sector: "Defense & simulation", coordinates: [-87.21, 30.41], model: "dish", summary: "IHMC’s Pensacola campus is home to work in artificial intelligence, human-centered computing, robotics, exoskeletons and human performance. The institute also has an Ocala campus.", source: "https://www.ihmc.us/aboutihmc/", sourceName: "IHMC · The IHMC Story" }],
   },
   {
     id: "southwest", name: "Southwest Florida", shortName: "Southwest Florida", coordinates: [-81.8, 26.55],
-headline: "Water research with regional applications.",
-description: "FGCU’s Water School studies the freshwater, coastal and environmental systems that affect Southwest Florida’s communities and economy.",
+headline: "Water research and medical-device production.",
+description: "FGCU’s Water School studies the systems that affect Southwest Florida’s communities and economy. The regional profile adds Arthrex, planned research facilities and county workforce data.",
     assets: [{ id: "fgcu-water", name: "FGCU Water School", kind: "Research", sector: "Water & resilience", coordinates: [-81.77, 26.46], model: "water", summary: "The Water School at FGCU studies climate, natural resources, ecosystem health, restoration and remediation, drawing on Southwest Florida’s freshwater and saltwater environments.", source: "https://www.fgcu.edu/thewaterschool/", sourceName: "Florida Gulf Coast University · The Water School" }],
   },
 ];

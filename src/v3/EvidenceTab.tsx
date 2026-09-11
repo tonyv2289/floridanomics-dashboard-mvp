@@ -2,6 +2,9 @@ import { formatDateLabel } from "../lib/dashboard";
 import type { DashboardDataset, SourceClassification } from "../types/dashboard";
 import { EvidenceExport } from "./EvidenceExport";
 import { Frame } from "./primitives";
+import { FreshnessNotice } from "../components/FreshnessNotice";
+import releaseCalendar from "../../public/data/release-calendar.json";
+import regionalEconomy from "../../public/data/regional-economy.json";
 
 function dateOrPending(value: string | null): string {
   return value ? formatDateLabel(value, { month: "short", day: "numeric", year: "numeric" }) : "Not scheduled";
@@ -52,6 +55,16 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
           <dl>{dataset.trust.review.sections.map((section) => <div key={section.label}><dt>{section.label}</dt><dd>{section.note}</dd></div>)}</dl>
         </Frame>
       ) : null}
+
+      <section id="freshness"><FreshnessNotice dataset={dataset} expanded /></section>
+      <Frame label="How updates reach the site">
+        <h2>Source checks, then editorial review.</h2>
+        <p>Weekday checks run after the usual morning releases. The official BLS calendar identifies which state, metro and county observations are due. New observations and stale sources produce a review alert; they do not publish themselves.</p>
+        <p>Regional jobs and wages: {regionalEconomy.period}, retrieved {regionalEconomy.retrievedAt}. These are all-industry county benchmarks, not totals for the atlas's illustrative regions.</p>
+        <p>Project announcements and TJ’s Read remain separately reviewed editorial content. A refreshed data file does not refresh the date of an older article or verify a construction milestone.</p>
+        <a href={releaseCalendar.sourceUrl}>Official BLS calendar, checked {releaseCalendar.checkedAt} ↗</a>
+        <div className="v3-release-grid">{releaseCalendar.releases.filter((release) => release.releaseDate >= new Date().toISOString().slice(0, 10)).slice(0, 4).map((release) => <article key={`${release.program}-${release.releaseDate}`}><strong>{release.label}</strong><p>Scheduled: {release.releaseDate}</p></article>)}</div>
+      </Frame>
 
       <Frame label="Release calendar">
         <div className="v3-panel-head">

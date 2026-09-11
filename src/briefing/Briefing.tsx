@@ -12,6 +12,10 @@ import { formatSignedInteger, getMonthlyPayrollChange } from "../v3/format";
 import { changeTone, formatChange, formatSignalValue } from "../v3/signal-format";
 import { BrandMark } from "../v3/BrandMark";
 import { SignupForm } from "../components/SignupForm";
+import FloridaAtlas from "../atlas/FloridaAtlas";
+import { REGIONAL_PROFILES, regionalPath } from "../regions/profiles";
+import { TJ_READ } from "./editorial";
+import { FreshnessNotice } from "../components/FreshnessNotice";
 import "./briefing.css";
 
 type WhatChangedPayload = {
@@ -65,8 +69,7 @@ function Briefing() {
     <main className="briefing-root" id="briefing-main">
       {isSnapshot ? null : (
         <div className="briefing-actions">
-          <a href="?view=atlas">Explore Florida atlas</a>
-          <a href="?view=dashboard">Explore the full dashboard</a>
+          <a href="?view=dashboard&tab=brief">Economic detail</a>
           <button type="button" onClick={() => window.print()}>
             Download as PDF
           </button>
@@ -91,6 +94,7 @@ function Briefing() {
           </div>
         </header>
 
+        <div className="briefing-map-layout">
         <section className="briefing-hero">
           <div className="briefing-hero-main">
             <p className="briefing-kicker">Florida today</p>
@@ -124,6 +128,17 @@ function Briefing() {
             </div>
           </div>
         </section>
+        {isSnapshot ? null : <FloridaAtlas embedded />}
+        </div>
+
+        {isSnapshot ? null : <FreshnessNotice dataset={data} />}
+        <section className="tj-read" aria-labelledby="tj-read-title">
+          <div className="tj-read-byline"><p>TJ’s Read</p><strong>{TJ_READ.author}</strong><span>{formatDateLabel(TJ_READ.publishedAt)}</span><small>Editorial analysis</small></div>
+          <div><h2 id="tj-read-title">{TJ_READ.title}</h2>{TJ_READ.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<div className="tj-read-sources">{TJ_READ.sources.map((source) => <a key={source.url} href={source.url}>{source.label} ↗</a>)}</div>
+          {payrollDate !== TJ_READ.laborPeriod ? <p className="briefing-note">This column discusses July 2026. The live briefing above may contain a newer release.</p> : null}</div>
+        </section>
+
+        {isSnapshot ? null : <section className="home-regions" aria-labelledby="home-regions-title"><div><p className="briefing-kicker">Across Florida</p><h2 id="home-regions-title">The places behind the numbers.</h2></div><div className="home-region-grid">{REGIONAL_PROFILES.map((region, index) => <a key={region.id} href={regionalPath(region.id, import.meta.env.BASE_URL)}><span>{String(index + 1).padStart(2, "0")}</span><h3>{region.title}</h3><p>{region.description}</p><strong>Read the profile →</strong></a>)}</div></section>}
 
         {data.leading ? (
           <section className="briefing-section">

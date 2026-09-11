@@ -1,0 +1,16 @@
+.atlas.atlas-embedded { padding:0; min-height:0; border-left:1px solid #23303f; }
+.atlas-embedded .atlas-workspace { display:block; height:clamp(440px,60vh,650px); min-height:440px; border-bottom:0; }
+.atlas-embedded .atlas-map-section { height:100%; }
+.atlas-embedded .atlas-map-caption { font-size:.75rem; }
+.atlas-embedded .atlas-map-bottom button { min-height:36px; font-size:.8rem; }
+.atlas-embedded .atlas-map-bottom p { font-size:.75rem; }
+.atlas-embedded .atlas-marker-text { font-size:.75rem; }
+.atlas-embedded .atlas-flat-regions button { min-height:32px; font-size:.8rem; }
+.home-map-selection { border-top:1px solid #23303f; margin-left:1rem; padding:1.25rem .75rem; display:flex; flex-wrap:wrap; align-items:center; gap:1rem; }
+.home-map-selection > div { flex:1 1 230px; }
+.home-map-selection strong { font-family:Sora,sans-serif; font-size:1rem; }
+.home-map-selection p { color:#a6b5c8; font-size:.875rem; line-height:1.5; margin:.5rem 0 0; }
+.home-map-selection select { max-width:100%; background:#091320; border:1px solid #40546c; border-radius:4px; padding:.65rem; font-size:.875rem; }
+.home-map-selection a { font-size:.875rem; color:#ff8f3f; text-decoration:underline; text-underline-offset:5px; }
+@media(max-width:800px) { .atlas.atlas-embedded { border-left:0; } .home-map-selection { margin:0; padding-left:0; padding-right:0; } }
+@media print { .atlas-embedded { display:none; } }

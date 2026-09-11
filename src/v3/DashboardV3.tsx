@@ -11,7 +11,8 @@ import {
   isInnovationMetricId,
 } from "../lib/dashboard";
 import { trackDashboardView } from "../lib/analytics";
-import { type CompetitionViewId, type V3TabId } from "./constants";
+import { sectionForTab, type CompetitionViewId, type V3TabId } from "./constants";
+import { SiteNav } from "../components/SiteNav";
 import { isCompetitionViewId, isV3TabId, readSearchParam } from "./url";
 import { SourceFooter, TabNav } from "./primitives";
 import { BrandMark } from "./BrandMark";
@@ -178,7 +179,7 @@ function DashboardV3() {
   }
 
   return (
-    <main className="v3-root" id="v3-main">
+    <><SiteNav active={sectionForTab(activeTab)} /><main className="v3-root" id="v3-main">
       <div className="v3-shell">
         <div className="v3-masthead">
           <div>
@@ -274,7 +275,7 @@ function DashboardV3() {
         <SignupForm source={`dashboard:${activeTab}`} />
         <SourceFooter dataset={data} />
       </div>
-    </main>
+    </main></>
   );
 }
 

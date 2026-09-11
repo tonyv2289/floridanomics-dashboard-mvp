@@ -1,8 +1,9 @@
-export type AppView = "briefing" | "dashboard" | "atlas";
+export type AppView = "briefing" | "dashboard" | "atlas" | "region";
 
 const DASHBOARD_DEEP_LINKS = ["tab", "competitionView", "lens", "metric", "innovationMetric"];
 
-export function resolveAppView(search: string): AppView {
+export function resolveAppView(search: string, pathname = ""): AppView {
+  if (/\/regions\/[^/]+\/?$/.test(pathname)) return "region";
   const params = new URLSearchParams(search);
   const requestedView = params.get("view");
 

@@ -10,7 +10,27 @@ Output:
 
 - `public/data/florida-economy.json`
 
-For production updates, prefer the GitHub Actions **Refresh Data** workflow. It has the API-key secrets needed for Census, BEA, EIA, and LegiScan-backed sections. A keyless local refresh is useful for development, but it may mark optional federal feeds as `needs_key` and omit the EIA power benchmark.
+For production updates, prefer the GitHub Actions **Refresh Data** workflow. It passes configured repository secrets when available; do not assume an API key has been configured or remains valid. Missing keys and failed feeds must remain visible in the source status. A keyless local refresh is useful for development, but may mark optional federal feeds as `needs_key`.
+
+## Release checks and editorial review
+
+The workflow checks each weekday at 18:17 UTC, after usual morning releases. It reads the official BLS release calendar, rather than assuming that every release follows a fixed day of the month. Scheduled checks prepare review artifacts and never publish automatically.
+
+```bash
+npm run data:calendar
+npm run data:regions
+npm run data:review
+```
+
+- The calendar covers state labor, metropolitan labor and county employment/wages. An observation becomes overdue two days after its scheduled release. Age-based backstops also flag old data if a calendar has not been maintained.
+- County benchmarks use BLS QCEW total covered employment in the quarter's third month and average weekly wages for that quarter. The 19 selected counties are reference points, not complete regional aggregates. Quarterly figures lag monthly labor statistics; preserve their distinct periods.
+- Source failures retain the last valid regional/calendar file and its retrieval date. Failed checks prevent staging an update.
+- `data:review` compares committed data with refreshed candidates, ignoring only build/retrieval timestamps. It assesses committed observations against the checked calendar so unpublished updates cannot hide stale published data.
+- The workflow maintains one bot-owned GitHub issue, **Floridanomics: data review needed**, for changed observations, stale data, failed checks or overdue editorial review. It updates that issue instead of adding duplicate alerts and closes it when resolved.
+- TJ's Read is flagged after 45 days; institutional/project profiles after 90 days. Dates remain attached to their claims. A refreshed economic JSON file does not silently rewrite either editorial section.
+- Annual trade benchmarks remain labeled annual until the monthly source is independently verified. An annual fallback is a review item, not permission to invent a monthly value.
+
+The workflow's manual `publish=true` option **only stages a review branch**. Inspect the artifact and source changes, review interpretations, then merge or fast-forward after protected CI and dependency checks pass. Production publication remains a separate `main`-branch deployment. Repository issue notifications follow the owner's GitHub notification preferences.
 
 ## What the refresh now does
 
@@ -96,7 +116,7 @@ npm run data:validate
 
 - BLS request chunking and retry logic are built in
 - If the BLS daily threshold is exhausted, refresh falls back to cached BLS series from the existing dataset
-- The 1st-of-month GitHub Actions refresh runs after the BLS metropolitan release window so state and metro labor data do not drift because of same-day release timing.
+- Weekday GitHub Actions checks use the official release calendar and a two-day grace period to distinguish a scheduled wait from overdue observations.
 - `CENSUS_API_KEY`, `BEA_API_KEY`, and `EIA_API_KEY` are optional locally; missing keys are surfaced in `federal.missingKeys`
 - `CENSUS_API_KEY` activates the Census state export API. Florida business applications intentionally remain on the Census BFS FRED bridge until a state-level Census API or official CSV ingest is confirmed
 - EIA registration verification links are activation URLs, not API keys. Only set `EIA_API_KEY` after the EIA API accepts the actual key

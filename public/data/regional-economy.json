@@ -1,0 +1,142 @@
+{
+  "period": "Q1 2026",
+  "employmentMonth": "2026-03-01",
+  "quarterEnd": "2026-03-31",
+  "retrievedAt": "2026-09-11",
+  "sourceUrl": "https://data.bls.gov/cew/data/api/2026/1/industry/10.csv",
+  "counties": [
+    {
+      "fips": "12009",
+      "name": "Brevard",
+      "jobs": 245550,
+      "weeklyWage": 1502,
+      "employmentChangePercent": 0.6
+    },
+    {
+      "fips": "12095",
+      "name": "Orange",
+      "jobs": 961014,
+      "weeklyWage": 1432,
+      "employmentChangePercent": 1.2
+    },
+    {
+      "fips": "12097",
+      "name": "Osceola",
+      "jobs": 119278,
+      "weeklyWage": 1087,
+      "employmentChangePercent": 0.7
+    },
+    {
+      "fips": "12057",
+      "name": "Hillsborough",
+      "jobs": 788882,
+      "weeklyWage": 1658,
+      "employmentChangePercent": -1.2
+    },
+    {
+      "fips": "12103",
+      "name": "Pinellas",
+      "jobs": 439747,
+      "weeklyWage": 1452,
+      "employmentChangePercent": -1.2
+    },
+    {
+      "fips": "12101",
+      "name": "Pasco",
+      "jobs": 151896,
+      "weeklyWage": 1141,
+      "employmentChangePercent": 1
+    },
+    {
+      "fips": "12086",
+      "name": "Miami-Dade",
+      "jobs": 1277549,
+      "weeklyWage": 1797,
+      "employmentChangePercent": -0.6
+    },
+    {
+      "fips": "12011",
+      "name": "Broward",
+      "jobs": 855401,
+      "weeklyWage": 1543,
+      "employmentChangePercent": -1.4
+    },
+    {
+      "fips": "12099",
+      "name": "Palm Beach",
+      "jobs": 672223,
+      "weeklyWage": 1784,
+      "employmentChangePercent": -0.4
+    },
+    {
+      "fips": "12031",
+      "name": "Duval",
+      "jobs": 553196,
+      "weeklyWage": 1583,
+      "employmentChangePercent": -1.4
+    },
+    {
+      "fips": "12109",
+      "name": "St. Johns",
+      "jobs": 103192,
+      "weeklyWage": 1274,
+      "employmentChangePercent": 2.1
+    },
+    {
+      "fips": "12001",
+      "name": "Alachua",
+      "jobs": 139683,
+      "weeklyWage": 1281,
+      "employmentChangePercent": -1.5
+    },
+    {
+      "fips": "12073",
+      "name": "Leon",
+      "jobs": 165713,
+      "weeklyWage": 1253,
+      "employmentChangePercent": 0.7
+    },
+    {
+      "fips": "12033",
+      "name": "Escambia",
+      "jobs": 144400,
+      "weeklyWage": 1280,
+      "employmentChangePercent": -2.1
+    },
+    {
+      "fips": "12091",
+      "name": "Okaloosa",
+      "jobs": 88843,
+      "weeklyWage": 1298,
+      "employmentChangePercent": -1
+    },
+    {
+      "fips": "12005",
+      "name": "Bay",
+      "jobs": 82757,
+      "weeklyWage": 1087,
+      "employmentChangePercent": -1.4
+    },
+    {
+      "fips": "12071",
+      "name": "Lee",
+      "jobs": 306902,
+      "weeklyWage": 1241,
+      "employmentChangePercent": -0.4
+    },
+    {
+      "fips": "12021",
+      "name": "Collier",
+      "jobs": 176493,
+      "weeklyWage": 1421,
+      "employmentChangePercent": -0.7
+    },
+    {
+      "fips": "12015",
+      "name": "Charlotte",
+      "jobs": 58126,
+      "weeklyWage": 1084,
+      "employmentChangePercent": -0.6
+    }
+  ]
+}

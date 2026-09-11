@@ -2,14 +2,10 @@ name: Refresh Data
 
 on:
   schedule:
-    # 1st of month: baseline refresh after the BLS metro release window.
-    # 18:00 UTC is early afternoon Eastern, so same-day 10 a.m. ET
-    # metropolitan releases are available before the pull runs.
-    - cron: "0 18 1 * *"
-    # 22nd of month: catch the mid-month BLS state employment release
-    # (BLS publishes prior-month state data ~3rd week, so this picks it
-    # up ~1 week after release instead of waiting for the next 1st)
-    - cron: "0 11 22 * *"
+    # Check each weekday after usual morning releases (14:17 EDT / 13:17 EST).
+    # Compare observation periods with the live official BLS release calendar.
+    # Weekly indicators are checked too; scheduled work never publishes itself.
+    - cron: "17 18 * * 1-5"
   workflow_dispatch:
     inputs:
       publish:
@@ -21,6 +17,11 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write
+
+concurrency:
+  group: data-review
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -39,6 +40,8 @@ jobs:
         run: npm ci
 
       - name: Refresh dataset
+        id: economic
+        continue-on-error: true
         env:
           BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
@@ -46,16 +49,34 @@ jobs:
           EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
         run: npm run data:refresh
 
+      - name: Check official release calendar
+        id: calendar
+        continue-on-error: true
+        run: npm run data:calendar
+
+      - name: Refresh county jobs and wages
+        id: regional
+        continue-on-error: true
+        run: npm run data:regions
+
+      - name: Reconcile one editorial review alert
+        id: review
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          REFRESH_FAILURES: ${{ steps.economic.outcome == 'failure' && 'economic-data,' || '' }}${{ steps.calendar.outcome == 'failure' && 'release-calendar,' || '' }}${{ steps.regional.outcome == 'failure' && 'county-data' || '' }}
+        run: npm run data:review -- --notify
+
       - name: Validate dataset
         run: npm run data:validate
+
+      - name: Validate regional data and refresh contracts
+        run: npm run test && npm run typecheck:scripts
 
       - name: Generate what-changed memo
         env:
           VITE_PUBLIC_URL: ${{ vars.VITE_PUBLIC_URL || 'https://www.floridanomics.com/' }}
         run: npm run memo:generate
-
-      - name: Snapshot briefing image
-        run: bash scripts/snapshot-briefing.sh
 
       - name: Upload review artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
@@ -66,24 +87,24 @@ jobs:
           path: |
             public/data/florida-economy.json
             public/data/what-changed.json
-            public/briefings/
+            public/data/regional-economy.json
+            public/data/release-calendar.json
             docs/memos/
 
-      - name: Publish approved changes
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
+      - name: Require successful source checks before staging
+        if: ${{ steps.economic.outcome == 'failure' || steps.calendar.outcome == 'failure' || steps.regional.outcome == 'failure' }}
+        run: exit 1
+
+      - name: Stage reviewed changes
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish && steps.review.outputs.has_updates == 'true' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # -I skips runs where only generatedAt/refreshedAt/retrievedAt
-          # timestamps moved, so no-op refreshes stop producing commits
-          if git diff --quiet -I'At": "' -- public/data/florida-economy.json; then
-            echo "No dataset changes detected."
-            exit 0
-          fi
+          # Semantic comparison ignores build/retrieval stamps, not observation dates.
           git switch -c "codex/data-refresh-${{ github.run_id }}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/florida-economy.json public/data/what-changed.json public/briefings docs/memos
+          git add public/data/florida-economy.json public/data/what-changed.json public/data/regional-economy.json public/data/release-calendar.json docs/memos
           git commit -m "chore(data): refresh Florida dashboard dataset"
           git push --set-upstream origin HEAD
           # Token-created pushes do not trigger other workflows automatically.

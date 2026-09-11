@@ -111,6 +111,14 @@ npm run qa:full
 
 More detail: [docs/data-sources.md](docs/data-sources.md) and [docs/refresh-runbook.md](docs/refresh-runbook.md).
 
+## Regional profiles and editorial coverage
+
+The homepage pairs the economic briefing with the interactive Florida map. Main navigation groups the existing drilldowns under Briefing, Regions, Industry & Investment, Policy and Sources; legacy query links remain supported.
+
+Eight permanent `/regions/<region-id>/` pages contain employers, research assets, dated project milestones and selected county jobs/wages. The build pre-renders their content and individual sharing metadata so a shared page is readable before JavaScript loads. `src/regions/profiles.ts` is curated; `public/data/regional-economy.json` is refreshed from BLS QCEW. The county benchmarks are not regional totals.
+
+`src/briefing/editorial.ts` contains the attributed, dated TJ's Read. Keep interpretation separate from reported facts and review it when observations change. Weekday source checks, stale-data alerts and review-only publication are documented in the refresh runbook.
+
 ## Validation
 
 ```bash
@@ -141,7 +149,7 @@ GitHub Pages publishes from the repo with the fixed base path:
 
 - production URL: `https://www.floridanomics.com/`
 - AI Capex Gap brief: `https://www.floridanomics.com/briefs/ai-capex-gap/`
-- social preview image: `public/og-image.png`
+- evergreen statewide social preview image: `public/og.png`
 
 Push a `codex/**` branch and wait for CI (`quality`) and Security Audit (`dependency-audit`) before merging or fast-forwarding `main`. Both checks are required by branch protection, including for administrators. Publishing from `main` also reruns the dependency audits, lint, tests, and data validation before uploading an artifact. Manual deploys from other branches are skipped. The deployment accepts repository variables `VITE_BASE_PATH` and `VITE_PUBLIC_URL`.
 

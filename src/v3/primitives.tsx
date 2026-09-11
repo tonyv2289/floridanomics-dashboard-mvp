@@ -1,4 +1,4 @@
-import { startTransition, type CSSProperties, type ReactNode } from "react";
+import { startTransition, type ReactNode } from "react";
 import clsx from "clsx";
 import {
   CORE_METRIC_IDS,
@@ -9,7 +9,7 @@ import {
   formatDelta,
   formatMetricValue,
 } from "../lib/dashboard";
-import { DEEP_TAB_OPTIONS, PRIMARY_TAB_OPTIONS, type V3TabId } from "./constants";
+import { SECTION_TABS, sectionForTab, type V3TabId } from "./constants";
 import type { DashboardDataset, InsightSection } from "../types/dashboard";
 
 export function SourceAnchor({ source }: { source?: { label: string; url: string } }) {
@@ -96,68 +96,10 @@ export function Frame({ children, label }: { children: ReactNode; label?: string
 }
 
 export function TabNav({ activeTab, onChange }: { activeTab: V3TabId; onChange: (tab: V3TabId) => void }) {
-  const primaryTab = PRIMARY_TAB_OPTIONS.some((tab) => tab.id === activeTab) ? activeTab : null;
-  const deepTab = DEEP_TAB_OPTIONS.some((tab) => tab.id === activeTab) ? activeTab : "";
-
+  const tabs = SECTION_TABS[sectionForTab(activeTab)];
   return (
-    <nav className="v3-view-nav" aria-label="Floridanomics views">
-      <label className="v3-tab-select">
-        <span>Explore the data</span>
-        <select
-          value={activeTab}
-          onChange={(event) => startTransition(() => onChange(event.target.value as V3TabId))}
-        >
-          <optgroup label="Executive views">
-            {PRIMARY_TAB_OPTIONS.map((tab) => (
-              <option key={tab.id} value={tab.id}>
-                {tab.label} - {tab.line}
-              </option>
-            ))}
-          </optgroup>
-          <optgroup label="Specialist views">
-            {DEEP_TAB_OPTIONS.map((tab) => (
-              <option key={tab.id} value={tab.id}>
-                {tab.label} - {tab.line}
-              </option>
-            ))}
-          </optgroup>
-        </select>
-      </label>
-      <div
-        className="v3-tabs"
-        style={{ "--v3-tab-count": PRIMARY_TAB_OPTIONS.length } as CSSProperties}
-      >
-        {PRIMARY_TAB_OPTIONS.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            aria-current={primaryTab === tab.id ? "true" : undefined}
-            className={clsx("v3-tab", primaryTab === tab.id && "is-active")}
-            onClick={() => startTransition(() => onChange(tab.id))}
-          >
-            <span>{tab.label}</span>
-            <small>{tab.line}</small>
-          </button>
-        ))}
-      </div>
-      <label className="v3-drilldown-select">
-        <span>Specialist view</span>
-        <select
-          value={deepTab}
-          onChange={(event) => {
-            if (event.target.value) {
-              startTransition(() => onChange(event.target.value as V3TabId));
-            }
-          }}
-        >
-          <option value="">Choose a drill-down</option>
-          {DEEP_TAB_OPTIONS.map((tab) => (
-            <option key={tab.id} value={tab.id}>
-              {tab.label} - {tab.line}
-            </option>
-          ))}
-        </select>
-      </label>
+    <nav className="section-tabs" aria-label="Section navigation">
+      {tabs.map((tab) => <button key={tab.id} type="button" aria-current={activeTab === tab.id ? "page" : undefined} onClick={() => startTransition(() => onChange(tab.id))}>{tab.label}</button>)}
     </nav>
   );
 }

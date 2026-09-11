@@ -2,6 +2,11 @@ import { describe, expect, it } from "vitest";
 import { resolveAppView } from "./routing";
 
 describe("resolveAppView", () => {
+  it("resolves shareable regional paths before query-string views", () => {
+    expect(resolveAppView("", "/regions/space-coast/")).toBe("region");
+    expect(resolveAppView("?view=atlas", "/regions/southwest/")).toBe("region");
+    expect(resolveAppView("", "/floridanomics-dashboard-mvp/regions/panhandle/")).toBe("region");
+  });
   it("uses the briefing as the public front door", () => {
     expect(resolveAppView("")).toBe("briefing");
     expect(resolveAppView("?utm_source=linkedin")).toBe("briefing");

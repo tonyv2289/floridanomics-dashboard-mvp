@@ -12,6 +12,20 @@ export type V3TabId =
   | "trade";
 export type CompetitionViewId = "projects" | "grants" | "metro" | "international" | "fdi";
 
+export function sectionForTab(tab: V3TabId): "briefing" | "industry" | "policy" | "sources" {
+  if (tab === "brief" || tab === "scorecard") return "briefing";
+  if (tab === "policy") return "policy";
+  if (tab === "evidence") return "sources";
+  return "industry";
+}
+
+export const SECTION_TABS: Record<ReturnType<typeof sectionForTab>, Array<{ id: V3TabId; label: string }>> = {
+  briefing: [{ id: "brief", label: "Economic detail" }, { id: "scorecard", label: "Labor & population" }],
+  industry: [{ id: "competition", label: "Projects & comparisons" }, { id: "lens", label: "Industries" }, { id: "talent", label: "Talent & wages" }, { id: "trade", label: "Trade" }, { id: "innovation", label: "Innovation" }, { id: "strategy", label: "Strategy" }, { id: "terminal", label: "Analysis" }],
+  policy: [{ id: "policy", label: "Legislation & implications" }],
+  sources: [{ id: "evidence", label: "Sources, dates & methods" }],
+};
+
 export const PRIMARY_TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
   { id: "brief", label: "Today", line: "what changed and why" },
   { id: "competition", label: "Competition", line: "projects, awards, metros, FDI" },
