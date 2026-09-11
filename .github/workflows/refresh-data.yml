@@ -59,26 +59,32 @@ jobs:
         continue-on-error: true
         run: npm run data:regions
 
+      - name: Validate dataset
+        id: validation
+        continue-on-error: true
+        run: npm run data:validate
+
+      - name: Validate regional data and refresh contracts
+        id: contracts
+        continue-on-error: true
+        run: npm run test && npm run typecheck:scripts
+
       - name: Reconcile one editorial review alert
         id: review
         if: always()
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          REFRESH_FAILURES: ${{ steps.economic.outcome == 'failure' && 'economic-data,' || '' }}${{ steps.calendar.outcome == 'failure' && 'release-calendar,' || '' }}${{ steps.regional.outcome == 'failure' && 'county-data' || '' }}
+          REFRESH_FAILURES: ${{ steps.economic.outcome == 'failure' && 'economic-data,' || '' }}${{ steps.calendar.outcome == 'failure' && 'release-calendar,' || '' }}${{ steps.regional.outcome == 'failure' && 'county-data,' || '' }}${{ steps.validation.outcome == 'failure' && 'data-validation,' || '' }}${{ steps.contracts.outcome == 'failure' && 'refresh-contracts' || '' }}
         run: npm run data:review -- --notify
 
-      - name: Validate dataset
-        run: npm run data:validate
-
-      - name: Validate regional data and refresh contracts
-        run: npm run test && npm run typecheck:scripts
-
       - name: Generate what-changed memo
+        if: ${{ steps.validation.outcome == 'success' }}
         env:
           VITE_PUBLIC_URL: ${{ vars.VITE_PUBLIC_URL || 'https://www.floridanomics.com/' }}
         run: npm run memo:generate
 
       - name: Upload review artifact
+        if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: floridanomics-data-preview-${{ github.run_id }}
@@ -92,7 +98,7 @@ jobs:
             docs/memos/
 
       - name: Require successful source checks before staging
-        if: ${{ steps.economic.outcome == 'failure' || steps.calendar.outcome == 'failure' || steps.regional.outcome == 'failure' }}
+        if: ${{ steps.economic.outcome == 'failure' || steps.calendar.outcome == 'failure' || steps.regional.outcome == 'failure' || steps.validation.outcome == 'failure' || steps.contracts.outcome == 'failure' }}
         run: exit 1
 
       - name: Stage reviewed changes

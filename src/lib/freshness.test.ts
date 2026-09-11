@@ -1,12 +1,29 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import type { DashboardDataset } from "../types/dashboard";
-import regionalEconomy from "../../public/data/regional-economy.json";
-import calendarData from "../../public/data/release-calendar.json";
+import regionalData from "../../public/data/regional-economy.json";
 import { assessFreshness } from "./freshness";
 import { parseBlsCalendar, type ReleaseCalendar } from "./release-calendar";
-const data = () => JSON.parse(readFileSync(new URL("../../public/data/florida-economy.json", import.meta.url), "utf8")) as DashboardDataset;
-const calendar = calendarData as ReleaseCalendar;
+// Fix the test observations, not the production files: routine refreshes must not
+// change the meaning of these release/grace-period scenarios.
+const data = () => {
+  const d = JSON.parse(readFileSync(new URL("../../public/data/florida-economy.json", import.meta.url), "utf8")) as DashboardDataset;
+  for (const id of ["nonfarmPayrolls", "unemploymentRate", "employmentLevel", "laborForce"] as const) d.metrics[id].latest.date = "2026-07-01";
+  for (const metro of d.metros) { metro.unemploymentRate.latest.date = "2026-07-01"; metro.laborForce.latest.date = "2026-07-01"; }
+  for (const signal of d.leading?.signals ?? []) signal.latest.date = signal.id === "buildingPermits" ? "2026-07-01" : "2026-09-03";
+  const power = d.benchmarks?.power?.rows.find((entry) => entry.stateId === "FL");
+  if (power) power.period = "2026-06";
+  d.federal.signals.find((signal) => signal.id === "census-florida-exports")!.status = "fallback";
+  return d;
+};
+const regionalEconomy = { ...regionalData, employmentMonth: "2026-03-01", retrievedAt: "2026-09-11" };
+const calendar: ReleaseCalendar = { checkedAt: "2026-09-11", sourceUrl: "https://www.bls.gov/schedule/2026/home.htm", releases: [
+  { program: "state-labor", releaseDate: "2026-08-21", observationDate: "2026-07-01", label: "July state data" },
+  { program: "county-wages", releaseDate: "2026-08-28", observationDate: "2026-03-01", label: "First quarter county data" },
+  { program: "metro-labor", releaseDate: "2026-09-02", observationDate: "2026-07-01", label: "July metro data" },
+  { program: "state-labor", releaseDate: "2026-09-18", observationDate: "2026-08-01", label: "August state data" },
+  { program: "county-wages", releaseDate: "2026-12-02", observationDate: "2026-06-01", label: "Second quarter county data" },
+] };
 const row = (date: string, text: string) => `<tr><td class="date-cell"><p>${date}</p></td><td class="desc-cell"><p>${text}</p></td></tr>`;
 
 describe("official release-calendar parser", () => {
@@ -30,6 +47,11 @@ describe("freshness alerts", () => {
   });
   it("flags the published state data after the release grace period", () => {
     expect(assessFreshness(data(), regionalEconomy, calendar, new Date("2026-09-21T18:00:00Z")).some((finding) => finding.id === "state-labor")).toBe(true);
+  });
+  it("clears the trade fallback notice when the feed is verified live", () => {
+    const d = data();
+    d.federal.signals.find((signal) => signal.id === "census-florida-exports")!.status = "live";
+    expect(assessFreshness(d, regionalEconomy, calendar, new Date("2026-09-11")).some((finding) => finding.id === "trade-benchmark")).toBe(false);
   });
   it("clears a state alert only when every headline series has the new observation", () => {
     const d = data();
