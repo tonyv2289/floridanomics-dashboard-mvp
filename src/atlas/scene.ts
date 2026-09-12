@@ -71,8 +71,10 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   let lastTime = 0;
   let traveling = false;
   let travelStarted = 0;
+  let travelInstant = false;
   let assembling = false;
   let assemblyStarted = 0;
+  let assemblyInstant = false;
   let assemblyFrom = pieces.map(() => 0);
   let width = 1;
   let height = 1;
@@ -98,7 +100,7 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
     lastTime = now;
     if (state.motion) animationTime += dt;
     if (traveling) {
-      const progress = state.motion ? Math.min((now - travelStarted) / 2400, 1) : 1;
+      const progress = travelInstant ? 1 : Math.min((animationTime - travelStarted) / 2.4, 1);
       if (state.regionId && progress < 0.55) {
         const ease = smoothStep(progress / 0.55);
         camera.position.lerpVectors(fromPosition, middlePosition, ease);
@@ -110,7 +112,7 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
       }
       if (progress === 1) traveling = false;
     }
-    const assemblyProgress = state.motion ? Math.min((now - assemblyStarted) / 1650, 1) : 1;
+    const assemblyProgress = assemblyInstant ? 1 : Math.min((animationTime - assemblyStarted) / 1.65, 1);
     for (const [index, map] of pieces.entries()) {
       const focused = state.regionId === map.piece.id;
       const region = REGIONS[index];
@@ -150,14 +152,17 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
       label.style.transform = "translate(" + x + "px, " + y + "px)";
     });
     renderer.render(scene, camera);
-    if (state.motion || traveling || assembling) requestFrame();
+    if (state.motion) requestFrame();
   };
   function requestFrame() { if (!frameId && !disposed && !document.hidden) frameId = requestAnimationFrame(frame); }
   function travel() {
     resetPose();
     fromPosition.copy(camera.position);
     fromTarget.copy(controls.target);
-    travelStarted = performance.now();
+    travelStarted = animationTime;
+    // Explicit navigation still works while paused or using reduced motion.
+    // A pause mid-transition must not turn that existing transition into a jump.
+    travelInstant = !state.motion;
     traveling = true;
     requestFrame();
   }
@@ -223,10 +228,12 @@ export function createAtlasScene({ host, labels, onAsset, onFailure }: SceneOpti
   return {
     update(next: SceneState) {
       const regionChanged = state.regionId !== next.regionId;
+      if (state.motion !== next.motion) lastTime = performance.now();
       state = next;
       if (regionChanged) {
         assemblyFrom = pieces.map((map) => map.progress);
-        assemblyStarted = performance.now();
+        assemblyStarted = animationTime;
+        assemblyInstant = !state.motion;
         assembling = true;
         travel();
       }
