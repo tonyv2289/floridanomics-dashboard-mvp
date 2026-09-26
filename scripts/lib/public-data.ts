@@ -71,7 +71,7 @@ export function assertPublicDataset(value: unknown): void {
   if ("stateInvestment" in competition) {
     // Tracker export: every block is keyed exactly and every claim cites an approved public source.
     const invest = record(competition.stateInvestment);
-    exactKeys(invest, ["schemaVersion", "generatedOn", "evidenceCutoff", "headline", "summary", "peerStates", "measures", "dataCenters", "finalists", "method"]);
+    exactKeys(invest, ["schemaVersion", "generatedOn", "evidenceCutoff", "headline", "summary", "peerStates", "measures", "dataCenters", "facilityHistory", "finalists", "method"]);
     if (!Array.isArray(invest.measures) || !invest.measures.length) throw new Error("Public state investment measures required.");
     for (const item of invest.measures) {
       const measure = record(item);
@@ -84,5 +84,12 @@ export function assertPublicDataset(value: unknown): void {
       exactKeys(record(item), ["id", "label", "value", "read", "sourceIds"]);
     }
     exactKeys(record(invest.finalists), ["headline", "read", "caveat", "sourceIds"]);
+    if ("facilityHistory" in invest) {
+      const history = record(invest.facilityHistory);
+      exactKeys(history, ["label", "question", "years", "states", "medianPerMillion", "medianProjects", "read", "caveat", "sourceIds"]);
+      for (const item of Array.isArray(history.states) ? history.states : []) {
+        exactKeys(record(item), ["state", "projects", "perMillion", "rankPerMillion", "rankProjects"]);
+      }
+    }
   }
 }

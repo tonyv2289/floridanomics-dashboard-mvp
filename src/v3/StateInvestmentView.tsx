@@ -1,8 +1,10 @@
+import { useState } from "react";
 import clsx from "clsx";
 import { CompetitionSourceList, Frame } from "./primitives";
 import { resolveHref } from "./format";
-import { formatStateValue, ordinal, stateBars } from "./state-investment";
-import type { DashboardDataset, StateInvestmentMeasure } from "../types/dashboard";
+import { formatFacilityValue, formatStateValue, ordinal, sortFacilityRows, stateBars } from "./state-investment";
+import type { FacilityMetric, SortDirection } from "./state-investment";
+import type { DashboardDataset, StateFacilityHistory, StateInvestmentMeasure } from "../types/dashboard";
 
 const CSV_PATH = "data/megaprojects-1b-2022-2026.csv";
 
@@ -95,6 +97,115 @@ function ValuesTable({ measures }: { measures: StateInvestmentMeasure[] }) {
   );
 }
 
+// Year-by-year facility counts for all 50 states: sortable by year, per resident or in total, Florida highlighted.
+function FacilityHistoryTable({ dataset, history, peers }: { dataset: DashboardDataset; history: StateFacilityHistory; peers: string[] }) {
+  const [metric, setMetric] = useState<FacilityMetric>("perMillion");
+  const [scope, setScope] = useState<"all" | "peers">("all");
+  const [sort, setSort] = useState<{ year: number; direction: SortDirection }>({ year: history.years.length - 1, direction: "desc" });
+  const inScope = scope === "all" ? history.states : history.states.filter((row) => row.state === "Florida" || peers.includes(row.state));
+  const rows = sortFacilityRows(inScope, metric, sort.year, sort.direction);
+  const medians = metric === "perMillion" ? history.medianPerMillion : history.medianProjects;
+  const sortBy = (year: number) =>
+    setSort((current) => (current.year === year ? { year, direction: current.direction === "desc" ? "asc" : "desc" } : { year, direction: "desc" }));
+
+  return (
+    <Frame label="Year by year">
+      <div className="v3-panel-head">
+        <div>
+          <p className="v3-state-invest-question">{history.question}</p>
+          <h2>{history.label}</h2>
+          <p>{history.read}</p>
+        </div>
+      </div>
+
+      <div className="v3-facility-controls">
+        <fieldset>
+          <legend>Measure</legend>
+          <div className="v3-capex-segments">
+            {([
+              ["perMillion", "Per million residents"],
+              ["projects", "Projects"],
+            ] as const).map(([value, label]) => (
+              <button key={value} type="button" aria-pressed={metric === value} className={clsx(metric === value && "is-active")} onClick={() => setMetric(value)}>
+                {label}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>States</legend>
+          <div className="v3-capex-segments">
+            {([
+              ["all", "All 50"],
+              ["peers", `Florida and ${peers.length} competitors`],
+            ] as const).map(([value, label]) => (
+              <button key={value} type="button" aria-pressed={scope === value} className={clsx(scope === value && "is-active")} onClick={() => setScope(value)}>
+                {label}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <p className="v3-facility-note">
+        {metric === "perMillion" ? "Qualifying facility projects per million residents" : "Qualifying facility projects"}. Each state's rank of 50 is under its value;
+        select a year to sort.
+      </p>
+      <div className="v3-state-invest-table v3-facility-table">
+        <div className="v3-state-invest-scroll">
+          <table>
+            <caption className="v3-visually-hidden">
+              {metric === "perMillion" ? "Qualifying facility projects per million residents" : "Qualifying facility projects"}, {history.years[0]} to{" "}
+              {history.years[history.years.length - 1]}, with each state's rank of 50
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">State</th>
+                {history.years.map((year, index) => (
+                  <th key={year} scope="col" aria-sort={sort.year === index ? (sort.direction === "desc" ? "descending" : "ascending") : "none"}>
+                    <button type="button" onClick={() => sortBy(index)}>
+                      {year}
+                      <span aria-hidden="true">{sort.year === index ? (sort.direction === "desc" ? " \u2193" : " \u2191") : ""}</span>
+                    </button>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => {
+                const values = metric === "perMillion" ? row.perMillion : row.projects;
+                const ranks = metric === "perMillion" ? row.rankPerMillion : row.rankProjects;
+                return (
+                  <tr key={row.state} className={clsx(row.state === "Florida" && "is-florida")}>
+                    <th scope="row">{row.state}</th>
+                    {history.years.map((year, index) => (
+                      <td key={year}>
+                        <strong>{formatFacilityValue(values[index], metric)}</strong>
+                        <small>{ordinal(ranks[index])}</small>
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row">50-state median</th>
+                {medians.map((value, index) => (
+                  <td key={history.years[index]}>{formatFacilityValue(value, metric)}</td>
+                ))}
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <p className="v3-state-invest-caveat">{history.caveat}</p>
+      <CompetitionSourceList dataset={dataset} sourceIds={history.sourceIds} />
+    </Frame>
+  );
+}
+
 export function StateInvestmentView({ dataset }: { dataset: DashboardDataset }) {
   const invest = dataset.competition.stateInvestment;
 
@@ -131,6 +242,8 @@ export function StateInvestmentView({ dataset }: { dataset: DashboardDataset }) 
 
         <ValuesTable measures={invest.measures} />
       </Frame>
+
+      {invest.facilityHistory ? <FacilityHistoryTable dataset={dataset} history={invest.facilityHistory} peers={invest.peerStates} /> : null}
 
       <Frame label="Data centers and AI infrastructure">
         <div className="v3-panel-head">

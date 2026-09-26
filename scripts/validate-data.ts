@@ -1135,6 +1135,25 @@ async function main() {
       validateCompetitionSourceRefs(fact.sourceIds, competitionSourceIds, `competition.stateInvestment.dataCenters.facts ${index + 1}`, errors),
     );
     validateCompetitionSourceRefs(invest.finalists.sourceIds, competitionSourceIds, "competition.stateInvestment.finalists", errors);
+    if (invest.facilityHistory) {
+      // Year-by-year facility counts: every state once, every year filled, ranks within 1-50, cited.
+      const history = invest.facilityHistory;
+      const label = "competition.stateInvestment.facilityHistory";
+      const years = history.years.length;
+      ensure(years > 0 && history.years.every((year, index) => Number.isInteger(year) && (index === 0 || year > history.years[index - 1])), `${label} years must ascend`, errors);
+      ensure(history.states.length === 50 && new Set(history.states.map((row) => row.state)).size === 50, `${label} must list the 50 states once each`, errors);
+      ensure(history.states.some((row) => row.state === "Florida"), `${label} missing Florida`, errors);
+      ensure(
+        history.states.every((row) =>
+          [row.projects, row.perMillion, row.rankPerMillion, row.rankProjects].every((values) => values.length === years && values.every(isFiniteNumber))
+          && [...row.rankPerMillion, ...row.rankProjects].every((rank) => rank >= 1 && rank <= 50)),
+        `${label} has an incomplete or invalid state row`,
+        errors,
+      );
+      ensure(history.medianPerMillion.length === years && history.medianProjects.length === years, `${label} medians must cover every year`, errors);
+      ensure(isNonEmptyString(history.read) && isNonEmptyString(history.caveat), `${label} missing read or caveat`, errors);
+      validateCompetitionSourceRefs(history.sourceIds, competitionSourceIds, label, errors);
+    }
   }
   ensure(isNonEmptyString(data.competition.fdiScoreboard.headline), "competition.fdiScoreboard missing headline", errors);
   ensure(isNonEmptyString(data.competition.fdiScoreboard.summary), "competition.fdiScoreboard missing summary", errors);

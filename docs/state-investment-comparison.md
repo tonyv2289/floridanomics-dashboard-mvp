@@ -4,7 +4,9 @@ The State Comparison view shows how Florida compares with ten competitor states 
 South Carolina, Tennessee, Alabama, Louisiana, Virginia, Ohio and Arizona) on seven measures, plus data-center facts
 and documented site-selection contests. Five measures cover investment; two BLS measures (jobs from newly opened
 business locations, and private-sector pay) are contrary evidence that tests whether Florida's gap is general or
-specific to large productive capital. The Analysis tab's AI-infrastructure panel reuses the same data-center facts.
+specific to large productive capital. A year-by-year table lists all 50 states' Governor's Cup facility counts
+(per million residents and in total, 2022-2025), sortable by year, with each state's rank of 50. The Analysis tab's
+AI-infrastructure panel reuses the same data-center facts.
 
 ## Where the numbers come from
 

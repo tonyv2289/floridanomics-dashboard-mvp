@@ -623,6 +623,27 @@ export type StateInvestmentFact = {
   sourceIds: string[];
 };
 
+// Year-by-year common-method facility counts for all 50 states; each array aligns with `years`. Ties share a rank.
+export type StateFacilityHistoryRow = {
+  state: string;
+  projects: number[];
+  perMillion: number[];
+  rankPerMillion: number[];
+  rankProjects: number[];
+};
+
+export type StateFacilityHistory = {
+  label: string;
+  question: string;
+  years: number[];
+  states: StateFacilityHistoryRow[];
+  medianPerMillion: number[];
+  medianProjects: number[];
+  read: string;
+  caveat: string;
+  sourceIds: string[];
+};
+
 // Exported by the Florida Brain state investment tracker (see docs/state-investment-comparison.md).
 export type StateInvestmentComparison = {
   schemaVersion: 1;
@@ -633,6 +654,7 @@ export type StateInvestmentComparison = {
   peerStates: string[];
   measures: StateInvestmentMeasure[];
   dataCenters: { headline: string; facts: StateInvestmentFact[]; caveat: string };
+  facilityHistory?: StateFacilityHistory;
   finalists: { headline: string; read: string; caveat: string; sourceIds: string[] };
   method: string[];
 };
