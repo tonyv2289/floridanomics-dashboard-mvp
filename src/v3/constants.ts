@@ -10,7 +10,7 @@ export type V3TabId =
   | "scorecard"
   | "innovation"
   | "trade";
-export type CompetitionViewId = "projects" | "grants" | "metro" | "international" | "fdi";
+export type CompetitionViewId = "states" | "projects" | "grants" | "metro" | "international" | "fdi";
 
 export function sectionForTab(tab: V3TabId): "briefing" | "industry" | "policy" | "sources" {
   if (tab === "brief" || tab === "scorecard") return "briefing";
@@ -28,7 +28,7 @@ export const SECTION_TABS: Record<ReturnType<typeof sectionForTab>, Array<{ id: 
 
 export const PRIMARY_TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string }> = [
   { id: "brief", label: "Today", line: "what changed and why" },
-  { id: "competition", label: "Competition", line: "projects, awards, metros, FDI" },
+  { id: "competition", label: "Competition", line: "states, projects, awards, FDI" },
   { id: "policy", label: "Policy", line: "bills, choices, implications" },
   { id: "evidence", label: "Evidence", line: "vintages, sources, methods" },
 ];
@@ -44,6 +44,7 @@ export const DEEP_TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string 
 ];
 
 export const COMPETITION_VIEW_OPTIONS: Array<{ id: CompetitionViewId; label: string; line: string }> = [
+  { id: "states", label: "State Comparison", line: "Florida vs nine competitor states" },
   { id: "projects", label: "Project Capex", line: "announced, building, operating" },
   { id: "grants", label: "Government Awards", line: "funding, matching funds, delivery" },
   { id: "metro", label: "US Metros", line: "Florida, Austin, Seattle, Boston" },

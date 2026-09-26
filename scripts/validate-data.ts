@@ -1110,6 +1110,32 @@ async function main() {
       errors,
     ),
   );
+  if (data.competition.stateInvestment) {
+    // Florida Brain tracker export (docs/state-investment-comparison.md): ranks within scope, Florida in every measure, every claim cited.
+    const invest = data.competition.stateInvestment;
+    ensure(invest.schemaVersion === 1, "competition.stateInvestment has an unsupported schemaVersion", errors);
+    ensure(/^\d{4}-\d{2}-\d{2}$/.test(invest.evidenceCutoff), "competition.stateInvestment missing evidence cutoff", errors);
+    ensure(isNonEmptyString(invest.headline) && isNonEmptyString(invest.summary), "competition.stateInvestment missing headline or summary", errors);
+    ensure(invest.peerStates.length > 0 && !invest.peerStates.includes("Florida"), "competition.stateInvestment peer list invalid", errors);
+    ensure(invest.measures.length > 0, "competition.stateInvestment missing measures", errors);
+    invest.measures.forEach((measure, index) => {
+      const label = `competition.stateInvestment.measures ${index + 1}`;
+      ensure(isNonEmptyString(measure.label) && isNonEmptyString(measure.period), `${label} missing label or period`, errors);
+      ensure(["decimal1", "usd0", "pct1", "signedPct1"].includes(measure.format), `${label} has an unknown format`, errors);
+      ensure(measure.states.length === invest.peerStates.length + 1, `${label} must cover Florida and every peer`, errors);
+      ensure(measure.states.every((row) => isFiniteNumber(row.value)), `${label} has a non-numeric state value`, errors);
+      const florida = measure.states.find((row) => row.state === "Florida");
+      ensure(florida !== undefined && florida.value === measure.florida.value, `${label} Florida value does not match its state row`, errors);
+      ensure(measure.florida.rank >= 1 && measure.florida.rank <= measure.florida.rankOf, `${label} Florida rank outside its scope`, errors);
+      ensure(isNonEmptyString(measure.caveat), `${label} missing caveat`, errors);
+      validateCompetitionSourceRefs(measure.sourceIds, competitionSourceIds, label, errors);
+    });
+    ensure(invest.dataCenters.facts.length > 0, "competition.stateInvestment.dataCenters missing facts", errors);
+    invest.dataCenters.facts.forEach((fact, index) =>
+      validateCompetitionSourceRefs(fact.sourceIds, competitionSourceIds, `competition.stateInvestment.dataCenters.facts ${index + 1}`, errors),
+    );
+    validateCompetitionSourceRefs(invest.finalists.sourceIds, competitionSourceIds, "competition.stateInvestment.finalists", errors);
+  }
   ensure(isNonEmptyString(data.competition.fdiScoreboard.headline), "competition.fdiScoreboard missing headline", errors);
   ensure(isNonEmptyString(data.competition.fdiScoreboard.summary), "competition.fdiScoreboard missing summary", errors);
   ensure(

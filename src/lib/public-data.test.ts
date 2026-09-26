@@ -25,6 +25,17 @@ describe("public data boundary", () => {
     const data = fixture(); data.competition.institutionalCapacity = {};
     expect(() => assertPublicDataset(data)).toThrow(/unapproved/);
   });
+  it("accepts the reviewed state investment section but still rejects unknown fields inside it", () => {
+    expect(fixture().competition.stateInvestment).toBeDefined();
+    const data = fixture(); data.competition.stateInvestment.researchMemo = "not public";
+    expect(() => assertPublicDataset(data)).toThrow(/unapproved/);
+    const measure = fixture(); measure.competition.stateInvestment.measures[0].internalScore = 3;
+    expect(() => assertPublicDataset(measure)).toThrow(/unapproved/);
+  });
+  it("rejects a state investment claim whose citation is not an approved public source", () => {
+    const data = fixture(); data.competition.stateInvestment.measures[0].sourceIds = ["private_tracker_note"];
+    expect(() => assertPublicDataset(data)).toThrow(/citation/);
+  });
   it("rejects dangling or empty citations", () => {
     for (const refs of [[], ["unreviewed_source"]]) {
       const data = fixture(); data.competition.fdiScoreboard.observatory.deltas[0].sourceIds = refs;
@@ -33,6 +44,13 @@ describe("public data boundary", () => {
   });
   it.each(["javascript:alert(1)", "file:///tmp/file", "https://user:secret@example.com/", "https://127.0.0.1/", "https://localhost/", "https://foo.internal/", "https://www.dropbox.com/s/private"])("rejects nonpublic source URL %s", (url) => {
     expect(isPublicSourceUrl(url)).toBe(false);
+  });
+  it("allows public URLs whose path contains /home/ but still blocks local home paths", () => {
+    expect(() => assertPublicText("https://development.ohio.gov/home/news-and-events/all-news/2023-0626")).not.toThrow();
+    expect(() => assertPublicText("https://www.effinghamcounty.org/m/newsflash/Home/Detail/455")).not.toThrow();
+    for (const value of ["see /home/example/private", "(/Users/example/file.docx)", "\"/home/example\""]) {
+      expect(() => assertPublicText(value)).toThrow(/Publication blocked/);
+    }
   });
   it("accepts public primary-source HTTPS URLs", () => {
     expect(isPublicSourceUrl("https://www.bea.gov/data/")).toBe(true);

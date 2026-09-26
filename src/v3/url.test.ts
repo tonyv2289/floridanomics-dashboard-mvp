@@ -17,7 +17,7 @@ describe("v3 URL guards", () => {
   });
 
   it("recognizes every competition ledger and comparison view", () => {
-    for (const view of ["projects", "grants", "metro", "international", "fdi"]) {
+    for (const view of ["states", "projects", "grants", "metro", "international", "fdi"]) {
       expect(isCompetitionViewId(view)).toBe(true);
     }
     expect(isCompetitionViewId("policy")).toBe(false);

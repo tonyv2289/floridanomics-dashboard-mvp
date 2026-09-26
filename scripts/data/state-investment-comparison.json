@@ -1,0 +1,528 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-09-26",
+  "evidenceCutoff": "2026-09-25",
+  "headline": "Florida wins projects. It does not win large productive capital.",
+  "summary": "Compared with nine competing states, Florida lands many corporate facility projects and its manufacturing base is growing, but per resident it captures far less factory, lab and megaproject capital. The gap is real, sector-specific and measurable; the claim that Florida gets no business investment is false.",
+  "peerStates": [
+    "Texas",
+    "Georgia",
+    "North Carolina",
+    "South Carolina",
+    "Tennessee",
+    "Alabama",
+    "Virginia",
+    "Ohio",
+    "Arizona"
+  ],
+  "measures": [
+    {
+      "id": "facility-projects",
+      "label": "Corporate facility projects per million residents",
+      "question": "How many projects?",
+      "period": "Calendar 2025",
+      "format": "decimal1",
+      "florida": {
+        "value": 13.9,
+        "rank": 31,
+        "rankOf": 50,
+        "rankScope": "all 50 states"
+      },
+      "reference": {
+        "label": "50-state median",
+        "value": 14.9
+      },
+      "states": [
+        {
+          "state": "Texas",
+          "value": 44.3
+        },
+        {
+          "state": "Ohio",
+          "value": 39.2
+        },
+        {
+          "state": "Alabama",
+          "value": 36.0
+        },
+        {
+          "state": "Georgia",
+          "value": 28.2
+        },
+        {
+          "state": "South Carolina",
+          "value": 25.5
+        },
+        {
+          "state": "North Carolina",
+          "value": 24.2
+        },
+        {
+          "state": "Virginia",
+          "value": 21.3
+        },
+        {
+          "state": "Tennessee",
+          "value": 16.4
+        },
+        {
+          "state": "Florida",
+          "value": 13.9
+        },
+        {
+          "state": "Arizona",
+          "value": 12.7
+        }
+      ],
+      "read": "Florida recorded 326 qualifying projects, 5th by count, but ranked 31st per resident. It ranked 42nd per resident in 2022.",
+      "caveat": "Counts projects meeting any of $1 million, 20 jobs or 20,000 square feet; measures breadth, not dollars.",
+      "sourceIds": [
+        "si_site_selection_2025",
+        "si_census_popest_v2025"
+      ]
+    },
+    {
+      "id": "manufacturing-capex",
+      "label": "Manufacturing capital spending per resident",
+      "question": "What did manufacturers actually spend?",
+      "period": "2024",
+      "format": "usd0",
+      "florida": {
+        "value": 220,
+        "rank": 46,
+        "rankOf": 49,
+        "rankScope": "49 states with published data"
+      },
+      "reference": {
+        "label": "State median",
+        "value": 607
+      },
+      "states": [
+        {
+          "state": "Arizona",
+          "value": 2113
+        },
+        {
+          "state": "Alabama",
+          "value": 916
+        },
+        {
+          "state": "Ohio",
+          "value": 896
+        },
+        {
+          "state": "Tennessee",
+          "value": 808
+        },
+        {
+          "state": "Texas",
+          "value": 757
+        },
+        {
+          "state": "South Carolina",
+          "value": 729
+        },
+        {
+          "state": "North Carolina",
+          "value": 621
+        },
+        {
+          "state": "Georgia",
+          "value": 539
+        },
+        {
+          "state": "Virginia",
+          "value": 301
+        },
+        {
+          "state": "Florida",
+          "value": 220
+        }
+      ],
+      "read": "Manufacturers spent $5.11 billion on plant and equipment in Florida. Relative to its own manufacturing output Florida reinvests at about a typical rate, so the gap is mostly the size of its manufacturing base. Aerospace is the exception: about 16% of U.S. aerospace capital spending.",
+      "caveat": "Covers manufacturing establishments only, not data centers. The 2024 estimate is experimental; the 2022 Economic Census shows the same low position.",
+      "sourceIds": [
+        "si_census_aies_2024",
+        "si_census_ec_2022",
+        "si_census_popest_v2025"
+      ]
+    },
+    {
+      "id": "megaprojects",
+      "label": "Announced $1B+ project capital per resident, excluding data centers and LNG",
+      "question": "Where are the billion-dollar projects going?",
+      "period": "January 2022 to 2026-09-25",
+      "format": "usd0",
+      "florida": {
+        "value": 164,
+        "rank": 10,
+        "rankOf": 10,
+        "rankScope": "Florida and nine competitors"
+      },
+      "reference": null,
+      "states": [
+        {
+          "state": "Arizona",
+          "value": 41480
+        },
+        {
+          "state": "Texas",
+          "value": 5113
+        },
+        {
+          "state": "North Carolina",
+          "value": 4273
+        },
+        {
+          "state": "Alabama",
+          "value": 4172
+        },
+        {
+          "state": "Ohio",
+          "value": 3462
+        },
+        {
+          "state": "Tennessee",
+          "value": 3113
+        },
+        {
+          "state": "South Carolina",
+          "value": 2481
+        },
+        {
+          "state": "Georgia",
+          "value": 2406
+        },
+        {
+          "state": "Virginia",
+          "value": 2088
+        },
+        {
+          "state": "Florida",
+          "value": 164
+        }
+      ],
+      "read": "Florida's 3 active projects total $3.84 billion. Virginia, the lowest of the nine competitors, is about 13 times Florida's figure per resident.",
+      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. The inventory is systematic but not proven complete.",
+      "sourceIds": [
+        "si_megaproject_inventory",
+        "si_census_popest_v2025"
+      ]
+    },
+    {
+      "id": "foreign-greenfield",
+      "label": "Share of U.S. planned foreign greenfield investment",
+      "question": "Do foreign investors build here?",
+      "period": "Projects initiated 2022-2025",
+      "format": "pct1",
+      "florida": {
+        "value": 0.92,
+        "rank": 10,
+        "rankOf": 10,
+        "rankScope": "Florida and nine competitors"
+      },
+      "reference": {
+        "label": "Florida's share of U.S. GDP",
+        "value": 6.03
+      },
+      "states": [
+        {
+          "state": "Arizona",
+          "value": 27.66
+        },
+        {
+          "state": "Texas",
+          "value": 12.55
+        },
+        {
+          "state": "North Carolina",
+          "value": 10.1
+        },
+        {
+          "state": "Georgia",
+          "value": 4.57
+        },
+        {
+          "state": "Ohio",
+          "value": 3.32
+        },
+        {
+          "state": "Alabama",
+          "value": 2.37
+        },
+        {
+          "state": "Virginia",
+          "value": 2.33
+        },
+        {
+          "state": "Tennessee",
+          "value": 1.46
+        },
+        {
+          "state": "South Carolina",
+          "value": 1.33
+        },
+        {
+          "state": "Florida",
+          "value": 0.92
+        }
+      ],
+      "read": "Foreign investors planned $2.26 billion of new or expanded facilities in Florida, while spending $22.6 billion to acquire existing Florida businesses.",
+      "caveat": "Foreign investors only. BEA assigns each investment to the state with the most employees and suppresses some cells; greenfield figures are planned totals.",
+      "sourceIds": [
+        "si_bea_fdi_table13",
+        "si_bea_fdi_table3",
+        "si_bea_sagdp"
+      ]
+    },
+    {
+      "id": "manufacturing-jobs",
+      "label": "Manufacturing employment change",
+      "question": "Contrary evidence: is the base shrinking?",
+      "period": "2022 to 2025",
+      "format": "signedPct1",
+      "florida": {
+        "value": 4.2,
+        "rank": 4,
+        "rankOf": 50,
+        "rankScope": "all 50 states"
+      },
+      "reference": {
+        "label": "United States",
+        "value": -1.3
+      },
+      "states": [
+        {
+          "state": "Texas",
+          "value": 6.1
+        },
+        {
+          "state": "Florida",
+          "value": 4.2
+        },
+        {
+          "state": "Alabama",
+          "value": 3.6
+        },
+        {
+          "state": "Georgia",
+          "value": 2.4
+        },
+        {
+          "state": "Arizona",
+          "value": 0.4
+        },
+        {
+          "state": "South Carolina",
+          "value": 0.2
+        },
+        {
+          "state": "Ohio",
+          "value": -0.8
+        },
+        {
+          "state": "Tennessee",
+          "value": -2.4
+        },
+        {
+          "state": "North Carolina",
+          "value": -3.0
+        },
+        {
+          "state": "Virginia",
+          "value": -3.0
+        }
+      ],
+      "read": "Florida added manufacturing jobs while the nation lost them. The thesis holds for large productive capital, not for business activity in general.",
+      "caveat": "Annual averages of monthly state estimates; employment change is not attributable to any single project.",
+      "sourceIds": [
+        "si_bls_ces"
+      ]
+    }
+  ],
+  "dataCenters": {
+    "headline": "The AI data-center build-out has not reached Florida.",
+    "facts": [
+      {
+        "id": "hyperscale-campuses",
+        "label": "Hyperscale data-center campuses in Florida",
+        "value": "0",
+        "read": "None operating, under construction or announced as of September 25, 2026. Florida's hyperscaler footprint is network and edge infrastructure, such as Google's Palm Coast cable hub and an AWS Local Zone in Miami.",
+        "sourceIds": [
+          "si_google_sol",
+          "si_aws_local_zones"
+        ]
+      },
+      {
+        "id": "large-load-contracts",
+        "label": "Signed large-load data-center contracts announced by FPL or Duke Energy Florida",
+        "value": "0",
+        "read": "Duke Energy Florida testified in April 2026 that it has no large-load data-center customers. FPL reported more than 20 GW of inquiries but had announced no signed contract by July 24, 2026.",
+        "sourceIds": [
+          "si_duke_psc_2026",
+          "si_nextera_2025"
+        ]
+      },
+      {
+        "id": "cloud-capex",
+        "label": "2026 capital-spending guidance, four largest cloud companies",
+        "value": "$705-730B",
+        "read": "Company-wide and global. None of it is allocated to states, so no Florida share can be computed.",
+        "sourceIds": [
+          "si_amazon_ar_2025",
+          "si_alphabet_10k_2025",
+          "si_microsoft_10k_fy2026"
+        ]
+      },
+      {
+        "id": "florida-pipeline",
+        "label": "Largest Florida data-center proposals",
+        "value": "Stalled",
+        "read": "The $2.84 billion Fort Meade proposal (end user undisclosed) is contested and not permitted; Palm Beach County denied Project Tango in July 2026.",
+        "sourceIds": [
+          "si_polk_fort_meade",
+          "si_wlrn_tango"
+        ]
+      }
+    ],
+    "caveat": "Leases and colocation contracts are often confidential; absence of public evidence is not proof of absence. Undisclosed end users are not attributed."
+  },
+  "finalists": {
+    "headline": "Florida is rarely in the final round for billion-dollar projects.",
+    "read": "Of the 32 $1B+ projects since 2022 whose competing sites are on the public record, none named Florida. Documented Florida losses are mid-sized and mostly to North Carolina: 11 documented contests lost since 2020, including Boom Supersonic (Jacksonville), Pratt & Whitney (Palm Beach County), Jabil and Citi's technology hub.",
+    "caveat": "North Carolina publishes the alternative locations for every incentive grantee, so contests lost to North Carolina are over-represented; most states publish none.",
+    "sourceIds": [
+      "si_nc_jdig_2025",
+      "si_nc_jdig_2022",
+      "si_megaproject_inventory"
+    ]
+  },
+  "method": [
+    "Announced commitments are not spending, and an opening does not prove the full budget was spent or every job filled.",
+    "Per-resident figures use Census Vintage 2025 population; values are nominal dollars.",
+    "Agency-reported totals use incompatible scopes and are not compared here.",
+    "Company-wide hyperscaler capital spending is never allocated to states."
+  ],
+  "sources": [
+    {
+      "id": "si_site_selection_2025",
+      "label": "Site Selection: 2025 Governor's Cups",
+      "url": "https://siteselection.com/2025-governors-cups-rankings-texas-tops-site-selections-annual-facility-count-for-the-14th-year-in-a-row/",
+      "note": "Common-method count of qualifying corporate facility projects for all 50 states."
+    },
+    {
+      "id": "si_census_popest_v2025",
+      "label": "Census Vintage 2025 state population estimates",
+      "url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/state/totals/NST-EST2025-ALLDATA.csv",
+      "note": "July 1 resident population used for every per-resident figure."
+    },
+    {
+      "id": "si_census_aies_2024",
+      "label": "Census AIES capital-expenditure estimates, 2024",
+      "url": "https://www2.census.gov/data/experimental-data-products/capex-aies/capex-estimates-for-2024-aies.xlsx",
+      "note": "Actual capital spending by manufacturing establishments; experimental Census product."
+    },
+    {
+      "id": "si_census_ec_2022",
+      "label": "Census 2022 Economic Census, manufacturing",
+      "url": "https://www2.census.gov/programs-surveys/economic-census/data/2022/sector31/EC2231BASIC.zip",
+      "note": "Non-experimental benchmark for 2022 manufacturing capital expenditures."
+    },
+    {
+      "id": "si_bea_fdi_table3",
+      "label": "BEA new foreign direct investment, Table 3",
+      "url": "https://apps.bea.gov/international/xls/FDI/2026/Table3-24-25.xls",
+      "note": "First-year expenditures by state and type of investment."
+    },
+    {
+      "id": "si_bea_fdi_table13",
+      "label": "BEA new foreign direct investment, Table 13",
+      "url": "https://apps.bea.gov/international/xls/FDI/2026/Table13-24-25.xls",
+      "note": "Planned total expenditures for greenfield investments by state and year initiated."
+    },
+    {
+      "id": "si_bea_sagdp",
+      "label": "BEA GDP by state",
+      "url": "https://apps.bea.gov/regional/zip/SAGDP.zip",
+      "note": "State GDP used for GDP shares."
+    },
+    {
+      "id": "si_bls_ces",
+      "label": "BLS state employment statistics",
+      "url": "https://www.bls.gov/sae/",
+      "note": "State manufacturing employment, annual averages."
+    },
+    {
+      "id": "si_megaproject_inventory",
+      "label": "Florida Brain $1B+ project inventory, 2022 to September 25, 2026",
+      "url": "https://www.floridanomics.com/data/megaprojects-1b-2022-2026.csv",
+      "note": "One row per project with its primary sources; announced multi-year totals, not spending."
+    },
+    {
+      "id": "si_amazon_ar_2025",
+      "label": "Amazon 2025 annual report",
+      "url": "https://s2.q4cdn.com/299287126/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf",
+      "note": "Company-wide capital spending and guidance."
+    },
+    {
+      "id": "si_alphabet_10k_2025",
+      "label": "Alphabet 2025 Form 10-K",
+      "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/GOOG-10-K-2025.pdf",
+      "note": "Company-wide capital spending and guidance."
+    },
+    {
+      "id": "si_microsoft_10k_fy2026",
+      "label": "Microsoft fiscal 2026 Form 10-K",
+      "url": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/MSFT_FY26Q4_10K",
+      "note": "Company-wide capital spending."
+    },
+    {
+      "id": "si_duke_psc_2026",
+      "label": "Duke Energy Florida testimony, Florida PSC, April 2026",
+      "url": "https://www.floridapsc.com/pscfiles/library/filings/2026/02327-2026/02327-2026.pdf",
+      "note": "States the utility has no large-load data-center customers."
+    },
+    {
+      "id": "si_nextera_2025",
+      "label": "NextEra Energy investor conference, December 2025",
+      "url": "https://www.investor.nexteraenergy.com/~/media/Files/N/NEE-IR/news-and-events/events-and-presentations/2025/2025-12-08%20NextEra%20Energy%20Investor%20Conference%20vF.pdf",
+      "note": "FPL large-load inquiries."
+    },
+    {
+      "id": "si_google_sol",
+      "label": "Google: Sol transatlantic cable",
+      "url": "https://cloud.google.com/blog/products/infrastructure/announcing-sol-transatlantic-cable",
+      "note": "Palm Coast cable landing and connectivity hub."
+    },
+    {
+      "id": "si_aws_local_zones",
+      "label": "AWS Local Zones locations",
+      "url": "https://aws.amazon.com/about-aws/global-infrastructure/localzones/locations/",
+      "note": "Miami Local Zone."
+    },
+    {
+      "id": "si_polk_fort_meade",
+      "label": "Polk County agenda item, Fort Meade data center",
+      "url": "https://webapi.legistar.com/v1/polkcountyfl/matters/19889/texts/10064",
+      "note": "Planned investment components and tax exemption."
+    },
+    {
+      "id": "si_wlrn_tango",
+      "label": "WLRN: Project Tango rejected, July 2026",
+      "url": "https://www.wlrn.org/government-politics/2026-07-16/project-tango-ai-data-center-palm-beach-rejected",
+      "note": "Palm Beach County denial."
+    },
+    {
+      "id": "si_nc_jdig_2025",
+      "label": "N.C. Commerce JDIG annual report, CY2025",
+      "url": "https://www.commerce.nc.gov/annual-report-job-development-investment-grant-jdig/download?attachment=",
+      "note": "Names the alternative locations for each grantee."
+    },
+    {
+      "id": "si_nc_jdig_2022",
+      "label": "N.C. Commerce JDIG annual report, CY2022",
+      "url": "https://www.commerce.nc.gov/2022-jdig-annual-reportaspublishedpdf/open",
+      "note": "Names the alternative locations for each grantee."
+    }
+  ]
+}

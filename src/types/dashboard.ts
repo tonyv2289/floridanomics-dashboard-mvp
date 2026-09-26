@@ -599,11 +599,50 @@ export type SemiconductorCommitment = {
   context: string;
 };
 
+export type StateInvestmentFormat = "decimal1" | "usd0" | "pct1" | "signedPct1";
+
+export type StateInvestmentMeasure = {
+  id: string;
+  label: string;
+  question: string;
+  period: string;
+  format: StateInvestmentFormat;
+  florida: { value: number; rank: number; rankOf: number; rankScope: string };
+  reference: { label: string; value: number } | null;
+  states: Array<{ state: string; value: number }>;
+  read: string;
+  caveat: string;
+  sourceIds: string[];
+};
+
+export type StateInvestmentFact = {
+  id: string;
+  label: string;
+  value: string;
+  read: string;
+  sourceIds: string[];
+};
+
+// Exported by the Florida Brain state investment tracker (see docs/state-investment-comparison.md).
+export type StateInvestmentComparison = {
+  schemaVersion: 1;
+  generatedOn: string;
+  evidenceCutoff: string;
+  headline: string;
+  summary: string;
+  peerStates: string[];
+  measures: StateInvestmentMeasure[];
+  dataCenters: { headline: string; facts: StateInvestmentFact[]; caveat: string };
+  finalists: { headline: string; read: string; caveat: string; sourceIds: string[] };
+  method: string[];
+};
+
 export type StateCompetitionLayer = {
   headline: string;
   summary: string;
   publicationNote: string;
   sources: CompetitionSource[];
+  stateInvestment?: StateInvestmentComparison;
   metroComparison: {
     headline: string;
     summary: string;

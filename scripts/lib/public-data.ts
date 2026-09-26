@@ -1,7 +1,8 @@
 // Publication boundary. Reject private provenance; never silently strip citations
 // and leave a claim looking publicly supported. Errors omit the rejected values.
 const PRIVATE_KEYS = /^(vaultLog|macStudioPath|localPath|internalNotes?|privateNotes?|accessToken|refreshToken|password|secret|apiKey)$/i;
-const PRIVATE_TEXT = /(?:\/Users\/|\/home\/|[a-z]:\\Users\\|file:\/\/|pelayo-vault|Dropbox source|Vault derivative|vault_logged|Library\/CloudStorage|-----BEGIN [A-Z ]*PRIVATE KEY-----)/i;
+// Local home paths only: a public URL path such as example.gov/home/news is not private provenance.
+const PRIVATE_TEXT = /(?:(?<![\w.%-])\/(?:Users|home)\/|[a-z]:\\Users\\|file:\/\/|pelayo-vault|Dropbox source|Vault derivative|vault_logged|Library\/CloudStorage|-----BEGIN [A-Z ]*PRIVATE KEY-----)/i;
 
 export function assertPublicText(value: string): void {
   if (PRIVATE_TEXT.test(value)) throw new Error("Publication blocked: private provenance or credential material detected.");
@@ -42,7 +43,7 @@ export function assertPublicDataset(value: unknown): void {
   }
   walk(value);
   const competition = record(record(value).competition);
-  exactKeys(competition, ["headline", "summary", "publicationNote", "sources", "metroComparison", "internationalMetroComparison", "fdiScoreboard"]);
+  exactKeys(competition, ["headline", "summary", "publicationNote", "sources", "metroComparison", "internationalMetroComparison", "fdiScoreboard", "stateInvestment"]);
   if (!Array.isArray(competition.sources) || !competition.sources.length) throw new Error("Public competition sources required.");
   const ids = new Set<string>();
   for (const item of competition.sources) {
@@ -67,4 +68,21 @@ export function assertPublicDataset(value: unknown): void {
   exactKeys(scoreboard, ["headline", "summary", "observatory"]);
   const observatory = record(scoreboard.observatory);
   exactKeys(observatory, ["headline", "summary", "scores", "deltas"]);
+  if ("stateInvestment" in competition) {
+    // Tracker export: every block is keyed exactly and every claim cites an approved public source.
+    const invest = record(competition.stateInvestment);
+    exactKeys(invest, ["schemaVersion", "generatedOn", "evidenceCutoff", "headline", "summary", "peerStates", "measures", "dataCenters", "finalists", "method"]);
+    if (!Array.isArray(invest.measures) || !invest.measures.length) throw new Error("Public state investment measures required.");
+    for (const item of invest.measures) {
+      const measure = record(item);
+      exactKeys(measure, ["id", "label", "question", "period", "format", "florida", "reference", "states", "read", "caveat", "sourceIds"]);
+      if (!Array.isArray(measure.sourceIds) || !measure.sourceIds.length) throw new Error("Publication blocked: claim lacks an approved public citation.");
+    }
+    const dataCenters = record(invest.dataCenters);
+    exactKeys(dataCenters, ["headline", "facts", "caveat"]);
+    for (const item of Array.isArray(dataCenters.facts) ? dataCenters.facts : []) {
+      exactKeys(record(item), ["id", "label", "value", "read", "sourceIds"]);
+    }
+    exactKeys(record(invest.finalists), ["headline", "read", "caveat", "sourceIds"]);
+  }
 }
