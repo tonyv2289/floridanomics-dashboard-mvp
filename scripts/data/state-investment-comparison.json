@@ -389,11 +389,13 @@
   },
   "finalists": {
     "headline": "Florida is rarely in the final round for billion-dollar projects.",
-    "read": "Of the 32 $1B+ projects since 2022 whose competing sites are on the public record, none named Florida. Documented Florida losses are mid-sized and mostly to North Carolina: 11 documented contests lost since 2020, including Boom Supersonic (Jacksonville), Pratt & Whitney (Palm Beach County), Jabil and Citi's technology hub.",
-    "caveat": "North Carolina publishes the alternative locations for every incentive grantee, so contests lost to North Carolina are over-represented; most states publish none.",
+    "read": "Florida was not a finalist for any $1B+ project whose competing sites are on the public record. Texas incentive filings name rival sites for 20 of 27 billion-dollar projects: Louisiana appears in 8, New Mexico in 5 and Florida in 1, only on Saronic's 12-state first-round list. Apart from that first-round exit, Florida's 13 documented contest losses since 2020 are mid-sized, including Boom Supersonic (Jacksonville), Pratt & Whitney (Palm Beach County), Jabil and Citi's technology hub to North Carolina and a Miami-Dade steel-mill site that was one of three finalists (Texas won).",
+    "caveat": "North Carolina and Texas publish the alternative locations applicants name, so contests lost to those states are over-represented; most states publish none, and some Texas applicants keep their alternatives confidential.",
     "sourceIds": [
       "si_nc_jdig_2025",
       "si_nc_jdig_2022",
+      "si_texas_jeti",
+      "si_texas_jeti_saronic",
       "si_megaproject_inventory"
     ]
   },
@@ -523,6 +525,18 @@
       "label": "N.C. Commerce JDIG annual report, CY2022",
       "url": "https://www.commerce.nc.gov/2022-jdig-annual-reportaspublishedpdf/open",
       "note": "Names the alternative locations for each grantee."
+    },
+    {
+      "id": "si_texas_jeti",
+      "label": "Texas Comptroller: JETI applications",
+      "url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/",
+      "note": "Applications answer a question about potential sites outside Texas."
+    },
+    {
+      "id": "si_texas_jeti_saronic",
+      "label": "Texas Comptroller: JETI J0024 recommendation (Saronic)",
+      "url": "https://assets.comptroller.texas.gov/open-data/jeti/J0024/J0024-saronic-pointisabel-rec.pdf",
+      "note": "Names the finalist states for the Port Alpha shipyard."
     }
   ]
 }
