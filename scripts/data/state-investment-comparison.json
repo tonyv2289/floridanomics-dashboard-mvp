@@ -3,7 +3,7 @@
   "generatedOn": "2026-09-26",
   "evidenceCutoff": "2026-09-25",
   "headline": "Florida wins projects. It does not win large productive capital.",
-  "summary": "Compared with nine competing states, Florida lands many corporate facility projects and its manufacturing base is growing, but per resident it captures far less factory, lab and megaproject capital. The gap is real, sector-specific and measurable; the claim that Florida gets no business investment is false.",
+  "summary": "Compared with 10 competing states, Florida lands many corporate facility projects and its manufacturing base is growing, but per resident it captures far less factory, lab and megaproject capital. The gap is real, sector-specific and measurable; the claim that Florida gets no business investment is false.",
   "peerStates": [
     "Texas",
     "Georgia",
@@ -11,6 +11,7 @@
     "South Carolina",
     "Tennessee",
     "Alabama",
+    "Louisiana",
     "Virginia",
     "Ohio",
     "Arizona"
@@ -62,6 +63,10 @@
           "value": 21.3
         },
         {
+          "state": "Louisiana",
+          "value": 18.2
+        },
+        {
           "state": "Tennessee",
           "value": 16.4
         },
@@ -101,6 +106,10 @@
         {
           "state": "Arizona",
           "value": 2113
+        },
+        {
+          "state": "Louisiana",
+          "value": 1279
         },
         {
           "state": "Alabama",
@@ -155,15 +164,19 @@
       "format": "usd0",
       "florida": {
         "value": 164,
-        "rank": 10,
-        "rankOf": 10,
-        "rankScope": "Florida and nine competitors"
+        "rank": 11,
+        "rankOf": 11,
+        "rankScope": "Florida and 10 competitors"
       },
       "reference": null,
       "states": [
         {
           "state": "Arizona",
           "value": 41480
+        },
+        {
+          "state": "Louisiana",
+          "value": 30161
         },
         {
           "state": "Texas",
@@ -202,8 +215,8 @@
           "value": 164
         }
       ],
-      "read": "Florida's 3 active projects total $3.84 billion. Virginia, the lowest of the nine competitors, is about 13 times Florida's figure per resident.",
-      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. The inventory is systematic but not proven complete.",
+      "read": "Florida's 3 active projects total $3.84 billion. Virginia, the lowest of the 10 competitors, is about 13 times Florida's figure per resident.",
+      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. Single projects dominate some totals: SpaceX Vermilion Parish spaceport is 72% of Louisiana's; Intel Ohio One is 68% of Ohio's; TSMC Arizona semiconductor campus is 84% of Arizona's. The inventory is systematic but not proven complete.",
       "sourceIds": [
         "si_megaproject_inventory",
         "si_census_popest_v2025"
@@ -217,9 +230,9 @@
       "format": "pct1",
       "florida": {
         "value": 0.92,
-        "rank": 10,
-        "rankOf": 10,
-        "rankScope": "Florida and nine competitors"
+        "rank": 11,
+        "rankOf": 11,
+        "rankScope": "Florida and 10 competitors"
       },
       "reference": {
         "label": "Florida's share of U.S. GDP",
@@ -237,6 +250,10 @@
         {
           "state": "North Carolina",
           "value": 10.1
+        },
+        {
+          "state": "Louisiana",
+          "value": 5.63
         },
         {
           "state": "Georgia",
@@ -295,6 +312,10 @@
         {
           "state": "Texas",
           "value": 6.1
+        },
+        {
+          "state": "Louisiana",
+          "value": 4.4
         },
         {
           "state": "Florida",

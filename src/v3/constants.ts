@@ -44,7 +44,7 @@ export const DEEP_TAB_OPTIONS: Array<{ id: V3TabId; label: string; line: string 
 ];
 
 export const COMPETITION_VIEW_OPTIONS: Array<{ id: CompetitionViewId; label: string; line: string }> = [
-  { id: "states", label: "State Comparison", line: "Florida vs nine competitor states" },
+  { id: "states", label: "State Comparison", line: "Florida vs competitor states" },
   { id: "projects", label: "Project Capex", line: "announced, building, operating" },
   { id: "grants", label: "Government Awards", line: "funding, matching funds, delivery" },
   { id: "metro", label: "US Metros", line: "Florida, Austin, Seattle, Boston" },
