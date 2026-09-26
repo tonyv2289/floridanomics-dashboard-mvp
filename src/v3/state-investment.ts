@@ -1,4 +1,4 @@
-import type { StateInvestmentFormat, StateInvestmentMeasure } from "../types/dashboard";
+import type { StateFacilityHistoryRow, StateInvestmentFormat, StateInvestmentMeasure } from "../types/dashboard";
 
 export function formatStateValue(value: number, format: StateInvestmentFormat): string {
   if (format === "usd0") return `$${Math.round(value).toLocaleString("en-US")}`;
@@ -34,4 +34,18 @@ export function stateBars(measure: StateInvestmentMeasure): { bars: StateBar[]; 
       isFlorida: row.state === "Florida",
     }));
   return { bars, zeroPercent };
+}
+
+export type FacilityMetric = "perMillion" | "projects";
+export type SortDirection = "desc" | "asc";
+
+export function formatFacilityValue(value: number, metric: FacilityMetric): string {
+  return metric === "perMillion" ? value.toFixed(1) : value.toLocaleString("en-US", { maximumFractionDigits: 1 });
+}
+
+// Sorts by the chosen year's rank, so ties (which share a rank) stay together and list alphabetically.
+// "desc" puts the highest value first.
+export function sortFacilityRows(rows: StateFacilityHistoryRow[], metric: FacilityMetric, yearIndex: number, direction: SortDirection): StateFacilityHistoryRow[] {
+  const ranks = (row: StateFacilityHistoryRow) => (metric === "perMillion" ? row.rankPerMillion : row.rankProjects)[yearIndex];
+  return [...rows].sort((a, b) => (direction === "desc" ? ranks(a) - ranks(b) : ranks(b) - ranks(a)) || a.state.localeCompare(b.state));
 }

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { formatStateValue, ordinal, stateBars } from "./state-investment";
-import type { DashboardDataset, StateInvestmentMeasure } from "../types/dashboard";
+import { formatFacilityValue, formatStateValue, ordinal, sortFacilityRows, stateBars } from "./state-investment";
+import type { DashboardDataset, StateFacilityHistoryRow, StateInvestmentMeasure } from "../types/dashboard";
 
 const dataset = () =>
   JSON.parse(readFileSync(new URL("../../public/data/florida-economy.json", import.meta.url), "utf8")) as DashboardDataset;
@@ -63,5 +63,30 @@ describe("state investment comparison", () => {
     const text = JSON.stringify(dataset().competition.stateInvestment);
     expect(text).toContain("end user undisclosed");
     expect(/Fort Meade[^.]*\bMeta\b/.test(text)).toBe(false);
+  });
+
+  it("sorts the year-by-year table by rank, keeping ties together alphabetically", () => {
+    const row = (state: string, rank: number): StateFacilityHistoryRow => ({ state, projects: [0, rank], perMillion: [0, rank], rankPerMillion: [1, rank], rankProjects: [rank, 1] });
+    const rows = [row("Ohio", 2), row("Texas", 1), row("Alabama", 2), row("Florida", 4)];
+    expect(sortFacilityRows(rows, "perMillion", 1, "desc").map((item) => item.state)).toEqual(["Texas", "Alabama", "Ohio", "Florida"]);
+    expect(sortFacilityRows(rows, "perMillion", 1, "asc").map((item) => item.state)).toEqual(["Florida", "Alabama", "Ohio", "Texas"]);
+    expect(sortFacilityRows(rows, "projects", 0, "desc").map((item) => item.state)).toEqual(["Texas", "Alabama", "Ohio", "Florida"]);
+    expect(formatFacilityValue(9.1, "perMillion")).toBe("9.1");
+    expect(formatFacilityValue(1406, "projects")).toBe("1,406");
+    expect(formatFacilityValue(89.5, "projects")).toBe("89.5");
+  });
+
+  it("ships a complete year-by-year table: 50 states, every year, ranks in range, cited", () => {
+    const data = dataset();
+    const history = data.competition.stateInvestment?.facilityHistory;
+    expect(history).toBeDefined();
+    const sourceIds = new Set(data.competition.sources.map((source) => source.id));
+    expect(history!.states).toHaveLength(50);
+    for (const row of history!.states) {
+      for (const values of [row.projects, row.perMillion, row.rankPerMillion, row.rankProjects]) expect(values).toHaveLength(history!.years.length);
+      expect([...row.rankPerMillion, ...row.rankProjects].every((rank) => rank >= 1 && rank <= 50)).toBe(true);
+    }
+    expect(history!.states.some((row) => row.state === "Florida")).toBe(true);
+    expect(history!.sourceIds.every((id) => sourceIds.has(id))).toBe(true);
   });
 });

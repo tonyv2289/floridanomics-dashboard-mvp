@@ -32,6 +32,12 @@ describe("public data boundary", () => {
     const measure = fixture(); measure.competition.stateInvestment.measures[0].internalScore = 3;
     expect(() => assertPublicDataset(measure)).toThrow(/unapproved/);
   });
+  it("rejects unknown fields in the year-by-year facility table", () => {
+    const data = fixture(); data.competition.stateInvestment.facilityHistory.states[0].internalNote = "hidden";
+    expect(() => assertPublicDataset(data)).toThrow(/Publication blocked/);
+    const block = fixture(); block.competition.stateInvestment.facilityHistory.researchMemo = "not public";
+    expect(() => assertPublicDataset(block)).toThrow(/unapproved/);
+  });
   it("rejects a state investment claim whose citation is not an approved public source", () => {
     const data = fixture(); data.competition.stateInvestment.measures[0].sourceIds = ["private_tracker_note"];
     expect(() => assertPublicDataset(data)).toThrow(/citation/);

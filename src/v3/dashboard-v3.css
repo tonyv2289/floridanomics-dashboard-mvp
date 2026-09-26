@@ -4324,6 +4324,95 @@ button.v3-table-row {
   font-weight: 700;
 }
 
+.v3-facility-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 16px;
+}
+
+.v3-facility-controls fieldset {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.v3-facility-controls legend {
+  margin-bottom: 7px;
+  color: var(--v3-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.v3-facility-table thead th button {
+  min-height: 32px;
+  padding: 4px 2px;
+  border: 0;
+  background: none;
+  color: var(--v3-sun);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.v3-facility-table thead th button:focus-visible {
+  outline: 2px solid var(--v3-sun);
+  outline-offset: 2px;
+}
+
+.v3-facility-table td strong,
+.v3-facility-table td small {
+  display: block;
+  white-space: nowrap;
+}
+
+.v3-facility-table td small {
+  color: var(--v3-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.v3-facility-table th[scope="row"] {
+  position: sticky;
+  left: 0;
+  background: var(--v3-panel);
+  white-space: nowrap;
+}
+
+.v3-facility-table tfoot th,
+.v3-facility-table tfoot td {
+  color: var(--v3-muted);
+  border-bottom: 0;
+}
+
+.v3-facility-note {
+  margin: 16px 0 0;
+  color: var(--v3-muted);
+  font-size: 0.84rem;
+}
+
+@media (max-width: 560px) {
+  .v3-facility-table table {
+    font-size: 0.78rem;
+  }
+
+  .v3-facility-table th,
+  .v3-facility-table td {
+    padding: 7px 4px;
+  }
+
+  .v3-facility-table th[scope="row"] {
+    min-width: 76px;
+    max-width: 92px;
+    white-space: normal;
+  }
+}
+
 .v3-state-invest-facts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
