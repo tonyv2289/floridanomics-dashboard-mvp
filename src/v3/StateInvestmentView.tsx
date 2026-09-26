@@ -68,7 +68,7 @@ function ValuesTable({ measures }: { measures: StateInvestmentMeasure[] }) {
       <summary>All values by state (table)</summary>
       <div className="v3-state-invest-scroll">
         <table>
-          <caption>Florida and nine competitor states. Periods differ by measure; see each card.</caption>
+          <caption>Florida and {states.length - 1} competitor states. Periods differ by measure; see each card.</caption>
           <thead>
             <tr>
               <th scope="col">State</th>
