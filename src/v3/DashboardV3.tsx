@@ -52,7 +52,7 @@ function DashboardV3() {
   });
   const [activeCompetitionView, setActiveCompetitionView] = useState<CompetitionViewId>(() => {
     const viewParam = readSearchParam("competitionView");
-    return isCompetitionViewId(viewParam) ? viewParam : "projects";
+    return isCompetitionViewId(viewParam) ? viewParam : "states";
   });
   const [activeLens, setActiveLens] = useState<LensId>(() => {
     const param = readSearchParam("lens");

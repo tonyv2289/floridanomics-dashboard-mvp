@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { deltaTone, formatDelta, formatMetricValue } from "../lib/dashboard";
-import { Frame, TerminalSourceList } from "./primitives";
+import { CompetitionSourceList, Frame, TerminalSourceList } from "./primitives";
+import { firstSentence } from "./format";
 import { ProjectCapexLedger } from "./ProjectCapexLedger";
 import type { DashboardDataset } from "../types/dashboard";
 
@@ -10,6 +11,7 @@ function TerminalHero({ dataset }: { dataset: DashboardDataset }) {
   const texas = dataset.strategy.peerStates.find((state) => state.id === "TX");
   const spread =
     florida && texas ? florida.unemploymentRate.latest.value - texas.unemploymentRate.latest.value : null;
+  const campuses = dataset.competition.stateInvestment?.dataCenters.facts.find((fact) => fact.id === "hyperscale-campuses");
 
   return (
     <Frame label="Florida Model Terminal">
@@ -22,8 +24,20 @@ function TerminalHero({ dataset }: { dataset: DashboardDataset }) {
 
         <aside className="v3-terminal-score">
           <span>AI infrastructure</span>
-          <strong>Research agenda</strong>
-          <p>A comparable Florida project-capacity inventory is needed before an investment gap can be measured.</p>
+          {campuses ? (
+            <>
+              <strong>{campuses.value} hyperscale campuses</strong>
+              <p>
+                {firstSentence(campuses.read)}{" "}
+                <a href="?tab=competition&competitionView=states">See the state comparison</a>
+              </p>
+            </>
+          ) : (
+            <>
+              <strong>Research agenda</strong>
+              <p>A comparable Florida project-capacity inventory is needed before an investment gap can be measured.</p>
+            </>
+          )}
           <div className="v3-terminal-peer-read">
             <small>FL vs TX unemployment spread</small>
             <b>{spread === null ? "n/a" : `${spread >= 0 ? "+" : ""}${spread.toFixed(1)} pp`}</b>
@@ -36,20 +50,36 @@ function TerminalHero({ dataset }: { dataset: DashboardDataset }) {
 
 function AiCapexIndex({ dataset }: { dataset: DashboardDataset }) {
   const index = dataset.terminal.aiCapexIndex;
+  const measured = dataset.competition.stateInvestment?.dataCenters;
 
   return (
     <Frame label="AI infrastructure investment">
       <div className="v3-panel-head">
         <div>
-          <h2>Infrastructure investment and the evidence needed.</h2>
+          <h2>{measured ? measured.headline : "Infrastructure investment and the evidence needed."}</h2>
           <p>
-            Comparable project data are needed to assess Florida's position. State labor statistics alone cannot identify an AI investment gap.
+            {measured
+              ? "Measured facts first. The context indicators below describe the wider economy; they do not measure AI investment."
+              : "Comparable project data are needed to assess Florida's position. State labor statistics alone cannot identify an AI investment gap."}
           </p>
         </div>
       </div>
 
+      {measured ? (
+        <div className="v3-state-invest-facts">
+          {measured.facts.map((fact) => (
+            <article key={fact.id} className="v3-state-invest-fact">
+              <span>{fact.label}</span>
+              <strong>{fact.value}</strong>
+              <p>{fact.read}</p>
+              <CompetitionSourceList dataset={dataset} sourceIds={fact.sourceIds} />
+            </article>
+          ))}
+        </div>
+      ) : null}
+
       <div className="v3-terminal-index">
-        <div className="v3-terminal-metric-grid">
+        <div className="v3-terminal-metric-grid" aria-label={measured ? "Context indicators, not measures of AI investment" : undefined}>
           {index.metrics.map((metric) => (
             <article key={metric.id} className="v3-terminal-metric">
               <span>{metric.label}</span>

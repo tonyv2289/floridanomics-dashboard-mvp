@@ -1677,7 +1677,7 @@
 
 .v3-competition-menu > div:last-child {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1px;
 }
 
@@ -4126,5 +4126,243 @@ button.v3-table-row {
 
   .v3-semiconductor-row span {
     text-align: left;
+  }
+}
+
+/* State comparison: Florida versus nine competitor states (tracker export). */
+.v3-state-invest-meta {
+  color: var(--v3-muted);
+  font-size: 0.86rem;
+}
+
+.v3-state-invest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.v3-state-invest-card,
+.v3-state-invest-fact {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 18px 20px;
+  border: 1px solid var(--v3-line);
+  border-radius: 8px;
+  background: var(--v3-panel);
+}
+
+.v3-state-invest-card h3 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.v3-state-invest-question {
+  margin: 0;
+  color: var(--v3-sun);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.v3-state-invest-period,
+.v3-state-invest-caveat,
+.v3-state-invest-reference {
+  color: var(--v3-muted);
+  font-size: 0.82rem;
+}
+
+.v3-state-invest-lead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  margin: 4px 0 2px;
+}
+
+.v3-state-invest-lead strong {
+  font-family: "Sora", sans-serif;
+  font-size: 2rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--v3-sun);
+}
+
+.v3-state-invest-lead span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.v3-state-invest-lead em {
+  display: block;
+  color: var(--v3-muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.v3-state-invest-bars {
+  display: grid;
+  gap: 4px;
+  margin: 6px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-state-invest-bars li {
+  display: grid;
+  grid-template-columns: minmax(96px, 128px) minmax(0, 1fr) minmax(56px, auto);
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--v3-muted);
+}
+
+.v3-state-invest-bars li.is-florida {
+  color: var(--v3-text);
+  font-weight: 700;
+}
+
+.v3-state-invest-state {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.v3-state-invest-track {
+  position: relative;
+  height: 14px;
+}
+
+.v3-state-invest-track b {
+  position: absolute;
+  top: 1px;
+  height: 12px;
+  border-radius: 3px;
+  background: #5b6a80;
+}
+
+.v3-state-invest-bars li.is-florida .v3-state-invest-track b {
+  background: var(--v3-sun);
+}
+
+.v3-state-invest-zero {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 1px;
+  background: rgba(148, 163, 184, 0.45);
+}
+
+.v3-state-invest-value {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.v3-state-invest-card > p {
+  margin: 0;
+}
+
+.v3-state-invest-table {
+  margin-top: 18px;
+}
+
+.v3-state-invest-table summary {
+  cursor: pointer;
+  color: var(--v3-sun);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.v3-state-invest-table summary:focus-visible {
+  outline: 2px solid var(--v3-sun);
+  outline-offset: 3px;
+}
+
+.v3-state-invest-scroll {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.v3-state-invest-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.v3-state-invest-table caption {
+  margin-bottom: 8px;
+  color: var(--v3-muted);
+  text-align: left;
+}
+
+.v3-state-invest-table th,
+.v3-state-invest-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--v3-line);
+  text-align: right;
+  vertical-align: top;
+}
+
+.v3-state-invest-table th[scope="row"],
+.v3-state-invest-table thead th:first-child {
+  text-align: left;
+}
+
+.v3-state-invest-table thead th {
+  color: var(--v3-muted);
+  font-weight: 600;
+}
+
+.v3-state-invest-table tr.is-florida th,
+.v3-state-invest-table tr.is-florida td {
+  color: var(--v3-sun);
+  font-weight: 700;
+}
+
+.v3-state-invest-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.v3-state-invest-fact span {
+  color: var(--v3-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.v3-state-invest-fact strong {
+  font-family: "Sora", sans-serif;
+  font-size: 1.9rem;
+}
+
+.v3-state-invest-fact p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.v3-state-invest-method {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.v3-state-invest-method li {
+  margin: 6px 0;
+}
+
+@media (max-width: 720px) {
+  .v3-state-invest-bars li {
+    grid-template-columns: minmax(84px, 104px) minmax(0, 1fr) minmax(52px, auto);
+    gap: 8px;
+  }
+
+  .v3-state-invest-lead strong {
+    font-size: 1.7rem;
   }
 }
