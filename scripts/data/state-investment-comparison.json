@@ -359,6 +359,142 @@
       "sourceIds": [
         "si_bls_ces"
       ]
+    },
+    {
+      "id": "new-business-jobs",
+      "label": "Jobs added by newly opened business locations, per 100 private-sector jobs a year",
+      "question": "Contrary evidence: do new businesses open here, and do they last?",
+      "period": "2022 to 2025 average",
+      "format": "decimal1",
+      "florida": {
+        "value": 6.6,
+        "rank": 5,
+        "rankOf": 50,
+        "rankScope": "all 50 states"
+      },
+      "reference": {
+        "label": "United States",
+        "value": 4.9
+      },
+      "states": [
+        {
+          "state": "Florida",
+          "value": 6.6
+        },
+        {
+          "state": "South Carolina",
+          "value": 5.8
+        },
+        {
+          "state": "Virginia",
+          "value": 5.5
+        },
+        {
+          "state": "Arizona",
+          "value": 5.5
+        },
+        {
+          "state": "Georgia",
+          "value": 5.4
+        },
+        {
+          "state": "North Carolina",
+          "value": 5.0
+        },
+        {
+          "state": "Alabama",
+          "value": 4.8
+        },
+        {
+          "state": "Louisiana",
+          "value": 4.8
+        },
+        {
+          "state": "Texas",
+          "value": 4.5
+        },
+        {
+          "state": "Tennessee",
+          "value": 4.5
+        },
+        {
+          "state": "Ohio",
+          "value": 3.3
+        }
+      ],
+      "read": "Florida both opens and closes business locations faster than any competitor: closings cost 6.2 jobs per 100 (4th-highest of 50), so openings net of closings add 0.5, against 0.3 nationally. Most of Florida's faster job growth (2.1 per 100 a year against 1.3) comes from established employers shedding fewer jobs.",
+      "caveat": "Private sector, seasonally adjusted; the four quarterly rates are summed for each year. Openings include new locations of existing firms and seasonal reopenings, so tourism-heavy states run higher. These are jobs, not investment.",
+      "sourceIds": [
+        "si_bls_bed"
+      ]
+    },
+    {
+      "id": "private-pay",
+      "label": "Average private-sector pay",
+      "question": "Contrary evidence: are the jobs getting better paid?",
+      "period": "2025",
+      "format": "usd0",
+      "florida": {
+        "value": 72719,
+        "rank": 19,
+        "rankOf": 50,
+        "rankScope": "all 50 states"
+      },
+      "reference": {
+        "label": "United States",
+        "value": 79094
+      },
+      "states": [
+        {
+          "state": "Virginia",
+          "value": 80159
+        },
+        {
+          "state": "Texas",
+          "value": 79392
+        },
+        {
+          "state": "Georgia",
+          "value": 74150
+        },
+        {
+          "state": "Arizona",
+          "value": 72784
+        },
+        {
+          "state": "Florida",
+          "value": 72719
+        },
+        {
+          "state": "North Carolina",
+          "value": 72186
+        },
+        {
+          "state": "Tennessee",
+          "value": 70752
+        },
+        {
+          "state": "Ohio",
+          "value": 67921
+        },
+        {
+          "state": "Alabama",
+          "value": 63676
+        },
+        {
+          "state": "Louisiana",
+          "value": 63581
+        },
+        {
+          "state": "South Carolina",
+          "value": 63446
+        }
+      ],
+      "read": "Florida's private-sector jobs paid 92% of the national average in 2025, up from 86% in 2019. Only 3 states raised average pay faster since 2019 (+42% against +34% nationally).",
+      "caveat": "Annual averages in nominal dollars; the latest year is subject to revision. Averages move with the mix of jobs as well as with raises, so this signals job quality; it does not measure productivity.",
+      "sourceIds": [
+        "si_bls_qcew"
+      ]
     }
   ],
   "dataCenters": {
@@ -424,7 +560,8 @@
     "Announced commitments are not spending, and an opening does not prove the full budget was spent or every job filled.",
     "Per-resident figures use Census Vintage 2025 population; values are nominal dollars.",
     "Agency-reported totals use incompatible scopes and are not compared here.",
-    "Company-wide hyperscaler capital spending is never allocated to states."
+    "Company-wide hyperscaler capital spending is never allocated to states.",
+    "BLS job-flow and pay measures describe private-sector jobs, not investment; they test whether the gap is general or specific to large capital."
   ],
   "sources": [
     {
@@ -474,6 +611,18 @@
       "label": "BLS state employment statistics",
       "url": "https://www.bls.gov/sae/",
       "note": "State manufacturing employment, annual averages."
+    },
+    {
+      "id": "si_bls_bed",
+      "label": "BLS Business Employment Dynamics",
+      "url": "https://www.bls.gov/bdm/",
+      "note": "Private-sector jobs gained at opening and expanding business locations and lost at closing and contracting ones, by state, seasonally adjusted."
+    },
+    {
+      "id": "si_bls_qcew",
+      "label": "BLS Quarterly Census of Employment and Wages",
+      "url": "https://www.bls.gov/cew/",
+      "note": "Private-sector average annual pay by state, annual averages."
     },
     {
       "id": "si_megaproject_inventory",

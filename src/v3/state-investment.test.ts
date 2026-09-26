@@ -42,12 +42,13 @@ describe("state investment comparison", () => {
     expect(bars.find((bar) => bar.isFlorida)?.label).toBe("+4.0%");
   });
 
-  it("ships a complete comparison: five measures, Florida in every one, every claim cited", () => {
+  it("ships a complete comparison: seven measures, Florida in every one, every claim cited", () => {
     const data = dataset();
     const invest = data.competition.stateInvestment;
     expect(invest).toBeDefined();
     const sourceIds = new Set(data.competition.sources.map((source) => source.id));
-    expect(invest!.measures).toHaveLength(5);
+    expect(invest!.measures).toHaveLength(7);
+    expect(invest!.measures.slice(-2).map((item) => item.id)).toEqual(["new-business-jobs", "private-pay"]);
     for (const item of invest!.measures) {
       expect(item.states.some((row) => row.state === "Florida")).toBe(true);
       expect(item.states).toHaveLength(invest!.peerStates.length + 1);

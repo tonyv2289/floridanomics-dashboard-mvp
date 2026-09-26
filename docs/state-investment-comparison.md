@@ -1,8 +1,10 @@
 # State investment comparison (Competition > State Comparison)
 
-The State Comparison view shows how Florida compares with nine competitor states (Texas, Georgia, North Carolina,
-South Carolina, Tennessee, Alabama, Virginia, Ohio and Arizona) on five measures, plus data-center facts and
-documented site-selection contests. The Analysis tab's AI-infrastructure panel reuses the same data-center facts.
+The State Comparison view shows how Florida compares with ten competitor states (Texas, Georgia, North Carolina,
+South Carolina, Tennessee, Alabama, Louisiana, Virginia, Ohio and Arizona) on seven measures, plus data-center facts
+and documented site-selection contests. Five measures cover investment; two BLS measures (jobs from newly opened
+business locations, and private-sector pay) are contrary evidence that tests whether Florida's gap is general or
+specific to large productive capital. The Analysis tab's AI-infrastructure panel reuses the same data-center facts.
 
 ## Where the numbers come from
 
@@ -32,5 +34,6 @@ Scheduled refreshes preserve the curated competition layer, so the section persi
 - Agency-reported totals are not compared across states (their scopes are incompatible).
 - Company-wide hyperscaler capital spending is never allocated to states.
 - Undisclosed data-center end users are never attributed.
+- BLS job-flow and pay measures describe private-sector jobs, not investment, and are labeled as contrary evidence.
 - Every measure, fact and finalists claim must cite a source in `competition.sources`; the publication gate and
   `scripts/validate-data.ts` enforce this.
