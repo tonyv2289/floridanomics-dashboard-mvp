@@ -113,7 +113,7 @@ More detail: [docs/data-sources.md](docs/data-sources.md) and [docs/refresh-runb
 
 ## Regional profiles and editorial coverage
 
-The homepage pairs the economic briefing with the interactive Florida map. Main navigation groups the existing drilldowns under Briefing, Regions, Industry & Investment, Policy and Sources; legacy query links remain supported.
+The homepage (`src/home/`) is a scroll-driven tour: a dot map of Florida travels region to region beside each region's benchmark counties, then the facility-project climb, the Space Coast, ports and migration figures, and the state comparison ledger. Every figure is derived from the published datasets in `src/home/home-model.ts`, so it refreshes with the data; motion runs only where `position: sticky` works and reduced motion is off. The economic briefing moved to `?view=briefing`. Main navigation groups the existing drilldowns under Briefing, Regions, Industry & Investment, Policy and Sources; legacy query links remain supported.
 
 Eight permanent `/regions/<region-id>/` pages contain employers, research assets, dated project milestones and selected county jobs/wages. The build pre-renders their content and individual sharing metadata so a shared page is readable before JavaScript loads. `src/regions/profiles.ts` is curated; `public/data/regional-economy.json` is refreshed from BLS QCEW. The county benchmarks are not regional totals.
 

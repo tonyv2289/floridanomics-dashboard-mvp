@@ -1,4 +1,4 @@
-export type AppView = "briefing" | "dashboard" | "atlas" | "region";
+export type AppView = "home" | "briefing" | "dashboard" | "atlas" | "region";
 
 const DASHBOARD_DEEP_LINKS = ["tab", "competitionView", "lens", "metric", "innovationMetric"];
 
@@ -19,5 +19,5 @@ export function resolveAppView(search: string, pathname = ""): AppView {
     return "dashboard";
   }
 
-  return "briefing";
+  return "home";
 }
