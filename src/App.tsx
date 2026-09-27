@@ -10,6 +10,7 @@ const DashboardV3 = lazy(() => import("./v3/DashboardV3"));
 const Briefing = lazy(() => import("./briefing/Briefing"));
 const FloridaAtlas = lazy(() => import("./atlas/FloridaAtlas"));
 const RegionRoute = lazy(() => import("./regions/RegionRoute"));
+const Home = lazy(() => import("./home/Home"));
 
 function App() {
   const appView = resolveAppView(typeof window === "undefined" ? "" : window.location.search, typeof window === "undefined" ? "" : window.location.pathname);
@@ -30,10 +31,10 @@ function App() {
 
   return (
     <div className="compare-frame">
-      <a className="v3-skip-link" href={appView === "region" ? "#region-main" : appView === "atlas" ? "#atlas-main" : appView === "dashboard" ? "#v3-main" : "#briefing-main"}>
+      <a className="v3-skip-link" href={appView === "home" ? "#home-main" : appView === "region" ? "#region-main" : appView === "atlas" ? "#atlas-main" : appView === "dashboard" ? "#v3-main" : "#briefing-main"}>
         Skip to content
       </a>
-      {appView !== "dashboard" ? <SiteNav active={appView === "atlas" || appView === "region" ? "regions" : "briefing"} /> : null}
+      {appView !== "dashboard" ? <SiteNav active={appView === "home" ? "home" : appView === "atlas" || appView === "region" ? "regions" : "briefing"} /> : null}
       <ErrorBoundary>
         <Suspense
           fallback={
@@ -45,7 +46,7 @@ function App() {
             </main>
           }
         >
-          {appView === "region" ? <RegionRoute /> : appView === "atlas" ? <FloridaAtlas /> : appView === "dashboard" ? <DashboardV3 /> : <Briefing />}
+          {appView === "home" ? <Home /> : appView === "region" ? <RegionRoute /> : appView === "atlas" ? <FloridaAtlas /> : appView === "dashboard" ? <DashboardV3 /> : <Briefing />}
         </Suspense>
       </ErrorBoundary>
     </div>

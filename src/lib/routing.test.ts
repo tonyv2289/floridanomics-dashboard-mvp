@@ -7,9 +7,10 @@ describe("resolveAppView", () => {
     expect(resolveAppView("?view=atlas", "/regions/southwest/")).toBe("region");
     expect(resolveAppView("", "/floridanomics-dashboard-mvp/regions/panhandle/")).toBe("region");
   });
-  it("uses the briefing as the public front door", () => {
-    expect(resolveAppView("")).toBe("briefing");
-    expect(resolveAppView("?utm_source=linkedin")).toBe("briefing");
+  it("uses the homepage as the public front door and keeps the briefing one link away", () => {
+    expect(resolveAppView("")).toBe("home");
+    expect(resolveAppView("?utm_source=linkedin")).toBe("home");
+    expect(resolveAppView("?view=briefing")).toBe("briefing");
   });
 
   it("opens the full explorer when requested", () => {
@@ -19,7 +20,7 @@ describe("resolveAppView", () => {
   it("adds the atlas without breaking existing deep links", () => {
     expect(resolveAppView("?view=atlas")).toBe("atlas");
     expect(resolveAppView("?view=atlas&tab=trade&region=space-coast")).toBe("atlas");
-    expect(resolveAppView("?view=unknown")).toBe("briefing");
+    expect(resolveAppView("?view=unknown")).toBe("home");
   });
 
   it("preserves existing dashboard deep links", () => {
