@@ -4691,7 +4691,7 @@
       }
     ],
     "read": "Florida's year-end releases count the relocations and expansions the state's economic-development organizations handled: 54, 72, 50 and 58 from 2022 to 2025. Site Selection counted 205, 250, 247 and 326 qualifying facilities in Florida in the same years. The table holds a state-published 2025 total for 42 states; about 20% of the figures shown cover a single program or agency.",
-    "caveat": "Figures are as each state published them in year-end or fiscal-year reports and releases. States count different things (every announced project, the projects their agency assisted, or one incentive program), use different fiscal years and publish different measures, so the figures are not comparable across states and carry no ranks or medians. Fiscal years are labeled by the year they end. A dash means the state published no total for that year on that basis; where a state publishes only a list of projects, the total is left blank rather than computed here."
+    "caveat": "Figures are as each state published them in year-end or fiscal-year reports and releases. States count different things (every announced project, the projects their agency assisted, or one incentive program), use different fiscal years and publish different measures, so the figures are not comparable across states and carry no ranks or medians. Fiscal years are labeled by the year they end. n/a means the state published no total for that year on that basis; where a state publishes only a list of projects, the total is left blank rather than computed here."
   },
   "finalists": {
     "headline": "Florida is rarely in the final round for billion-dollar projects.",
@@ -5207,7 +5207,7 @@
     },
     {
       "id": "si_sr_all50_8d9545e0c0dd",
-      "label": "Massachusetts Executive Office of Economic Development (EOED) / Massachusetts Office of Business Development (MOBD) — FY EDIP cohorts already…",
+      "label": "Massachusetts Executive Office of Economic Development (EOED) / Massachusetts Office of Business Development (MOBD), FY EDIP cohorts already…",
       "url": "https://eadn-wc05-3207574.nxedge.io/cdn/wp-content/uploads/2022-Annual-Report-DRAFT-v5.pdf",
       "note": "Source for a figure in the year-by-year view of state-reported totals."
     },
@@ -5465,7 +5465,7 @@
     },
     {
       "id": "si_sr_all50_f64940d1a45f",
-      "label": "Massachusetts Executive Office of Economic Development (EOED) / Massachusetts Office of Business Development (MOBD) — FY EDIP cohorts already…",
+      "label": "Massachusetts Executive Office of Economic Development (EOED) / Massachusetts Office of Business Development (MOBD), FY EDIP cohorts already…",
       "url": "https://eadn-wc05-3207574.nxedge.io/cdn/wp-content/uploads/2025-Holiday-Reception.pdf",
       "note": "Source for a figure in the year-by-year view of state-reported totals."
     },

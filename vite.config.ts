@@ -30,7 +30,7 @@ export default defineConfig(() => ({
             if (id.includes("recharts") || id.includes("/d3-") || id.includes("victory")) {
               return "recharts";
             }
-            if (id.includes("/react/") || id.includes("/react-dom/") || id.includes("/scheduler/")) {
+            if (id.includes("/react/") || id.includes("/react-dom/") || id.includes("/scheduler/") || id.includes("/clsx/")) {
               return "react-vendor";
             }
           }

@@ -49,7 +49,7 @@ function Briefing() {
   const whatChanged = useWhatChanged();
 
   if (status === "error") {
-    return <main className="briefing-root" id="briefing-main"><p className="briefing-state">The briefing could not load the dataset. {error}</p></main>;
+    return <main className="briefing-root" id="briefing-main"><p className="briefing-state">The briefing could not load the dataset. {error}</p><button type="button" className="briefing-retry" onClick={() => window.location.reload()}>Try again</button></main>;
   }
 
   if (!data || status === "loading") {

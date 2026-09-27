@@ -396,3 +396,6 @@
   size: letter;
   margin: 0.5in;
 }
+
+.briefing-retry { margin-top: 1rem; padding: 0.7rem 1rem; border: 1px solid #ff8f3f; border-radius: 8px; background: transparent; color: #e8eef9; font: 700 0.875rem/1 "Manrope", sans-serif; cursor: pointer; }
+.briefing-retry:hover { background: rgba(255, 143, 63, 0.14); }

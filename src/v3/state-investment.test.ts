@@ -70,6 +70,12 @@ describe("state investment comparison", () => {
     expect(invest!.finalists.sourceIds.every((id) => sourceIds.has(id))).toBe(true);
   });
 
+  it("publishes no em dashes in the comparison or its sources (Florida Brain DESIGN.md)", () => {
+    const data = dataset();
+    expect(JSON.stringify(data.competition.stateInvestment)).not.toContain("\u2014");
+    expect(JSON.stringify(data.competition.sources)).not.toContain("\u2014");
+  });
+
   it("never attributes the undisclosed Fort Meade end user", () => {
     const text = JSON.stringify(dataset().competition.stateInvestment);
     expect(text).toContain("end user undisclosed");

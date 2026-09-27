@@ -37,7 +37,7 @@ Scheduled refreshes preserve the curated competition layer, so the section persi
   and LNG terminals and says so.
 - Agency-reported totals are never ranked or summarized across states (their scopes are incompatible). The year-by-year
   table shows them only as each state published them, with the unit and basis of every figure; the tracker's own sums
-  of a state's project list are left out, so a dash means the state published no total.
+  of a state's project list are left out, so n/a means the state published no total.
 - Company-wide hyperscaler capital spending is never allocated to states.
 - Undisclosed data-center end users are never attributed.
 - BLS job-flow and pay measures describe private-sector jobs, not investment, and are labeled as contrary evidence.
