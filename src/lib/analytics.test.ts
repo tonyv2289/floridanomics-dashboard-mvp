@@ -25,3 +25,17 @@ it("strips private URL values from GA configuration, page views, events, and Pla
   }));
   expect(plausible).toHaveBeenCalledWith("region_selected", expect.objectContaining({ u: "https://www.floridanomics.com/" }));
 });
+
+it("counts a pageview for every view except the dashboard, which sends its own", async () => {
+  vi.stubEnv("VITE_PLAUSIBLE_DOMAIN", "www.floridanomics.com");
+  const plausible = vi.fn();
+  vi.stubGlobal("window", { location: new URL("https://www.floridanomics.com/"), plausible });
+  vi.stubGlobal("document", { referrer: "", title: "Floridanomics", getElementById: () => ({}) });
+  const analytics = await import("./analytics");
+  analytics.trackAppView("dashboard");
+  expect(plausible).not.toHaveBeenCalled();
+  analytics.trackAppView("home");
+  expect(plausible).toHaveBeenCalledWith("pageview", expect.objectContaining({
+    props: expect.objectContaining({ surface: "home" }), u: "https://www.floridanomics.com/",
+  }));
+});
