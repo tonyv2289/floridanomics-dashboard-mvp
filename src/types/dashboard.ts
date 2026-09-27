@@ -644,6 +644,42 @@ export type StateFacilityHistory = {
   sourceIds: string[];
 };
 
+export type StateReportedQualifier = "more_than" | "at_least" | "about" | "up_to";
+
+// One state-published total for a year and basis, as the state reported it. Absent fields were not published; notes and units
+// say what each figure measures (they differ by state), and the figure cites the state's report.
+export type StateReportedCell = {
+  capital?: number;
+  capitalQualifier?: StateReportedQualifier;
+  capitalNote?: string;
+  jobs?: number;
+  jobsQualifier?: StateReportedQualifier;
+  jobsNote?: string;
+  count?: number;
+  countUnit?: string;
+  programOnly?: boolean;
+  viaSiteSelection?: boolean;
+  period?: string;
+  sourceIds: string[];
+};
+
+// Calendar- and fiscal-year arrays align with `years`; null means the state published no total for that year and basis.
+export type StateReportedRow = {
+  state: string;
+  calendar: Array<StateReportedCell | null>;
+  fiscal: Array<StateReportedCell | null>;
+};
+
+// Year by year as each state reports it: never ranked or summarized, because scopes differ by state.
+export type StateReportedHistory = {
+  label: string;
+  question: string;
+  years: number[];
+  states: StateReportedRow[];
+  read: string;
+  caveat: string;
+};
+
 // Exported by the Florida Brain state investment tracker (see docs/state-investment-comparison.md).
 export type StateInvestmentComparison = {
   schemaVersion: 1;
@@ -655,6 +691,7 @@ export type StateInvestmentComparison = {
   measures: StateInvestmentMeasure[];
   dataCenters: { headline: string; facts: StateInvestmentFact[]; caveat: string };
   facilityHistory?: StateFacilityHistory;
+  reportedHistory?: StateReportedHistory;
   finalists: { headline: string; read: string; caveat: string; sourceIds: string[] };
   method: string[];
 };

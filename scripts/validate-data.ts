@@ -1154,6 +1154,30 @@ async function main() {
       ensure(isNonEmptyString(history.read) && isNonEmptyString(history.caveat), `${label} missing read or caveat`, errors);
       validateCompetitionSourceRefs(history.sourceIds, competitionSourceIds, label, errors);
     }
+    if (invest.reportedHistory) {
+      // State-published totals: every state once, both bases aligned with the years, each figure labeled and cited.
+      const reported = invest.reportedHistory;
+      const label = "competition.stateInvestment.reportedHistory";
+      const years = reported.years.length;
+      const qualifiers = ["more_than", "at_least", "about", "up_to"];
+      ensure(years > 0 && reported.years.every((year, index) => Number.isInteger(year) && (index === 0 || year > reported.years[index - 1])), `${label} years must ascend`, errors);
+      ensure(reported.states.length === 50 && new Set(reported.states.map((row) => row.state)).size === 50, `${label} must list the 50 states once each`, errors);
+      ensure(reported.states.some((row) => row.state === "Florida" && row.calendar.some(Boolean)), `${label} missing Florida`, errors);
+      reported.states.forEach((row) => {
+        ensure(row.calendar.length === years && row.fiscal.length === years, `${label} ${row.state} must cover every year on both bases`, errors);
+        [...row.calendar, ...row.fiscal].forEach((cell) => {
+          if (!cell) return;
+          const where = `${label} ${row.state}`;
+          ensure([cell.capital, cell.jobs, cell.count].some((value) => value !== undefined), `${where} has an empty figure`, errors);
+          ensure([cell.capital, cell.jobs, cell.count].every((value) => value === undefined || (isFiniteNumber(value) && value >= 0)), `${where} has a non-numeric figure`, errors);
+          ensure([cell.capitalQualifier, cell.jobsQualifier].every((value) => value === undefined || qualifiers.includes(value)), `${where} has an unknown qualifier`, errors);
+          ensure(cell.jobs === undefined || isNonEmptyString(cell.jobsNote), `${where} jobs figure lacks its definition`, errors);
+          ensure(cell.count === undefined || isNonEmptyString(cell.countUnit), `${where} count lacks its unit`, errors);
+          validateCompetitionSourceRefs(cell.sourceIds, competitionSourceIds, where, errors);
+        });
+      });
+      ensure(isNonEmptyString(reported.read) && isNonEmptyString(reported.caveat), `${label} missing read or caveat`, errors);
+    }
   }
   ensure(isNonEmptyString(data.competition.fdiScoreboard.headline), "competition.fdiScoreboard missing headline", errors);
   ensure(isNonEmptyString(data.competition.fdiScoreboard.summary), "competition.fdiScoreboard missing summary", errors);

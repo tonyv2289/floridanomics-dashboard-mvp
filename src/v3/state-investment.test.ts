@@ -1,7 +1,18 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { formatFacilityValue, formatStateValue, ordinal, sortFacilityRows, stateBars } from "./state-investment";
-import type { DashboardDataset, StateFacilityHistoryRow, StateInvestmentMeasure } from "../types/dashboard";
+import {
+  describeReported,
+  formatFacilityValue,
+  formatReportedValue,
+  formatStateValue,
+  ordinal,
+  reportedMarks,
+  reportedNote,
+  sortFacilityRows,
+  sortReportedRows,
+  stateBars,
+} from "./state-investment";
+import type { DashboardDataset, StateFacilityHistoryRow, StateInvestmentMeasure, StateReportedCell, StateReportedRow } from "../types/dashboard";
 
 const dataset = () =>
   JSON.parse(readFileSync(new URL("../../public/data/florida-economy.json", import.meta.url), "utf8")) as DashboardDataset;
@@ -74,6 +85,58 @@ describe("state investment comparison", () => {
     expect(formatFacilityValue(9.1, "perMillion")).toBe("9.1");
     expect(formatFacilityValue(1406, "projects")).toBe("1,406");
     expect(formatFacilityValue(89.5, "projects")).toBe("89.5");
+  });
+
+  it("shows state-reported figures as published: qualifier marks, units and basis notes, scope marks", () => {
+    const cell: StateReportedCell = {
+      capital: 3_500_000_000, capitalQualifier: "more_than", jobs: 12663, jobsNote: "type not stated", count: 72, countUnit: "companies", sourceIds: ["s"],
+    };
+    expect(formatReportedValue(cell, "capital")).toBe(">$3.5B");
+    expect(formatReportedValue(cell, "jobs")).toBe("12,663");
+    expect(formatReportedValue({ capital: 809_065_784, sourceIds: ["s"] }, "capital")).toBe("$809M");
+    expect(formatReportedValue({ jobs: 10, sourceIds: ["s"] }, "capital")).toBeNull();
+    expect(formatReportedValue(null, "count")).toBeNull();
+    expect(reportedNote(cell, "count")).toBe("companies");
+    expect(reportedNote({ count: 5, countUnit: "projects", sourceIds: ["s"] }, "count")).toBe("");
+    expect(reportedNote({ capital: 1, capitalNote: "total project cost", sourceIds: ["s"] }, "capital")).toBe("total project cost");
+    expect(reportedMarks({ count: 1, programOnly: true, viaSiteSelection: true, sourceIds: ["s"] })).toBe("†‡");
+    expect(describeReported("Florida", "fiscal", 2025, { ...cell, period: "July 2024 to June 2025" }, "capital", "FloridaCommerce annual report")).toBe(
+      "Florida, fiscal 2025 (July 2024 to June 2025): more than $3.5B capital investment. Source: FloridaCommerce annual report",
+    );
+  });
+
+  it("sorts state-reported figures by value with unpublished years last in either direction", () => {
+    const row = (state: string, capital?: number): StateReportedRow => ({
+      state, calendar: [capital === undefined ? null : { capital, sourceIds: ["s"] }], fiscal: [null],
+    });
+    const rows = [row("Ohio", 5), row("Alaska"), row("Texas", 9), row("Georgia", 5), row("Idaho")];
+    expect(sortReportedRows(rows, "capital", "calendar", 0, "desc").map((item) => item.state)).toEqual(["Texas", "Georgia", "Ohio", "Alaska", "Idaho"]);
+    expect(sortReportedRows(rows, "capital", "calendar", 0, "asc").map((item) => item.state)).toEqual(["Georgia", "Ohio", "Texas", "Alaska", "Idaho"]);
+    expect(sortReportedRows(rows, "capital", "fiscal", 0, "desc").map((item) => item.state)).toEqual(["Alaska", "Georgia", "Idaho", "Ohio", "Texas"]);
+  });
+
+  it("ships state-reported totals for all 50 states: aligned years, labeled, cited, never ranked", () => {
+    const data = dataset();
+    const reported = data.competition.stateInvestment?.reportedHistory;
+    expect(reported).toBeDefined();
+    const sourceIds = new Set(data.competition.sources.map((source) => source.id));
+    expect(reported!.states).toHaveLength(50);
+    const allowed = new Set(["capital", "capitalQualifier", "capitalNote", "jobs", "jobsQualifier", "jobsNote", "count", "countUnit", "programOnly", "viaSiteSelection", "period", "sourceIds"]);
+    for (const row of reported!.states) {
+      expect(row.calendar).toHaveLength(reported!.years.length);
+      expect(row.fiscal).toHaveLength(reported!.years.length);
+      for (const cell of [...row.calendar, ...row.fiscal]) {
+        if (!cell) continue;
+        expect(Object.keys(cell).every((key) => allowed.has(key))).toBe(true);
+        expect(cell.sourceIds.length).toBeGreaterThan(0);
+        expect(cell.sourceIds.every((id) => sourceIds.has(id))).toBe(true);
+        if (cell.jobs !== undefined) expect(cell.jobsNote).toBeTruthy();
+        if (cell.count !== undefined) expect(cell.countUnit).toBeTruthy();
+      }
+    }
+    const florida = reported!.states.find((row) => row.state === "Florida")!;
+    expect(florida.calendar.map((cell) => cell?.count)).toEqual([54, 72, 50, 58]);
+    expect(florida.calendar.slice(0, 2).map((cell) => cell?.countUnit)).toEqual(["companies", "companies"]);
   });
 
   it("ships a complete year-by-year table: 50 states, every year, ranks in range, cited", () => {

@@ -71,7 +71,7 @@ export function assertPublicDataset(value: unknown): void {
   if ("stateInvestment" in competition) {
     // Tracker export: every block is keyed exactly and every claim cites an approved public source.
     const invest = record(competition.stateInvestment);
-    exactKeys(invest, ["schemaVersion", "generatedOn", "evidenceCutoff", "headline", "summary", "peerStates", "measures", "dataCenters", "facilityHistory", "finalists", "method"]);
+    exactKeys(invest, ["schemaVersion", "generatedOn", "evidenceCutoff", "headline", "summary", "peerStates", "measures", "dataCenters", "facilityHistory", "reportedHistory", "finalists", "method"]);
     if (!Array.isArray(invest.measures) || !invest.measures.length) throw new Error("Public state investment measures required.");
     for (const item of invest.measures) {
       const measure = record(item);
@@ -89,6 +89,21 @@ export function assertPublicDataset(value: unknown): void {
       exactKeys(history, ["label", "question", "years", "states", "medianPerMillion", "medianProjects", "read", "caveat", "sourceIds"]);
       for (const item of Array.isArray(history.states) ? history.states : []) {
         exactKeys(record(item), ["state", "projects", "perMillion", "rankPerMillion", "rankProjects"]);
+      }
+    }
+    if ("reportedHistory" in invest) {
+      // State-published figures: no rank or median fields, and every figure cites the state's own report.
+      const reported = record(invest.reportedHistory);
+      exactKeys(reported, ["label", "question", "years", "states", "read", "caveat"]);
+      for (const item of Array.isArray(reported.states) ? reported.states : []) {
+        const row = record(item);
+        exactKeys(row, ["state", "calendar", "fiscal"]);
+        for (const cell of [row.calendar, row.fiscal].flatMap((cells) => (Array.isArray(cells) ? cells : []))) {
+          if (cell === null) continue;
+          const figure = record(cell);
+          exactKeys(figure, ["capital", "capitalQualifier", "capitalNote", "jobs", "jobsQualifier", "jobsNote", "count", "countUnit", "programOnly", "viaSiteSelection", "period", "sourceIds"]);
+          if (!Array.isArray(figure.sourceIds) || !figure.sourceIds.length) throw new Error("Publication blocked: claim lacks an approved public citation.");
+        }
       }
     }
   }
