@@ -4396,6 +4396,39 @@ button.v3-table-row {
   font-size: 0.84rem;
 }
 
+.v3-facility-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 8px 0 0;
+  color: var(--v3-muted);
+  font-size: 0.76rem;
+}
+
+.v3-facility-table td a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.v3-facility-table td a strong {
+  text-decoration: underline;
+  text-decoration-color: rgba(198, 209, 223, 0.35);
+  text-underline-offset: 3px;
+}
+
+.v3-facility-table td a:hover strong {
+  text-decoration-color: var(--v3-sun);
+}
+
+.v3-facility-table td a:focus-visible {
+  outline: 2px solid var(--v3-sun);
+  outline-offset: 2px;
+}
+
+.v3-facility-table td.v3-facility-missing {
+  color: var(--v3-muted);
+}
+
 @media (max-width: 560px) {
   .v3-facility-table table {
     font-size: 0.78rem;
@@ -4409,6 +4442,11 @@ button.v3-table-row {
   .v3-facility-table th[scope="row"] {
     min-width: 76px;
     max-width: 92px;
+    white-space: normal;
+  }
+
+  /* State-reported notes ("type not stated") wrap so more years fit on a phone. */
+  .v3-facility-table td small {
     white-space: normal;
   }
 }

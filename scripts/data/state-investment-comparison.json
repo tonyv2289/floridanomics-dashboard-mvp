@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedOn": "2026-09-26",
+  "generatedOn": "2026-09-27",
   "evidenceCutoff": "2026-09-25",
   "headline": "Florida wins projects. It does not win large productive capital.",
   "summary": "Compared with 10 competing states, Florida lands many corporate facility projects and its manufacturing base is growing, but per resident it captures far less factory, lab and megaproject capital. The gap is real, sector-specific and measurable; the claim that Florida gets no business investment is false.",
@@ -1927,6 +1927,2772 @@
       "si_census_popest_v2025"
     ]
   },
+  "reportedHistory": {
+    "label": "As each state reports it, 2022 to 2025",
+    "question": "What did each state say it won?",
+    "years": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "states": [
+      {
+        "state": "Alabama",
+        "calendar": [
+          {
+            "capital": 10112080189,
+            "jobs": 13078,
+            "jobsNote": "new",
+            "count": 229,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_5d82fe7c8ad3"
+            ]
+          },
+          {
+            "capital": 6448653927,
+            "jobs": 8095,
+            "jobsNote": "new",
+            "count": 184,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_2f0cb0e24283"
+            ]
+          },
+          {
+            "capital": 7024495318,
+            "jobs": 8528,
+            "jobsNote": "new",
+            "count": 224,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_da793d5e67be"
+            ]
+          },
+          {
+            "capital": 14631210684,
+            "jobs": 9388,
+            "jobsNote": "new",
+            "count": 234,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_al25"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Alaska",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "jobs": 1599,
+            "jobsNote": "type not stated",
+            "programOnly": true,
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_c04b4b14591e"
+            ]
+          },
+          {
+            "jobs": 793,
+            "jobsNote": "type not stated",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_3d8723e89556"
+            ]
+          },
+          {
+            "jobs": 60,
+            "jobsNote": "type not stated",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_d97836e00457"
+            ]
+          },
+          {
+            "jobs": 158,
+            "jobsNote": "type not stated",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_740f99fd9312"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Arizona",
+        "calendar": [
+          {
+            "capital": 41000000000,
+            "capitalQualifier": "more_than",
+            "jobs": 31000,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 75,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_bf86070359b3"
+            ]
+          },
+          {
+            "capital": 10300000000,
+            "capitalQualifier": "more_than",
+            "jobs": 24600,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 95,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_9714325540da"
+            ]
+          },
+          {
+            "capital": 53600000000,
+            "capitalQualifier": "more_than",
+            "jobs": 25800,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 100,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_dd3035a89571"
+            ]
+          },
+          {
+            "capital": 34000000000,
+            "capitalQualifier": "more_than",
+            "jobs": 27749,
+            "jobsNote": "new",
+            "count": 90,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_47be8e9b5a23"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 10750000000,
+            "jobs": 24186,
+            "jobsNote": "new",
+            "count": 78,
+            "countUnit": "projects",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_history_1f21ae7d4222"
+            ]
+          },
+          {
+            "capital": 40730000000,
+            "jobs": 24227,
+            "jobsNote": "new",
+            "count": 92,
+            "countUnit": "projects",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_history_c3f7f0ab29a1"
+            ]
+          },
+          {
+            "capital": 50000000000,
+            "capitalQualifier": "more_than",
+            "jobs": 24251,
+            "jobsNote": "new",
+            "count": 107,
+            "countUnit": "projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_history_7245b9df74ac"
+            ]
+          },
+          {
+            "capital": 31640000000,
+            "capitalQualifier": "more_than",
+            "jobs": 24285,
+            "jobsNote": "new",
+            "count": 97,
+            "countUnit": "projects",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_history_95571b757797"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Arkansas",
+        "calendar": [
+          {
+            "capital": 5975630990,
+            "jobs": 5359,
+            "jobsNote": "type not stated",
+            "count": 30,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_1b80b2d0522f"
+            ]
+          },
+          {
+            "capital": 2080394715,
+            "jobs": 3939,
+            "jobsNote": "type not stated",
+            "count": 44,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_94e9a23b01b8"
+            ]
+          },
+          {
+            "capital": 1542245635,
+            "jobs": 3957,
+            "jobsNote": "new",
+            "sourceIds": [
+              "si_sr_all50_d1a949ebb90d"
+            ]
+          },
+          {
+            "capital": 6712870868,
+            "jobs": 3953,
+            "jobsNote": "new",
+            "count": 32,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_7f5a1b2d7605"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "California",
+        "calendar": [
+          null,
+          null,
+          null,
+          {
+            "capital": 2560000000,
+            "jobs": 4591,
+            "jobsNote": "new",
+            "count": 21,
+            "countUnit": "companies",
+            "programOnly": true,
+            "sourceIds": [
+              "si_sr_ca25"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Colorado",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "jobs": 8965,
+            "jobsQualifier": "up_to",
+            "jobsNote": "new",
+            "count": 34,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_7fd24be60669"
+            ]
+          },
+          {
+            "jobs": 6962,
+            "jobsQualifier": "up_to",
+            "jobsNote": "new",
+            "count": 27,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_e867d9c03a8f"
+            ]
+          },
+          {
+            "jobs": 8803,
+            "jobsQualifier": "up_to",
+            "jobsNote": "new",
+            "count": 26,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_0906ffd38c53"
+            ]
+          },
+          {
+            "jobs": 6522,
+            "jobsQualifier": "up_to",
+            "jobsNote": "new",
+            "count": 32,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_eecd3fdc8666"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Connecticut",
+        "calendar": [
+          {
+            "capital": 2650000000,
+            "jobs": 7428,
+            "jobsNote": "new",
+            "count": 83,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_b3a1c217370f"
+            ]
+          },
+          {
+            "capital": 875000000,
+            "capitalQualifier": "more_than",
+            "jobs": 8800,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 88,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_7236a83a4c75"
+            ]
+          },
+          {
+            "capital": 843300000,
+            "jobs": 4906,
+            "jobsNote": "new",
+            "count": 100,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_32d2bf3d96fa"
+            ]
+          },
+          {
+            "capital": 882700000,
+            "jobs": 1330,
+            "jobsNote": "new",
+            "count": 48,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_fd5860b7f4c8"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Delaware",
+        "calendar": [
+          {
+            "capital": 129000000,
+            "jobs": 734,
+            "jobsNote": "new",
+            "count": 10,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_b72a880c09fa"
+            ]
+          },
+          {
+            "capital": 263000000,
+            "capitalQualifier": "more_than",
+            "jobs": 768,
+            "jobsNote": "new + retained",
+            "count": 10,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_e9034e228b15"
+            ]
+          },
+          {
+            "capital": 304000000,
+            "jobs": 1175,
+            "jobsNote": "new",
+            "count": 9,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_d9d9184c2d1f"
+            ]
+          },
+          {
+            "capital": 1490000000,
+            "capitalQualifier": "more_than",
+            "jobs": 933,
+            "jobsNote": "new",
+            "count": 14,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_2ced4e8a1763"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "jobs": 1449,
+            "jobsNote": "new",
+            "count": 22,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_f71204afea59"
+            ]
+          },
+          {
+            "jobs": 569,
+            "jobsNote": "new",
+            "count": 8,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_34a48aac8384"
+            ]
+          },
+          {
+            "jobs": 1302,
+            "jobsNote": "new",
+            "count": 9,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_a0ec9f23ee91"
+            ]
+          },
+          null
+        ]
+      },
+      {
+        "state": "Florida",
+        "calendar": [
+          {
+            "capital": 1280000000,
+            "jobs": 7968,
+            "jobsNote": "type not stated",
+            "count": 54,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_history_2a5f3ec28fc8"
+            ]
+          },
+          {
+            "capital": 3500000000,
+            "capitalQualifier": "more_than",
+            "jobs": 12663,
+            "jobsNote": "type not stated",
+            "count": 72,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_research_b68a04e09052"
+            ]
+          },
+          {
+            "capital": 1600000000,
+            "jobs": 9633,
+            "jobsNote": "type not stated",
+            "count": 50,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_research_01acd9f651e0"
+            ]
+          },
+          {
+            "capital": 5500000000,
+            "capitalQualifier": "more_than",
+            "jobs": 8837,
+            "jobsNote": "new",
+            "count": 58,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_fl25"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 2500000000,
+            "capitalQualifier": "more_than",
+            "jobs": 12564,
+            "jobsNote": "new + retained",
+            "count": 61,
+            "countUnit": "projects",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_history_b8324727475b"
+            ]
+          },
+          {
+            "capital": 2700000000,
+            "capitalQualifier": "more_than",
+            "jobs": 13855,
+            "jobsNote": "new + retained",
+            "count": 73,
+            "countUnit": "projects",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_history_2c9ea311e935"
+            ]
+          },
+          {
+            "capital": 2003976500,
+            "jobs": 6041,
+            "jobsNote": "new + retained",
+            "count": 46,
+            "countUnit": "projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_history_ef80dd74b8ee"
+            ]
+          },
+          {
+            "capital": 5400000000,
+            "capitalQualifier": "more_than",
+            "jobs": 12199,
+            "jobsNote": "new + retained",
+            "count": 61,
+            "countUnit": "projects",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_history_2c7be67a80d4"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Georgia",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "capital": 21200000000,
+            "capitalQualifier": "more_than",
+            "jobs": 51132,
+            "jobsNote": "new",
+            "count": 358,
+            "countUnit": "projects",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_history_15a3f3c1e112"
+            ]
+          },
+          {
+            "capital": 24260000000,
+            "jobs": 38406,
+            "jobsNote": "new",
+            "count": 426,
+            "countUnit": "projects",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_history_1687cf490c1c"
+            ]
+          },
+          {
+            "capital": 20300000000,
+            "capitalQualifier": "more_than",
+            "jobs": 26900,
+            "jobsNote": "new",
+            "count": 429,
+            "countUnit": "projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_history_cad15e6f7025"
+            ]
+          },
+          {
+            "capital": 26300000000,
+            "capitalQualifier": "more_than",
+            "jobs": 23200,
+            "jobsQualifier": "about",
+            "jobsNote": "new",
+            "count": 423,
+            "countUnit": "projects",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_ga25"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Hawaii",
+        "calendar": [
+          {
+            "jobs": 855,
+            "jobsNote": "new + retained",
+            "programOnly": true,
+            "sourceIds": [
+              "si_sr_all50_a3397b22aa59"
+            ]
+          },
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          null,
+          {
+            "capital": 17600000,
+            "capitalNote": "company match",
+            "jobs": 449,
+            "jobsNote": "actual, reported",
+            "count": 26,
+            "countUnit": "awards",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_w13_01911842fd81"
+            ]
+          },
+          null,
+          {
+            "capital": 12400000,
+            "capitalNote": "company match",
+            "count": 34,
+            "countUnit": "awards",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_w13_8bbfe899c002"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Idaho",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "capital": 1725500000,
+            "jobs": 1549,
+            "jobsNote": "new + retained",
+            "count": 11,
+            "countUnit": "incentive projects",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_68528d095fbc"
+            ]
+          },
+          {
+            "capital": 15314198000,
+            "jobs": 3134,
+            "jobsNote": "new + retained",
+            "count": 4,
+            "countUnit": "incentive projects",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_68528d095fbc"
+            ]
+          },
+          {
+            "capital": 641916234,
+            "jobs": 2170,
+            "jobsNote": "new + retained",
+            "count": 7,
+            "countUnit": "incentive projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_68528d095fbc"
+            ]
+          },
+          {
+            "capital": 35900000000,
+            "jobs": 3358,
+            "jobsNote": "new + retained",
+            "count": 8,
+            "countUnit": "incentive projects",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_c1c6de37db56"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Illinois",
+        "calendar": [
+          {
+            "capital": 1000000000,
+            "capitalQualifier": "more_than",
+            "jobs": 2639,
+            "jobsNote": "type not stated",
+            "programOnly": true,
+            "sourceIds": [
+              "si_sr_all50_9c63e5b37316"
+            ]
+          },
+          {
+            "capital": 6300000000,
+            "programOnly": true,
+            "sourceIds": [
+              "si_sr_research_cf1c6be51e11"
+            ]
+          },
+          {
+            "capital": 12500000000,
+            "programOnly": true,
+            "sourceIds": [
+              "si_sr_research_cf1c6be51e11"
+            ]
+          },
+          {
+            "capital": 13000000000,
+            "programOnly": true,
+            "sourceIds": [
+              "si_sr_history_a3526eccc80f"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 7000000000,
+            "jobs": 16000,
+            "jobsQualifier": "more_than",
+            "jobsNote": "type not stated",
+            "count": 357,
+            "countUnit": "projects",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_research_e0ac8f4414b4"
+            ]
+          },
+          {
+            "capital": 6700000000,
+            "capitalQualifier": "about",
+            "jobs": 9300,
+            "jobsQualifier": "about",
+            "jobsNote": "type not stated",
+            "count": 382,
+            "countUnit": "projects",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_d51aa90bada2"
+            ]
+          },
+          {
+            "capital": 12500000000,
+            "capitalQualifier": "about",
+            "jobs": 12900,
+            "jobsQualifier": "about",
+            "jobsNote": "type not stated",
+            "count": 440,
+            "countUnit": "projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_19ef16a4b78e"
+            ]
+          },
+          {
+            "capital": 25800000000,
+            "capitalQualifier": "about",
+            "jobs": 18900,
+            "jobsQualifier": "about",
+            "jobsNote": "type not stated",
+            "count": 701,
+            "countUnit": "projects",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_71dabd417353"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Indiana",
+        "calendar": [
+          {
+            "capital": 22200000000,
+            "capitalQualifier": "more_than",
+            "jobs": 24059,
+            "jobsNote": "new",
+            "count": 218,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_history_d73ff2913a1f"
+            ]
+          },
+          {
+            "capital": 28700000000,
+            "capitalQualifier": "more_than",
+            "jobs": 21866,
+            "jobsNote": "new",
+            "count": 208,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_history_1685efbf3624"
+            ]
+          },
+          {
+            "capital": 39200000000,
+            "capitalQualifier": "more_than",
+            "jobs": 17062,
+            "jobsNote": "new",
+            "count": 169,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_history_cbed258c47ca"
+            ]
+          },
+          {
+            "jobs": 10604,
+            "jobsNote": "new",
+            "sourceIds": [
+              "si_sr_history_95af2aa23a76"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Iowa",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Kansas",
+        "calendar": [
+          {
+            "capital": 7400000000,
+            "capitalQualifier": "about",
+            "jobs": 13400,
+            "jobsQualifier": "about",
+            "jobsNote": "new + retained",
+            "count": 272,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_5fd165bf9006"
+            ]
+          },
+          {
+            "capital": 3100000000,
+            "capitalQualifier": "about",
+            "jobs": 12000,
+            "jobsQualifier": "about",
+            "jobsNote": "new + retained",
+            "count": 255,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_778301d55cd6"
+            ]
+          },
+          {
+            "capital": 3400000000,
+            "capitalQualifier": "more_than",
+            "jobs": 5100,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new + retained",
+            "count": 266,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_d5cd480a9503"
+            ]
+          },
+          {
+            "capital": 9500000000,
+            "jobs": 12300,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new + retained",
+            "count": 275,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_19f6a402fd4e"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 2600000000,
+            "jobs": 8521,
+            "jobsNote": "new + retained",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_015160c0e9ec"
+            ]
+          },
+          {
+            "capital": 7500000000,
+            "jobs": 16810,
+            "jobsNote": "new + retained",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_5ab94d9d7f46"
+            ]
+          },
+          {
+            "capital": 2730000000,
+            "jobs": 7635,
+            "jobsNote": "new + retained",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_5ab94d9d7f46"
+            ]
+          },
+          {
+            "capital": 4470000000,
+            "jobs": 9038,
+            "jobsNote": "new + retained",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_5ab94d9d7f46"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Kentucky",
+        "calendar": [
+          {
+            "capital": 10500000000,
+            "capitalQualifier": "about",
+            "jobs": 16000,
+            "jobsNote": "new",
+            "count": 248,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_cd012175393e"
+            ]
+          },
+          {
+            "capital": 4600000000,
+            "capitalQualifier": "more_than",
+            "jobs": 8500,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 180,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_6464a32a65a7"
+            ]
+          },
+          {
+            "capital": 6900000000,
+            "capitalQualifier": "more_than",
+            "jobs": 9425,
+            "jobsNote": "new",
+            "count": 170,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_5b8820894e35"
+            ]
+          },
+          {
+            "capital": 10500000000,
+            "jobs": 9600,
+            "jobsQualifier": "about",
+            "jobsNote": "new",
+            "count": 185,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_a15489a6e344"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Louisiana",
+        "calendar": [
+          {
+            "capital": 20700000000,
+            "jobs": 9035,
+            "jobsNote": "direct + indirect",
+            "count": 53,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_3097251d15c2"
+            ]
+          },
+          {
+            "capital": 25900000000,
+            "jobs": 16000,
+            "jobsQualifier": "more_than",
+            "jobsNote": "direct + indirect",
+            "sourceIds": [
+              "si_sr_history_3097251d15c2"
+            ]
+          },
+          {
+            "capital": 16100000000,
+            "jobs": 9000,
+            "jobsQualifier": "more_than",
+            "jobsNote": "type not stated",
+            "sourceIds": [
+              "si_sr_history_9773f239cd2a"
+            ]
+          },
+          {
+            "capital": 61000000000,
+            "capitalQualifier": "more_than",
+            "jobs": 9500,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "sourceIds": [
+              "si_sr_la25"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "count": 32,
+            "countUnit": "projects",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_95dfda5534f2"
+            ]
+          },
+          {
+            "count": 38,
+            "countUnit": "projects",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_33cd8c12afcc"
+            ]
+          },
+          {
+            "count": 36,
+            "countUnit": "projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_4e35eeceb9d8"
+            ]
+          },
+          {
+            "count": 27,
+            "countUnit": "projects",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_efc22aa77470"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Maine",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "capital": 107000000,
+            "capitalNote": "financing volume",
+            "jobs": 3148,
+            "jobsNote": "new + retained",
+            "count": 210,
+            "countUnit": "companies",
+            "programOnly": true,
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_w13_dccfe055b019"
+            ]
+          },
+          {
+            "capital": 104000000,
+            "capitalQualifier": "more_than",
+            "capitalNote": "financing volume",
+            "jobs": 3078,
+            "jobsNote": "new + retained",
+            "count": 264,
+            "countUnit": "companies",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_w13_99dfc52d1c40"
+            ]
+          },
+          {
+            "capital": 82000000,
+            "capitalQualifier": "more_than",
+            "capitalNote": "financing volume",
+            "jobs": 3478,
+            "jobsNote": "new + retained",
+            "count": 250,
+            "countUnit": "companies",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_w13_0ad62d0ba45f"
+            ]
+          },
+          {
+            "capital": 85000000,
+            "capitalQualifier": "more_than",
+            "capitalNote": "financing volume",
+            "jobs": 2654,
+            "jobsNote": "new + retained",
+            "count": 225,
+            "countUnit": "companies",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_w13_c0b6c9b6fea0"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Maryland",
+        "calendar": [
+          null,
+          null,
+          null,
+          {
+            "jobs": 4800,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new + retained",
+            "programOnly": true,
+            "sourceIds": [
+              "si_sr_all50_1aa98f9036b4"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "jobs": 5761,
+            "jobsNote": "new",
+            "count": 32,
+            "countUnit": "projects",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_w13_4919ab555859"
+            ]
+          },
+          {
+            "jobs": 5858,
+            "jobsNote": "new",
+            "count": 44,
+            "countUnit": "projects",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_w13_26970f21c2ab"
+            ]
+          },
+          {
+            "jobs": 2527,
+            "jobsNote": "new",
+            "count": 25,
+            "countUnit": "projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_w13_0c4dc7fa7d0d"
+            ]
+          },
+          {
+            "jobs": 4352,
+            "jobsNote": "new",
+            "count": 57,
+            "countUnit": "projects",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_w13_f5b8e76c6197"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Massachusetts",
+        "calendar": [
+          {
+            "jobs": 1503,
+            "jobsNote": "new",
+            "count": 18,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_8d9545e0c0dd"
+            ]
+          },
+          null,
+          null,
+          {
+            "jobs": 3550,
+            "jobsNote": "new",
+            "count": 6,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_f64940d1a45f"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 188625742,
+            "jobs": 761,
+            "jobsNote": "new + retained",
+            "count": 14,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_c15f7ace6316"
+            ]
+          },
+          {
+            "capital": 309000000,
+            "jobs": 978,
+            "jobsNote": "new",
+            "count": 13,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_c7e3ae312325"
+            ]
+          },
+          {
+            "capital": 309085092,
+            "jobs": 546,
+            "jobsNote": "new",
+            "count": 14,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_653e8eaf00cb"
+            ]
+          },
+          {
+            "capital": 214210657,
+            "jobs": 959,
+            "jobsNote": "new",
+            "count": 16,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_5587b16af681"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Michigan",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "jobs": 3455,
+            "jobsNote": "actual, reported",
+            "programOnly": true,
+            "period": "October 2021 to September 2022",
+            "sourceIds": [
+              "si_sr_all50_a8ac1bb5d7c0"
+            ]
+          },
+          {
+            "jobs": 1112,
+            "jobsNote": "actual, reported",
+            "programOnly": true,
+            "period": "October 2022 to September 2023",
+            "sourceIds": [
+              "si_sr_all50_a8ac1bb5d7c0"
+            ]
+          },
+          {
+            "capital": 11100000000,
+            "jobs": 17985,
+            "jobsNote": "type not stated",
+            "period": "October 2023 to September 2024",
+            "sourceIds": [
+              "si_sr_all50_596873fc23b0"
+            ]
+          },
+          {
+            "capital": 2740000000,
+            "period": "October 2024 to September 2025",
+            "sourceIds": [
+              "si_sr_all50_894ec50a6c6f"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Minnesota",
+        "calendar": [
+          null,
+          null,
+          {
+            "capital": 12000000000,
+            "capitalQualifier": "about",
+            "jobs": 4300,
+            "jobsQualifier": "about",
+            "jobsNote": "type not stated",
+            "count": 113,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_12ea71672f76"
+            ]
+          },
+          {
+            "capital": 3239000000,
+            "jobs": 2223,
+            "jobsNote": "type not stated",
+            "count": 122,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_d8fa9adf7331"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 644000000,
+            "jobs": 1067,
+            "jobsNote": "new",
+            "count": 650,
+            "countUnit": "awards",
+            "programOnly": true,
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_62041f064460"
+            ]
+          },
+          {
+            "capital": 751000000,
+            "jobs": 1163,
+            "jobsNote": "new",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_364e70de393d"
+            ]
+          },
+          {
+            "capital": 1500000000,
+            "capitalNote": "leveraged investment",
+            "jobs": 3500,
+            "jobsNote": "new + retained",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_w13_6e56f4219455"
+            ]
+          },
+          null
+        ]
+      },
+      {
+        "state": "Mississippi",
+        "calendar": [
+          {
+            "capital": 4896992805,
+            "jobs": 5056,
+            "jobsNote": "type not stated",
+            "count": 42,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_w13_1bc796ca15ff"
+            ]
+          },
+          {
+            "capital": 1261950720,
+            "jobs": 2076,
+            "jobsNote": "type not stated",
+            "count": 23,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_w13_1bc796ca15ff"
+            ]
+          },
+          {
+            "capital": 13433816725,
+            "jobs": 5305,
+            "jobsNote": "type not stated",
+            "count": 36,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_w13_1bc796ca15ff"
+            ]
+          },
+          {
+            "capital": 21536351052,
+            "jobs": 2859,
+            "jobsNote": "type not stated",
+            "count": 33,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_w13_1bc796ca15ff"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 1450000000,
+            "jobs": 3360,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_history_3f97adf52116"
+            ]
+          },
+          {
+            "capital": 4340000000,
+            "jobs": 3340,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_history_165dbb137a23"
+            ]
+          },
+          {
+            "capital": 12630000000,
+            "capitalQualifier": "more_than",
+            "jobs": 5000,
+            "jobsNote": "new",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_history_dba6f5fcf65f"
+            ]
+          },
+          {
+            "capital": 12600000000,
+            "capitalQualifier": "more_than",
+            "jobs": 3674,
+            "jobsNote": "new",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_history_b99fde3319f3"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Missouri",
+        "calendar": [
+          null,
+          {
+            "capital": 2900000000,
+            "jobs": 5100,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 90,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_b3ef17f5f0a1"
+            ]
+          },
+          null,
+          {
+            "jobs": 7420,
+            "jobsNote": "new",
+            "sourceIds": [
+              "si_sr_all50_71269f9bb9a9"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 1660000000,
+            "jobs": 8310,
+            "jobsNote": "new + retained",
+            "count": 100,
+            "countUnit": "companies",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_w13_de8f39bb6314"
+            ]
+          },
+          {
+            "capital": 1400000000,
+            "jobs": 6062,
+            "jobsNote": "new + retained",
+            "count": 97,
+            "countUnit": "companies",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_w13_6980e7563411"
+            ]
+          },
+          {
+            "capital": 2770000000,
+            "jobs": 6934,
+            "jobsNote": "new + retained",
+            "count": 92,
+            "countUnit": "companies",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_w13_6980e7563411"
+            ]
+          },
+          {
+            "capital": 1830000000,
+            "jobs": 5990,
+            "jobsNote": "new + retained",
+            "count": 87,
+            "countUnit": "companies",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_w13_6980e7563411"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Montana",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          null,
+          null,
+          {
+            "count": 12,
+            "countUnit": "projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_66030aada472"
+            ]
+          },
+          {
+            "count": 15,
+            "countUnit": "companies",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_66a1aa32eec0"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Nebraska",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Nevada",
+        "calendar": [
+          {
+            "capital": 2207676060,
+            "jobs": 3112,
+            "jobsNote": "new",
+            "count": 45,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_f923a7bad1c5"
+            ]
+          },
+          {
+            "capital": 4328235969,
+            "jobs": 3175,
+            "jobsNote": "new",
+            "count": 43,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_f923a7bad1c5"
+            ]
+          },
+          {
+            "capital": 2198748740,
+            "jobs": 2207,
+            "jobsNote": "new",
+            "count": 61,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_f923a7bad1c5"
+            ]
+          },
+          {
+            "capital": 2192958567,
+            "jobs": 2178,
+            "jobsNote": "new",
+            "count": 64,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_f923a7bad1c5"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          {
+            "capital": 1200000000,
+            "capitalQualifier": "more_than",
+            "jobs": 2573,
+            "jobsNote": "new",
+            "count": 33,
+            "countUnit": "companies",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_c23e808ae9ae"
+            ]
+          },
+          {
+            "capital": 1400000000,
+            "capitalQualifier": "about",
+            "jobs": 377,
+            "jobsNote": "new",
+            "count": 16,
+            "countUnit": "companies",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_02bad06a7aef"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "New Hampshire",
+        "calendar": [
+          null,
+          null,
+          {
+            "capital": 650000000,
+            "capitalQualifier": "more_than",
+            "sourceIds": [
+              "si_sr_all50_d94eb6a12b61"
+            ]
+          },
+          null
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "New Jersey",
+        "calendar": [
+          {
+            "capital": 3000000000,
+            "capitalQualifier": "more_than",
+            "jobs": 4708,
+            "jobsNote": "new + retained",
+            "count": 43,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_39b3beb4be74"
+            ]
+          },
+          {
+            "capital": 2300000000,
+            "capitalQualifier": "more_than",
+            "jobs": 5080,
+            "jobsNote": "new + retained",
+            "count": 37,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_528e4dd0fa19"
+            ]
+          },
+          {
+            "capital": 987000000,
+            "jobs": 2171,
+            "jobsNote": "new + retained",
+            "count": 62,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_b0a0a9482380"
+            ]
+          },
+          {
+            "capital": 1000000000,
+            "jobs": 2589,
+            "jobsNote": "new + retained",
+            "count": 60,
+            "countUnit": "companies",
+            "sourceIds": [
+              "si_sr_all50_c7d1ff1ee7cb"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "New Mexico",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "jobs": 5263,
+            "jobsNote": "new",
+            "count": 88,
+            "countUnit": "companies",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_11f66873484d"
+            ]
+          },
+          {
+            "jobs": 1790,
+            "jobsNote": "new",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_11f66873484d"
+            ]
+          },
+          {
+            "jobs": 3523,
+            "jobsNote": "new",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_11f66873484d"
+            ]
+          },
+          {
+            "jobs": 3499,
+            "jobsNote": "new",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_11f66873484d"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "New York",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "North Carolina",
+        "calendar": [
+          {
+            "capital": 15580000000,
+            "jobs": 27144,
+            "jobsNote": "new",
+            "count": 151,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_bea191762a74"
+            ]
+          },
+          {
+            "capital": 4800000000,
+            "capitalQualifier": "more_than",
+            "jobs": 10824,
+            "jobsNote": "new",
+            "count": 111,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_871b9ac309fa"
+            ]
+          },
+          {
+            "capital": 14800000000,
+            "capitalQualifier": "more_than",
+            "jobs": 16555,
+            "jobsNote": "new",
+            "count": 140,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_7a9945bea8d6"
+            ]
+          },
+          {
+            "capital": 24200000000,
+            "jobs": 33662,
+            "jobsNote": "new",
+            "count": 122,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_nc_aws"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "North Dakota",
+        "calendar": [
+          null,
+          null,
+          null,
+          {
+            "capital": 60000000000,
+            "capitalQualifier": "more_than",
+            "count": 145,
+            "countUnit": "facility projects",
+            "viaSiteSelection": true,
+            "sourceIds": [
+              "si_sr_research_f5818c8588d4"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Ohio",
+        "calendar": [
+          {
+            "capital": 31560000000,
+            "jobs": 26323,
+            "jobsNote": "new",
+            "count": 296,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_4fab84e2e81b"
+            ]
+          },
+          {
+            "capital": 14390000000,
+            "jobs": 16457,
+            "jobsNote": "new",
+            "count": 327,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_4fab84e2e81b"
+            ]
+          },
+          {
+            "capital": 19300000000,
+            "jobs": 19338,
+            "jobsNote": "new",
+            "count": 377,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_4a9ac15e6577"
+            ]
+          },
+          {
+            "capital": 12370000000,
+            "jobs": 14616,
+            "jobsNote": "new",
+            "count": 316,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_oh25"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 2790000000,
+            "jobs": 16253,
+            "jobsNote": "new",
+            "count": 83,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "June 2021 to May 2022",
+            "sourceIds": [
+              "si_sr_all50_496bd4a24657"
+            ]
+          },
+          {
+            "capital": 27600000000,
+            "count": 65,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_a486190b2949"
+            ]
+          },
+          {
+            "capital": 4500000000,
+            "jobs": 9402,
+            "jobsNote": "new",
+            "count": 59,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_477bb97b6236"
+            ]
+          },
+          {
+            "capital": 3800000000,
+            "jobs": 29022,
+            "jobsNote": "type not stated",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_9f7aab843896"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Oklahoma",
+        "calendar": [
+          {
+            "jobs": 5072,
+            "jobsQualifier": "at_least",
+            "jobsNote": "new",
+            "count": 77,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_100d7cd2b3e9"
+            ]
+          },
+          {
+            "capital": 7800000000,
+            "jobs": 6532,
+            "jobsQualifier": "at_least",
+            "jobsNote": "new",
+            "count": 71,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_8677b7651b53"
+            ]
+          },
+          {
+            "capital": 5190000000,
+            "jobs": 5564,
+            "jobsQualifier": "at_least",
+            "jobsNote": "new",
+            "count": 75,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_7c37ebca337e"
+            ]
+          },
+          {
+            "capital": 14700000000,
+            "jobs": 6206,
+            "jobsQualifier": "at_least",
+            "jobsNote": "new",
+            "count": 79,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_all50_8431a00b8ee1"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 4500000000,
+            "jobs": 8117,
+            "jobsNote": "new",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_7c6f940f095e"
+            ]
+          },
+          {
+            "capital": 2130000000,
+            "jobs": 5763,
+            "jobsNote": "new",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_7c6f940f095e"
+            ]
+          },
+          {
+            "capital": 9100000000,
+            "jobs": 10344,
+            "jobsNote": "new",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_9bade45146a6"
+            ]
+          },
+          {
+            "capital": 8700000000,
+            "jobs": 7900,
+            "jobsNote": "new",
+            "count": 30,
+            "countUnit": "projects",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_3a7bd965daff"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Oregon",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "jobs": 378,
+            "jobsNote": "actual, reported",
+            "count": 352,
+            "countUnit": "awards",
+            "programOnly": true,
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_01352f24b27c"
+            ]
+          },
+          {
+            "jobs": 541,
+            "jobsNote": "actual, reported",
+            "count": 718,
+            "countUnit": "awards",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_01352f24b27c"
+            ]
+          },
+          {
+            "jobs": 490,
+            "jobsNote": "actual, reported",
+            "count": 421,
+            "countUnit": "awards",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_01352f24b27c"
+            ]
+          },
+          {
+            "jobs": 808,
+            "jobsNote": "actual, reported",
+            "count": 513,
+            "countUnit": "awards",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_01352f24b27c"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Pennsylvania",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "capital": 445099000,
+            "capitalNote": "leveraged investment",
+            "jobs": 2966,
+            "jobsNote": "new",
+            "count": 3254,
+            "countUnit": "businesses assisted",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_w13_416828c2c3cd"
+            ]
+          },
+          {
+            "capital": 532631000,
+            "capitalNote": "leveraged investment",
+            "jobs": 2738,
+            "jobsNote": "new",
+            "count": 3492,
+            "countUnit": "businesses assisted",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_w13_98afd9aa6be8"
+            ]
+          },
+          {
+            "capital": 892687000,
+            "capitalNote": "leveraged investment",
+            "jobs": 3447,
+            "jobsNote": "new",
+            "count": 2858,
+            "countUnit": "businesses assisted",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_w13_4769f7680cf3"
+            ]
+          },
+          {
+            "capital": 4209615000,
+            "capitalNote": "leveraged investment",
+            "jobs": 1380,
+            "jobsNote": "new",
+            "count": 2911,
+            "countUnit": "businesses assisted",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_w13_147209b8b140"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Rhode Island",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "jobs": 505,
+            "jobsNote": "new",
+            "count": 3,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_w13_0bada47cb368"
+            ]
+          },
+          null,
+          {
+            "count": 2,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_w13_059af65c37da"
+            ]
+          },
+          {
+            "count": 5,
+            "countUnit": "projects",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_w13_d791afa0b514"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "South Carolina",
+        "calendar": [
+          {
+            "capital": 10270000000,
+            "jobs": 14083,
+            "jobsNote": "new",
+            "count": 120,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_aedfe1741f88"
+            ]
+          },
+          {
+            "capital": 9220000000,
+            "jobs": 14120,
+            "jobsNote": "new",
+            "count": 81,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_9a1e159bc555"
+            ]
+          },
+          {
+            "capital": 8190000000,
+            "jobs": 5500,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "sourceIds": [
+              "si_sr_history_aff41be9fb87"
+            ]
+          },
+          {
+            "capital": 9120000000,
+            "jobs": 8137,
+            "jobsNote": "new",
+            "count": 82,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_sc25"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "South Dakota",
+        "calendar": [
+          {
+            "capital": 1730000000,
+            "capitalQualifier": "about",
+            "jobs": 2399,
+            "jobsNote": "new",
+            "count": 34,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_w13_5498a65c5e50"
+            ]
+          },
+          {
+            "capital": 1400000000,
+            "capitalQualifier": "about",
+            "jobs": 822,
+            "jobsNote": "new",
+            "count": 34,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_w13_e52cf7920fbe"
+            ]
+          },
+          {
+            "capital": 916000000,
+            "jobs": 1085,
+            "jobsNote": "new",
+            "count": 49,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_w13_2dd0e983dbae"
+            ]
+          },
+          {
+            "capital": 963000000,
+            "jobs": 655,
+            "jobsNote": "new + retained",
+            "count": 26,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_w13_82a93305401b"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Tennessee",
+        "calendar": [
+          {
+            "capital": 8600000000,
+            "jobs": 16000,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 100,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_89c4bfac1c49"
+            ]
+          },
+          {
+            "capital": 3980000000,
+            "jobs": 13136,
+            "jobsNote": "new",
+            "count": 104,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_d10996ce7461"
+            ]
+          },
+          {
+            "capital": 7200000000,
+            "jobs": 9666,
+            "jobsNote": "new",
+            "count": 67,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_history_dc1441da5c90"
+            ]
+          },
+          {
+            "capital": 11200000000,
+            "jobs": 8086,
+            "jobsNote": "new",
+            "count": 75,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_tn25"
+            ]
+          }
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Texas",
+        "calendar": [
+          {
+            "capital": 44700000000,
+            "capitalQualifier": "more_than",
+            "jobs": 35000,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 1028,
+            "countUnit": "facility projects",
+            "viaSiteSelection": true,
+            "sourceIds": [
+              "si_sr_history_85bfe58d678f"
+            ]
+          },
+          {
+            "capital": 58000000000,
+            "capitalQualifier": "at_least",
+            "jobs": 38600,
+            "jobsQualifier": "at_least",
+            "jobsNote": "new",
+            "count": 1200,
+            "countUnit": "projects",
+            "sourceIds": [
+              "si_sr_research_1e992f5c7251"
+            ]
+          },
+          {
+            "capital": 31000000000,
+            "capitalQualifier": "more_than",
+            "jobs": 30000,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 1368,
+            "countUnit": "facility projects",
+            "viaSiteSelection": true,
+            "sourceIds": [
+              "si_sr_research_d6a0cb952a66"
+            ]
+          },
+          {
+            "capital": 75000000000,
+            "capitalQualifier": "more_than",
+            "jobs": 42000,
+            "jobsQualifier": "more_than",
+            "jobsNote": "new",
+            "count": 1406,
+            "countUnit": "facility projects",
+            "viaSiteSelection": true,
+            "sourceIds": [
+              "si_sr_tx25"
+            ]
+          }
+        ],
+        "fiscal": [
+          {
+            "capital": 22830000000,
+            "jobs": 9763,
+            "jobsNote": "new",
+            "period": "September 2021 to August 2022",
+            "sourceIds": [
+              "si_sr_w13_806182931218"
+            ]
+          },
+          {
+            "capital": 34200000000,
+            "jobs": 11986,
+            "jobsNote": "new",
+            "period": "September 2022 to August 2023",
+            "sourceIds": [
+              "si_sr_w13_806182931218"
+            ]
+          },
+          {
+            "capital": 15690000000,
+            "jobs": 9197,
+            "jobsNote": "new",
+            "period": "September 2023 to August 2024",
+            "sourceIds": [
+              "si_sr_w13_7645b50fc354"
+            ]
+          },
+          {
+            "capital": 11680000000,
+            "jobs": 14364,
+            "jobsNote": "new",
+            "period": "September 2024 to August 2025",
+            "sourceIds": [
+              "si_sr_w13_7645b50fc354"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Utah",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "capital": 2210000000,
+            "jobs": 21600,
+            "jobsNote": "new",
+            "count": 37,
+            "countUnit": "projects",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_7ad001bcf166"
+            ]
+          },
+          {
+            "capital": 12200000000,
+            "jobs": 4387,
+            "jobsNote": "new",
+            "count": 26,
+            "countUnit": "projects",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_9e11de4b44cc"
+            ]
+          },
+          {
+            "capital": 9200000000,
+            "jobs": 8968,
+            "jobsNote": "new + retained",
+            "count": 28,
+            "countUnit": "projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_1a05138c78ee"
+            ]
+          },
+          {
+            "capital": 1300000000,
+            "jobs": 3213,
+            "jobsNote": "new + retained",
+            "count": 20,
+            "countUnit": "projects",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_243b4a484d7f"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Vermont",
+        "calendar": [
+          {
+            "capital": 23563565,
+            "capitalNote": "actual, from claims",
+            "jobs": 483,
+            "jobsNote": "actual, reported",
+            "count": 23,
+            "countUnit": "claims",
+            "programOnly": true,
+            "sourceIds": [
+              "si_sr_all50_3a412687db1b"
+            ]
+          },
+          {
+            "capital": 57534484,
+            "capitalNote": "actual, from claims",
+            "jobs": 286,
+            "jobsNote": "actual, reported",
+            "count": 18,
+            "countUnit": "claims",
+            "programOnly": true,
+            "sourceIds": [
+              "si_sr_all50_3a412687db1b"
+            ]
+          },
+          null,
+          null
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Virginia",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "capital": 34000000000,
+            "jobs": 17203,
+            "jobsNote": "new",
+            "count": 102,
+            "countUnit": "projects",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_08503d7a7a3f"
+            ]
+          },
+          {
+            "capital": 40800000000,
+            "jobs": 10866,
+            "jobsNote": "new",
+            "count": 89,
+            "countUnit": "projects",
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_7d825da2e43c"
+            ]
+          },
+          {
+            "capital": 8200000000,
+            "jobs": 8210,
+            "jobsNote": "new",
+            "count": 76,
+            "countUnit": "projects",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_history_309aca788ce6"
+            ]
+          },
+          {
+            "capital": 15600000000,
+            "jobs": 13514,
+            "jobsNote": "new",
+            "count": 86,
+            "countUnit": "announcements",
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_va25"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Washington",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "capital": 2020874330,
+            "jobs": 3653,
+            "jobsNote": "type not stated",
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_e95fd9e2f464"
+            ]
+          },
+          null,
+          {
+            "capital": 2552830915,
+            "jobs": 5196,
+            "jobsNote": "type not stated",
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_c0c958b1ee8b"
+            ]
+          },
+          null
+        ]
+      },
+      {
+        "state": "West Virginia",
+        "calendar": [
+          {
+            "capital": 6170000000,
+            "jobs": 3319,
+            "jobsNote": "new",
+            "sourceIds": [
+              "si_sr_all50_e7d030c21945"
+            ]
+          },
+          {
+            "capital": 3530000000,
+            "jobs": 1798,
+            "jobsNote": "new",
+            "sourceIds": [
+              "si_sr_all50_05bda18f8c1a"
+            ]
+          },
+          null,
+          null
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "state": "Wisconsin",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          {
+            "capital": 1200000000,
+            "jobs": 3357,
+            "jobsNote": "contracted",
+            "programOnly": true,
+            "period": "July 2021 to June 2022",
+            "sourceIds": [
+              "si_sr_all50_c24187d927c9"
+            ]
+          },
+          {
+            "capital": 1500000000,
+            "jobs": 3653,
+            "jobsNote": "to be created",
+            "programOnly": true,
+            "period": "July 2022 to June 2023",
+            "sourceIds": [
+              "si_sr_all50_e3391c614906"
+            ]
+          },
+          {
+            "capital": 2900000000,
+            "jobs": 3713,
+            "jobsNote": "contracted",
+            "programOnly": true,
+            "period": "July 2023 to June 2024",
+            "sourceIds": [
+              "si_sr_all50_da3f7f4a2c98"
+            ]
+          },
+          {
+            "capital": 1900000000,
+            "jobs": 2346,
+            "jobsNote": "contracted",
+            "programOnly": true,
+            "period": "July 2024 to June 2025",
+            "sourceIds": [
+              "si_sr_all50_5b68c426a808"
+            ]
+          }
+        ]
+      },
+      {
+        "state": "Wyoming",
+        "calendar": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "fiscal": [
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "read": "Florida's year-end releases count the relocations and expansions the state's economic-development organizations handled: 54, 72, 50 and 58 from 2022 to 2025. Site Selection counted 205, 250, 247 and 326 qualifying facilities in Florida in the same years. The table holds a state-published 2025 total for 42 states; about 20% of the figures shown cover a single program or agency.",
+    "caveat": "Figures are as each state published them in year-end or fiscal-year reports and releases. States count different things (every announced project, the projects their agency assisted, or one incentive program), use different fiscal years and publish different measures, so the figures are not comparable across states and carry no ranks or medians. Fiscal years are labeled by the year they end. A dash means the state published no total for that year on that basis; where a state publishes only a list of projects, the total is left blank rather than computed here."
+  },
   "finalists": {
     "headline": "Florida is rarely in the final round for billion-dollar projects.",
     "read": "Florida was not a finalist for any $1B+ project whose competing sites are on the public record. Texas incentive filings name rival sites for 20 of 27 billion-dollar projects: Louisiana appears in 8, New Mexico in 5 and Florida in 1, only on Saronic's 12-state first-round list. Apart from that first-round exit, Florida's 13 documented contest losses since 2020 are mid-sized, including Boom Supersonic (Jacksonville), Pratt & Whitney (Palm Beach County), Jabil and Citi's technology hub to North Carolina and a Miami-Dade steel-mill site that was one of three finalists (Texas won).",
@@ -1942,7 +4708,7 @@
   "method": [
     "Announced commitments are not spending, and an opening does not prove the full budget was spent or every job filled.",
     "Per-resident figures use Census Vintage 2025 population; values are nominal dollars.",
-    "Agency-reported totals use incompatible scopes and are not compared here.",
+    "Agency-reported totals use incompatible scopes: the year-by-year table shows them only as each state published them, without ranks or medians.",
     "Company-wide hyperscaler capital spending is never allocated to states.",
     "BLS job-flow and pay measures describe private-sector jobs, not investment; they test whether the gap is general or specific to large capital."
   ],
@@ -2108,6 +4874,1122 @@
       "label": "Texas Comptroller: JETI J0024 recommendation (Saronic)",
       "url": "https://assets.comptroller.texas.gov/open-data/jeti/J0024/J0024-saronic-pointisabel-rec.pdf",
       "note": "Names the finalist states for the Port Alpha shipyard."
+    },
+    {
+      "id": "si_sr_al25",
+      "label": "Alabama Commerce: CY2025 industry report",
+      "url": "https://www.madeinalabama.com/2026/01/governor-ivey-announces-record-breaking-year-for-alabama-economic-development/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_01352f24b27c",
+      "label": "Business Oregon annual performance report: FY2022-2025 payroll outcomes, PDF pp3-4",
+      "url": "https://www.oregon.gov/biz/Publications/APPR_OBDD_2025-10-01.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_015160c0e9ec",
+      "label": "Kansas Commerce FY2025 budget narrative: FY2022 actuals, PDF p29",
+      "url": "https://budget.kansas.gov/wp-content/uploads/300-Commerce-Narrative-FY2025.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_02bad06a7aef",
+      "label": "Nevada Nevada Governor's Office of Economic Development (GOED): GOED Executive Director's Report to the GOED Board, November 10, 2025 (board packet…",
+      "url": "https://goed.nv.gov/wp-content/uploads/2025/11/7.-Executive-Directors-Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_05bda18f8c1a",
+      "label": "West Virginia Department of Economic Development 2023 Year in Review, single-page results",
+      "url": "https://westvirginia.gov/wp-content/uploads/2024/02/Pub_YearInReview2023_Flier_DEVO.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_08503d7a7a3f",
+      "label": "Virginia: VEDP FY22 annual report: official report page",
+      "url": "https://www.vedp.org/FY22AnnualReport",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_0906ffd38c53",
+      "label": "Colorado OEDIT FY2023-24 annual report: Job Growth Incentive Tax Credit approvals",
+      "url": "https://oedit.colorado.gov/sites/coedit/files/documents/FINALAnnualReport_2024_12-19.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_100d7cd2b3e9",
+      "label": "Oklahoma Commerce CY2022 public new and expanding company workbook",
+      "url": "https://www.okcommerce.gov/wp-content/uploads/New-and-Expanding-Companies-2022-Annual-Report.xlsx",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_11f66873484d",
+      "label": "New Mexico EDD FY2025 Q4 performance report: annual jobs, PDF p3",
+      "url": "https://edd.newmexico.gov/wp-content/uploads/2026/03/FY25-Q4-EDD-Performance-Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_12ea71672f76",
+      "label": "Minnesota DEED legislative presentation dated January 27, 2025, PDF p4",
+      "url": "https://www.lrl.mn.gov/archive/minutes/senate/2025/jobs/20250129/Jobs20250129_DEED-2025-Legislative-Updates.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_19ef16a4b78e",
+      "label": "Illinois EDC / Intersect Illinois FY2024 annual report, statewide relocation and expansion section",
+      "url": "https://www.illinoisedc.org/wp-content/uploads/2024/11/Annual-report_final.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_19f6a402fd4e",
+      "label": "Kansas Kansas Department of Commerce (with Office of the Governor year-end releases): Kansas Department of Commerce - 2025 Program Review…",
+      "url": "https://www.kansascommerce.gov/wp-content/uploads/2026/02/V15-LPA-SLIDES.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_1a05138c78ee",
+      "label": "EDCUtah FY2024 annual project commitments",
+      "url": "https://www.edcutah.org/annual-reports/2023-2024",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_1aa98f9036b4",
+      "label": "Maryland Maryland Department of Commerce; Office of Governor Wes Moore (year-end release): Moore-Miller Administration Makes Maryland Safer, More…",
+      "url": "https://governor.maryland.gov/news/press-releases/moore-miller-administration-makes-maryland-safer-more-affordable-and-more-competitive-2025",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_1b80b2d0522f",
+      "label": "Arkansas AEDC CY2022 annual report, PDF p12",
+      "url": "https://www.arkansasedc.com/docs/default-source/reports/aedc-2022-annual-report_digital.pdf?sfvrsn=e0a57101_1",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_243b4a484d7f",
+      "label": "EDCUtah FY2025 annual project commitments",
+      "url": "https://www.edcutah.org/annual-reports/2024-2025-annual-report",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_2ced4e8a1763",
+      "label": "Delaware Prosperity Partnership CY2025 annual results, PDF p4 and announcement detail",
+      "url": "https://www.choosedelaware.com/wp-content/uploads/2026/03/2025-ANNUAL-REPORT-DPP.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_32d2bf3d96fa",
+      "label": "Connecticut AdvanceCT (state's nonprofit public-private economic development organization, working with the Department of Economic and Community…",
+      "url": "https://www.advancect.org/media/userfiles/subsite_190/files/reports/2024%20Annual%20Report%20final.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_33cd8c12afcc",
+      "label": "Louisiana Louisiana Economic Development (LED) - Office of Business Development / Office of Economic Development; performance indicators reported…",
+      "url": "https://www.doa.la.gov/media/j1bbhfl5/departmentofeconomicdevelopment.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_34a48aac8384",
+      "label": "Delaware Delaware Division of Small Business (Department of State) - Council on Development Finance / Delaware Strategic Fund; Delaware Prosperity…",
+      "url": "https://business.delaware.gov/wp-content/uploads/sites/118/2023/12/DSB-FY23-AnnualReport-Compressed.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_364e70de393d",
+      "label": "Minnesota Minnesota Department of Employment and Economic Development (DEED), Business and Community Development division: DEED Annual Program…",
+      "url": "https://www.lrl.mn.gov/docs/2025/mandated/250854.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_39b3beb4be74",
+      "label": "Choose New Jersey CY2022 annual results",
+      "url": "https://choosenj.com/about-us/2022-annual-report/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_3a412687db1b",
+      "label": "Vermont VEPC 2025 VEGI report: claim-year activity, PDF pp30-32",
+      "url": "https://legislature.vermont.gov/assets/Legislative-Reports/2025-VEGI-Annual-Report-FINAL.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_3a7bd965daff",
+      "label": "Oklahoma Commerce FY2025 annual report, PDF p7",
+      "url": "https://www.okcommerce.gov/wp-content/uploads/Oklahoma-Department-of-Commerce-2025-Annual-Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_3d8723e89556",
+      "label": "Alaska: AIDEA 2023 annual report, FY financial highlights, PDF p11",
+      "url": "https://www.aidea.org/Portals/0/Annual%20Reports/2023%20AIDEA%20Annual%20Report%20Pages%20-%20Digital%20Format.pdf?ver=nJPNJvh1cqLsq5CLbR3i1g%3D%3D",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_477bb97b6236",
+      "label": "Ohio Ohio Department of Development (Development) - fiscal-year annual reports; Ohio Tax Credit Authority Job Creation Tax Credit approvals.…",
+      "url": "https://dam.assets.ohio.gov/image/upload/development.ohio.gov/annualreports/Development-Annual-Report-2024.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_496bd4a24657",
+      "label": "Ohio Ohio Department of Development (Development) - fiscal-year annual reports; Ohio Tax Credit Authority Job Creation Tax Credit approvals.…",
+      "url": "https://development.ohio.gov/static/annualreports/2022-Department-of-Development-Annual-Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_4e35eeceb9d8",
+      "label": "Louisiana Louisiana Economic Development (LED) - Office of Business Development / Office of Economic Development; performance indicators reported…",
+      "url": "https://www.doa.la.gov/media/ibal3g1x/louisianaeconomicdevelopment.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_528e4dd0fa19",
+      "label": "Choose New Jersey CY2023 annual results",
+      "url": "https://choosenj.com/about-us/2023-annual-report/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_5587b16af681",
+      "label": "Massachusetts MOBD EDIP FY2025: state-tax-credit certified projects",
+      "url": "https://malegislature.gov/Reports/27449/%2837%29%20FY25%20EDIP%20Annual%20Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_596873fc23b0",
+      "label": "Michigan: MEDC October 2024 scorecard: complete FY2024, PDF pp4-5",
+      "url": "https://www.michiganbusiness.org/globalassets/documents/reports/medc-reports/medc-october-2024-scorecard.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_5ab94d9d7f46",
+      "label": "Kansas Commerce FY2027 budget narrative: FY2023-25 actuals, PDF p21",
+      "url": "https://budget.kansas.gov/wp-content/uploads/300-Department-of-Commerce-Narrative-FY-2027.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_5b68c426a808",
+      "label": "Wisconsin: WEDC FY2025 program deliverables: award-supported capital and executed-contract jobs",
+      "url": "https://wedc.org/transparency/annual-report-on-economic-development/program-deliverables/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_5b8820894e35",
+      "label": "Kentucky Governor/Cabinet: CY2024 new-location and expansion announcements",
+      "url": "https://www.kentucky.gov/Pages/Activity-stream.aspx?n=GovernorBeshear&prId=2364",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_5fd165bf9006",
+      "label": "Kansas Kansas Department of Commerce (with Office of the Governor year-end releases): Kansas Awarded Third Consecutive Gold Shovel from Area…",
+      "url": "https://www.kansascommerce.gov/2023/06/kansas-awarded-third-consecutive-gold-shovel-from-area-development-magazine/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_62041f064460",
+      "label": "Minnesota Minnesota Department of Employment and Economic Development (DEED), Business and Community Development division: Employment and Economic…",
+      "url": "https://www.lrl.mn.gov/docs/2023/mandated/230132/employment-and-economic-development.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_6464a32a65a7",
+      "label": "Kentucky Cabinet for Economic Development: 2023 year-end results",
+      "url": "https://newkentuckyhome.ky.gov/Newsroom/NewsPage/20231222_Kentucky_C",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_653e8eaf00cb",
+      "label": "Massachusetts MOBD EDIP FY2024: state-tax-credit certified projects",
+      "url": "https://malegislature.gov/Bills/193/HD5509.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_66030aada472",
+      "label": "Montana Montana Department of Commerce (Business MT Division - Business Attraction / Red Carpet Program): reviewed for FY2023; no annual aggregate…",
+      "url": "https://commerce.mt.gov/_shared/doc/docs/legislative/DOC-Annual-Report_FY24.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_66a1aa32eec0",
+      "label": "Montana Commerce FY2025 annual accomplishments, business attraction",
+      "url": "https://commerce.mt.gov/_shared/doc/docs/legislative/DOC-Annual-Report_FY25.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_68528d095fbc",
+      "label": "Idaho Commerce performance table, FY2022-2024 actuals, PDF pp3-4",
+      "url": "https://stagingdfmmainsa.blob.core.windows.net/dfm-main-website/wp-content/uploads/publications/exec/budget/fy2026/perf-rpt/economic-development/commerce-department_of.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_71269f9bb9a9",
+      "label": "Missouri Missouri Department of Economic Development (DED); Missouri Partnership for FY reporting: YEAR IN REVIEW: Governor Kehoe Reflects on 2025…",
+      "url": "https://governor.mo.gov/press-releases/archive/year-review-governor-kehoe-reflects-2025",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_71dabd417353",
+      "label": "Illinois EDC / Intersect Illinois FY2025 annual report, statewide relocation and expansion section",
+      "url": "https://www.illinoisedc.org/wp-content/uploads/2025/08/AR-FY25_final58-22-25.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_7236a83a4c75",
+      "label": "Connecticut AdvanceCT (state's nonprofit public-private economic development organization, working with the Department of Economic and Community…",
+      "url": "https://www.advancect.org/media/userfiles/subsite_190/files/reports/AdvanceCT%202023%20Annual%20Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_740f99fd9312",
+      "label": "Alaska: AIDEA 2025 annual report, FY financial highlights, PDF p22",
+      "url": "https://www.aidea.org/Portals/0/Annual%20Reports/2025%20AIDEA%20Annual%20Report%20Web.pdf?ver=a7Y-VtTfsLXEwtEQc1kQtw%3D%3D",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_778301d55cd6",
+      "label": "Kansas Commerce: 2023 investment and job commitments",
+      "url": "https://www.kansascommerce.gov/2024/06/kansas-earns-gold-shovel-award-for-fourth-consecutive-year/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_7ad001bcf166",
+      "label": "EDCUtah FY2022 annual project commitments",
+      "url": "https://www.edcutah.org/annual-reports/2021-2022",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_7c37ebca337e",
+      "label": "Oklahoma Commerce CY2024 public new and expanding company workbook",
+      "url": "https://www.okcommerce.gov/wp-content/uploads/New-and-Expanding-Companies-CY-2024.xlsx",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_7c6f940f095e",
+      "label": "Oklahoma Oklahoma Department of Commerce: Oklahoma Department of Commerce - FY 2025 Budget Hearing Presentation (Submitted by Hopper Smith, Interim…",
+      "url": "https://oksenate.gov/sites/default/files/2023-12/Commerce%20FY25%20Budget%20presentation.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_7d825da2e43c",
+      "label": "Virginia: VEDP FY2023 annual report, printed p14 / PDF p16",
+      "url": "https://rga.lis.virginia.gov/Published/2023/RD550/PDF",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_7f5a1b2d7605",
+      "label": "Arkansas AEDC CY2025 annual report, PDF p10",
+      "url": "https://www.arkansasedc.com/docs/default-source/data-and-reports/annual-reports/aedc-annual-report-2025_digital.pdf?sfvrsn=48bc21dd_3",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_7fd24be60669",
+      "label": "Colorado OEDIT FY2021-22 annual report: Job Growth Incentive Tax Credit approvals",
+      "url": "https://oedit.colorado.gov/sites/coedit/files/documents/colorado_office_of_economic_development_annual_report_fiscal_year_2021-2022_0.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_8431a00b8ee1",
+      "label": "Oklahoma Commerce CY2025 public new and expanding company workbook",
+      "url": "https://www.okcommerce.gov/wp-content/uploads/New-and-Expanding-Companies-CY-2025.xlsx",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_8677b7651b53",
+      "label": "Oklahoma Commerce CY2023 public new and expanding company workbook",
+      "url": "https://www.okcommerce.gov/wp-content/uploads/New-and-Expanding-Companies_CY-2023.xlsx",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_894ec50a6c6f",
+      "label": "Michigan: MEDC October 2025 scorecard: complete FY2025, PDF pp6-8",
+      "url": "https://www.michiganbusiness.org/globalassets/documents/reports/medc-reports/medc-october-2025-scorecard.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_8d9545e0c0dd",
+      "label": "Massachusetts Executive Office of Economic Development (EOED) / Massachusetts Office of Business Development (MOBD) — FY EDIP cohorts already…",
+      "url": "https://eadn-wc05-3207574.nxedge.io/cdn/wp-content/uploads/2022-Annual-Report-DRAFT-v5.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_94e9a23b01b8",
+      "label": "Arkansas AEDC CY2023 annual report, PDF p10",
+      "url": "https://www.arkansasedc.com/docs/default-source/data-and-reports/annual-reports/aedc-2023-annual-report_2024-03_rv3_digital.pdf?sfvrsn=f1615b36_1",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_95dfda5534f2",
+      "label": "Louisiana Louisiana Economic Development (LED) - Office of Business Development / Office of Economic Development; performance indicators reported…",
+      "url": "https://www.doa.la.gov/media/snolauxy/departmentofeconomicdevelopment.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_9714325540da",
+      "label": "Arizona Commerce Authority: 2023 year-in-review release (calendar-year results)",
+      "url": "https://www.azcommerce.com/news-events/news/2023/12/2023-in-review-the-future-is-arizona",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_9bade45146a6",
+      "label": "Oklahoma Oklahoma Department of Commerce: Oklahoma Department of Commerce - FY 2026 Budget Hearing Presentation (Submitted by Heather Turner, Deputy…",
+      "url": "https://oksenate.gov/sites/default/files/2025-01/Commerce%20FY'26%20Budget%20Hearing%20Presentation.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_9c63e5b37316",
+      "label": "Illinois DCEO: December 21, 2022 year-end economic development release (EDGE results)",
+      "url": "https://www.illinois.gov/content/dam/soi/en/web/illinois/iisnewsattachments/25821-illinois-celebrates-2022-economic-development-milestones.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_9e11de4b44cc",
+      "label": "EDCUtah FY2023 annual project commitments",
+      "url": "https://www.edcutah.org/annual-reports/2022-2023",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_9f7aab843896",
+      "label": "Ohio Ohio Department of Development (Development) - fiscal-year annual reports; Ohio Tax Credit Authority Job Creation Tax Credit approvals.…",
+      "url": "https://dam.assets.ohio.gov/image/upload/development.ohio.gov/annualreports/Development-Annual-Report-2025.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_a0ec9f23ee91",
+      "label": "Delaware Delaware Division of Small Business (Department of State) - Council on Development Finance / Delaware Strategic Fund; Delaware Prosperity…",
+      "url": "https://business.delaware.gov/wp-content/uploads/sites/118/2024/11/DSB-FY24-AnnualReport.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_a15489a6e344",
+      "label": "Kentucky Governor/Cabinet: CY2025 new-location and expansion announcements",
+      "url": "https://newkentuckyhome.ky.gov/Newsroom/NewsPage/20251218_Gov._Beshe",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_a3397b22aa59",
+      "label": "Hawaii DBEDT 2024 annual report to the legislature: mixed program periods",
+      "url": "https://files.hawaii.gov/dbedt/annuals/archive/2024/2024-dbedt.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_a486190b2949",
+      "label": "Ohio Ohio Department of Development (Development) - fiscal-year annual reports; Ohio Tax Credit Authority Job Creation Tax Credit approvals.…",
+      "url": "https://development.ohio.gov/static/annualreports/Development-Annual-Report-2023.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_a8ac1bb5d7c0",
+      "label": "Michigan: MEDC FY2023 business attraction outcomes report: FY2021-2023 chart, PDF p4",
+      "url": "https://www.michiganbusiness.org/494bfd/globalassets/documents/reports/legislative-reports/fy23-bdp-crp-outcomes-and-performance-measures-report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_b0a0a9482380",
+      "label": "Choose New Jersey CY2024 annual results, PDF p8",
+      "url": "https://choosenj.com/wp-content/uploads/2025/01/2024-Annual-Report_Final_Compressed.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_b3a1c217370f",
+      "label": "Connecticut AdvanceCT (state's nonprofit public-private economic development organization, working with the Department of Economic and Community…",
+      "url": "https://www.advancect.org/media/userfiles/subsite_190/files/reports/AdvanceCT%202022%20Annual%20Report-compressed-rev1c.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_b3ef17f5f0a1",
+      "label": "Missouri Missouri Department of Economic Development (DED); Missouri Partnership for FY reporting: reviewed for CY2022; no annual aggregate…",
+      "url": "https://ded.mo.gov/press-room/nine-companies-investing-more-55-million-and-creating-296-jobs-among-90-business",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_b72a880c09fa",
+      "label": "Delaware Prosperity Partnership CY2022 annual results, PDF p4 and announcement detail",
+      "url": "https://www.choosedelaware.com/wp-content/uploads/2023/05/Partnership-Prosperity-Progress-Year-in-Review-2022.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_bf86070359b3",
+      "label": "Arizona Commerce Authority: 2022 year-in-review release (calendar-year results)",
+      "url": "https://www.azcommerce.com/news-events/news/2022/12/2022-in-review-all-eyes-on-arizona/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_c04b4b14591e",
+      "label": "Alaska: AIDEA 2022 annual report, FY financial highlights, PDF p8",
+      "url": "https://www.aidea.org/Portals/0/Annual%20Reports/2022%20AIDEA%20Annual%20Report%20FINAL%20Web.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_c0c958b1ee8b",
+      "label": "Washington Commerce ADO FY2024 report, private-investment total PDF p16",
+      "url": "https://app.leg.wa.gov/ReportsToTheLegislature/Home/GetPDF?fileName=ComerceRep_2024_OEDC_ADO+Leg+reportFINAL+3.6.25_5a30cce1-733d-408a-9560-8dce5ee77aa3.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_c15f7ace6316",
+      "label": "Massachusetts MOBD EDIP FY2022: state-tax-credit certified projects",
+      "url": "https://archives.lib.state.ma.us/server/api/core/bitstreams/9cbf2cb6-2b52-48e6-bafb-f4af273a27e3/content",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_c1c6de37db56",
+      "label": "Idaho Commerce FY2027 budget request: FY2025 outcomes, PDF pp71-72",
+      "url": "https://dfm.idaho.gov/wp-content/uploads/publications/exec/budget/fy2027/requests/economic-development/commerce_department-of.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_c23e808ae9ae",
+      "label": "Nevada Nevada Governor's Office of Economic Development (GOED): Nevada Governor's Office of Economic Development 2024 Annual Report (Business…",
+      "url": "https://goed.nv.gov/wp-content/uploads/2025/04/2024-GOED-Annual-Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_c24187d927c9",
+      "label": "Wisconsin: WEDC FY2022 Annual Report on Economic Development, capital and jobs page 10",
+      "url": "https://wedc.org/wp-content/uploads/2025/10/FY22-WEDC-ARED-final.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_c7d1ff1ee7cb",
+      "label": "Choose New Jersey CY2025 annual results, PDF p8",
+      "url": "https://choosenj.com/wp-content/uploads/2026/02/2025-Annual-Report_Final-compressed-1.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_c7e3ae312325",
+      "label": "Massachusetts MOBD EDIP FY2023: state-tax-credit certified projects",
+      "url": "https://www.mass.gov/doc/edip-fy-2023-annual-report-letter/download",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_cd012175393e",
+      "label": "Kentucky Governor/Cabinet: CY2022 new-location and expansion announcements",
+      "url": "https://newkentuckyhome.ky.gov/Newsroom/NewsPage/20230131_Ancra",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_d1a949ebb90d",
+      "label": "Arkansas AEDC CY2024 annual report, PDF p8",
+      "url": "https://www.arkansasedc.com/docs/default-source/data-and-reports/annual-reports/aedc-annual-report-2024.pdf?sfvrsn=ee4ff883_3",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_d51aa90bada2",
+      "label": "Illinois EDC / Intersect Illinois FY2023 annual report, statewide relocation and expansion section",
+      "url": "https://www.illinoisedc.org/annual-report-2023",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_d5cd480a9503",
+      "label": "Kansas Kansas Department of Commerce (with Office of the Governor year-end releases): Year in Review: Kelly Administration Delivers a Successful 2024…",
+      "url": "https://www.governor.ks.gov/Home/Components/News/News/464/56",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_d8fa9adf7331",
+      "label": "Minnesota DEED CY2025 business expansion report: detailed totals, PDF p4",
+      "url": "https://mn.gov/deed/assets/business-expansion-projects-2025_tcm1045-744312.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_d94eb6a12b61",
+      "label": "New Hampshire BEA 2024 Calendar Year End Report, PDF pp1-2",
+      "url": "https://www.nheconomy.com/getmedia/7f66e313-5719-4a3d-bea8-bcaa985bfcbc/2024ERESAnnualReport-FINAL.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_d97836e00457",
+      "label": "Alaska: AIDEA 2024 annual report, FY financial highlights, PDF p18",
+      "url": "https://www.aidea.org/Portals/0/Annual%20Reports/AIDEA%202024%20Annual%20Report%20-%20Digital%20File.pdf?ver=Aee9DJh-TIceWr1wKwZm5A%3d%3d",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_d9d9184c2d1f",
+      "label": "Delaware Prosperity Partnership CY2024 annual results, PDF p4 and announcement detail",
+      "url": "https://www.choosedelaware.com/wp-content/uploads/2025/03/2024-DPP-Annual-Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_da3f7f4a2c98",
+      "label": "Wisconsin: WEDC FY2024 Annual Report on Economic Development, capital and jobs page 13",
+      "url": "https://wedc.org/wp-content/uploads/2024/09/WEDC-ARED-FY24-091024.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_dd3035a89571",
+      "label": "Arizona Commerce Authority: 2024 year-in-review release (calendar-year results)",
+      "url": "https://www.azcommerce.com/news-events/news/2024/12/2024-year-in-review-advancing-arizona",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_e3391c614906",
+      "label": "Wisconsin: WEDC FY2023 Annual Report on Economic Development, capital and jobs page 10",
+      "url": "https://wedc.org/wp-content/uploads/2024/10/FY23-WEDC-ARED-final.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_e7d030c21945",
+      "label": "West Virginia Department of Economic Development 2022 Year in Review, single-page results",
+      "url": "https://westvirginia.gov/wp-content/uploads/2023/03/Pub_YearInReview_Flier_DEVO.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_e867d9c03a8f",
+      "label": "Colorado OEDIT FY2022-23 annual report: Job Growth Incentive Tax Credit approvals",
+      "url": "https://oedit.colorado.gov/sites/coedit/files/documents/AnnualReport_12-11-23_iv.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_e9034e228b15",
+      "label": "Delaware Prosperity Partnership CY2023 annual results, PDF p4 and announcement detail",
+      "url": "https://www.choosedelaware.com/wp-content/uploads/2024/06/2023-DPP-Annual-Report-062624.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_e95fd9e2f464",
+      "label": "Washington Commerce ADO FY2022 report, private-investment total PDF p14",
+      "url": "https://app.leg.wa.gov/ReportsToTheLegislature/Home/GetPDF?fileName=CommerceReports_ADOsFINAL_eb7af8d7-5421-4db4-8831-12adb4180fb8.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_eecd3fdc8666",
+      "label": "Colorado OEDIT FY2024-25 annual report: Job Growth Incentive Tax Credit approvals",
+      "url": "https://oedit.colorado.gov/sites/coedit/files/documents/2025%20OEDIT%20Annual%20Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_efc22aa77470",
+      "label": "Louisiana Louisiana Economic Development (LED) - Office of Business Development / Office of Economic Development; performance indicators reported…",
+      "url": "https://www.doa.la.gov/media/mq0oienq/louisianaeconomicdevelopment.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_f64940d1a45f",
+      "label": "Massachusetts Executive Office of Economic Development (EOED) / Massachusetts Office of Business Development (MOBD) — FY EDIP cohorts already…",
+      "url": "https://eadn-wc05-3207574.nxedge.io/cdn/wp-content/uploads/2025-Holiday-Reception.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_f71204afea59",
+      "label": "Delaware Delaware Division of Small Business (Department of State) - Council on Development Finance / Delaware Strategic Fund; Delaware Prosperity…",
+      "url": "https://business.delaware.gov/wp-content/uploads/sites/118/2022/12/DSB-FY22-Annual-Report-Final-12.01.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_f923a7bad1c5",
+      "label": "Nevada GOED 2025 Annual Report: annual assisted company statistics, PDF p16 / printed p14",
+      "url": "https://goed.nv.gov/wp-content/uploads/2026/04/GOED.AR25.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_all50_fd5860b7f4c8",
+      "label": "Connecticut AdvanceCT (state's nonprofit public-private economic development organization, working with the Department of Economic and Community…",
+      "url": "https://www.advancect.org/media/userfiles/subsite_190/files/reports/Annual%20Report%202025.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_ca25",
+      "label": "California Competes: CY2025 program results",
+      "url": "https://www.gov.ca.gov/2026/02/03/governor-newsoms-statewide-jobs-first-investments-created-more-than-61000-jobs-trained-more-than-142000-workers-in-2025/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_fl25",
+      "label": "FloridaCommerce: 2025 accomplishments",
+      "url": "https://floridajobs.org/news/detail/2026/05/20/floridacommerce--careersource-florida--visit-florida-and-florida-housing-finance-corporation-highlight-major-2025-accomplishments",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_ga25",
+      "label": "Georgia: GDEcD: FY2025 investment results",
+      "url": "https://gov.georgia.gov/press-releases/2025-09-15/gov-kemp-economic-development-investments-break-new-record",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_15a3f3c1e112",
+      "label": "Georgia: GDEcD Global Commerce FY2022",
+      "url": "https://georgia.org/press-releases/2022/georgia-shatters-investment-and-job-records-fy22",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_165dbb137a23",
+      "label": "Mississippi: MDA annual-report leadership headline FY2023",
+      "url": "https://mississippi.org/wp-content/uploads/Annual-Report-2023-FINAL.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_1685efbf3624",
+      "label": "Indiana: IEDC company location and expansion commitments CY2023",
+      "url": "https://www.iedc.in.gov/events/news/details/2024/01/03/indiana-s-economy-reaches-historic-levels-as-iedc-delivers-year-of-unprecedented-economic-wins-for-hoosiers-in-2023",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_1687cf490c1c",
+      "label": "Georgia: GDEcD Global Commerce FY2023",
+      "url": "https://gov.georgia.gov/press-releases/2023-08-08/gov-kemp-georgia-breaks-economic-development-records-third-year-row",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_1f21ae7d4222",
+      "label": "Arizona: ACA-assisted competitive attraction and expansion FY2022",
+      "url": "https://www.azcommerce.com/news-events/news/2022/9/more-jobs-than-ever-before-arizona-economic-development-sets-record-again",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_2a5f3ec28fc8",
+      "label": "Enterprise Florida and statewide partners CY2022",
+      "url": "https://capitalsoup.com/2022/12/28/enterprise-florida-showcases-florida-as-1-business-destination-and-1-for-talent-development-in-2022/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_2c7be67a80d4",
+      "label": "FloridaCommerce and statewide partners FY2025",
+      "url": "https://floridajobs.org/docs/default-source/reports-and-legislation/2024-2025-annual-incentive-report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_2c9ea311e935",
+      "label": "Enterprise Florida and statewide partners FY2023",
+      "url": "https://www.floridajobs.org/docs/default-source/reports-and-legislation/floridacommerce-annual-report-2023.pdf?sfvrsn=51d55db0_2",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_2f0cb0e24283",
+      "label": "Alabama Commerce new and expanding industry announcements CY2023",
+      "url": "https://www.madeinalabama.com/2024/03/report-2023-growth-projects-to-inject-6-4-billion-into-alabama-communities/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_3097251d15c2",
+      "label": "Louisiana: LED announced projects CY2022",
+      "url": "https://www.opportunitylouisiana.gov/wp-content/uploads/2023/12/23led234_annual_report_jw_singlepages_web.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_309aca788ce6",
+      "label": "Virginia: VEDP-assisted project announcements FY2024",
+      "url": "https://data.virginia.gov/dataset/ca860108-7715-4980-a8d5-8c5e6fa77eb2/resource/40c95a76-1578-4630-814f-34142fa4ffe2/download/vedp_fy24_annualreport_issuu.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_3f97adf52116",
+      "label": "Mississippi: MDA annual-report leadership headline FY2022",
+      "url": "https://mississippi.org/wp-content/uploads/MDA-Annual-Report-2022-FINAL.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_47be8e9b5a23",
+      "label": "Arizona: ACA-assisted competitive attraction and expansion CY2025",
+      "url": "https://www.azcommerce.com/news-events/news/2025/12/2025-year-in-review",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_4a9ac15e6577",
+      "label": "JobsOhio strategic project wins CY2024",
+      "url": "https://www.lsc.ohio.gov/assets/organizations/legislative-service-commission/monthly-agency-reports/agency-reports/files/jobsohioannual2024.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_4fab84e2e81b",
+      "label": "JobsOhio strategic project wins CY2023",
+      "url": "https://www.jobsohio.com/files/reports/jo25_annual-report_final.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_5d82fe7c8ad3",
+      "label": "Alabama Commerce new and expanding industry announcements CY2022",
+      "url": "https://governor.alabama.gov/newsroom/2023/03/governor-ivey-announces-2022-economic-development-projects-brought-record-new-capital-investment-to-state/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_7245b9df74ac",
+      "label": "Arizona: ACA-assisted competitive attraction and expansion FY2024",
+      "url": "https://www.azcommerce.com/news-events/news/2024/7/arizona-sets-records-again-for-economic-development",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_7a9945bea8d6",
+      "label": "North Carolina: EDPNC assisted recruitment and expansion wins CY2024",
+      "url": "https://www.ncleg.gov/Files/Library/agency/comm17719.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_85bfe58d678f",
+      "label": "Conway qualifying facilities, quoted by Texas Governor CY2022",
+      "url": "https://content.govdelivery.com/accounts/TXGOV/bulletins/3490aaa",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_871b9ac309fa",
+      "label": "North Carolina: EDPNC assisted recruitment and expansion wins CY2023",
+      "url": "https://www.ncleg.gov/Files/Library/agency/doc17320.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_89c4bfac1c49",
+      "label": "Tennessee: TNECD landed projects CY2022",
+      "url": "https://tnecd.com/news/the-top-five-projects-of-2022/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_95571b757797",
+      "label": "Arizona: ACA-assisted competitive attraction and expansion FY2025",
+      "url": "https://azcommerce.com/media/esphcazj/aca-fy25-annual-report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_95af2aa23a76",
+      "label": "Indiana: IEDC company location and expansion commitments CY2025",
+      "url": "https://iedc.in.gov/events/news/details/2025/12/12/governor-braun-delivers-on-economic-development-strategy-increasing-opportunity-for-hoosiers-while-maximizing-taxpayer-dollars",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_9773f239cd2a",
+      "label": "Louisiana: LED announced projects CY2024",
+      "url": "https://heyzine.com/flip-book/LED2024YearinReview",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_9a1e159bc555",
+      "label": "South Carolina: SC Commerce announced recruitment projects CY2023",
+      "url": "https://www.sccommerce.com/es/node/7954",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_a3526eccc80f",
+      "label": "Illinois: DCEO key incentive programs subset CY2025",
+      "url": "https://www.illinois.gov/news/release.html?releaseid=32051",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_aedfe1741f88",
+      "label": "South Carolina: SC Commerce announced recruitment projects CY2022",
+      "url": "https://www.sccommerce.com/es/node/7787",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_aff41be9fb87",
+      "label": "South Carolina: SC Commerce announced recruitment projects CY2024",
+      "url": "https://www.sccommerce.com/fr/node/8135",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_b8324727475b",
+      "label": "Enterprise Florida and statewide partners FY2022",
+      "url": "https://www.enterpriseflorida.com/wp-content/uploads/Annual-Report-2022.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_b99fde3319f3",
+      "label": "Mississippi: MDA annual-report leadership headline FY2025",
+      "url": "https://mississippi.org/wp-content/uploads/MDA-Annual-Report-2025-FINAL.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_bea191762a74",
+      "label": "North Carolina: EDPNC assisted recruitment and expansion wins CY2022",
+      "url": "https://edpnc.com/news/2022-annual-report/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_c3f7f0ab29a1",
+      "label": "Arizona: ACA-assisted competitive attraction and expansion FY2023",
+      "url": "https://www.azcommerce.com/news-events/news/2023/8/arizona-economic-development-sets-new-records",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_cad15e6f7025",
+      "label": "Georgia: GDEcD Global Commerce FY2024",
+      "url": "https://gov.georgia.gov/press-releases/2024-08-29/gov-kemp-georgia-job-creation-remains-strong",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_cbed258c47ca",
+      "label": "Indiana: IEDC company location and expansion commitments CY2024",
+      "url": "https://iedc.in.gov/events/news/details/2025/01/10/iedc-closes-holcomb-term-with-eighth-consecutive-record-breaking-year-for-economic-development",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_d10996ce7461",
+      "label": "Tennessee: TNECD landed projects CY2023",
+      "url": "https://tnecd.com/wp-content/uploads/2024/03/ECD-Report-Card-9.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_d73ff2913a1f",
+      "label": "Indiana: IEDC company location and expansion commitments CY2022",
+      "url": "https://iedc.in.gov/events/news/details/2022/12/15/22b-in-2022-unprecedented-investment-powers-indiana-s-economy-of-the-future",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_da793d5e67be",
+      "label": "Alabama Commerce new and expanding industry announcements CY2024",
+      "url": "https://governor.alabama.gov/newsroom/2025/03/governor-ivey-announces-2024-economic-gains-alabamas-growth-continues-with-7-billion-in-new-investments/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_dba6f5fcf65f",
+      "label": "Mississippi: MDA annual-report leadership headline FY2024",
+      "url": "https://mississippi.org/wp-content/uploads/24-0344-MDA-Annual-Report-2024.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_dc1441da5c90",
+      "label": "Tennessee: TNECD landed projects CY2024",
+      "url": "https://tnecd.com/?force_download=118637",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_history_ef80dd74b8ee",
+      "label": "FloridaCommerce and statewide partners FY2024",
+      "url": "https://floridajobs.org/docs/default-source/legislative-reports/floridacommerce-annual-report-2024.pdf?sfvrsn=536c5093_1",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_la25",
+      "label": "Louisiana: 2025 annual report",
+      "url": "https://www.opportunitylouisiana.gov/wp-content/uploads/2026/03/25-LED-0058_Annual_Report_K_DIGITAL_SMALL.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_nc_aws",
+      "label": "North Carolina: EDPNC: AWS and JetZero project profiles",
+      "url": "https://edpnc.com/annual-report/business-recruitment-existing-industry/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_oh25",
+      "label": "JobsOhio: 2025 annual report, results p.14",
+      "url": "https://www.jobsohio.com/files/reports/jo26_annual-report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_research_01acd9f651e0",
+      "label": "FloridaCommerce business-development presentation to FEDC, PDF p.11",
+      "url": "https://www.fedconline.org/sites/default/files/content-files/FloridaCommerce%20-%20Business%20Development%20-%20FEDC%2001-2025%20Final%201.14.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_research_1e992f5c7251",
+      "label": "Texas Economic Development and Tourism: 2023 recap, PDF p.16",
+      "url": "https://demographics.texas.gov/Resources/TDC/Conference/4a554634-1b3b-476b-b631-2aec567fd31c/20240530_EconomicInitiatives.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_research_b68a04e09052",
+      "label": "FloridaCommerce: 2023 accomplishments",
+      "url": "https://floridajobs.org/home/2026/05/20/floridacommerce-highlights-major-2023-accomplishments-leads-state-s-economic-mission-under-governor-ron-desantis-strong-leadership",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_research_cf1c6be51e11",
+      "label": "Illinois DCEO: 2024 incentivized investment and 2023 comparison",
+      "url": "https://dceo.illinois.gov/news/press-release.30820.html",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_research_d6a0cb952a66",
+      "label": "Texas Governor: 2026 Report to the People, PDF p.13 (2024 activity)",
+      "url": "https://gov.texas.gov/uploads/files/press/2026_Report_to_the_People_of_Texas.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_research_e0ac8f4414b4",
+      "label": "Intersect Illinois FY2022 annual report: statewide survey",
+      "url": "https://www.illinoisedc.org/wp-content/uploads/2022/10/Intersect-Illinois-2022FY_web.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_research_f5818c8588d4",
+      "label": "Site Selection: North Dakota 2025 investment, April 17, 2026",
+      "url": "https://siteselection.com/cover-story-how-north-dakota-forged-an-economic-powerhouse/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_sc25",
+      "label": "South Carolina Commerce: CY2025 recruitment results",
+      "url": "https://www.sccommerce.com/ja/node/8272",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_tn25",
+      "label": "Tennessee: TNECD: 2025 annual report",
+      "url": "https://tnecd.com/?force_download=128791",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_tx25",
+      "label": "Texas Governor: 2025 project investment and jobs",
+      "url": "https://gov.texas.gov/news/post/texas-wins-governors-cup-for-record-smashing-14th-year-in-a-row",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_va25",
+      "label": "Virginia: VEDP: FY2025 strategic plan progress, November 1, 2025",
+      "url": "https://rga.lis.virginia.gov/Published/2025/RD968/PDF",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_01911842fd81",
+      "label": "Hawaii: Hawaii Technology Development Corporation FY 2023 Annual Report",
+      "url": "https://www.htdc.org/wp-content/uploads/2023-HTDC-Annual-Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_059af65c37da",
+      "label": "Rhode Island: Rhode Island Commerce Corporation annual report July 1, 2023-June 30, 2024 (FY24)",
+      "url": "https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/rhodeisland/RICC_FY_24_Annual_Report_6af61d87-6a08-46fc-af29-9cd4bbc1e508.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_0ad62d0ba45f",
+      "label": "Maine: FAME Annual Report 2024 (Fiscal Year 2024)",
+      "url": "https://www.famemaine.com/wp-content/uploads/2024/11/FAME-Annual-Report-final-electronic-copy.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_0bada47cb368",
+      "label": "Rhode Island: Rhode Island Commerce Corporation FY22 Annual Report (July 1, 2021-June 30, 2022), 'Helping Business Launch & Thrive'",
+      "url": "https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/rhodeisland-redesign/RICC_FY22_Annual_Report_e0cbddb4-c0e3-4481-ac92-167ee97aab32.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_0c4dc7fa7d0d",
+      "label": "Maryland: Testimony of Harry Coker, Jr., Acting Secretary, on the FY 2026 Commerce Budget Allowance (Maryland Department of Commerce budget testimony)",
+      "url": "https://dbm.maryland.gov/budget/FY2026Testimony/T00.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_147209b8b140",
+      "label": "Pennsylvania: Governor's Executive Budget 2026-2027, Community and Economic Development, Program: Job Creation, Workforce Training, Business Growth,…",
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/budget/documents/publications-and-reports/commonwealthbudget/2026-27-budget-documents/2026-27%20budget%20document.web.v.3.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_1bc796ca15ff",
+      "label": "Mississippi: MDA Update: 2025 Year in Review (Q4 2025 quarterly update deck), Mississippi Development Authority",
+      "url": "https://mississippi.org/wp-content/uploads/MDA-Update-Q4-2025-FINAL.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_26970f21c2ab",
+      "label": "Maryland: Testimony of Kevin Anderson, Secretary, on the FY 2025 Commerce Budget Allowance (Maryland Department of Commerce budget testimony)",
+      "url": "https://dbm.maryland.gov/budget/FY2025Testimony/T00.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_2dd0e983dbae",
+      "label": "South Dakota: South Dakota Governor's Office of Economic Development, 2024 Annual Report (flipbook linked from…",
+      "url": "https://online.fliphtml5.com/pvyq/tioj/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_416828c2c3cd",
+      "label": "Pennsylvania: Governor's Executive Budget 2023-2024, Community and Economic Development, Program: Job Creation, Workforce Training, Business Growth,…",
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/budget/documents/publications-and-reports/commonwealthbudget/past-budgets-to-2021-22/2023-24-budget-documents/budget%20book%202023-24%20web%20v.5.04182023.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_4769f7680cf3",
+      "label": "Pennsylvania: Governor's Executive Budget 2025-2026, Community and Economic Development, Program: Job Creation, Workforce Training, Business Growth,…",
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/budget/documents/publications-and-reports/commonwealthbudget/past-budgets-to-2021-22/2025-26-budget-documents/2025-26%20budget%20book.webversion.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_4919ab555859",
+      "label": "Maryland: Testimony of Kevin A. Anderson, Acting Secretary, on the FY 2024 Commerce Budget Allowance (Maryland Department of Commerce budget…",
+      "url": "https://dbm.maryland.gov/budget/FY2024Testimony/T00.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_5498a65c5e50",
+      "label": "South Dakota: South Dakota Governor's Office of Economic Development, 2022 Annual Report (flipbook linked from…",
+      "url": "https://online.fliphtml5.com/pvyq/kbik/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_6980e7563411",
+      "label": "Missouri: Missouri Department of Economic Development, Department Budget Request Fiscal Year 2027, Programs Book, Regional Engagement program…",
+      "url": "https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2026/01/FY27%20DED%20Programs%20Book.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_6e56f4219455",
+      "label": "Minnesota: Governor Walz Announces Record Number of Jobs Created from Public-Private Partnerships (Office of the Governor, May 8, 2025)",
+      "url": "https://mn.gov/governor/newsroom/press-releases/?id=1055-683305",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_7645b50fc354",
+      "label": "Texas: Office of the Governor, Trusteed Programs Within the Office of the Governor (Agency 300), Fiscal Year 2026 Operating Budget, ABEST '2.D.…",
+      "url": "https://gov.texas.gov/uploads/files/organization/budget-policy/OOG-Operating-Budget-FY2026.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_806182931218",
+      "label": "Texas: Office of the Governor, Trusteed Programs Within the Office of the Governor (Agency 300), Fiscal Year 2024 Operating Budget, ABEST '2.D.…",
+      "url": "https://gov.texas.gov/uploads/files/organization/financial-services/OOG-Operating-Budget-FY2024.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_82a93305401b",
+      "label": "South Dakota: South Dakota Governor's Office of Economic Development, 2025 Annual Report (flipbook linked from…",
+      "url": "https://online.fliphtml5.com/pvyq/mmae/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_8bbfe899c002",
+      "label": "Hawaii: Hawaii Technology Development Corporation Annual Report 2025 (FY25 program summaries)",
+      "url": "https://files.hawaii.gov/dbedt/annuals/2025/2025-htdc.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_98afd9aa6be8",
+      "label": "Pennsylvania: Governor's Executive Budget 2024-2025, Community and Economic Development, Program: Job Creation, Workforce Training, Business Growth,…",
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/budget/documents/publications-and-reports/commonwealthbudget/past-budgets-to-2021-22/2024-25-budget-documents/budget%20book%202024-25%20-%20web%20version.3.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_99dfc52d1c40",
+      "label": "Maine: FAME Annual Report: 2023 (Fiscal Year 2023)",
+      "url": "https://www.famemaine.com/wp-content/uploads/2023/11/2023-FAME-Annual-Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_c0b6c9b6fea0",
+      "label": "Maine: FAME Annual Report 2025 (Fiscal Year 2025)",
+      "url": "https://www.famemaine.com/wp-content/uploads/2025/11/FAME-2025-Annual-Report.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_d791afa0b514",
+      "label": "Rhode Island: Rhode Island Commerce Corporation 2025 annual report July 1, 2024-June 30, 2025 (FY25)",
+      "url": "https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/rhodeisland/RIC_0120_2025_Annual_Report_Digital_61153a56-15ef-4f56-9f27-a25eee3747f9.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_dccfe055b019",
+      "label": "Maine: FAME Annual Report: 2022 (Fiscal Year 2022)",
+      "url": "https://www.famemaine.com/wp-content/uploads/2022/10/2022-ANNUAL-REPORT-PDF.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_de8f39bb6314",
+      "label": "Missouri: Missouri Department of Economic Development, Department Budget Request Fiscal Year 2026, Programs Book, Regional Engagement program…",
+      "url": "https://oa.mo.gov/sites/default/files/FY2026_Department_of_Economic_Development_Programs_Book.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_e52cf7920fbe",
+      "label": "South Dakota: South Dakota Governor's Office of Economic Development, 2023 Annual Report (flipbook linked from…",
+      "url": "https://online.fliphtml5.com/pvyq/gtpr/",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
+    },
+    {
+      "id": "si_sr_w13_f5b8e76c6197",
+      "label": "Maryland: Testimony of Harry Coker, Jr., Secretary, on the FY 2027 Commerce Budget Allowance (Maryland Department of Commerce budget testimony)",
+      "url": "https://dbm.maryland.gov/budget/FY2027Testimony/T00.pdf",
+      "note": "Source for a figure in the year-by-year view of state-reported totals."
     }
   ]
 }

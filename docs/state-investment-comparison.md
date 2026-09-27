@@ -5,8 +5,10 @@ South Carolina, Tennessee, Alabama, Louisiana, Virginia, Ohio and Arizona) on se
 and documented site-selection contests. Five measures cover investment; two BLS measures (jobs from newly opened
 business locations, and private-sector pay) are contrary evidence that tests whether Florida's gap is general or
 specific to large productive capital. A year-by-year table lists all 50 states' Governor's Cup facility counts
-(per million residents and in total, 2022-2025), sortable by year, with each state's rank of 50. The Analysis tab's
-AI-infrastructure panel reuses the same data-center facts.
+(per million residents and in total, 2022-2025), sortable by year, with each state's rank of 50. The same table can
+switch to each state's own reported totals (capital investment, jobs and project counts, by calendar or fiscal year),
+shown as published: each figure links to the state's report, says what it measures, and carries no rank. The Analysis
+tab's AI-infrastructure panel reuses the same data-center facts.
 
 ## Where the numbers come from
 
@@ -33,7 +35,9 @@ Scheduled refreshes preserve the curated competition layer, so the section persi
 
 - Announced project totals are multi-year commitments, not spending; the megaproject measure excludes data centers
   and LNG terminals and says so.
-- Agency-reported totals are not compared across states (their scopes are incompatible).
+- Agency-reported totals are never ranked or summarized across states (their scopes are incompatible). The year-by-year
+  table shows them only as each state published them, with the unit and basis of every figure; the tracker's own sums
+  of a state's project list are left out, so a dash means the state published no total.
 - Company-wide hyperscaler capital spending is never allocated to states.
 - Undisclosed data-center end users are never attributed.
 - BLS job-flow and pay measures describe private-sector jobs, not investment, and are labeled as contrary evidence.
