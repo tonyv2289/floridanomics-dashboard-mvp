@@ -1,4 +1,9 @@
 ## Floridanomics data review
+- The economic dataset has new observations, revisions or source changes awaiting review.
+- State labor data: The 2026-08 observation was scheduled for release on 2026-09-18. Published data still show 2026-07; verify the source and review before updating.
+- Job postings index: The latest observation is 2026-09-04. Check its source; no new observation has been published here within the 21-day review window.
+- Initial unemployment claims: The latest observation is 2026-08-29. Check its source; no new observation has been published here within the 21-day review window.
+- Continued unemployment claims: The latest observation is 2026-08-22. Check its source; no new observation has been published here within the 28-day review window.
 - Trade: Annual 2025 figures are retained. These are dated annual benchmarks, not current-month trade. Direct Census API revalidation is still needed.
 
 ### Publication gate

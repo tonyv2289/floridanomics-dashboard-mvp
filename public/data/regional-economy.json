@@ -2,7 +2,7 @@
   "period": "Q1 2026",
   "employmentMonth": "2026-03-01",
   "quarterEnd": "2026-03-31",
-  "retrievedAt": "2026-09-11",
+  "retrievedAt": "2026-09-27",
   "sourceUrl": "https://data.bls.gov/cew/data/api/2026/1/industry/10.csv",
   "counties": [
     {
