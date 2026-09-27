@@ -281,6 +281,9 @@ export function SourceFooter({ dataset }: { dataset: DashboardDataset }) {
       <div className="v3-source-policies">
         <a href={`${import.meta.env.BASE_URL}?tab=evidence#methodology`}>Methodology</a>
         <a href={`${import.meta.env.BASE_URL}?tab=evidence#corrections`}>Corrections policy</a>
+        <a href={`${import.meta.env.BASE_URL}about/`}>About</a>
+        <a href={`${import.meta.env.BASE_URL}privacy/`}>Privacy</a>
+        <a href={`${import.meta.env.BASE_URL}terms/`}>Terms</a>
       </div>
     </footer>
   );

@@ -472,10 +472,17 @@ export default function Home() {
 
       <footer className="home-foot">
         <div className="home-wrap">
-          <p>
-            Every figure on Floridanomics cites a public source and the date it describes.{" "}
-            <a href={to("?view=dashboard&tab=evidence")}>Sources, dates and methods</a>.
-          </p>
+          <div>
+            <p>
+              Every figure on Floridanomics cites a public source and the date it describes.{" "}
+              <a href={to("?view=dashboard&tab=evidence")}>Sources, dates and methods</a>.
+            </p>
+            <nav className="home-foot-links" aria-label="Site information">
+              <a href={to("about/")}>About</a>
+              <a href={to("privacy/")}>Privacy</a>
+              <a href={to("terms/")}>Terms</a>
+            </nav>
+          </div>
           <span className="home-sign">Florida Forever</span>
         </div>
       </footer>
