@@ -255,6 +255,9 @@ a.home-dest-row:hover .home-dest-go { transform: translateX(4px); }
 .home-foot .home-wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 32px; align-items: end; }
 .home-foot p { max-width: 62ch; margin: 0; font-size: 13.5px; color: var(--home-muted); }
 .home-foot p a { color: var(--home-text); text-underline-offset: 3px; }
+.home-foot-links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 12px; font-size: 13.5px; }
+.home-foot-links a { color: var(--home-text); text-underline-offset: 3px; }
+.home-foot-links a:hover { color: var(--home-sun); }
 .home-sign { font: 700 15px/1 var(--home-display); }
 @media (max-width: 700px) { .home-foot .home-wrap { grid-template-columns: 1fr; } }
 
