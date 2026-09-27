@@ -1,4 +1,5 @@
 import { safeCampaignProps, sanitizeAnalyticsUrl } from "./analytics-privacy";
+import type { AppView } from "./routing";
 
 type AnalyticsValue = string | number | boolean | null | undefined;
 type AnalyticsProps = Record<string, AnalyticsValue>;
@@ -166,6 +167,11 @@ export function trackPageView(props: AnalyticsProps = {}): void {
 
 export function trackDashboardView(props: AnalyticsProps): void {
   trackPageView({ surface: "dashboard", ...props });
+}
+
+// Every view counts a visit. The dashboard sends its own, with tab detail (DashboardV3).
+export function trackAppView(view: AppView): void {
+  if (view !== "dashboard") trackPageView({ surface: view });
 }
 
 export function trackOutboundLink(href: string, label?: string | null): void {

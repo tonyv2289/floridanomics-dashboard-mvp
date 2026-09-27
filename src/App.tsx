@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect } from "react";
 import clsx from "clsx";
-import { initAnalytics, trackOutboundLink } from "./lib/analytics";
+import { initAnalytics, trackAppView, trackOutboundLink } from "./lib/analytics";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { resolveAppView } from "./lib/routing";
 import { SiteNav } from "./components/SiteNav";
@@ -28,6 +28,10 @@ function App() {
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
   }, []);
+
+  useEffect(() => {
+    trackAppView(appView);
+  }, [appView]);
 
   return (
     <div className="compare-frame">
