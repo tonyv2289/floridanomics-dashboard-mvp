@@ -19,6 +19,11 @@ describe("release security safeguards", () => {
       expect(html.indexOf('http-equiv="Content-Security-Policy"')).toBeLessThan(html.indexOf("<link"));
     });
   }
+  it("limits the app's script and network hosts to the site and Plausible", () => {
+    const policy = read("index.html").match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)?.[1] ?? "";
+    expect(policy.match(/script-src ([^;]+)/)?.[1].trim()).toBe("'self' https://plausible.io");
+    expect(policy.match(/connect-src ([^;]+)/)?.[1].trim()).toBe("'self' https://plausible.io");
+  });
   it("keeps committed environment files credential-free", () => {
     const assignments = (text: string) => text.split("\n").filter((line) => /^\w+=/.test(line));
     expect(assignments(read(".env.production"))).toEqual(["VITE_PUBLIC_URL=https://www.floridanomics.com/"]);
