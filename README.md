@@ -153,6 +153,8 @@ GitHub Pages publishes from the repo with the fixed base path:
 
 Push a `codex/**` branch and wait for CI (`quality`) and Security Audit (`dependency-audit`) before merging or fast-forwarding `main`. Both checks are required by branch protection, including for administrators. Publishing from `main` also reruns the dependency audits, lint, tests, and data validation before uploading an artifact. Manual deploys from other branches are skipped. The deployment accepts repository variables `VITE_BASE_PATH` and `VITE_PUBLIC_URL`.
 
+To roll back a bad deploy, revert the merge commit on a branch (`git revert <merge-sha>`), open a pull request and merge it once both checks pass; the deploy runs on the push to `main`. If GitHub drops the push event and no Deploy Pages run appears within a minute, start it by hand with `gh workflow run deploy-pages.yml --ref main`. Each deploy replaces the hashed chunks, so `src/main.tsx` reloads a visitor's page once when an old chunk is gone.
+
 Approved data/policy refreshes now stage a `codex/**` branch and explicitly dispatch its checks. Review that branch and merge after checks pass; refresh jobs cannot bypass production protection. Dependabot proposes dependency and pinned-action updates weekly, and automated security fixes are enabled.
 
 ## Analytics

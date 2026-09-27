@@ -136,7 +136,7 @@ function ReportedCellView({ dataset, state, basis, year, cell, metric }: { datas
   if (!cell || value === null || !source) {
     return (
       <td className="v3-facility-missing">
-        <span aria-hidden="true">{"\u2014"}</span>
+        <span aria-hidden="true">n/a</span>
         <span className="v3-visually-hidden">Not published</span>
       </td>
     );
@@ -245,7 +245,7 @@ function FacilityHistoryTable({ dataset, history, reported, peers }: { dataset: 
             <span>{"\u2265"} at least</span>
             <span>~ about</span>
             <span>{"\u2264"} up to</span>
-            <span>{"\u2014"} not published</span>
+            <span>n/a not published</span>
           </p>
         </>
       ) : (

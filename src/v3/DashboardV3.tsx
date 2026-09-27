@@ -161,6 +161,9 @@ function DashboardV3() {
           <p className="v3-kicker">Data load error</p>
           <h1>The dashboard could not load the Florida dataset.</h1>
           <p>{error}</p>
+          <button type="button" className="v3-retry" onClick={() => window.location.reload()}>
+            Try again
+          </button>
         </section>
       </main>
     );

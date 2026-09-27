@@ -4493,3 +4493,25 @@ button.v3-table-row {
     font-size: 1.7rem;
   }
 }
+
+/* iOS zooms into form controls set below 16px. */
+@media (max-width: 760px) {
+  .v3-region-select select {
+    font-size: 16px;
+  }
+}
+
+.v3-retry {
+  margin-top: 16px;
+  padding: 11px 16px;
+  border: 1px solid var(--v3-sun);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--v3-text);
+  font: 700 14px/1 "Manrope", sans-serif;
+  cursor: pointer;
+}
+
+.v3-retry:hover {
+  background: rgba(255, 143, 63, 0.14);
+}
