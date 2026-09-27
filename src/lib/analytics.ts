@@ -105,6 +105,7 @@ export function initAnalytics(): void {
       allow_ad_personalization_signals: false,
       ...pageContext(),
     });
+    // Not allowed by the CSP in index.html. Turning GA on needs its hosts there and a privacy-notice update.
     appendScript("ga4-script", `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`);
   }
 
