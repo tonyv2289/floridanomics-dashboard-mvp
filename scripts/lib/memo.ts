@@ -47,17 +47,17 @@ export function monthLabel(date: string): string {
   }).format(new Date(date));
 }
 
-export function formatLevel(unit: MetricUnit, value: number): string {
+export function formatLevel(unit: MetricUnit, value: number, digits = 1): string {
   if (unit === "percent") {
-    return `${value.toFixed(1)}%`;
+    return `${value.toFixed(digits)}%`;
   }
   if (unit === "thousands_jobs") {
-    return formatCompact(value * 1000, 1);
+    return formatCompact(value * 1000, digits);
   }
   if (unit === "usd_millions") {
-    return `$${formatCompact(value * 1_000_000, 1)}`;
+    return `$${formatCompact(value * 1_000_000, digits)}`;
   }
-  return formatCompact(value, 1);
+  return formatCompact(value, digits);
 }
 
 export function formatMove(unit: MetricUnit, absolute: number): string {
@@ -90,8 +90,17 @@ function newPeriodHeadline(metric: DiffableMetric, prevDate: string, nextDate: s
 }
 
 function revisionHeadline(metric: DiffableMetric, prevValue: number): string {
-  const level = formatLevel(metric.unit, metric.latest.value);
-  const prior = formatLevel(metric.unit, prevValue);
+  // A small revision can round to the same figure at one decimal ("revised to $1.4T from $1.4T").
+  // Add precision until the two figures differ, up to three decimals.
+  let digits = 1;
+  while (digits < 3 && formatLevel(metric.unit, metric.latest.value, digits) === formatLevel(metric.unit, prevValue, digits)) {
+    digits += 1;
+  }
+  const level = formatLevel(metric.unit, metric.latest.value, digits);
+  const prior = formatLevel(metric.unit, prevValue, digits);
+  if (level === prior) {
+    return `${metric.label} for ${monthLabel(metric.latest.date)} was revised slightly and still rounds to ${level}.`;
+  }
   return `${metric.label} for ${monthLabel(metric.latest.date)} was revised to ${level} from ${prior}.`;
 }
 

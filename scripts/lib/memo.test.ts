@@ -103,6 +103,18 @@ describe("diffMetric", () => {
     expect(change?.headline).toContain("revised");
   });
 
+  it("adds precision when a revision would round to the same figure", () => {
+    const prev = metric({ label: "Real GSP (chained dollars)", unit: "usd_millions", latest: { date: "2025-01-01", value: 1393837.1 } });
+    const next = metric({ label: "Real GSP (chained dollars)", unit: "usd_millions", latest: { date: "2025-01-01", value: 1376663.2 } });
+    expect(diffMetric("innovation", "realGsp", prev, next)?.headline).toBe("Real GSP (chained dollars) for January 2025 was revised to $1.38T from $1.39T.");
+  });
+
+  it("says so when a revision is too small to show", () => {
+    const prev = metric({ unit: "usd_millions", latest: { date: "2025-01-01", value: 1393837.1 } });
+    const next = metric({ unit: "usd_millions", latest: { date: "2025-01-01", value: 1393837.2 } });
+    expect(diffMetric("innovation", "realGsp", prev, next)?.headline).toBe("Test Metric for January 2025 was revised slightly and still rounds to $1.394T.");
+  });
+
   it("returns null when nothing moved", () => {
     const same = metric({ latest: { date: "2026-04-01", value: 4.8 } });
     expect(diffMetric("labor", "unemploymentRate", same, same)).toBeNull();
