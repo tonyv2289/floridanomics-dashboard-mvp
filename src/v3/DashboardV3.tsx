@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { useDashboardData } from "../hooks/useDashboardData";
 import { useFreshnessMemory } from "../hooks/useFreshnessMemory";
 import { usePreferences, REGION_OPTIONS } from "../hooks/usePreferences";
@@ -87,6 +87,35 @@ function DashboardV3() {
       ? selectedTalentClusterId
       : (visibleTalentClusters[0]?.id ?? DEFAULT_TALENT_CLUSTER_ID);
 
+  // A link such as ?tab=evidence#corrections arrives before the tab's content has loaded, and the URL
+  // sync below used to drop the hash. Keep the hash on the first sync, then scroll once the section exists.
+  const [arrivalHash] = useState(() => (typeof window === "undefined" ? "" : window.location.hash));
+  const keepArrivalHash = useRef(true);
+
+  useEffect(() => {
+    if (!data || !arrivalHash) {
+      return;
+    }
+    let id = "";
+    try {
+      id = decodeURIComponent(arrivalHash.slice(1));
+    } catch {
+      return;
+    }
+    let tries = 0;
+    const timer = window.setInterval(() => {
+      const target = id ? document.getElementById(id) : null;
+      tries += 1;
+      if (target) {
+        target.scrollIntoView();
+      }
+      if (target || tries >= 30) {
+        window.clearInterval(timer);
+      }
+    }, 100);
+    return () => window.clearInterval(timer);
+  }, [data, arrivalHash]);
+
   useEffect(() => {
     if (!data || typeof window === "undefined") {
       return;
@@ -131,7 +160,9 @@ function DashboardV3() {
     } else {
       params.delete("innovationMetric");
     }
-    window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
+    const hash = keepArrivalHash.current ? arrivalHash : "";
+    keepArrivalHash.current = false;
+    window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}${hash}`);
     trackDashboardView({
       tab: activeTab,
       competitionView: activeTab === "competition" ? activeCompetitionView : undefined,
@@ -147,6 +178,7 @@ function DashboardV3() {
     activeLens,
     activeTab,
     activeTalentClusterId,
+    arrivalHash,
     data,
     selectedInnovationMetricId,
     selectedMetricId,
