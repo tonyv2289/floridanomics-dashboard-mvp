@@ -176,11 +176,11 @@
         },
         {
           "state": "Louisiana",
-          "value": 30161
+          "value": 29771
         },
         {
           "state": "Texas",
-          "value": 5113
+          "value": 4924
         },
         {
           "state": "North Carolina",
@@ -216,7 +216,7 @@
         }
       ],
       "read": "Florida's 3 active projects total $3.84 billion. Virginia, the lowest of the 10 competitors, is about 13 times Florida's figure per resident.",
-      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. Single projects dominate some totals: SpaceX Vermilion Parish spaceport is 72% of Louisiana's; Intel Ohio One is 68% of Ohio's; TSMC Arizona semiconductor campus is 84% of Arizona's. The inventory is systematic but not proven complete.",
+      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. Single projects dominate some totals: SpaceX Vermilion Parish spaceport is 73% of Louisiana's; Intel Ohio One is 68% of Ohio's; TSMC Arizona semiconductor campus is 84% of Arizona's. The inventory is systematic but not proven complete.",
       "sourceIds": [
         "si_megaproject_inventory",
         "si_census_popest_v2025"
@@ -535,10 +535,11 @@
         "id": "florida-pipeline",
         "label": "Largest Florida data-center proposals",
         "value": "Stalled",
-        "read": "The $2.84 billion Fort Meade proposal (end user undisclosed) is contested and not permitted; Palm Beach County denied Project Tango in July 2026.",
+        "read": "The $13.5 billion Sentinel Grove proposal in St. Lucie County was pulled in February 2026 and is back in county review. The $2.84 billion Fort Meade proposal (end user undisclosed) is contested and not permitted. Palm Beach County denied Project Tango in July 2026.",
         "sourceIds": [
           "si_polk_fort_meade",
-          "si_wlrn_tango"
+          "si_wlrn_tango",
+          "si_megaproject_inventory"
         ]
       }
     ],
@@ -4710,7 +4711,8 @@
     "Per-resident figures use Census Vintage 2025 population; values are nominal dollars.",
     "Agency-reported totals use incompatible scopes: the year-by-year table shows them only as each state published them, without ranks or medians.",
     "Company-wide hyperscaler capital spending is never allocated to states.",
-    "BLS job-flow and pay measures describe private-sector jobs, not investment; they test whether the gap is general or specific to large capital."
+    "BLS job-flow and pay measures describe private-sector jobs, not investment; they test whether the gap is general or specific to large capital.",
+    "Project statuses for 70 of the 316 listed projects were re-checked on November 12, 2026. The list still covers only projects announced or updated through September 25, 2026."
   ],
   "sources": [
     {
