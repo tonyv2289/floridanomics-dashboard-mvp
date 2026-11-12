@@ -176,11 +176,11 @@
         },
         {
           "state": "Louisiana",
-          "value": 30161
+          "value": 29771
         },
         {
           "state": "Texas",
-          "value": 5113
+          "value": 4924
         },
         {
           "state": "North Carolina",
@@ -216,7 +216,7 @@
         }
       ],
       "read": "Florida's 3 active projects total $3.84 billion. Virginia, the lowest of the 10 competitors, is about 13 times Florida's figure per resident.",
-      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. Single projects dominate some totals: SpaceX Vermilion Parish spaceport is 72% of Louisiana's; Intel Ohio One is 68% of Ohio's; TSMC Arizona semiconductor campus is 84% of Arizona's. The inventory is systematic but not proven complete.",
+      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. Single projects dominate some totals: SpaceX Vermilion Parish spaceport is 73% of Louisiana's; Intel Ohio One is 68% of Ohio's; TSMC Arizona semiconductor campus is 84% of Arizona's. The inventory is systematic but not proven complete.",
       "sourceIds": [
         "si_megaproject_inventory",
         "si_census_popest_v2025"
