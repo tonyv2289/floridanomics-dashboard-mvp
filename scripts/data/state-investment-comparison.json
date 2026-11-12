@@ -160,7 +160,7 @@
       "id": "megaprojects",
       "label": "Announced $1B+ project capital per resident, excluding data centers and LNG",
       "question": "Where are the billion-dollar projects going?",
-      "period": "January 2022 to 2026-11-12",
+      "period": "January 2022 to November 12, 2026",
       "format": "usd0",
       "florida": {
         "value": 164,
@@ -4712,7 +4712,7 @@
     "Agency-reported totals use incompatible scopes: the year-by-year table shows them only as each state published them, without ranks or medians.",
     "Company-wide hyperscaler capital spending is never allocated to states.",
     "BLS job-flow and pay measures describe private-sector jobs, not investment; they test whether the gap is general or specific to large capital.",
-    "The project list covers announcements through November 12, 2026. Each row shows the date its status was last checked: 94 rows were checked on November 12, 2026, and the rest on or before September 26, 2026."
+    "The project list covers announcements through November 12, 2026. Each row shows the date its status was last checked: 97 rows were checked on November 12, 2026, and the rest on or before September 26, 2026."
   ],
   "sources": [
     {
@@ -4797,7 +4797,7 @@
       "id": "si_megaproject_inventory",
       "label": "Florida Brain $1B+ project inventory, 2022 to November 12, 2026",
       "url": "https://www.floridanomics.com/data/megaprojects-1b-2022-2026.csv",
-      "note": "One row per project with its primary sources; announced multi-year totals, not spending."
+      "note": "One row per project with its sources; announced multi-year totals, not spending."
     },
     {
       "id": "si_amazon_ar_2025",
