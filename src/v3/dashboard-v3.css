@@ -530,6 +530,12 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Default for plain in-text links, so none falls back to the browser's blue (or visited purple) on navy.
+   :where() keeps this weaker than every section's own link rule. */
+:where(.v3-root) a:where(:not([class])) {
+  color: var(--v3-teal);
+}
+
 .v3-root,
 .v3-root *,
 .v3-root *::before,

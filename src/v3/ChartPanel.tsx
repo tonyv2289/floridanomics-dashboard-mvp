@@ -75,8 +75,10 @@ export function ChartPanel({
         </ResponsiveContainer>
       </div>
 
-      {/* Visually hidden data table: makes the trend readable by assistive tech. */}
-      <table className="v3-visually-hidden">
+      {/* Visually hidden data table: makes the trend readable by assistive tech. The wrapper does the
+          hiding, because a table ignores width and overflow and would widen the page on a phone. */}
+      <div className="v3-visually-hidden">
+      <table>
         <caption>{title} trend data</caption>
         <thead>
           <tr>
@@ -93,6 +95,7 @@ export function ChartPanel({
           ))}
         </tbody>
       </table>
+      </div>
 
       <p className="v3-note">{note}</p>
     </Frame>
