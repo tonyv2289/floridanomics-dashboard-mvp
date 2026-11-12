@@ -617,7 +617,7 @@ const STRATEGY_SOURCE_STACK: DashboardDataset["sources"] = [
     id: "texas_comptroller_texstats",
     name: "Texas Comptroller TexStats",
     url: "https://comptroller.texas.gov/transparency/open-data/dashboards.php",
-    notes: "Peer dashboard model for official statewide and regional economic indicators.",
+    notes: "A peer state's public dashboard of official statewide and regional economic indicators.",
   },
   {
     id: "texas_2036_data_hub",
@@ -629,7 +629,7 @@ const STRATEGY_SOURCE_STACK: DashboardDataset["sources"] = [
     id: "pennsylvania_on_target",
     name: "Pennsylvania On Target",
     url: "https://dced.pa.gov/pennsylvania-on-target/",
-    notes: "Cluster, workforce, supply-chain, and emerging-industry dashboard model.",
+    notes: "A peer state's public dashboard of clusters, workforce, supply chains, and emerging industries.",
   },
   {
     id: "north_carolina_evi",
@@ -695,7 +695,7 @@ const STRATEGY_BENCHMARK_EXAMPLES: StrategyLayer["benchmarkExamples"] = [
     id: "texas-2036",
     name: "Texas 2036",
     model: "State futures",
-    takeaway: "Make the dashboard answer where the state is headed, not just what happened last month.",
+    takeaway: "Show where the state is headed, not only what happened last month.",
     source: {
       label: "Texas 2036 Data Hub",
       url: "https://texas2036.org/data/",
@@ -815,13 +815,13 @@ const STRATEGY_CLUSTERS: StrategyLayer["clusters"] = [
 ];
 
 const STRATEGY_TALENT_PIPELINE: StrategyLayer["talentPipeline"] = {
-  eyebrow: "Talent pipeline layer",
+  eyebrow: "Talent pipeline",
   title: "Education, employment, and wage outcomes.",
   summary:
     "Selected public-university programs illustrate the relationship between credentials and observed Florida employment. Coverage and reporting periods are stated in the Talent section.",
   stats: [
     {
-      label: "Model to steal",
+      label: "Model to study",
       value: "Tennessee E2E",
       context: "Education programs linked to employment and wages one to five years after graduation",
       source: {
@@ -1184,14 +1184,14 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
       label: "Florida TaxWatch",
       url: "https://floridataxwatch.org/",
       tier: "policy",
-      note: "Florida fiscal and competitiveness research source for future policy memos.",
+      note: "Florida fiscal and competitiveness research source.",
     },
     {
       id: "james_madison_institute",
       label: "James Madison Institute",
       url: "https://jamesmadison.org/",
       tier: "policy",
-      note: "Florida economic-freedom and regulatory-policy source for future policy memos.",
+      note: "Florida economic-freedom and regulatory-policy research source.",
     },
   ],
   aiCapexIndex: {
@@ -1930,14 +1930,14 @@ async function main() {
       id: "fred_innovation",
       name: "FRED state innovation/development indicators",
       url: "https://fred.stlouisfed.org/",
-      notes: "Business applications and real gross state product series used for innovation/economic development tab.",
+      notes: "Business applications and real gross state product series.",
     },
     {
       id: "federal_data_spine",
       name: "Federal economic series",
       url: "https://www.bls.gov/developers/",
       notes:
-        "Source-aware API contract for BLS, Census, BEA, EIA, and IRS feeds, including live status, key requirements, and safe fallbacks.",
+        "Federal series from BLS, Census, BEA, EIA, and the IRS, each shown with its status and period.",
     },
   ];
   const trust = buildTrustLayer({ metrics, releaseInfo, existing: existingDataset });

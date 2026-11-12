@@ -94,8 +94,8 @@ function PeerStateBenchmarks({ dataset }: { dataset: DashboardDataset }) {
         <div>
           <h2>Florida is best read against the states competing for the same capital and talent.</h2>
           <p>
-            This is the live peer layer: BLS unemployment, labor force, and nonfarm payrolls across the states
-            Florida benchmarks against before drawing strong conclusions.
+            This comparison uses BLS unemployment, labor force, and nonfarm payrolls for the states
+            Florida is measured against.
           </p>
         </div>
       </div>
@@ -189,7 +189,7 @@ function CostBenchmarks({ dataset }: { dataset: DashboardDataset }) {
 
 function BenchmarkModels({ dataset }: { dataset: DashboardDataset }) {
   return (
-    <Frame label="Models to steal from">
+    <Frame label="Models worth studying">
       <div className="v3-benchmark-grid">
         {dataset.strategy.benchmarkExamples.map((example) => (
           <article key={example.id} className="v3-benchmark-card">
@@ -255,7 +255,7 @@ function MetroMomentumLayer({ dataset }: { dataset: DashboardDataset }) {
         <div>
           <h2>Borrow North Carolina's local-momentum logic for Florida metros.</h2>
           <p>
-            The next version should expand this to all counties. For now, the major metros show whether local labor
+            This view covers Florida's major metros, not every county. It shows whether local labor
             force momentum is broadening or narrowing.
           </p>
         </div>
