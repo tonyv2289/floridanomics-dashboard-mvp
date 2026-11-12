@@ -2,6 +2,15 @@ export type ReleaseProgram = "state-labor" | "metro-labor" | "county-wages";
 export type ScheduledRelease = { program: ReleaseProgram; releaseDate: string; observationDate: string; label: string };
 export type ReleaseCalendar = { checkedAt: string; sourceUrl: string; releases: ScheduledRelease[] };
 
+// A kept calendar stands for this many days after its last real check. The freshness
+// review raises its calendar alert after the same number of days (see freshness.test.ts).
+export const CALENDAR_MAX_AGE_DAYS = 45;
+export const calendarAgeDays = (checkedAt: string, now = new Date()) => Math.floor((now.getTime() - new Date(checkedAt).getTime()) / 86400000);
+export const keptCalendarIsCurrent = (checkedAt: string, now = new Date()) => {
+  const days = calendarAgeDays(checkedAt, now);
+  return Number.isFinite(days) && days >= 0 && days <= CALENDAR_MAX_AGE_DAYS;
+};
+
 const clean = (value: string) => value.replace(/<[^>]+>/g, " ").replace(/&nbsp;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 
 export function parseBlsCalendar(html: string): ScheduledRelease[] {

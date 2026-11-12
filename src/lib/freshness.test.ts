@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import type { DashboardDataset } from "../types/dashboard";
 import regionalData from "../../public/data/regional-economy.json";
 import { assessFreshness } from "./freshness";
-import { parseBlsCalendar, type ReleaseCalendar } from "./release-calendar";
+import { CALENDAR_MAX_AGE_DAYS, calendarAgeDays, keptCalendarIsCurrent, parseBlsCalendar, type ReleaseCalendar } from "./release-calendar";
 // Fix the test observations, not the production files: routine refreshes must not
 // change the meaning of these release/grace-period scenarios.
 const data = () => {
@@ -74,5 +74,25 @@ describe("freshness alerts", () => {
     expect(findings.some((finding) => finding.id === "county-wages")).toBe(true);
     expect(findings.some((finding) => finding.id === "initialClaims")).toBe(true);
     expect(findings.some((finding) => finding.id === "calendar")).toBe(true);
+  });
+});
+
+describe("kept release calendar when BLS refuses a hosted runner", () => {
+  const now = new Date("2026-11-12T18:17:00Z");
+  it("counts whole days since the last real check", () => {
+    expect(calendarAgeDays("2026-11-12", now)).toBe(0);
+    expect(calendarAgeDays("2026-09-11", now)).toBe(62);
+  });
+  it("stands for 45 days after a real check and not a day longer", () => {
+    expect(keptCalendarIsCurrent("2026-09-28", now)).toBe(true);
+    expect(keptCalendarIsCurrent("2026-09-27", now)).toBe(false);
+  });
+  it("rejects a missing, unreadable, or future check date", () => {
+    for (const checkedAt of ["", "not a date", "2026-12-01"]) expect(keptCalendarIsCurrent(checkedAt, now)).toBe(false);
+  });
+  it("uses the same limit as the review's calendar alert", () => {
+    const flagged = (days: number) => assessFreshness(data(), regionalEconomy, calendar, new Date(Date.parse("2026-09-11T12:00:00Z") + days * 86400000)).some((finding) => finding.id === "calendar");
+    expect(flagged(CALENDAR_MAX_AGE_DAYS)).toBe(false);
+    expect(flagged(CALENDAR_MAX_AGE_DAYS + 1)).toBe(true);
   });
 });
