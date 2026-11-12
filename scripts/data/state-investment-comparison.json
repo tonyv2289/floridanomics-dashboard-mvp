@@ -535,7 +535,7 @@
         "id": "florida-pipeline",
         "label": "Largest Florida data-center proposals",
         "value": "Stalled",
-        "read": "The $2.84 billion Fort Meade proposal (end user undisclosed) is contested and not permitted; Palm Beach County denied Project Tango in July 2026.",
+        "read": "The $13.5 billion Sentinel Grove proposal in St. Lucie County was pulled in February 2026 and is back in county review. The $2.84 billion Fort Meade proposal (end user undisclosed) is contested and not permitted. Palm Beach County denied Project Tango in July 2026.",
         "sourceIds": [
           "si_polk_fort_meade",
           "si_wlrn_tango"
