@@ -17,8 +17,9 @@ public-safe files:
 
 - `state-investment-comparison.json`: measures, ranks, reads, caveats and public HTTPS sources (schema version 1).
 - `megaprojects-1b-2022-2026.csv`: one row per $1B+ project announced or materially updated from January 2022 to the
-  evidence cutoff, each with its primary sources. It is published at `/data/megaprojects-1b-2022-2026.csv` and cited
-  by the megaproject measure.
+  list's own cutoff, each with its sources, its status, and the date that status was last checked. The list's cutoff
+  (November 12, 2026 in the current export) can be later than the evidence cutoff the other measures use. It is
+  published at `/data/megaprojects-1b-2022-2026.csv` and cited by the megaproject measure.
 
 The dashboard does not edit these numbers. Copies of the export live in `scripts/data/`.
 

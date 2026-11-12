@@ -160,7 +160,7 @@
       "id": "megaprojects",
       "label": "Announced $1B+ project capital per resident, excluding data centers and LNG",
       "question": "Where are the billion-dollar projects going?",
-      "period": "January 2022 to 2026-09-25",
+      "period": "January 2022 to November 12, 2026",
       "format": "usd0",
       "florida": {
         "value": 164,
@@ -172,7 +172,7 @@
       "states": [
         {
           "state": "Arizona",
-          "value": 41480
+          "value": 42071
         },
         {
           "state": "Louisiana",
@@ -180,11 +180,11 @@
         },
         {
           "state": "Texas",
-          "value": 4924
+          "value": 4965
         },
         {
           "state": "North Carolina",
-          "value": 4273
+          "value": 4362
         },
         {
           "state": "Alabama",
@@ -192,19 +192,19 @@
         },
         {
           "state": "Ohio",
-          "value": 3462
+          "value": 3899
         },
         {
           "state": "Tennessee",
           "value": 3113
         },
         {
-          "state": "South Carolina",
-          "value": 2481
+          "state": "Georgia",
+          "value": 2760
         },
         {
-          "state": "Georgia",
-          "value": 2406
+          "state": "South Carolina",
+          "value": 2661
         },
         {
           "state": "Virginia",
@@ -216,7 +216,7 @@
         }
       ],
       "read": "Florida's 3 active projects total $3.84 billion. Virginia, the lowest of the 10 competitors, is about 13 times Florida's figure per resident.",
-      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. Single projects dominate some totals: SpaceX Vermilion Parish spaceport is 73% of Louisiana's; Intel Ohio One is 68% of Ohio's; TSMC Arizona semiconductor campus is 84% of Arizona's. The inventory is systematic but not proven complete.",
+      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. Single projects dominate some totals: SpaceX Vermilion Parish spaceport is 73% of Louisiana's; Intel Ohio One is 60% of Ohio's; TSMC Arizona semiconductor campus is 83% of Arizona's. The inventory is systematic but not proven complete.",
       "sourceIds": [
         "si_megaproject_inventory",
         "si_census_popest_v2025"
@@ -4712,7 +4712,7 @@
     "Agency-reported totals use incompatible scopes: the year-by-year table shows them only as each state published them, without ranks or medians.",
     "Company-wide hyperscaler capital spending is never allocated to states.",
     "BLS job-flow and pay measures describe private-sector jobs, not investment; they test whether the gap is general or specific to large capital.",
-    "Project statuses for 70 of the 316 listed projects were re-checked on November 12, 2026. The list still covers only projects announced or updated through September 25, 2026."
+    "The project list covers announcements through November 12, 2026. Each row shows the date its status was last checked: 97 rows were checked on November 12, 2026, and the rest on or before September 26, 2026."
   ],
   "sources": [
     {
@@ -4795,9 +4795,9 @@
     },
     {
       "id": "si_megaproject_inventory",
-      "label": "Florida Brain $1B+ project inventory, 2022 to September 25, 2026",
+      "label": "Florida Brain $1B+ project inventory, 2022 to November 12, 2026",
       "url": "https://www.floridanomics.com/data/megaprojects-1b-2022-2026.csv",
-      "note": "One row per project with its primary sources; announced multi-year totals, not spending."
+      "note": "One row per project with its sources; announced multi-year totals, not spending."
     },
     {
       "id": "si_amazon_ar_2025",
