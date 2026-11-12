@@ -50,7 +50,7 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
   const unemployment = dataset.metrics.unemploymentRate;
   const laborForce = dataset.metrics.laborForce;
   const exportMetric = dataset.trade.heroMetrics[0];
-  const incomeMigration = dataset.scorecard2030.stats.find((stat) => stat.label === "Income migration");
+  const incomeMigration = dataset.scorecard2030.stats.find((stat) => /income migration/i.test(stat.label));
   const laborRelease = dataset.trust.releaseCalendar.find((release) => release.id === "florida-labor");
 
   return (
@@ -98,11 +98,13 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
           <strong>{formatTradeHero(exportMetric.value, exportMetric.unit)}</strong>
           <small>{exportMetric.helper}</small>
         </div>
-        <div>
-          <span>Income migration</span>
-          <strong>{incomeMigration?.value ?? "n/a"}</strong>
-          <small>{incomeMigration?.context ?? "Florida Chamber frame"}</small>
-        </div>
+        {incomeMigration ? (
+          <div>
+            <span>{incomeMigration.label}</span>
+            <strong>{incomeMigration.value}</strong>
+            <small>{incomeMigration.context}</small>
+          </div>
+        ) : null}
       </aside>
     </header>
   );

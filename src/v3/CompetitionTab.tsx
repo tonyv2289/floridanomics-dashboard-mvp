@@ -138,6 +138,14 @@ function MetroCompetitionView({
   );
 }
 
+// Reader-facing names for the retrieval status stored in the dataset.
+const FEDERAL_STATUS_LABELS: Record<string, string> = {
+  live: "live",
+  fallback: "indirect source",
+  needs_key: "not connected",
+  download_required: "not yet included",
+};
+
 function FederalDataSpine({ dataset }: { dataset: DashboardDataset }) {
   const federal = dataset.federal;
   if (!federal) {
@@ -157,7 +165,7 @@ function FederalDataSpine({ dataset }: { dataset: DashboardDataset }) {
           <strong>
             {liveSignals}/{federal.signals.length}
           </strong>
-          <span>series retrieved in this refresh</span>
+          <span>federal series live from the source agency</span>
         </div>
       </div>
 
@@ -166,7 +174,7 @@ function FederalDataSpine({ dataset }: { dataset: DashboardDataset }) {
           <article key={signal.id} className={clsx("v3-federal-signal", `status-${signal.status}`)}>
             <div>
               <span className="v3-federal-agency">{signal.geography}</span>
-              <span className="v3-federal-status">{signal.status.replace(/_/g, " ")}</span>
+              <span className="v3-federal-status">{FEDERAL_STATUS_LABELS[signal.status] ?? signal.status.replace(/_/g, " ")}</span>
             </div>
             <strong>{signal.value}</strong>
             <small>

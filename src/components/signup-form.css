@@ -121,8 +121,10 @@
   border-top: 3px solid var(--signup-accent);
 }
 
-.signup--briefing h2 {
+/* Two classes, so the card's own text color beats page-level heading colors such as `.home h2`. */
+.signup.signup--briefing h2 {
   font-size: 1.05rem;
+  color: var(--signup-text);
 }
 
 @media (max-width: 720px) {

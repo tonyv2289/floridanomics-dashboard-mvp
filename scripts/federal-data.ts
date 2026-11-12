@@ -99,7 +99,7 @@ function buildSources(): FederalSource[] {
       apiUrl: "https://api.bls.gov/publicAPI/v2/timeseries/data/",
       envKey: "BLS_API_KEY",
       status: "live",
-      note: "Live LAUS and CES labor-market backbone. Key is optional but raises BLS request limits.",
+      note: "Monthly state labor force and payroll data from the LAUS and CES programs.",
     },
     {
       id: "census_bfs_api",
@@ -122,7 +122,7 @@ function buildSources(): FederalSource[] {
       apiUrl: "https://api.census.gov/data/timeseries/intltrade/exports/statehsexport",
       envKey: "CENSUS_API_KEY",
       status: hasCensusKey ? "live" : "needs_key",
-      note: "Direct source for state exports by month. Until the key is configured, the dashboard keeps the verified SelectFlorida trade release.",
+      note: "Monthly state exports. Where the direct series is not connected, the site keeps the verified annual trade release.",
     },
     {
       id: "bea_regional_api",
@@ -133,7 +133,7 @@ function buildSources(): FederalSource[] {
       apiUrl: "https://apps.bea.gov/api/data/",
       envKey: "BEA_API_KEY",
       status: hasBeaKey ? "live" : "needs_key",
-      note: "Direct source for state GDP and income accounts. Falls back to the BEA/FRED bridge when the key is unavailable.",
+      note: "State GDP and income accounts. Where the direct series is not connected, the BEA series comes through FRED.",
     },
     {
       id: "eia_electricity_api",
@@ -405,14 +405,14 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         read: censusBusinessApps
           ? "Business formation is now coming straight from the Census BFS API."
           : hasEnvKey("CENSUS_API_KEY")
-            ? "Business formation is federal Census BFS data, but Florida state values remain on the FRED bridge until a state-level Census BFS API path is confirmed."
-            : "Business formation is federal Census BFS data, but this build still uses the Census series through FRED until a state-level Census API path is confirmed.",
+            ? "Business formation is Census Business Formation Statistics data. Florida's state values are retrieved through FRED."
+            : "Business formation is Census Business Formation Statistics data. Florida's state values are retrieved through FRED.",
         sourceUrl: censusBusinessApps?.url ?? FEDERAL_SOURCE_URLS.censusBfs,
         caveat: censusBusinessApps
           ? undefined
           : hasEnvKey("CENSUS_API_KEY")
-            ? "Census key is installed; BFS remains a FRED bridge because the confirmed Census API path is national, not Florida state-level."
-            : "Configure CENSUS_API_KEY once a Florida state-level Census BFS API path is confirmed.",
+            ? "The Census data service publishes this series nationally, so the Florida series comes through FRED."
+            : "The Census data service publishes this series nationally, so the Florida series comes through FRED.",
       },
       refreshedAt,
     ),
@@ -451,13 +451,13 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         status: beaRealGsp ? "live" : hasEnvKey("BEA_API_KEY") ? "fallback" : "needs_key",
         read: beaRealGsp
           ? "Real GSP is now coming straight from the BEA Regional API, table SAGDP9, line 1, Florida."
-          : "GSP is currently the BEA state series through FRED. The BEA key activates direct regional-account pulls.",
+          : "Real GSP is the BEA state series, retrieved through FRED.",
         sourceUrl: beaRealGsp?.url ?? FEDERAL_SOURCE_URLS.beaRegional,
         caveat: beaRealGsp
           ? undefined
           : hasEnvKey("BEA_API_KEY")
-            ? "Direct BEA call failed during refresh, so this build is using the FRED bridge."
-            : "Configure BEA_API_KEY before replacing the FRED bridge with direct BEA Regional API calls.",
+            ? "The direct BEA request did not complete on this update, so the figure comes through FRED."
+            : "BEA also publishes this series directly. This site reads it through FRED.",
       },
       refreshedAt,
     ),
@@ -465,7 +465,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
       {
         id: "eia-industrial-electricity-price",
         label: "Industrial electricity price",
-        value: eiaIndustrialPrice ? `${eiaIndustrialPrice.value.toFixed(2)}` : "Needs EIA key",
+        value: eiaIndustrialPrice ? `${eiaIndustrialPrice.value.toFixed(2)}` : "Not available",
         unit: eiaIndustrialPrice?.unit ?? "cents per kilowatthour",
         geography: "Florida",
         period: eiaIndustrialPrice?.period ?? "not connected",
@@ -473,9 +473,9 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         status: eiaIndustrialPrice ? "live" : "needs_key",
         read: eiaIndustrialPrice
           ? "Power-cost monitoring is live, which matters for AI infrastructure, advanced manufacturing, and data-center competitiveness."
-          : "Power-cost monitoring is wired but waiting on EIA_API_KEY.",
+          : "Industrial electricity prices are not connected on this update.",
         sourceUrl: FEDERAL_SOURCE_URLS.eiaElectricity,
-        caveat: eiaIndustrialPrice ? undefined : "Set EIA_API_KEY to activate electricity price and sales feeds.",
+        caveat: eiaIndustrialPrice ? undefined : "EIA publishes this series monthly.",
       },
       refreshedAt,
     ),
@@ -483,15 +483,15 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
       {
         id: "irs-income-migration",
         label: "Income migration",
-        value: "Download queue",
+        value: "Not yet included",
         unit: "AGI flows",
         geography: "State and county flows",
         period: "IRS SOI latest available",
         sourceId: "irs_soi_migration_download",
         status: "download_required",
-        read: "IRS SOI is the right official layer for income migration, but it is a download pipeline rather than a clean JSON endpoint.",
+        read: "IRS Statistics of Income is the official source for income migration between states and counties. It is published as files, not through a data service.",
         sourceUrl: FEDERAL_SOURCE_URLS.irsMigration,
-        caveat: "Build a separate IRS SOI ingest job for county-to-county and state-to-state migration files.",
+        caveat: "These migration files are not in this dataset yet.",
       },
       refreshedAt,
     ),
