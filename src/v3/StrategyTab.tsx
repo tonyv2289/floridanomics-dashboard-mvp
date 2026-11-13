@@ -14,8 +14,8 @@ function HighWageJobsMonitor({ dataset }: { dataset: DashboardDataset }) {
   const innovation = dataset.innovation.metrics;
   const rows = [
     { metric: innovation.professionalBusinessEmployment, note: "Largest high-wage employment base." },
-    { metric: innovation.informationEmployment, note: "The tech and knowledge core; watch the direction." },
-    { metric: innovation.realGsp, note: "Real output the high-wage base produces." },
+    { metric: innovation.informationEmployment, note: "Information-sector jobs. Watch the trend." },
+    { metric: innovation.realGsp, note: "Real output of Florida's whole economy." },
   ];
 
   return (
@@ -23,7 +23,7 @@ function HighWageJobsMonitor({ dataset }: { dataset: DashboardDataset }) {
       <div className="v3-panel-head">
         <div>
           <h2>Where the high-wage base is heading.</h2>
-          <p>Sector-level read on Florida&apos;s knowledge economy. Occupation-level (OEWS) detail is the next upgrade.</p>
+          <p>Sector-level view of Florida&apos;s technology and professional services jobs. Occupation-level detail is not yet included.</p>
         </div>
       </div>
       <div className="v3-table">
@@ -92,7 +92,7 @@ function PeerStateBenchmarks({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="Peer-state mode">
       <div className="v3-panel-head">
         <div>
-          <h2>Florida is best read against the states competing for the same capital and talent.</h2>
+          <h2>Compare Florida with the states competing for the same investment and workers.</h2>
           <p>
             This comparison uses BLS unemployment, labor force, and nonfarm payrolls for the states
             Florida is measured against.
@@ -178,7 +178,7 @@ function CostBenchmarks({ dataset }: { dataset: DashboardDataset }) {
       </div>
 
       {!hasPower ? (
-        <p className="v3-note">Industrial power rates activate with the next scheduled data refresh.</p>
+        <p className="v3-note">Industrial power rates will appear after the next data refresh.</p>
       ) : null}
       <SourceList
         sources={[benchmarks.wages.source, ...(benchmarks.power ? [benchmarks.power.source] : [])]}
@@ -253,7 +253,7 @@ function MetroMomentumLayer({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="Metro momentum">
       <div className="v3-panel-head">
         <div>
-          <h2>Borrow North Carolina's local-momentum logic for Florida metros.</h2>
+          <h2>Which Florida metros are gaining and which are slowing.</h2>
           <p>
             This view covers Florida's major metros, not every county. It shows whether local labor
             force momentum is broadening or narrowing.

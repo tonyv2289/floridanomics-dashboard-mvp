@@ -26,7 +26,7 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
       <header className="v3-section-hero v3-trust-hero">
         <div>
           <p className="v3-kicker">Evidence</p>
-          <h1>Know the number, its vintage, and what can still change.</h1>
+          <h1>Each number shows its date, its source, and whether it can still be revised.</h1>
           <p>
             Floridanomics separates observations from release dates, official evidence from outside analysis, and
             sourced facts from editorial inference.
@@ -59,7 +59,7 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
       <section id="freshness"><FreshnessNotice dataset={dataset} expanded /></section>
       <Frame label="How updates reach the site">
         <h2>Source checks, then editorial review.</h2>
-        <p>Weekday checks run after the usual morning releases. The official BLS calendar identifies which state, metro and county observations are due. New observations and stale sources produce a review alert; they do not publish themselves.</p>
+        <p>Weekday checks run after the usual morning releases. The official BLS calendar identifies which state, metro, and county observations are due. New observations and stale sources produce a review alert; they do not publish themselves.</p>
         <p>Regional jobs and wages: {regionalEconomy.period}, retrieved {regionalEconomy.retrievedAt}. These are all-industry county benchmarks, not totals for the atlas's illustrative regions.</p>
         <p>Project announcements and TJ’s Read remain separately reviewed editorial content. A refreshed data file does not refresh the date of an older article or verify a construction milestone.</p>
         <a href={releaseCalendar.sourceUrl}>Official BLS calendar, checked {releaseCalendar.checkedAt} ↗</a>
@@ -69,7 +69,7 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
       <Frame label="Release calendar">
         <div className="v3-panel-head">
           <div>
-            <h2>No new data and a failed pipeline are different conditions.</h2>
+            <h2>A source with no new data is different from a refresh that failed.</h2>
             <p>The calendar identifies the latest official period and the next expected publication window.</p>
           </div>
         </div>
@@ -173,7 +173,7 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
       <section className="v3-corrections" id="corrections">
         <div>
           <p className="v3-kicker">Corrections</p>
-          <h2>A visible correction is stronger than a silent edit.</h2>
+          <h2>Every correction is listed here with its date.</h2>
         </div>
         <div>
           <p>{dataset.trust.correctionPolicy.commitment}</p>

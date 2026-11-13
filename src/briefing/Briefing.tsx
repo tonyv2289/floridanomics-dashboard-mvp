@@ -189,7 +189,7 @@ function Briefing() {
             Sources: BLS CES and LAUS, FRED, US Census Bureau, US DOL, Indeed Hiring Lab, US Census USA Trade,
             SelectFlorida, Florida Chamber Foundation. Full charts and source links: <a href="https://www.floridanomics.com/?view=dashboard&tab=evidence">floridanomics.com</a>.
           </p>
-          <p>Figures reflect the source periods shown and may be revised. Monthly changes should be considered alongside longer-term employment, income and investment trends.</p>
+          <p>Figures reflect the source periods shown and may be revised. Monthly changes should be considered alongside longer-term employment, income, and investment trends.</p>
         </footer>
       </article>
     </main>

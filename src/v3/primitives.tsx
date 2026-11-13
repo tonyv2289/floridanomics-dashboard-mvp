@@ -147,7 +147,7 @@ export function MetricTable({
     <Frame label="Scorecard">
       <div className="v3-panel-head">
         <div>
-          <h2>Five numbers, one labor-market read.</h2>
+          <h2>Five numbers on Florida's labor market.</h2>
           <p>Each row is selectable and drives the chart above.</p>
         </div>
       </div>
@@ -211,7 +211,7 @@ export function MetroTable({ dataset }: { dataset: DashboardDataset }) {
       <div className="v3-panel-head">
         <div>
           <h2>Florida is still a metro-by-metro economy.</h2>
-          <p>The statewide number is useful, but the local spread carries most of the story.</p>
+          <p>The statewide number hides large differences between metros.</p>
         </div>
       </div>
 
@@ -233,8 +233,8 @@ export function IndustryTable({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="Industry mix">
       <div className="v3-panel-head">
         <div>
-          <h2>The composition of growth is the story.</h2>
-          <p>Florida looks different depending on which sector is carrying the month.</p>
+          <h2>Which industries are adding jobs.</h2>
+          <p>The picture changes with the industry that is growing that month.</p>
         </div>
       </div>
 
@@ -264,7 +264,7 @@ export function SourceFooter({ dataset }: { dataset: DashboardDataset }) {
   return (
     <footer className="v3-sources">
       <p className="v3-kicker">Source stack</p>
-      <h2>Every source is visible. Its evidence class matters.</h2>
+      <h2>Every source is listed, along with the kind of evidence it is.</h2>
       <p className="v3-source-disclosure">
         Floridanomics uses official data, official announcements, industry research, and advocacy analysis. Strategic
         reads are editorial inference, not official statistics.

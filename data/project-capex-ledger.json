@@ -1,6 +1,6 @@
 {
-  "headline": "The announcement is the start. Conversion is the score.",
-  "summary": "A source-backed ledger of named strategic projects in Florida and competitor states, normalized so executives can compare disclosed capital, jobs, timing, and delivery stage without double-counting headline packages.",
+  "headline": "This ledger tracks which announced projects became buildings and jobs.",
+  "summary": "Named projects in Florida and competitor states, each with its sources. Capital, jobs, timing, and stage are recorded the same way for every project, and headline packages are not double counted.",
   "coverageNote": "Curated strategic-project coverage, not a complete census of statewide business investment. Totals include only disclosed capital tied to named facilities. Peer projects span four states and are not aggregated as a state-to-state ranking.",
   "methodology": [
     "Count disclosed investment only when it is tied to a named facility or expansion.",
@@ -45,7 +45,7 @@
       "expectedOperationalDate": null,
       "facilityScale": "Estimated 830,000 square feet",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "Florida's clearest current proof that space infrastructure can convert into large-scale, high-wage advanced manufacturing.",
+      "strategicRead": "The clearest current example of Florida's launch infrastructure leading to large-scale, high-wage manufacturing.",
       "sourceIds": ["blue_origin_florida"]
     },
     {
@@ -68,7 +68,7 @@
       "expectedOperationalDate": "2025-12-31",
       "facilityScale": null,
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "An operating facility with disclosed capital and employment is stronger evidence than a pipeline announcement.",
+      "strategicRead": "This facility is operating, and its capital and jobs are disclosed. That is stronger evidence than an announcement.",
       "sourceIds": ["space_florida"]
     },
     {
@@ -91,7 +91,7 @@
       "expectedOperationalDate": null,
       "facilityScale": null,
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "A small but measurable follow-on investment indicates that the original facility is generating a second capital cycle.",
+      "strategicRead": "A small follow-on investment. It shows the original facility is drawing a second round of capital.",
       "sourceIds": ["space_florida"]
     },
     {
@@ -114,7 +114,7 @@
       "expectedOperationalDate": "2029-12-31",
       "facilityScale": "500,000 square feet; up to 100 aircraft annually",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "A major aerospace jobs commitment, but the long delivery horizon makes construction milestones the critical next proof point.",
+      "strategicRead": "A large aerospace jobs commitment with production not due until 2029. Construction milestones are the next thing to watch.",
       "sourceIds": ["space_florida"]
     },
     {
@@ -160,7 +160,7 @@
       "expectedOperationalDate": "2025-09-30",
       "facilityScale": "Lunar vehicle assembly for New Glenn",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "Smaller capital, but strategically important because it adds lunar systems work to Florida's launch and manufacturing stack.",
+      "strategicRead": "A smaller investment that matters because it adds lunar systems work to Florida's launch and manufacturing base.",
       "sourceIds": ["space_florida"]
     },
     {
@@ -183,7 +183,7 @@
       "expectedOperationalDate": "2025-12-31",
       "facilityScale": "65,000 square feet",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "The capital amount is missing, but the engineering-job density makes this a talent and innovation asset worth tracking.",
+      "strategicRead": "No capital figure is disclosed. The concentration of engineering jobs makes it worth tracking.",
       "sourceIds": ["space_florida"]
     },
     {
@@ -206,7 +206,7 @@
       "expectedOperationalDate": "2025-12-31",
       "facilityScale": "Helicopter maintenance and support center",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "Florida is converting military presence into sustainment work, but the state needs a larger pipeline of manufacturing and systems integration projects.",
+      "strategicRead": "Florida's military presence is producing sustainment work. The state still needs more manufacturing and systems integration projects.",
       "sourceIds": ["space_florida"]
     },
     {
@@ -229,7 +229,7 @@
       "expectedOperationalDate": "2026-12-31",
       "facilityScale": "815,000 square feet",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "Florida's largest named converted project in this ledger and the anchor for measuring whether space growth broadens beyond launch cadence.",
+      "strategicRead": "The largest Florida project in this ledger that is being built. It is the main test of whether space growth spreads beyond the number of launches.",
       "sourceIds": ["space_florida"]
     },
     {
@@ -252,7 +252,7 @@
       "expectedOperationalDate": "2026-12-31",
       "facilityScale": "First phase 250,000 square feet",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "A billion-dollar manufacturing campus could deepen Northwest Florida's defense supply chain if the first phase converts on schedule.",
+      "strategicRead": "A billion-dollar manufacturing campus that would add to Northwest Florida's defense supply chain if the first phase is built on schedule.",
       "sourceIds": ["space_florida"]
     },
     {
@@ -275,7 +275,7 @@
       "expectedOperationalDate": "2028-12-31",
       "facilityScale": "835-acre initial site, expandable to nearly 4,400 acres",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "This is the scale Florida is currently missing in defense: a generational production platform, not a small award or isolated supplier win.",
+      "strategicRead": "This is the scale Florida is missing in defense: a shipyard built for decades of production.",
       "sourceIds": ["saronic_port_alpha"]
     },
     {
@@ -298,7 +298,7 @@
       "expectedOperationalDate": null,
       "facilityScale": "Flagship commercial airplane manufacturing operation",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "North Carolina is converting an aerospace recruitment into construction at a scale that can reshape a regional labor market.",
+      "strategicRead": "North Carolina recruited this aircraft plant and broke ground in June 2026. It is large enough to change the region's labor market.",
       "sourceIds": ["nc_jetzero_groundbreaking"]
     },
     {
@@ -321,7 +321,7 @@
       "expectedOperationalDate": null,
       "facilityScale": "185-acre advanced manufacturing and laboratory campus",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "This is the life-sciences equivalent of Blue Origin: disclosed capital, high wages, research adjacency, and a production platform in one project.",
+      "strategicRead": "The life-sciences counterpart to Blue Origin's Florida plant: one project with disclosed capital, high wages, nearby research, and production.",
       "sourceIds": ["nc_abbvie_durham"]
     },
     {
@@ -344,7 +344,7 @@
       "expectedOperationalDate": null,
       "facilityScale": "Located at Rowen's 2,000-acre science and learning campus",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "Georgia is using a purpose-built innovation district to land a multi-billion-dollar life-sciences anchor that Florida does not yet match.",
+      "strategicRead": "Georgia built an innovation district for projects like this and won a multi-billion-dollar life-sciences plant. Florida has no match for it yet.",
       "sourceIds": ["ga_ucb_biologics"]
     },
     {
@@ -367,7 +367,7 @@
       "expectedOperationalDate": null,
       "facilityScale": "Advanced machining, welding, and fabrication",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "Georgia is stacking defense suppliers beneath its larger anchors, which is how sector depth compounds.",
+      "strategicRead": "Georgia is adding defense suppliers around its largest plants. A deeper supplier base makes the next project easier to win.",
       "sourceIds": ["ga_unified_legacy"]
     },
     {
@@ -390,7 +390,7 @@
       "expectedOperationalDate": "2027-12-31",
       "facilityScale": "Advanced manufacturing facility",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "The capex is modest, but the project is a clean facility investment and therefore belongs in the ledger unlike the summit's contracts and orders.",
+      "strategicRead": "A modest investment, but it is a facility, so it belongs in this ledger. The summit's contracts and orders do not.",
       "sourceIds": ["pa_defense_summit_2026"]
     },
     {
@@ -413,7 +413,7 @@
       "expectedOperationalDate": null,
       "facilityScale": "Site modernization and expansion",
       "lastVerifiedDate": "2026-07-17",
-      "strategicRead": "The investment is countable capex; the 700 positions are shown as supported, not incorrectly labeled as newly created jobs.",
+      "strategicRead": "The investment counts as capital spending. The 700 positions are shown as supported jobs and are not counted as new.",
       "sourceIds": ["pa_defense_summit_2026"]
     }
   ]

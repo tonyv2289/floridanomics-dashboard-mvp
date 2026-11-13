@@ -117,10 +117,10 @@ function Bars({ bars }: { bars: Array<{ label: string; value: string; share: num
 const DESTINATIONS: Array<{ title: string; line: string; query: string }> = [
   { title: "Briefing", line: "What changed this month, and why it matters.", query: "?view=briefing" },
   { title: "Competition", line: "Florida against ten competitor states and all fifty, year by year.", query: "?view=dashboard&tab=competition&competitionView=states" },
-  { title: "Trade", line: "Exports, ports and the gateways to Latin America.", query: "?view=dashboard&tab=trade" },
-  { title: "Talent & wages", line: "Degrees, demand and pay by field.", query: "?view=dashboard&tab=talent" },
+  { title: "Trade", line: "Exports, ports, and the gateways to Latin America.", query: "?view=dashboard&tab=trade" },
+  { title: "Talent & wages", line: "Degrees, demand, and pay by field.", query: "?view=dashboard&tab=talent" },
   { title: "Policy", line: "The bills in play and what each would change.", query: "?view=dashboard&tab=policy" },
-  { title: "Sources", line: "Every figure's source, date and method.", query: "?view=dashboard&tab=evidence" },
+  { title: "Sources", line: "Every figure's source, date, and method.", query: "?view=dashboard&tab=evidence" },
 ];
 
 // Scroll motion needs position: sticky, and it respects reduced motion. index.css sets overflow-x: hidden on body, which
@@ -475,7 +475,7 @@ export default function Home() {
           <div>
             <p>
               Every figure on Floridanomics cites a public source and the date it describes.{" "}
-              <a href={to("?view=dashboard&tab=evidence")}>Sources, dates and methods</a>.
+              <a href={to("?view=dashboard&tab=evidence")}>Sources, dates, and methods</a>.
             </p>
             <nav className="home-foot-links" aria-label="Site information">
               <a href={to("about/")}>About</a>
