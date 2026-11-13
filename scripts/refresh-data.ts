@@ -540,6 +540,22 @@ const INNOVATION_RESOURCES: InnovationResource[] = [
     url: "https://jamesmadison.org/",
   },
   {
+    id: "florida-technology-council",
+    name: "Florida Technology Council",
+    category: "Ecosystem",
+    region: "Statewide",
+    summary: "Statewide trade association for Florida's science and technology companies, focused on the technology sector's needs and priorities.",
+    url: "https://www.fltechcouncil.org/",
+  },
+  {
+    id: "fdisa",
+    name: "Florida Digital Infrastructure and Security Alliance (FDISA)",
+    category: "Infrastructure",
+    region: "Statewide",
+    summary: "Nonpartisan Florida coalition of industry, government, and communities for responsible, secure digital infrastructure.",
+    url: "https://www.fdisa.org/",
+  },
+  {
     id: "orlando-ep",
     name: "Orlando Economic Partnership",
     category: "Ecosystem",
