@@ -103,7 +103,7 @@ export default function FloridaAtlas({ embedded = false }: { embedded?: boolean 
         {!embedded && <aside className="atlas-sidebar" aria-label="Atlas navigation">
           <p className="atlas-eyebrow">FLORIDA BRAIN / THE REGIONAL ATLAS</p>
           <h1>Florida’s regions.<br /><em>Different strengths.</em></h1>
-          <p className="atlas-intro">Choose a region for its institutions, employers, projects and workforce data.</p>
+          <p className="atlas-intro">Choose a region for its institutions, employers, projects, and workforce data.</p>
           <div className="atlas-region-label"><span>EXPLORE BY REGION</span><span>08</span></div>
           <nav className="atlas-region-nav" aria-label="Regions">
             <button type="button" className={!regionId ? "is-active" : ""} aria-pressed={!regionId} onClick={() => selectRegion(null)}><span className="atlas-nav-dot" />All of Florida<span className="atlas-nav-count">↗</span></button>
@@ -160,7 +160,7 @@ export default function FloridaAtlas({ embedded = false }: { embedded?: boolean 
             <p className="atlas-eyebrow">{identity ? identity.title : "THE BIG PICTURE"}</p>
             <div aria-live="polite" aria-atomic="true" className="atlas-detail-heading">
               <h2>{selectedRegion ? selectedRegion.headline : <>The places behind<br />Florida’s economy.</>}</h2>
-              <p>{selectedRegion ? selectedRegion.description : "Explore launch facilities, research campuses, working ports and specialized employers. Each region has a source-linked profile and county jobs and wage benchmarks."}</p>
+              <p>{selectedRegion ? selectedRegion.description : "Explore launch facilities, research campuses, working ports, and specialized employers. Each region has a source-linked profile and county jobs and wage benchmarks."}</p>
             </div>
             {identity ? <div className="atlas-strengths" aria-label="Regional strengths">{identity.strengths.map((strength) => <span key={strength}>{strength}</span>)}</div> : null}
             {selectedRegion ? <>
@@ -179,8 +179,8 @@ export default function FloridaAtlas({ embedded = false }: { embedded?: boolean 
               <button className="atlas-back" type="button" onClick={() => selectRegion(null)}>← Back to the whole state</button>
             </> : <>
               <div className="atlas-stats"><div><strong>08</strong><span>regional views</span></div><div><strong>{ALL_ASSETS.length}</strong><span>curated anchors</span></div></div>
-              <div className="atlas-start"><span className="atlas-eyebrow">START EXPLORING</span><h3>One state. Eight stories.</h3><p>Watch Florida unfold, region by region, from space operations to water research.</p><button type="button" onClick={() => { setSector("All sectors"); selectRegion(TOUR[0].id); }}>Explore the eight regions <span aria-hidden="true">↗</span></button></div>
-              <p className="atlas-source-note">Public sources. Human-curated regions. Every anchor has a source you can open.</p>
+              <div className="atlas-start"><span className="atlas-eyebrow">START EXPLORING</span><h3>Florida in eight regions.</h3><p>See the employers and institutions behind each region's economy.</p><button type="button" onClick={() => { setSector("All sectors"); selectRegion(TOUR[0].id); }}>Explore the eight regions <span aria-hidden="true">↗</span></button></div>
+              <p className="atlas-source-note">Regions are drawn by hand from public sources, and every site on the map links to its source.</p>
             </>}
           </div>
           <div className="atlas-detail-foot"><i />PUBLIC SOURCES · CURATED REGIONAL PROFILES</div>

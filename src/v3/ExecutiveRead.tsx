@@ -27,14 +27,14 @@ export function ExecutiveRead({ dataset }: { dataset: DashboardDataset }) {
     },
     investor: {
       headline: "Population growth supports demand; productivity and export earnings determine the longer-term contribution.",
-      action: "Distinguish businesses serving local demand from those developing technology, manufacturing and services for outside markets.",
+      action: "Distinguish businesses serving local demand from those developing technology, manufacturing, and services for outside markets.",
     },
     policymaker: {
-      headline: "An announced project becomes an economic contribution as investment, operations and employment materialize.",
-      action: "Track construction, private spending, supplier relationships and wages against the original commitments.",
+      headline: "An announced project becomes an economic contribution as investment, operations, and employment materialize.",
+      action: "Track construction, private spending, supplier relationships, and wages against the original commitments.",
     },
     developer: {
-      headline: "Investment decisions depend on available sites, reliable utilities and workers with the required skills.",
+      headline: "Investment decisions depend on available sites, reliable utilities, and workers with the required skills.",
       action: "Use the project comparisons to identify the local infrastructure and workforce requirements for each prospect.",
     },
   };

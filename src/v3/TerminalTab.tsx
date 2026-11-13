@@ -59,7 +59,7 @@ function AiCapexIndex({ dataset }: { dataset: DashboardDataset }) {
           <h2>{measured ? measured.headline : "Infrastructure investment and the evidence needed."}</h2>
           <p>
             {measured
-              ? "Measured facts first. The context indicators below describe the wider economy; they do not measure AI investment."
+              ? "The measured facts come first. The indicators below describe the wider economy and do not measure AI investment."
               : "Comparable project data are needed to assess Florida's position. State labor statistics alone cannot identify an AI investment gap."}
           </p>
         </div>

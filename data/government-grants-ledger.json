@@ -1,6 +1,6 @@
 {
-  "headline": "Public capital is only useful when it builds strategic capacity.",
-  "summary": "A decision ledger of named government grant and cooperative-agreement awards in Florida and competitor states, normalized by funding source, recipient, delivery status, and documented economic leverage.",
+  "headline": "What government grants are paying for in Florida and competitor states.",
+  "summary": "Named government grants and cooperative agreements in Florida and competitor states. Each award lists its funding source, its recipient, its status, and the investment or jobs documented with it.",
   "coverageNote": "Curated strategic-award coverage from 2024 through 2026, not a complete accounting of government assistance. Totals include only official named awards. Appropriations, open opportunities, contracts, and multi-award program headlines remain visible as context but are never added to award totals.",
   "methodology": [
     "Count an item only after an official source names the recipient and award amount.",
@@ -57,7 +57,7 @@
       "recipient": "Florida Department of Commerce",
       "recipientType": "state_agency",
       "fundingAgency": "U.S. Department of Labor",
-      "administeringAgency": "FloridaCommerce, CareerSource Florida and the State Workforce Development Board",
+      "administeringAgency": "FloridaCommerce, CareerSource Florida, and the State Workforce Development Board",
       "program": "Pay-for-Performance Incentive Payments Program",
       "stateId": "FL",
       "state": "Florida",
@@ -78,7 +78,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "This is Florida's largest recent named strategic workforce award, but success depends on employer uptake, apprenticeship completions, wage gains, and conversion into production capacity rather than the headline alone.",
+      "strategicRead": "Florida's largest recent workforce award. Its results will show in how many employers sign up, how many apprentices finish, what they earn, and whether production grows.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["dol_apprenticeship_awards_2026", "floridacommerce_dol_40m_2026"]
     },
@@ -108,7 +108,7 @@
       "assistanceListing": "47.084",
       "awardId": "2315320",
       "countInTotals": true,
-      "strategicRead": "Florida has a real semiconductor institution with a statewide talent pathway and documented follow-on capital. The next test is whether it converts research and supplier activity into large private manufacturing commitments.",
+      "strategicRead": "Florida has a working semiconductor institution with a statewide training path and documented follow-on capital. The next test is whether its research and supplier activity leads to large private manufacturing commitments.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["nsf_florida_semiconductor_engine", "nsf_award_2315320"]
     },
@@ -138,7 +138,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "A relatively small infrastructure award is tied to a clear advanced-industry facility and 400 projected jobs; construction and hiring milestones should now be tracked.",
+      "strategicRead": "A small infrastructure award tied to a specific aircraft engine facility and 400 projected jobs. Construction and hiring are the milestones to track.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["fl_job_growth_mar3_2026"]
     },
@@ -162,13 +162,13 @@
       "jobsCreated": 190,
       "jobsRetained": null,
       "stage": "awarded",
-      "stageDetail": "Road and workforce-housing infrastructure is intended to unlock industrial growth near the Port of Port St. Joe.",
+      "stageDetail": "Road and workforce-housing infrastructure is intended to support industrial growth near the Port of Port St. Joe.",
       "awardDate": "2026-03-03",
       "performanceEndDate": null,
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "The award addresses enabling infrastructure around an industrial site, but the named private project and follow-on capital remain the evidence gap.",
+      "strategicRead": "The award pays for roads and housing around an industrial site. No private project or follow-on investment has been named yet.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["fl_job_growth_mar3_2026"]
     },
@@ -198,7 +198,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "This is the most direct current example of Florida using public infrastructure capital to deepen shipbuilding capacity, though it is far smaller than the permanent sector tools deployed by leading peers.",
+      "strategicRead": "The most direct current example of Florida using public infrastructure money to expand shipbuilding capacity. It is far smaller than the standing industry funds in leading peer states.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["fl_job_growth_mar3_2026"]
     },
@@ -228,7 +228,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "Useful workforce capacity, but an executive scorecard should test completions, employer placement, wages, and whether the training supports strategic logistics and industrial projects.",
+      "strategicRead": "Useful training capacity. The measures to check are completions, job placement, wages, and whether graduates go to work on logistics and industrial projects.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["fl_job_growth_mar6_2026"]
     },
@@ -258,7 +258,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "The grant creates site readiness, but the ledger should not infer private investment or jobs until a named company commitment is verified.",
+      "strategicRead": "The grant makes a site ready. This ledger counts no private investment or jobs from it until a company commitment is verified.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["fl_job_growth_mar6_2026"]
     },
@@ -288,7 +288,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "Resilience capital protects the economic base and continuity of government, but it should be measured separately from business-attraction incentives.",
+      "strategicRead": "Resilience funding protects the local economy and keeps government running. It is measured separately from funding meant to attract business.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["fl_resilience_ian_may2026"]
     },
@@ -318,7 +318,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "This is defensive infrastructure capital: economically necessary, but not evidence of new strategic-industry investment.",
+      "strategicRead": "This funding protects existing infrastructure. It is necessary, and it is not evidence of new industry investment.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["fl_resilience_ian_may2026"]
     },
@@ -348,7 +348,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "The award strengthens continuity and shelter capacity; it should not be presented as a business-investment win.",
+      "strategicRead": "The award adds emergency power and shelter capacity. It is not a business investment.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["fl_resilience_ian_may2026"]
     },
@@ -378,7 +378,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "One Texas sector-specific award is more than twice the disclosed total of the Florida awards in this curated ledger and is tied to $4.73 billion of company investment.",
+      "strategicRead": "This one Texas semiconductor award is more than twice the disclosed total of all the Florida awards in this ledger, and it is tied to $4.73 billion of company investment.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["tx_tsif_samsung"]
     },
@@ -408,7 +408,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "Texas is using a repeatable specialist fund to compound an existing semiconductor cluster, not waiting for a general-purpose economic development program to fit the project.",
+      "strategicRead": "Texas uses a dedicated semiconductor fund to add to an existing cluster. It does not have to fit each project into a general-purpose program.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["tx_tsif_coherent"]
     },
@@ -438,7 +438,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "The grant combines design talent, company capital, and a named jobs commitment, showing that sector tools can target both fabrication and the higher-value semiconductor stack.",
+      "strategicRead": "The grant comes with company capital and a stated jobs commitment for chip design work. It shows a dedicated fund can support design as well as fabrication.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["tx_tsif_arm"]
     },
@@ -468,7 +468,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "Texas is filling supplier-chain gaps with smaller awards as well as anchoring megaprojects, an important model for cluster depth.",
+      "strategicRead": "Texas uses smaller awards to fill gaps in its supplier base, alongside the awards for its largest projects.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["tx_tsif_ltd"]
     },
@@ -498,7 +498,7 @@
       "assistanceListing": null,
       "awardId": null,
       "countInTotals": true,
-      "strategicRead": "The same specialist fund finances both company projects and the talent system, creating a coordinated portfolio rather than disconnected awards.",
+      "strategicRead": "The same fund pays for company projects and for technician training, so the two are planned together.",
       "lastVerifiedDate": "2026-07-17",
       "sourceIds": ["tx_tsif_tstc"]
     }

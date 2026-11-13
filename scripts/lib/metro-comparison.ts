@@ -42,7 +42,7 @@ export function buildMetroComparison(
         role: "Metropolitan labor market",
         momentum: "mixed" as const,
         verdict: `${rate.value.toFixed(1)}% unemployment in ${prettyMonth(commonDate)}.`,
-        read: "The labor force includes employed residents and unemployed residents actively seeking work. Interpret changes alongside local industry conditions, population and participation.",
+        read: "The labor force includes employed residents and unemployed residents actively seeking work. Interpret changes alongside local industry conditions, population, and participation.",
         sourceIds: ["bls_metro_laus_current"],
         signals: [
           { label: "Labor force", direction: "neutral" as const, value: labor.value.toLocaleString("en-US"), detail: `Residents; ${prettyMonth(commonDate)}, not seasonally adjusted.` },

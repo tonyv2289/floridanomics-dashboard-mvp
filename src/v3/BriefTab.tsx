@@ -198,9 +198,9 @@ function FloridaBrainNotes({ dataset }: { dataset: DashboardDataset }) {
 
 export function BriefTab({ dataset }: { dataset: DashboardDataset }) {
   const watchItems = [
-    firstSentence(dataset.narrative.softening[0] ?? "No major supersector is contracting year over year."),
-    firstSentence(dataset.innovation.narrative.signals[0] ?? "Business formation is the live innovation signal."),
-    firstSentence(dataset.trade.narrative.watchOuts[0] ?? "Watch the trade mix as the export base expands."),
+    firstSentence(dataset.narrative.softening[0] ?? "No major industry group has fewer jobs than a year ago."),
+    firstSentence(dataset.innovation.narrative.signals[0] ?? "New business filings are the current innovation measure."),
+    firstSentence(dataset.trade.narrative.watchOuts[0] ?? "Watch which products drive the change in exports."),
   ];
 
   return (

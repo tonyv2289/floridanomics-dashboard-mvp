@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "generatedOn": "2026-09-27",
   "evidenceCutoff": "2026-09-25",
-  "headline": "Florida wins projects. It does not win large productive capital.",
-  "summary": "Compared with 10 competing states, Florida lands many corporate facility projects and its manufacturing base is growing, but per resident it captures far less factory, lab and megaproject capital. The gap is real, sector-specific and measurable; the claim that Florida gets no business investment is false.",
+  "headline": "Florida wins many projects but captures far less large productive capital per resident.",
+  "summary": "Compared with 10 competing states, Florida wins many corporate facility projects, and its manufacturing base is growing. Per resident, it captures far less factory, lab, and megaproject capital. The gap is specific to large projects, and it can be measured. The claim that Florida gets no business investment is false.",
   "peerStates": [
     "Texas",
     "Georgia",
@@ -80,7 +80,7 @@
         }
       ],
       "read": "Florida recorded 326 qualifying projects, 5th by count, but ranked 31st per resident. It ranked 42nd per resident in 2022.",
-      "caveat": "Counts projects meeting any of $1 million, 20 jobs or 20,000 square feet; measures breadth, not dollars.",
+      "caveat": "Counts projects meeting any of $1 million, 20 jobs, or 20,000 square feet; measures breadth, not dollars.",
       "sourceIds": [
         "si_site_selection_2025",
         "si_census_popest_v2025"
@@ -504,7 +504,7 @@
         "id": "hyperscale-campuses",
         "label": "Hyperscale data-center campuses in Florida",
         "value": "0",
-        "read": "None operating, under construction or announced as of September 25, 2026. Florida's hyperscaler footprint is network and edge infrastructure, such as Google's Palm Coast cable hub and an AWS Local Zone in Miami.",
+        "read": "None operating, under construction, or announced as of September 25, 2026. Florida's hyperscaler footprint is network and edge infrastructure, such as Google's Palm Coast cable hub and an AWS Local Zone in Miami.",
         "sourceIds": [
           "si_google_sol",
           "si_aws_local_zones"
@@ -1919,7 +1919,7 @@
       92.0
     ],
     "read": "Florida climbed from 42nd per resident in 2022 to 31st in 2025 (9.1 to 13.9 projects per million residents) while its count rose from 205 (11th) to 326 (5th). Among the 11 states compared it ranked last in 2022-2024 and 10th in 2025 per resident.",
-    "caveat": "Site Selection's Governor's Cup counts (Conway Projects Database) of projects meeting at least one of $1 million invested, 20 new jobs or 20,000 square feet; they measure breadth, not dollars. Per-resident figures use Census Vintage 2025 population for each year. Ties share a rank.",
+    "caveat": "Site Selection's Governor's Cup counts (Conway Projects Database) of projects meeting at least one of $1 million invested, 20 new jobs, or 20,000 square feet; they measure breadth, not dollars. Per-resident figures use Census Vintage 2025 population for each year. Ties share a rank.",
     "sourceIds": [
       "si_site_selection_2022",
       "si_site_selection_2023",
@@ -4692,11 +4692,11 @@
       }
     ],
     "read": "Florida's year-end releases count the relocations and expansions the state's economic-development organizations handled: 54, 72, 50 and 58 from 2022 to 2025. Site Selection counted 205, 250, 247 and 326 qualifying facilities in Florida in the same years. The table holds a state-published 2025 total for 42 states; about 20% of the figures shown cover a single program or agency.",
-    "caveat": "Figures are as each state published them in year-end or fiscal-year reports and releases. States count different things (every announced project, the projects their agency assisted, or one incentive program), use different fiscal years and publish different measures, so the figures are not comparable across states and carry no ranks or medians. Fiscal years are labeled by the year they end. n/a means the state published no total for that year on that basis; where a state publishes only a list of projects, the total is left blank rather than computed here."
+    "caveat": "Figures are as each state published them in year-end or fiscal-year reports and releases. States count different things (every announced project, the projects their agency assisted, or one incentive program), use different fiscal years, and publish different measures, so the figures are not comparable across states and carry no ranks or medians. Fiscal years are labeled by the year they end. n/a means the state published no total for that year on that basis; where a state publishes only a list of projects, the total is left blank rather than computed here."
   },
   "finalists": {
     "headline": "Florida is rarely in the final round for billion-dollar projects.",
-    "read": "Florida was not a finalist for any $1B+ project whose competing sites are on the public record. Texas incentive filings name rival sites for 20 of 27 billion-dollar projects: Louisiana appears in 8, New Mexico in 5 and Florida in 1, only on Saronic's 12-state first-round list. Apart from that first-round exit, Florida's 13 documented contest losses since 2020 are mid-sized, including Boom Supersonic (Jacksonville), Pratt & Whitney (Palm Beach County), Jabil and Citi's technology hub to North Carolina and a Miami-Dade steel-mill site that was one of three finalists (Texas won).",
+    "read": "Florida was not a finalist for any $1B+ project whose competing sites are on the public record. Texas incentive filings name rival sites for 20 of 27 billion-dollar projects: Louisiana appears in 8, New Mexico in 5 and Florida in 1, only on Saronic's 12-state first-round list. Apart from that first-round exit, Florida's 13 documented contest losses since 2020 are mid-sized, including Boom Supersonic (Jacksonville), Pratt & Whitney (Palm Beach County), Jabil and Citi's technology hub to North Carolina, and a Miami-Dade steel-mill site that was one of three finalists (Texas won).",
     "caveat": "North Carolina and Texas publish the alternative locations applicants name, so contests lost to those states are over-represented; most states publish none, and some Texas applicants keep their alternatives confidential.",
     "sourceIds": [
       "si_nc_jdig_2025",

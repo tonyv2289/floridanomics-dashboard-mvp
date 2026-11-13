@@ -432,7 +432,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         sourceId: "census_state_exports_api",
         status: censusExports ? "live" : "fallback",
         read: censusExports
-          ? "The trade layer can now reconcile the SelectFlorida release against the Census state export API."
+          ? "Florida export figures from SelectFlorida are checked against Census state export data."
           : "Trade is still sourced from the verified SelectFlorida release; direct Census export reconciliation turns on with CENSUS_API_KEY.",
         sourceUrl: censusExports?.url ?? FEDERAL_SOURCE_URLS.censusTrade,
         caveat: censusExports ? undefined : "Set CENSUS_API_KEY for direct monthly state export calls.",
@@ -450,7 +450,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         sourceId: "bea_regional_api",
         status: beaRealGsp ? "live" : hasEnvKey("BEA_API_KEY") ? "fallback" : "needs_key",
         read: beaRealGsp
-          ? "Real GSP is now coming straight from the BEA Regional API, table SAGDP9, line 1, Florida."
+          ? "Real gross state product comes from the Bureau of Economic Analysis regional accounts (table SAGDP9)."
           : "Real GSP is the BEA state series, retrieved through FRED.",
         sourceUrl: beaRealGsp?.url ?? FEDERAL_SOURCE_URLS.beaRegional,
         caveat: beaRealGsp
@@ -472,7 +472,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         sourceId: "eia_electricity_api",
         status: eiaIndustrialPrice ? "live" : "needs_key",
         read: eiaIndustrialPrice
-          ? "Power-cost monitoring is live, which matters for AI infrastructure, advanced manufacturing, and data-center competitiveness."
+          ? "Industrial electricity prices are tracked because they affect the cost of data centers and advanced manufacturing."
           : "Industrial electricity prices are not connected on this update.",
         sourceUrl: FEDERAL_SOURCE_URLS.eiaElectricity,
         caveat: eiaIndustrialPrice ? undefined : "EIA publishes this series monthly.",
