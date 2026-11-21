@@ -47,10 +47,14 @@ type BeaRegionalResponse = {
   };
 };
 
+// Census "Monthly U.S. Exports by State and Harmonized System (HS) Code". The request, the listed API
+// address, and the public source link all come from this one address, so they cannot drift apart.
+const CENSUS_STATE_EXPORTS_API = "https://api.census.gov/data/timeseries/intltrade/exports/statehs";
+
 const FEDERAL_SOURCE_URLS = {
   bls: "https://www.bls.gov/developers/api_signature_v2.htm",
   censusBfs: "https://www.census.gov/econ/bfs/index.html",
-  censusTrade: "https://api.census.gov/data/timeseries/intltrade/exports/statehsexport.html",
+  censusTrade: `${CENSUS_STATE_EXPORTS_API}.html`,
   beaRegional: "https://www.bea.gov/data/gdp/gdp-state",
   eiaElectricity: "https://www.eia.gov/opendata/documentation.php",
   irsMigration: "https://www.irs.gov/statistics/soi-tax-stats-migration-data",
@@ -119,7 +123,7 @@ function buildSources(): FederalSource[] {
       label: "State export API",
       tier: "federal_api",
       url: FEDERAL_SOURCE_URLS.censusTrade,
-      apiUrl: "https://api.census.gov/data/timeseries/intltrade/exports/statehsexport",
+      apiUrl: CENSUS_STATE_EXPORTS_API,
       envKey: "CENSUS_API_KEY",
       status: hasCensusKey ? "live" : "needs_key",
       note: "Monthly state exports. Where the direct series is not connected, the site keeps the verified annual trade release.",
@@ -177,7 +181,14 @@ async function fetchCensusBusinessApplications(
   return null;
 }
 
-async function fetchCensusStateExports(
+/**
+ * Florida's merchandise exports for a calendar year, as the December year-to-date total.
+ *
+ * Census sums any dimension the request leaves out, so asking for STATE and ALL_VAL_YR alone returns one
+ * all-commodity, all-country total per state (plus a "-" row for all states). This follows the "State
+ * Export Totals" example in the Census International Trade Data API User Guide.
+ */
+export async function fetchCensusStateExports(
   tradeYear: string,
 ): Promise<{ valueUsd: number; period: string; url: string } | null> {
   const key = process.env.CENSUS_API_KEY?.trim();
@@ -185,10 +196,10 @@ async function fetchCensusStateExports(
     return null;
   }
 
-  const url = new URL("https://api.census.gov/data/timeseries/intltrade/exports/statehsexport");
-  url.searchParams.set("get", "US_STATE,ALL_VAL_YR,YEAR,MONTH");
-  url.searchParams.set("for", "world:1");
-  url.searchParams.set("time", `${tradeYear}-12`);
+  const period = `${tradeYear}-12`;
+  const url = new URL(CENSUS_STATE_EXPORTS_API);
+  url.searchParams.set("get", "STATE,ALL_VAL_YR");
+  url.searchParams.set("time", period);
   url.searchParams.set("key", key);
 
   const response = await fetch(url);
@@ -197,13 +208,18 @@ async function fetchCensusStateExports(
   }
 
   const records = tableRecords((await response.json()) as CensusTable);
-  const record = records.find((row) => row.US_STATE === "FL");
-  const valueUsd = Number(record?.ALL_VAL_YR);
-  if (!Number.isFinite(valueUsd)) {
+  const florida = records.filter((row) => row.STATE === "FL");
+  if (florida.length !== 1) {
+    throw new Error(`Census state export response held ${florida.length} Florida rows for ${period}; expected one total.`);
+  }
+
+  const [record] = florida;
+  const valueUsd = Number(record.ALL_VAL_YR);
+  if (record.ALL_VAL_YR === "" || !Number.isFinite(valueUsd)) {
     throw new Error("Census state export response did not include a numeric Florida ALL_VAL_YR value.");
   }
 
-  return { valueUsd, period: `${record?.YEAR ?? tradeYear}-${record?.MONTH ?? "12"}`, url: FEDERAL_SOURCE_URLS.censusTrade };
+  return { valueUsd, period: record.time || period, url: FEDERAL_SOURCE_URLS.censusTrade };
 }
 
 function parseBeaNumber(value: string | undefined): number {
