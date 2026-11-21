@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { deltaTone, formatDelta, formatMetricValue } from "../lib/dashboard";
+import { deltaTone, formatDelta, formatMetricValue, yearAgoLabel } from "../lib/dashboard";
 import { CompetitionSourceList, Frame, TerminalSourceList } from "./primitives";
 import { firstSentence } from "./format";
 import { ProjectCapexLedger } from "./ProjectCapexLedger";
@@ -145,7 +145,7 @@ function HighWageTerminal({ dataset }: { dataset: DashboardDataset }) {
             <span>{item.label}</span>
             <strong>{formatMetricValue(item.metric, item.metric.latest.value)}</strong>
             <small className={clsx(`tone-${deltaTone(item.metric, item.metric.deltas.oneYear)}`)}>
-              1Y {formatDelta(item.metric, item.metric.deltas.oneYear)}
+              {yearAgoLabel(item.metric.latest.date, item.metric.deltas.oneYear)} {formatDelta(item.metric, item.metric.deltas.oneYear)}
             </small>
             <p>{item.note}</p>
           </article>

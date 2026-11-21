@@ -4,6 +4,7 @@ import { useDashboardData } from "../hooks/useDashboardData";
 import {
   deltaTone,
   formatDateLabel,
+  yearAgoLabel,
   formatDelta,
   formatMetricValue,
   formatTradeHero,
@@ -111,14 +112,14 @@ function Briefing() {
               <span>Unemployment</span>
               <strong>{formatMetricValue(unemployment, unemployment.latest.value)}</strong>
               <small className={clsx(`tone-${deltaTone(unemployment, unemployment.deltas.oneYear)}`)}>
-                1Y {formatDelta(unemployment, unemployment.deltas.oneYear)}
+                {yearAgoLabel(unemployment.latest.date, unemployment.deltas.oneYear)} {formatDelta(unemployment, unemployment.deltas.oneYear)}
               </small>
             </div>
             <div>
               <span>Labor force</span>
               <strong>{formatMetricValue(laborForce, laborForce.latest.value)}</strong>
               <small className={clsx(`tone-${deltaTone(laborForce, laborForce.deltas.oneYear)}`)}>
-                1Y {formatDelta(laborForce, laborForce.deltas.oneYear)}
+                {yearAgoLabel(laborForce.latest.date, laborForce.deltas.oneYear)} {formatDelta(laborForce, laborForce.deltas.oneYear)}
               </small>
             </div>
             <div>

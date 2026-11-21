@@ -74,6 +74,17 @@ const signedInt = (value: number) => `${value > 0 ? "+" : value < 0 ? "−" : ""
 const pct = (value: number) => `${value > 0 ? "+" : value < 0 ? "−" : ""}${Math.abs(value).toFixed(1)}%`;
 const monthYear = (iso: string) => `${MONTHS[Number(iso.slice(5, 7)) - 1]} ${iso.slice(0, 4)}`;
 
+/**
+ * "in a year" for a true one-year change. When the month a year back was never published (BLS has no October 2025
+ * household data), the change is measured from the closest earlier month, so the words name that month.
+ */
+function yearSpan(latestDate: string, baseDate: string | undefined): string {
+  if (!baseDate) return "in a year";
+  const months =
+    (Number(latestDate.slice(0, 4)) - Number(baseDate.slice(0, 4))) * 12 + (Number(latestDate.slice(5, 7)) - Number(baseDate.slice(5, 7)));
+  return months === 12 ? "in a year" : `since ${monthYear(baseDate)}`;
+}
+
 export function formatCountyChange(value: number | null): string {
   return value === null ? "n/a" : pct(value);
 }
@@ -85,21 +96,21 @@ function heroStats(data: DashboardDataset): { stats: HomeStat[]; sources: Array<
   stats.push({
     value: int(payrolls.latest.value * 1000),
     label: `Payroll jobs, ${monthYear(payrolls.latest.date)}`,
-    delta: payrollDelta == null ? null : `${signedInt(payrollDelta * 1000)} in a year`,
+    delta: payrollDelta == null ? null : `${signedInt(payrollDelta * 1000)} ${yearSpan(payrolls.latest.date, payrolls.deltas?.oneYear?.baseDate)}`,
     tone: payrollDelta == null ? null : payrollDelta >= 0 ? "up" : "down",
   });
   const rateDelta = rate.deltas?.oneYear?.absolute;
   stats.push({
     value: `${rate.latest.value.toFixed(1)}%`,
     label: `Unemployment, ${monthYear(rate.latest.date)}`,
-    delta: rateDelta == null ? null : `${rateDelta > 0 ? "+" : rateDelta < 0 ? "−" : ""}${Math.abs(rateDelta).toFixed(1)} pts in a year`,
+    delta: rateDelta == null ? null : `${rateDelta > 0 ? "+" : rateDelta < 0 ? "−" : ""}${Math.abs(rateDelta).toFixed(1)} pts ${yearSpan(rate.latest.date, rate.deltas?.oneYear?.baseDate)}`,
     tone: rateDelta == null || Math.abs(rateDelta) < 0.05 ? null : rateDelta > 0 ? "down" : "up",
   });
   const popDelta = population.deltas?.oneYear?.absolute;
   stats.push({
     value: int(population.latest.value),
     label: `Residents, ${population.latest.date.slice(0, 4)}`,
-    delta: popDelta == null ? null : `${signedInt(popDelta)} in a year`,
+    delta: popDelta == null ? null : `${signedInt(popDelta)} ${yearSpan(population.latest.date, population.deltas?.oneYear?.baseDate)}`,
     tone: popDelta == null ? null : popDelta >= 0 ? "up" : "down",
   });
   const exports = data.trade.heroMetrics.find((metric) => /total florida exports/i.test(metric.label));

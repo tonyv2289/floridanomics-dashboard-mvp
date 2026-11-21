@@ -6,6 +6,7 @@ import {
   formatDelta,
   formatMetricValue,
   formatTradeHero,
+  yearAgoLabel,
   type AnyMetric,
 } from "../lib/dashboard";
 import { Frame, SourceList, TerminalSourceList } from "./primitives";
@@ -81,7 +82,7 @@ export function LensTab({
                   `tone-${deltaTone(sectorAsMetric(sector.label), sector.deltas.oneYear)}`,
                 )}
               >
-                1Y {formatDelta(sectorAsMetric(sector.label), sector.deltas.oneYear)}
+                {yearAgoLabel(sector.latest.date, sector.deltas.oneYear)} {formatDelta(sectorAsMetric(sector.label), sector.deltas.oneYear)}
               </p>
             </article>
           ))}
@@ -90,7 +91,7 @@ export function LensTab({
               <span>{metric.label}</span>
               <strong>{formatMetricValue(metric, metric.latest.value)}</strong>
               <p className={clsx(`tone-${deltaTone(metric, metric.deltas.oneYear)}`)}>
-                1Y {formatDelta(metric, metric.deltas.oneYear)}
+                {yearAgoLabel(metric.latest.date, metric.deltas.oneYear)} {formatDelta(metric, metric.deltas.oneYear)}
               </p>
             </article>
           ))}

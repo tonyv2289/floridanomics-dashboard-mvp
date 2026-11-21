@@ -19,6 +19,18 @@ describe("homepage model", () => {
     expect(hero[3].value).toMatch(/^\$\d+\.\dB$/);
   });
 
+  it("names the comparison month in the hero when no figure exists a year back", () => {
+    const data = dataset();
+    // BLS has no October 2025 household data, so an October 2026 rate is measured from September 2025.
+    data.metrics.unemploymentRate.latest = { ...data.metrics.unemploymentRate.latest, date: "2026-10-01" };
+    data.metrics.unemploymentRate.deltas.oneYear = { years: 1, baseDate: "2025-09-01", absolute: 0.1, percent: 2.4 };
+    data.metrics.nonfarmPayrolls.latest = { ...data.metrics.nonfarmPayrolls.latest, date: "2026-10-01" };
+    data.metrics.nonfarmPayrolls.deltas.oneYear = { years: 1, baseDate: "2025-10-01", absolute: 100.2, percent: 1.0 };
+    const hero = buildHomeModel(data, regionalEconomy as RegionalEconomy).hero;
+    expect(hero[1].delta).toBe("+0.1 pts since September 2025");
+    expect(hero[0].delta).toBe("+100,200 in a year");
+  });
+
   it("travels the eight regions in geographic order with every benchmark county placed on the map", () => {
     const { regions, countyCount } = model();
     expect(regions.map((region) => region.id)).toEqual(["panhandle", "north-central", "northeast", "orlando-osceola", "space-coast", "tampa-bay", "southwest", "south-florida"]);

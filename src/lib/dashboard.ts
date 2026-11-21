@@ -105,6 +105,34 @@ export function formatMetricValue(metric: AnyMetric, rawValue: number): string {
   return formatCompact(displayValue(metric, rawValue), 1);
 }
 
+/**
+ * The label for a one-year change. "1Y" when the comparison month is exactly a year back. When that month was
+ * never published (BLS has no October 2025 household data), the base slides to the nearest earlier month, so the
+ * label names the month used, such as "vs Sep 2025".
+ */
+export function yearAgoLabel(latestDate: string, delta: Delta | null | undefined): string {
+  const base = offYearBase(latestDate, delta);
+  return base ? `vs ${base.toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })}` : "1Y";
+}
+
+/**
+ * The same check, for sentences. Null for a true one-year change, or when there is no comparison at all.
+ * Otherwise the month the change is measured from, spelled out, such as "September 2025".
+ */
+export function yearAgoMonth(latestDate: string, delta: Delta | null | undefined): string | null {
+  const base = offYearBase(latestDate, delta);
+  return base ? base.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" }) : null;
+}
+
+/** The comparison date, but only when it is not exactly twelve months before the latest observation. */
+function offYearBase(latestDate: string, delta: Delta | null | undefined): Date | null {
+  if (!delta?.baseDate) return null;
+  const latest = new Date(latestDate);
+  const base = new Date(delta.baseDate);
+  const months = (latest.getUTCFullYear() - base.getUTCFullYear()) * 12 + (latest.getUTCMonth() - base.getUTCMonth());
+  return months === 12 ? null : base;
+}
+
 export function formatDelta(metric: AnyMetric, delta: Delta | null): string {
   if (!delta) {
     return "n/a";

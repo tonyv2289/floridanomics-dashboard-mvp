@@ -6,6 +6,7 @@ import {
   formatDelta,
   formatMetricValue,
   formatTradeHero,
+  yearAgoLabel,
 } from "../lib/dashboard";
 import { firstSentence, formatSignedInteger, getMonthlyPayrollChange, resolveHref } from "./format";
 import { EvidenceGrid } from "./primitives";
@@ -83,14 +84,14 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
           <span>Unemployment</span>
           <strong>{formatMetricValue(unemployment, unemployment.latest.value)}</strong>
           <small className={clsx(`tone-${deltaTone(unemployment, unemployment.deltas.oneYear)}`)}>
-            1Y {formatDelta(unemployment, unemployment.deltas.oneYear)}
+            {yearAgoLabel(unemployment.latest.date, unemployment.deltas.oneYear)} {formatDelta(unemployment, unemployment.deltas.oneYear)}
           </small>
         </div>
         <div>
           <span>Labor force</span>
           <strong>{formatMetricValue(laborForce, laborForce.latest.value)}</strong>
           <small className={clsx(`tone-${deltaTone(laborForce, laborForce.deltas.oneYear)}`)}>
-            1Y {formatDelta(laborForce, laborForce.deltas.oneYear)}
+            {yearAgoLabel(laborForce.latest.date, laborForce.deltas.oneYear)} {formatDelta(laborForce, laborForce.deltas.oneYear)}
           </small>
         </div>
         <div>
@@ -126,13 +127,13 @@ function OperatingRead({ dataset }: { dataset: DashboardDataset }) {
     {
       label: "Business Applications",
       value: formatMetricValue(businessApplications, businessApplications.latest.value),
-      note: `1Y ${formatDelta(businessApplications, businessApplications.deltas.oneYear)}`,
+      note: `${yearAgoLabel(businessApplications.latest.date, businessApplications.deltas.oneYear)} ${formatDelta(businessApplications, businessApplications.deltas.oneYear)}`,
       tone: deltaTone(businessApplications, businessApplications.deltas.oneYear),
     },
     {
       label: "Information-Sector Jobs",
       value: formatMetricValue(informationJobs, informationJobs.latest.value),
-      note: `1Y ${formatDelta(informationJobs, informationJobs.deltas.oneYear)}`,
+      note: `${yearAgoLabel(informationJobs.latest.date, informationJobs.deltas.oneYear)} ${formatDelta(informationJobs, informationJobs.deltas.oneYear)}`,
       tone: deltaTone(informationJobs, informationJobs.deltas.oneYear),
     },
     {

@@ -1498,6 +1498,19 @@ function buildNarrative(dataset: {
   const payrolls = dataset.metrics.nonfarmPayrolls;
   const population = dataset.metrics.population;
 
+  // When the month a year back was never published, the base slides to the nearest earlier month. Name it.
+  const measuredFrom = (metric: { latest: { date: string }; deltas: { oneYear: { baseDate: string } | null } }): string | null => {
+    const base = metric.deltas.oneYear?.baseDate;
+    if (!base) return null;
+    const latest = new Date(metric.latest.date);
+    const from = new Date(base);
+    const months = (latest.getUTCFullYear() - from.getUTCFullYear()) * 12 + (latest.getUTCMonth() - from.getUTCMonth());
+    return months === 12 ? null : from.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
+  };
+  const yearPhrase = (metric: Parameters<typeof measuredFrom>[0], exact: string): string => {
+    const from = measuredFrom(metric);
+    return from ? `from ${from}, the closest month with a published figure` : exact;
+  };
   const unemploymentYoy = unemployment.deltas.oneYear?.absolute ?? 0;
   const laborForceYoy = laborForce.deltas.oneYear?.absolute ?? 0;
   const payrollYoy = payrolls.deltas.oneYear?.absolute ?? 0;
@@ -1508,7 +1521,7 @@ function buildNarrative(dataset: {
     `${payrolls.label} are ${payrollYoy >= 0 ? "up" : "down"} ${Math.abs(payrollYoy).toFixed(1)}k over the last year.`,
     `${laborForce.label} is ${laborForceYoy >= 0 ? "up" : "down"} ${Math.abs(laborForceYoy).toLocaleString("en-US", {
       maximumFractionDigits: 0,
-    })} people year-over-year.`,
+    })} people ${yearPhrase(laborForce, "year-over-year")}.`,
     `Population reached ${Math.round(population.latest.value).toLocaleString("en-US")} in ${new Date(
       population.latest.date,
     ).getUTCFullYear()}.`,
@@ -1516,8 +1529,8 @@ function buildNarrative(dataset: {
 
   const improving = [
     unemploymentYoy < 0
-      ? `Unemployment improved by ${Math.abs(unemploymentYoy).toFixed(1)} percentage points year-over-year.`
-      : `The unemployment rate is ${unemployment.latest.value.toFixed(1)}%, up ${unemploymentYoy.toFixed(1)} percentage points over the year.`,
+      ? `Unemployment improved by ${Math.abs(unemploymentYoy).toFixed(1)} percentage points ${yearPhrase(unemployment, "year-over-year")}.`
+      : `The unemployment rate is ${unemployment.latest.value.toFixed(1)}%, up ${unemploymentYoy.toFixed(1)} percentage points ${yearPhrase(unemployment, "over the year")}.`,
     ...dataset.strongestGrowers.map((sector) => {
       const yoy = sector.deltas.oneYear?.percent;
       const pct = yoy === null || yoy === undefined ? "n/a" : `${yoy.toFixed(1)}%`;

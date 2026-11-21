@@ -1,4 +1,4 @@
-import { type CoreMetricId, formatDelta, formatMetricValue } from "../lib/dashboard";
+import { type CoreMetricId, formatDelta, formatMetricValue, yearAgoMonth } from "../lib/dashboard";
 import { Frame } from "./primitives";
 import type { FloridaRegion } from "../hooks/usePreferences";
 import type { DashboardDataset } from "../types/dashboard";
@@ -17,6 +17,12 @@ function movedBadly(id: CoreMetricId, trendDirection: "up_good" | "down_good", o
   return trendDirection === "up_good" ? oneYearAbsolute < 0 : oneYearAbsolute > 0;
 }
 
+/** "over one year" for a true one-year change; otherwise the month the change is measured from. */
+function changeSpan(latestDate: string, delta: Parameters<typeof yearAgoMonth>[1]): string {
+  const month = yearAgoMonth(latestDate, delta);
+  return month ? `since ${month}` : "over one year";
+}
+
 export function AttentionStrip({ dataset, region }: { dataset: DashboardDataset; region: FloridaRegion }) {
   const flags: Flag[] = [];
 
@@ -26,7 +32,7 @@ export function AttentionStrip({ dataset, region }: { dataset: DashboardDataset;
     if (movedBadly(id, metric.trendDirection, absolute)) {
       flags.push({
         label: metric.label,
-        detail: `${formatMetricValue(metric, metric.latest.value)}, ${formatDelta(metric, metric.deltas.oneYear)} over one year`,
+        detail: `${formatMetricValue(metric, metric.latest.value)}, ${formatDelta(metric, metric.deltas.oneYear)} ${changeSpan(metric.latest.date, metric.deltas.oneYear)}`,
         threshold: id === "unemploymentRate" ? "Triggered at +0.5 percentage points YoY" : "Triggered below 0 YoY",
       });
     }
@@ -39,7 +45,7 @@ export function AttentionStrip({ dataset, region }: { dataset: DashboardDataset;
       if (unemploymentDelta > 0) {
         flags.push({
           label: `${metro.name} unemployment`,
-          detail: `${metro.unemploymentRate.latest.value.toFixed(1)}%, up ${unemploymentDelta.toFixed(1)} points over one year`,
+          detail: `${metro.unemploymentRate.latest.value.toFixed(1)}%, up ${unemploymentDelta.toFixed(1)} points ${changeSpan(metro.unemploymentRate.latest.date, metro.unemploymentRate.deltas.oneYear)}`,
           threshold: "Triggered at any YoY deterioration for the selected metro",
         });
       }
