@@ -119,7 +119,7 @@ export default function FloridaAtlas({ embedded = false }: { embedded?: boolean 
               {visibleRegions.map((region) => <option key={region.id} value={region.id}>{region.name}</option>)}
             </select>
           </label>
-          <div className="atlas-sidebar-bottom"><span>28.1° N · 83.5° W</span><p>A guide to the major employers, ports, and research sites in each region.</p></div>
+          <div className="atlas-sidebar-bottom"><span>28.1° N · 83.5° W</span><p>Employers, ports, and research sites in each region.</p></div>
         </aside>}
 
         <section className="atlas-map-section" aria-label="Interactive Florida regional map">
