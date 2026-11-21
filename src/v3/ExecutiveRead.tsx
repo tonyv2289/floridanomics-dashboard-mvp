@@ -26,11 +26,11 @@ export function ExecutiveRead({ dataset }: { dataset: DashboardDataset }) {
       action: "Compare local recruiting conditions and compensation before committing to an expansion.",
     },
     investor: {
-      headline: "Population growth supports demand; productivity and export earnings determine the longer-term contribution.",
+      headline: "Population growth supports demand. Productivity and export earnings decide how much the economy gains over time.",
       action: "Distinguish businesses serving local demand from those developing technology, manufacturing, and services for outside markets.",
     },
     policymaker: {
-      headline: "An announced project becomes an economic contribution as investment, operations, and employment materialize.",
+      headline: "An announced project counts once the money is spent, the site is operating, and people are hired.",
       action: "Track construction, private spending, supplier relationships, and wages against the original commitments.",
     },
     developer: {
