@@ -12,6 +12,7 @@ import {
   formatTradeHero,
   formatUsdBillions,
   formatUsdMillions,
+  yearAgoLabel,
   shortMonthLabel,
 } from "./dashboard";
 
@@ -144,5 +145,23 @@ describe("date helpers", () => {
   it("daysSince is non-negative and 0 for the future", () => {
     expect(daysSince("2020-01-01")).toBeGreaterThan(0);
     expect(daysSince("2999-01-01")).toBe(0);
+  });
+});
+
+describe("yearAgoLabel", () => {
+  const delta = (baseDate: string): Delta => ({ years: 1, baseDate, absolute: 0.1, percent: 2.4 });
+
+  it("reads 1Y when the comparison month is exactly a year back", () => {
+    expect(yearAgoLabel("2026-10-01", delta("2025-10-01"))).toBe("1Y");
+    expect(yearAgoLabel("2025-01-01", delta("2024-01-01"))).toBe("1Y");
+  });
+
+  it("names the month used when the month a year back was never published", () => {
+    // BLS has no October 2025 household data, so October 2026 compares with September 2025.
+    expect(yearAgoLabel("2026-10-01", delta("2025-09-01"))).toBe("vs Sep 2025");
+  });
+
+  it("falls back to 1Y when there is no comparison", () => {
+    expect(yearAgoLabel("2026-10-01", null)).toBe("1Y");
   });
 });

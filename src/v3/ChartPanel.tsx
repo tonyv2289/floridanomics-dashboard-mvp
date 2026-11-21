@@ -14,6 +14,7 @@ import {
   deltaTone,
   formatDelta,
   formatMetricValue,
+  yearAgoLabel,
 } from "../lib/dashboard";
 import { formatDisplayedValue } from "./format";
 import { TOOLTIP_ITEM_STYLE, TOOLTIP_LABEL_STYLE, TOOLTIP_STYLE } from "./constants";
@@ -52,7 +53,7 @@ export function ChartPanel({
         <div className="v3-panel-number">
           <strong>{formatMetricValue(metric, metric.latest.value)}</strong>
           <span className={clsx(`tone-${deltaTone(metric, metric.deltas.oneYear)}`)}>
-            1Y {formatDelta(metric, metric.deltas.oneYear)}
+            {yearAgoLabel(metric.latest.date, metric.deltas.oneYear)} {formatDelta(metric, metric.deltas.oneYear)}
           </span>
         </div>
       </div>

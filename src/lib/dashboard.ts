@@ -105,6 +105,26 @@ export function formatMetricValue(metric: AnyMetric, rawValue: number): string {
   return formatCompact(displayValue(metric, rawValue), 1);
 }
 
+/**
+ * The label for a one-year change. "1Y" when the comparison month is exactly a year back. When that month was
+ * never published (BLS has no October 2025 household data), the base slides to the nearest earlier month, so the
+ * label names the month used, such as "vs Sep 2025".
+ */
+export function yearAgoLabel(latestDate: string, delta: Delta | null | undefined): string {
+  if (!delta?.baseDate) return "1Y";
+  const latest = new Date(latestDate);
+  const base = new Date(delta.baseDate);
+  const months = (latest.getUTCFullYear() - base.getUTCFullYear()) * 12 + (latest.getUTCMonth() - base.getUTCMonth());
+  if (months === 12) return "1Y";
+  return `vs ${base.toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })}`;
+}
+
+/** A chip label such as "1Y labor force", or "Labor force vs Sep 2025" when the month a year back has no figure. */
+function yearChipLabel(noun: string, latestDate: string, delta: Delta | null | undefined): string {
+  const label = yearAgoLabel(latestDate, delta);
+  return label === "1Y" ? `1Y ${noun}` : `${noun.charAt(0).toUpperCase()}${noun.slice(1)} ${label}`;
+}
+
 export function formatDelta(metric: AnyMetric, delta: Delta | null): string {
   if (!delta) {
     return "n/a";
@@ -270,12 +290,12 @@ export function buildScorecardLead(dataset: DashboardDataset): DashboardLead {
         tone: deltaTone(unemployment, unemployment.deltas.oneYear),
       },
       {
-        label: "1Y labor force",
+        label: yearChipLabel("labor force", laborForce.latest.date, laborForce.deltas.oneYear),
         value: formatDelta(laborForce, laborForce.deltas.oneYear),
         tone: deltaTone(laborForce, laborForce.deltas.oneYear),
       },
       {
-        label: "1Y employment",
+        label: yearChipLabel("employment", employment.latest.date, employment.deltas.oneYear),
         value: formatDelta(employment, employment.deltas.oneYear),
         tone: deltaTone(employment, employment.deltas.oneYear),
       },

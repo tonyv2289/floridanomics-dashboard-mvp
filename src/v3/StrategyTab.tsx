@@ -7,7 +7,13 @@ import {
 } from "./format";
 import { Frame, InsightBlock, SourceAnchor, SourceList } from "./primitives";
 import { PolicyMemo } from "./PolicyMemo";
-import { deltaTone, formatDelta, formatMetricValue } from "../lib/dashboard";
+import { deltaTone, formatDelta, formatMetricValue, yearAgoLabel } from "../lib/dashboard";
+
+/** "YoY" for a true one-year change; otherwise the month the change is measured from. */
+function yoyLabel(metric: { latest: { date: string }; deltas: { oneYear: Parameters<typeof yearAgoLabel>[1] } }): string {
+  const label = yearAgoLabel(metric.latest.date, metric.deltas.oneYear);
+  return label === "1Y" ? "YoY" : label;
+}
 import type { DashboardDataset } from "../types/dashboard";
 
 function HighWageJobsMonitor({ dataset }: { dataset: DashboardDataset }) {
@@ -75,7 +81,7 @@ function StrategyHero({ dataset }: { dataset: DashboardDataset }) {
           <article>
             <span>Florida read</span>
             <strong>{florida ? `${florida.unemploymentRate.latest.value.toFixed(1)}%` : "n/a"}</strong>
-            <p>{florida ? `${formatPeerUnemploymentDelta(florida)} YoY` : "BLS peer benchmark"}</p>
+            <p>{florida ? `${formatPeerUnemploymentDelta(florida)} ${yoyLabel(florida.unemploymentRate)}` : "BLS peer benchmark"}</p>
           </article>
         </div>
       </div>
@@ -114,7 +120,7 @@ function PeerStateBenchmarks({ dataset }: { dataset: DashboardDataset }) {
               <div>
                 <span>Unemployment</span>
                 <strong>{state.unemploymentRate.latest.value.toFixed(1)}%</strong>
-                <small className={clsx(`tone-${unemploymentTone}`)}>{formatPeerUnemploymentDelta(state)} YoY</small>
+                <small className={clsx(`tone-${unemploymentTone}`)}>{formatPeerUnemploymentDelta(state)} {yoyLabel(state.unemploymentRate)}</small>
               </div>
               <div>
                 <span>Payrolls 1Y</span>
