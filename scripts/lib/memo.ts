@@ -65,7 +65,7 @@ export function formatMove(unit: MetricUnit, absolute: number): string {
   if (unit === "percent") {
     return `${absolute >= 0 ? "up" : "down"} ${magnitude.toFixed(1)} points`;
   }
-  const direction = absolute >= 0 ? "a gain of" : "a loss of";
+  const direction = absolute >= 0 ? "up" : "down";
   if (unit === "thousands_jobs") {
     return `${direction} ${formatCompact(magnitude * 1000, 1)} jobs`;
   }
@@ -83,10 +83,10 @@ function toneFor(metric: Pick<DiffableMetric, "trendDirection">, absolute: numbe
 }
 
 function newPeriodHeadline(metric: DiffableMetric, prevDate: string, nextDate: string, absolute: number): string {
-  const verb = metric.unit === "percent" ? "moved to" : "reached";
+  // "Label: level" reads the same for singular and plural labels, and for a rise or a fall.
   const level = formatLevel(metric.unit, metric.latest.value);
   const move = formatMove(metric.unit, absolute);
-  return `${metric.label} ${verb} ${level} in ${monthLabel(nextDate)}, ${move} versus ${monthLabel(prevDate)}.`;
+  return `${metric.label}: ${level} in ${monthLabel(nextDate)}, ${move} from ${monthLabel(prevDate)}.`;
 }
 
 function revisionHeadline(metric: DiffableMetric, prevValue: number): string {

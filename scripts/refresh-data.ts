@@ -241,7 +241,7 @@ function buildTrustLayer({
       reviewedAt: "2026-09-10",
       contact: "info@floridanomics.com",
       commitment:
-        "Material errors are corrected promptly, the affected claim is re-sourced, and a dated correction note is retained with the product record.",
+        "When we find a material error, we correct it promptly, check the claim against its source again, and keep a dated note of the correction.",
     },
   };
 }
@@ -580,7 +580,7 @@ const FLORIDA_BRAIN_NOTES: DashboardDataset["brainNotes"] = [
     status: "Research brief",
     title: "Florida's position in AI infrastructure investment",
     summary:
-      "A review of the evidence needed to assess Florida's data-center investment, infrastructure requirements, and regional economic benefits. State employment figures alone do not establish an investment gap.",
+      "What it takes to measure Florida's data-center investment, what those projects need from the grid, and what they return to a region. State job figures alone cannot show an investment gap.",
     ctaLabel: "Open the brief",
     href: "briefs/ai-capex-gap/",
     sources: [
@@ -600,7 +600,7 @@ const FLORIDA_BRAIN_NOTES: DashboardDataset["brainNotes"] = [
     status: "Watch item",
     title: "Data-center investment and infrastructure costs.",
     summary:
-      "Florida's enacted CS/CS/SB 484 addresses data-center requirements. Project evaluation also needs evidence on costs, capacity, and local economic benefits.",
+      "Florida's new law, CS/CS/SB 484, sets requirements for data centers. Judging a project also takes evidence on its costs, its capacity, and what the community gets from it.",
     sources: [
       {
         label: "Florida Governor SB 484 release",
@@ -614,7 +614,7 @@ const FLORIDA_BRAIN_NOTES: DashboardDataset["brainNotes"] = [
     status: "Research question",
     title: "Regional demand for computing infrastructure",
     summary:
-      "Aerospace, health care, finance, and international business may support demand for computing services. Commercial viability requires project-level analysis.",
+      "Florida's aerospace, health care, finance, and international business may all need more computing. Whether a project pays off has to be checked one project at a time.",
     sources: [
       {
         label: "JLL 2026 Global Data Center Outlook",
@@ -639,7 +639,7 @@ const STRATEGY_SOURCE_STACK: DashboardDataset["sources"] = [
     id: "texas_2036_data_hub",
     name: "Texas 2036 Data Hub",
     url: "https://texas2036.org/data/",
-    notes: "Long-range state strategy and scenario framing model.",
+    notes: "A model for long-range state strategy and scenarios.",
   },
   {
     id: "pennsylvania_on_target",
@@ -651,25 +651,25 @@ const STRATEGY_SOURCE_STACK: DashboardDataset["sources"] = [
     id: "north_carolina_evi",
     name: "North Carolina County Economic Vitality Dashboard",
     url: "https://www.commerce.nc.gov/news/the-lead-feed/introducing-county-evi-dashboard",
-    notes: "County comparison, ranking, and improvement-over-time model.",
+    notes: "A model for comparing counties, ranking them, and tracking their improvement over time.",
   },
   {
     id: "tennessee_e2e",
     name: "Tennessee Education to Employment Dashboard",
     url: "https://www.tn.gov/finance/oei/tn-data/e2e-dashboard.html",
-    notes: "Education-program to wage-outcome model for talent pipeline analysis.",
+    notes: "A model that links education programs to graduates' wages.",
   },
   {
     id: "washington_stem_dashboard",
     name: "Washington STEM Talent Supply and Demand Dashboard",
     url: "https://wsac.wa.gov/STEM-Alliance",
-    notes: "STEM supply-demand model for workforce gap framing.",
+    notes: "A model that compares the supply of STEM graduates with employer demand.",
   },
   {
     id: "mass_competitiveness_index",
     name: "Massachusetts Competitiveness Index",
     url: "https://www.masstaxpayers.org/massachusetts-competitiveness-index-2025",
-    notes: "Peer-state competitiveness model across economic health, population, business investment, and quality of life.",
+    notes: "A model for comparing states on economic health, population, business investment, and quality of life.",
   },
 ];
 
@@ -678,31 +678,31 @@ const TERMINAL_SOURCE_STACK: DashboardDataset["sources"] = [
     id: "bls_state_april_2026",
     name: "BLS State Employment and Unemployment, April 2026",
     url: "https://www.bls.gov/news.release/laus.nr0.htm",
-    notes: "Official state unemployment and nonfarm payroll benchmark used for the Florida versus peer-state operating read.",
+    notes: "The official state unemployment and payroll figures used to compare Florida with peer states.",
   },
   {
     id: "cbre_h2_2025_data_centers",
     name: "CBRE North America Data Center Trends H2 2025",
     url: "https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026/dallas-ft-worth-data-center-market",
-    notes: "Industry source for primary-market net absorption, Dallas data-center demand, supply constraints, and AI inference siting trends.",
+    notes: "Industry research on data-center leasing in the largest markets, demand in Dallas, supply limits, and where AI computing is being sited.",
   },
   {
     id: "jll_2026_global_data_center_outlook",
     name: "JLL 2026 Global Data Center Outlook",
     url: "https://www.jll.com/en-uk/newsroom/global-data-center-sector-to-nearly-double-to-200gw-amid-ai-infrastructure-boom",
-    notes: "Industry source for the global AI infrastructure supercycle, 103 GW to 200 GW capacity outlook, and $3T investment frame.",
+    notes: "Industry research that forecasts global data-center capacity growing from 103 GW to 200 GW, with up to $3 trillion of investment.",
   },
   {
     id: "florida_governor_sb484",
     name: "Florida Governor's Office - SB 484 Data Center Law",
     url: "https://www.flgov.com/eog/news/press/2026/governor-ron-desantis-signs-law-protect-floridians-subsidizing-data-centers",
-    notes: "Official source for Florida's ratepayer-protection stance on hyperscale data centers.",
+    notes: "The Governor's Office statement of Florida's position on protecting ratepayers from the costs of hyperscale data centers.",
   },
   {
     id: "florida_senate_sb484",
     name: "Florida Senate CS/CS/SB 484 Bill Summary",
     url: "https://www.flsenate.gov/Committees/BillSummaries/2026/html/484",
-    notes: "Policy source for large-load tariff, cost-of-service, local authority, water, and transparency requirements.",
+    notes: "The bill summary, used for the law's rules on large-load tariffs, cost of service, local authority, water, and transparency.",
   },
 ];
 
@@ -763,9 +763,9 @@ const STRATEGY_CLUSTERS: StrategyLayer["clusters"] = [
   {
     id: "ai-power-readiness",
     title: "AI capex and power readiness",
-    thesis: "Florida's AI infrastructure position requires comparable evidence on data-center capacity, power availability, project investment, and employment.",
+    thesis: "Measuring Florida's position in AI infrastructure takes comparable figures on data-center capacity, available power, project investment, and jobs.",
     bottleneck: "Power supply, water, transmission, and the allocation of infrastructure costs.",
-    proof: "State unemployment rates alone cannot establish whether Florida is gaining or losing AI infrastructure investment.",
+    proof: "State unemployment rates alone cannot show whether Florida is gaining or losing AI infrastructure investment.",
     whatToTrack: "Data-center megawatts, interconnection queue, industrial power rates, project capex, and high-wage construction plus operations jobs.",
     sources: [
       {
@@ -781,7 +781,7 @@ const STRATEGY_CLUSTERS: StrategyLayer["clusters"] = [
   {
     id: "space-coast-aerospace",
     title: "Space Coast aerospace cadence",
-    thesis: "Florida's aerospace capabilities connect launch operations, manufacturing, engineering, and spaceport infrastructure.",
+    thesis: "Florida's aerospace industry covers launches, manufacturing, engineering, and the spaceports themselves.",
     bottleneck: "Specialized talent, industrial sites, supplier depth, and how much of the value chain stays in Florida.",
     proof: "Space Florida's 2025 review reported 109 launches and a $6 billion prospective project pipeline. The $600 million Blue Origin expansion was announced in May 2026.",
     whatToTrack: "Launch cadence, aerospace payrolls, project pipeline, supplier announcements, and advanced manufacturing wage growth.",
@@ -795,9 +795,9 @@ const STRATEGY_CLUSTERS: StrategyLayer["clusters"] = [
   {
     id: "latam-gateway",
     title: "LATAM gateway and logistics",
-    thesis: "South Florida's trade capabilities connect ports and airports with logistics, finance, and business services.",
+    thesis: "South Florida's ports and airports support logistics, trade finance, and business services.",
     bottleneck: "Cold-chain capacity, port throughput, customs efficiency, insurance, and last-mile infrastructure.",
-    proof: "PortMiami and Port Everglades publish cargo statistics that provide dated measures of regional freight activity.",
+    proof: "PortMiami and Port Everglades publish dated cargo statistics that show how much freight moves through the region.",
     whatToTrack: "TEUs, tonnage, refrigerated cargo, LATAM share, air cargo, export categories, and bilateral trade via Florida ports and airports.",
     sources: [
       {
@@ -813,9 +813,9 @@ const STRATEGY_CLUSTERS: StrategyLayer["clusters"] = [
   {
     id: "talent-pipeline",
     title: "Talent pipeline and wage outcomes",
-    thesis: "Industry development depends on education, skills, and employer demand aligning across Florida's regional labor markets.",
-    bottleneck: "The first Talent Match view covers selected public-university bachelor's pathways; state-college, private, certificate, graduate, migration, and employer-demand layers remain outside the proxy.",
-    proof: "The selected pathways combine historical graduate outcomes with long-term occupational projections. They are incomplete measures of labor supply and demand.",
+    thesis: "An industry grows where schools, workers' skills, and employers' needs line up in the same region.",
+    bottleneck: "Talent Match covers selected bachelor's programs at public universities so far. State colleges, private schools, certificates, graduate degrees, workers moving in, and employer demand are not yet included.",
+    proof: "Each pathway pairs past graduate outcomes with long-term job projections. Together they give an incomplete picture of labor supply and demand.",
     whatToTrack: "Broader credentials, regional placement, retention, target occupations, wage outcomes, and employer demand in priority clusters.",
     sources: [
       {
@@ -834,7 +834,7 @@ const STRATEGY_TALENT_PIPELINE: StrategyLayer["talentPipeline"] = {
   eyebrow: "Talent pipeline",
   title: "Education, employment, and wage outcomes.",
   summary:
-    "Selected public-university programs illustrate the relationship between credentials and observed Florida employment. Coverage and reporting periods are stated in the Talent section.",
+    "Selected public-university programs show how degrees connect to jobs held in Florida. The Talent section states what is covered and for which years.",
   stats: [
     {
       label: "Model to study",
@@ -865,7 +865,7 @@ const STRATEGY_TALENT_PIPELINE: StrategyLayer["talentPipeline"] = {
     },
   ],
   interpretation: [
-    "Workforce planning requires evidence on relevant skills, graduate outcomes, and employer demand within each region.",
+    "Planning a workforce takes evidence on skills, graduate outcomes, and employer demand in each region.",
     "These comparisons cover a limited set of bachelor's programs. They exclude many other sources of qualified workers.",
   ],
   sources: [
@@ -930,7 +930,7 @@ const STRATEGY_SCENARIOS: StrategyLayer["scenarios"] = [
   {
     id: "risk",
     label: "Risk case",
-    status: "Population growth without next-economy depth",
+    status: "Population growth without new industries",
     summary: "Florida keeps attracting residents but misses most of the power-intensive investment and the STEM jobs that come with it.",
     signals: [
       "Unemployment rises while payroll growth concentrates in lower-wage or population-serving sectors.",
@@ -953,9 +953,9 @@ const STRATEGY_SCENARIOS: StrategyLayer["scenarios"] = [
 const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLedger"> = {
   headline: "Investment, infrastructure, and Florida's economic development.",
   thesis:
-    "Population growth, business applications, infrastructure, and industry investment each contribute to Florida's economy. The practical question is how these strengths support productivity, wage growth, and durable regional employment.",
+    "Population growth, new businesses, infrastructure, and industry investment all add to Florida's economy. What we want to know is whether they raise productivity, wages, and lasting jobs in each region.",
   operatingQuestion:
-    "Where can Florida's existing capabilities support additional investment, and what constraints must be addressed?",
+    "Where can Florida build on what it already has, and what stands in the way?",
   sources: [
     {
       id: "bls_state_april_2026",
@@ -1223,7 +1223,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Florida payroll pulse",
         value: "+40,500",
         context: "April 2026 monthly nonfarm payroll change, largest among states",
-        read: "Monthly payroll change measures jobs across the economy. It does not identify the contribution of AI infrastructure.",
+        read: "The monthly payroll change counts jobs across the whole economy. It cannot show what AI infrastructure added.",
         sourceIds: ["bls_state_april_2026"],
       },
       {
@@ -1231,7 +1231,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Unemployment warning light",
         value: "4.8%",
         context: "Florida April 2026 unemployment rate, up 1.1 percentage points year over year",
-        read: "Unemployment and payrolls describe different populations. Industry detail is needed to understand their respective movements.",
+        read: "Unemployment counts residents and payrolls count jobs, so the two can move differently. It takes industry detail to explain why.",
         sourceIds: ["bls_state_april_2026"],
       },
       {
@@ -1239,7 +1239,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Texas comparison",
         value: "4.3%",
         context: "Texas April 2026 unemployment rate",
-        read: "Texas provides a peer comparison. Differences in unemployment cannot be attributed to data centers from these figures alone.",
+        read: "Texas is shown for comparison. These figures alone cannot tie a difference in unemployment to data centers.",
         sourceIds: ["bls_state_april_2026"],
       },
       {
@@ -1247,7 +1247,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Dallas data centers under construction",
         value: "765+ MW",
         context: "CBRE H1 2026 Dallas-Fort Worth market review",
-        read: "CBRE reports more than 765 MW under construction, with 95% preleased. Construction capacity differs from operating supply and planned projects.",
+        read: "CBRE reports more than 765 MW under construction, with 95% preleased. Capacity under construction is not the same as capacity that is operating or planned.",
         sourceIds: ["cbre_h2_2025_data_centers"],
       },
       {
@@ -1255,64 +1255,64 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Global data-center investment forecast",
         value: "$3T",
         context: "JLL estimate for total data-center investment over the next five years",
-        read: "This global industry forecast describes potential investment, not committed Florida capital.",
+        read: "This is a global industry forecast of possible investment. It is not capital committed to Florida.",
         sourceIds: ["jll_2026_global_data_center_outlook"],
       },
     ],
     factors: [
       {
         id: "demand-adjacency",
-        label: "Demand adjacency",
+        label: "Nearby demand",
         score: 4,
         maxScore: 5,
-        read: "Potential demand includes aerospace, finance, health care, and regional digital services. Project demand requires individual verification.",
+        read: "Demand could come from aerospace, finance, health care, and regional digital services. Each project's demand has to be verified on its own.",
         sourceIds: ["jll_2026_global_data_center_outlook", "portmiami", "space_florida"],
       },
       {
         id: "power-readiness",
-        label: "Power readiness",
+        label: "Power supply",
         score: 2,
         maxScore: 5,
-        read: "Comparable evidence is needed on capacity under construction, interconnection, power procurement, and self-supply.",
+        read: "We still need comparable figures on capacity under construction, grid interconnection, power purchases, and on-site generation.",
         sourceIds: ["cbre_h2_2025_data_centers", "florida_senate_sb484"],
       },
       {
         id: "project-visibility",
-        label: "Project visibility",
+        label: "Project list",
         score: 2,
         maxScore: 5,
-        read: "The current inventory is incomplete. Missing records do not establish that projects or investment are absent.",
+        read: "The current project list is incomplete. A missing record does not mean a project or an investment is absent.",
         sourceIds: ["blue_origin_florida", "cbre_h2_2025_data_centers"],
       },
       {
         id: "incentive-discipline",
-        label: "Incentive discipline",
+        label: "Incentive terms",
         score: 4,
         maxScore: 5,
-        read: "Evaluate cost allocation, utility requirements, local approvals, and economic benefits against the enacted law and project terms.",
+        read: "Check who pays, what the utility requires, what local approvals are needed, and what the economy gains, against the new law and each project's terms.",
         sourceIds: ["florida_governor_sb484", "florida_senate_sb484"],
       },
       {
         id: "wage-conversion",
-        label: "High-wage conversion",
+        label: "High-wage jobs",
         score: 3,
         maxScore: 5,
-        read: "Wages, occupations, and employment outcomes help assess whether investment is supporting higher-productivity activities.",
+        read: "Wages, occupations, and job results show whether investment is moving Florida into higher-productivity work.",
         sourceIds: ["bls_state_april_2026", "fc100_ambition_accelerated"],
       },
     ],
   },
   highWageMonitor: {
-    headline: "Employment composition and wage outcomes.",
+    headline: "Jobs by industry and what they pay.",
     summary:
-      "These broad sector measures provide context for industry development. They do not isolate AI-related jobs, establish wage quality, or measure the effects of individual investments.",
+      "These are broad industry measures, shown for context. They do not single out AI jobs, show how well jobs pay, or measure what any one investment did.",
     metrics: [
       {
         id: "information-jobs",
         label: "Information jobs",
         value: "Live BLS series",
         context: "Information-sector employment",
-        read: "Information employment covers multiple industries. It is not a comprehensive count of technology or data-center jobs.",
+        read: "The information sector covers several industries. It is not a full count of technology or data-center jobs.",
         sourceIds: ["bls_state_april_2026"],
       },
       {
@@ -1320,7 +1320,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Construction jobs",
         value: "Live BLS series",
         context: "Construction-sector employment",
-        read: "Construction employment spans residential, commercial, and infrastructure work. Project-level data are needed to attribute changes.",
+        read: "Construction jobs include homes, commercial buildings, and infrastructure. It takes project-level data to tie a change to any one project.",
         sourceIds: ["bls_state_april_2026"],
       },
       {
@@ -1328,7 +1328,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Professional services",
         value: "Live BLS series",
         context: "Professional and business services",
-        read: "Professional and business services include engineering, management, administrative, and other activities with varied wages.",
+        read: "Professional and business services include engineering, management, and administrative work, at widely different wages.",
         sourceIds: ["bls_state_april_2026"],
       },
     ],
@@ -1337,11 +1337,11 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
     {
       id: "ai-capex-gap",
       claim:
-        "Research question: how much AI infrastructure investment is Florida attracting relative to comparable states?",
+        "Research question: how much AI infrastructure investment is Florida attracting compared with similar states?",
       horizon: "6 to 18 months",
       confidence: "medium",
       mechanism:
-        "Data-center projects may generate construction, engineering, utility, and operating activity. Their contribution must be established from project-level capacity, spending, employment, and cost data.",
+        "Data-center projects can bring construction, engineering, utility, and operations work. How much they add has to be shown with each project's capacity, spending, jobs, and costs.",
       leadingIndicators: [
         "Announced megawatts and MW under construction by state",
         "Large-load interconnection queue and utility tariff filings",
@@ -1355,25 +1355,25 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         "Average weekly wages in target clusters",
       ],
       baseCase:
-        "Illustrative scenario: established industries continue to account for most documented regional investment.",
+        "Illustrative scenario: established industries keep accounting for most of the documented investment in each region.",
       ambitionCase:
-        "Illustrative scenario: commercially viable compute projects add capacity while covering their infrastructure costs and supporting regional demand.",
+        "Illustrative scenario: computing projects that make commercial sense add capacity, pay their own infrastructure costs, and serve regional demand.",
       riskCase:
-        "Illustrative scenario: infrastructure constraints delay viable projects or increase their costs.",
+        "Illustrative scenario: limits on infrastructure delay good projects or make them cost more.",
       counterCase:
-        "Labor-market changes may reflect participation, industry composition, and broader conditions rather than AI investment.",
+        "Changes in the labor market may come from participation, the industry mix, and the wider economy, and not from AI investment.",
       updateTrigger:
-        "Reassess when comparable project-capacity inventories and utility filings are available. No causal finding is established here.",
+        "Once comparable project-capacity lists and utility filings are available. Nothing here shows cause and effect.",
       sourceIds: ["bls_state_april_2026", "cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
     },
     {
       id: "florida-model-export",
       claim:
-        "Research question: which Florida economic-development practices are transferable to other regions?",
+        "Research question: which of Florida's economic development practices would work in other regions?",
       horizon: "12 to 36 months",
       confidence: "medium",
       mechanism:
-        "Policy comparisons require evidence on institutions, costs, industry composition, and outcomes. Florida's geographic and demographic advantages may not transfer.",
+        "Comparing policies takes evidence on institutions, costs, the industry mix, and results. Florida's geography and its population growth may not carry over to another state.",
       leadingIndicators: [
         "Business formation",
         "Income migration",
@@ -1387,15 +1387,15 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         "State and local fiscal resilience",
       ],
       baseCase:
-        "Illustrative scenario: evidence supports selected practices under comparable local conditions.",
+        "Illustrative scenario: the evidence supports some practices where local conditions are similar.",
       ambitionCase:
-        "Illustrative scenario: documented improvements in investment delivery and workforce outcomes inform other jurisdictions.",
+        "Illustrative scenario: documented gains in delivered investment and workforce results give other states something to study.",
       riskCase:
-        "Policies are adopted without accounting for differences in local conditions or implementation capacity.",
+        "Policies are adopted without allowing for different local conditions or the ability to carry them out.",
       counterCase:
-        "Geography, climate, migration, and industry structure may explain outcomes that are incorrectly attributed to policy.",
+        "Geography, climate, migration, and the industry mix may explain results that get credited to policy.",
       updateTrigger:
-        "Reassess after comparable outcome studies become available.",
+        "After comparable outcome studies are available.",
       sourceIds: ["florida_chamber_income_migration", "fc100_ambition_accelerated", "florida_taxwatch", "james_madison_institute"],
     },
   ],
@@ -1404,39 +1404,39 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
       id: "strategic-compute-not-dumb-load",
       title: "Data-center investment and infrastructure costs.",
       stance:
-        "Editorial recommendation: assess viable data-center investment alongside ratepayer protection and local infrastructure requirements.",
+        "Editorial recommendation: weigh each data-center investment together with ratepayer protection and the local infrastructure it requires.",
       whatChanged:
         "CS/CS/SB 484 became Chapter 2026-65. Its principal effective date is July 1, 2026, with exceptions identified in the law.",
       mechanism:
-        "Project evaluation should distinguish private investment benefits from electricity, water, and infrastructure costs borne by other customers.",
+        "A project review should separate what the private investment brings from the electricity, water, and infrastructure costs that other customers would pay.",
       recommendation:
-        "Assess power procurement, water use, grid requirements, cost recovery, and employment commitments for each proposal. Any incentives should have explicit terms and measurable public benefits.",
+        "For each proposal, look at how it gets its power, how much water it uses, what it needs from the grid, who pays those costs, and what jobs it commits to. Any incentive should come with written terms and public benefits that can be measured.",
       whatNotToDo:
-        "Do not infer public benefits from announced spending alone or assume all data centers have the same costs and operating requirements.",
+        "Do not count announced spending as a public benefit, and do not assume every data center has the same costs or needs.",
       nextMoves: [
-        "Add Florida-specific MW pipeline and utility tariff tracker",
-        "Create a named project ledger for data centers, grid upgrades, and advanced manufacturing",
-        "Map strategic workloads to Space Coast, LATAM, health, finance, and emergency-resilience use cases",
+        "Florida's data-center megawatts in the pipeline and its utility tariff filings",
+        "A named list of data-center, grid, and advanced manufacturing projects",
+        "The computing needs of the Space Coast, Latin America trade, health, finance, and emergency response",
       ],
       sourceIds: ["florida_governor_sb484", "florida_senate_sb484", "cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
     },
     {
       id: "wage-curve-scoreboard",
-      title: "Make wage quality the referee.",
+      title: "Judge industry policy by wages.",
       stance:
-        "Editorial recommendation: evaluate industry policy using wages, productivity, and sustained employment alongside investment totals.",
+        "Editorial recommendation: judge industry policy by wages, productivity, and lasting jobs, along with the investment totals.",
       whatChanged:
-        "The latest employment figures differ by industry and measure. Aggregate growth does not establish the quality of individual jobs.",
+        "The latest job figures differ by industry and by measure. Total growth does not tell us how good the jobs are.",
       mechanism:
-        "Population affects demand. Capital investment can support productive capacity, but outcomes depend on project type, implementation, and workforce capabilities.",
+        "More residents mean more demand. Capital investment can add productive capacity, but the result depends on the kind of project, how it is carried out, and the workers available.",
       recommendation:
-        "Use occupational wages, QCEW industry data, credentials, and regional employment outcomes to assess progress.",
+        "Measure progress with occupational wages, QCEW industry data, credentials earned, and regional employment results.",
       whatNotToDo:
-        "Do not substitute business applications, migration-related income, or announced jobs for measured wage outcomes.",
+        "Do not use business applications, income from new residents, or announced jobs in place of measured wages.",
       nextMoves: [
-        "Add high-wage occupation basket by cluster",
-        "Track target-cluster wages versus state median",
-        "Connect education programs and credentials to employment outcomes",
+        "A set of high-wage occupations for each industry cluster",
+        "Wages in the target clusters against the state median",
+        "The link from education programs and credentials to jobs",
       ],
       sourceIds: ["bls_state_april_2026", "fc100_ambition_accelerated", "florida_taxwatch", "james_madison_institute"],
     },
@@ -1444,36 +1444,36 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
   evidenceBlocks: [
     {
       id: "exportable-model",
-      title: "The exportable Florida model",
+      title: "Where Florida's growth comes from",
       briefCopy:
-        "Florida's economic development depends on the interaction of population, investment, infrastructure, and skills. Their contribution should be assessed through employment, wages, and productivity.",
+        "Florida's growth comes from population, investment, infrastructure, and skills working together. Measure them by jobs, wages, and productivity.",
       exportUse:
         "Use with the current labor, population, and industry sources.",
       sourceIds: ["florida_chamber_income_migration", "fc100_ambition_accelerated"],
     },
     {
       id: "ai-capex-question",
-      title: "The uncomfortable AI question",
+      title: "Where Florida stands on AI infrastructure",
       briefCopy:
-        "Florida's AI infrastructure position remains an open research question. An incomplete project inventory cannot establish an investment shortfall.",
+        "Where Florida stands on AI infrastructure is still an open question. An incomplete project list cannot prove a shortfall.",
       exportUse:
         "Use with a dated, comparable inventory of capacity and project stages.",
       sourceIds: ["bls_state_april_2026", "cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
     },
     {
       id: "discipline-frame",
-      title: "The policy discipline frame",
+      title: "How to review a project",
       briefCopy:
-        "Project evaluation should identify who pays for infrastructure, who bears risk, and what measurable regional benefits follow.",
+        "A project review should say who pays for the infrastructure, who carries the risk, and what measurable benefits the region gets.",
       exportUse:
         "Editorial analysis; consult the enacted law and applicable utility decisions.",
       sourceIds: ["florida_governor_sb484", "florida_senate_sb484"],
     },
     {
       id: "physical-innovation",
-      title: "Regional infrastructure and industry capabilities",
+      title: "Regional infrastructure and industries",
       briefCopy:
-        "Ports, space facilities, university research, and specialized manufacturers support different regional capabilities across Florida.",
+        "Ports, space facilities, university research, and specialized manufacturers give each Florida region different strengths.",
       exportUse:
         "Use the atlas and individual public-source profiles for regional context.",
       sourceIds: ["space_florida", "blue_origin_florida", "portmiami", "port_everglades"],
@@ -1543,7 +1543,7 @@ function buildNarrative(dataset: {
       .filter((sector) => deltaAbs(sector.deltas.oneYear) < 0)
       .map((sector) => {
         const yoy = sector.deltas.oneYear?.percent;
-        return `${sector.label} is softer (${yoy?.toFixed(1) ?? "n/a"}% YoY).`;
+        return `${sector.label} has fewer jobs than a year ago (${yoy?.toFixed(1) ?? "n/a"}%).`;
       }),
   ];
 
@@ -1946,7 +1946,7 @@ async function main() {
       id: "bls",
       name: "Bureau of Labor Statistics (LAUS + CES)",
       url: "https://www.bls.gov/developers/",
-      notes: "Monthly state and metro labor market + payroll employment series.",
+      notes: "Monthly labor market and payroll job series for the state and its metros.",
     },
     { ...WSER_SOURCE },
     {
@@ -2006,7 +2006,7 @@ async function main() {
     strategy: {
       headline: "Florida's competitive position.",
       summary:
-        "Compare employment, operating costs, industry capabilities, and workforce preparation across Florida and selected peer states. Regional assets and policy scenarios provide context for investment decisions.",
+        "Compare jobs, operating costs, industries, and workforce training in Florida and selected peer states. Regional assets and policy scenarios are included for context.",
       peerStates,
       benchmarkExamples: STRATEGY_BENCHMARK_EXAMPLES,
       clusters: STRATEGY_CLUSTERS,

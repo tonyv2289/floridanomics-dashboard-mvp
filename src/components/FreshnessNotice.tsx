@@ -9,7 +9,7 @@ export function FreshnessNotice({ dataset, expanded = false }: { dataset: Dashbo
   const overdue = findings.filter((finding) => finding.level === "overdue");
   if (!findings.length) return null;
   return <aside className="freshness-notice" aria-label="Data freshness notes">
-    <p>{overdue.length ? `${overdue.length} data series need a freshness check.` : "Some sections use dated annual benchmarks."} {!expanded ? <a href={`${import.meta.env.BASE_URL}?view=dashboard&tab=evidence#freshness`}>See source dates and limitations →</a> : null}</p>
+    <p>{overdue.length ? `${overdue.length} data series may be out of date.` : "Some sections use dated annual benchmarks."} {!expanded ? <a href={`${import.meta.env.BASE_URL}?view=dashboard&tab=evidence#freshness`}>See source dates and limitations →</a> : null}</p>
     {expanded ? <ul>{findings.map((finding) => <li key={finding.id}><strong>{finding.label}:</strong> {finding.detail}</li>)}</ul> : null}
   </aside>;
 }

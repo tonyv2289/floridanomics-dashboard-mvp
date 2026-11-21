@@ -14,7 +14,7 @@ function TerminalHero({ dataset }: { dataset: DashboardDataset }) {
   const campuses = dataset.competition.stateInvestment?.dataCenters.facts.find((fact) => fact.id === "hyperscale-campuses");
 
   return (
-    <Frame label="Florida Model Terminal">
+    <Frame label="Florida analysis">
       <div className="v3-terminal-hero">
         <div className="v3-terminal-hero-copy">
           <h2>{terminal.headline}</h2>
@@ -218,7 +218,7 @@ function ForecastBoard({ dataset }: { dataset: DashboardDataset }) {
             </div>
 
             <p className="v3-terminal-trigger">
-              <strong>Update trigger:</strong> {forecast.updateTrigger}
+              <strong>When to update:</strong> {forecast.updateTrigger}
             </p>
             <TerminalSourceList dataset={dataset} sourceIds={forecast.sourceIds} />
           </article>
@@ -242,7 +242,7 @@ function PolicyMemoBoard({ dataset }: { dataset: DashboardDataset }) {
                 <dd>{memo.whatChanged}</dd>
               </div>
               <div>
-                <dt>Mechanism</dt>
+                <dt>How it works</dt>
                 <dd>{memo.mechanism}</dd>
               </div>
               <div>
@@ -250,12 +250,12 @@ function PolicyMemoBoard({ dataset }: { dataset: DashboardDataset }) {
                 <dd>{memo.recommendation}</dd>
               </div>
               <div>
-                <dt>Do not do</dt>
+                <dt>What to avoid</dt>
                 <dd>{memo.whatNotToDo}</dd>
               </div>
             </dl>
             <div>
-              <strong>Next moves</strong>
+              <strong>What to track next</strong>
               <ul>
                 {memo.nextMoves.map((move) => (
                   <li key={move}>{move}</li>
@@ -272,7 +272,7 @@ function PolicyMemoBoard({ dataset }: { dataset: DashboardDataset }) {
 
 function EvidenceExport({ dataset }: { dataset: DashboardDataset }) {
   return (
-    <Frame label="Exportable Florida model">
+    <Frame label="Summary">
       <div className="v3-evidence-export-grid">
         {dataset.terminal.evidenceBlocks.map((block) => (
           <article key={block.id} className="v3-evidence-export-card">

@@ -41,6 +41,6 @@ export function RegionProfile({ profile, economy, base = "/" }: { profile: Regio
       <a className="region-data-link" href={`${base}?view=dashboard&tab=talent`}>Explore statewide talent & wage comparisons →</a>
     </aside></div>
     <nav className="region-next" aria-label="Other regional profiles"><h2>Keep Exploring Florida</h2>{REGIONAL_PROFILES.filter((region) => region.id !== profile.id).map((region) => <a key={region.id} href={regionalPath(region.id, base)}>{region.title} →</a>)}</nav>
-    <footer className="region-foot"><p>Public-source regional profiles. Milestone dates and source-check dates are distinct. Project announcements remain subject to delivery, and listed institutions do not imply endorsement of Floridanomics.</p><a href={`${base}?view=dashboard&tab=evidence`}>Sources & correction policy</a></footer>
+    <footer className="region-foot"><p>Regional profiles are built from public sources. A milestone's date and the date we checked its source are different things. Announced projects may not be delivered, and the institutions listed here have not endorsed Floridanomics.</p><a href={`${base}?view=dashboard&tab=evidence`}>Sources & correction policy</a></footer>
   </main>;
 }

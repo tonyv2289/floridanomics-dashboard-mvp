@@ -1,7 +1,7 @@
 {
   "headline": "This ledger tracks which announced projects became buildings and jobs.",
   "summary": "Named projects in Florida and competitor states, each with its sources. Capital, jobs, timing, and stage are recorded the same way for every project, and headline packages are not double counted.",
-  "coverageNote": "Curated strategic-project coverage, not a complete census of statewide business investment. Totals include only disclosed capital tied to named facilities. Peer projects span four states and are not aggregated as a state-to-state ranking.",
+  "coverageNote": "A selected list of major projects, not a full count of business investment in the state. Totals include only disclosed capital tied to a named facility. Peer projects come from four states and are not added up into a state ranking.",
   "methodology": [
     "Count disclosed investment only when it is tied to a named facility or expansion.",
     "Exclude contracts, purchase orders, grants, aggregate pipelines, and public-program totals from project capex.",

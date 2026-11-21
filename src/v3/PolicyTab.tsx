@@ -8,7 +8,7 @@ export function PolicyTab({ dataset }: { dataset: DashboardDataset }) {
       <header className="v3-section-hero v3-policy-hero">
         <div>
           <p className="v3-kicker">Policy</p>
-          <h1>Judge policy by the capacity and wages it creates.</h1>
+          <h1>Judge policy by what gets built and what the jobs pay.</h1>
           <p>{dataset.terminal.operatingQuestion}</p>
         </div>
         <dl>
@@ -38,7 +38,7 @@ export function PolicyTab({ dataset }: { dataset: DashboardDataset }) {
               <p className="v3-policy-stance">{memo.stance}</p>
               <dl>
                 <div>
-                  <dt>Mechanism</dt>
+                  <dt>How it works</dt>
                   <dd>{memo.mechanism}</dd>
                 </div>
                 <div>

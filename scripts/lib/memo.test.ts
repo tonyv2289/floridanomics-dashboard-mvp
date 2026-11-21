@@ -64,7 +64,7 @@ describe("formatters", () => {
   it("formats moves by unit and direction", () => {
     expect(formatMove("percent", 0.1)).toBe("up 0.1 points");
     expect(formatMove("percent", -0.2)).toBe("down 0.2 points");
-    expect(formatMove("thousands_jobs", 40.5)).toBe("a gain of 40.5K jobs");
+    expect(formatMove("thousands_jobs", 40.5)).toBe("up 40.5K jobs");
   });
 
   it("renders month labels in UTC", () => {
@@ -86,7 +86,7 @@ describe("diffMetric", () => {
     expect(change?.kind).toBe("new_period");
     expect(change?.tone).toBe("good");
     expect(change?.headline).toContain("April 2026");
-    expect(change?.headline).toContain("gain of 40.5K jobs");
+    expect(change?.headline).toContain("up 40.5K jobs");
   });
 
   it("treats a rise in a down_good metric as warn", () => {

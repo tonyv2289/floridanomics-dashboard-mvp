@@ -58,11 +58,11 @@ export function AttentionStrip({ dataset, region }: { dataset: DashboardDataset;
     <Frame label="What needs your attention">
       <div className="v3-panel-head">
         <div>
-          <h2>{flags.length > 0 ? `${flags.length} threshold alert${flags.length > 1 ? "s" : ""}` : "No core threshold alerts"}</h2>
+          <h2>{flags.length > 0 ? `${flags.length} threshold alert${flags.length > 1 ? "s" : ""}` : "No alerts this month"}</h2>
           <p>
             {flags.length > 0
-              ? `For ${regionLabel}, these moved against trend in the latest data.`
-              : `For ${regionLabel}, no core labor signal moved against trend in the latest data.`}
+              ? `For ${regionLabel}, these measures moved the wrong way in the latest data.`
+              : `For ${regionLabel}, no core labor measure crossed an alert threshold in the latest data.`}
           </p>
         </div>
       </div>

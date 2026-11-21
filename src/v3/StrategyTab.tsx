@@ -95,7 +95,7 @@ function PeerStateBenchmarks({ dataset }: { dataset: DashboardDataset }) {
   );
 
   return (
-    <Frame label="Peer-state mode">
+    <Frame label="Peer states">
       <div className="v3-panel-head">
         <div>
           <h2>Compare Florida with the states competing for the same investment and workers.</h2>
@@ -215,10 +215,10 @@ function ClusterStrategy({ dataset }: { dataset: DashboardDataset }) {
     <Frame label="Cluster strategy">
       <div className="v3-panel-head">
         <div>
-          <h2>Regional industries and the conditions supporting their development.</h2>
+          <h2>Florida's main industry clusters and what each one needs.</h2>
           <p>
-            Pennsylvania's useful lesson is structure: sectors, supply chains, workforce gaps, and emerging industries
-            should sit in one operating view.
+            Pennsylvania's dashboard is a useful model. It puts sectors, supply chains, workforce gaps, and emerging
+            industries in one place.
           </p>
         </div>
       </div>
@@ -261,8 +261,8 @@ function MetroMomentumLayer({ dataset }: { dataset: DashboardDataset }) {
         <div>
           <h2>Which Florida metros are gaining and which are slowing.</h2>
           <p>
-            This view covers Florida's major metros, not every county. It shows whether local labor
-            force momentum is broadening or narrowing.
+            This view covers Florida's major metros, not every county. It shows whether labor force
+            growth is spreading to more metros or to fewer.
           </p>
         </div>
       </div>
@@ -290,7 +290,7 @@ function MetroMomentumLayer({ dataset }: { dataset: DashboardDataset }) {
 
 function ScenarioLayer({ dataset }: { dataset: DashboardDataset }) {
   return (
-    <Frame label="Scenario layer">
+    <Frame label="Scenarios">
       <div className="v3-scenario-grid">
         {dataset.strategy.scenarios.map((scenario) => (
           <article key={scenario.id} className={clsx("v3-scenario-card", `scenario-${scenario.id}`)}>

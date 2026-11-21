@@ -20,7 +20,7 @@ export function TradeTab({ dataset }: { dataset: DashboardDataset }) {
           <div>
             <h2>{dataset.trade.headline}</h2>
 <p>{dataset.trade.narrative.headline}</p>
-            <p>2025 annual figures from the state release dated April 1, 2026. These are not current monthly exports; the latest direct Census feed has not been revalidated.</p>
+            <p>Annual figures for 2025, from the state's April 1, 2026 release. They are not current monthly exports, and the latest Census figure has not been checked again.</p>
           </div>
         </div>
 
@@ -93,7 +93,7 @@ export function TradeTab({ dataset }: { dataset: DashboardDataset }) {
           <article className="v3-stat-card">
             <span>Sales generated</span>
             <strong>{formatUsdMillions(dataset.trade.selectFlorida.salesGeneratedUsdMillions)}+</strong>
-<p>Reported program sales for the period shown; not a measure of public return on investment.</p>
+<p>Sales the program reported for the period shown. This is not a measure of public return on investment.</p>
           </article>
           {dataset.trade.selectFlorida.showResults.map((show) => (
             <article key={show.id} className="v3-stat-card">

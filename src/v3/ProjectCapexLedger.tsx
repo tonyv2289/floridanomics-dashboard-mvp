@@ -74,7 +74,7 @@ function ProjectRows({ dataset, projectIds }: { dataset: DashboardDataset; proje
             })}</small>
           </div>
           <details className="v3-capex-detail">
-            <summary>Decision read</summary>
+            <summary>Our read</summary>
             <div>
               <p>{project.strategicRead}</p>
               <dl>

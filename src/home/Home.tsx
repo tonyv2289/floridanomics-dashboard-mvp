@@ -22,7 +22,7 @@ function Headline() {
         The Florida economy, measured where it <span>happens.</span>
       </h1>
       <p className="home-dek">
-        Jobs, wages, trade and investment across eight regions. Every figure comes from a public source and carries the date it describes.
+        Jobs, wages, trade, and investment across eight regions. Every figure comes from a public source and carries the date it describes.
       </p>
     </>
   );
@@ -119,7 +119,7 @@ const DESTINATIONS: Array<{ title: string; line: string; query: string }> = [
   { title: "Competition", line: "Florida against ten competitor states and all fifty, year by year.", query: "?view=dashboard&tab=competition&competitionView=states" },
   { title: "Trade", line: "Exports, ports, and the gateways to Latin America.", query: "?view=dashboard&tab=trade" },
   { title: "Talent & wages", line: "Degrees, demand, and pay by field.", query: "?view=dashboard&tab=talent" },
-  { title: "Policy", line: "The bills in play and what each would change.", query: "?view=dashboard&tab=policy" },
+  { title: "Policy", line: "Six 2026 bills and what happened to each.", query: "?view=dashboard&tab=policy" },
   { title: "Sources", line: "Every figure's source, date, and method.", query: "?view=dashboard&tab=evidence" },
 ];
 
@@ -220,7 +220,7 @@ export default function Home() {
                 .
               </p>
               <p className="home-cue">
-                <i aria-hidden="true">{"↓"}</i> Scroll to travel the state
+                <i aria-hidden="true">{"↓"}</i> Scroll to see each region
               </p>
             </div>
           </div>
@@ -340,7 +340,7 @@ export default function Home() {
           <div className="home-wrap">
             <div className="home-section-head">
               <p className="home-kicker">What moves through Florida</p>
-              <h2 id="home-flows-title">{launches && ports && migration ? "Rockets, containers and new residents." : "What moves through Florida."}</h2>
+              <h2 id="home-flows-title">{launches && ports && migration ? "Rockets, containers, and new residents." : "What moves through Florida."}</h2>
             </div>
             {launches ? (
               <div className="home-flow" data-home-flow="ticks">
@@ -427,7 +427,7 @@ export default function Home() {
         <div className="home-wrap">
           <div className="home-section-head">
             <p className="home-kicker">Inside Floridanomics</p>
-            <h2 id="home-enter-title">Go deeper.</h2>
+            <h2 id="home-enter-title">The rest of the site.</h2>
           </div>
           <ul className="home-dest">
             {DESTINATIONS.slice(0, 1).map((item) => (

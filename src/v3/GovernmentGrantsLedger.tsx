@@ -87,7 +87,7 @@ function GrantRows({ dataset, awards }: { dataset: DashboardDataset; awards: Gov
               </small>
             </div>
             <details className="v3-capex-detail">
-              <summary>Decision read</summary>
+              <summary>Our read</summary>
               <div>
                 <p>{award.strategicRead}</p>
                 <dl className="v3-grant-detail-grid">

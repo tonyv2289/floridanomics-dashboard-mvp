@@ -89,7 +89,7 @@
     {
       "id": "manufacturing-capex",
       "label": "Manufacturing capital spending per resident",
-      "question": "What did manufacturers actually spend?",
+      "question": "What did manufacturers spend?",
       "period": "2024",
       "format": "usd0",
       "florida": {
@@ -4696,7 +4696,7 @@
   },
   "finalists": {
     "headline": "Florida is rarely in the final round for billion-dollar projects.",
-    "read": "Florida was not a finalist for any $1B+ project whose competing sites are on the public record. Texas incentive filings name rival sites for 20 of 27 billion-dollar projects: Louisiana appears in 8, New Mexico in 5 and Florida in 1, only on Saronic's 12-state first-round list. Apart from that first-round exit, Florida's 13 documented contest losses since 2020 are mid-sized, including Boom Supersonic (Jacksonville), Pratt & Whitney (Palm Beach County), Jabil and Citi's technology hub to North Carolina, and a Miami-Dade steel-mill site that was one of three finalists (Texas won).",
+    "read": "Florida was not a finalist for any $1B+ project whose competing sites are on the public record. Texas incentive filings name rival sites for 20 of 27 billion-dollar projects: Louisiana appears in 8, New Mexico in 5, and Florida in 1, only on Saronic's 12-state first-round list. Apart from that first-round exit, Florida's 13 documented contest losses since 2020 are mid-sized, including Boom Supersonic (Jacksonville), Pratt & Whitney (Palm Beach County), Jabil and Citi's technology hub to North Carolina, and a Miami-Dade steel-mill site that was one of three finalists (Texas won).",
     "caveat": "North Carolina and Texas publish the alternative locations applicants name, so contests lost to those states are over-represented; most states publish none, and some Texas applicants keep their alternatives confidential.",
     "sourceIds": [
       "si_nc_jdig_2025",

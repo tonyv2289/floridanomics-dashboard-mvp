@@ -61,8 +61,8 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
         <h1 className={clsx(`tone-${payrollTone}`)}>{formatSignedInteger(animatedChange)}</h1>
         <p className="v3-hero-line">
           Florida {payrollChange >= 0 ? "added" : "lost"} {Math.abs(payrollChange).toLocaleString()} nonfarm jobs in{" "}
-          {monthName}. Assess this monthly change alongside annual employment growth,
-          labor-force participation and the composition of new investment.
+          {monthName}. Read this monthly change next to the yearly change in jobs and
+          the labor force.
         </p>
         <div className="v3-hero-meta">
           <span>BLS CES / LAUS</span>
@@ -164,8 +164,8 @@ function FloridaBrainNotes({ dataset }: { dataset: DashboardDataset }) {
         <p className="v3-kicker">Florida Brain notes</p>
         <h2>Florida Economic Analysis</h2>
         <p>
-          Source-linked analysis of Florida's investment, infrastructure and industry development.
-          Each note distinguishes reported results from policy recommendations.
+          Notes on Florida's investment, infrastructure, and industry, each linked to its sources.
+          Each note separates what was reported from what we recommend.
         </p>
       </div>
 

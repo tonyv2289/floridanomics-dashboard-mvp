@@ -68,7 +68,7 @@ export function PolicyMemo() {
           <p>
             {live
               ? (payload.coverageNote ?? "Tracked bills relevant to economic development, technology, and workforce.")
-              : "Connect a LegiScan API key to track Florida economic-policy legislation here."}
+              : "No tracked bills are available right now."}
           </p>
         </div>
         {live ? (

@@ -230,7 +230,7 @@ function DashboardV3() {
             {isReturningWithUpdate ? (
               <span className="v3-fresh-pill">Updated since your last visit</span>
             ) : null}
-            <span>Data bundle built</span>
+            <span>Data updated</span>
             <strong>{formatDateLabel(data.generatedAt)}</strong>
             <small>Latest official labor period: {data.asOfLaborMarket} | Population vintage: {data.asOfPopulation}</small>
             <a className="v3-briefing-link" href={import.meta.env.BASE_URL}>

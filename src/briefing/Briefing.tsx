@@ -91,7 +91,7 @@ function Briefing() {
           <div className="briefing-stamp">
             <strong>{formatDateLabel(data.generatedAt)}</strong>
             <span>Labor data: {data.asOfLaborMarket}</span>
-            <span>Annual and research benchmarks retain their stated periods</span>
+            <span>Annual and research benchmarks keep the periods stated on them</span>
           </div>
         </header>
 
@@ -136,10 +136,10 @@ function Briefing() {
         <section className="tj-read" aria-labelledby="tj-read-title">
           <div className="tj-read-byline"><p>TJ’s Read</p><strong>{TJ_READ.author}</strong><span>{formatDateLabel(TJ_READ.publishedAt)}</span><small>Editorial analysis</small></div>
           <div><h2 id="tj-read-title">{TJ_READ.title}</h2>{TJ_READ.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<div className="tj-read-sources">{TJ_READ.sources.map((source) => <a key={source.url} href={source.url}>{source.label} ↗</a>)}</div>
-          {payrollDate !== TJ_READ.laborPeriod ? <p className="briefing-note">This column discusses July 2026. The live briefing above may contain a newer release.</p> : null}</div>
+          {payrollDate !== TJ_READ.laborPeriod ? <p className="briefing-note">This column discusses July 2026. The data above may be newer.</p> : null}</div>
         </section>
 
-        {isSnapshot ? null : <section className="home-regions" aria-labelledby="home-regions-title"><div><p className="briefing-kicker">Across Florida</p><h2 id="home-regions-title">The places behind the numbers.</h2></div><div className="home-region-grid">{REGIONAL_PROFILES.map((region, index) => <a key={region.id} href={regionalPath(region.id, import.meta.env.BASE_URL)}><span>{String(index + 1).padStart(2, "0")}</span><h3>{region.title}</h3><p>{region.description}</p><strong>Read the profile →</strong></a>)}</div></section>}
+        {isSnapshot ? null : <section className="home-regions" aria-labelledby="home-regions-title"><div><p className="briefing-kicker">Across Florida</p><h2 id="home-regions-title">Florida's eight regions.</h2></div><div className="home-region-grid">{REGIONAL_PROFILES.map((region, index) => <a key={region.id} href={regionalPath(region.id, import.meta.env.BASE_URL)}><span>{String(index + 1).padStart(2, "0")}</span><h3>{region.title}</h3><p>{region.description}</p><strong>Read the profile →</strong></a>)}</div></section>}
 
         {data.leading ? (
           <section className="briefing-section">
@@ -171,7 +171,7 @@ function Briefing() {
 
         {whatChanged ? (
           <section className="briefing-section">
-            <h2>What changed in the latest refresh</h2>
+            <h2>What changed in the latest data</h2>
             <ul className="briefing-changes">
               {whatChanged.items.map((item) => (
                 <li key={item.id}>
@@ -190,7 +190,7 @@ function Briefing() {
             Sources: BLS CES and LAUS, FRED, US Census Bureau, US DOL, Indeed Hiring Lab, US Census USA Trade,
             SelectFlorida, Florida Chamber Foundation. Full charts and source links: <a href="https://www.floridanomics.com/?view=dashboard&tab=evidence">floridanomics.com</a>.
           </p>
-          <p>Figures reflect the source periods shown and may be revised. Monthly changes should be considered alongside longer-term employment, income, and investment trends.</p>
+          <p>Each figure describes the period shown and may be revised. Read a monthly change together with the longer trends in jobs, income, and investment.</p>
         </footer>
       </article>
     </main>

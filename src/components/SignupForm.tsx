@@ -25,8 +25,8 @@ export function SignupForm({ source = "dashboard", variant = "dashboard" }: Sign
       <input type="hidden" name="source" value={source} />
       <div className="signup-copy">
         <p className="signup-kicker">Floridanomics Briefing</p>
-        <h2>One story. Three signals. The Florida read.</h2>
-        <p>Published around major Florida data releases, with additional briefs when the evidence warrants one.</p>
+        <h2>Get the briefing by email.</h2>
+        <p>Sent after major Florida data releases, with extra briefs when the news calls for one.</p>
       </div>
       <div className="signup-fields">
         <div className="signup-row">

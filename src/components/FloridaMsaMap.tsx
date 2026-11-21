@@ -104,7 +104,7 @@ export function FloridaMsaMap({ metros, selectedMetroId, onSelectMetro }: Florid
       <div className="v3-panel-head">
         <div>
           <h2>Where Florida&apos;s metros are heading.</h2>
-          <p>Colored by labor-force momentum. Click a metro to focus the read on it.</p>
+          <p>Colored by the change in each metro's labor force. Click a metro to see its numbers.</p>
         </div>
         <div className="v3-map-legend">
           {(["hot", "warm", "flat", "cooling"] as MomentumTone[]).map((tone) => (

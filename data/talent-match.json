@@ -1,13 +1,13 @@
 {
   "headline": "Florida's education and workforce pathways.",
-  "summary": "Selected public-university bachelor's programs, observed graduate outcomes, and long-term occupational projections. The report periods are historical benchmarks, not current hiring estimates.",
-  "coverageNote": "The selected programs exclude state-college, private, certificate, graduate, migration, and adjacent-occupation supply. Graduate-to-opening ratios describe limited coverage, not a labor shortage or surplus. Florida employment matches exclude some employment outside the covered administrative records and cannot establish total employment or retention.",
+  "summary": "Selected bachelor's programs at public universities, what happened to their graduates, and long-term job projections. The reports describe past years, not hiring today.",
+  "coverageNote": "The selected programs leave out state colleges, private schools, certificates, graduate degrees, workers moving in, and people from related occupations. The ratio of graduates to openings shows how much we can count, not a shortage or a surplus. Florida's employment match misses some jobs outside its records, so it cannot give total employment or retention.",
   "methodology": [
     "Demand uses Florida 2022-32 long-term occupational projections published through O*NET OnLine from Projections Central; openings include growth and replacement.",
     "FETPIP's 2023-24 university graduate report remained the latest posted on September 10, 2026. Employment percentages refer to matches in covered Florida records, not all employment.",
-    "The coverage proxy divides covered bachelor's graduates by projected annual openings. It sizes a visible pipeline; it does not label a shortage or surplus.",
-    "Institution leaders are the three largest disclosed producers in the selected FETPIP program; suppressed values remain unavailable.",
-    "Project pressure links only to named records in the Floridanomics project capex ledger and is not a complete hiring forecast."
+    "The coverage proxy divides covered bachelor's graduates by projected annual openings. It shows how many graduates we can count. It does not show a shortage or a surplus.",
+    "Institution leaders are the three schools with the most disclosed graduates in the selected FETPIP program. Suppressed values are not available.",
+    "Project pressure counts only named projects in the Floridanomics project list. It is not a complete hiring forecast."
   ],
   "sources": [
     {
@@ -76,7 +76,7 @@
       "id": "ai-software",
       "label": "AI & Software",
       "shortLabel": "AI / software",
-      "question": "How does the selected ai & software pathway relate to projected occupational demand?",
+      "question": "How do graduates in the AI and software pathway compare with projected job openings?",
       "read": "The 2023-24 cohort includes 2,262 graduates in the selected program. FETPIP matches 40% to full-time Florida employment in its follow-up records. The occupation's 7,330 projected annual openings cover 2022-32 and include growth and replacement needs. These are different populations and periods.",
       "demand": {
         "occupation": "Software Developers",
@@ -139,7 +139,7 @@
       "id": "aerospace-space",
       "label": "Aerospace & Space",
       "shortLabel": "Aerospace",
-      "question": "How does the selected aerospace & space pathway relate to projected occupational demand?",
+      "question": "How do graduates in the aerospace and space pathway compare with projected job openings?",
       "read": "The 2023-24 cohort includes 367 graduates in the selected program. FETPIP matches 41% to full-time Florida employment in its follow-up records. The occupation's 360 projected annual openings cover 2022-32 and include growth and replacement needs. These are different populations and periods.",
       "demand": {
         "occupation": "Aerospace Engineers",
@@ -203,7 +203,7 @@
       "id": "semiconductors-electronics",
       "label": "Semiconductors & Electronics",
       "shortLabel": "Electronics",
-      "question": "How does the selected semiconductors & electronics pathway relate to projected occupational demand?",
+      "question": "How do graduates in the semiconductors and electronics pathway compare with projected job openings?",
       "read": "The 2023-24 cohort includes 552 graduates in the selected program. FETPIP matches 53% to full-time Florida employment in its follow-up records. The occupation's 490 projected annual openings cover 2022-32 and include growth and replacement needs. These are different populations and periods.",
       "demand": {
         "occupation": "Electrical Engineers",
@@ -266,7 +266,7 @@
       "id": "healthcare",
       "label": "Healthcare",
       "shortLabel": "Healthcare",
-      "question": "How does the selected healthcare pathway relate to projected occupational demand?",
+      "question": "How do graduates in the health care pathway compare with projected job openings?",
       "read": "The 2023-24 cohort includes 2,815 graduates in the selected program. FETPIP matches 78% to full-time Florida employment in its follow-up records. The occupation's 14,110 projected annual openings cover 2022-32 and include growth and replacement needs. These are different populations and periods.",
       "demand": {
         "occupation": "Registered Nurses",
@@ -329,7 +329,7 @@
       "id": "logistics",
       "label": "Logistics & Supply Chain",
       "shortLabel": "Logistics",
-      "question": "How does the selected logistics & supply chain pathway relate to projected occupational demand?",
+      "question": "How do graduates in the logistics and supply chain pathway compare with projected job openings?",
       "read": "The 2023-24 cohort includes 152 graduates in the selected program. FETPIP matches 56% to full-time Florida employment in its follow-up records. The occupation's 1,540 projected annual openings cover 2022-32 and include growth and replacement needs. These are different populations and periods.",
       "demand": {
         "occupation": "Logisticians",
@@ -392,7 +392,7 @@
       "id": "fintech-finance",
       "label": "Fintech & Finance",
       "shortLabel": "Fintech",
-      "question": "How does the selected fintech & finance pathway relate to projected occupational demand?",
+      "question": "How do graduates in the fintech and finance pathway compare with projected job openings?",
       "read": "The 2023-24 cohort includes 2,622 graduates in the selected program. FETPIP matches 53% to full-time Florida employment in its follow-up records. The occupation's 1,310 projected annual openings cover 2022-32 and include growth and replacement needs. These are different populations and periods.",
       "demand": {
         "occupation": "Financial and Investment Analysts",
@@ -455,7 +455,7 @@
       "id": "life-sciences",
       "label": "Life Sciences",
       "shortLabel": "Life sciences",
-      "question": "How does the selected life sciences pathway relate to projected occupational demand?",
+      "question": "How do graduates in the life sciences pathway compare with projected job openings?",
       "read": "The 2023-24 cohort includes 258 graduates in the selected program. FETPIP matches 34% to full-time Florida employment in its follow-up records. The occupation's 70 projected annual openings cover 2022-32 and include growth and replacement needs. These are different populations and periods.",
       "demand": {
         "occupation": "Bioengineers and Biomedical Engineers",

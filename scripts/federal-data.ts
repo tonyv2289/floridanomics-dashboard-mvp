@@ -516,7 +516,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
   return {
     headline: "Federal economic series",
     summary:
-      "Observation periods and retrieval status are shown separately. Some measures use dated, retained public-source benchmarks when a direct feed is unavailable.",
+      "Each measure shows the period it describes and whether it was retrieved directly. When a direct feed is unavailable, the last published figure is kept and dated.",
     refreshedAt,
     sources,
     signals,
