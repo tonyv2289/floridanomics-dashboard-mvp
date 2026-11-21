@@ -123,12 +123,12 @@ function PeerStateBenchmarks({ dataset }: { dataset: DashboardDataset }) {
                 <small className={clsx(`tone-${unemploymentTone}`)}>{formatPeerUnemploymentDelta(state)} {yoyLabel(state.unemploymentRate)}</small>
               </div>
               <div>
-                <span>Payrolls 1Y</span>
+                <span>Payrolls {yearAgoLabel(state.nonfarmPayrolls.latest.date, state.nonfarmPayrolls.deltas.oneYear)}</span>
                 <strong className={clsx(`tone-${payrollTone}`)}>{formatPeerPayrollDelta(state)}</strong>
                 <small>BLS CES</small>
               </div>
               <div>
-                <span>Labor force 1Y</span>
+                <span>Labor force {yearAgoLabel(state.laborForce.latest.date, state.laborForce.deltas.oneYear)}</span>
                 <strong>{formatPeerLaborForceDelta(state)}</strong>
                 <small>BLS LAUS</small>
               </div>
@@ -274,11 +274,11 @@ function MetroMomentumLayer({ dataset }: { dataset: DashboardDataset }) {
             <strong>{metro.unemploymentRate.latest.value.toFixed(1)}%</strong>
             <p>Unemployment rate</p>
             <div>
-              <small>Labor force 1Y</small>
+              <small>Labor force {yearAgoLabel(metro.laborForce.latest.date, metro.laborForce.deltas.oneYear)}</small>
               <b>{formatSignedCompact(metro.laborForce.deltas.oneYear?.absolute ?? 0, 1)}</b>
             </div>
             <div>
-              <small>Employment 1Y</small>
+              <small>Employment {yearAgoLabel(metro.employmentLevel.latest.date, metro.employmentLevel.deltas.oneYear)}</small>
               <b>{formatSignedCompact(metro.employmentLevel.deltas.oneYear?.absolute ?? 0, 1)}</b>
             </div>
           </article>

@@ -8,6 +8,7 @@ import {
   formatCompact,
   formatDelta,
   formatMetricValue,
+  yearAgoLabel,
 } from "../lib/dashboard";
 import { SECTION_TABS, sectionForTab, type V3TabId } from "./constants";
 import type { DashboardDataset, InsightSection } from "../types/dashboard";
@@ -165,7 +166,7 @@ export function MetricTable({
               <span>{metric.label}</span>
               <strong>{formatMetricValue(metric, metric.latest.value)}</strong>
               <small className={clsx(`tone-${deltaTone(metric, metric.deltas.oneYear)}`)}>
-                {formatDelta(metric, metric.deltas.oneYear)}
+                {yearAgoLabel(metric.latest.date, metric.deltas.oneYear)} {formatDelta(metric, metric.deltas.oneYear)}
               </small>
             </button>
           );

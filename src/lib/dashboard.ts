@@ -111,18 +111,26 @@ export function formatMetricValue(metric: AnyMetric, rawValue: number): string {
  * label names the month used, such as "vs Sep 2025".
  */
 export function yearAgoLabel(latestDate: string, delta: Delta | null | undefined): string {
-  if (!delta?.baseDate) return "1Y";
+  const base = offYearBase(latestDate, delta);
+  return base ? `vs ${base.toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })}` : "1Y";
+}
+
+/**
+ * The same check, for sentences. Null for a true one-year change, or when there is no comparison at all.
+ * Otherwise the month the change is measured from, spelled out, such as "September 2025".
+ */
+export function yearAgoMonth(latestDate: string, delta: Delta | null | undefined): string | null {
+  const base = offYearBase(latestDate, delta);
+  return base ? base.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" }) : null;
+}
+
+/** The comparison date, but only when it is not exactly twelve months before the latest observation. */
+function offYearBase(latestDate: string, delta: Delta | null | undefined): Date | null {
+  if (!delta?.baseDate) return null;
   const latest = new Date(latestDate);
   const base = new Date(delta.baseDate);
   const months = (latest.getUTCFullYear() - base.getUTCFullYear()) * 12 + (latest.getUTCMonth() - base.getUTCMonth());
-  if (months === 12) return "1Y";
-  return `vs ${base.toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })}`;
-}
-
-/** A chip label such as "1Y labor force", or "Labor force vs Sep 2025" when the month a year back has no figure. */
-function yearChipLabel(noun: string, latestDate: string, delta: Delta | null | undefined): string {
-  const label = yearAgoLabel(latestDate, delta);
-  return label === "1Y" ? `1Y ${noun}` : `${noun.charAt(0).toUpperCase()}${noun.slice(1)} ${label}`;
+  return months === 12 ? null : base;
 }
 
 export function formatDelta(metric: AnyMetric, delta: Delta | null): string {
@@ -290,12 +298,12 @@ export function buildScorecardLead(dataset: DashboardDataset): DashboardLead {
         tone: deltaTone(unemployment, unemployment.deltas.oneYear),
       },
       {
-        label: yearChipLabel("labor force", laborForce.latest.date, laborForce.deltas.oneYear),
+        label: "1Y labor force",
         value: formatDelta(laborForce, laborForce.deltas.oneYear),
         tone: deltaTone(laborForce, laborForce.deltas.oneYear),
       },
       {
-        label: yearChipLabel("employment", employment.latest.date, employment.deltas.oneYear),
+        label: "1Y employment",
         value: formatDelta(employment, employment.deltas.oneYear),
         tone: deltaTone(employment, employment.deltas.oneYear),
       },

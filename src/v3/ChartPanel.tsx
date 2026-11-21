@@ -15,6 +15,7 @@ import {
   formatDelta,
   formatMetricValue,
   yearAgoLabel,
+  yearAgoMonth,
 } from "../lib/dashboard";
 import { formatDisplayedValue } from "./format";
 import { TOOLTIP_ITEM_STYLE, TOOLTIP_LABEL_STYLE, TOOLTIP_STYLE } from "./constants";
@@ -38,10 +39,11 @@ export function ChartPanel({
 }) {
   const lineColor = accent === "sun" ? "#ff8f3f" : "#56c2ff";
   const series = chartSeries(metric);
+  const sinceMonth = yearAgoMonth(metric.latest.date, metric.deltas.oneYear);
   const ariaLabel = `${title}: ${metric.label}. Latest ${formatMetricValue(
     metric,
     metric.latest.value,
-  )}, one year change ${formatDelta(metric, metric.deltas.oneYear)}.`;
+  )}, ${sinceMonth ? `change since ${sinceMonth}` : "one year change"} ${formatDelta(metric, metric.deltas.oneYear)}.`;
 
   return (
     <Frame label="Trend">

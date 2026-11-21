@@ -13,6 +13,7 @@ import {
   formatUsdBillions,
   formatUsdMillions,
   yearAgoLabel,
+  yearAgoMonth,
   shortMonthLabel,
 } from "./dashboard";
 
@@ -163,5 +164,24 @@ describe("yearAgoLabel", () => {
 
   it("falls back to 1Y when there is no comparison", () => {
     expect(yearAgoLabel("2026-10-01", null)).toBe("1Y");
+  });
+});
+
+describe("yearAgoMonth", () => {
+  const delta = (baseDate: string): Delta => ({ years: 1, baseDate, absolute: 0.1, percent: 2.4 });
+
+  it("is null for a true one-year change, so sentences keep their usual wording", () => {
+    expect(yearAgoMonth("2026-10-01", delta("2025-10-01"))).toBeNull();
+    expect(yearAgoMonth("2026-10-01", null)).toBeNull();
+  });
+
+  it("spells out the month used when the month a year back was never published", () => {
+    expect(yearAgoMonth("2026-10-01", delta("2025-09-01"))).toBe("September 2025");
+  });
+
+  it("agrees with the short label about which comparisons are off-year", () => {
+    for (const base of ["2025-08-01", "2025-09-01", "2025-10-01", "2025-11-01"]) {
+      expect(yearAgoMonth("2026-10-01", delta(base)) === null).toBe(yearAgoLabel("2026-10-01", delta(base)) === "1Y");
+    }
   });
 });
