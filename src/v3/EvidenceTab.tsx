@@ -6,8 +6,16 @@ import { FreshnessNotice } from "../components/FreshnessNotice";
 import releaseCalendar from "../../public/data/release-calendar.json";
 import regionalEconomy from "../../public/data/regional-economy.json";
 
-function dateOrPending(value: string | null): string {
-  return value ? formatDateLabel(value, { month: "short", day: "numeric", year: "numeric" }) : "Not scheduled";
+const SHORT_DATE: Intl.DateTimeFormatOptions = { month: "short", day: "numeric", year: "numeric" };
+
+/** A release date that has been read in the release itself, or "Not recorded" when none has. */
+function releasedOrUnrecorded(value: string | null): string {
+  return value ? formatDateLabel(value, SHORT_DATE) : "Not recorded";
+}
+
+/** The next scheduled release, or "Not scheduled" when the source has announced none. */
+function nextOrUnscheduled(value: string | null): string {
+  return value ? formatDateLabel(value, SHORT_DATE) : "Not scheduled";
 }
 
 export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
@@ -35,7 +43,7 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
         <dl>
           <div>
             <dt>Data updated</dt>
-            <dd>{formatDateLabel(dataset.generatedAt, { month: "short", day: "numeric", year: "numeric" })}</dd>
+            <dd>{formatDateLabel(dataset.generatedAt, SHORT_DATE)}</dd>
           </div>
           <div>
             <dt>Latest labor period</dt>
@@ -43,7 +51,7 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
           </div>
           <div>
             <dt>Methodology</dt>
-            <dd>{dataset.trust.methodologyVersion}</dd>
+            <dd>{formatDateLabel(dataset.trust.methodologyVersion, SHORT_DATE)}</dd>
           </div>
         </dl>
       </header>
@@ -60,10 +68,10 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
       <Frame label="How updates reach the site">
         <h2>Source checks, then editorial review.</h2>
         <p>Weekday checks run after the usual morning releases. The official BLS calendar identifies which state, metro, and county observations are due. New observations and stale sources produce a review alert; they do not publish themselves.</p>
-        <p>Regional jobs and wages: {regionalEconomy.period}, retrieved {regionalEconomy.retrievedAt}. These are all-industry county benchmarks, not totals for the atlas's illustrative regions.</p>
+        <p>Regional jobs and wages: {regionalEconomy.period}, retrieved {formatDateLabel(regionalEconomy.retrievedAt, SHORT_DATE)}. These are all-industry county benchmarks, not totals for the atlas's illustrative regions.</p>
         <p>Project announcements and TJ’s Read are reviewed separately. A data refresh does not change the date on an older article, and it does not confirm that a construction milestone was met.</p>
-        <a href={releaseCalendar.sourceUrl}>Official BLS calendar, checked {releaseCalendar.checkedAt} ↗</a>
-        <div className="v3-release-grid">{releaseCalendar.releases.filter((release) => release.releaseDate >= new Date().toISOString().slice(0, 10)).slice(0, 4).map((release) => <article key={`${release.program}-${release.releaseDate}`}><strong>{release.label}</strong><p>Scheduled: {release.releaseDate}</p></article>)}</div>
+        <a href={releaseCalendar.sourceUrl}>Official BLS calendar, checked {formatDateLabel(releaseCalendar.checkedAt, SHORT_DATE)} ↗</a>
+        <div className="v3-release-grid">{releaseCalendar.releases.filter((release) => release.releaseDate >= new Date().toISOString().slice(0, 10)).slice(0, 4).map((release) => <article key={`${release.program}-${release.releaseDate}`}><strong>{release.label}</strong><p>Scheduled: {formatDateLabel(release.releaseDate, SHORT_DATE)}</p></article>)}</div>
       </Frame>
 
       <Frame label="Release calendar">
@@ -87,11 +95,11 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
                 </div>
                 <div>
                   <dt>Released</dt>
-                  <dd>{dateOrPending(release.latestReleaseDate)}</dd>
+                  <dd>{releasedOrUnrecorded(release.latestReleaseDate)}</dd>
                 </div>
                 <div>
                   <dt>Next expected</dt>
-                  <dd>{dateOrPending(release.nextExpectedRelease)}</dd>
+                  <dd>{nextOrUnscheduled(release.nextExpectedRelease)}</dd>
                 </div>
               </dl>
               <p>{release.note}</p>
@@ -121,8 +129,8 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
                 </a>
               </strong>
               <span role="cell" data-label="Observation">{vintage.observationPeriod}</span>
-              <span role="cell" data-label="Released">{dateOrPending(vintage.releaseDate)}</span>
-              <span role="cell" data-label="Next">{dateOrPending(vintage.nextExpectedRelease)}</span>
+              <span role="cell" data-label="Released">{releasedOrUnrecorded(vintage.releaseDate)}</span>
+              <span role="cell" data-label="Next">{nextOrUnscheduled(vintage.nextExpectedRelease)}</span>
               <small role="cell" data-label="Revision status">{vintage.revisionStatus}</small>
             </div>
           ))}
@@ -173,12 +181,12 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
       <section className="v3-corrections" id="corrections">
         <div>
           <p className="v3-kicker">Corrections</p>
-          <h2>Every correction is listed here with its date.</h2>
+          <h2>How we handle corrections.</h2>
         </div>
         <div>
           <p>{dataset.trust.correctionPolicy.commitment}</p>
           <a href={`mailto:${dataset.trust.correctionPolicy.contact}`}>{dataset.trust.correctionPolicy.contact}</a>
-          <small>Policy reviewed {dataset.trust.correctionPolicy.reviewedAt}</small>
+          <small>Policy reviewed {formatDateLabel(dataset.trust.correctionPolicy.reviewedAt, SHORT_DATE)}</small>
         </div>
       </section>
 

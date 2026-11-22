@@ -20,7 +20,7 @@ export function TradeTab({ dataset }: { dataset: DashboardDataset }) {
           <div>
             <h2>{dataset.trade.headline}</h2>
 <p>{dataset.trade.narrative.headline}</p>
-            <p>Annual figures for 2025, from the state's April 1, 2026 release. They are not current monthly exports, and the latest Census figure has not been checked again.</p>
+            <p>Annual figures for 2025, from the state's April 1, 2026 release. They are not current monthly exports.</p>
           </div>
         </div>
 

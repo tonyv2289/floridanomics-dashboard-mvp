@@ -72,7 +72,7 @@ function classifySource(source: DashboardSource): NonNullable<DashboardSource["c
   const haystack = `${source.id} ${source.name} ${source.url}`.toLowerCase();
 
   if (
-    ["florida_chamber", "florida_taxwatch", "james_madison", "fc100", "mass_competitiveness", "texas_2036"].some(
+    ["florida_chamber", "florida_scorecard", "florida_taxwatch", "james_madison", "fc100", "mass_competitiveness", "texas_2036"].some(
       (token) => id.includes(token),
     )
   ) {
@@ -80,7 +80,8 @@ function classifySource(source: DashboardSource): NonNullable<DashboardSource["c
   }
 
   if (
-    ["governor", "selectflorida", "space_florida", "blue_origin", "on_target"].some((token) => id.includes(token))
+    // News reports (such as the Reuters Blue Origin story) fall through to industry research.
+    ["governor", "selectflorida", "space_florida"].some((token) => id.includes(token))
   ) {
     return "official_announcement";
   }
@@ -98,6 +99,7 @@ function classifySource(source: DashboardSource): NonNullable<DashboardSource["c
       "port_everglades",
       "tennessee_e2e",
       "north_carolina_evi",
+      "on_target",
       "washington_stem",
       "florida_senate",
     ].some((token) => haystack.includes(token))
@@ -155,7 +157,7 @@ function buildTrustLayer({
   ];
 
   return {
-    methodologyVersion: "2026-09-10",
+    methodologyVersion: "2026-11-21",
     review: existing?.trust.review,
     metricVintages: [
       ...laborMetricIds.map((metricId) => {
@@ -238,7 +240,7 @@ function buildTrustLayer({
       },
     ],
     correctionPolicy: {
-      reviewedAt: "2026-09-10",
+      reviewedAt: "2026-11-22",
       contact: "info@floridanomics.com",
       commitment:
         "When we find a material error, we correct it promptly, check the claim against its source again, and keep a dated note of the correction.",
@@ -676,13 +678,13 @@ const STRATEGY_SOURCE_STACK: DashboardDataset["sources"] = [
 const TERMINAL_SOURCE_STACK: DashboardDataset["sources"] = [
   {
     id: "bls_state_april_2026",
-    name: "BLS State Employment and Unemployment, April 2026",
+    name: "BLS State Employment and Unemployment, latest release",
     url: "https://www.bls.gov/news.release/laus.nr0.htm",
     notes: "The official state unemployment and payroll figures used to compare Florida with peer states.",
   },
   {
     id: "cbre_h2_2025_data_centers",
-    name: "CBRE North America Data Center Trends H2 2025",
+    name: "CBRE North America Data Center Trends H1 2026",
     url: "https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026/dallas-ft-worth-data-center-market",
     notes: "Industry research on data-center leasing in the largest markets, demand in Dallas, supply limits, and where AI computing is being sited.",
   },
@@ -959,10 +961,10 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
   sources: [
     {
       id: "bls_state_april_2026",
-      label: "BLS April 2026 state release",
+      label: "BLS state employment release",
       url: "https://www.bls.gov/news.release/laus.nr0.htm",
       tier: "official",
-      note: "Florida posted the largest monthly payroll gain in April 2026, while its unemployment rate rose 1.1 percentage points year over year.",
+      note: "The latest monthly state employment and unemployment release from BLS.",
     },
     {
       id: "cbre_h2_2025_data_centers",
@@ -1953,13 +1955,13 @@ async function main() {
       id: "census_population",
       name: "U.S. Census Bureau Population Estimates (via FRED FLPOP)",
       url: "https://fred.stlouisfed.org/series/FLPOP",
-      notes: "Annual Florida resident population (source notes cite U.S. Census Bureau).",
+      notes: "Florida's resident population each year, from Census Bureau estimates published on FRED.",
     },
     {
       id: "fred_innovation",
-      name: "FRED state innovation/development indicators",
+      name: "FRED state economic indicators",
       url: "https://fred.stlouisfed.org/",
-      notes: "Business applications and real gross state product series.",
+      notes: "Florida's business applications and real gross state product.",
     },
     {
       id: "federal_data_spine",
