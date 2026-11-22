@@ -149,7 +149,7 @@ export function MetricTable({
       <div className="v3-panel-head">
         <div>
           <h2>Five numbers on Florida's labor market.</h2>
-          <p>Each row is selectable and drives the chart above.</p>
+          <p>Select a row to chart it above.</p>
         </div>
       </div>
 
@@ -267,8 +267,8 @@ export function SourceFooter({ dataset }: { dataset: DashboardDataset }) {
       <p className="v3-kicker">Source stack</p>
       <h2>Every source is listed, along with the kind of evidence it is.</h2>
       <p className="v3-source-disclosure">
-        Floridanomics uses official data, official announcements, industry research, and advocacy analysis. Strategic
-        reads are editorial inference, not official statistics.
+        Floridanomics uses official data, official announcements, industry research, and advocacy analysis. Our own
+        analysis is editorial, not an official statistic.
       </p>
       <div className="v3-source-grid">
         {dataset.sources.map((source) => (

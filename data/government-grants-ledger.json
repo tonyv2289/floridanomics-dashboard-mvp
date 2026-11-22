@@ -1,7 +1,7 @@
 {
   "headline": "What government grants are paying for in Florida and competitor states.",
   "summary": "Named government grants and cooperative agreements in Florida and competitor states. Each award lists its funding source, its recipient, its status, and the investment or jobs documented with it.",
-  "coverageNote": "Curated strategic-award coverage from 2024 through 2026, not a complete accounting of government assistance. Totals include only official named awards. Appropriations, open opportunities, contracts, and multi-award program headlines remain visible as context but are never added to award totals.",
+  "coverageNote": "A selected list of major awards from 2024 through 2026, not a full accounting of government assistance. Totals include only official awards to a named recipient. Appropriations, open opportunities, contracts, and headlines that combine several awards are shown for context and are never added to the totals.",
   "methodology": [
     "Count an item only after an official source names the recipient and award amount.",
     "Separate the government source of funds from the agency administering a pass-through award.",
@@ -23,7 +23,7 @@
       "category": "opportunity",
       "label": "Florida defense grant cycle",
       "headline": "Applications open",
-      "treatment": "The Defense Reinvestment and Florida Defense Support Commission application cycle is an opportunity, not an award. Future selections should be added recipient by recipient.",
+      "treatment": "The Defense Reinvestment and Florida Defense Support Commission application cycle is an opportunity, not an award. Awards will be listed here by recipient once they are made.",
       "sourceIds": ["fl_defense_grant_cycle_2026"]
     },
     {
@@ -39,7 +39,7 @@
       "category": "contract",
       "label": "FSU CAPS naval power systems",
       "headline": "$88M Navy contract",
-      "treatment": "Strategically important Florida defense work, but procurement revenue is not grant assistance and belongs in a future government-contract ledger.",
+      "treatment": "Important defense work for Florida, but a procurement contract is revenue, not a grant, so it is not counted here.",
       "sourceIds": ["fsu_caps_navsea_2026"]
     },
     {

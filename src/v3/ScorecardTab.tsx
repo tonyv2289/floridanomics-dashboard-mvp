@@ -24,8 +24,8 @@ export function ScorecardTab({
     <>
       <ChartPanel
         metric={selectedMetric}
-        title="Start with the live labor signal."
-        note="The chart holds the active metric; the scorecard and evidence below carry the supporting context."
+        title="Start with the latest labor numbers."
+        note="The chart shows the measure you select. The table and sources below give the context."
       />
       <MetricTable dataset={dataset} selectedMetricId={selectedMetricId} onSelect={onSelectMetric} />
       <InsightBlock section={dataset.scorecard2030} />

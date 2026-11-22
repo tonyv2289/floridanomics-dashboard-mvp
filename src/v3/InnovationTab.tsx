@@ -25,8 +25,8 @@ export function InnovationTab({
     <>
       <ChartPanel
         metric={selectedMetric}
-        title="Formation, output, and advanced jobs need one focal signal."
-        note="Business applications and sector employment are distinct measures. Neither provides a complete count of innovation activity."
+        title="Start with new business applications."
+        note="Business applications and jobs by sector measure different things. Neither one is a full count of innovation."
         accent="teal"
       />
 

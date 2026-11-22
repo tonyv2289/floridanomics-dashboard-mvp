@@ -87,7 +87,7 @@ function TalentHero({ dataset }: { dataset: DashboardDataset }) {
         </dl>
       </div>
       <p className="v3-talent-caveat">
-        <strong>Read this as a coverage proxy.</strong> {dataset.talent.coverageNote}
+        <strong>Read this as a partial count.</strong> {dataset.talent.coverageNote}
       </p>
     </Frame>
   );
@@ -240,7 +240,7 @@ function SelectedPathway({ dataset, cluster }: { dataset: DashboardDataset; clus
         <div className="v3-talent-section-head">
           <div>
             <span>Institution leaders</span>
-            <h3>Largest disclosed producers in the covered program</h3>
+            <h3>Schools with the most disclosed graduates in this program</h3>
           </div>
           <small>Florida public universities | {cluster.pipeline.academicYear}</small>
         </div>
@@ -275,7 +275,7 @@ function SelectedPathway({ dataset, cluster }: { dataset: DashboardDataset; clus
         <div className="v3-talent-section-head">
           <div>
             <span>Project pressure</span>
-            <h3>{projects.length > 0 ? "Named projects already testing the pathway" : "No named project link yet"}</h3>
+            <h3>{projects.length > 0 ? "Named projects tied to this pathway" : "No named project yet"}</h3>
           </div>
           <small>{projects.length} linked ledger {projects.length === 1 ? "record" : "records"}</small>
         </div>
@@ -300,8 +300,8 @@ function SelectedPathway({ dataset, cluster }: { dataset: DashboardDataset; clus
           </div>
         ) : (
           <p className="v3-talent-empty">
-            The Floridanomics capex ledger does not yet contain a named project tied to this pathway. Demand and
-            degree outcomes remain the operating signals.
+            The Floridanomics project list has no named project tied to this pathway yet. For now, the measures to
+            watch are job demand and graduate outcomes.
           </p>
         )}
       </section>
@@ -351,8 +351,8 @@ export function TalentTab({
       <Frame label="Pathway matrix">
         <div className="v3-panel-head">
           <div>
-            <h2>Where is the visible pipeline thinnest?</h2>
-            <p>Compare representative occupations with their closest covered bachelor's programs.</p>
+            <h2>Where are the fewest graduates per job opening?</h2>
+            <p>Each occupation is paired with the closest bachelor's program in the data.</p>
           </div>
           <span className="v3-talent-result-count">
             {clusters.length} of {dataset.talent.clusters.length} pathways

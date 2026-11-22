@@ -22,12 +22,12 @@ export function ExecutiveRead({ dataset }: { dataset: DashboardDataset }) {
     : "not yet scheduled";
   const implications: Record<AudienceId, { headline: string; action: string }> = {
     operator: {
-      headline: "Statewide employment figures provide context, but hiring conditions vary by occupation and region.",
-      action: "Compare local recruiting conditions and compensation before committing to an expansion.",
+      headline: "The statewide numbers are a starting point. Hiring conditions differ by occupation and by region.",
+      action: "Before you expand, check hiring and pay in the local market you are considering.",
     },
     investor: {
       headline: "Population growth supports demand. Productivity and export earnings decide how much the economy gains over time.",
-      action: "Distinguish businesses serving local demand from those developing technology, manufacturing, and services for outside markets.",
+      action: "Separate the businesses that serve local demand from those that sell technology, manufactured goods, and services to outside markets.",
     },
     policymaker: {
       headline: "An announced project counts once the money is spent, the site is operating, and people are hired.",
@@ -35,7 +35,7 @@ export function ExecutiveRead({ dataset }: { dataset: DashboardDataset }) {
     },
     developer: {
       headline: "Investment decisions depend on available sites, reliable utilities, and workers with the required skills.",
-      action: "Use the project comparisons to identify the local infrastructure and workforce requirements for each prospect.",
+      action: "Use the project comparisons to see what infrastructure and workers each prospect will need.",
     },
   };
   const implication = implications[audience];

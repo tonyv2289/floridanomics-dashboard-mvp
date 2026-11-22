@@ -22,7 +22,7 @@ export const WSER_SOURCE = {
   name: "FloridaCommerce WSER (Bureau of Workforce Statistics & Economic Research)",
   url: "https://floridajobs.org/wser-home/about-wser",
   notes:
-    "State of Florida bureau: monthly LAUS/CES employment, unemployment, and labor-force releases plus QCEW wages and OEWS. Authoritative Florida-native source.",
+    "The state bureau that publishes Florida's monthly employment, unemployment, and labor force numbers, along with wage and occupation data.",
 } as const;
 
 /** Stable monthly-release file URLs (overwritten each release). */

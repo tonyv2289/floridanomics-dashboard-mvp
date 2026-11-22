@@ -89,7 +89,7 @@ export async function buildLeadingSection(): Promise<LeadingSection> {
       cadence: "daily",
       unit: "index",
       trendDirection: "up_good",
-      leads: "Advertised hiring demand; vacancies do not necessarily become filled jobs.",
+      leads: "Job postings show what employers are advertising. Not every posting becomes a hire.",
       source: { label: "Indeed Hiring Lab", url: "https://github.com/hiring-lab/job_postings_tracker" },
       recentWindow: 30,
       recentLabel: "vs 30-day average",
@@ -113,7 +113,7 @@ export async function buildLeadingSection(): Promise<LeadingSection> {
       cadence: "weekly",
       unit: "claims",
       trendDirection: "down_good",
-      leads: "Ongoing benefit claims; changes can reflect hiring, benefit exhaustion, and other factors.",
+      leads: "People still collecting unemployment benefits. The count falls when people find work, and also when their benefits run out.",
       source: { label: "US DOL via FRED (FLCCLAIMS)", url: "https://fred.stlouisfed.org/series/FLCCLAIMS" },
       recentWindow: 4,
       recentLabel: "vs 4-week average",
@@ -136,7 +136,7 @@ export async function buildLeadingSection(): Promise<LeadingSection> {
   return {
     headline: "Early economic indicators.",
     summary:
-      "Job postings, unemployment claims, and building permits provide additional context between monthly labor releases. Their timing and coverage differ; none guarantees a future outcome.",
+      "Job postings, unemployment claims, and building permits come out between the monthly jobs reports. Each one covers something different, and none of them predicts the next report.",
     signals,
   };
 }

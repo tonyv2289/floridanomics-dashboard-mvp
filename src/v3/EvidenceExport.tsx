@@ -49,7 +49,7 @@ export function EvidenceExport({ dataset }: { dataset: DashboardDataset }) {
       <div className="v3-panel-head">
         <div>
           <h2>Cite these numbers.</h2>
-          <p>Copy a sourced, board-ready evidence block for the current Florida labor read.</p>
+          <p>Copy the current Florida labor numbers with their sources, ready to paste into a memo.</p>
         </div>
         <button type="button" className="v3-reload-button" onClick={copy}>
           {copied ? "Copied" : "Copy evidence"}

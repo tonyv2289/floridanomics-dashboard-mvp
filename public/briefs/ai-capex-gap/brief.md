@@ -2,7 +2,7 @@
 
 Updated September 10, 2026. Observation periods vary by source.
 
-Florida's regional industries provide potential demand for computing services. Assessing the state's investment position requires comparable evidence on project capacity, infrastructure costs, construction, and operations. The available labor statistics do not establish that Florida is missing an AI investment boom.
+Florida's regional industries could use more computing. To know where the state stands on investment, we need comparable figures on project capacity, infrastructure costs, construction, and operations. The labor statistics we have do not show that Florida is missing an AI investment boom.
 
 ## Florida unemployment: 4.6%
 
@@ -32,28 +32,28 @@ The Scorecard's current IRS-based hourly equivalent. This annual household-incom
 
 CS/CS/SB 484 was approved in May 2026. Its principal effective date is July 1, 2026, with exceptions in the law. [Florida Senate CS/CS/SB 484, Chapter 2026-65](https://www.flsenate.gov/Session/Bill/2026/484).
 
-## Infrastructure investment can support regional production.
+## What infrastructure investment can add to a region.
 
-Data-center development can generate construction, engineering, utility, and operating activity. The magnitude and duration depend on project design, spending, local procurement, and staffing. Announced investment is not the same as completed construction or ongoing regional output.
+Building a data center can bring construction, engineering, utility, and operations work. How much, and for how long, depends on the project's design, its spending, how much it buys locally, and its staffing. Announced investment is not the same as finished construction or lasting output in the region.
 
-Florida's aerospace, health care, finance, and international-business activities may support specialized computing demand. A project-specific assessment is needed to determine commercial viability and local benefits.
+Florida's aerospace, health care, finance, and international business may need specialized computing. Whether a project makes commercial sense, and what the community gets from it, has to be worked out one project at a time.
 
-## Compare like measures across markets.
+## Compare the same measures across markets.
 
-Capacity in operation, capacity under construction, planned megawatts, capital expenditure, and net absorption describe different aspects of the market. A statewide investment ranking requires consistent geographic coverage and definitions.
+Operating capacity, capacity under construction, planned megawatts, capital spending, and net absorption each measure something different. Ranking states on investment takes the same geography and the same definitions for every state.
 
-An incomplete Florida inventory is a research limitation. It is not evidence that projects are absent, nor does it establish a causal explanation for unemployment.
+An incomplete list of Florida projects limits what we can say. It does not show that projects are absent, and it does not explain unemployment.
 
 ## Identify costs, risks, and public benefits.
 
-Project review should consider power procurement, grid capacity, water use, local approvals, and the allocation of infrastructure costs. The enacted law and applicable utility decisions govern specific requirements.
+A project review should cover how the project gets its power, grid capacity, water use, local approvals, and who pays for the infrastructure. The new law and the utility regulators' decisions set the specific requirements.
 
-Floridanomics' editorial recommendation is to assess each proposal against measurable commitments and costs. Public benefits should be demonstrated through evidence on employment, wages, infrastructure, and regional economic activity.
+Floridanomics recommends judging each proposal by commitments and costs that can be measured. The public benefit should be shown with evidence on jobs, wages, infrastructure, and economic activity in the region.
 
-## Establish a comparable project inventory.
+## Build a comparable list of projects.
 
-The next analytical step is a named inventory distinguishing announced, permitted, under-construction, and operating facilities. It should include megawatts, disclosed capital, expected and actual employment, utility arrangements, and water requirements.
+The next step is a list of named facilities that separates those announced, permitted, under construction, and operating. It should include megawatts, disclosed capital, expected and actual jobs, utility arrangements, and water needs.
 
-Occupational wages and supplier activity can then help assess economic effects. Until those inputs are available, the AI investment-gap proposition remains a research question.
+Occupational wages and supplier activity can then help measure the economic effect. Until that information exists, whether Florida has an AI investment gap is still an open question.
 
 This is economic analysis and a research agenda, not a quantified impact study or legal advice. [Current data and source notes](https://www.floridanomics.com/?view=dashboard&tab=evidence).

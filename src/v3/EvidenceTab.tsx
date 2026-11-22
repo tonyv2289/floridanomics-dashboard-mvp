@@ -28,13 +28,13 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
           <p className="v3-kicker">Evidence</p>
           <h1>Each number shows its date, its source, and whether it can still be revised.</h1>
           <p>
-            Floridanomics separates observations from release dates, official evidence from outside analysis, and
-            sourced facts from editorial inference.
+            Floridanomics shows the period each number describes and the day it was released. Official data,
+            outside analysis, and our own reading are labeled separately.
           </p>
         </div>
         <dl>
           <div>
-            <dt>Data bundle built</dt>
+            <dt>Data updated</dt>
             <dd>{formatDateLabel(dataset.generatedAt, { month: "short", day: "numeric", year: "numeric" })}</dd>
           </div>
           <div>
@@ -61,7 +61,7 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
         <h2>Source checks, then editorial review.</h2>
         <p>Weekday checks run after the usual morning releases. The official BLS calendar identifies which state, metro, and county observations are due. New observations and stale sources produce a review alert; they do not publish themselves.</p>
         <p>Regional jobs and wages: {regionalEconomy.period}, retrieved {regionalEconomy.retrievedAt}. These are all-industry county benchmarks, not totals for the atlas's illustrative regions.</p>
-        <p>Project announcements and TJ’s Read remain separately reviewed editorial content. A refreshed data file does not refresh the date of an older article or verify a construction milestone.</p>
+        <p>Project announcements and TJ’s Read are reviewed separately. A data refresh does not change the date on an older article, and it does not confirm that a construction milestone was met.</p>
         <a href={releaseCalendar.sourceUrl}>Official BLS calendar, checked {releaseCalendar.checkedAt} ↗</a>
         <div className="v3-release-grid">{releaseCalendar.releases.filter((release) => release.releaseDate >= new Date().toISOString().slice(0, 10)).slice(0, 4).map((release) => <article key={`${release.program}-${release.releaseDate}`}><strong>{release.label}</strong><p>Scheduled: {release.releaseDate}</p></article>)}</div>
       </Frame>
@@ -132,24 +132,24 @@ export function EvidenceTab({ dataset }: { dataset: DashboardDataset }) {
       <section className="v3-trust-band" id="methodology">
         <div>
           <p className="v3-kicker">Methodology</p>
-          <h2>Evidence first, interpretation second.</h2>
+          <h2>How we handle the numbers.</h2>
         </div>
         <div className="v3-method-grid">
           <article>
             <strong>Refresh</strong>
-            <p>Core labor, population, formation, output, metro, industry, and peer-state series refresh through validated public feeds.</p>
+            <p>The core series on jobs, population, new businesses, output, metros, industries, and peer states are refreshed from public data feeds and checked before use.</p>
           </article>
           <article>
             <strong>Revision</strong>
-            <p>The current official vintage replaces the prior value. Release-to-release comparisons label revisions separately from new periods.</p>
+            <p>When an agency revises a number, the new figure replaces the old one. Comparisons between releases mark revisions separately from new periods.</p>
           </article>
           <article>
             <strong>Conflict</strong>
-            <p>Official statistical releases control headline metrics. Other credible sources remain visible as context and are never silently blended.</p>
+            <p>Headline numbers come only from official statistical releases. Other sources are shown as context, and they are never mixed into an official figure.</p>
           </article>
           <article>
             <strong>Inference</strong>
-            <p>Forecasts, scores, and strategic reads are labeled Floridanomics analysis and retain links to the evidence used to construct them.</p>
+            <p>Forecasts, scores, and our own analysis are labeled as Floridanomics analysis and link to the evidence behind them.</p>
           </article>
         </div>
       </section>

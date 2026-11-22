@@ -29,7 +29,7 @@ export const REGIONS: Region[] = [
   {
     id: "space-coast", name: "Space Coast", shortName: "Space Coast", coordinates: [-80.68, 28.5], detailed: true,
 headline: "Launch, manufacturing, and maritime logistics.",
-description: "Kennedy Space Center and Port Canaveral place space operations and cargo infrastructure in close proximity. These assets support the Space Coast’s aerospace and logistics industries.",
+description: "Kennedy Space Center and Port Canaveral put space operations and cargo close together. Both support the Space Coast’s aerospace and logistics industries.",
     assets: [
       { id: "kennedy", name: "Kennedy Space Center", kind: "Spaceport", sector: "Space", coordinates: [-80.65, 28.59], model: "rocket", summary: "NASA’s Kennedy Space Center is a multi-user spaceport supporting government and commercial space operations, with launch, research, and development facilities.", source: "https://www.nasa.gov/kennedy/", sourceName: "NASA · Kennedy Space Center" },
       { id: "canaveral", name: "Port Canaveral", kind: "Seaport", sector: "Trade & logistics", coordinates: [-80.6, 28.41], model: "port", summary: "Port Canaveral operates cargo facilities on Florida’s Atlantic coast. Its cargo resources cover maritime facilities and services for shippers.", source: "https://www.portcanaveral.com/Cargo", sourceName: "Port Canaveral · Cargo" },
@@ -38,9 +38,9 @@ description: "Kennedy Space Center and Port Canaveral place space operations and
   {
     id: "orlando-osceola", name: "Orlando–Osceola", shortName: "Orlando–Osceola", coordinates: [-81.28, 28.38], detailed: true,
 headline: "Semiconductors, simulation, and specialized research.",
-description: "NeoCity’s semiconductor facilities and UCF’s simulation research provide distinct foundations for advanced industry in Central Florida.",
+description: "NeoCity’s semiconductor facilities and UCF’s simulation research are two separate bases for advanced industry in Central Florida.",
     assets: [
-      { id: "neocity", name: "NeoCity", kind: "Technology campus", sector: "Advanced industry", coordinates: [-81.35, 28.29], model: "chip", summary: "NeoCity is Osceola County’s 500-acre technology campus, south of Orlando. Its Center for Neovation is a semiconductor fabrication facility supporting the district’s technology ecosystem.", source: "https://www.neocityfl.com/what-is-neocity/", sourceName: "Osceola County · What is NeoCity?" },
+      { id: "neocity", name: "NeoCity", kind: "Technology campus", sector: "Advanced industry", coordinates: [-81.35, 28.29], model: "chip", summary: "NeoCity is Osceola County’s 500-acre technology campus, south of Orlando. Its Center for Neovation is a semiconductor fabrication facility.", source: "https://www.neocityfl.com/what-is-neocity/", sourceName: "Osceola County · What is NeoCity?" },
       { id: "ucf-ist", name: "UCF Institute for Simulation & Training", kind: "Research", sector: "Defense & simulation", coordinates: [-81.2, 28.59], model: "dish", summary: "UCF’s Institute for Simulation & Training develops modeling, simulation, and training technologies, tools, processes, and systems in Orlando.", source: "https://www.ist.ucf.edu/", sourceName: "UCF · Institute for Simulation & Training" },
       { id: "skywater", name: "SkyWater Florida", kind: "Company", sector: "Advanced industry", coordinates: [-81.35, 28.29], model: "chip", summary: "NeoCity identifies SkyWater Florida as operator of the Center for Neovation, collaborating with BRIDG on microelectronics research and development and advanced packaging capabilities.", source: "https://www.neocityfl.com/current-innovation/", sourceName: "Osceola County · NeoCity current innovation" },
     ],
