@@ -91,7 +91,7 @@ function Briefing() {
           <div className="briefing-stamp">
             <strong>{formatDateLabel(data.generatedAt)}</strong>
             <span>Labor data: {data.asOfLaborMarket}</span>
-            <span>Annual and research benchmarks keep the periods stated on them</span>
+            <span>Annual figures and research benchmarks show the period they cover</span>
           </div>
         </header>
 

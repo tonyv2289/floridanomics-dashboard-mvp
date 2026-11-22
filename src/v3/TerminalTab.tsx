@@ -59,8 +59,8 @@ function AiCapexIndex({ dataset }: { dataset: DashboardDataset }) {
           <h2>{measured ? measured.headline : "Infrastructure investment and the evidence needed."}</h2>
           <p>
             {measured
-              ? "The measured facts come first. The indicators below describe the wider economy and do not measure AI investment."
-              : "Comparable project data are needed to assess Florida's position. State labor statistics alone cannot identify an AI investment gap."}
+              ? "The measured facts come first, followed by indicators for the wider economy."
+              : "Florida's position needs comparable project data; state labor statistics alone can't measure it."}
           </p>
         </div>
       </div>
@@ -218,7 +218,7 @@ function ForecastBoard({ dataset }: { dataset: DashboardDataset }) {
             </div>
 
             <p className="v3-terminal-trigger">
-              <strong>When to update:</strong> {forecast.updateTrigger}
+              <strong>Next update:</strong> {forecast.updateTrigger}
             </p>
             <TerminalSourceList dataset={dataset} sourceIds={forecast.sourceIds} />
           </article>
@@ -250,12 +250,12 @@ function PolicyMemoBoard({ dataset }: { dataset: DashboardDataset }) {
                 <dd>{memo.recommendation}</dd>
               </div>
               <div>
-                <dt>What to avoid</dt>
+                <dt>What to count</dt>
                 <dd>{memo.whatNotToDo}</dd>
               </div>
             </dl>
             <div>
-              <strong>What to track next</strong>
+              <strong>What to watch next</strong>
               <ul>
                 {memo.nextMoves.map((move) => (
                   <li key={move}>{move}</li>

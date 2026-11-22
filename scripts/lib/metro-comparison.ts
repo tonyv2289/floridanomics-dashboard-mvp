@@ -26,7 +26,7 @@ export function buildMetroComparison(
   const signed = (value: number) => `${value > 0 ? "+" : ""}${value.toFixed(1)}`;
   return {
     headline: "Nine metro labor markets, measured the same way.",
-    summary: "Nine metro areas, using the same BLS household survey measures for the same month. Comparing each month with the same month a year earlier takes out most seasonal swings. These figures do not measure productivity or AI employment.",
+    summary: "Nine metro areas, using the same BLS household survey measures for the same month. Comparing each month with the same month a year earlier takes out most seasonal swings. These figures cover residents' jobs and unemployment.",
     asOf: `BLS LAUS ${prettyMonth(commonDate)}; not seasonally adjusted; preliminary estimates may be revised`,
     regions: COMPARISON_METROS.map(({ id, root }) => {
       const old = previous.regions.find((region) => region.id === id);
@@ -42,7 +42,7 @@ export function buildMetroComparison(
         role: "Metropolitan labor market",
         momentum: "mixed" as const,
         verdict: `${rate.value.toFixed(1)}% unemployment in ${prettyMonth(commonDate)}.`,
-        read: "The labor force is residents who have a job plus those looking for one. Read a change together with local industry conditions, population, and participation.",
+        read: "Residents who are working or looking for work.",
         sourceIds: ["bls_metro_laus_current"],
         signals: [
           { label: "Labor force", direction: "neutral" as const, value: labor.value.toLocaleString("en-US"), detail: `Residents; ${prettyMonth(commonDate)}, not seasonally adjusted.` },

@@ -386,7 +386,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         period: input.metrics.nonfarmPayrolls.latest.date,
         sourceId: "bls_public_api",
         status: "live",
-        read: "Monthly nonfarm payroll positions reported by employers; distinct from the number of employed residents.",
+        read: "Monthly nonfarm payroll jobs reported by employers, which differ from the count of employed residents.",
         sourceUrl: FEDERAL_SOURCE_URLS.bls,
       },
       refreshedAt,
@@ -421,8 +421,8 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
         read: censusBusinessApps
           ? "Business formation is now coming straight from the Census BFS API."
           : hasEnvKey("CENSUS_API_KEY")
-            ? "Business formation is Census Business Formation Statistics data. Florida's state values are retrieved through FRED."
-            : "Business formation is Census Business Formation Statistics data. Florida's state values are retrieved through FRED.",
+            ? "New business applications from the Census Bureau's Business Formation Statistics, retrieved for Florida through FRED."
+            : "New business applications from the Census Bureau's Business Formation Statistics, retrieved for Florida through FRED.",
         sourceUrl: censusBusinessApps?.url ?? FEDERAL_SOURCE_URLS.censusBfs,
         caveat: censusBusinessApps
           ? undefined
@@ -516,7 +516,7 @@ export async function buildFederalDataLayer(input: BuildFederalDataLayerInput): 
   return {
     headline: "Federal economic series",
     summary:
-      "Each measure shows the period it describes and whether it was retrieved directly. When a direct feed is unavailable, the last published figure is kept and dated.",
+      "Each measure shows the period it covers and whether it came straight from the agency. When a feed is down, the last published figure stays up with its date.",
     refreshedAt,
     sources,
     signals,

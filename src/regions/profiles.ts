@@ -40,7 +40,7 @@ export const REGIONAL_PROFILES: RegionalProfile[] = [
   {
     id: "tampa-bay", title: "Tampa Bay", reviewedAt: "2026-09-11",
     description: "Tampa Bay's economy includes cancer research at Moffitt, defense technology work at SOFWERX, and Port Tampa Bay.",
-    read: "Moffitt and USF do specialized care and research and turn some of it into companies. SOFWERX connects technology firms with what Special Operations Forces need, and Port Tampa Bay serves manufacturers and distributors. Tampa Bay does not have one technology industry. It has several employers that each need technical workers, suppliers, and professional services.",
+    read: "Moffitt and USF do specialized care and research and turn some of it into companies. SOFWERX connects technology firms with what Special Operations Forces need, and Port Tampa Bay serves manufacturers and distributors. Tampa Bay's technology work is spread across several employers, and each one needs technical workers, suppliers, and professional services.",
     watch: "Separate the operating Speros outpatient center from later phases of the wider campus. Look for company activity, clinical research, and supplier spending alongside additional construction.",
     employers: [{ name: "Moffitt Cancer Center", detail: "A clinical and research employer with an expanded presence in Pasco County. Its Speros outpatient center is serving patients; later campus components have separate delivery schedules.", source: moffitt }],
     research: [{ name: "USF Research & Innovation", detail: "Technology transfer and USF CONNECT support commercialization and early-stage businesses, including the Tampa Bay Technology Incubator.", source: { label: "University of South Florida · Research", url: "https://www.usf.edu/research-innovation/", asOf: "2026-09-11" } }],
@@ -59,24 +59,24 @@ export const REGIONAL_PROFILES: RegionalProfile[] = [
     id: "northeast", title: "Jacksonville & Northeast Florida", reviewedAt: "2026-09-11",
     description: "Jacksonville is home to FIS, Mayo Clinic's Florida campus, and JAXPORT.",
     read: "FIS, Mayo Clinic, and JAXPORT bring different forms of outside demand into Northeast Florida. Financial technology needs technical and professional services. Complex medical care supports clinical research and specialized suppliers. The port connects the region to goods markets. The mix matters because Northeast Florida's economy is wider than its freight network.",
-    watch: "Follow Mayo's treatment commissioning separately from the opening of the building that houses it. A completed facility does not mean every planned technology is treating patients.",
+    watch: "The building is open, and Mayo is adding its planned treatments in stages.",
     employers: [
       { name: "FIS", detail: "The financial technology company lists its Jacksonville address at 347 Riverside Avenue and supplies technology for banking, payments, and investing.", source: { label: "FIS · Corporate contact information", url: "https://www.fisglobal.com/contact-us", asOf: "2026-09-11" } },
       { name: "Mayo Clinic in Florida", detail: "Mayo's Jacksonville campus provides complex care and research. The Duan Family Building expands cancer-care facilities within that campus.", source: mayo },
     ],
     research: [{ name: "Mayo Clinic cancer-care campus", detail: "Mayo's Jacksonville campus combines patient care, clinical research, and specialized facilities.", source: mayo }],
-    projects: [{ name: "Duan Family Building", status: "Opened", milestone: "2025 opening; treatment phases follow", detail: "Mayo announced the building opening in June 2025; its current campus guide dates the opening to July. The announcement separately scheduled proton therapy for 2027 and carbon ion therapy for 2028. Those future treatments are not counted as operating capabilities here.", source: { label: "Mayo Clinic · Duan Family Building opening", url: "https://newsnetwork.mayoclinic.org/discussion/mayo-clinic-takes-the-next-step-in-making-heavy-particle-therapy-available-in-the-western-hemisphere-for-patients-with-aggressive-cancers/", asOf: "2025-06-11" } }],
+    projects: [{ name: "Duan Family Building", status: "Opened", milestone: "2025 opening; treatment phases follow", detail: "Mayo announced the building opening in June 2025; its current campus guide dates the opening to July. The announcement separately scheduled proton therapy for 2027 and carbon ion therapy for 2028. Those treatments are counted here once they start.", source: { label: "Mayo Clinic · Duan Family Building opening", url: "https://newsnetwork.mayoclinic.org/discussion/mayo-clinic-takes-the-next-step-in-making-heavy-particle-therapy-available-in-the-western-hemisphere-for-patients-with-aggressive-cancers/", asOf: "2025-06-11" } }],
   },
   {
     id: "north-central", title: "Gainesville & Tallahassee", reviewedAt: "2026-09-11",
     description: "Gainesville has UF's supercomputer and startup incubators. Tallahassee has the National MagLab and a Danfoss compressor plant.",
-    read: "UF's supercomputer and startup programs and Tallahassee's MagLab give companies tools that few could build for themselves. Danfoss Turbocor makes compressors in Tallahassee. These assets help move research into companies and create technical jobs. They do not mean every local business benefits, and Gainesville and Tallahassee are still two separate labor markets.",
+    read: "UF's supercomputer and startup programs and Tallahassee's MagLab give companies tools that few could build for themselves. Danfoss Turbocor makes compressors in Tallahassee. These assets help move research into companies and create technical jobs. Gainesville and Tallahassee are still two separate labor markets.",
     watch: "Look for research translated into licensed technology, growing firms, and production. Gainesville and Tallahassee remain separate local economies, and their county figures are shown separately below.",
     employers: [{ name: "Danfoss Turbocor", detail: "Danfoss manufactures oil-free, magnetic-bearing compressors in Tallahassee. Its 2024 factory expansion added 145,000 square feet and was described as doubling manufacturing capacity.", source: danfoss }],
     research: [{ name: "UF HiPerGator", detail: "UF's 2025-2026 review reports completion of the fourth-generation supercomputer installation in September 2025, providing shared computing capacity for research and teaching.", source: uf }],
     projects: [
       { name: "HiPerGator fourth-generation installation", status: "Opened", milestone: "Installation completed September 2025", detail: "UF reports that students, faculty, and staff are using the upgraded system. It gives researchers computing power. It is not commercial data-center capacity.", source: uf },
-      { name: "Danfoss Turbocor factory expansion", status: "Opened", milestone: "May 29, 2024", detail: "The company's $62 million expansion opened in May 2024. The added capacity is not the same as more sales, output, or jobs.", source: danfoss },
+      { name: "Danfoss Turbocor factory expansion", status: "Opened", milestone: "May 29, 2024", detail: "The company's $62 million expansion opened in May 2024. Its effect on sales, output, and jobs will show in later data.", source: danfoss },
     ],
   },
   {

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "generatedOn": "2026-09-27",
   "evidenceCutoff": "2026-09-25",
-  "headline": "Florida wins many projects but captures far less large productive capital per resident.",
-  "summary": "Compared with 10 competing states, Florida wins many corporate facility projects, and its manufacturing base is growing. Per resident, it captures far less factory, lab, and megaproject capital. The gap is specific to large projects, and it can be measured. The claim that Florida gets no business investment is false.",
+  "headline": "Florida wins many projects but lands far less factory, lab, and megaproject capital per resident.",
+  "summary": "Against 10 competing states, Florida wins many corporate facility projects, and its manufacturing base is growing. Per resident, it lands far less factory, lab, and megaproject capital. The gap is in large projects, and this page measures it.",
   "peerStates": [
     "Texas",
     "Georgia",
@@ -79,8 +79,8 @@
           "value": 12.7
         }
       ],
-      "read": "Florida recorded 326 qualifying projects, 5th by count, but ranked 31st per resident. It ranked 42nd per resident in 2022.",
-      "caveat": "Counts projects meeting any of $1 million, 20 jobs, or 20,000 square feet; measures breadth, not dollars.",
+      "read": "Florida recorded 326 qualifying projects in 2025, 5th by count and 31st per resident, up from 42nd per resident in 2022.",
+      "caveat": "A project counts if it meets any one of three tests: $1 million invested, 20 jobs, or 20,000 square feet. This chart counts projects of every size; the next charts measure the money.",
       "sourceIds": [
         "si_site_selection_2025",
         "si_census_popest_v2025"
@@ -148,8 +148,8 @@
           "value": 220
         }
       ],
-      "read": "Manufacturers spent $5.11 billion on plant and equipment in Florida. Relative to its own manufacturing output Florida reinvests at about a typical rate, so the gap is mostly the size of its manufacturing base. Aerospace is the exception: about 16% of U.S. aerospace capital spending.",
-      "caveat": "Covers manufacturing establishments only, not data centers. The 2024 estimate is experimental; the 2022 Economic Census shows the same low position.",
+      "read": "Manufacturers spent $5.11 billion on plant and equipment in Florida. For the size of its manufacturing output, Florida reinvests at about a typical rate, so the gap comes mostly from a smaller manufacturing base. Aerospace is the exception, at about 16% of U.S. aerospace capital spending.",
+      "caveat": "Manufacturing plants only; data centers are covered further down. The 2024 estimate is experimental, and the 2022 Economic Census shows Florida in the same low position.",
       "sourceIds": [
         "si_census_aies_2024",
         "si_census_ec_2022",
@@ -215,8 +215,8 @@
           "value": 164
         }
       ],
-      "read": "Florida's 3 active projects total $3.84 billion. Virginia, the lowest of the 10 competitors, is about 13 times Florida's figure per resident.",
-      "caveat": "Announced multi-year totals at the latest disclosure, not spending. The $1 billion threshold leaves out Florida wins between $250 million and $1 billion. Single projects dominate some totals: SpaceX Vermilion Parish spaceport is 73% of Louisiana's; Intel Ohio One is 60% of Ohio's; TSMC Arizona semiconductor campus is 82% of Arizona's. The inventory is systematic but not proven complete.",
+      "read": "Florida's 3 active projects total $3.84 billion. Per resident, even Virginia, the lowest of the 10 competitors, has about 13 times Florida's figure.",
+      "caveat": "These are announced multi-year totals at the latest disclosure, which can differ from what gets spent. The $1 billion cutoff leaves out Florida's wins between $250 million and $1 billion. One project can drive a state's total: the SpaceX Vermilion Parish spaceport is 73% of Louisiana's, Intel Ohio One is 60% of Ohio's, and the TSMC Arizona semiconductor campus is 82% of Arizona's. The list was built systematically, and it may still miss projects.",
       "sourceIds": [
         "si_megaproject_inventory",
         "si_census_popest_v2025"
@@ -284,8 +284,8 @@
           "value": 0.92
         }
       ],
-      "read": "Foreign investors planned $2.26 billion of new or expanded facilities in Florida, while spending $22.6 billion to acquire existing Florida businesses.",
-      "caveat": "Foreign investors only. BEA assigns each investment to the state with the most employees and suppresses some cells; greenfield figures are planned totals.",
+      "read": "Foreign investors planned $2.26 billion in new or expanded Florida facilities and spent $22.6 billion buying existing Florida businesses. Only the first adds new capacity in the state.",
+      "caveat": "Foreign investors only. BEA assigns each investment to the state with the most employees and withholds some figures to protect confidentiality. Greenfield figures are planned totals.",
       "sourceIds": [
         "si_bea_fdi_table13",
         "si_bea_fdi_table3",
@@ -295,7 +295,7 @@
     {
       "id": "manufacturing-jobs",
       "label": "Manufacturing employment change",
-      "question": "Contrary evidence: is the base shrinking?",
+      "question": "Is Florida's business base shrinking?",
       "period": "2022 to 2025",
       "format": "signedPct1",
       "florida": {
@@ -354,8 +354,8 @@
           "value": -3.0
         }
       ],
-      "read": "Florida added manufacturing jobs while the nation lost them. The thesis holds for large productive capital, not for business activity in general.",
-      "caveat": "Annual averages of monthly state estimates; employment change is not attributable to any single project.",
+      "read": "Florida added manufacturing jobs while the nation lost them. The shortfall is limited to large capital projects.",
+      "caveat": "Annual averages of monthly state estimates. A change in jobs can't be traced to any single project.",
       "sourceIds": [
         "si_bls_ces"
       ]
@@ -363,7 +363,7 @@
     {
       "id": "new-business-jobs",
       "label": "Jobs added by newly opened business locations, per 100 private-sector jobs a year",
-      "question": "Contrary evidence: do new businesses open here, and do they last?",
+      "question": "Do new businesses open here, and do they last?",
       "period": "2022 to 2025 average",
       "format": "decimal1",
       "florida": {
@@ -422,8 +422,8 @@
           "value": 3.3
         }
       ],
-      "read": "Florida both opens and closes business locations faster than any competitor: closings cost 6.2 jobs per 100 (4th-highest of 50), so openings net of closings add 0.5, against 0.3 nationally. Most of Florida's faster job growth (2.1 per 100 a year against 1.3) comes from established employers shedding fewer jobs.",
-      "caveat": "Private sector, seasonally adjusted; the four quarterly rates are summed for each year. Openings include new locations of existing firms and seasonal reopenings, so tourism-heavy states run higher. These are jobs, not investment.",
+      "read": "Florida opens and closes business locations faster than any competitor. Closings cost 6.2 jobs per 100 (4th-highest of 50 states), so openings minus closings add 0.5 jobs per 100, against 0.3 nationally. Most of Florida's faster job growth, 2.1 per 100 a year against 1.3, comes from established employers cutting fewer jobs.",
+      "caveat": "Private sector, seasonally adjusted, with the four quarterly rates added up for each year. Openings include new locations of existing firms and seasonal reopenings, so tourism-heavy states run higher. This chart measures jobs; the charts above measure investment.",
       "sourceIds": [
         "si_bls_bed"
       ]
@@ -431,7 +431,7 @@
     {
       "id": "private-pay",
       "label": "Average private-sector pay",
-      "question": "Contrary evidence: are the jobs getting better paid?",
+      "question": "Are the jobs getting better paid?",
       "period": "2025",
       "format": "usd0",
       "florida": {
@@ -490,8 +490,8 @@
           "value": 63446
         }
       ],
-      "read": "Florida's private-sector jobs paid 92% of the national average in 2025, up from 86% in 2019. Only 3 states raised average pay faster since 2019 (+42% against +34% nationally).",
-      "caveat": "Annual averages in nominal dollars; the latest year is subject to revision. Averages move with the mix of jobs as well as with raises, so this signals job quality; it does not measure productivity.",
+      "read": "Florida's private-sector jobs paid 92% of the national average in 2025, up from 86% in 2019. Since 2019, average pay in Florida rose 42%, against 34% nationally, and only 3 states raised it faster.",
+      "caveat": "Annual averages in nominal dollars; the latest year can still be revised. Average pay moves with the mix of jobs as well as with raises, so it signals job quality rather than measuring productivity.",
       "sourceIds": [
         "si_bls_qcew"
       ]
@@ -524,7 +524,7 @@
         "id": "cloud-capex",
         "label": "2026 capital-spending guidance, four largest cloud companies",
         "value": "$705-730B",
-        "read": "Company-wide and global. None of it is allocated to states, so no Florida share can be computed.",
+        "read": "Company-wide and global, with no breakdown by state, so Florida's share can't be calculated.",
         "sourceIds": [
           "si_amazon_ar_2025",
           "si_alphabet_10k_2025",
@@ -543,7 +543,7 @@
         ]
       }
     ],
-    "caveat": "Leases and colocation contracts are often confidential; absence of public evidence is not proof of absence. Undisclosed end users are not attributed."
+    "caveat": "Leases and colocation contracts are often confidential, so a project can exist without a public record. Projects with an undisclosed end user are not credited to any company."
   },
   "facilityHistory": {
     "label": "Qualifying corporate facility projects, 2022 to 2025",
@@ -1918,8 +1918,8 @@
       88.0,
       92.0
     ],
-    "read": "Florida climbed from 42nd per resident in 2022 to 31st in 2025 (9.1 to 13.9 projects per million residents) while its count rose from 205 (11th) to 326 (5th). Among the 11 states compared it ranked last in 2022-2024 and 10th in 2025 per resident.",
-    "caveat": "Site Selection's Governor's Cup counts (Conway Projects Database) of projects meeting at least one of $1 million invested, 20 new jobs, or 20,000 square feet; they measure breadth, not dollars. Per-resident figures use Census Vintage 2025 population for each year. Ties share a rank.",
+    "read": "Florida climbed from 42nd per resident in 2022 to 31st in 2025, from 9.1 to 13.9 projects per million residents, while its count rose from 205 (11th) to 326 (5th). Among the 11 states compared, it ranked last per resident from 2022 to 2024 and 10th in 2025.",
+    "caveat": "Site Selection's Governor's Cup counts, from the Conway Projects Database, include projects that meet at least one of $1 million invested, 20 new jobs, or 20,000 square feet, so they count projects of every size. Per-resident figures use Census Vintage 2025 population for each year. Ties share a rank.",
     "sourceIds": [
       "si_site_selection_2022",
       "si_site_selection_2023",
@@ -4697,7 +4697,7 @@
   "finalists": {
     "headline": "Florida is rarely in the final round for billion-dollar projects.",
     "read": "Florida was not a finalist for any $1B+ project whose competing sites are on the public record. Texas incentive filings name rival sites for 20 of 27 billion-dollar projects: Louisiana appears in 8, New Mexico in 5, and Florida in 1, only on Saronic's 12-state first-round list. Apart from that first-round exit, Florida's 13 documented contest losses since 2020 are mid-sized, including Boom Supersonic (Jacksonville), Pratt & Whitney (Palm Beach County), Jabil and Citi's technology hub to North Carolina, and a Miami-Dade steel-mill site that was one of three finalists (Texas won).",
-    "caveat": "North Carolina and Texas publish the alternative locations applicants name, so contests lost to those states are over-represented; most states publish none, and some Texas applicants keep their alternatives confidential.",
+    "caveat": "North Carolina and Texas publish the other sites applicants considered, so losses to those two states show up more often. Most states publish none, and some Texas applicants keep their alternatives confidential.",
     "sourceIds": [
       "si_nc_jdig_2025",
       "si_nc_jdig_2022",
@@ -4707,11 +4707,11 @@
     ]
   },
   "method": [
-    "Announced commitments are not spending, and an opening does not prove the full budget was spent or every job filled.",
+    "An announced commitment is a plan. An opening does not prove the full budget was spent or every job filled.",
     "Per-resident figures use Census Vintage 2025 population; values are nominal dollars.",
-    "Agency-reported totals use incompatible scopes: the year-by-year table shows them only as each state published them, without ranks or medians.",
-    "Company-wide hyperscaler capital spending is never allocated to states.",
-    "BLS job-flow and pay measures describe private-sector jobs, not investment; they test whether the gap is general or specific to large capital.",
+    "States define their agency-reported totals differently, so the year-by-year table shows them as each state published them, without ranks or medians.",
+    "Hyperscaler capital spending is reported company-wide, never by state.",
+    "The BLS job-flow and pay measures cover private-sector jobs. They show whether Florida's gap is general or limited to large capital projects.",
     "The project list covers announcements through November 12, 2026. Each row shows the date its status was last checked: 110 rows were checked on November 12, 2026, and the rest on or before September 26, 2026."
   ],
   "sources": [
