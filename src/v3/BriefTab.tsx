@@ -8,8 +8,8 @@ import {
   formatTradeHero,
   yearAgoLabel,
 } from "../lib/dashboard";
-import { firstSentence, formatSignedInteger, getMonthlyPayrollChange, resolveHref } from "./format";
-import { EvidenceGrid } from "./primitives";
+import { asSentence, firstSentence, formatSignedInteger, getMonthlyPayrollChange, resolveHref } from "./format";
+import { EvidenceGrid, HowToRead } from "./primitives";
 import { WhatChanged } from "./WhatChanged";
 import { LeadingSignals } from "./LeadingSignals";
 import { ExecutiveRead } from "./ExecutiveRead";
@@ -53,6 +53,7 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
   const exportMetric = dataset.trade.heroMetrics[0];
   const incomeMigration = dataset.scorecard2030.stats.find((stat) => /income migration/i.test(stat.label));
   const laborRelease = dataset.trust.releaseCalendar.find((release) => release.id === "florida-labor");
+  const whyItMatters = dataset.narrative.whyItMatters[0];
 
   return (
     <header className="v3-hero">
@@ -61,8 +62,7 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
         <h1 className={clsx(`tone-${payrollTone}`)}>{formatSignedInteger(animatedChange)}</h1>
         <p className="v3-hero-line">
           Florida {payrollChange >= 0 ? "added" : "lost"} {Math.abs(payrollChange).toLocaleString()} nonfarm jobs in{" "}
-          {monthName}. Read this monthly change next to the yearly change in jobs and
-          the labor force.
+          {monthName}.
         </p>
         <div className="v3-hero-meta">
           <span>BLS CES / LAUS</span>
@@ -77,6 +77,18 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
             </span>
           ) : null}
         </div>
+        <HowToRead>
+          <p>Read this monthly change next to the yearly change in jobs and the labor force.</p>
+          {whyItMatters ? <p>{whyItMatters}</p> : null}
+          <p>
+            {exportMetric.label}: {asSentence(exportMetric.helper)}
+          </p>
+          {incomeMigration ? (
+            <p>
+              {incomeMigration.label}: {asSentence(incomeMigration.context)}
+            </p>
+          ) : null}
+        </HowToRead>
       </div>
 
       <aside className="v3-hero-side">
@@ -97,13 +109,11 @@ function ReadHero({ dataset }: { dataset: DashboardDataset }) {
         <div>
           <span>{exportMetric.label}</span>
           <strong>{formatTradeHero(exportMetric.value, exportMetric.unit)}</strong>
-          <small>{exportMetric.helper}</small>
         </div>
         {incomeMigration ? (
           <div>
             <span>{incomeMigration.label}</span>
             <strong>{incomeMigration.value}</strong>
-            <small>{incomeMigration.context}</small>
           </div>
         ) : null}
       </aside>
@@ -163,10 +173,12 @@ function FloridaBrainNotes({ dataset }: { dataset: DashboardDataset }) {
       <div className="v3-brain-notes-head">
         <p className="v3-kicker">Florida Brain notes</p>
         <h2>Florida Economic Analysis</h2>
-        <p>
-          Notes on Florida's investment, infrastructure, and industry, each linked to its sources.
-          Each note separates what was reported from what we recommend.
-        </p>
+        <HowToRead>
+          <p>
+            Notes on Florida's investment, infrastructure, and industry, each linked to its sources.
+            Each note separates what was reported from what we recommend.
+          </p>
+        </HowToRead>
       </div>
 
       <div className="v3-brain-note-grid">
@@ -208,7 +220,7 @@ export function BriefTab({ dataset }: { dataset: DashboardDataset }) {
     <>
       <ReadHero dataset={dataset} />
       <OperatingRead dataset={dataset} />
-      <ExecutiveRead dataset={dataset} />
+      <ExecutiveRead />
       {dataset.leading ? (
         <LeadingSignals
           signals={dataset.leading.signals}

@@ -3,7 +3,6 @@ import { useDashboardData } from "../hooks/useDashboardData";
 import { useFreshnessMemory } from "../hooks/useFreshnessMemory";
 import { usePreferences, REGION_OPTIONS } from "../hooks/usePreferences";
 import { AttentionStrip } from "./AttentionStrip";
-import { EvidenceExport } from "./EvidenceExport";
 import {
   type CoreMetricId,
   formatDateLabel,
@@ -262,7 +261,6 @@ function DashboardV3() {
         >
           {activeTab === "brief" ? <AttentionStrip dataset={data} region={region} /> : null}
           {activeTab === "brief" ? <BriefTab dataset={data} /> : null}
-          {activeTab === "brief" ? <EvidenceExport dataset={data} /> : null}
           {activeTab === "policy" ? <PolicyTab dataset={data} /> : null}
           {activeTab === "evidence" ? <EvidenceTab dataset={data} /> : null}
           {activeTab === "lens" ? (
@@ -308,7 +306,7 @@ function DashboardV3() {
         </Suspense>
 
         <SignupForm source={`dashboard:${activeTab}`} />
-        <SourceFooter dataset={data} />
+        <SourceFooter dataset={data} compact={activeTab !== "evidence"} />
       </div>
     </main></>
   );
