@@ -96,6 +96,16 @@ export function Frame({ children, label }: { children: ReactNode; label?: string
   );
 }
 
+/** Caveats and definitions, closed by default: one click away instead of under every number. */
+export function HowToRead({ children }: { children: ReactNode }) {
+  return (
+    <details className="v3-howto">
+      <summary>How to read this</summary>
+      <div className="v3-howto-body">{children}</div>
+    </details>
+  );
+}
+
 export function TabNav({ activeTab, onChange }: { activeTab: V3TabId; onChange: (tab: V3TabId) => void }) {
   const tabs = SECTION_TABS[sectionForTab(activeTab)];
   return (
@@ -119,7 +129,9 @@ export function EvidenceGrid({ dataset }: { dataset: DashboardDataset }) {
         <article key={section.eyebrow} className="v3-evidence-card">
           <p className="v3-kicker">{section.eyebrow}</p>
           <h2>{section.title}</h2>
-          <p>{section.summary}</p>
+          <HowToRead>
+            <p>{section.summary}</p>
+          </HowToRead>
           <div className="v3-stat-row">
             {section.stats.slice(0, 3).map((stat) => (
               <div key={stat.label}>
@@ -254,13 +266,39 @@ export function IndustryTable({ dataset }: { dataset: DashboardDataset }) {
   );
 }
 
-export function SourceFooter({ dataset }: { dataset: DashboardDataset }) {
+/**
+ * The full source list belongs on the Sources page. Every other page gets one line that points there,
+ * plus the policy links.
+ */
+export function SourceFooter({ dataset, compact = false }: { dataset: DashboardDataset; compact?: boolean }) {
   const classificationLabels = {
     official_data: "Official data",
     official_announcement: "Official announcement",
     industry_research: "Industry research",
     advocacy_analysis: "Advocacy / analysis",
   } as const;
+  const policies = (
+    <div className="v3-source-policies">
+      <a href={`${import.meta.env.BASE_URL}?tab=evidence#methodology`}>Methodology</a>
+      <a href={`${import.meta.env.BASE_URL}?tab=evidence#corrections`}>Corrections policy</a>
+      <a href={`${import.meta.env.BASE_URL}about/`}>About</a>
+      <a href={`${import.meta.env.BASE_URL}privacy/`}>Privacy</a>
+      <a href={`${import.meta.env.BASE_URL}terms/`}>Terms</a>
+    </div>
+  );
+
+  if (compact) {
+    return (
+      <footer className="v3-sources v3-sources-compact">
+        <p className="v3-kicker">Sources</p>
+        <p className="v3-source-disclosure">
+          The <a href={`${import.meta.env.BASE_URL}?view=dashboard&tab=evidence`}>Sources page</a> lists all{" "}
+          {dataset.sources.length} sources and the kind of evidence each one is.
+        </p>
+        {policies}
+      </footer>
+    );
+  }
 
   return (
     <footer className="v3-sources">
@@ -279,13 +317,7 @@ export function SourceFooter({ dataset }: { dataset: DashboardDataset }) {
           </a>
         ))}
       </div>
-      <div className="v3-source-policies">
-        <a href={`${import.meta.env.BASE_URL}?tab=evidence#methodology`}>Methodology</a>
-        <a href={`${import.meta.env.BASE_URL}?tab=evidence#corrections`}>Corrections policy</a>
-        <a href={`${import.meta.env.BASE_URL}about/`}>About</a>
-        <a href={`${import.meta.env.BASE_URL}privacy/`}>Privacy</a>
-        <a href={`${import.meta.env.BASE_URL}terms/`}>Terms</a>
-      </div>
+      {policies}
     </footer>
   );
 }

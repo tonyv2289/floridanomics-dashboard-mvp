@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { formatDateLabel } from "../lib/dashboard";
-import { Frame } from "./primitives";
+import { Frame, HowToRead } from "./primitives";
+import { withoutPanelMonths } from "./format";
 
 type WhatChangedItem = {
   id: string;
@@ -58,18 +59,20 @@ export function WhatChanged() {
       <div className="v3-panel-head">
         <div>
           <h2>{payload.period} versus {payload.prevPeriod}.</h2>
-          <p>
-            Release-to-release comparison generated {formatDateLabel(payload.generatedAt)}. Revisions are labeled
-            separately from new observations.
-          </p>
         </div>
       </div>
+      <HowToRead>
+        <p>
+          Release-to-release comparison generated {formatDateLabel(payload.generatedAt)}. Revisions are labeled
+          separately from new observations.
+        </p>
+      </HowToRead>
 
       <ul className="v3-change-list">
         {payload.items.map((item) => (
           <li key={item.id}>
             <span className={clsx("v3-change-dot", `tone-${item.tone}`)} aria-hidden="true" />
-            <span>{item.headline}</span>
+            <span>{withoutPanelMonths(item.headline, payload.period, payload.prevPeriod)}</span>
           </li>
         ))}
       </ul>

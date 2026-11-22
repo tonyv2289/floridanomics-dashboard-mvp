@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { formatDateLabel } from "../lib/dashboard";
-import { Frame } from "./primitives";
+import { Frame, HowToRead } from "./primitives";
 import { changeTone, formatChange, formatSignalValue } from "./signal-format";
 import type { LeadingSignal } from "../types/dashboard";
 
@@ -52,9 +52,18 @@ export function LeadingSignals({ signals, headline, summary }: { signals: Leadin
       <div className="v3-panel-head">
         <div>
           <h2>{headline}</h2>
-          <p>{summary}</p>
         </div>
       </div>
+      <HowToRead>
+        <p>{summary}</p>
+        <ul>
+          {signals.map((signal) => (
+            <li key={signal.id}>
+              <strong>{signal.label}:</strong> {signal.leads}
+            </li>
+          ))}
+        </ul>
+      </HowToRead>
 
       <div className="v3-signal-grid">
         {signals.map((signal) => (
@@ -79,7 +88,6 @@ export function LeadingSignals({ signals, headline, summary }: { signals: Leadin
                 </small>
               ) : null}
             </div>
-            <p>{signal.leads}</p>
             <a className="v3-source-link" href={signal.source.url} target="_blank" rel="noreferrer">
               {signal.source.label}
             </a>

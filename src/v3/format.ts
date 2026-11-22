@@ -171,6 +171,25 @@ export function firstSentence(value: string): string {
   return sentence.endsWith(".") ? sentence : `${sentence}.`;
 }
 
+/**
+ * The What changed heading already names both months ("October 2026 versus September 2026."), so a line
+ * that repeats exactly those months drops them. A line about any other months keeps its dates.
+ */
+export function withoutPanelMonths(headline: string, period: string, prevPeriod: string): string {
+  const current = ` in ${period}, `;
+  const previous = ` from ${prevPeriod}.`;
+  if (!headline.includes(current) || !headline.endsWith(previous)) {
+    return headline;
+  }
+  return `${headline.slice(0, -previous.length).replace(current, ", ")}.`;
+}
+
+/** Ends a data string with a period so it reads as a sentence; leaves existing end punctuation alone. */
+export function asSentence(value: string): string {
+  const trimmed = value.trim();
+  return /[.!?]$/.test(trimmed) ? trimmed : `${trimmed}.`;
+}
+
 export function resolveHref(href: string): string {
   if (/^https?:\/\//.test(href)) {
     return href;
