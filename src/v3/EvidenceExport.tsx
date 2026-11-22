@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { type CoreMetricId, formatMetricValue } from "../lib/dashboard";
 import { Frame } from "./primitives";
 import type { DashboardDataset } from "../types/dashboard";
-
-const EXPORT_METRICS: CoreMetricId[] = ["unemploymentRate", "nonfarmPayrolls", "laborForce", "employmentLevel"];
+import { buildEvidenceBlock } from "./evidence-export";
 
 function siteUrl(): string {
   if (typeof window === "undefined") {
@@ -14,25 +12,7 @@ function siteUrl(): string {
 
 export function EvidenceExport({ dataset }: { dataset: DashboardDataset }) {
   const [copied, setCopied] = useState(false);
-
-  const lines = EXPORT_METRICS.map((id) => {
-    const metric = dataset.metrics[id];
-    return `- ${metric.label}: ${formatMetricValue(metric, metric.latest.value)} (as of ${dataset.asOfLaborMarket})`;
-  });
-
-  const citations = dataset.sources
-    .filter((source) => ["bls", "wser_floridacommerce", "census_population"].includes(source.id))
-    .map((source) => `${source.name}: ${source.url}`);
-
-  const block = [
-    `Florida labor market, as of ${dataset.asOfLaborMarket}:`,
-    ...lines,
-    "",
-    "Sources:",
-    ...citations.map((citation) => `- ${citation}`),
-    "",
-    `Compiled by Floridanomics: ${siteUrl()}`,
-  ].join("\n");
+  const block = buildEvidenceBlock(dataset, siteUrl());
 
   async function copy() {
     try {

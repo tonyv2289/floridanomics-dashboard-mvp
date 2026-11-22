@@ -81,6 +81,8 @@ After refresh, verify:
 7. `trust.metricVintages` matches the current headline observations and releases
 8. `trust.releaseCalendar` distinguishes a scheduled wait from a failed pipeline
 9. every top-level source has an allowed evidence classification
+10. When a new month of state data is staged, read the BLS State Employment and Unemployment release for that month, then set its date as `latestReleaseDate` on the `florida-labor` entry of `trust.releaseCalendar` and as `releaseDate` on the four labor rows of `trust.metricVintages`. The refresh keeps that date until the next month arrives. Until it is set, the Sources tab shows "Not recorded," because a scheduled date is not proof of release.
+11. Update `trust.review` when you review the sources, and date each claim in it by when it was last checked. A data refresh carries the old review forward unchanged.
 
 ## Validation commands
 
