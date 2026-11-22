@@ -1,7 +1,7 @@
 {
   "headline": "What government grants are paying for in Florida and competitor states.",
   "summary": "Named government grants and cooperative agreements in Florida and competitor states. Each award lists its funding source, its recipient, its status, and the investment or jobs documented with it.",
-  "coverageNote": "A selected list of major awards from 2024 through 2026, not a full accounting of government assistance. Totals include only official awards to a named recipient. Appropriations, open opportunities, contracts, and headlines that combine several awards are shown for context and are never added to the totals.",
+  "coverageNote": "A selected list of major awards from 2024 through 2026, so it covers part of government assistance. Totals include only official awards to a named recipient. Appropriations, open opportunities, contracts, and headlines that combine several awards are shown for context and kept out of the totals.",
   "methodology": [
     "Count an item only after an official source names the recipient and award amount.",
     "Separate the government source of funds from the agency administering a pass-through award.",
@@ -15,7 +15,7 @@
       "category": "appropriation",
       "label": "Florida Job Growth Grant Fund",
       "headline": "$40M appropriated",
-      "treatment": "FY 2026-27 program capacity, not a recipient award. Individual Job Growth awards enter the ledger only after the Governor names a recipient and amount.",
+      "treatment": "This is the fund's FY 2026-27 budget. A Job Growth award is added to the list once the Governor names a recipient and an amount.",
       "sourceIds": ["fl_budget_fy2627"]
     },
     {
@@ -23,7 +23,7 @@
       "category": "opportunity",
       "label": "Florida defense grant cycle",
       "headline": "Applications open",
-      "treatment": "The Defense Reinvestment and Florida Defense Support Commission application cycle is an opportunity, not an award. Awards will be listed here by recipient once they are made.",
+      "treatment": "This is an application cycle for the Defense Reinvestment and Florida Defense Support Commission grants. Awards will be listed here by recipient once they are made.",
       "sourceIds": ["fl_defense_grant_cycle_2026"]
     },
     {
@@ -31,7 +31,7 @@
       "category": "opportunity",
       "label": "Separate DOL shipbuilding competition",
       "headline": "$40M national opportunity",
-      "treatment": "This open national funding opportunity is distinct from FloridaCommerce's $40M cooperative agreement. Combining them would count unawarded money as a Florida win.",
+      "treatment": "This open national competition is separate from FloridaCommerce's $40M cooperative agreement. Adding it would credit Florida with money that has not been awarded.",
       "sourceIds": ["dol_training_fund_tegl_02_25_change_1"]
     },
     {
@@ -39,7 +39,7 @@
       "category": "contract",
       "label": "FSU CAPS naval power systems",
       "headline": "$88M Navy contract",
-      "treatment": "Important defense work for Florida, but a procurement contract is revenue, not a grant, so it is not counted here.",
+      "treatment": "Important defense work for Florida. It is a procurement contract, which is revenue for FSU, so it stays out of the grant totals.",
       "sourceIds": ["fsu_caps_navsea_2026"]
     },
     {
@@ -47,7 +47,7 @@
       "category": "appropriation",
       "label": "Texas Semiconductor Innovation Fund",
       "headline": "$948M program capacity",
-      "treatment": "The roughly $948M reflects legislative appropriations, not awards. This is still a critical institutional benchmark: Texas has a standing, industry-specific capital tool that Florida does not yet match.",
+      "treatment": "The roughly $948M is what the Texas Legislature appropriated; awards are separate. It still matters as a benchmark: Texas has a standing fund for one industry, and Florida has nothing like it yet.",
       "sourceIds": ["tx_tsif_program"]
     }
   ],

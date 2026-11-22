@@ -587,8 +587,8 @@ const FLORIDA_BRAIN_NOTES: DashboardDataset["brainNotes"] = [
     href: "briefs/ai-capex-gap/",
     sources: [
       {
-        label: "BLS April 2026 state release",
-        url: "https://www.bls.gov/news.release/archives/laus_05222026.htm",
+        label: "BLS October 2026 state release",
+        url: "https://www.bls.gov/news.release/archives/laus_11202026.htm",
       },
       {
         label: "CBRE North America Data Center Trends",
@@ -955,7 +955,7 @@ const STRATEGY_SCENARIOS: StrategyLayer["scenarios"] = [
 const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLedger"> = {
   headline: "Investment, infrastructure, and Florida's economic development.",
   thesis:
-    "Population growth, new businesses, infrastructure, and industry investment all add to Florida's economy. What we want to know is whether they raise productivity, wages, and lasting jobs in each region.",
+    "Population growth, new businesses, infrastructure, and industry investment all add to Florida's economy. The question is whether they raise productivity, wages, and lasting jobs in each region.",
   operatingQuestion:
     "Where can Florida build on what it already has, and what stands in the way?",
   sources: [
@@ -1225,7 +1225,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Florida payroll pulse",
         value: "+40,500",
         context: "April 2026 monthly nonfarm payroll change, largest among states",
-        read: "The monthly payroll change counts jobs across the whole economy. It cannot show what AI infrastructure added.",
+        read: "The monthly payroll change counts jobs across the whole economy, so AI infrastructure's share can't be separated out.",
         sourceIds: ["bls_state_april_2026"],
       },
       {
@@ -1241,7 +1241,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Texas comparison",
         value: "4.3%",
         context: "Texas April 2026 unemployment rate",
-        read: "Texas is shown for comparison. These figures alone cannot tie a difference in unemployment to data centers.",
+        read: "Texas is shown for comparison. Many things move unemployment, so these figures can't tie a difference to data centers.",
         sourceIds: ["bls_state_april_2026"],
       },
       {
@@ -1249,7 +1249,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Dallas data centers under construction",
         value: "765+ MW",
         context: "CBRE H1 2026 Dallas-Fort Worth market review",
-        read: "CBRE reports more than 765 MW under construction, with 95% preleased. Capacity under construction is not the same as capacity that is operating or planned.",
+        read: "CBRE reports more than 765 MW under construction, with 95% preleased. Operating and planned capacity are separate measures.",
         sourceIds: ["cbre_h2_2025_data_centers"],
       },
       {
@@ -1257,7 +1257,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Global data-center investment forecast",
         value: "$3T",
         context: "JLL estimate for total data-center investment over the next five years",
-        read: "This is a global industry forecast of possible investment. It is not capital committed to Florida.",
+        read: "A global industry forecast of possible investment, not tied to any state.",
         sourceIds: ["jll_2026_global_data_center_outlook"],
       },
     ],
@@ -1267,7 +1267,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Nearby demand",
         score: 4,
         maxScore: 5,
-        read: "Demand could come from aerospace, finance, health care, and regional digital services. Each project's demand has to be verified on its own.",
+        read: "Demand could come from aerospace, finance, health care, and regional digital services, and each project has to show its own.",
         sourceIds: ["jll_2026_global_data_center_outlook", "portmiami", "space_florida"],
       },
       {
@@ -1283,7 +1283,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Project list",
         score: 2,
         maxScore: 5,
-        read: "The current project list is incomplete. A missing record does not mean a project or an investment is absent.",
+        read: "The project list is still incomplete, so a project can exist without a record here.",
         sourceIds: ["blue_origin_florida", "cbre_h2_2025_data_centers"],
       },
       {
@@ -1291,7 +1291,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         label: "Incentive terms",
         score: 4,
         maxScore: 5,
-        read: "Check who pays, what the utility requires, what local approvals are needed, and what the economy gains, against the new law and each project's terms.",
+        read: "Under the new law, each project's terms should say who pays, what the utility requires, what local approvals it needs, and what the economy gains.",
         sourceIds: ["florida_governor_sb484", "florida_senate_sb484"],
       },
       {
@@ -1307,14 +1307,14 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
   highWageMonitor: {
     headline: "Jobs by industry and what they pay.",
     summary:
-      "These are broad industry measures, shown for context. They do not single out AI jobs, show how well jobs pay, or measure what any one investment did.",
+      "These are broad industry counts, shown for context. Pay, AI jobs, and the effect of any one investment need finer data.",
     metrics: [
       {
         id: "information-jobs",
         label: "Information jobs",
         value: "Live BLS series",
         context: "Information-sector employment",
-        read: "The information sector covers several industries. It is not a full count of technology or data-center jobs.",
+        read: "The information sector covers several industries and only part of technology and data-center work.",
         sourceIds: ["bls_state_april_2026"],
       },
       {
@@ -1339,11 +1339,11 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
     {
       id: "ai-capex-gap",
       claim:
-        "Research question: how much AI infrastructure investment is Florida attracting compared with similar states?",
+        "How much AI infrastructure investment is Florida attracting compared with similar states?",
       horizon: "6 to 18 months",
       confidence: "medium",
       mechanism:
-        "Data-center projects can bring construction, engineering, utility, and operations work. How much they add has to be shown with each project's capacity, spending, jobs, and costs.",
+        "Data-center projects can bring construction, engineering, utility, and operations work. Each project's capacity, spending, jobs, and costs show how much it adds.",
       leadingIndicators: [
         "Announced megawatts and MW under construction by state",
         "Large-load interconnection queue and utility tariff filings",
@@ -1357,13 +1357,13 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         "Average weekly wages in target clusters",
       ],
       baseCase:
-        "Illustrative scenario: established industries keep accounting for most of the documented investment in each region.",
+        "Established industries keep accounting for most of the documented investment in each region.",
       ambitionCase:
-        "Illustrative scenario: computing projects that make commercial sense add capacity, pay their own infrastructure costs, and serve regional demand.",
+        "Computing projects that make commercial sense add capacity, pay their own infrastructure costs, and serve regional demand.",
       riskCase:
-        "Illustrative scenario: limits on infrastructure delay good projects or make them cost more.",
+        "Limits on infrastructure delay good projects or make them cost more.",
       counterCase:
-        "Changes in the labor market may come from participation, the industry mix, and the wider economy, and not from AI investment.",
+        "Changes in the labor market may come from participation, the industry mix, and the wider economy rather than AI investment.",
       updateTrigger:
         "Once comparable project-capacity lists and utility filings are available. Nothing here shows cause and effect.",
       sourceIds: ["bls_state_april_2026", "cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
@@ -1371,7 +1371,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
     {
       id: "florida-model-export",
       claim:
-        "Research question: which of Florida's economic development practices would work in other regions?",
+        "Which of Florida's economic development practices would work in other regions?",
       horizon: "12 to 36 months",
       confidence: "medium",
       mechanism:
@@ -1389,9 +1389,9 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
         "State and local fiscal resilience",
       ],
       baseCase:
-        "Illustrative scenario: the evidence supports some practices where local conditions are similar.",
+        "The evidence supports some practices where local conditions are similar.",
       ambitionCase:
-        "Illustrative scenario: documented gains in delivered investment and workforce results give other states something to study.",
+        "Documented gains in delivered investment and workforce results give other states something to study.",
       riskCase:
         "Policies are adopted without allowing for different local conditions or the ability to carry them out.",
       counterCase:
@@ -1406,15 +1406,15 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
       id: "strategic-compute-not-dumb-load",
       title: "Data-center investment and infrastructure costs.",
       stance:
-        "Editorial recommendation: weigh each data-center investment together with ratepayer protection and the local infrastructure it requires.",
+        "Weigh each data-center investment together with protecting ratepayers and the local infrastructure it needs.",
       whatChanged:
         "CS/CS/SB 484 became Chapter 2026-65. Its principal effective date is July 1, 2026, with exceptions identified in the law.",
       mechanism:
-        "A project review should separate what the private investment brings from the electricity, water, and infrastructure costs that other customers would pay.",
+        "A good project review separates what the private investment brings from the electricity, water, and infrastructure costs other customers would pay.",
       recommendation:
-        "For each proposal, look at how it gets its power, how much water it uses, what it needs from the grid, who pays those costs, and what jobs it commits to. Any incentive should come with written terms and public benefits that can be measured.",
+        "For each proposal, ask where its power comes from, how much water it uses, what it needs from the grid, who pays those costs, and what jobs it commits to. Any incentive should come with written terms and benefits the public can measure.",
       whatNotToDo:
-        "Do not count announced spending as a public benefit, and do not assume every data center has the same costs or needs.",
+        "Count the public benefit when the money is spent, and judge each data center's costs and needs on its own.",
       nextMoves: [
         "Florida's data-center megawatts in the pipeline and its utility tariff filings",
         "A named list of data-center, grid, and advanced manufacturing projects",
@@ -1426,15 +1426,15 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
       id: "wage-curve-scoreboard",
       title: "Judge industry policy by wages.",
       stance:
-        "Editorial recommendation: judge industry policy by wages, productivity, and lasting jobs, along with the investment totals.",
+        "Judge industry policy by wages, productivity, and lasting jobs, along with the investment totals.",
       whatChanged:
-        "The latest job figures differ by industry and by measure. Total growth does not tell us how good the jobs are.",
+        "The latest job figures differ by industry and by measure, and total growth says little about how good the jobs are.",
       mechanism:
         "More residents mean more demand. Capital investment can add productive capacity, but the result depends on the kind of project, how it is carried out, and the workers available.",
       recommendation:
-        "Measure progress with occupational wages, QCEW industry data, credentials earned, and regional employment results.",
+        "Measure progress with occupational wages, BLS industry wage data, credentials earned, and regional employment results.",
       whatNotToDo:
-        "Do not use business applications, income from new residents, or announced jobs in place of measured wages.",
+        "Count measured wages. Business applications, income from new residents, and announced jobs can't stand in for them.",
       nextMoves: [
         "A set of high-wage occupations for each industry cluster",
         "Wages in the target clusters against the state median",
@@ -1450,16 +1450,16 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
       briefCopy:
         "Florida's growth comes from population, investment, infrastructure, and skills working together. Measure them by jobs, wages, and productivity.",
       exportUse:
-        "Use with the current labor, population, and industry sources.",
+        "Read alongside the current labor, population, and industry data.",
       sourceIds: ["florida_chamber_income_migration", "fc100_ambition_accelerated"],
     },
     {
       id: "ai-capex-question",
       title: "Where Florida stands on AI infrastructure",
       briefCopy:
-        "Where Florida stands on AI infrastructure is still an open question. An incomplete project list cannot prove a shortfall.",
+        "Florida has no hyperscale campus operating, under construction, or announced. Whether it trails similar states on AI infrastructure overall still needs a complete, comparable project list.",
       exportUse:
-        "Use with a dated, comparable inventory of capacity and project stages.",
+        "Read alongside a dated, comparable inventory of capacity and project stages.",
       sourceIds: ["bls_state_april_2026", "cbre_h2_2025_data_centers", "jll_2026_global_data_center_outlook"],
     },
     {
@@ -1468,7 +1468,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
       briefCopy:
         "A project review should say who pays for the infrastructure, who carries the risk, and what measurable benefits the region gets.",
       exportUse:
-        "Editorial analysis; consult the enacted law and applicable utility decisions.",
+        "Floridanomics analysis. The enacted law and utility decisions set the rules.",
       sourceIds: ["florida_governor_sb484", "florida_senate_sb484"],
     },
     {
@@ -1477,7 +1477,7 @@ const TERMINAL_LAYER: Omit<TerminalLayer, "projectLedger" | "governmentGrantsLed
       briefCopy:
         "Ports, space facilities, university research, and specialized manufacturers give each Florida region different strengths.",
       exportUse:
-        "Use the atlas and individual public-source profiles for regional context.",
+        "The atlas and the regional profiles give the local context.",
       sourceIds: ["space_florida", "blue_origin_florida", "portmiami", "port_everglades"],
     },
   ],

@@ -93,7 +93,7 @@ export function TradeTab({ dataset }: { dataset: DashboardDataset }) {
           <article className="v3-stat-card">
             <span>Sales generated</span>
             <strong>{formatUsdMillions(dataset.trade.selectFlorida.salesGeneratedUsdMillions)}+</strong>
-<p>Sales the program reported for the period shown. This is not a measure of public return on investment.</p>
+<p>Sales the program reported for the period shown.</p>
           </article>
           {dataset.trade.selectFlorida.showResults.map((show) => (
             <article key={show.id} className="v3-stat-card">

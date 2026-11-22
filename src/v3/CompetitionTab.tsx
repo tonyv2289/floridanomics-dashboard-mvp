@@ -131,8 +131,8 @@ function MetroCompetitionView({
       </div>
 
       <p className="v3-competition-read">
-        Data window: {comparison.asOf}. These comparisons describe each region's strengths and its conditions for
-        investment. Definitions and geography differ from place to place, so this is not a ranking.
+        Data: {comparison.asOf}. These comparisons describe each region's strengths and its conditions for
+        investment. Definitions and geography differ from place to place, so the places are not ranked.
       </p>
     </Frame>
   );

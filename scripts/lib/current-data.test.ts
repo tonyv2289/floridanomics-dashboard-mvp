@@ -122,6 +122,6 @@ describe("common-period metropolitan comparisons", () => {
     expect(result.regions).toHaveLength(9);
     expect(result.regions[0].signals[1].value).toBe("+10.0%");
     expect(result.regions[0].signals[3].value).toBe("+10.0 pp");
-    expect(result.summary).toContain("do not measure productivity or AI employment");
+    expect(result.summary).toContain("These figures cover residents' jobs and unemployment.");
   });
 });

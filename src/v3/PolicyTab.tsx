@@ -46,7 +46,7 @@ export function PolicyTab({ dataset }: { dataset: DashboardDataset }) {
                   <dd>{memo.recommendation}</dd>
                 </div>
                 <div>
-                  <dt>Guardrail</dt>
+                  <dt>What to count</dt>
                   <dd>{memo.whatNotToDo}</dd>
                 </div>
               </dl>

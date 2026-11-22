@@ -1,6 +1,6 @@
 import { useState } from "react";
 import clsx from "clsx";
-import { CompetitionSourceList, Frame } from "./primitives";
+import { CompetitionSourceList, Frame, HowToRead } from "./primitives";
 import { resolveHref } from "./format";
 import {
   describeReported,
@@ -63,7 +63,9 @@ function MeasureCard({ dataset, measure }: { dataset: DashboardDataset; measure:
       </ol>
 
       <p>{measure.read}</p>
-      <p className="v3-state-invest-caveat">{measure.caveat}</p>
+      <HowToRead>
+        <p>{measure.caveat}</p>
+      </HowToRead>
       <CompetitionSourceList dataset={dataset} sourceIds={measure.sourceIds} />
     </article>
   );
@@ -312,7 +314,9 @@ function FacilityHistoryTable({ dataset, history, reported, peers }: { dataset: 
         </div>
       </div>
 
-      <p className="v3-state-invest-caveat">{head.caveat}</p>
+      <HowToRead>
+        <p>{head.caveat}</p>
+      </HowToRead>
       {showReported ? null : <CompetitionSourceList dataset={dataset} sourceIds={history.sourceIds} />}
     </Frame>
   );
@@ -389,12 +393,14 @@ export function StateInvestmentView({ dataset }: { dataset: DashboardDataset }) 
         <CompetitionSourceList dataset={dataset} sourceIds={invest.finalists.sourceIds} />
       </Frame>
 
-      <Frame label="How to read these comparisons">
-        <ul className="v3-state-invest-method">
-          {invest.method.map((line) => (
-            <li key={line}>{line}</li>
-          ))}
-        </ul>
+      <Frame label="Method">
+        <HowToRead>
+          <ul className="v3-state-invest-method">
+            {invest.method.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </HowToRead>
         <p className="v3-competition-read">
           <a href={resolveHref(CSV_PATH)} download>
             Download the $1B+ project inventory (CSV, one row per project with its sources)

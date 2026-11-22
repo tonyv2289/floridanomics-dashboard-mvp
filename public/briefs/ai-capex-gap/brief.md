@@ -1,24 +1,24 @@
 # Florida's Position in AI Infrastructure Investment
 
-Updated September 10, 2026. Observation periods vary by source.
+Updated November 22, 2026. Observation periods vary by source.
 
-Florida's regional industries could use more computing. To know where the state stands on investment, we need comparable figures on project capacity, infrastructure costs, construction, and operations. The labor statistics we have do not show that Florida is missing an AI investment boom.
+Florida's regional industries could use more computing. As of September 25, 2026, Florida had no hyperscale data-center campus operating, under construction, or announced. Comparing Florida with similar states takes comparable figures on project capacity, infrastructure costs, construction, and operations, and labor numbers alone can't do it.
 
-## Florida unemployment: 4.6%
+## Florida unemployment: 4.3%
 
-July 2026, seasonally adjusted. [BLS State Employment and Unemployment, July 2026](https://www.bls.gov/news.release/laus.nr0.htm).
+October 2026, seasonally adjusted. [BLS State Employment and Unemployment, October 2026](https://www.bls.gov/news.release/laus.nr0.htm).
 
-## Florida monthly payroll change: +4,500
+## Florida monthly payroll change: +8,000
 
-July 2026 change from revised June employment. The estimate covers all nonfarm industries and is subject to revision. [BLS State Employment and Unemployment, July 2026](https://www.bls.gov/news.release/laus.nr0.htm).
+October 2026 change from revised September employment, across all nonfarm industries and subject to revision. [BLS State Employment and Unemployment, October 2026](https://www.bls.gov/news.release/laus.nr0.htm).
 
-## Texas unemployment: 4.5%
+## Texas unemployment: 4.4%
 
-July 2026, seasonally adjusted. Florida's rate was 4.6%. The difference is not a measure of AI investment. [BLS State Employment and Unemployment, July 2026](https://www.bls.gov/news.release/laus.nr0.htm).
+October 2026, seasonally adjusted. Florida's rate was 4.3%. Many things move unemployment, so the gap can't be tied to AI investment. [BLS State Employment and Unemployment, October 2026](https://www.bls.gov/news.release/laus.nr0.htm).
 
-## Florida industrial electricity: 9.12¢ / kWh
+## Florida industrial electricity: 8.93¢ / kWh
 
-June 2026 preliminary state average. A particular project's tariff, load profile, and infrastructure charges may differ. [EIA Electric Power Monthly, June 2026](https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a).
+August 2026 preliminary state average. A given project's tariff, load profile, and infrastructure charges may differ. [EIA Electric Power Monthly, August 2026](https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a).
 
 ## Dallas capacity under construction: 765+ MW
 
@@ -26,7 +26,7 @@ CBRE's H1 2026 Dallas-Fort Worth review reports more than 765 MW under construct
 
 ## Net income migration: $2.36M / hr
 
-The Scorecard's current IRS-based hourly equivalent. This annual household-income measure is not capital committed to data centers. [Florida Scorecard, checked September 10, 2026](https://thefloridascorecard.org/pillar&c=0&pillar=2).
+The Scorecard's current IRS-based hourly equivalent. It tracks household income moving into Florida, which is separate from capital committed to data centers. [Florida Scorecard, checked September 10, 2026](https://thefloridascorecard.org/pillar&c=0&pillar=2).
 
 ## Data-center legislation: Chapter 2026-65
 
@@ -34,7 +34,7 @@ CS/CS/SB 484 was approved in May 2026. Its principal effective date is July 1, 2
 
 ## What infrastructure investment can add to a region.
 
-Building a data center can bring construction, engineering, utility, and operations work. How much, and for how long, depends on the project's design, its spending, how much it buys locally, and its staffing. Announced investment is not the same as finished construction or lasting output in the region.
+Building a data center can bring construction, engineering, utility, and operations work. How much, and for how long, depends on the project's design, its spending, how much it buys locally, and its staffing. An announcement is a plan; the region gains when construction finishes and the site operates.
 
 Florida's aerospace, health care, finance, and international business may need specialized computing. Whether a project makes commercial sense, and what the community gets from it, has to be worked out one project at a time.
 
@@ -42,7 +42,7 @@ Florida's aerospace, health care, finance, and international business may need s
 
 Operating capacity, capacity under construction, planned megawatts, capital spending, and net absorption each measure something different. Ranking states on investment takes the same geography and the same definitions for every state.
 
-An incomplete list of Florida projects limits what we can say. It does not show that projects are absent, and it does not explain unemployment.
+Florida's project list is still incomplete, so it can't prove a shortfall or explain unemployment.
 
 ## Identify costs, risks, and public benefits.
 
@@ -54,6 +54,6 @@ Floridanomics recommends judging each proposal by commitments and costs that can
 
 The next step is a list of named facilities that separates those announced, permitted, under construction, and operating. It should include megawatts, disclosed capital, expected and actual jobs, utility arrangements, and water needs.
 
-Occupational wages and supplier activity can then help measure the economic effect. Until that information exists, whether Florida has an AI investment gap is still an open question.
+Occupational wages and supplier activity can then measure the economic effect. Until that list exists, Florida's position on AI infrastructure can't be measured against other states.
 
-This is economic analysis and a research agenda, not a quantified impact study or legal advice. [Current data and source notes](https://www.floridanomics.com/?view=dashboard&tab=evidence).
+This is economic analysis and a research agenda, separate from an impact study or legal advice. [Current data and source notes](https://www.floridanomics.com/?view=dashboard&tab=evidence).
