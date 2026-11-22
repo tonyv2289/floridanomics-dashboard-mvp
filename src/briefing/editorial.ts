@@ -1,16 +1,15 @@
 export const TJ_READ = {
-  title: "The next test is turning investment into jobs.",
+  title: "The newest billion-dollar projects were announced in 17 other states.",
   author: "TJ Villamil",
-  publishedAt: "2026-09-11",
-  laborPeriod: "2026-07-01",
+  publishedAt: "2026-11-22",
+  laborPeriod: "2026-10-01",
   paragraphs: [
-    "Florida added 4,500 payroll jobs in July, but unemployment was higher than a year earlier. That combination deserves attention. A growing population and a full calendar of project announcements do not tell us enough about the quality or pace of job creation.",
-    "The investment figures need the same discipline. BEA's preliminary estimate puts new foreign direct investment in Florida at $7.36 billion in 2025, with roughly 96 percent tied to acquisitions. Those transactions matter, but buying an existing business is different from adding a factory, laboratory or new payroll.",
-    "My read: follow what comes after the announcement. Is a facility operating? Are Florida suppliers winning work? Are graduates finding jobs that use their skills? The regional profiles are where those questions become concrete. That is the part of Florida's growth story I want to keep examining.",
+    "Florida added 8,000 payroll jobs in October. Payrolls are up 100,200 from a year ago, helped by a weak October 2025, when the state lost 42,600. Unemployment was 4.3 percent, down from 4.8 percent in May.",
+    "This month I added 27 projects of $1 billion or more to my megaproject tracker. They were announced in 17 states. Ten are factories and other industrial projects that total $38.6 billion, including Audi's first U.S. plant in Georgia and a new Honda plant in Ohio. Seventeen are data centers. None of the 27 is in Florida.",
+    "My read: Amendment 3 passed. Everyone will be talking about cuts, but what we should be doing is economic development: growing the tax base. Since 2022, companies have announced billion-dollar factories, labs, and plants in Florida worth about $164 per resident. In Virginia, the lowest of ten competitor states, it is nearly 13 times that. If you run a county or an EDO, write your standard before the next application arrives, and name your sites.",
   ],
   sources: [
-    { label: "BLS · July 2026 state labor data", url: "https://www.bls.gov/news.release/archives/laus_08212026.htm" },
-    { label: "BEA · 2025 new foreign investment", url: "https://www.bea.gov/news/2026/new-foreign-direct-investment-united-states-2025" },
-    { label: "BEA · State expenditure tables", url: "https://apps.bea.gov/international/xls/FDI/2026/Table3-24-25.xls" },
+    { label: "BLS · October 2026 state labor data", url: "https://www.bls.gov/news.release/archives/laus_11202026.htm" },
+    { label: "Floridanomics · $1B+ project list and state comparison", url: "https://www.floridanomics.com/?view=dashboard&tab=competition&competitionView=states" },
   ],
 };
