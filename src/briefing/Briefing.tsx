@@ -136,7 +136,7 @@ function Briefing() {
         <section className="tj-read" aria-labelledby="tj-read-title">
           <div className="tj-read-byline"><p>TJ’s Read</p><strong>{TJ_READ.author}</strong><span>{formatDateLabel(TJ_READ.publishedAt)}</span><small>Editorial analysis</small></div>
           <div><h2 id="tj-read-title">{TJ_READ.title}</h2>{TJ_READ.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<div className="tj-read-sources">{TJ_READ.sources.map((source) => <a key={source.url} href={source.url}>{source.label} ↗</a>)}</div>
-          {payrollDate !== TJ_READ.laborPeriod ? <p className="briefing-note">This column discusses July 2026. The data above may be newer.</p> : null}</div>
+          {payrollDate !== TJ_READ.laborPeriod ? <p className="briefing-note">This column discusses {formatDateLabel(TJ_READ.laborPeriod, { month: "long", year: "numeric" })}. The data above may be newer.</p> : null}</div>
         </section>
 
         {isSnapshot ? null : <section className="home-regions" aria-labelledby="home-regions-title"><div><p className="briefing-kicker">Across Florida</p><h2 id="home-regions-title">Florida's eight regions.</h2></div><div className="home-region-grid">{REGIONAL_PROFILES.map((region, index) => <a key={region.id} href={regionalPath(region.id, import.meta.env.BASE_URL)}><span>{String(index + 1).padStart(2, "0")}</span><h3>{region.title}</h3><p>{region.description}</p><strong>Read the profile →</strong></a>)}</div></section>}
